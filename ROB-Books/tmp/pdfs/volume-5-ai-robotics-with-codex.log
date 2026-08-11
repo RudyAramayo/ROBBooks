@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  10 AUG 2026 23:58
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 00:09
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1772,7 +1772,7 @@ Package rerunfilecheck Info: File `volume-5-ai-robotics-with-codex.out' has not
 Here is how much of TeX's memory you used:
  38172 strings out of 468168
  869571 string characters out of 5423555
- 1650554 words of memory out of 5000000
+ 1650552 words of memory out of 5000000
  66084 multiletter control sequences out of 15000+600000
  635832 words of font info for 144 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191

@@ -1,14 +1,14 @@
 # Fdb version 4
-["xdvipdfmx"] 1786431491.7726 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob" 1786431492.59577 0
+["xdvipdfmx"] 1786432132.73156 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob" 1786432133.56305 0
   "/Users/raramayo/dev/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" 0 -1 0 ""
   "/Users/rob/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev/R.O.B./Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" 0 -1 0 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" 1786431491.70291 483916 23569938c85103c3d9708393de8096d6 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" 1786432132.66687 483916 01796f730267647356ca3270bbb4d36b "xelatex"
   (generated)
   "/Users/raramayo/dev/ROB-Books/tmp/pdfs/volume-1-meet-rob.pdf"
   "/Users/rob/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev/R.O.B./Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.pdf"
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.pdf"
   (rewritten before read)
-["xelatex"] 1786431490.24303 "volume-1-meet-rob.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" "volume-1-meet-rob" 1786431492.59416 0
+["xelatex"] 1786432131.14435 "volume-1-meet-rob.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" "volume-1-meet-rob" 1786432133.56149 0
   "../assets/generated/rob-systems-feedback-lab.png" 1786423707.34551 3065700 fa149af3268af1ce126be80b44c28ff8 ""
   "../assets/generated/rob-used-future-frontispiece.png" 1785739480 2830286 53609131355d8d77cecf6b577ef4cecc ""
   "../assets/photos/2019-rob-front-corner.jpg" 1785743334 2681899 364a44a8445431f90fd43660a8f7579f ""
@@ -36,9 +36,9 @@
   "../assets/photos/2025-rob-face-portrait.jpg" 1785743352 2178747 a643c6c19e15c98a2ccf8c21be069f89 ""
   "../assets/photos/2025-rob-side-full-body.jpg" 1785743354 2571287 baa44e8432a1dd6dbc9e9fd2016671a3 ""
   "../assets/photos/2026-rob-lightsabers-front.jpg" 1786425671.68319 1771596 2696b37414e88c6615a5122dd987857b ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.aux" 1786431491.70162 3579 2c54c504803cffc967cb52528986fd22 "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.out" 1786431491.70248 1680 0fa822afbbaa0af6824f029f3234cc4a "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.toc" 1786431491.70276 751 2235d9ecc492b54cdc6ee4dda75f3b53 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.aux" 1786432132.66561 3579 2c54c504803cffc967cb52528986fd22 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.out" 1786432132.6664 1680 0fa822afbbaa0af6824f029f3234cc4a "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.toc" 1786432132.6667 751 2235d9ecc492b54cdc6ee4dda75f3b53 "xelatex"
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/fontname/texfonts.map" 1772380719 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1772380719 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1772380719 1004 54797486969f23fa377b128694d548df ""

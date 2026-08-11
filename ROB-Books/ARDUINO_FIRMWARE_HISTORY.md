@@ -16,7 +16,7 @@ This is documentation of inspected source, not an endorsement of the firmware as
 
 | Role | File | Lines | SHA-256 | Publication status |
 |---|---|---:|---|---|
-| Base | `ROBArduino/ROBOT_CEREBELLULAR_BASE_APP/ROBOT_CEREBELLULAR_BASE_APP.ino` | 857 | `7775ff9204430cfaf7eb2416134374a18ac6c7dc67b64a865bbb016752b53e10` | Current role reported by builder; includes Base discovery and six-channel IR telemetry; exact flashed artifact unverified |
+| Base | `ROBArduino/ROBOT_CEREBELLULAR_BASE_APP/ROBOT_CEREBELLULAR_BASE_APP.ino` | 802 | `af7cec9c49496eb4a7a638bd3e3e42b160eec4ce5974a67915b48d6e6ca6b8b1` | Current role reported by builder; exact flashed artifact unverified |
 | Head | `ROBArduino/ROBOT_CEREBELLULAR_HEAD_APP/ROBOT_CEREBELLULAR_HEAD_APP.ino` | 436 | `63b32d3149d9d78d7db9dadeb819414155e57f09ff902bb8c699447ed6329305` | Retired historical reference |
 | Torso | `ROBArduino/ROBOT_CEREBELLULAR_TORSO_APP/ROBOT_CEREBELLULAR_TORSO_APP.ino` | 695 | `97b238fe9bf7772c43dc0f4834cfc322cf826de7adb7ec61faa3c4fde9c3c3a7` | Retired historical reference |
 | Torso duplicate | `ROBArduino/ROBOT_CEREBELLULAR_TORSO_APP/ROBOT_CEREBELLULAR_TORSO_APP 2.ino` | 695 | `97b238fe9bf7772c43dc0f4834cfc322cf826de7adb7ec61faa3c4fde9c3c3a7` | Byte-identical duplicate; not a fourth role or revision |
@@ -33,7 +33,7 @@ The Base sketch opens USB serial at 250,000 baud and parses a historical 42-byte
 6. flipper speed;
 7. linear-actuator speed.
 
-At startup, before optional IMU initialization, the sketch prints the machine-readable line `ROB:FIRMWARE=BASE;PROTOCOL=RHAPI-0.1`; it repeats that line every second. Cerebro passively listens for this exact identity while trying USB callout devices, so it can select the Base after a hub changes its `/dev/cu.*` name without sending possible motion bytes to an unknown controller. The operator's refresh action closes the former Base connection and repeats detection. A matching text line proves only that the opened sketch identifies itself as this protocol role; it does not prove wiring, motor polarity, safety behavior, or that the flashed bytes match the archived source hash.
+The existing sketch prints `BEGIN BASE STARTUP SEQUENCE` after its IMU initialization. Cerebro pulses DTR to restart each USB serial candidate and passively listens up to 15 seconds for that exact legacy line; the archived retired sketches instead print `BEGIN HEAD STARTUP SEQUENCE` or `BEGIN TORSO STARTUP SEQUENCE`. This permits hub-independent Base discovery without changing or flashing show-day firmware and without sending command bytes to unknown devices. The operator's refresh action closes the former Base connection and repeats detection. A matching startup line identifies a firmware role; it does not prove wiring, motor polarity, safety behavior, or that the flashed bytes match the archived source hash.
 
 The sketch defines the following source-level map. These are facts about code identifiers, not proof of the present harness:
 
@@ -51,7 +51,7 @@ Tread and flipper PWM use `255 - abs(command)`, so the source assumes an active-
 
 The actuator path emits compact serial commands: `0x83` exits safe start, `0x85` requests forward, and `0x86` requests reverse. Nominal magnitude is -3200 through +3200. Historical values -3201 and +3201 first exit safe start and are then converted to the corresponding 3200-magnitude command.
 
-Six SharpIR objects exist. Every 200 ms the sketch emits `ROB:IR=FL,FR,L,R,BL,BR`, with integer distances in centimeters. Cerebro validates all six fields and renders their reach and blocked/clear state in the SceneKit controller-input view. The firmware's older safety routine evaluates only front and rear pairs against 25 cm thresholds and prints warnings after repeated close readings. The assignments that would assert forward or backward motion-inhibit flags remain commented out; side sensors do not participate in that firmware decision. The display applies 25 cm to all six visualization channels and is advisory, not a collision-avoidance or safety-rated stop. The MPU9250 path calculates orientation telemetry, but it does not independently stop motion.
+Six SharpIR objects exist. The active routine evaluates front and rear pairs against 25 cm thresholds and prints warnings after repeated close readings. Its six-value numeric printout is commented out, so the existing flashed firmware cannot provide reliable per-sensor distances to Cerebro without a future firmware change. The assignments that would assert forward or backward motion-inhibit flags are also commented out; side sensors do not participate in that decision. The MPU9250 path calculates orientation telemetry, but it does not independently stop motion.
 
 The loop-count keepalive eventually calls the motor command path with zero speeds and zero brake fields. Because zero brake fields are described as released, the physical timeout response may be coast rather than hold and must be measured. Timing depends on loop execution rather than a monotonic elapsed-time deadline.
 

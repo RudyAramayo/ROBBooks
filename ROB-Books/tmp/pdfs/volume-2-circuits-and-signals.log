@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  10 AUG 2026 23:58
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 00:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1718,11 +1718,11 @@ hanged.
 Here is how much of TeX's memory you used:
  35519 strings out of 468168
  769869 string characters out of 5423555
- 1508339 words of memory out of 5000000
+ 1508337 words of memory out of 5000000
  63605 multiletter control sequences out of 15000+600000
  632142 words of font info for 134 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,12n,131p,1026b,2041s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circu
-its-and-signals.xdv (29 pages, 606560 bytes).
+its-and-signals.xdv (29 pages, 605076 bytes).

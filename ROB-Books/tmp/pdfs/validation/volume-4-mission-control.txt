@@ -107,11 +107,11 @@ troller derives normalized linear and angular intent. A secure network carries t
 Mac mini. Cerebro decides whether that controller owns motion authority, translates the values into the
 historical base frame, and refreshes the Arduino over USB. The Arduino sets pins. Motor electronics drive
 the treads.
-The USB device name can change when a cable moves to another hub. Current Cerebro therefore
-scans only USB callout ports and listens for the Base sketch’s exact identity line, ROB:FIRMWARE=BASE;
-PROTOCOL=RHAPI-0.1. It sends no probe command to unknown boards. The refresh control closes the
-old Base connection and runs discovery again. Identity selects the intended firmware role; it is not
-authentication and does not prove the harness is safe.
+The USB device name can change when a cable moves to another hub. Current Cerebro therefore scans
+only USB callout ports, resets each candidate, and listens for the existing Base sketch’s exact line, BEGIN
+BASE STARTUP SEQUENCE. It sends no serial command bytes and requires no Arduino firmware flash. The
+refresh control closes the old Base connection and runs discovery again. The startup label selects the
+intended firmware role; it is not authentication and does not prove the harness is safe.
 
 
                                    Operator intent - iPhone, Apple Watch, or Vision Pro controller

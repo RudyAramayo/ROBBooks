@@ -399,15 +399,17 @@ Flipper & D6 & D7 & D29 & No implemented limit input\\
 \toprule
 FUNCTION & CONNECTION & CURRENT SOURCE BEHAVIOR\\
 \midrule
-Mac base serial & USB, 250,000 baud & Fixed-width command plus diagnostic text and periodic Base identity\\
+Mac base serial & USB, 250,000 baud & Fixed-width command plus diagnostic text and an existing role-specific startup line\\
 Actuator controller & SoftwareSerial D22/D23, 19,200 baud & Compact serial forward/reverse; nominal speed -3200 to +3200; special inputs +3201 and -3201 clear safe start before commanding the corresponding 3200 magnitude\\
-IR array & A5 through A0 & Six SharpIR instances; 5 Hz centimeter telemetry; SceneKit display uses 25 cm for all channels; firmware warning logic uses front/back only\\
+IR array & A5 through A0 & Six SharpIR instances; front/back warning thresholds at 25 cm; numeric six-sensor printout is commented out\\
 IMU & I2C via Wire; D20/D21 if Mega & MPU9250 initialization and orientation telemetry\\
 Speed feedback & Proposed D18/D19/D20 & Commented TODOs disagree: the header calls D18 left and D19 right, while later pin declarations reverse them; D20 conflicts with Mega I2C SDA\\
 \bottomrule
 \end{tabularx}
 
-The Base sketch emits \texttt{ROB:FIRMWARE=BASE;}\allowbreak\texttt{PROTOCOL=RHAPI-0.1} before optional IMU initialization and repeats it once per second. Cerebro passively checks USB callout devices for that exact line, retains the matching descriptor, and reruns the scan when the operator refreshes. It does not transmit a challenge or motion-shaped probe to unknown serial devices. This removes reliance on a hub-dependent \texttt{/dev/cu.*} name, but it is role discovery rather than cryptographic authentication or hardware verification.
+Cerebro consumes the existing \texttt{WARNING! FRONT}, \texttt{WARNING! BACK}, and blocking-error sentences without requiring a firmware flash. Its SceneKit diagnostic highlights the corresponding pair for three seconds. Silence becomes ``clearance unknown,'' not ``path clear,'' because the legacy stream has neither explicit clear events nor numeric distances. These terrain-sensitive IR warnings do not replace RPLidar traversability or a physical stop.
+
+The existing Base sketch emits \texttt{BEGIN BASE STARTUP SEQUENCE} after IMU initialization. Cerebro pulses DTR to restart each USB serial candidate, waits up to 15 seconds for that exact role-specific line, retains the matching descriptor, and reruns the scan when the operator refreshes. It transmits no command bytes and requires no firmware flash. This removes reliance on a hub-dependent \texttt{/dev/cu.*} name, but it is role discovery rather than cryptographic authentication or hardware verification.
 
 \section{Serial frame}
 

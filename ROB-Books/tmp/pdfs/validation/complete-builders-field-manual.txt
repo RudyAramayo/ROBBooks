@@ -888,6 +888,7 @@ sketches, but the builder reports that present-day ROB uses only the Base code.
  Head               LEGACY   retired             MPU9250 and PIR experiment with disabled GPS declarations. The ac-
                                                  tive parser consumes only one copied legacy field, not the Base seven-
                                                  field command; timeout stop actuation is commented out.
+
 Current diagrams, startup procedures, and hardware counts must show one Base Arduino. Historical diagrams may
 show all three only when labeled with their revision context. Cerebro still contains serial names and helpers for Base,
 Torso, Head, and Maestro; those software paths are evidence of compatibility history, not proof that three Arduino
@@ -905,29 +906,34 @@ exact board model and revision, core, and library versions remain to be supplied
  Flipper                           D6              D7            D29        No implemented limit input
 
  FUNCTION                         CONNECTION              CURRENT SOURCE BEHAVIOR
- Mac base serial                  USB, 250,000 baud  Fixed-width command plus diagnostic text and periodic Base
-                                                     identity
+ Mac base serial                  USB, 250,000 baud  Fixed-width command plus diagnostic text and an existing role-
+                                                     specific startup line
  Actuator controller              SoftwareSerial     Compact serial forward/reverse; nominal speed -3200 to
                                   D22/D23, 19,200 +3200; special inputs +3201 and -3201 clear safe start before
                                   baud               commanding the corresponding 3200 magnitude
- IR array                         A5 through A0      Six SharpIR instances; 5 Hz centimeter telemetry; SceneKit dis-
-                                                     play uses 25 cm for all channels; firmware warning logic uses
-                                                     front/back only
+ IR array                         A5 through A0      Six SharpIR instances; front/back warning thresholds at 25 cm;
+                                                     numeric six-sensor printout is commented out
  IMU                              I2C    via   Wire; MPU9250 initialization and orientation telemetry
                                   D20/D21 if Mega
  Speed feedback                   Proposed           Commented TODOs disagree: the header calls D18 left and
                                   D18/D19/D20        D19 right, while later pin declarations reverse them; D20 con-
                                                      flicts with Mega I2C SDA
-The Base sketch emits ROB:FIRMWARE=BASE;PROTOCOL=RHAPI-0.1 before optional IMU initialization and repeats it once
-per second. Cerebro passively checks USB callout devices for that exact line, retains the matching descriptor, and
+
+Cerebro consumes the existing WARNING! FRONT, WARNING! BACK, and blocking-error sentences without requiring a
+firmware flash. Its SceneKit diagnostic highlights the corresponding pair for three seconds. Silence becomes “clear-
+
 
                                                                27
 BUILDING R.O.B.                                                                            COMPLETE FIELD MANUAL - ADVANCED
 
 
-reruns the scan when the operator refreshes. It does not transmit a challenge or motion-shaped probe to unknown
-serial devices. This removes reliance on a hub-dependent /dev/cu.* name, but it is role discovery rather than
-cryptographic authentication or hardware verification.
+ance unknown,” not “path clear,” because the legacy stream has neither explicit clear events nor numeric distances.
+These terrain-sensitive IR warnings do not replace RPLidar traversability or a physical stop.
+The existing Base sketch emits BEGIN BASE STARTUP SEQUENCE after IMU initialization. Cerebro pulses DTR to restart
+each USB serial candidate, waits up to 15 seconds for that exact role-specific line, retains the matching descrip-
+tor, and reruns the scan when the operator refreshes. It transmits no command bytes and requires no firmware
+flash. This removes reliance on a hub-dependent /dev/cu.* name, but it is role discovery rather than cryptographic
+authentication or hardware verification.
 
 
 
@@ -962,23 +968,23 @@ is hard-coded for an older Austin, Texas declination and must not be treated as 
 Safety and correctness audit
 The historical firmware should be preserved as an artifact, then replaced behind fixtures. Priority defects include:
 
- 1. the five-byte numeric buffer lacks a C-string null terminator before atoi and debug printing;
- 2. one available byte triggers 41 further reads without proof of a complete frame;
- 3. separator positions, signs, ranges, checksum, and frame completeness are not validated;
- 4. an extra read after the seventh field can consume the next frame’s start marker;
- 5. any received byte refreshes the deadman before frame validation;
- 6. the deadman depends on loop counts rather than elapsed monotonic time;
- 7. timeout sends zero speed with brake fields that release brakes;
- 8. IR inhibit assignments are disabled and would not update outputs until another command path runs;
- 9. one rotation test duplicates the same condition and omits the mirrored turn;
-10. command values are not clamped to PWM and actuator ranges;
-11. ramp constants, encoder feedback, and voltage monitoring are TODO-only;
-12. brake, direction, and PWM update ordering has not been proven jerk-free;
+1. the five-byte numeric buffer lacks a C-string null terminator before atoi and debug printing;
+2. one available byte triggers 41 further reads without proof of a complete frame;
+3. separator positions, signs, ranges, checksum, and frame completeness are not validated;
+4. an extra read after the seventh field can consume the next frame’s start marker;
+5. any received byte refreshes the deadman before frame validation;
+6. the deadman depends on loop counts rather than elapsed monotonic time;
+7. timeout sends zero speed with brake fields that release brakes;
+8. IR inhibit assignments are disabled and would not update outputs until another command path runs;
+9. one rotation test duplicates the same condition and omits the mirrored turn;
 
 ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                      28 / 61
  BUILDING R.O.B.                                                                              COMPLETE FIELD MANUAL - ADVANCED
 
 
+10. command values are not clamped to PWM and actuator ranges;
+11. ramp constants, encoder feedback, and voltage monitoring are TODO-only;
+12. brake, direction, and PWM update ordering has not been proven jerk-free;
 13. the flipper and actuator have no firmware-visible end stops, position feedback, or motion timeout;
 14. setup writes the inactive value 255 to both tread PWM pins but never initializes flipper PWM D6; after
     pinMode(OUTPUT), its default LOW is the maximum-command level under the active-low mapping, so boot

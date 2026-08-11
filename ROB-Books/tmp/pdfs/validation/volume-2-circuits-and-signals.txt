@@ -256,25 +256,22 @@ Arduino-compatible board model, revision, core, and installed library versions a
  Front-left / front-right IR      A5 / A4           Long-range Sharp IR model constant
  Left / right IR                  A3 / A2           Medium-range Sharp IR model constant
  Back-left / back-right IR        A1 / A0           Long-range Sharp IR model constant
- Mac-to-Arduino serial         250,000 baud         Commands, logs, sensor text, and the Base identity share the
-                                                    port
+ Mac-to-Arduino serial         250,000 baud         Commands, logs, sensor text, and the role-specific startup
+                                                    line share the port
  IMU                            I2C via Wire        MPU9250 accelerometer, gyro, and magnetometer
-The current Base sketch says “ROB:FIRMWARE=BASE;PROTOCOL=RHAPI-0.1” at startup and once per second.
-Cerebro listens without transmitting, tries only USB callout devices, and keeps the port whose message
-matches. This is safer than guessing a changing /dev/cu.* name or sending test commands to every
-attached board. The label identifies a firmware role and protocol; it does not certify the wiring or make a
-motion test safe.
-Once connected, the sketch reports six centimeter readings five times per second. Each line starts with
-ROB:IR= and then gives the fields FL, FR, L, R, BL, and BR. Cerebro draws six SceneKit beams around its
-robot model: green means at least 25 cm, red means closer than 25 cm, and orange means the data is
+The existing Base sketch says BEGIN BASE STARTUP SEQUENCE; the retired sketches say Head or Torso in-
+stead. Cerebro resets each USB serial candidate and listens for the Base line without sending command
+bytes. This is safer than guessing a changing /dev/cu.* name and requires no show-day firmware flash.
+The label identifies a firmware role; it does not certify the wiring or make a motion test safe.
+Without changing that firmware, Cerebro can also recognize its existing front and back IR warning sen-
+tences. SceneKit shows a recent warning in red, then changes to “clearance unknown” rather than claiming
+the path is clear. Grass and uneven terrain can fool IR sensors; RPLidar room geometry, direct observation,
+and the physical stop remain separate layers.
 
                                                             7
 CIRCUITS AND SIGNALS                                                                                                   VOLUME 2 - AGES 10-14
 
 
-
-missing or stale. This display helps an operator notice an obstacle, but infrared sensors have blind spots
-and material-dependent errors; “path clear” is not permission to move without looking.
 
    FROM ROB'S BUILD LOG
 
@@ -299,6 +296,8 @@ routing, connectors, power separation, and service access matter.     harness pl
 
      A close view of an earlier wiring revision shows why every connector needs a name, destination, expected
      signal, safe state, and service plan.
+
+
 
 
 ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        8 / 25

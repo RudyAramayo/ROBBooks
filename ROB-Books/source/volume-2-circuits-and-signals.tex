@@ -139,14 +139,14 @@ Linear actuator serial RX/TX & D22 / D23 & D22 receive is declared but unused; D
 Front-left / front-right IR & A5 / A4 & Long-range Sharp IR model constant\\
 Left / right IR & A3 / A2 & Medium-range Sharp IR model constant\\
 Back-left / back-right IR & A1 / A0 & Long-range Sharp IR model constant\\
-Mac-to-Arduino serial & 250,000 baud & Commands, logs, sensor text, and the Base identity share the port\\
+Mac-to-Arduino serial & 250,000 baud & Commands, logs, sensor text, and the role-specific startup line share the port\\
 IMU & I2C via Wire & MPU9250 accelerometer, gyro, and magnetometer\\
 \bottomrule
 \end{tabularx}
 
-The current Base sketch says “\texttt{ROB:FIRMWARE=BASE;}\allowbreak\texttt{PROTOCOL=RHAPI-0.1}” at startup and once per second. Cerebro listens without transmitting, tries only USB callout devices, and keeps the port whose message matches. This is safer than guessing a changing \texttt{/dev/cu.*} name or sending test commands to every attached board. The label identifies a firmware role and protocol; it does not certify the wiring or make a motion test safe.
+The existing Base sketch says \texttt{BEGIN BASE STARTUP SEQUENCE}; the retired sketches say Head or Torso instead. Cerebro resets each USB serial candidate and listens for the Base line without sending command bytes. This is safer than guessing a changing \texttt{/dev/cu.*} name and requires no show-day firmware flash. The label identifies a firmware role; it does not certify the wiring or make a motion test safe.
 
-Once connected, the sketch reports six centimeter readings five times per second. Each line starts with \texttt{ROB:IR=} and then gives the fields FL, FR, L, R, BL, and BR. Cerebro draws six SceneKit beams around its robot model: green means at least 25 cm, red means closer than 25 cm, and orange means the data is missing or stale. This display helps an operator notice an obstacle, but infrared sensors have blind spots and material-dependent errors; ``path clear'' is not permission to move without looking.
+Without changing that firmware, Cerebro can also recognize its existing front and back IR warning sentences. SceneKit shows a recent warning in red, then changes to ``clearance unknown'' rather than claiming the path is clear. Grass and uneven terrain can fool IR sensors; RPLidar room geometry, direct observation, and the physical stop remain separate layers.
 
 \begin{fieldnotebox}
 The source contains TODOs for three motor speed-sensor inputs, ramped motion, and voltage measurement. The comments disagree about left/right encoder assignment, and proposed D20 conflicts with the likely Mega I2C SDA pin used by the active IMU. A TODO is evidence of intent, not evidence that the feature works.
