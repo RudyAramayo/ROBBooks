@@ -1,0 +1,3 @@
+Diagnose only first. Trace device discovery, selected device lifetime, session
+mutation, and frame consumers. Explain the exact crash precondition. Separate
+what can be fixture-tested from the rapid-toggle test required on the robot Mac.

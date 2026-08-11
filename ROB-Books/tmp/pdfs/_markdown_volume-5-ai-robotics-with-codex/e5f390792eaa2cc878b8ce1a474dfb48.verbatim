@@ -1,0 +1,4 @@
+No motion yet. Inventory joint names, signs, units, calibrated ranges, feedback,
+URDF assumptions, transforms, collision checks, and emergency stop path. Mark
+every missing fact. Build a dry-run command preview and fixtures. Require a
+separate explicit request before enabling hardware output.

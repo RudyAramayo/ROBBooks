@@ -1,0 +1,5 @@
+Trace camera frames from provider to Vision, Gemini, and Vision Pro. For each
+consumer record queue, ownership, backpressure, timestamp, and failure policy.
+Then add the smallest change that keeps only the newest pending frame for the
+slow consumer. Prove robot-control queues are untouched. Add malformed IPC and
+slow-consumer tests; separate simulator evidence from hardware validation.

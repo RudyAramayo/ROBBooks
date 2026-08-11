@@ -1,0 +1,3 @@
+Inspect git status in ROBController and Cerebro. Existing changes belong to me.
+Do not overwrite, revert, stage, or commit them. Identify generated Xcode user
+state separately. Summarize the relevant architecture before editing.

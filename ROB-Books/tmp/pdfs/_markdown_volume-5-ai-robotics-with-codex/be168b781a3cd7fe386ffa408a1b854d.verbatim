@@ -1,0 +1,3 @@
+Update the operator document from the implemented diff. Distinguish implemented,
+tested in fixtures, built, simulator-tested, and hardware-validated. List known
+gaps plainly. Do not describe planned behavior as present behavior.

@@ -1,0 +1,4 @@
+Inspect ROBController without changing files. Trace a command from the iPhone
+or Watch UI through AutoNet serialization to the network send. Identify the
+Objective-C/Swift boundary, thread or queue transitions, and every place a
+stale command can survive. Cite files and line numbers. Mark uncertainty.

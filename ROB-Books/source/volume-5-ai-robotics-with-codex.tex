@@ -1,0 +1,50 @@
+\documentclass[11pt,openany]{book}
+\usepackage{robbook}
+\usepackage[
+  citations,
+  contentBlocks,
+  fencedCode,
+  pipeTables,
+  relativeReferences,
+  smartEllipses,
+  strikeThrough,
+  tableCaptions,
+  taskLists,
+  texMathDollars,
+  tightLists=false
+]{markdown}
+
+\SetROBAccent{ROBGreen}
+\SetROBVolume{VOLUME 5 - ADVANCED MAKERS}{AI, ROBOTICS, AND CODEX}
+\SetROBChapterPrefix{Chapter}
+\lstdefinelanguage{text}{}
+\lstdefinelanguage{swift}{}
+
+\hypersetup{
+  pdftitle={Building R.O.B. Volume 5: AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro},
+  pdfauthor={Rodolfo Aramayo / Orbitus Robotics},
+  pdfsubject={A source-based field guide to AI-assisted robotics software engineering},
+  pdfkeywords={robotics, Codex, OpenAI, ROBController, Cerebro, safety, software engineering}
+}
+
+\begin{document}
+
+\ROBTitle{Building R.O.B. - Volume 5}{AI, ROBOTICS, AND CODEX}{The accelerated evolution of ROBController and Cerebro}{A source-based field guide for advanced makers}{2026-rob-lightsabers-front.jpg}
+
+\ROBFrontMatter{A human builder remains responsible}{Use AI as an engineering collaborator while preserving evidence, review, and physical safety.}{%
+This volume reconstructs the software history of ROBController and Cerebro and turns that history into a practical workflow for working with Codex and OpenAI. It distinguishes repository evidence from interpretation, shows how mature control and perception systems evolved, and keeps authority for physical motion with deterministic software and an accountable operator.
+
+The manuscript reflects the repositories inspected on 10 August 2026. Product behavior and guidance can change; verify current OpenAI guidance against official documentation before publication or training.
+}
+
+\begin{safetybox}[title={AI OUTPUT IS NOT MOTION AUTHORITY}]
+Generated code, plans, and tool calls require human review. Test protocol and control changes with fixtures, simulators, lifted treads, strict limits, a spotter, and an independently verified physical emergency stop before operating powered hardware.
+\end{safetybox}
+
+\tableofcontents
+\clearpage
+\mainmatter
+
+\markdownInput{volume-5-ai-robotics-with-codex.md}
+
+\end{document}

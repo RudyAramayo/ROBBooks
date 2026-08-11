@@ -1,0 +1,9 @@
+Goal: add a head-tilt command.
+
+Constraints:
+- Never emit a value outside the calibrated channel-2 range.
+- A missing device must disable only head tilt.
+- Manual stop must preempt queued motion.
+- Preserve existing torso and camera behavior.
+- Add a pure serialization fixture before editing the serial path.
+- Do not claim hardware validation; give me an exact on-robot checklist.

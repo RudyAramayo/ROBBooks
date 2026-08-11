@@ -1,0 +1,4 @@
+Build a state machine from code, queues, callbacks, and cancellation paths.
+Identify races, double completion, and mutual waits. Add a deterministic
+regression test. Keep UI updates on the main actor/queue and network state on
+its owning queue. Do not mask the bug with sleeps.

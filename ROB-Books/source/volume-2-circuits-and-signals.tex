@@ -1,0 +1,358 @@
+\documentclass[11pt,openany]{book}
+\usepackage{robbook}
+\SetROBAccent{ROBAmber}
+\SetROBVolume{VOLUME 2 - AGES 10-14}{CIRCUITS AND SIGNALS}
+
+\begin{document}
+\ROBTitle{Building R.O.B. - Volume 2}{CIRCUITS AND SIGNALS}{Arduino lessons from ROB's tracked base}{A low-voltage learning guide for makers ages 10-14}{2026-rob-lightsabers-portrait.jpg}
+
+\ROBFrontMatter{Electricity is powerful. Information makes it useful.}{In this volume, ROB's real base firmware becomes a map for safe classroom experiments.}{%
+You will learn how circuits carry energy, how pins carry commands, how a serial message represents motion, and why a robot must stop when messages vanish. The examples are based on \texttt{ROBOT\_\allowbreak CEREBELLULAR\_\allowbreak BASE\_\allowbreak APP.ino}, but the classroom builds use LEDs, a simulator, or a small current-limited robotics kit.
+
+Do not connect ROB's full-size batteries, motors, charger, or actuator from these pages. Photographs show where ideas came from; they are not wiring diagrams.
+}
+
+\ROBSeriesMap{Bring a notebook. For each activity, write your prediction, observation, and explanation. If the result surprises you, the experiment worked: you found something worth learning.}
+
+\begin{safetybox}[title={ELECTRICAL LAB BOUNDARY}]
+For learner activities, use only an approved low-voltage classroom supply or the USB-powered Arduino setup selected by your teacher. Add current-limiting resistors to LEDs. Disconnect power before moving wires. ROB's high-current battery and motor circuits are adult-only systems that require fuses, a disconnect, insulated tools, proper wire sizing, and a tested physical emergency stop.
+\end{safetybox}
+
+\tableofcontents
+\clearpage
+\mainmatter
+
+\ROBChapterPhoto{Mission 1}{Two networks: power and data}{2024-dense-internal-routing.jpg}
+
+\chapter{Trace the energy path}
+
+A circuit needs a complete path. A source raises electrical potential, a load changes electrical energy into light, sound, heat, or motion, and a return path completes the loop.
+
+Three ideas help us describe the circuit:
+
+\begin{itemize}
+  \item \textbf{Voltage} is electrical potential difference, measured in volts.
+  \item \textbf{Current} is the rate of charge flow, measured in amperes.
+  \item \textbf{Resistance} describes how strongly a path opposes current, measured in ohms.
+\end{itemize}
+
+Ohm's law, $V = I R$, connects them for a resistor. If an LED branch has 5 V, an LED drop of about 2 V, and a 220 $\Omega$ resistor, the estimated current is
+
+\[
+I = \frac{5\,\mathrm{V}-2\,\mathrm{V}}{220\,\Omega} \approx 0.014\,\mathrm{A} = 14\,\mathrm{mA}.
+\]
+
+\begin{conceptbox}
+A formula is a model. Component tolerances, temperature, supply variation, and the LED's real forward voltage change the result. Measure with a suitable meter and compare the model to the observation.
+\end{conceptbox}
+
+\ROBPhotoTwo{2024-batteries-and-power-leads.jpg}{Large batteries and red power leads occupy precious space in the base. The visible arrangement does not prove the complete topology.}{2024-power-cable-pass-through.jpg}{A cable crossing a panel needs smooth edges, insulation, strain relief, and room for service.}
+
+\section*{Ground is a reference, not magic dirt}
+
+In a low-voltage robot, \textbf{ground} usually names the common reference node used by circuits and signals. Two devices exchanging a voltage signal often need compatible reference levels. Power grounds, noisy motors, sensitive sensors, shields, and chassis connections require a deliberate grounding plan in a large robot.
+
+\ROBPlaceholder{Publish the final power tree only after the builder verifies battery topology, BMS, charger, fuses or breakers, main disconnect, emergency-stop contacts, converter ratings, wire gauges, connectors, chassis bonding, and grounding strategy.}
+
+\begin{buildbox}[title={DRAW BEFORE YOU WIRE}]
+Draw a safe LED circuit with a source, switch, resistor, LED, and return path. Use arrows to show conventional current. Circle the point where the Arduino output signal enters. Ask a mentor to check the drawing before building it.
+\end{buildbox}
+
+\ROBPhoto[0.46\textheight]{2024-voltage-gauge.jpg}{A visible voltage gauge can help an operator notice change, but it does not replace a schematic, calibrated measurements, battery-management data, or protective devices.}
+
+\ROBChapterPhoto{Mission 2}{Pins turn numbers into signals}{2022-arm-controller-board.jpg}
+
+\chapter{Digital, analog, and PWM}
+
+An Arduino pin can represent information in several ways.
+
+\begin{itemize}
+  \item A \textbf{digital output} chooses between two logic states, often called LOW and HIGH.
+  \item An \textbf{analog input} measures a voltage and converts it into a number.
+  \item \textbf{PWM}, or pulse-width modulation, switches quickly between states. The duty cycle controls the average effect seen by a lamp or motor controller.
+\end{itemize}
+
+PWM is not automatically a lower analog voltage. It is a timed pattern.
+
+\begin{center}
+\begin{tikzpicture}[x=0.77cm,y=0.55cm,font=\robcondensed\small]
+  \draw[->,ROBSteel] (0,0)--(9.2,0) node[right]{time};
+  \draw[->,ROBSteel] (0,0)--(0,2.4) node[above]{level};
+  \foreach \x in {0,2,4,6,8}{\draw[ROBAccent,very thick] (\x,0)--(\x,2)--(\x+0.5,2)--(\x+0.5,0)--(\x+2,0);}
+  \node[anchor=west] at (0,-0.65) {25 percent duty cycle: short ON time, long OFF time};
+\end{tikzpicture}
+\end{center}
+
+ROB's tread code uses \texttt{analogWrite(pin, 255 - abs(command))}. That inversion matters: in this firmware, a larger command magnitude produces a smaller PWM output value. The archived vendor material is restricted, so this public edition does not use it to justify the electrical behavior. Verify the real controller with an authorized current public datasheet and a supervised bench test. Do not assume every motor driver works this way.
+
+\begin{buildbox}[title={LED PWM MISSION}]
+With a mentor-approved Arduino and LED circuit, write three fixed brightness levels using \texttt{analogWrite}: 32, 128, and 224. Predict which looks brightest. Then make a slow fade. An LED makes PWM visible without moving a heavy mechanism.
+\end{buildbox}
+
+\begin{lstlisting}[language=C++,caption={A safe LED fade pattern for a classroom PWM pin.}]
+const int LED_PIN = 9;
+
+void setup() {
+  pinMode(LED_PIN, OUTPUT);
+}
+
+void loop() {
+  for (int level = 0; level <= 255; level += 5) {
+    analogWrite(LED_PIN, level);
+    delay(25);
+  }
+  for (int level = 255; level >= 0; level -= 5) {
+    analogWrite(LED_PIN, level);
+    delay(25);
+  }
+}
+\end{lstlisting}
+
+\ROBChapterPhoto{Mission 3}{Read ROB's pin map}{2024-hengdrive-motor-label.jpg}
+
+\chapter{The base controller's connections}
+
+The checked-in firmware names these connections. Pin numbers are facts about the file, not a verified public wiring harness. ROBController's historical serial log calls the board an Arduino Mega. The exact Arduino-compatible board model, revision, core, and installed library versions are not recorded here.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.40in} >{\centering\arraybackslash}p{0.68in} >{\centering\arraybackslash}p{0.68in} >{\centering\arraybackslash}p{0.83in} X}
+\toprule
+SUBSYSTEM & SPEED & BRAKE & DIRECTION & NOTE\\
+\midrule
+Right tread & D2 & D3 & D25 & PWM speed output plus two digital controls\\
+Left tread & D4 & D5 & D27 & PWM speed output plus two digital controls\\
+Flipper & D6 & D7 & D29 & PWM speed output plus two digital controls\\
+\bottomrule
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.5in} >{\centering\arraybackslash}p{1.05in} X}
+\toprule
+SIGNAL & PIN OR RATE & FIRMWARE ROLE\\
+\midrule
+Linear actuator serial RX/TX & D22 / D23 & D22 receive is declared but unused; D23 transmits to a simple motor controller at 19,200 baud\\
+Front-left / front-right IR & A5 / A4 & Long-range Sharp IR model constant\\
+Left / right IR & A3 / A2 & Medium-range Sharp IR model constant\\
+Back-left / back-right IR & A1 / A0 & Long-range Sharp IR model constant\\
+Mac-to-Arduino serial & 250,000 baud & Commands, logs, and sensor text share the port\\
+IMU & I2C via Wire & MPU9250 accelerometer, gyro, and magnetometer\\
+\bottomrule
+\end{tabularx}
+
+\begin{fieldnotebox}
+The source contains TODOs for three motor speed-sensor inputs, ramped motion, and voltage measurement. The comments disagree about left/right encoder assignment, and proposed D20 conflicts with the likely Mega I2C SDA pin used by the active IMU. A TODO is evidence of intent, not evidence that the feature works.
+\end{fieldnotebox}
+
+\ROBPhotoTwo{2022-chassis-wiring-overhead.jpg}{An overhead chassis view shows why a pin table alone is not enough: routing, connectors, power separation, and service access matter.}{2025-labeled-cables.jpg}{Blue tape labels show an important maintenance habit. A durable harness plan should replace temporary labels before public operation.}
+
+\ROBPlaceholder{Add an author-verified connector-to-pin table, wire colors, connector types, harness branches, cable gauges, strain relief, labels, and photographs taken after final wiring.}
+
+\ROBPhoto[0.32\textheight]{2021-wiring-closeup.jpg}{A close view of an earlier wiring revision shows why every connector needs a name, destination, expected signal, safe state, and service plan.}
+
+\ROBChapterPhoto{Mission 4}{A command is a tiny data structure}{2022-fanless-computer-and-serial.jpg}
+
+\chapter{Decode the seven-field message}
+
+The base firmware waits for a tilde character, then reads seven signed, fixed-width text fields separated by commas:
+
+\begin{center}
+\begin{tcolorbox}[colback=ROBInk,colframe=ROBAccent,width=0.96\textwidth,arc=0mm]
+{\ttfamily\color{white}\large
+\textcolor{ROBAccent}{\textasciitilde}+0000,+0100,+0000,+0100,+0000,+0000,+0000}
+\end{tcolorbox}
+\end{center}
+
+The positions are:
+
+\begin{enumerate}
+  \item left tread brake;
+  \item left tread signed speed;
+  \item right tread brake;
+  \item right tread signed speed;
+  \item flipper brake;
+  \item flipper signed speed;
+  \item linear actuator signed speed.
+\end{enumerate}
+
+The example above releases the brakes and asks both treads for +100, while the flipper and actuator remain at zero. The entire frame is 42 characters when every field is exactly five characters.
+
+\section*{Differential steering}
+
+Two treads can steer without a steering wheel. If both sides move forward at the same speed, the robot travels roughly straight. If one moves forward while the other moves backward, the robot rotates.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.4in} >{\centering\arraybackslash}p{1in} >{\centering\arraybackslash}p{1in} X}
+\toprule
+INTENT & LEFT & RIGHT & IDEA\\
+\midrule
+Forward & +100 & +100 & Same direction and magnitude\\
+Backward & -100 & -100 & Same reverse direction\\
+Turn right & +100 & -100 & Counter-rotating treads\\
+Turn left & -100 & +100 & Opposite counter-rotation\\
+Gentle curve & +70 & +35 & Outside tread travels faster\\
+Stop & 0 & 0 & Zero requested speed\\
+\bottomrule
+\end{tabularx}
+
+\begin{conceptbox}
+The message is a \textbf{protocol}: an agreement about order, spelling, valid ranges, and meaning. Protocols let programs written in different languages cooperate. The Mac code can be Objective-C or Swift while the Arduino code is C++, yet both can understand the same frame.
+\end{conceptbox}
+
+\clearpage
+\section*{Build a safer parser on paper}
+
+The historical parser teaches useful ideas, but it is not a model for finished safety-critical code. It reads when only one byte is known to be available, does not prove all 42 characters arrived, does not validate comma positions or numeric ranges, and stores five characters without a sixth null terminator before calling \texttt{atoi}. A damaged frame could be misread.
+
+A safer receiving state machine would:
+
+\begin{enumerate}
+  \item search for the start marker;
+  \item collect exactly one bounded frame;
+  \item verify all separators and signs;
+  \item convert each field only after validation;
+  \item reject values outside the allowed range;
+  \item update all outputs atomically, or update none;
+  \item command a safe stop after a deadline.
+\end{enumerate}
+
+\begin{lstlisting}[language=C++,caption={Pseudocode for an all-or-nothing command decoder.}]
+if (completeFrameAvailable()) {
+  Frame candidate = readBoundedFrame();
+  if (candidate.hasValidShape() &&
+      candidate.valuesAreInRange()) {
+    lastGoodCommand = candidate;
+    lastGoodTime = millis();
+  } else {
+    reportBadFrame();
+  }
+}
+
+if (millis() - lastGoodTime > COMMAND_DEADLINE_MS) {
+  commandNeutralAndBrake();
+}
+\end{lstlisting}
+
+\begin{buildbox}[title={FRAME INSPECTOR}]
+Write five valid and five invalid frames. Include a missing comma, a wrong sign, an extra digit, a letter, and an out-of-range speed. Trade with a partner and circle the first rule each invalid frame breaks.
+\end{buildbox}
+
+\ROBChapterPhoto{Mission 5}{Sensors are measurements, not truth}{2022-oakd-depth-camera.jpg}
+
+\chapter{IR distance and the IMU}
+
+The source declares six IR objects, but the active warning routine reads only the front and rear pairs. It compares those four readings with 25 cm and counts repeated low readings before announcing a shutdown warning. The left/right pair appears only in commented telemetry.
+
+That is a simple \textbf{temporal filter}: require evidence across several samples. It can reduce single-sample glitches, but it does not solve every problem. Grass, angled surfaces, sunlight, dark material, shiny material, sensor placement, and reflections from the floor can change optical range data.
+
+\begin{fieldnotebox}
+The call that reads the IR sensors is active in the current loop. The assignments that would set the forward and backward shutdown flags are commented out. The code therefore still reads and reports warnings, but does not currently assert those movement-inhibit flags. The builder reports disabling the behavior after many grass-triggered stops. The final policy and calibration need measurement before publication as a safety feature.
+\end{fieldnotebox}
+
+\section*{Three sensors become orientation}
+
+The MPU9250 combines three sensor families:
+
+\begin{itemize}
+  \item accelerometer: linear acceleration and gravity;
+  \item gyroscope: rotation rate;
+  \item magnetometer: magnetic field direction.
+\end{itemize}
+
+The firmware uses a Mahony quaternion filter, then prints yaw, pitch, and roll. This is \textbf{sensor fusion}: combine imperfect measurements to estimate a state no single sensor supplies reliably.
+
+\begin{buildbox}[title={FILTER A DATA SET}]
+Record ten distance readings from a safe classroom sensor aimed at a box. Compute the mean and median. Move the box, record ten more, and graph both groups. Which summary handles one wild reading better? Do not turn the result into an automatic stop rule without testing more surfaces and conditions.
+\end{buildbox}
+
+\ROBChapterPhoto{Mission 6}{Silence must become stop}{2025-emergency-stop-bench-layout.jpg}
+
+\chapter{Watchdogs and fail-safe states}
+
+ROB's Arduino loop counts down a two-stage heartbeat. When it expires, the firmware calls the same motor-command function with zero tread, zero flipper, and zero actuator values. However, the timeout passes brake fields of zero, which the code interprets as released brakes. The physical result may be coast rather than hold and must be measured.
+
+The implementation counts loop iterations before checking the second counter, so the exact deadline changes when other loop work changes. It also refreshes the deadline for any received byte before validating a complete frame; malformed traffic could therefore keep an earlier command alive. A production version should refresh only after a valid frame, measure elapsed monotonic time directly, define the safe brake state precisely, and test failures under load.
+
+\begin{conceptbox}
+A \textbf{watchdog} asks, ``Did the expected event happen before the deadline?'' A \textbf{fail-safe state} is the state chosen when the answer is no. For a small lamp, OFF may be safe. For a heavy robot on a slope, braking, de-energizing, and mechanical holding behavior must be engineered and tested.
+\end{conceptbox}
+
+\ROBStopChainDiagram
+
+\begin{safetybox}
+The yellow emergency-stop hardware visible in the 2025 bench photograph is not enough to prove a complete emergency-stop circuit. A public robot needs an independently verified stop architecture, clear operator reach, reset rules, contactor or controller behavior appropriate to the hazards, and documented tests.
+\end{safetybox}
+
+\begin{buildbox}[title={WATCHDOG WITHOUT MOTORS}]
+Program an Arduino LED to remain lit only while a serial ``K'' arrives at least once each second. Stop the sender and confirm that the LED goes dark. Add a latched error LED that requires a deliberate reset. This demonstrates the timing idea without motion.
+\end{buildbox}
+
+\begin{lstlisting}[language=C++,caption={A classroom heartbeat pattern using an LED.}]
+const unsigned long DEADLINE_MS = 1000;
+unsigned long lastHeartbeat = 0;
+bool heartbeatSeen = false;
+
+void setup() {
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN, LOW);  // boot stale
+  Serial.begin(9600);              // classroom sender
+}
+
+void loop() {
+  if (Serial.available() && Serial.read() == 'K') {
+    lastHeartbeat = millis();
+    heartbeatSeen = true;
+  }
+  bool fresh = heartbeatSeen &&
+               millis() - lastHeartbeat <= DEADLINE_MS;
+  digitalWrite(LED_BUILTIN, fresh ? HIGH : LOW);
+}
+\end{lstlisting}
+
+\ROBPhoto[0.42\textheight]{2025-emergency-stop-and-arm.jpg}{Software deadlines and a physical emergency stop solve different failure problems. The visible button is evidence of hardware, not proof that the complete stop circuit has been verified.}
+
+\chapter{Read old code like an engineer}
+
+Historical code is a laboratory notebook. It preserves successful ideas, unfinished experiments, and mistakes. Respect it by asking precise questions.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.45in} X}
+\toprule
+OBSERVATION & ENGINEERING QUESTION\\
+\midrule
+The rotation test repeats the same Boolean condition twice. & Was the second branch intended to describe the opposite turn? Add unit tests before changing behavior.\\
+Some method names, direction comments, and printed labels disagree. & Which direction does each physical tread actually move with each pin state? Record a wheels-off-ground test.\\
+Values are not clamped before PWM. & What are the allowed command ranges, and what happens to malformed values?\\
+The IR inhibit assignments are commented. & What operating conditions caused false triggers, and what independent protections remain?\\
+Ramping and speed feedback are TODOs. & What acceleration, deceleration, encoder, and stopping-distance requirements should a new version meet?\\
+The actuator accepts special values 3201 and -3201 to clear safe start. & Should reset be a separate typed command instead of overloading speed?\\
+\bottomrule
+\end{tabularx}
+
+\begin{advancedbox}
+Before modernizing the firmware, build a byte-for-byte protocol fixture and a hardware-in-the-loop test stand with the drive load isolated. Characterize the existing behavior first. A refactor that looks cleaner can still reverse a tread or release a brake.
+\end{advancedbox}
+
+\ROBPlaceholder{Add the Arduino board model, firmware library versions, verified motor polarity, safe-start controller model, final command ranges, measured heartbeat deadline, bench-test procedure, IR calibration data, and the exact reason and date for the grass-related policy change.}
+
+\input{volume-2-deep-dive.tex}
+
+\clearpage
+\section*{Field words}
+
+\begin{multicols}{2}
+\ROBFact{Baud}{Symbol rate used by a serial link.}\par
+\ROBFact{Current}{Rate of electric charge flow.}\par
+\ROBFact{Frame}{One bounded protocol message.}\par
+\ROBFact{Ground}{A chosen circuit reference node.}\par
+\ROBFact{IMU}{A motion-sensing unit containing inertial sensors.}\par
+\ROBFact{Null terminator}{The zero byte that ends a C string.}\par
+\ROBFact{PWM}{Timed pulses whose duty cycle controls an average effect.}\par
+\ROBFact{Range check}{A test that rejects values outside allowed limits.}\par
+\ROBFact{Serial}{Sending symbols in sequence over a link.}\par
+\ROBFact{Watchdog}{A deadline monitor for an expected update.}\par
+\end{multicols}
+
+\begin{missionbox}[title={FINAL CHECK}]
+Can you separate a power path from a signal path? Can you decode the seven fields? Can you explain why a complete frame must be validated before any motor changes? Can you describe why IR readings are evidence rather than truth? Then you are ready for Motion Workshop.
+\end{missionbox}
+
+\vfill
+\ROBSource{ROBOT Build/ROBOT\_CEREBELLULAR\_BASE\_APP.ino, especially pin definitions, serial parser, IR checks, keepalive, and motor mapping; ROB\_v3.pdf; gallery originals. Restricted vendor-document specifications were neither reproduced nor paraphrased.}
+
+\end{document}

@@ -1,0 +1,1861 @@
+BUILDING R.O.B. - COMPLETE FIELD MANUAL
+
+
+BUILDING R.O.B.
+The complete maker's field manual: fabrication, circuits, firmware, Mac software,
+perception, control, and operations
+
+
+
+
+ADVANCED EVIDENCE DRAFT WITH BUILDER PLACEHOLDERS
+Rodolfo Aramayo / Orbitus Robotics -   First Maker Faire Edition
+An honest build record
+Complete in scope, intentionally incomplete where the archive cannot prove the detail.
+
+This manual connects ROB’s 95-page design presentation, private construction-photo archive, Arduino base
+firmware, motor references, and current Mac, iPhone, Watch, Vision Pro, lidar, camera, speech, autonomy, and AI
+source trees.
+It is a first evidence-based edition, not a stamped mechanical design, production wiring schematic, safety certifica-
+tion, or permission to energize the machine. Use the status labels on every subsystem. Replace each Builder input
+needed box with measured, reviewed information as the book iterates.
+
+
+
+
+                           Original illustrated portrait inspired by ROB; it is visual storytelling, not engineering evidence.
+
+
+
+
+Copyright © 2026 Rodolfo Aramayo / Orbitus Robotics. Photographs are from the private ROB build archive unless otherwise
+noted. The generated frontispiece is original artwork derived from a ROB reference photograph. This independent educational
+project is not affiliated with or endorsed by any film studio or franchise owner. Product and company names remain the property
+of their respective owners.
+
+First evidence-based draft: 2 August 2026. Build details marked Builder input needed are deliberate placeholders for the
+builder to complete.
+BUILDING R.O.B.                                                                                        COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+Evidence-status legend
+    IMPLEMENTED                                Confirmed in the inspected current source or directly visible hardware evidence.
+    COMMANDED                                  Software sends a value, but this review did not measure the physical outcome.
+    EXPERIMENTAL / OPTIONAL                    Present behind a gate, dependent on external hardware, or still under active de-
+                                               velopment.
+    LEGACY                                     Retained compatibility or historical behavior, not the preferred new design.
+    PLANNED                                    Described in a slide, TODO, protocol, or interface without proof of completed
+                                               execution.
+    BUILDER VERIFICATION NEEDED                The builder must measure, reconcile, or supply the missing record.
+
+    NON-NEGOTIABLE SAFETY BOUNDARY
+
+    ROB combines large batteries, high-current brushless motors, chains, treads, flippers, linear motion, long arms,
+    machine-tool fabrication, networking, cameras, and software-controlled movement. Qualified adults must
+    own the hazard analysis, power protection, emergency-stop architecture, workholding, guarding, lifting, test
+    perimeter, and public operation. Never infer a safe circuit or fabrication dimension from a photograph. Never
+    treat an ordinary IR sensor, software timeout, or cloud model as safety-rated protective equipment.
+
+
+
+
+Source snapshot and publication cautions
+The software was inspected on 2 August 2026. Cerebro contains uncommitted Gemini and autonomy changes, so
+publication should record a tag or commit after the builder selects a release. Original gallery photographs were
+converted with orientation applied and metadata stripped. Attendee photographs, especially images containing
+children, require release review or careful exclusion.
+The archived B-COMMAND document prohibits reproduction without permission, and the HengDrive outline is
+marked proprietary and confidential. This manual does not reproduce or paraphrase their specifications. It men-
+tions the motor-family label visible in a builder-owned photograph only to identify the open evidence gap. Obtain
+permission and a current authorized public datasheet before publication.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                   3 / 61
+Contents
+
+I Intent and architecture                                                                                                       1
+
+1 Design history and current scope                                                                                               3
+   1.1 Evidence-based chronology . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         3
+   1.2 Design principles that recur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      4
+   1.3 Current subsystem status at a glance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        5
+
+2 Whole-robot architecture                                                                                                       7
+   2.1 Physical and information paths . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        7
+   2.2 Desired component ownership map . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .             7
+   2.3 Sense-plan-act without surrendering authority . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           8
+
+
+II Mechanical build                                                                                                             9
+
+3 Build the mobile base                                                                                                        11
+   3.1 Start from interfaces     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+   3.2 Tread tension and support . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+   3.3 Flipper revision and third-wheel concept . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+   3.4 Provisional assembly sequence to verify . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+
+4 Build above the base                                                                                                         15
+   4.1 Body-to-torso connection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+   4.2 Body rotation and cable continuity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+   4.3 Head and neck . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+   4.4 Arms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+
+5 Fabrication and finish                                                                                                       19
+   5.1 Measurement plan . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+   5.2 Process traveler . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+   5.3 Design for assembly and service . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+
+
+III Power, electronics, and firmware                                                                                          21
+
+6 Store, convert, protect, and disconnect energy                                                                               23
+   6.1 What the archive says . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+   6.2 Required single-line diagram . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+   6.3 Motor electrical evidence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+   6.4 Emergency stop and safe energy state . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+
+                                                               4
+BUILDING R.O.B.                                                                                       COMPLETE FIELD MANUAL - ADVANCED
+
+
+7 Base electronics and firmware                                                                                                   27
+     7.1 Confirmed pin and communication map . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+     7.2 Serial frame . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+     7.3 Actuator compact serial . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+     7.4 IR and IMU status . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+     7.5 Safety and correctness audit . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+     7.6 Replacement-firmware architecture           . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+
+
+
+IV      Software and perception                                                                                                  30
+
+8 Central coordination on the Mac mini                                                                                            32
+     8.1 Principal components . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+     8.2 Base heartbeat ownership . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+     8.3 External helpers and dependencies . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+     8.4 Legacy boundary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+
+9 Control from iPhone, Watch, and Vision Pro                                                                                      35
+     9.1 Controller roles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+     9.2 ROBControl v2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+     9.3 Separate video service . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+     9.4 Safety timing layers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+     9.5 Privacy review . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+
+10 Perception and mapping                                                                                                         38
+     10.1 RGB-D camera . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+     10.2 RPLidar . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+     10.3 IR and IMU . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+     10.4 Coordinate-frame discipline . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+
+11 Behavior above raw motor commands                                                                                              41
+     11.1 Servo and arm control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+     11.2 Keyframe animation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+     11.3 Speech . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+     11.4 Controller-activated autonomy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+     11.5 Gemini integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+     11.6 Robot-action implementation status . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+
+
+
+V     Integration, operation, and maintenance                                                                                    43
+
+12 Test strategy and safety case                                                                                                  45
+     12.1 Requirements traceability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  5 / 61
+BUILDING R.O.B.                                                                                       COMPLETE FIELD MANUAL - ADVANCED
+
+
+     12.2 Progressive test ladder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+     12.3 Failure injection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+     12.4 Measure stop behavior . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+
+13 Present ROB safely in public                                                                                                   48
+     13.1 Roles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
+     13.2 Pre-show checklist . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
+     13.3 Show-state model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
+     13.4 Audience and privacy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+
+14 Keep the robot understandable                                                                                                  51
+     14.1 Before and after every operating day . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+     14.2 Scheduled maintenance record . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+     14.3 Configuration control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+     14.4 Troubleshooting by layer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+
+A Teach the architecture without hiding the hazards                                                                               53
+     A.1 A spiral curriculum for ROB . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 53
+     A.2 Facilitation pattern . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 53
+
+B Commission the control path as one safety-related system                                                                        54
+     B.1 Connection and enrollment matrix . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+     B.2 Measure the whole stop chain . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+
+C Capture the builder’s oral history                                                                                              55
+     C.1 Interview prompts . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55
+
+D Builder input ledger                                                                                                            56
+
+E Bill of materials worksheet                                                                                                     57
+
+F Wiring and connector worksheet                                                                                                  58
+
+G Serial protocol reference                                                                                                       59
+
+H Repository source map                                                                                                           60
+
+I    Photo and artwork credits                                                                                                    61
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  6 / 61
+         Part I
+
+Intent and architecture
+
+
+
+
+           1
+CHAPTER 1
+
+The robot as a long-running experi-
+ment
+CHAPTER 1
+
+
+Design history and current
+scope
+ROB is not one frozen machine. The archive shows a succession of working prototypes, public demonstrations,
+repair decisions, new sensors, drivetrain modifications, camera changes, arm work, and software migrations. A
+useful build manual must preserve that timeline because the answer to “How is it built?” depends on the date and
+subsystem.
+
+
+
+Evidence-based chronology
+               VISIBLE OR DOCUMENTED STATE                          EDITORIAL INTERPRETATION
+ PERIOD
+               Functional black tracked robot with screen torso,    An integrated early prototype existed; exact in-
+ 2019          earlier camera head, exposed arms, and move-         ternal revision and specifications are not docu-
+               ment demonstrations.                                 mented.
+               Open electronics, camera/head revisions,             The builder was using accessible materials to re-
+ 2020-2021     wooden base templates, tread geometry,               solve packaging and mechanics before a final
+               battery layout, and plans for CNC aluminum.          enclosure.
+               Mini computer and serial cabling, base brack-        Major integration work joined mechanics with
+ 2022          ets, drilling, actuator hardware, arm electronics,   onboard computing and sensing.
+               OAK-D camera, and public appearances.
+               Public use and head/camera refinements, with         Operational experience likely drove require-
+ 2023          fewer construction photographs.                      ments, but the archive does not link each
+                                                                    change to a written test.
+               Sprocket-area machining, chain clearance,            A substantial drivetrain and base-serviceability
+ 2024          tread measurement, internal rewiring, batteries,     revision is strongly documented.
+               actuator, voltage gauge, and controller board.
+               Shoulder and neck gearing,            arm re-        The current visual identity and advanced soft-
+ 2025          moval/reassembly, cable labels, emergency-           ware experiments are visible, while final calibra-
+               stop hardware, Mac software, vision, mapping,        tion remains in progress.
+               and chess reach studies.
+
+
+
+
+                                                         3
+BUILDING R.O.B.                                                                                                          COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+
+                                                The 2019 machine already joins                                                 A 2025 side view shows the
+a tracked base, arms, sensors, and operator-facing character.                    newer spherical camera head, speaker face, neck mechanism, articulated arm,
+                                                                                 and tracked base.
+
+
+
+
+Design principles that recur
+Across the sources, several durable principles emerge:
+
+• use prototypes to discover packaging and load problems;
+• separate high-level intent from low-level actuator values;
+• keep independent stop layers close to each source of failure;
+• isolate optional cameras, Python helpers, video, speech, and AI from core motion control;
+• preserve service access and label wiring;
+• make unsupported capability fail honestly;
+• collect evidence before calling a proposal implemented.
+
+
+
+Current subsystem status at a glance
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                       4 / 61
+BUILDING R.O.B.                                                                                            COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+
+  SUBSYSTEM                              STATUS                      EVIDENCE-BASED SUMMARY
+  Tracked base                             IMPLEMENTED               Physical treads, chains, drive motors, brackets, batteries, and
+                                                                     actuator are visible across multiple revisions. Exact final di-
+                                                                     mensions and performance are missing.
+  Arduino base                             IMPLEMENTED               Historical firmware parses a seven-field frame and commands
+                                                                     treads, flipper, and actuator; it reads IMU and IR data. It has
+                                                                     significant safety and parser defects.
+  Flipper motion                           COMMANDED                 Firmware and controller paths exist. Final geometry, limits,
+                                                                     load rating, and measured motion are unverified.
+  Torso / third-wheel ac-                  COMMANDED                 Serial control and physical actuator evidence exist, but the pre-
+  tuator                                                             sentation assigns conflicting roles across revisions.
+  Mac mini / Cerebro                       IMPLEMENTED               Central macOS coordination, serial, camera, speech, secure
+                                                                     control, and autonomy infrastructure exist in source.
+  Phone controller                         IMPLEMENTED               Established control UI, pairing, autonomy, and action-console
+                                                                     paths exist.
+  Watch controller                         IMPLEMENTED               Freshness-checked motion and speech intent relay through
+                                                                     the phone.
+  Vision Pro controller                    EXPERIMENTAL / OPTIONAL   Secure control adapter, simulator, leases, and separate H.264
+                                                                     viewing path exist; hardware deployment still needs release
+                                                                     validation.
+  RGB-D camera                             EXPERIMENTAL / OPTIONAL   Supervised DepthAI helper and aligned RGB/depth transport
+                                                                     exist; device and environment validation remain necessary.
+  RPLidar                                  EXPERIMENTAL / OPTIONAL   Typed scan/map publication exists; native Mac deployment of
+                                                                     the proprietary framework remains unresolved.
+  Arms / neck                              COMMANDED                 Servo, Amber script, and keyframe paths exist; calibration,
+                                                                     feedback, limits, and collision safety are incomplete.
+  Gemini actions                           EXPERIMENTAL / OPTIONAL   The multimodal session defaults off, while audio/video default
+                                                                     on once that session is enabled unless separately disabled.
+                                                                     The action tool is separately default-off; only stop_motion has
+                                                                     a partial local executor.
+
+    BUILDER INPUT NEEDED
+
+    Builder narrative: add the project’s origin, meaning of R.O.B., design goals, major failures, people and shops
+    who contributed, dates of each hardware revision, and which public demonstrations changed the design.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                       5 / 61
+CHAPTER 2
+
+System boundaries and ownership
+CHAPTER 2
+
+
+Whole-robot architecture
+                                          Operator intent - iPhone, Apple Watch, or Vision Pro controller
+
+
+
+
+                             Authenticated control session - pairing, TLS/QUIC, roles, sequence, applicable freshness
+
+
+
+
+                                     Cerebro on macOS - UI, coordination, cameras, speech, autonomy gates
+
+
+
+
+                                                 USB serial heartbeat - fixed base command frame
+
+
+
+
+                                        Arduino base controller - PWM, direction, brakes, actuator, IMU, IR
+
+
+
+
+                          Physical plant - treads, flippers, linear actuator (installed role to verify), battery and mechanics
+
+
+
+
+Physical and information paths
+The robot contains two overlapping architectures:
+
+1. The energy architecture moves stored electrical energy through protection, conversion, controllers, conductors,
+   and motors.
+2. The information architecture moves intent and measurements through interfaces, authentication, state ma-
+   chines, protocols, adapters, firmware, and feedback.
+
+The two paths meet at motor controllers and actuators. Keeping their documentation separate prevents a common
+error: assuming that a correct data value proves the high-current circuit is safe, or that a correctly wired motor proves
+the command path is authorized.
+
+
+
+Desired component ownership map
+The table below states the target responsibility split. It is a design contract, not a claim that every current imple-
+mentation already satisfies every responsibility; gaps must remain visible in the subsystem status and verification
+chapters.
+
+
+
+
+                                                                           7
+BUILDING R.O.B.                                                                                                          COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+  OWNER                               PRIMARY RESPONSIBILITY                                          MUST NOT ASSUME
+  Human operator                      Select mode, maintain line of sight and                         That autonomy, sensors, or remote viewers
+                                      perimeter, respond to hazard, own start                         replace supervision.
+                                      and stop.
+  Controller app                      Capture fresh intent, apply its client-                         That sending a packet proves movement
+                                      specific lease or watchdog, present                             occurred.
+                                      authoritative mode and stop state.
+  Secure transport                    Authenticate device, authorize role, bound                      That an authenticated controller’s payload
+                                      and order messages, reject replay and                           is physically safe.
+                                      stale sessions.
+  Cerebro                             Arbitrate control master, coordinate sub-                       That optional camera, AI, or lidar availabil-
+                                      systems, validate high-level actions, adapt                     ity can weaken manual stop.
+                                      to hardware protocols.
+  Arduino base                        Target: accept only complete bounded                            That the current historical parser already
+                                      base commands, own a local deadline, and                        meets this target, or that any arriving byte
+                                      drive low-level pins and actuator serial.                       is a valid command or heartbeat.
+  Motor electronics                   Enforce rated electrical behavior, current                      That software alone prevents wiring or load
+                                      limits, and safe-start rules.                                   faults.
+  Mechanical system                   Carry loads, constrain motion, guard haz-                       That commanded direction, speed, or stop
+                                      ards, survive declared environments.                            equals measured behavior.
+
+
+
+Sense-plan-act without surrendering authority
+                                                    SENSE                      THINK                         ACT
+                                               camera + IR + IMU           Mac mini + apps               motors + arms
+
+
+
+                                                                   feedback changes the next choice
+
+
+
+Manual control, deterministic autonomy, and AI-assisted behavior can all use the same physical plant, but they
+should enter through explicit authority gates. EXPERIMENTAL / OPTIONAL Current social-roam autonomy consumes fresh
+filtered lidar scans and, near 82 percent of its configured activation radius, attempts to turn and drive toward its
+origin. That behavior is not a physical geofence and does not prove containment. Optional Gemini tools declare
+high-level action proposals, but most do not yet have executors. Neither path should bypass local validation, the
+control-master state, the Arduino deadline, or the physical emergency stop.
+
+   ADVANCED CHANNEL
+
+   Document safety as a control hierarchy, not a list of features. For every hazard, name the prevention, detection,
+   mitigation, independent stop, diagnostic coverage, proof test, and residual risk. Ordinary cameras, IR sensors,
+   and software timers may support risk reduction but are not automatically safety-rated.
+
+    BUILDER INPUT NEEDED
+
+    Create an author-approved current block diagram showing installed batteries, disconnect and protection, DC
+    buses, converters, Mac mini, any Raspberry Pi units, the Arduino-compatible base controller with exact model,
+    motor controllers, Maestro, Amber arm controllers, cameras, lidar host, router, and every external port. Mark
+    planned and removed hardware separately.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                     8 / 61
+     Part II
+
+Mechanical build
+
+
+
+
+        9
+CHAPTER 3
+
+Chassis, treads, and drivetrain
+CHAPTER 3
+
+
+Build the mobile base
+The base is the foundation for every later system. Presentation pages 3-9 show left and right wooden side templates,
+motor openings, wheel mounts, a battery opening, and the desire to reproduce the form in black powder-coated alu-
+minum. Pages 10-20 document the tread tensioner, wheels, sprockets, and shaft collars. Later gallery photographs
+show extensive metal and wiring revisions.
+
+
+
+Start from interfaces
+Before drawing the final plate, freeze or explicitly version these interfaces:
+
+• tread-frame mounting points and full motion envelope;
+• drive and idler shaft positions, diameters, retention, and bearing supports;
+• motor face, shaft, and cable clearances;
+• chain line, sprocket sizes, guard volume, and service access;
+• flipper shaft, torque path, rear/front location, and end stops;
+• battery envelope, restraint, protection access, and removal path;
+• actuator mounts and full extension/retraction envelope;
+• lifting, tie-down, stand, cover, and inspection points.
+
+
+
+
+                                                                                                                        A later sprocket view shows why
+A centered rear view shows the drive assembly between two treads.        chain-line and plate clearance need dimensioned control.
+
+
+
+
+Tread tension and support
+The presentation describes aluminum bars with threaded holes that pull the tread assembly outward, free-spinning
+wheels retained on shafts, and a heavy-load problem that led to improvised HDPE and skateboard-bearing supports.
+These are valuable design clues but not a final service specification.
+Record a repeatable tension method. A statement such as “tight enough” cannot be audited. Depending on the
+tread system, the specification might be deflection under a known force, tensioner position, exposed thread length,
+torque plus verification, or the manufacturer’s procedure.
+
+                                                                    11
+BUILDING R.O.B.                                                                                    COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+
+                                                                                                         The close chain path illustrates
+A large sprocket and chain are visible inside the base.    alignment, abrasion, and guarding concerns.
+
+
+
+    SAFETY CHECK
+
+    Chains, sprockets, and treads create drawing-in, nip, shear, and entanglement hazards. Disconnect and verify
+    power, block stored motion, prevent unintended rolling, and use fixed guards before hands enter the mecha-
+    nism.
+
+
+
+Flipper revision and third-wheel concept
+Presentation pages 21-26 say the flippers moved from the front wheels to the rear after a design revision. The deck
+also records a one-degree bar offset, cotter-pin concerns, and a proposed perpendicular third wheel raised by an
+actuator to reduce tread scrub while turning.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  12 / 61
+ BUILDING R.O.B.                                                                               COMPLETE FIELD MANUAL - ADVANCED
+
+
+      The annotated upside-down prototype on presentation page 23 captures the third-wheel idea and identifies a design
+      revision. It is not a final drawing.
+
+
+   PLANNED   Treat the third wheel as a separate design project until the builder supplies the geometry, load path,
+ stability analysis, actuator selection, ground clearance, deployed/retracted sensing, failure response, and test evi-
+ dence.
+
+
+
+ Provisional assembly sequence to verify
+ 1. inspect plate dimensions, datum features, threads, deburring, and finish;
+ 2. install bearings, shaft supports, and fixed structural brackets;
+ 3. trial-fit tread frames, drive motors, shafts, sprockets, and chains without power;
+ 4. measure shaft parallelism, sprocket coplanarity, tension range, and full-motion clearance;
+ 5. install flipper shaft and drivetrain with temporary manual limits;
+ 6. fit actuator brackets through the full stroke with the load supported independently;
+ 7. install guarded power components and labeled harnesses only after mechanical inspection;
+ 8. add batteries using a rated lift and restraint plan;
+ 9. perform continuity, insulation, polarity, and protective-device checks;
+10. test one actuator at a time on stands under a bounded current and command limit;
+11. install guards and covers before floor testing.
+
+     BUILDER INPUT NEEDED
+
+     Supply final chassis length, width, plate thicknesses and alloys, tread model, wheel and sprocket data, shafts,
+     bearings, collars, chain, tension procedure, flipper dimensions, fastener schedule, torque values, guard draw-
+     ings, total mass, center of mass, and as-built CAD.
+
+
+
+
+ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                         13 / 61
+CHAPTER 4
+
+Torso, body, head, and arms
+CHAPTER 4
+
+
+Build above the base
+The upper structure must hold cameras and arms while surviving acceleration, arm moments, cable pull, transport,
+and public interaction. The presentation openly records weak prototype areas: body-to-torso joints pulling on
+metal, bent L brackets, and wooden parts glued and screwed together.
+
+
+
+Body-to-torso connection
+Presentation pages 56-60 show the connection under load and call for mechanical improvement. A final design
+should provide:
+
+• a defined load path into the chassis;
+• bearing surfaces or pivots sized for radial, axial, and moment loads;
+• hard stops and motion limits independent of software;
+• retention that remains safe after one fastener loosens, where practicable;
+• inspection access and visible wear indicators;
+• cable routing that does not become the motion stop;
+• a transport lock that does not depend on powered holding torque.
+
+
+
+Body rotation and cable continuity
+Presentation page 67 proposes a 36 mm motor and a body bearing with rotation constrained from −π to +π instead
+of using a slip ring. A nearby restricted B-COMMAND file exists, but its contents are excluded and the firmware and
+photographs do not prove that the associated component is installed.
+ PLANNED   A rotating body requires a controlled cable-wrap budget or an approved rotary interface, home/index
+sensing, hard and soft limits, collision envelopes, and a recovery plan after position loss.
+
+
+
+
+                                           The rear bay shows how upper-
+body motion can pull on a dense harness.                                        Temporary labels aid teardown, but permanent routing must account for
+                                                                                repeated flex and abrasion.
+
+
+                                                                           15
+BUILDING R.O.B.                                                                                                         COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+Head and neck
+The archive spans an earlier spherical multicamera head, an Insta360 Pro II concept, OAK-D sensors, a later spherical
+head, and a 2025 geared neck mechanism. The presentation calls the earlier hobby-servo arrangement inadequate
+and asks for tilt plus full rotation.
+
+
+
+
+                                               The OAK-D stereo camera is a
+distinct sensing module, not the whole head design.                           The 2025 neck gear train exposes stacked gears and support plates that need
+                                                                              calibrated limits and guarded pinch points.
+
+
+
+
+Arms
+The deck proposes two Amber seven-degree-of-freedom arms with force/current-sensing grippers. Current soft-
+ware includes Amber Python/SSH paths, Maestro servo control, and keyframe fields. Photographs show the installed
+articulated arms and their controller boards. This establishes integration work, not a verified payload or autonomous
+grasp capability.
+
+
+
+
+                                                A detached arm reveals its                                                   A circular controller board sits
+many joints and long reach.                                                   behind the arm mechanism.
+
+
+  COMMANDED         Arm and neck values can be issued through current control paths.
+
+ BUILDER VERIFICATION NEEDED Joint feedback, zeroing, limits, load rating, collision envelope, emergency behavior, and
+physical outcome were not measured in this review.
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                      16 / 61
+BUILDING R.O.B.                                                                              COMPLETE FIELD MANUAL - ADVANCED
+
+
+  PLANNED General object pickup remains unavailable because camera-to-arm transforms, inverse kinematics, colli-
+sion checking, and a verified grasp executor are incomplete.
+
+    BUILDER INPUT NEEDED
+
+    Supply upper-body drawings; body bearing and motor; torso/third-wheel actuator roles; head sensor inven-
+    tory; neck axes, ratios, limits, and home sensors; arm model/firmware, joint definitions, zeroing, payload, reach,
+    current limits, gripper behavior, collision envelope, cable routing, and transport restraints.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        17 / 61
+CHAPTER 5
+
+From template to finished part
+CHAPTER 5
+
+
+Fabrication and finish
+The presentation asks how to print and weld the aluminum, whether templates or a 3D scan would help, and whether
+an outside robotics shop should quote the metalwork. Those questions prove that a complete final fabrication
+recipe is not present. This chapter supplies the record structure the builder should fill.
+
+
+
+Measurement plan
+Choose datums before collecting dimensions. For every critical measurement, record:
+
+• feature and datum names;
+• nominal value and unit;
+• tolerance or functional clearance;
+• instrument and resolution;
+• repeated measurements and uncertainty;
+• temperature or load state if relevant;
+• photograph or drawing revision;
+• who measured and when.
+
+
+
+
+A digital caliper is used across the tread frame; the publication needs the datum        A fit check can reveal interface errors before a hole becomes permanent.
+and recorded value.
+
+
+
+
+Process traveler
+For each fabricated part, create a traveler with these gates:
+
+1. released drawing and material certificate or stock identification;
+2. saw/cut blank with allowance;
+3. workholding setup and datum pickup;
+
+
+                                                                                    19
+BUILDING R.O.B.                                                                           COMPLETE FIELD MANUAL - ADVANCED
+
+
+ 4. roughing operation;
+ 5. intermediate inspection;
+ 6. finish holes, pockets, threads, bends, or weld preparation;
+ 7. deburr and edge-break requirement;
+ 8. weld/braze/bond sequence and distortion check, if applicable;
+ 9. surface preparation and coating;
+10. final dimensions, photographs, and acceptance signature;
+11. nonconformance and rework record.
+
+    SAFETY CHECK
+
+   The builder or qualified shop must write the actual machine, cutter, feeds and speeds, workholding, coolant,
+   chip control, guarding, ventilation, hot-work, welding, grinding, coating, and PPE instructions. A generic book
+   cannot make a particular shop operation safe.
+
+
+
+
+Design for assembly and service
+Use captive or accessible fasteners where covers need regular removal. Separate abrasive motion and sharp edges
+from harnesses. Provide inspection windows for chain line, tension, battery restraints, and protective devices. En-
+sure a heavy component can be supported before its final fastener is removed. Include lifting points and a stand
+plan in the CAD, not as an afterthought.
+
+    BUILDER INPUT NEEDED
+
+    Insert the builder-approved machining and assembly travelers, final CAD/template files, CNC or manual pro-
+    cess, weld procedure, coating system, adhesives, inspection tools, rejected-part lessons, outside vendors,
+    costs, and photographs paired with each actual operation.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     20 / 61
+             Part III
+
+Power, electronics, and firmware
+
+
+
+
+                21
+CHAPTER 6
+
+Power architecture
+CHAPTER 6
+
+
+Store, convert, protect, and
+disconnect energy
+What the archive says
+The 2021-2022 presentation describes four 20 Ah LiFePO4 batteries for a stated total of 80 Ah and shows a 12 V
+distribution bus, an onboard charger concept, a 120 VAC inverter, and a 12-to-24 V 240 W converter. Later photos
+show a different visible battery arrangement, including two large packs. The current topology is not proven.
+
+
+
+
+Historical 2021–2022 presentation concept: page 41 sketches four batteries and        The 2024 photograph shows the physical packs and leads visible in that revision.
+packaging around the treads; it is not evidence of the current power topology.
+
+
+
+
+Required single-line diagram
+The final manual needs an electrical single-line diagram from every energy source to every load. At minimum,
+identify:
+
+• battery pack chemistry, nominal and full-charge voltage, capacity, BMS, and series/parallel connection;
+• main fuse or breaker near each energy source;
+• main disconnect and emergency-stop contactor/controller path;
+• precharge, inrush, anti-spark, or safe connector sequence where required;
+• 12 V, 24 V, 5 V, and other buses with converter ratings and derating;
+• tread, flipper, actuator, arm, compute, sensor, light, audio, router, and accessory branches;
+• wire gauge, insulation rating, connector, polarity, routing, and strain relief;
+• grounding, chassis bonding, shielding, and separation of noisy and sensitive returns;
+• charger interlock, shore-power protection, inverter isolation, and exposed receptacles;
+• test points, indicators, and safe discharge behavior.
+
+
+                                                                                 23
+BUILDING R.O.B.                                                                                                         COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+
+                                               A pass-through needs abrasion
+protection and restraint.                                                      A 13.1 V display is a diagnostic clue, not proof of state of charge or system
+                                                                               health.
+
+
+
+
+Motor electrical evidence
+The motor label visible in build photographs identifies a HengDrive B5685G family, but the archived vendor sheets
+carry restrictive or confidential notices. This public draft therefore does not reproduce or paraphrase their spec-
+ifications. Obtain written permission or current public datasheets, then identify each installed winding, gearbox,
+controller, wire function, current limit, branch protection, and measured operating envelope.
+
+   ADVANCED CHANNEL
+
+   A presentation slide proposes a 240 W converter. At 24 V, 240 W corresponds to 10 A before losses, but the
+   installed topology and authorized motor ratings are not established. This does not approve or reject the circuit;
+   it demonstrates why a measured current and power budget is mandatory.
+
+
+
+
+Emergency stop and safe energy state
+A physical E-stop should be independent of the UI and ordinary network. Its design must follow the actual hazard
+analysis: which energy is removed, which holding brakes remain, whether abrupt removal creates a worse hazard,
+how reset works, how contact welding or controller failure is detected, and how the operator proves it before a
+show.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                      24 / 61
+BUILDING R.O.B.                                                                             COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+
+     A yellow emergency-stop button and control boxes appear in a 2025 bench layout. The photograph does not reveal
+     contacts, safety category, or final wiring.
+
+
+    BUILDER INPUT NEEDED
+
+    Provide the authoritative as-built schematic and calculations: present battery packs and topology, BMS, charg-
+    ers, fuses/breakers, disconnect, E-stop circuit and contact ratings, converters, branch currents, wire gauges,
+    connectors, grounding/bonding, inverter/shore-power safety, runtime, thermal measurements, and fault tests.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       25 / 61
+CHAPTER 7
+
+Arduino base controller
+CHAPTER 7
+
+
+Base electronics and firmware
+Confirmed pin and communication map
+The firmware targets an Arduino-compatible controller, and historical controller logs call it an Arduino Mega. The
+exact board model and revision, core, and library versions remain to be supplied.
+
+ LOAD                        SPEED         BRAKE       DIRECTION      NOTES
+ Right tread                   D2            D3            D25        Active-low speed mapping in firmware
+ Left tread                    D4            D5            D27        Mirrored direction polarity
+ Flipper                       D6            D7            D29        No implemented limit input
+
+ FUNCTION                    CONNECTION             CURRENT SOURCE BEHAVIOR
+ Mac base serial             USB, 250,000 baud Fixed-width command plus diagnostic text
+ Actuator controller         SoftwareSerial     Compact serial forward/reverse; nominal speed -3200 to
+                             D22/D23, 19,200 +3200; special inputs +3201 and -3201 clear safe start before
+                             baud               commanding the corresponding 3200 magnitude
+ IR array                    A5 through A0      Six SharpIR instances; front/back warning thresholds at 25 cm
+ IMU                         I2C    via   Wire; MPU9250 initialization and orientation telemetry
+                             D20/D21 if Mega
+ Speed feedback              Proposed           Commented TODOs disagree: the header calls D18 left and
+                             D18/D19/D20        D19 right, while later pin declarations reverse them; D20 con-
+                                                flicts with Mega I2C SDA
+
+
+
+Serial frame
+      ~+0000,+0100,+0000,+0100,+0000,+0000,+0000
+
+
+The 42 ASCII bytes represent left brake, left signed speed, right brake, right signed speed, flipper brake, flipper
+signed speed, and actuator signed speed. Brake field 0 maps to HIGH and is described as released; nonzero maps
+to LOW and is described as engaged. Tread and flipper speed output is 255 - abs(command), consistent with the
+active-low motor control concept. The physical brake electronics are not documented by the five-wire motor outline.
+
+
+
+Actuator compact serial
+The code sends 0x83 to exit safe start, 0x85 for forward, and 0x86 for reverse. It encodes magnitude in a five-bit low
+chunk and remaining high bits. Special input values +3201 and -3201 also clear safe start before becoming +3200
+or -3200. Reset should be separated from speed in a future typed protocol.
+
+
+
+IR and IMU status
+  EXPERIMENTAL / OPTIONAL Six IR sensors are constructed and front/back readings are sampled. After ten repeated close
+readings, the code prints a warning. The two lines that assert movement-inhibit flags are commented out, side
+sensors do not participate, and full six-value telemetry is commented. The builder reports grass/floor false triggers.
+
+
+                                                         27
+ BUILDING R.O.B.                                                                              COMPLETE FIELD MANUAL - ADVANCED
+
+
+   IMPLEMENTED  MPU9250 acceleration, gyro, and magnetometer readings feed a Mahony quaternion filter and print
+ yaw, pitch, roll, and temperature. The orientation is telemetry only; tilt does not inhibit motion. The yaw correction
+ is hard-coded for an older Austin, Texas declination and must not be treated as current calibration.
+
+
+
+ Safety and correctness audit
+ The historical firmware should be preserved as an artifact, then replaced behind fixtures. Priority defects include:
+
+ 1. the five-byte numeric buffer lacks a C-string null terminator before atoi and debug printing;
+ 2. one available byte triggers 41 further reads without proof of a complete frame;
+ 3. separator positions, signs, ranges, checksum, and frame completeness are not validated;
+ 4. an extra read after the seventh field can consume the next frame’s start marker;
+ 5. any received byte refreshes the deadman before frame validation;
+ 6. the deadman depends on loop counts rather than elapsed monotonic time;
+ 7. timeout sends zero speed with brake fields that release brakes;
+ 8. IR inhibit assignments are disabled and would not update outputs until another command path runs;
+ 9. one rotation test duplicates the same condition and omits the mirrored turn;
+10. command values are not clamped to PWM and actuator ranges;
+11. ramp constants, encoder feedback, and voltage monitoring are TODO-only;
+12. brake, direction, and PWM update ordering has not been proven jerk-free;
+13. the flipper and actuator have no firmware-visible end stops, position feedback, or motion timeout;
+14. setup writes the inactive value 255 to both tread PWM pins but never initializes flipper PWM D6; after
+    pinMode(OUTPUT), its default LOW is the maximum-command level under the active-low mapping, so boot
+    safety relies on the unverified flipper-brake path;
+15. IMU initialization can abort before motor outputs are explicitly initialized safe;
+16. direction method names, comments, and debug strings disagree.
+
+     SAFETY CHECK
+
+     Do not “clean up” direction logic on the live robot by inspection. First capture protocol fixtures, lift and guard
+     the drivetrain, limit current and speed, verify every brake and direction state, measure timeout behavior, and
+     retain an immediate independent stop.
+
+
+
+
+ Replacement-firmware architecture
+ A modern base controller should contain:
+
+ • safe GPIO initialization before optional sensors;
+ • bounded ring buffer and explicit framed decoder;
+ • version, length, type, sequence, range, and checksum validation;
+ • atomic command acceptance only after a complete valid frame;
+ • a monotonic deadline refreshed only by a valid authorized command;
+ • explicit states: boot-safe, disarmed, armed-neutral, moving, stopping, fault, E-stop;
+ • separate commands for reset, arm, drive, flipper, actuator, and diagnostic requests;
+
+ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        28 / 61
+BUILDING R.O.B.                                                                              COMPLETE FIELD MANUAL - ADVANCED
+
+
+• clamped outputs, ramp and direction-change interlocks, and defined brake/coast policy;
+• end-stop, encoder, current, voltage, and temperature feedback where hardware supports it;
+• structured telemetry with units and status flags;
+• unit, parser-fuzz, timing, and hardware-in-the-loop tests.
+
+    BUILDER INPUT NEEDED
+
+    Confirm board model and core; installed libraries; every connector and logic voltage; brake circuit; mo-
+    tor/flipper polarity; allowed command ranges; measured deadman deadline; brake/coast behavior; encoder
+    status; IR models/positions/calibration; IMU orientation; actuator controller, end stops, current limits, and safe
+    state.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        29 / 61
+        Part IV
+
+Software and perception
+
+
+
+
+           30
+CHAPTER 8
+
+Cerebro on macOS
+CHAPTER 8
+
+
+Central coordination on the
+Mac mini
+Cerebro is a mixed Swift, Objective-C, and Objective-C++ macOS application. Its central view/controller layer co-
+ordinates UI state while specialized components own serial, camera, speech, autonomy, security, and animation.
+
+
+
+Principal components
+ SOURCE COMPONENT                          RESPONSIBILITY
+ ROBMainViewController.mm                  Operator UI, controller messages, action/autonomy surfaces, subsystem
+                                           coordination.
+ ROBSerialBox.m / .h                       Serial discovery and USB ownership for base, torso, head, and Maestro;
+                                           base heartbeat rendering.
+ CameraManager.swift                       Camera providers, frame-set ownership, bounded delivery, RGB-D
+                                           helper lifecycle.
+ CameraViewController.swift                Vision processing and camera presentation.
+ ROBSpeechBox.m                            Local speech recognition configuration and speech synthesis.
+ ROBAutonomyCoordinator.swift              Bounded session state and deterministic local autonomy coordination.
+ ROBAI.swift                               Optional multimodal Gemini session and high-level tool coordination.
+ GeminiRoboticsProtocol.swift              Versioned messages and validation for model-facing robot actions.
+ KeyframeAnimationManager.swift            JSON-persisted animation values for arms, head/neck, treads, flipper,
+                                           actuator, torso, and speech.
+ AutoNet shared/transport files            ROBControl v2 framing, pairing, roles, session identity, and authoriza-
+                                           tion.
+
+
+
+Base heartbeat ownership
+Cerebro evaluates controller snapshots on a timer running at about 10 Hz and treats a snapshot as stale once its
+local receipt age exceeds 0.6 seconds. On the first transition from fresh to stale, it writes one neutral/braked serial
+frame, stops USB refresh, releases control authority, and allows the Arduino heartbeat to expire. This is a time-based
+gate, not a fixed count of three missed messages. The layered behavior is stronger than either deadline alone, but
+the Arduino’s own elapsed time and physical stop result still require measurement.
+
+
+
+External helpers and dependencies
+The OAK-D path uses a supervised Python helper rather than loading DepthAI directly into the control process.
+Cerebro can select or create a Python environment and validate the required import. Optional Amber scripts and
+tools such as sshpass and ticcmd are preflighted; missing dependencies disable their feature instead of terminating
+the app.
+
+  ADVANCED CHANNEL
+
+  Subprocess boundaries create explicit failure and update surfaces. The parent must validate executable paths,
+  avoid blocking reads, bound restart backoff, authenticate local IPC, limit message sizes, and make helper un-
+  availability visible. A helper crash should never preserve motion authority.
+
+
+                                                          32
+BUILDING R.O.B.                                                                        COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+Legacy boundary
+  LEGACY Historical controller data uses a fourteen-line keyed payload inside the newer authenticated transport.
+New domain code should not spread that format. A narrow adapter should translate modern typed commands into
+the legacy application payload until a deliberate migration replaces it.
+A malformed ROBControl header or frame can be rejected before application dispatch. A well-formed, authenti-
+cated envelope can still contain a malformed legacy controller payload, so the application adapter must validate
+that payload separately; transport authentication does not make its contents physically safe.
+
+    BUILDER INPUT NEEDED
+
+    Tag the publication source; provide target macOS and hardware; identify enabled optional dependencies
+    and versions; capture redacted current UI screenshots; document app startup/shutdown, serial-device names,
+    selected Python runtime, and recovery after each subsystem fails.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  33 / 61
+CHAPTER 9
+
+Controllers and secure transport
+CHAPTER 9
+
+
+Control from iPhone, Watch,
+and Vision Pro
+Controller roles
+The iPhone/iPad ROBController captures manual controls and presents pairing, autonomy, and action-approval
+surfaces. Its active legacy snapshot carries raw joystick coordinates; it does not use the Vision controller’s normalized
+linear/angular representation. Apple Watch sends voice or joystick intent through the phone and keeps no robot
+credential. ROBControllerVision provides a SwiftUI/Swift 6 architecture with a deterministic simulator, normalized
+motion, a 250 ms lease, a latched software E-stop, secure Cerebro control, and separately transported H.264 video.
+
+
+
+ROBControl v2
+  IMPLEMENTED The production control path advertises _robctl._udp, negotiates robctl/2, uses TLS 1.3 over QUIC,
+pins Cerebro’s certificate, and performs a reciprocal HMAC-SHA-256 proof with a per-device 256-bit secret. Its
+fixed 40-byte RCTL header carries version, kind, flags, channel, bounded payload length, monotonic sequence,
+and message ID.
+Validation is layered rather than identical for every message. Transport framing checks applicable bounds, role, ses-
+sion, and sequence rules. Lidar telemetry adds capture-time freshness, while controller freshness is measured from
+Cerebro’s local receipt time. The legacy fourteen-line application payload still requires its own decoder validation.
+Pairing creates a fresh device UUID and secret for one named device. The server registry remains authoritative
+for role and revocation. Bonjour advertises non-secret routing facts, not trust. Each device must receive its own
+credential. The pinned server-certificate fingerprint is a public identity value rather than a secret; security depends
+on protecting the device secret and private key.
+
+                             MAY                                           MUST NOT
+ ROLE
+                             Send             established  con-            Publish lidar as a trusted sensor role.
+ operatorController          trol/action/autonomy messages and
+                             receive results.
+                             Send bounded typed scan and map               Request motion, authorize autonomy, or
+ lidarPublisher              telemetry.                                    receive generic controller traffic.
+
+
+
+Separate video service
+ IMPLEMENTED   Cerebro advertises _robvideo._udp with robvideo/1. The initial profile is H.264 AVCC up to 960 by
+540, 20 fps, and 1.5 Mbit/s on an ordered reliable QUIC stream. Video has separate framing, queues, authentication
+domain, and backpressure so media cannot queue in front of a stop command.
+Video authorization is bound to the exact live control-session ID and authenticated controller identity. Control dis-
+connect or credential revocation closes associated video. Video failure does not close control.
+
+
+
+Safety timing layers
+
+                                                          35
+BUILDING R.O.B.                                                                                                                                   COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+
+             input released                    controller-specific             Cerebro 0.6 s                             Arduino serial                          commanded stop;
+             or manual stop                    lease / watchdog               freshness gate                               deadman                             result must be tested
+
+
+
+
+                                                                                                         independent of software
+                                                                     required verified physical E-stop                         independent contactor / controller stop path
+
+
+
+
+Current timing points include a 250 ms Vision lease, about 450 ms Watch relay watchdog, about 600 ms Cerebro
+snapshot freshness, and an Arduino loop-count deadline that must be measured. The physical E-stop remains an
+independent required layer.
+
+
+
+Privacy review
+The current active iPhone path requests Always location authorization and includes live latitude and longitude in
+each controller snapshot. This is current privacy debt, not merely a historical format detail: remove the fields, mini-
+mize their precision and retention, or document a necessary purpose and consent policy before public use. Pairing
+codes, device secrets, private keys, IP addresses, SSH credentials, API keys, private logs, and location must be
+excluded from screenshots and sample data. A public certificate or fingerprint may be redacted as operational
+metadata, but it is not a secret. Each cloud-enabled camera or microphone path needs explicit public notice and
+consent handling.
+
+    BUILDER INPUT NEEDED
+
+    Document exact controller release versions, supported OS/device matrix, pairing and revocation workflow,
+    operator training, latency and packet-loss results, Wi-Fi/router configuration without secrets, public-location
+    data policy, and current Vision Pro hardware validation.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                                                           36 / 61
+CHAPTER 10
+
+Cameras, depth, lidar, and coordi-
+nate frames
+CHAPTER 10
+
+
+Perception and mapping
+RGB-D camera
+  EXPERIMENTAL / OPTIONAL The current camera design runs a pinned DepthAI helper and sends timestamp-synchronized
+RGB plus depth through a private local Unix socket. RGB enters the existing sample-buffer, Vision, Gemini, and
+video path. Depth is little-endian UInt16 millimeters aligned to RGB; zero is invalid. AVFoundation remains an
+RGB-only fallback.
+The helper owns the OAK device exclusively. Old frames are dropped when perception is busy. Missing hardware,
+malformed IPC, SDK failure, or helper exit becomes camera state and bounded retry rather than a control-process
+crash.
+
+
+
+RPLidar
+  EXPERIMENTAL / OPTIONAL The companion app reads pose, location, laser points, and occupancy maps from Slamware.
+It publishes scans about every 0.2 seconds and maps about every 5 seconds through typed, sequenced, bounded
+telemetry. Before scan publication, the current code keeps only valid points closer than 1 m and within approxi-
+mately ±0.50 radians of the front or back; this scan is not a full 360-degree view. The occupancy map is a separate
+payload. The publisher role cannot drive the robot.
+Cerebro checks authenticated publisher identity, monotonic sequence, capture time, kind, and bounds. Stale data
+is rejected. Current social-roam autonomy consumes fresh scans, not occupancy maps.
+
+
+
+IR and IMU
+ EXPERIMENTAL / OPTIONAL Front/back Sharp IR warnings remain active, but automatic movement-inhibit flag assignments
+are disabled. The floor/grass reflection history makes these sensors an ideal research topic, not a certified stop
+device.
+ IMPLEMENTED   The MPU9250 reports inertial data and derived orientation. It is not a motion-inhibit input.
+
+
+
+Coordinate-frame discipline
+Name every transform:
+
+• lidar sensor to base;
+• base to local map;
+• color camera to depth camera alignment;
+• camera to head/neck;
+• head/neck to torso;
+• torso to each arm base;
+• arm joint chain to gripper tool frame.
+
+Record axis direction, handedness, units, timestamp, calibration method, uncertainty, and valid motion range. A
+visually plausible transform can still command a gripper to the wrong side of an object.
+
+                                                         38
+BUILDING R.O.B.                                                                                          COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+
+                                                                                                               The open base shows how sen-
+Presentation page 55 proposes an RPLidar stage above the base.   sors, wiring, compute, and mechanisms become a serviceability problem.
+
+
+    BUILDER INPUT NEEDED
+
+    Confirm current camera models, lenses, mounting transforms, USB/Ethernet topology, DepthAI version, ex-
+    posure and lighting behavior, lidar model/host/address, installed map workflow, IR positions and shrouds,
+    calibration targets, timestamp synchronization, frame conventions, and measured accuracy.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                       39 / 61
+CHAPTER 11
+
+Arms, animation, speech, auton-
+omy, and AI
+CHAPTER 11
+
+
+Behavior above raw motor
+commands
+Servo and arm control
+Cerebro uses Maestro servo channels plus optional Amber Python/SSH paths. A final arm-control chapter needs
+joint-by-joint calibration, not only button names. For each axis record commanded unit, zero reference, direction,
+soft and hard limits, feedback, maximum rate, acceleration, current/torque limit, collision envelope, and safe behav-
+ior after link loss.
+
+
+
+Keyframe animation
+  IMPLEMENTED  KeyframeAnimationManager.swift persists JSON values for arm channels, head/neck, tread movement,
+flipper, actuator, torso rotation, and speech. Keyframes are reusable data: a sequence can describe expressive
+behavior independently of the UI that recorded it.
+  COMMANDED  Historical servo “animation” helpers in ROBSerialBox.m do not yet perform robust smooth interpolation;
+they update their targets immediately. New interpolation must respect joint rates, synchronization, limits, collisions,
+and cancellation.
+
+
+
+Speech
+  IMPLEMENTED Cerebro configures an Apple local speech-recognition path and uses local speech synthesis for com-
+pleted responses. This path reduces network dependence, but it does not describe every microphone use: when
+the separately optional Gemini session is enabled, microphone audio may be streamed to an external cloud service.
+Both paths require microphone permissions, public notice, and a plan for unintended capture.
+
+
+
+Controller-activated autonomy
+  EXPERIMENTAL / OPTIONAL The social-roam profile begins only after explicit controller authorization, captures an activa-
+tion pose and radius, uses fresh filtered lidar scans, and limits tread speed. Near 82 percent of the configured
+radius it attempts to return toward its origin; this is not verified containment. Missing or stale lidar requests a mo-
+tion stop and transitions to waitingForLidar while the autonomy session remains active. Manual takeover, explicit
+stop, expiry, replacement, or shutdown ends the session. Local deterministic code owns execution.
+
+
+
+Gemini integration
+                      The entire Gemini integration defaults off and requires explicit enablement plus credentials.
+ EXPERIMENTAL / OPTIONAL
+Once enabled, the current configuration defaults camera-frame and microphone-audio streaming on unless each
+stream is separately disabled. The robot-action tool remains separately off by default. Its schema declares look_at,
+play_gesture, request_pick, navigate_relative, and stop_motion; the model never receives arbitrary raw serial out-
+put. Only stop_motion has an immediate local executor, and even that returns a partial result because arm hold is
+unverified. The other actions have no deterministic executor: the controller console records approval or rejection
+but does not actuate hardware.
+
+                                                           41
+BUILDING R.O.B.                                                                                                            COMPLETE FIELD MANUAL - ADVANCED
+
+
+  PLANNED   General picking is intentionally unavailable. Missing prerequisites include calibrated camera-to-arm
+transforms, complete neck mapping, joint feedback, inverse kinematics, collision checking, grasp planning, and
+a verified executor.
+
+
+
+Robot-action implementation status
+  ACTION                               CURRENT STATUS                 CURRENT BEHAVIOR
+  stop_motion                          Partial local executor         Preempts local coordinators, writes one neutral/braked base
+                                                                      frame, and drops the base heartbeat. Base stop is software-
+                                                                      observed; Amber arm hold remains unverified.
+  look_at                              Schema only                    No deterministic local executor. Outside autonomy it may be of-
+                                                                      fered to the manual approval console; approval does not move
+                                                                      hardware.
+  play_gesture                         Schema only                    No deterministic local executor. Approval does not play a phys-
+                                                                      ical gesture.
+  navigate_relative                    Schema only                    No deterministic local executor. It is distinct from the social-
+                                                                      roam coordinator.
+  request_pick                         Planned / unavailable          Rejected until transforms, inverse kinematics, collision checking,
+                                                                      joint feedback, grasp planning, and a verified executor exist.
+
+    SAFETY CHECK
+
+   Language-model confidence is not evidence of physical safety. Treat model output as an untrusted proposal.
+   Validate types, values, state, authority, freshness, workspace, and collision policy in deterministic local code;
+   require human approval where risk warrants it; and make rejection an ordinary result.
+
+
+
+
+                                                 The detached arm makes reach,                                                    The depth camera is one input
+joint order, cabling, and manipulation limits concrete.                          to a manipulation experiment; a successful image alone is not a grasp-validation
+                                                                                 test.
+
+
+    BUILDER INPUT NEEDED
+
+    Provide arm/neck calibration files, verified keyframes, joint feedback and limits, safe animation cancel behavior,
+    speech privacy settings, autonomy speed/radius/obstacle requirements, Gemini model/release configuration,
+    consent signage, action approval policy, and validation for every enabled tool.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                          42 / 61
+                 Part V
+
+Integration, operation, and maintenance
+
+
+
+
+                   43
+CHAPTER 12
+
+Verification before motion
+CHAPTER 12
+
+
+Test strategy and safety case
+Requirements traceability
+Every test should trace to a requirement and hazard. A simple matrix includes requirement ID, hazard ID, source
+revision, test method, equipment, pass criteria, result, evidence path, reviewer, and date. “It worked once” is not a
+repeatable acceptance criterion.
+
+
+
+Progressive test ladder
+             SCOPE                                                REQUIRED EVIDENCE
+ LEVEL
+             Design review and hazard analysis.                   Reviewed drawings, calculations, assumptions,
+ 0                                                                and unresolved risks.
+             Pure software fixtures and simulation.               Protocol, range, state, deadline, replay, and
+ 1                                                                cleanup tests.
+             Logic outputs to indicators or dummy loads.          Pin states, ordering, safe initialization, timeout
+ 2                                                                waveform.
+             One controller with a small surrogate or discon-     Polarity, limits, current, fault and stop response.
+ 3           nected actuator.
+             Full hardware on rated stands with guards.           Direction, speed cap, coast/brake, current, tem-
+ 4                                                                perature, E-stop timing.
+             Slow unloaded floor test in an exclusion zone.       Tracking, latency, stopping distance, spotter log,
+ 5                                                                post-test inspection.
+             Incremental loads and declared surfaces.             Repeatable operating envelope and ther-
+ 6                                                                mal/current margins.
+             Full show rehearsal.                                 Setup checklist, barrier, staffing, failure drills, pri-
+ 7                                                                vacy notice, teardown plan.
+
+
+
+Failure injection
+Test the robot’s response when:
+
+• joystick input stops or becomes non-finite;
+• Watch-to-phone relay disappears;
+• controller packets duplicate, reorder, age, or exceed bounds;
+• control network disappears while video continues;
+• video decoder stalls or requests a keyframe;
+• USB serial is unplugged or filled with malformed bytes;
+• Arduino boots with IMU missing;
+• an IR sensor sticks low or produces grass reflections;
+• lidar data becomes stale or claims an impossible timestamp;
+• DepthAI helper exits or the camera disconnects;
+
+
+                                                           45
+BUILDING R.O.B.                                                                            COMPLETE FIELD MANUAL - ADVANCED
+
+
+• an actuator reaches a mechanical stop;
+• one motor direction is reversed;
+• a credential is revoked during active control;
+• autonomy loses its sensor or leaves its radius;
+• an AI tool proposes an unsupported or stale action;
+• physical E-stop is pressed at each declared operating speed and pose.
+
+
+
+Measure stop behavior
+For each layer, measure detection time, command time, electrical response, mechanical response, and final state.
+Report surface, slope, load, battery state, speed, controller mode, firmware/software revision, sample rate, and
+uncertainty. “600 ms watchdog” is not the same as “stopped within 600 ms.”
+
+    SAFETY CHECK
+
+    Use rated stands, restraints, remote observation, current limiting, a spotter, and an independent stop before
+    intentionally injecting failures. Some failures should be tested only in simulation or on surrogate hardware.
+
+    BUILDER INPUT NEEDED
+
+    Insert the actual hazard analysis, operating envelope, requirements matrix, unit and fixture reports, cur-
+    rent/thermal data, watchdog timing, E-stop test, stopping distances on hard floor and grass, slope tests, flip-
+    per/actuator load tests, arm collision tests, and sign-off authority.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                      46 / 61
+CHAPTER 13
+
+Maker Faire operations
+CHAPTER 13
+
+
+Present ROB safely in public
+Roles
+Assign at least these responsibilities:
+
+• Lead operator: owns arm/disarm and the primary controller.
+• Safety spotter: watches the robot and crowd, keeps a hand near the physical E-stop, and may stop without
+  asking.
+• Educator: explains ROB without distracting the operator.
+• Technical support: monitors power, temperature, logs, and recovery.
+• Event liaison: coordinates space, charging, barriers, accessibility, and emergency requirements.
+
+One person may fill multiple roles only if workload and risk allow it. Never make the operator answer a long technical
+question while ROB moves near visitors.
+
+
+
+Pre-show checklist
+   current approved software/firmware versions recorded;
+   batteries inspected, charged under the approved procedure, and restrained;
+   fuses, disconnect, and E-stop visually inspected and function-tested;
+   treads, chain, sprockets, guards, shafts, collars, mounts, fasteners, and torque marks inspected;
+   arm, neck, flipper, and actuator limits checked in a protected area;
+   controllers uniquely paired; unused credentials revoked;
+   control and optional video links tested under venue network conditions;
+   speed cap and operating mode verified on every controller;
+   barrier, route, slope, floor transitions, cables, exits, and charging location inspected;
+   camera, microphone, recording, location, and cloud-AI policy displayed;
+   fire response, first aid, lift/transport, and fault-recovery plans briefed;
+   spare tools and parts controlled so visitors cannot reach them;
+   dry rehearsal completed with the full team.
+
+
+
+Show-state model
+Use explicit visible states: Transport Safe, Display Only, Demo Armed, Moving, Stopped, Faulted, Charging, and
+Maintenance. Each transition names who authorizes it and what checklist applies. Reconnecting a controller or
+restarting software never silently arms motion.
+
+
+
+
+                                                            48
+BUILDING R.O.B.                                                                         COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+Audience and privacy
+Keep an accessible viewing route. Do not require visitors to step over cables. Mark pinch and tread boundaries
+clearly. Avoid publishing faces without consent. When camera, microphone, recording, or cloud processing is
+active, use plain-language signage and a visible indicator; provide a quick disable path and a non-recorded way to
+participate.
+
+    BUILDER INPUT NEEDED
+
+    Insert venue-specific barrier dimensions, maximum public-demo speed, operator and spotter names, E-
+    stop placement, battery/charging policy, transport vehicle and lift plan, insurance or venue requirements,
+    photo/video release plan, privacy signage, scripted demonstrations, and abort criteria.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   49 / 61
+CHAPTER 14
+
+Maintenance and change control
+CHAPTER 14
+
+
+Keep the robot
+understandable
+Before and after every operating day
+Inspect for loose fasteners, moved torque marks, chain and tread damage, shaft-collar movement, bracket cracks or
+bending, wire abrasion, connector heating, battery swelling or damage, fluid or debris, blocked ventilation, actuator
+looseness, unusual sound, camera security, E-stop function, and log errors.
+After operation, record runtime, surfaces, mode, maximum observed current and temperature if available, incidents,
+unexpected stops, repairs, and deferred defects. Quarantine the robot from powered use when a red condition
+remains unresolved.
+
+
+
+Scheduled maintenance record
+For every interval, name the component, task, acceptable condition, tool, replacement part, torque or measurement,
+evidence, and sign-off. Intervals may be hours, cycles, calendar time, or before each public show.
+
+
+
+Configuration control
+A change to code, pin mapping, motor polarity, brake logic, network framing, controller speed cap, arm limit, bat-
+tery arrangement, or bracket can invalidate earlier tests. Give hardware, firmware, software, calibration, wiring, and
+operating procedure separate revision identifiers, then record the tested combination.
+
+
+
+Troubleshooting by layer
+                            SAFE DIAGNOSTIC PATH
+ SYMPTOM
+                            Keep motion disarmed; verify unique pairing, robot ID, Bonjour visibility, certificate pin,
+ No controller connection   role, revocation, and session proof.
+                            Keep control independent; inspect the separate video service, camera permission/state,
+ Control works, no video    capability handshake, session binding, and decoder recovery.
+                            Disconnect actuator power as required; verify USB device, 250,000 baud, startup log,
+ Arduino not online         safe GPIO state, and dependency/IMU behavior.
+                            Stop and lift/guard the base; compare requested sign, adapter output, Arduino pin,
+ One tread reverses         driver polarity, and physical mount. Do not fix by guessing in UI code.
+                            Disable motion; log all raw readings with surface, angle, light, and distance; inspect
+ Unexpected IR warnings     shrouds and wiring; keep IR outside certified safety claims.
+                            Treat as safe failure; verify explicit authorization, fresh lidar, activation radius, master con-
+ Autonomy will not move     trol, and local planner state.
+                            Treat rejection as correct until capability, calibration, approval, and executor prerequi-
+ Arm action rejected        sites are satisfied.
+
+
+
+
+                                                             51
+BUILDING R.O.B.                                                                             COMPLETE FIELD MANUAL - ADVANCED
+
+
+    BUILDER INPUT NEEDED
+
+    Add maintenance intervals, lubrication policy, tread and chain wear limits, fastener torques, battery retirement
+    criteria, cable replacement rules, calibration intervals, spare-parts inventory, fault codes, backup/restore pro-
+    cedure, and configuration-release form.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       52 / 61
+CHAPTER A
+
+
+Teach the architecture without
+hiding the hazards
+The youth sequence and public website should use the same conceptual spine as the engineering record: system
+boundary; energy versus information; sense–estimate–plan–validate–act–measure; mechanics and operating enve-
+lope; message grammar and freshness; identity and authority; progressive evidence. The explanation may become
+simpler, but it must not become false.
+
+
+
+A spiral curriculum for ROB
+Return to the same ideas with increasing precision. Ages 8–12 classify inputs, outputs, energy, structure, and feed-
+back using paper models. Ages 10–14 graph signals, parse bounded messages, and implement current-limited
+LED watchdogs. Ages 10–15 model forces, ratios, tolerances, and test ladders. Ages 12–16 reason about state ma-
+chines, networking, trust, leases, perception limits, and bounded autonomy. Adult mentors connect each model to
+dated evidence and unresolved hazards.
+                      YOUTH EVIDENCE                                    ENGINEERING EVIDENCE
+ LEARNING MOVE
+                      annotated photo or sensor-map marks               calibrated log with timestamp and revision
+ Observe
+                      block diagram, graph, state cards                 interface control document or executable
+ Model                                                                  model
+                      written normal/change/failure result              acceptance criterion with uncertainty
+ Predict
+                      paper, simulation, or low-energy kit              progressive restrained test with hazard con-
+ Test                                                                   trols
+                      claim linked to observation                       traceable result, exception, and sign-off
+ Explain
+                      changed diagram and reason                        controlled design revision and regression
+ Revise                                                                 test
+
+
+
+Facilitation pattern
+Begin with a phenomenon, not a vocabulary list. Ask learners to notice; collect competing models without ridicule;
+choose a measurable prediction; test at the lowest safe energy; compare result and prediction; then introduce
+precise language. End by asking what remains unknown. This preserves curiosity while teaching that uncertainty is
+an engineering result.
+
+  SAFETY CHECK
+
+  Do not turn ROB into a youth build activity. The public curriculum must not invite access to traction batteries,
+  mains or inverter circuits, drivetrain hardware, chains, machine tools, actuators, live controllers, or unrestricted
+  network commands. Demonstrations use immobilized hardware, simulation, paper, or separately reviewed
+  low-energy kits.
+
+
+
+
+                                                          53
+CHAPTER B
+
+
+Commission the control path
+as one safety-related system
+The transport should be verified from discovery through physical response. The current secure path uses Bonjour
+discovery, QUIC/TLS, exact certificate pinning, reciprocal pairing proof, a server-owned device role, framed appli-
+cation messages, controller freshness, Cerebro’s base heartbeat ownership, and the Arduino’s independent serial
+timeout. Each layer needs its own test because success at one layer cannot establish another.
+
+
+
+Connection and enrollment matrix
+Record clean enrollment, reconnect after launch-order reversal, local-network permission denial, missing Bonjour
+TXT metadata, wrong certificate, wrong secret, revoked device, duplicated credential, wrong role, stale sequence,
+Wi-Fi loss, and server restart. Capture both endpoint states and verify that no application callback occurs before
+authentication completes.
+
+  2026-08-10 TRANSPORT LESSON
+
+  During live commissioning, iOS discovered the sole _robctl._udp service but did not surface its Bonjour TXT
+  record. The controller now permits a connection attempt only for that sole metadata-less candidate; the ex-
+  act certificate pin and reciprocal proof still fail closed for another robot. A second issue exposed QUIC anti-
+  amplification behavior: Cerebro attempted to send the challenge before the client address had enough vali-
+  dation traffic. The protocol now begins with a padded client pairing-hello carrying a registry-checked device
+  identifier, then sends the fresh challenge. Treat this as a dated implementation note pending tagged release
+  and regression fixtures.
+
+
+
+
+Measure the whole stop chain
+Instrument controller issue time, validated receipt, Cerebro neutralization, last serial frame, driver output, tread
+speed, and complete physical stop. Inject joystick release, app suspension, cable removal, malformed frames,
+serial noise, stale sensors, helper failure, and E-stop activation separately. Report both software state and measured
+motion. A green authenticated-link indicator proves identity and readiness; it does not prove command freshness,
+brake behavior, or stopping distance.
+
+  RELEASE ARTIFACTS
+
+  Archive source commits, pairing protocol version, component configuration, redacted logs, fixture results, haz-
+  ard review, calibration set, operator checklist, known limitations, and rollback procedure. Make the public
+  book and web lesson point to a release record rather than to a developer’s working tree.
+
+
+
+
+                                                         54
+CHAPTER C
+
+
+Capture the builder's oral
+history
+The future first-person story should be dictated as evidence-rich scenes, not forced into a polished chronology in
+one sitting. Record separate sessions for origin, early moving base, body and character, power and electronics,
+fabrication, sensing and software, public demonstrations, failures, collaborators, and the present mission. Preserve
+the speaker’s exact recording privately; produce a reviewed transcript; mark uncertain dates; and link claims to
+photographs, commits, drawings, or test records.
+
+
+
+Interview prompts
+For each revision ask: What problem were you trying to solve? What did you believe then? What did you build?
+What surprised or failed? What changed next? Who helped? Which artifact proves the memory? What would you
+tell a child, and what would you tell an experienced builder? Do not fill technical placeholders from recollection
+when a measurement is required; use the story to identify the measurement or archive item to find.
+
+  DICTATION WORKFLOW FOR THE NEXT EDITION
+
+  Record one 20–30 minute chapter at a time. Start each with date range and visible artifact. Transcribe, separate
+  direct memory from later interpretation, flag names and permissions, fact-check technical claims, then return
+  the edited passage to the builder for voice and accuracy approval. Only approved passages enter the narrative
+  edition.
+
+
+
+
+                                                        55
+ CHAPTER D
+
+
+ Builder input ledger
+ This appendix is the iteration queue. Replace each line with a dated, reviewed answer and evidence reference.
+
+ 1. Project origin, name meaning, design requirements, contributors, shops, and dated revision history.
+ 2. Final overall dimensions, ready-to-run mass, center of mass, load cases, operating surfaces, slopes, speed, and
+    environmental limits.
+ 3. As-built CAD/templates, plate materials and thicknesses, fasteners, shafts, bearings, sprockets, chains, tension
+    procedure, guards, and coatings.
+ 4. Actual milling, drilling, bending, welding, deburring, finishing, workholding, tooling, feeds/speeds, inspection,
+    PPE, and vendor sequence.
+ 5. Current tread and flipper motors, windings, gearbox ratios, controller circuits, brake polarity, current limits, and
+    performance tests.
+ 6. Flipper location and geometry, third-wheel status, actuator roles, models, strokes, loads, end stops, feedback,
+    and failure behavior.
+ 7. Battery packs, topology, BMS, charger, fusing, main disconnect, E-stop, converters, inverter, grounding, wire
+    gauges, connectors, and power budget.
+ 8. Arduino-compatible board model, core and libraries, pin-to-connector harness, command ranges, deadman
+    timing, IMU calibration, IR positions/status, and speed-feedback status.
+ 9. Current Mac mini/Raspberry Pi inventory, OS versions, ports, network devices, router role, serial-device owner-
+    ship, and dependency versions.
+10. Arm and neck models, geometry, calibration, zero/home, soft/hard limits, payload, current/torque limits, colli-
+    sion envelope, and safe transport.
+11. Camera and lidar inventory, mounts, coordinate transforms, calibration, timestamp synchronization, accuracy,
+    lighting, and present host path.
+12. Controller compatibility, pairing/revocation, speed caps, latency, watchdogs, location-data policy, and Vision
+    Pro validation.
+13. Autonomy operating envelope, sensor requirements, aborts, AI model/tool configuration, approval policy, and
+    camera/microphone/cloud consent.
+14. Hazard analysis, protective measures, E-stop proof, test reports, Maker Faire perimeter and staffing, fire, lifting,
+    and charging plans, plus insurance and venue requirements.
+15. Final photo captions, permissions/releases, vendor-publication permissions, credits, and redacted screenshots.
+
+
+
+
+                                                           56
+CHAPTER E
+
+
+Bill of materials worksheet
+ ID       SUBSYSTEM             MANUFACTURER / PART / REVISION               QTY         SOURCE         STATUS
+
+
+
+
+For each line add voltage, current, mechanical interface, firmware, calibration, supplier status, substitute, unit cost,
+lead time, safety documentation, and evidence photograph in the editable project record.
+
+
+
+
+                                                          57
+CHAPTER F
+
+
+Wiring and connector
+worksheet
+ NET        FROM               TO                 VOLTS        MAX A       WIRE          PROTECTION / CON-
+                                                                                         NECTOR
+
+
+
+
+Also record return path, chassis bond, shield termination, cable length, routing class, strain relief, flex cycles,
+color/label, fuse/breaker location, test point, polarity check, and continuity/insulation result.
+
+
+
+
+                                                        58
+CHAPTER G
+
+
+Serial protocol reference
+Historical base frame
+ FIELD        MEANING                     EXAMPLE             CURRENT LIMIT / NOTE
+ Start        Frame marker                ~                   One byte
+ 1            Left brake                  +0000               0 described as release; nonzero engage
+ 2            Left signed speed           +0100               Expected magnitude within 0-255; not clamped
+ 3            Right brake                 +0000               Same mapping
+ 4            Right signed speed          +0100               Mirrored physical direction polarity
+ 5            Flipper brake               +0000               Same mapping
+ 6            Flipper signed speed        +0000               Expected magnitude within 0-255; not clamped
+ 7            Actuator signed speed       +0000               Nominal -3200 to +3200; +3201 and -3201 clear
+                                                              safe start, then command +3200 and -3200 respec-
+                                                              tively
+
+Fields are five ASCII characters and separated by six commas. Total historical frame length is 42 bytes. The current
+decoder defects listed in Chapter 7 must be fixed before treating the format as safe. A replacement should add
+explicit version, message type, bounded length, sequence, integrity check, and typed state transitions.
+
+
+
+
+                                                        59
+CHAPTER H
+
+
+Repository source map
+ RELATIVE PATH                                    PUBLICATION USE
+ Presentation/ROB_v3.pdf                          95-page historical build and design deck; slides dated 2021 with
+                                                  2022 modifications.
+ ROBOT Build/ROBOT_CEREBELLULAR_BASE_APP.ino      Base pin map, serial parser, treads, flipper, actuator, IR, IMU, heart-
+                                                  beat.
+ ROBOT Build/Hengdrive*.pdf                       Restricted files; contents excluded pending publication clearance.
+ ROBOT Build/B-COMMAND*.pdf                       Restricted file; contents excluded and associated installation un-
+                                                  proven.
+ ORobotics/media/gallery-originals                Private high-resolution construction and event photographs; strip
+                                                  metadata and review releases.
+ ORobotics/data/gallery_metadata.json             Visual descriptions useful for search and draft captions, not author-
+                                                  itative part identification.
+ Cerebro/Cerebro/ROBSerialBox.m                   Physical serial adapter, base heartbeat, servo/arm helpers.
+ Cerebro/Cerebro/ROBMainViewController.mm         Operator coordination, controller/action/autonomy integration.
+ Cerebro/Cerebro/CameraManager.swift              Camera, RGB-D helper, and bounded frame delivery.
+ Cerebro/Cerebro/ROBAutonomyCoordinator.swift     Session-bounded local autonomy.
+ Cerebro/Cerebro/ROBAI.swift                      Optional multimodal Gemini path.
+ Cerebro/Cerebro/GeminiRoboticsProtocol.swift     Versioned high-level action protocol.
+ Cerebro/Cerebro/KeyframeAnimationManager.swift   Persisted animation data.
+ Cerebro/docs                                     Current transport, video, depth, autonomy, and Gemini design
+                                                  notes.
+ ROBController/Consciousness                      iPhone/iPad UI, control payload, pairing, Watch relay, action con-
+                                                  sole.
+ ROBController/Consciousness-Watch Watch App      Watch user interface and relay intent.
+ ROBControllerVision                              Vision Pro controller, simulator, secure adapter, video decoder,
+                                                  tests.
+ M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar         Slamware acquisition and typed lidar publisher.
+
+
+
+
+                                                            60
+CHAPTER I
+
+
+Photo and artwork credits
+All construction photographs in this edition originate from the private Orbitus Robotics gallery archive and are
+credited to Rodolfo Aramayo / Orbitus Robotics unless the builder supplies a different credit. The frontispiece and
+software-control illustrations are original generated artwork derived from ROB reference photographs and created
+for this book set. They contain no official franchise logo, character, or copied page design and are labeled as
+illustrations rather than engineering evidence.
+The book’s visual system uses licensed system typefaces and an original weathered retro-space workshop palette.
+The project is independent and is not affiliated with or endorsed by any film studio, franchise owner, component
+vendor, or platform company.
+Before public printing, complete image releases, confirm third-party product-image and datasheet permissions,
+remove private metadata and secrets, and obtain a final legal/trademark review appropriate to the distribution
+plan.
+
+
+
+
+   NEXT ITERATION
+
+   Work through the Builder input ledger with the machine physically available. Replace placeholders with mea-
+   sured values, drawings, test reports, verified captions, and contributor stories. Then tag the source snapshot,
+   rebuild all five PDFs, and perform a page-by-page technical and print proof before the Maker Faire print run.
+
+Source trail: This field manual was synthesized from the local ROB presentation, private photo originals and metadata, Arduino firmware and hardware references,
+and current Cerebro, ROBController, ROBControllerVision, and RPLidar repositories inspected on 2026-08-02.
+
+
+                                                                               61
+

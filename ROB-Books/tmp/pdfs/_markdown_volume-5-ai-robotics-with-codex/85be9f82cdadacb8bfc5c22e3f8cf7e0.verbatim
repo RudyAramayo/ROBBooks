@@ -1,0 +1,6 @@
+fix(network): prevent QUIC pairing handshake deadlock
+
+- send a bounded client hello before awaiting the challenge
+- validate device identity against the paired registry
+- preserve certificate pinning and reciprocal proof
+- add a regression fixture for simultaneous-read startup

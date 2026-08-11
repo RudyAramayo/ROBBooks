@@ -1,0 +1,5 @@
+Inventory every Process/NSTask launch in Cerebro. Do not edit yet. Classify the
+executable as required or optional; list path source, validation, credentials,
+timeout, restart behavior, and user-visible failure. Then centralize only the
+shared preflight while preserving each feature's behavior. Add tests for
+missing, directory, non-executable, and disappearing executables.

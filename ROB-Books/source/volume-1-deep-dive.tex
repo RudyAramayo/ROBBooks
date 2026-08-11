@@ -1,0 +1,61 @@
+\ROBChapterPhoto{Deep Lab}{See the loop, not just the parts}{rob-systems-feedback-lab.png}
+
+\chapter{Think like a systems detective}
+
+A list of parts tells us what a robot \emph{has}. A system model tells us what the parts must accomplish together. Systems engineers begin with a boundary: what is inside the system, what is outside, and what may cross the boundary? Energy, information, material, force, heat, and sound can cross it. Drawing the boundary prevents a common mistake---explaining one interesting part while forgetting the whole job.
+
+\begin{missionbox}[title={THE WATER-DELIVERY ROBOT}]
+Imagine a small classroom robot whose only job is to carry one sealed cup from a filling station to a table. Name the user and success condition. Then list what crosses its boundary: electrical energy enters from a battery; destination information enters from a person; wheel forces act on the floor; heat and sound leave; the cup enters and exits. Which crossing could make the mission fail?
+\end{missionbox}
+
+\section*{A feedback loop has memory}
+
+Open-loop action says, ``Run the motor for one second.'' Closed-loop action says, ``Measure the result, compare it with the goal, and choose the next action.'' The second approach needs a remembered goal and fresh measurements. It can correct some disturbances, such as a wheel moving less on carpet, but only when the sensor measures something useful.
+
+\begin{center}
+\begin{tikzpicture}[node distance=8mm,>=stealth,every node/.style={font=\robcondensed\small,align=center}]
+\node[draw=ROBAccent,fill=ROBAccent!8,rounded corners,minimum width=1.15in,minimum height=.48in] (goal) {GOAL};
+\node[draw=ROBPurple,fill=ROBPurple!8,rounded corners,right=of goal,minimum width=1.15in,minimum height=.48in] (compare) {COMPARE};
+\node[draw=ROBGreen,fill=ROBGreen!8,rounded corners,right=of compare,minimum width=1.15in,minimum height=.48in] (act) {ACT};
+\node[draw=ROBCyan,fill=ROBCyan!8,rounded corners,below=9mm of compare,minimum width=1.15in,minimum height=.48in] (sense) {SENSE};
+\draw[->,thick] (goal)--(compare); \draw[->,thick] (compare)--(act);
+\draw[->,thick] (act.east) -- ++(.45,0) |- (sense.east);
+\draw[->,thick] (sense)--(compare);
+\end{tikzpicture}
+\end{center}
+
+\begin{conceptbox}[title={A SENSOR DOES NOT KNOW}]
+A sensor translates a physical effect into a signal. A camera produces pixels; it does not automatically know ``cup.'' Software builds an estimate from measurements, assumptions, and prior information. Every estimate has limits. Strong glare, a hidden object, a dirty lens, or an old timestamp can change what the data means.
+\end{conceptbox}
+
+\section*{Make three predictions}
+
+For every model, predict a normal case, a changed case, and a failure case. If ROB approaches a cardboard box, what should a distance reading do? What changes if the box is dark or angled? What should happen if readings stop arriving? A prediction turns ``I think it works'' into something observable.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.2in} X X}
+\toprule
+CASE & PREDICTION & EVIDENCE TO COLLECT\\
+\midrule
+Normal & What pattern should appear? & A number, timestamp, photo, or state.\\
+Changed & Which variable changes while others stay fixed? & Before-and-after observations.\\
+Failure & Which safe state should appear? & Timeout, rejection, and recovery record.\\
+\bottomrule
+\end{tabularx}
+
+\clearpage
+\chapter{Uncertainty is useful information}
+
+Measurements are not perfect labels. A ruler has limited marks. A camera pixel covers an area. A distance sensor samples a cone or ray. Repeating a measurement reveals spread. Engineers report a value with its unit, method, revision, and uncertainty instead of hiding variation.
+
+\begin{buildbox}[title={PAPER SENSOR MAP}]
+Place a sheet of graph paper on a table and choose one square as a pretend robot. A partner secretly places three paper obstacles. You may ask for eight straight-line distance measurements in chosen directions. Mark each result, including ``no return.'' Draw two maps: space supported by evidence and space still unknown. Compare your map with the real layout. No electronics are needed.
+\end{buildbox}
+
+\begin{advancedbox}[title={CAUSE, CORRELATION, AND A FAIR TEST}]
+If a robot slows down when its battery reading falls, the two events are correlated. That alone does not prove the battery caused the slowdown; floor friction, software limits, temperature, or load may also have changed. A fair test changes one planned variable, controls the others as well as practical, repeats trials, and records exceptions.
+\end{advancedbox}
+
+\begin{safetybox}
+These reasoning tools apply to ROB, but youth investigations remain on paper, in simulation, or with current-limited classroom kits. Never probe ROB's batteries, power branches, motor wiring, moving treads, actuators, or exposed mechanisms.
+\end{safetybox}
+

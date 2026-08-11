@@ -1,0 +1,301 @@
+\documentclass[11pt,openany]{book}
+\usepackage{robbook}
+\SetROBAccent{ROBGreen}
+\SetROBVolume{VOLUME 3 - AGES 10-15}{MOTION WORKSHOP}
+
+\begin{document}
+\ROBTitle{Building R.O.B. - Volume 3}{MOTION WORKSHOP}{Treads, gears, actuators, and the art of making}{A mechanics and fabrication guide for makers ages 10-15}{2026-rob-lightsabers-side.jpg}
+
+\ROBFrontMatter{Motion begins on paper}{A safe tour from force and torque to prototypes, measurements, brackets, chains, and tests.}{%
+ROB is heavy enough that small mechanical choices become serious. A shaft that is slightly out of line can pull a chain sideways. A cable near a sprocket can become a hazard. A bracket that looks stiff may bend when a long arm multiplies force.
+
+The activities in this book use paper, cardboard, rulers, craft fasteners, and small educational kits. Milling, drilling metal, welding, grinding, large batteries, chains, treads, flippers, and full-size actuators are red-zone work for trained adults.
+}
+
+\ROBSeriesMap{Treat every photograph as evidence of one moment in an evolving prototype. Look for loads, motion paths, fasteners, alignment, access, and risk. Do not copy dimensions from perspective photographs.}
+
+\begin{safetybox}[title={MACHINE-TOOL RULE}]
+Young readers may plan, measure, sketch, make cardboard fixtures, and observe from a marked boundary. Only trained adults should select cutters, clamp metal, operate drills or mills, deburr edges, tension chains, lift ROB, or energize the drivetrain. Eye, hearing, clothing, hair, chip, fire, and pinch-point controls must match the actual machine and material.
+\end{safetybox}
+
+\tableofcontents
+\clearpage
+\mainmatter
+
+\ROBChapterPhoto{Mission 1}{Start with loads, not shapes}{2024-nearly-assembled-base.jpg}
+
+\chapter{What must the base survive?}
+
+A good drawing begins with questions about forces and uses. ROB's base must support its own structure, batteries, computers, torso, head, arms, and anything the arms carry. It must also react to bumps, turns, starts, stops, flipper motion, transport, and curious crowds.
+
+Engineers name several kinds of load:
+
+\begin{itemize}
+  \item \textbf{compression}: parts push together;
+  \item \textbf{tension}: parts pull apart;
+  \item \textbf{shear}: layers try to slide past one another;
+  \item \textbf{bending}: one side stretches while the other compresses;
+  \item \textbf{torsion}: a part twists about its length;
+  \item \textbf{impact}: force changes quickly during a collision or drop.
+\end{itemize}
+
+\ROBPhotoTwo{2022-bracket-assembly-front.jpg}{A bracket assembly mounted to the chassis changes how force enters the plate. Every new hole also changes the plate.}{2025-detached-articulated-arm.jpg}{A removed arm reveals many joints and a long reach. Long lever arms can create large moments at their mounts.}
+
+\section*{Moment: force with a lever arm}
+
+A simple bending moment is $M = Fd$, where $F$ is force and $d$ is the perpendicular distance from the pivot. The same payload creates more moment when the arm extends farther.
+
+\begin{buildbox}[title={RULER LEVER TEST}]
+Hold a ruler at one end. Place one coin 2 cm from your hand, then move it to 20 cm. The coin's weight did not change, but your wrist feels a larger moment. Draw the pivot, force arrow, and distance. Do not use ROB's powered arm for this experiment.
+\end{buildbox}
+
+\ROBPlaceholder{Add verified ready-to-run mass, center-of-mass measurements in key poses, arm payload and reach, flipper loads, maximum slope, transport loads, and the design load cases used for each mount.}
+
+\ROBPhoto[0.52\textheight]{2022-rob-front-arms-raised.jpg}{Raising both arms changes the load carried by their mounts and may change the robot's center of mass. A dramatic pose is also a mechanical test condition.}
+
+\ROBChapterPhoto{Mission 2}{Two treads create a path}{2024-chain-drive-closeup.jpg}
+
+\chapter{Differential drive and ground friction}
+
+ROB steers by commanding the left and right treads differently. This is \textbf{differential drive}. It is mechanically simple because there is no steering linkage, but turning a long tread on high-friction ground can demand a great deal of torque. Parts of the tread must slide sideways as the robot rotates.
+
+That explains an idea in the 2021-2022 presentation: a small wheel, mounted perpendicular to the treads and deployed by a linear actuator, could lift part of the robot so it pivots with less scrub. The slides call this the ThirdWheel concept. The archive does not establish the final geometry or whether the concept was completed.
+
+\ROBPhoto[0.55\textheight]{rob-v3-page-23.jpg}{Historical presentation page 23: the upside-down prototype is annotated with front/back orientation and a proposed third-wheel load path. This is a concept record, not a dimensioned fabrication drawing.}
+
+\begin{conceptbox}
+Computer commands and mechanical behavior meet at the floor. A program can request equal tread speeds, but wheel diameter, track tension, battery voltage, load, surface, and slip decide the real path. Open-loop command is not measured motion.
+\end{conceptbox}
+
+\begin{buildbox}[title={PAPER TREAD PATHS}]
+Tape two strips of paper side by side under a cardboard rectangle. Mark equal forward distances on both strips. Then mark one forward and one backward. Draw the approximate center of rotation. Try unequal forward distances and explain the curve.
+\end{buildbox}
+
+\begin{fieldnotebox}
+The builder reports that grass also confused the IR sensors. Ground changes both sensing and traction. A test plan needs separate surfaces: smooth floor, rough floor, carpet, grass, ramps, thresholds, and any public-show surface.
+\end{fieldnotebox}
+
+\ROBPhoto[0.45\textheight]{2024-open-tracked-base.jpg}{The open 2024 base makes the space between the two tread modules visible. Packaging, mass distribution, cable clearance, and service access all affect how the robot turns.}
+
+\ROBChapterPhoto{Mission 3}{Trade speed for torque}{2024-hengdrive-motor-label.jpg}
+
+\chapter{Motors, gearing, and sprockets}
+
+The motor label visible in ROB's build photographs identifies a HengDrive B5685G family. The archive also contains vendor material carrying restrictive or confidential notices. This public edition neither reproduces nor paraphrases those sheets. Obtain written permission or a current public datasheet, then confirm the installed winding, controller, gearbox, and measured output before publishing specifications.
+
+\section*{Gear ratio}
+
+If a small gear with 10 teeth drives a large gear with 40 teeth, the ideal speed ratio is 4:1. The output turns one-quarter as fast and can deliver roughly four times the torque before losses.
+
+\[
+\text{ratio} = \frac{\text{driven teeth}}{\text{driver teeth}} = \frac{40}{10}=4
+\]
+
+Real gear trains lose energy through friction, deformation, bearing drag, and imperfect alignment. Chains add flexibility in placement but need correct sprockets, tension, lubrication policy, guarding, and clearance.
+
+\ROBPhotoTwo{2024-sprocket-machined-opening.jpg}{An exposed sprocket and chain sit above a machined opening. The photograph is excellent for checking clearance, but it cannot supply scale by itself.}{2025-intermeshing-shoulder-gears.jpg}{Intermeshing shoulder gears show a different transmission: compact, direct, and sensitive to center distance.}
+
+\begin{buildbox}[title={GEAR CARD LAB}]
+Draw a 12-tooth driver and a 36-tooth driven gear. Predict output turns for three input turns. Reverse which gear drives and predict again. Label which setup favors speed and which favors torque.
+\end{buildbox}
+
+\ROBPlaceholder{Confirm the manufacturer, exact motor winding, controller, and gearbox installed on each tread and the flipper. Supply authorized public documentation plus measured output-shaft and tread speed before print.}
+
+\ROBPhoto[0.52\textheight]{2022-drive-assembly-rear.jpg}{A rear view of the 2022 drive assembly exposes brackets, shafts, chain paths, and wiring. The photograph helps locate interfaces but cannot supply ratings or alignment tolerances.}
+
+\clearpage
+\section*{Alignment is a three-dimensional problem}
+
+A chain may look aligned from the side while being offset toward or away from the camera. A shaft can be parallel in one view but tilted in another. Good inspection uses multiple references:
+
+\begin{itemize}
+  \item center distance between shafts;
+  \item shaft parallelism;
+  \item sprocket coplanarity;
+  \item axial retention and shaft collars;
+  \item chain slack or measured tension;
+  \item clearance through the full suspension or frame motion;
+  \item guards that keep cables, clothing, and fingers away.
+\end{itemize}
+
+\ROBPhotoTwo{2022-chain-sprocket-interior.jpg}{A 2022 interior view shows a large sprocket, chain, and support bars between the treads.}{2024-chain-drive-closeup.jpg}{A later close-up makes the narrow path between tread, chain, and chassis easy to see.}
+
+\begin{safetybox}
+Never inspect or adjust a chain while power is connected. Stored energy can remain in batteries, springs, raised structures, and gravity-loaded mechanisms. Use an adult-written lockout, blocking, and verification procedure.
+\end{safetybox}
+
+\ROBChapterPhoto{Mission 4}{Flippers and linear motion}{2024-base-actuator-between-treads.jpg}
+
+\chapter{Change one kind of motion into another}
+
+ROB uses rotating motors for the treads and flipper mechanism. The base firmware's nominal actuator convention uses signed commands from -3200 to +3200, but it does not clamp received values and overloads +3201 and -3201 for a safe-start reset. The presentation describes an actuator moving the torso forward and backward, and elsewhere proposes an actuator for the third-wheel idea. Those may be revisions or separate mechanisms; the archive does not resolve the conflict.
+
+\ROBPhotoTwo{2024-central-linear-actuator.jpg}{A central linear actuator is mounted between the treads above a round chassis indicator.}{2022-medium-duty-bracket-package.jpg}{The visible package is a GlideForce medium-duty bracket, not proof of the actuator model. Captions must be checked against the object, not copied blindly from metadata.}
+
+A linear actuator often turns a motor internally, reduces speed through gears, and converts rotation into extension through a lead screw. Important specifications include stroke, force, speed, duty cycle, backlash, mounting style, current limit, and end-of-travel behavior.
+
+\begin{conceptbox}
+An \textbf{open-loop} system sends a command but may not measure the result. A \textbf{closed-loop} system measures position or speed and corrects error. The base sketch contains no actuator position input, no flipper limit input, and no implemented wheel encoder feedback. Software command is therefore not proof of final position.
+\end{conceptbox}
+
+\begin{buildbox}[title={CARDBOARD LINKAGE}]
+Join two cardboard strips with a paper fastener. Add a sliding paper link that pushes one strip. Move the slider equal distances and measure the angle change. Notice that linkage geometry can make equal actuator steps produce unequal angular steps.
+\end{buildbox}
+
+\begin{safetybox}
+Linear actuators and flippers create powerful pinch and crush zones, even when they move slowly. A real design needs guarded geometry, hard stops, load-rated mounts, current and time limits, position feedback or verified limit switches, safe blocking, and a defined response to power loss.
+\end{safetybox}
+
+\ROBPhoto[0.54\textheight]{rob-v3-page-54.jpg}{Historical presentation page 54 labels a simple actuator moving the torso. Treat the layout as a design note until the builder confirms the installed mechanism.}
+
+\ROBPlaceholder{Identify every installed actuator and controller: model, voltage, stroke, force, speed, duty cycle, current limit, mounting hardware, limit switches, feedback, and whether it serves torso tilt, the third wheel, or another revision.}
+
+\ROBChapterPhoto{Mission 5}{Prototype materials answer questions}{2022-drilling-metal-rail.jpg}
+
+\chapter{Wood, aluminum, HDPE, and fasteners}
+
+The presentation describes inexpensive quarter-inch plywood scraps in early tread-layout models, wooden side templates for a hoped-for CNC aluminum body, HDPE pieces supporting tread contact, steel wheel mounts, aluminum tensioning bars, skateboard bearings, shaft collars, and many bolts and brackets.
+
+Each material has strengths and limits:
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.05in} X X}
+\toprule
+MATERIAL & WHY A MAKER MAY CHOOSE IT & QUESTIONS BEFORE FINAL USE\\
+\midrule
+Plywood & Fast, affordable, easy to cut and revise. & Grain, moisture, crushing near bolts, fire behavior, finish, long-term stiffness.\\
+Aluminum & Good stiffness-to-mass, machinable, corrosion resistant. & Alloy, thickness, bends, weld heat effects, edge finish, fatigue.\\
+Steel & High strength and wear resistance for compact parts. & Mass, rust protection, weldability, machining, interaction with aluminum.\\
+HDPE & Low friction, tough, easy to machine. & Creep under load, temperature, fastener retention, wear geometry.\\
+\bottomrule
+\end{tabularx}
+
+\section*{A hole is a feature}
+
+A drilled hole has a diameter, location, perpendicularity, edge condition, and purpose. It may clear a bolt, receive threads, locate a bearing, or pass a cable. Its distance from an edge affects strength. Its burr can cut insulation. A sketch should name all of those requirements.
+
+\ROBPhotoTwo{2022-drilling-metal-rail.jpg}{The drill operation shows work supported on a red fixture. A publication-ready process still needs the tool, cutter, speed, clamp, lubricant, and PPE recorded.}{2022-mounted-clamp-and-bracket.jpg}{The installed result shows why photographs before and after a process belong together.}
+
+\begin{buildbox}[title={TOLERANCE TARGET}]
+Draw a plate with two holes 50 mm apart. Ask three classmates to mark the second center using a ruler. Compare marks. A tolerance is the acceptable variation, not a promise of perfect measurement. Discuss which features really need tight tolerance.
+\end{buildbox}
+
+\ROBPlaceholder{Add final CAD or dimensioned templates, material grades and thicknesses, fastener sizes and grades, bearing and shaft specifications, fits, tolerances, surface treatment, and which wooden parts remain in the current robot.}
+
+\ROBPhoto[0.45\textheight]{2022-bracket-assembly-front.jpg}{The assembled bracket is a chance to compare the planned hole pattern with the physical result. A final drawing should make that comparison repeatable.}
+
+\ROBChapterPhoto{Mission 6}{Plan the cut before making chips}{2024-caliper-tread-measurement.jpg}
+
+\chapter{From measurement to machined part}
+
+A safe fabrication plan separates design decisions from machine operation.
+
+\begin{enumerate}
+  \item \textbf{Capture requirements.} What loads, interfaces, clearances, and service access matter?
+  \item \textbf{Measure.} Record multiple datums, units, tool, and uncertainty.
+  \item \textbf{Model or template.} Create a drawing that another person can inspect.
+  \item \textbf{Review.} Check motion envelopes, fastener access, cable paths, and hazards.
+  \item \textbf{Plan operations.} Choose stock, workholding, tool reach, sequence, and inspection points.
+  \item \textbf{Make under supervision.} Follow the shop's training and operating rules.
+  \item \textbf{Deburr, clean, and inspect.} Chips and sharp edges do not belong near wiring.
+  \item \textbf{Fit without power.} Check alignment through the full motion envelope.
+  \item \textbf{Test progressively.} Begin unloaded and isolated, then add one risk at a time.
+\end{enumerate}
+
+\begin{fieldnotebox}
+Presentation pages 83-85 ask how to mill and weld a final aluminum body and whether an outside CNC shop should quote the work. Those questions show that some fabrication described in the deck was still planned. The book must not rewrite proposals as completed steps.
+\end{fieldnotebox}
+
+\ROBPhotoTwo{2024-caliper-tread-measurement.jpg}{A digital measuring tool can help capture an interface, but the reading needs a documented datum.}{2024-open-tracked-base.jpg}{The open base lets a reviewer check access, spacing, and interference before covers conceal the system.}
+
+\begin{safetybox}[title={MILLING AND WELDING ARE NOT CHILD ACTIVITIES}]
+Machine selection, feeds and speeds, tool choice, workholding, chip control, coolant, guarding, ventilation, welding process, electrical protection, hot-work control, and post-weld inspection must be written by qualified adults for the actual shop. This volume intentionally leaves them as author-reviewed placeholders.
+\end{safetybox}
+
+\ROBPlaceholder{Builder: provide the real milling, drilling, bending, welding, coating, deburring, and assembly sequence; machine and cutter details; workholding; feeds and speeds; PPE; inspection results; rejected attempts; and shop/vendor roles.}
+
+\ROBPhoto[0.40\textheight]{2022-drilling-metal-rail.jpg}{This archive image records a drilling moment, not a complete machine procedure. The approved process still needs secure workholding, PPE, tooling, speed, chip control, and inspection documented by a qualified adult.}
+
+\ROBChapterPhoto{Mission 7}{Assembly order is part of the design}{2025-rear-electronics-bay.jpg}
+
+\chapter{Make it buildable and repairable}
+
+A robot is assembled in time, not all at once. If one bolt becomes unreachable after a battery is installed, the sequence matters. If a cable must pass through a plate before a connector is attached, the sequence matters. If a tread blocks the cover that protects a fuse, service time and safety are affected.
+
+\section*{A proposed base sequence to verify}
+
+This is a planning scaffold, not ROB's confirmed build order:
+
+\begin{enumerate}
+  \item inspect the bare chassis and all threaded features;
+  \item install guarded mechanical pivots, bearings, and fixed brackets;
+  \item trial-fit motors, sprockets, shafts, and chains without power;
+  \item verify rotation by hand and measure alignment;
+  \item add power hardware, protection, and labeled harnesses;
+  \item install batteries last among heavy internal parts, using a safe lift plan;
+  \item complete continuity, polarity, insulation, and protective-device checks;
+  \item raise treads on rated stands and perform bounded low-power direction tests;
+  \item reinstall guards and covers before ground testing;
+  \item record torque marks, photos, measurements, and test results.
+\end{enumerate}
+
+\ROBPhotoTwo{2025-labeled-cables.jpg}{Temporary labels make a complex teardown easier to understand. A permanent harness should use durable IDs and an updated schematic.}{2025-rear-electronics-bay.jpg}{Dense wiring makes connector access, bend radius, heat, abrasion, and fault isolation design problems.}
+
+\begin{buildbox}[title={ASSEMBLY CARD SORT}]
+Write each step above on a separate card. Add cards for ``install cover,'' ``inspect fuse,'' and ``replace motor.'' Rearrange them until both assembly and later service are possible. Draw arrows for prerequisites. This is a dependency graph.
+\end{buildbox}
+
+\ROBPhoto[0.50\textheight]{2022-chassis-wiring-overhead.jpg}{An overhead build view is a dependency map made physical: each cable, bracket, board, and cover changes what can be installed or reached next.}
+
+\ROBChapterPhoto{Mission 8}{Test from gentle to demanding}{2022-tracked-base-front.jpg}
+
+\chapter{A ladder of evidence}
+
+A full-speed floor test should never be the first proof that a drivetrain works. A safer ladder moves from models toward the physical robot:
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{0.64in} X X}
+\toprule
+LEVEL & TEST & PASS EVIDENCE\\
+\midrule
+0 & Drawing, calculations, and hazard review. & Signed review notes and unresolved questions.\\
+1 & Software fixture with no hardware. & Exact frames, range rejection, timeout behavior.\\
+2 & Logic outputs into indicators or a simulator. & Correct pin states and ordering.\\
+3 & One disconnected controller or small surrogate load. & Polarity, limits, current, and stop response.\\
+4 & Full drive hardware on rated stands, guarded. & Direction, brake/coast behavior, heartbeat stop.\\
+5 & Unloaded slow floor test inside an exclusion zone. & Tracking, stopping distance, thermal and current log.\\
+6 & Incremental surface and load tests. & Repeatable results for each declared operating condition.\\
+7 & Maker Faire rehearsal. & Operator checklist, barriers, spotter, E-stop drill, recovery plan.\\
+\bottomrule
+\end{tabularx}
+
+\begin{advancedbox}
+Measure more than success. Record maximum current, voltage sag, motor and controller temperature, chain behavior, tread slip, command latency, stop latency, stopping distance, noise, fastener movement, and unexpected contact. A video plus synchronized data log can reveal events the operator missed.
+\end{advancedbox}
+
+\ROBPlaceholder{Add ROB's actual test reports: tread-lift setup, sign checks, measured speed and stopping distance, current and temperature limits, hard-floor and grass results, slope limits, flipper and actuator load tests, fastener inspection interval, and known failed parts.}
+
+\input{volume-3-deep-dive.tex}
+
+\clearpage
+\section*{Field words}
+
+\begin{multicols}{2}
+\ROBFact{Backlash}{Free movement before gears reverse load.}\par
+\ROBFact{Datum}{A reference used to locate a measurement.}\par
+\ROBFact{Duty cycle}{The fraction of time a device is active.}\par
+\ROBFact{Moment}{Force multiplied by perpendicular distance.}\par
+\ROBFact{Open loop}{Command without measuring the result.}\par
+\ROBFact{Prototype}{A build meant to answer specific questions.}\par
+\ROBFact{Strain relief}{A feature that keeps cable pull away from a termination.}\par
+\ROBFact{Tolerance}{The allowed variation in a feature.}\par
+\ROBFact{Torque}{Turning effect about an axis.}\par
+\ROBFact{Workholding}{Fixtures and methods that restrain stock during machining.}\par
+\end{multicols}
+
+\begin{missionbox}[title={FINAL CHECK}]
+Can you explain why long treads resist turning on rough ground? Can you distinguish speed from torque? Can you show how a datum and tolerance help another maker? Can you create a test ladder that begins without motion? Then you are ready to meet ROB's software stack.
+\end{missionbox}
+
+\vfill
+\ROBSource{ROB\_v3.pdf; print-prepared ORobotics gallery originals from 2019-2025; base firmware and current controller source used to distinguish implemented behavior from planned mechanics. Restricted motor-document specifications were neither reproduced nor paraphrased.}
+
+\end{document}

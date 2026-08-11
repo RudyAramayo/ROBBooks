@@ -1,0 +1,722 @@
+BUILDING R.O.B. - VOLUME 3
+
+
+MOTION WORKSHOP
+Treads, gears, actuators, and the art of making
+
+
+
+
+A MECHANICS AND FABRICATION GUIDE FOR MAKERS AGES 10-15
+Rodolfo Aramayo / Orbitus Robotics -   First Maker Faire Edition
+Motion begins on paper
+A safe tour from force and torque to prototypes, measurements, brackets, chains, and tests.
+
+ROB is heavy enough that small mechanical choices become serious. A shaft that is slightly out of line can
+pull a chain sideways. A cable near a sprocket can become a hazard. A bracket that looks stiff may bend
+when a long arm multiplies force.
+The activities in this book use paper, cardboard, rulers, craft fasteners, and small educational kits. Milling,
+drilling metal, welding, grinding, large batteries, chains, treads, flippers, and full-size actuators are red-
+zone work for trained adults.
+
+
+
+
+Copyright © 2026 Rodolfo Aramayo / Orbitus Robotics. Photographs are from the private ROB build archive unless
+otherwise noted. The generated frontispiece is original artwork derived from a ROB reference photograph. This
+independent educational project is not affiliated with or endorsed by any film studio or franchise owner. Product
+and company names remain the property of their respective owners.
+
+First evidence-based draft: 2 August 2026. Build details marked Builder input needed are deliberate placeholders
+for the builder to complete.
+MOTION WORKSHOP                                                                                 VOLUME 3 - AGES 10-15
+
+
+
+The Building R.O.B. library
+  VOLUME 1                Meet ROB: A Robot Is a Team of Systems - ages 8-12
+  VOLUME 2                Circuits and Signals with ROB - ages 10-14
+  VOLUME 3                Motion Workshop: Treads, Gears, and Fabrication - ages 10-15
+  VOLUME 4                Mission Control: Arduino, Mac, Networks, and Vision - ages 12-16
+  FIELD       MAN- Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
+  UAL
+
+
+   HOW TO USE THIS BOOK
+
+   Treat every photograph as evidence of one moment in an evolving prototype. Look for loads, motion
+   paths, fasteners, alignment, access, and risk. Do not copy dimensions from perspective photographs.
+
+    MACHINE-TOOL RULE
+
+   Young readers may plan, measure, sketch, make cardboard fixtures, and observe from a marked
+   boundary. Only trained adults should select cutters, clamp metal, operate drills or mills, deburr
+   edges, tension chains, lift ROB, or energize the drivetrain. Eye, hearing, clothing, hair, chip, fire, and
+   pinch-point controls must match the actual machine and material.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                 3 / 28
+Contents
+1 What must the base survive?                    2
+
+2 Differential drive and ground friction         5
+
+3 Motors, gearing, and sprockets                 8
+
+4 Change one kind of motion into another        12
+
+5 Wood, aluminum, HDPE, and fasteners           15
+
+6 From measurement to machined part             18
+
+7 Make it buildable and repairable              21
+
+8 A ladder of evidence                          24
+
+9 Draw the forces before choosing a motor       26
+
+10 Measure performance as a curve               27
+
+
+
+
+                                            4
+MISSION 1
+
+Start with loads, not shapes
+MISSION 1
+
+
+What must the base survive?
+A good drawing begins with questions about forces and uses. ROB’s base must support its own structure,
+batteries, computers, torso, head, arms, and anything the arms carry. It must also react to bumps, turns,
+starts, stops, flipper motion, transport, and curious crowds.
+Engineers name several kinds of load:
+
+• compression: parts push together;
+• tension: parts pull apart;
+• shear: layers try to slide past one another;
+• bending: one side stretches while the other compresses;
+• torsion: a part twists about its length;
+• impact: force changes quickly during a collision or drop.
+
+
+
+
+                                                                                                                  A removed arm reveals
+A bracket assembly mounted to the chassis changes how force enters       many joints and a long reach. Long lever arms can create large mo-
+the plate. Every new hole also changes the plate.                        ments at their mounts.
+
+
+
+Moment: force with a lever arm
+A simple bending moment is M = F d, where F is force and d is the perpendicular distance from the pivot.
+The same payload creates more moment when the arm extends farther.
+
+   RULER LEVER TEST
+
+   Hold a ruler at one end. Place one coin 2 cm from your hand, then move it to 20 cm. The coin’s weight
+   did not change, but your wrist feels a larger moment. Draw the pivot, force arrow, and distance. Do
+   not use ROB’s powered arm for this experiment.
+
+
+
+                                                                     2
+MOTION WORKSHOP                                                                                 VOLUME 3 - AGES 10-15
+
+
+
+    BUILDER INPUT NEEDED
+    Add verified ready-to-run mass, center-of-mass measurements in key poses, arm payload and reach,
+    flipper loads, maximum slope, transport loads, and the design load cases used for each mount.
+
+
+
+
+     Raising both arms changes the load carried by their mounts and may change the robot’s center of mass. A
+     dramatic pose is also a mechanical test condition.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                 3 / 28
+MISSION 2
+
+Two treads create a path
+MISSION 2
+
+
+Differential drive and ground
+friction
+ROB steers by commanding the left and right treads differently. This is differential drive. It is mechanically
+simple because there is no steering linkage, but turning a long tread on high-friction ground can demand
+a great deal of torque. Parts of the tread must slide sideways as the robot rotates.
+That explains an idea in the 2021-2022 presentation: a small wheel, mounted perpendicular to the treads
+and deployed by a linear actuator, could lift part of the robot so it pivots with less scrub. The slides call
+this the ThirdWheel concept. The archive does not establish the final geometry or whether the concept
+was completed.
+
+
+
+
+   Historical presentation page 23: the upside-down prototype is annotated with front/back orientation and a
+   proposed third-wheel load path. This is a concept record, not a dimensioned fabrication drawing.
+
+
+  COMPUTER SCIENCE CONNECTION
+  Computer commands and mechanical behavior meet at the floor. A program can request equal
+  tread speeds, but wheel diameter, track tension, battery voltage, load, surface, and slip decide the
+  real path. Open-loop command is not measured motion.
+
+
+
+
+                                                      5
+MOTION WORKSHOP                                                                                VOLUME 3 - AGES 10-15
+
+
+
+   PAPER TREAD PATHS
+
+   Tape two strips of paper side by side under a cardboard rectangle. Mark equal forward distances on
+   both strips. Then mark one forward and one backward. Draw the approximate center of rotation. Try
+   unequal forward distances and explain the curve.
+
+   FROM ROB'S BUILD LOG
+
+   The builder reports that grass also confused the IR sensors. Ground changes both sensing and trac-
+   tion. A test plan needs separate surfaces: smooth floor, rough floor, carpet, grass, ramps, thresholds,
+   and any public-show surface.
+
+
+
+
+     The open 2024 base makes the space between the two tread modules visible. Packaging, mass distribution,
+     cable clearance, and service access all affect how the robot turns.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                6 / 28
+MISSION 3
+
+Trade speed for torque
+MISSION 3
+
+
+Motors, gearing, and
+sprockets
+The motor label visible in ROB’s build photographs identifies a HengDrive B5685G family. The archive
+also contains vendor material carrying restrictive or confidential notices. This public edition neither re-
+produces nor paraphrases those sheets. Obtain written permission or a current public datasheet, then
+confirm the installed winding, controller, gearbox, and measured output before publishing specifications.
+
+
+Gear ratio
+If a small gear with 10 teeth drives a large gear with 40 teeth, the ideal speed ratio is 4:1. The output turns
+one-quarter as fast and can deliver roughly four times the torque before losses.
+
+                                                               driven teeth   40
+                                                     ratio =                =    =4
+                                                               driver teeth   10
+Real gear trains lose energy through friction, deformation, bearing drag, and imperfect alignment. Chains
+add flexibility in placement but need correct sprockets, tension, lubrication policy, guarding, and clear-
+ance.
+
+
+
+
+                                            An exposed sprocket and                                                    Intermeshing    shoulder
+chain sit above a machined opening. The photograph is excellent for       gears show a different transmission: compact, direct, and sensitive to
+checking clearance, but it cannot supply scale by itself.                 center distance.
+
+
+   GEAR CARD LAB
+
+   Draw a 12-tooth driver and a 36-tooth driven gear. Predict output turns for three input turns. Reverse
+   which gear drives and predict again. Label which setup favors speed and which favors torque.
+
+
+
+
+                                                                      8
+MOTION WORKSHOP                                                                                  VOLUME 3 - AGES 10-15
+
+
+
+    BUILDER INPUT NEEDED
+    Confirm the manufacturer, exact motor winding, controller, and gearbox installed on each tread and
+    the flipper. Supply authorized public documentation plus measured output-shaft and tread speed
+    before print.
+
+
+
+
+     A rear view of the 2022 drive assembly exposes brackets, shafts, chain paths, and wiring. The photograph
+     helps locate interfaces but cannot supply ratings or alignment tolerances.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  9 / 28
+MOTION WORKSHOP                                                                                                         VOLUME 3 - AGES 10-15
+
+
+
+Alignment is a three-dimensional problem
+A chain may look aligned from the side while being offset toward or away from the camera. A shaft can
+be parallel in one view but tilted in another. Good inspection uses multiple references:
+
+• center distance between shafts;
+• shaft parallelism;
+• sprocket coplanarity;
+• axial retention and shaft collars;
+• chain slack or measured tension;
+• clearance through the full suspension or frame motion;
+• guards that keep cables, clothing, and fingers away.
+
+
+
+
+                                                                                                                 A later close-up makes the
+A 2022 interior view shows a large sprocket, chain, and support bars   narrow path between tread, chain, and chassis easy to see.
+between the treads.
+
+
+    SAFETY CHECK
+
+    Never inspect or adjust a chain while power is connected. Stored energy can remain in batteries,
+    springs, raised structures, and gravity-loaded mechanisms. Use an adult-written lockout, blocking,
+    and verification procedure.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        10 / 28
+MISSION 4
+
+Flippers and linear motion
+MISSION 4
+
+
+Change one kind of motion
+into another
+ROB uses rotating motors for the treads and flipper mechanism. The base firmware’s nominal actuator
+convention uses signed commands from -3200 to +3200, but it does not clamp received values and over-
+loads +3201 and -3201 for a safe-start reset. The presentation describes an actuator moving the torso
+forward and backward, and elsewhere proposes an actuator for the third-wheel idea. Those may be revi-
+sions or separate mechanisms; the archive does not resolve the conflict.
+
+
+
+
+                                         A central linear actuator is
+mounted between the treads above a round chassis indicator.                  The visible package is a GlideForce medium-duty bracket, not proof
+                                                                             of the actuator model. Captions must be checked against the object,
+                                                                             not copied blindly from metadata.
+
+
+A linear actuator often turns a motor internally, reduces speed through gears, and converts rotation into
+extension through a lead screw. Important specifications include stroke, force, speed, duty cycle, back-
+lash, mounting style, current limit, and end-of-travel behavior.
+
+   COMPUTER SCIENCE CONNECTION
+  An open-loop system sends a command but may not measure the result. A closed-loop system
+  measures position or speed and corrects error. The base sketch contains no actuator position input,
+  no flipper limit input, and no implemented wheel encoder feedback. Software command is therefore
+  not proof of final position.
+
+   CARDBOARD LINKAGE
+
+   Join two cardboard strips with a paper fastener. Add a sliding paper link that pushes one strip. Move
+   the slider equal distances and measure the angle change. Notice that linkage geometry can make
+   equal actuator steps produce unequal angular steps.
+
+
+
+                                                                        12
+MOTION WORKSHOP                                                                                     VOLUME 3 - AGES 10-15
+
+
+
+    SAFETY CHECK
+
+    Linear actuators and flippers create powerful pinch and crush zones, even when they move slowly. A
+    real design needs guarded geometry, hard stops, load-rated mounts, current and time limits, position
+    feedback or verified limit switches, safe blocking, and a defined response to power loss.
+
+
+
+
+     Historical presentation page 54 labels a simple actuator moving the torso. Treat the layout as a design note
+     until the builder confirms the installed mechanism.
+
+    BUILDER INPUT NEEDED
+    Identify every installed actuator and controller: model, voltage, stroke, force, speed, duty cycle, cur-
+    rent limit, mounting hardware, limit switches, feedback, and whether it serves torso tilt, the third
+    wheel, or another revision.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   13 / 28
+MISSION 5
+
+Prototype materials answer ques-
+tions
+MISSION 5
+
+
+Wood, aluminum, HDPE, and
+fasteners
+The presentation describes inexpensive quarter-inch plywood scraps in early tread-layout models,
+wooden side templates for a hoped-for CNC aluminum body, HDPE pieces supporting tread contact,
+steel wheel mounts, aluminum tensioning bars, skateboard bearings, shaft collars, and many bolts and
+brackets.
+Each material has strengths and limits:
+
+                         WHY A MAKER MAY CHOOSE IT                                      QUESTIONS BEFORE FINAL USE
+ MATERIAL
+                         Fast, affordable, easy to cut and revise.Grain, moisture, crushing near bolts, fire
+ Plywood                                                          behavior, finish, long-term stiffness.
+                         Good stiffness-to-mass, machinable, cor- Alloy, thickness, bends, weld heat effects,
+ Aluminum                rosion resistant.                        edge finish, fatigue.
+                         High strength and wear resistance for Mass, rust protection, weldability, ma-
+ Steel                   compact parts.                           chining, interaction with aluminum.
+                         Low friction, tough, easy to machine.    Creep under load, temperature, fastener
+ HDPE                                                             retention, wear geometry.
+
+
+A hole is a feature
+A drilled hole has a diameter, location, perpendicularity, edge condition, and purpose. It may clear a bolt,
+receive threads, locate a bearing, or pass a cable. Its distance from an edge affects strength. Its burr can
+cut insulation. A sketch should name all of those requirements.
+
+
+
+
+The drill operation shows work supported on a red fixture.         A         The installed result shows why photographs before and after a process
+publication-ready process still needs the tool, cutter, speed, clamp,        belong together.
+lubricant, and PPE recorded.
+
+
+
+                                                                        15
+MOTION WORKSHOP                                                                                 VOLUME 3 - AGES 10-15
+
+
+
+   TOLERANCE TARGET
+
+   Draw a plate with two holes 50 mm apart. Ask three classmates to mark the second center using a
+   ruler. Compare marks. A tolerance is the acceptable variation, not a promise of perfect measurement.
+   Discuss which features really need tight tolerance.
+
+    BUILDER INPUT NEEDED
+    Add final CAD or dimensioned templates, material grades and thicknesses, fastener sizes and grades,
+    bearing and shaft specifications, fits, tolerances, surface treatment, and which wooden parts remain
+    in the current robot.
+
+
+
+
+     The assembled bracket is a chance to compare the planned hole pattern with the physical result. A final
+     drawing should make that comparison repeatable.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                               16 / 28
+MISSION 6
+
+Plan the cut before making chips
+MISSION 6
+
+
+From measurement to
+machined part
+A safe fabrication plan separates design decisions from machine operation.
+
+1. Capture requirements. What loads, interfaces, clearances, and service access matter?
+2. Measure. Record multiple datums, units, tool, and uncertainty.
+3. Model or template. Create a drawing that another person can inspect.
+4. Review. Check motion envelopes, fastener access, cable paths, and hazards.
+5. Plan operations. Choose stock, workholding, tool reach, sequence, and inspection points.
+6. Make under supervision. Follow the shop’s training and operating rules.
+7. Deburr, clean, and inspect. Chips and sharp edges do not belong near wiring.
+8. Fit without power. Check alignment through the full motion envelope.
+9. Test progressively. Begin unloaded and isolated, then add one risk at a time.
+
+   FROM ROB'S BUILD LOG
+
+   Presentation pages 83-85 ask how to mill and weld a final aluminum body and whether an outside
+   CNC shop should quote the work. Those questions show that some fabrication described in the deck
+   was still planned. The book must not rewrite proposals as completed steps.
+
+
+
+
+                                                                                                                         The open base lets a re-
+A digital measuring tool can help capture an interface, but the reading        viewer check access, spacing, and interference before covers conceal
+needs a documented datum.                                                      the system.
+
+
+
+
+                                                                          18
+MOTION WORKSHOP                                                                                    VOLUME 3 - AGES 10-15
+
+
+
+    MILLING AND WELDING ARE NOT CHILD ACTIVITIES
+
+   Machine selection, feeds and speeds, tool choice, workholding, chip control, coolant, guarding,
+   ventilation, welding process, electrical protection, hot-work control, and post-weld inspection must
+   be written by qualified adults for the actual shop. This volume intentionally leaves them as author-
+   reviewed placeholders.
+
+    BUILDER INPUT NEEDED
+    Builder: provide the real milling, drilling, bending, welding, coating, deburring, and assembly se-
+    quence; machine and cutter details; workholding; feeds and speeds; PPE; inspection results; re-
+    jected attempts; and shop/vendor roles.
+
+
+
+
+     This archive image records a drilling moment, not a complete machine procedure. The approved process
+     still needs secure workholding, PPE, tooling, speed, chip control, and inspection documented by a qualified
+     adult.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  19 / 28
+MISSION 7
+
+Assembly order is part of the de-
+sign
+ MISSION 7
+
+
+ Make it buildable and
+ repairable
+A robot is assembled in time, not all at once. If one bolt becomes unreachable after a battery is installed,
+the sequence matters. If a cable must pass through a plate before a connector is attached, the sequence
+matters. If a tread blocks the cover that protects a fuse, service time and safety are affected.
+
+
+ A proposed base sequence to verify
+This is a planning scaffold, not ROB’s confirmed build order:
+
+ 1. inspect the bare chassis and all threaded features;
+ 2. install guarded mechanical pivots, bearings, and fixed brackets;
+ 3. trial-fit motors, sprockets, shafts, and chains without power;
+ 4. verify rotation by hand and measure alignment;
+ 5. add power hardware, protection, and labeled harnesses;
+ 6. install batteries last among heavy internal parts, using a safe lift plan;
+ 7. complete continuity, polarity, insulation, and protective-device checks;
+ 8. raise treads on rated stands and perform bounded low-power direction tests;
+ 9. reinstall guards and covers before ground testing;
+10. record torque marks, photos, measurements, and test results.
+
+
+
+
+                                                                                                                      Dense wiring makes con-
+ Temporary labels make a complex teardown easier to understand. A          nector access, bend radius, heat, abrasion, and fault isolation design
+ permanent harness should use durable IDs and an updated schematic.        problems.
+
+
+
+
+                                                                      21
+MOTION WORKSHOP                                                                                 VOLUME 3 - AGES 10-15
+
+
+
+   ASSEMBLY CARD SORT
+
+   Write each step above on a separate card. Add cards for “install cover,” “inspect fuse,” and “replace
+   motor.” Rearrange them until both assembly and later service are possible. Draw arrows for prereq-
+   uisites. This is a dependency graph.
+
+
+
+
+     An overhead build view is a dependency map made physical: each cable, bracket, board, and cover changes
+     what can be installed or reached next.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                               22 / 28
+MISSION 8
+
+Test from gentle to demanding
+MISSION 8
+
+
+A ladder of evidence
+A full-speed floor test should never be the first proof that a drivetrain works. A safer ladder moves from
+models toward the physical robot:
+
+               TEST                                            PASS EVIDENCE
+ LEVEL
+               Drawing, calculations, and hazard review.       Signed review notes and unresolved ques-
+ 0                                                             tions.
+               Software fixture with no hardware.              Exact frames, range rejection, timeout be-
+ 1                                                             havior.
+               Logic outputs into indicators or a simulator.   Correct pin states and ordering.
+ 2
+               One disconnected controller or small surro-     Polarity, limits, current, and stop response.
+ 3             gate load.
+               Full drive hardware on rated stands,            Direction, brake/coast behavior, heartbeat
+ 4             guarded.                                        stop.
+               Unloaded slow floor test inside an exclusion    Tracking, stopping distance, thermal and
+ 5             zone.                                           current log.
+               Incremental surface and load tests.             Repeatable results for each declared operat-
+ 6                                                             ing condition.
+               Maker Faire rehearsal.                          Operator checklist, barriers, spotter, E-stop
+ 7                                                             drill, recovery plan.
+
+  ADVANCED CHANNEL
+  Measure more than success. Record maximum current, voltage sag, motor and controller tempera-
+  ture, chain behavior, tread slip, command latency, stop latency, stopping distance, noise, fastener
+  movement, and unexpected contact. A video plus synchronized data log can reveal events the oper-
+  ator missed.
+
+     BUILDER INPUT NEEDED
+     Add ROB’s actual test reports: tread-lift setup, sign checks, measured speed and stopping distance,
+     current and temperature limits, hard-floor and grass results, slope limits, flipper and actuator load
+     tests, fastener inspection interval, and known failed parts.
+
+
+
+
+                                                      24
+DEEP LAB
+
+Forces leave clues
+MISSION 9
+
+
+Draw the forces before
+choosing a motor
+Motion begins with interactions. Gravity pulls mass toward Earth. A surface pushes back with a support
+force. Friction can provide useful traction or resist a skid turn. Motors create torque, but the ground
+supplies the external force that accelerates a tracked robot. A free-body diagram isolates one object and
+draws each external force once.
+
+
+Mass, weight, force, and torque
+Mass describes inertia; weight is gravitational force on that mass. Force changes linear motion. Torque
+changes rotational motion. The same force produces more torque when applied farther from an axis:
+τ = F r⊥ . Gears trade angular speed for torque ideally, while real transmissions lose energy to friction,
+flex, impact, and misalignment.
+
+  CARDBOARD LEVER LAB
+
+  Balance a ruler on a rounded pencil and use identical erasers as loads. Predict how many erasers
+  at two units from the pivot balance one eraser at four units. Test gently with hands clear. Record
+  distance and count. Explain why equal torque can occur with unequal force.
+
+
+
+Why tracked turning costs energy
+In a differential turn, left and right tread speeds set the path. Equal forward speeds approximate a straight
+line. Opposite speeds create a pivot turn. But a long tread contact patch cannot roll sideways like a
+steering wheel; parts of it scrub across the floor. Surface, tread material, normal load, geometry, and
+debris change the required torque and heat.
+
+  A MODEL HAS A DOMAIN
+  The simple differential-drive model treats each side like one ideal wheel and predicts geometry well
+  on some surfaces. It does not automatically predict tread deformation, slip, chain shock, motor heat-
+  ing, or carpet bunching. State what a model includes, what it ignores, and where evidence says it is
+  useful.
+
+
+
+
+                                                     26
+MISSION 10
+
+
+Measure performance as a
+curve
+A mechanism rarely has one magic “strength.” Motor torque changes with speed and current. Battery
+voltage changes with load and charge. Friction changes with surface. Temperature accumulates over
+time. Engineers sample an operating envelope: combinations of load, speed, slope, duration, pose, and
+environment that have evidence behind them.
+                     MEASURE                                    STOP OR INSPECT WHEN
+ VARIABLE
+                     speed, distance, heading                   drift or contact exceeds the test bound
+ Motion
+                     voltage and current                        an approved limit or unexpected trend
+ Electrical                                                     appears
+                     motor, driver, bearing temperature         the reviewed limit or rise rate is reached
+ Thermal
+                     tension, alignment, vibration, fastener    rubbing, looseness, noise, or damage
+ Mechanical          marks                                      appears
+                     command age and stopping time              deadlines or acceptance criteria are
+ Timing                                                         missed
+
+  DESIGN A FAIR RAMP TEST ON PAPER
+
+  Choose a small classroom toy—not ROB—and plan a ramp investigation. Define the ramp surface,
+  angle method, starting mark, load, number of trials, measurement uncertainty, and stop condition.
+  Predict a graph before testing. What result would make you revise the model instead of declaring
+  victory?
+
+
+
+Error budgets make assemblies possible
+Every cut, hole, shaft, bracket, bearing, and spacer varies. A tolerance says how much variation is accept-
+able. A tolerance stack asks how several variations combine at an interface. Datums tell every maker
+where measurements begin. Inspection then compares the built feature with the drawing rather than with
+memory.
+
+  DESIGN FOR FAILURE AND SERVICE
+
+  Ask where stored energy goes if a chain breaks, a fastener loosens, a bearing seizes, or a cable
+  snags. Then ask whether the failed part can be inspected and replaced without dismantling unre-
+  lated systems. Guards, secondary retention, accessible connectors, witness marks, and documented
+  assembly order are design features, not cleanup work.
+
+
+
+
+                                                    27
+MOTION WORKSHOP                                                                                                           VOLUME 3 - AGES 10-15
+
+
+
+Field words
+BACKLASH Free movement before gears reverse PROTOTYPE A build meant to answer specific ques-
+load.                                       tions.
+DATUM A reference used to locate a measurement. STRAIN RELIEF A feature that keeps cable pull away
+                                                    from a termination.
+DUTY CYCLE The fraction of time a device is active.
+                                                    TOLERANCE The allowed variation in a feature.
+MOMENT Force multiplied by perpendicular dis-
+tance.                                              TORQUE Turning effect about an axis.
+OPEN LOOP Command without measuring the re- WORKHOLDING Fixtures and methods that restrain
+sult.                                       stock during machining.
+
+   FINAL CHECK
+
+   Can you explain why long treads resist turning on rough ground? Can you distinguish speed from
+   torque? Can you show how a datum and tolerance help another maker? Can you create a test ladder
+   that begins without motion? Then you are ready to meet ROB’s software stack.
+
+
+
+
+Source trail: ROB_v3.pdf; print-prepared ORobotics gallery originals from 2019-2025; base firmware and current controller source used to
+distinguish implemented behavior from planned mechanics. Restricted motor-document specifications were neither reproduced nor
+paraphrased.
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                         28 / 28
+

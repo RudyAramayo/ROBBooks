@@ -1,0 +1,7 @@
+human / Apple Watch
+        |
+        v
+ROBController -- authenticated intent --> Cerebro -- bounded commands --> hardware
+        ^                                  |
+        |                                  +--> cameras / lidar / speech / AI
+        +---------- status and results ----+

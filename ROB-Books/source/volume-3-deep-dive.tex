@@ -1,0 +1,51 @@
+\ROBChapterPhoto{Deep Lab}{Forces leave clues}{rob-motion-mechanics-lab.png}
+
+\chapter{Draw the forces before choosing a motor}
+
+Motion begins with interactions. Gravity pulls mass toward Earth. A surface pushes back with a support force. Friction can provide useful traction or resist a skid turn. Motors create torque, but the ground supplies the external force that accelerates a tracked robot. A free-body diagram isolates one object and draws each external force once.
+
+\section*{Mass, weight, force, and torque}
+
+Mass describes inertia; weight is gravitational force on that mass. Force changes linear motion. Torque changes rotational motion. The same force produces more torque when applied farther from an axis: \(\tau = F r_\perp\). Gears trade angular speed for torque ideally, while real transmissions lose energy to friction, flex, impact, and misalignment.
+
+\begin{missionbox}[title={CARDBOARD LEVER LAB}]
+Balance a ruler on a rounded pencil and use identical erasers as loads. Predict how many erasers at two units from the pivot balance one eraser at four units. Test gently with hands clear. Record distance and count. Explain why equal torque can occur with unequal force.
+\end{missionbox}
+
+\section*{Why tracked turning costs energy}
+
+In a differential turn, left and right tread speeds set the path. Equal forward speeds approximate a straight line. Opposite speeds create a pivot turn. But a long tread contact patch cannot roll sideways like a steering wheel; parts of it scrub across the floor. Surface, tread material, normal load, geometry, and debris change the required torque and heat.
+
+\begin{conceptbox}[title={A MODEL HAS A DOMAIN}]
+The simple differential-drive model treats each side like one ideal wheel and predicts geometry well on some surfaces. It does not automatically predict tread deformation, slip, chain shock, motor heating, or carpet bunching. State what a model includes, what it ignores, and where evidence says it is useful.
+\end{conceptbox}
+
+\clearpage
+\chapter{Measure performance as a curve}
+
+A mechanism rarely has one magic ``strength.'' Motor torque changes with speed and current. Battery voltage changes with load and charge. Friction changes with surface. Temperature accumulates over time. Engineers sample an operating envelope: combinations of load, speed, slope, duration, pose, and environment that have evidence behind them.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.2in} X X}
+\toprule
+VARIABLE & MEASURE & STOP OR INSPECT WHEN\\
+\midrule
+Motion & speed, distance, heading & drift or contact exceeds the test bound\\
+Electrical & voltage and current & an approved limit or unexpected trend appears\\
+Thermal & motor, driver, bearing temperature & the reviewed limit or rise rate is reached\\
+Mechanical & tension, alignment, vibration, fastener marks & rubbing, looseness, noise, or damage appears\\
+Timing & command age and stopping time & deadlines or acceptance criteria are missed\\
+\bottomrule
+\end{tabularx}
+
+\begin{buildbox}[title={DESIGN A FAIR RAMP TEST ON PAPER}]
+Choose a small classroom toy---not ROB---and plan a ramp investigation. Define the ramp surface, angle method, starting mark, load, number of trials, measurement uncertainty, and stop condition. Predict a graph before testing. What result would make you revise the model instead of declaring victory?
+\end{buildbox}
+
+\section*{Error budgets make assemblies possible}
+
+Every cut, hole, shaft, bracket, bearing, and spacer varies. A tolerance says how much variation is acceptable. A tolerance stack asks how several variations combine at an interface. Datums tell every maker where measurements begin. Inspection then compares the built feature with the drawing rather than with memory.
+
+\begin{advancedbox}[title={DESIGN FOR FAILURE AND SERVICE}]
+Ask where stored energy goes if a chain breaks, a fastener loosens, a bearing seizes, or a cable snags. Then ask whether the failed part can be inspected and replaced without dismantling unrelated systems. Guards, secondary retention, accessible connectors, witness marks, and documented assembly order are design features, not cleanup work.
+\end{advancedbox}
+

@@ -1,0 +1,285 @@
+\documentclass[11pt,openany]{book}
+\usepackage{robbook}
+\SetROBAccent{ROBCyan}
+\SetROBVolume{VOLUME 1 - AGES 8-12}{MEET ROB}
+
+\begin{document}
+\ROBTitle{Building R.O.B. - Volume 1}{MEET ROB}{A robot is a team of systems}{A picture-book field guide for curious makers ages 8-12}{2026-rob-lightsabers-front.jpg}
+
+\ROBFrontMatter{Welcome, junior systems engineer}{Before we touch a wire, we learn to see the whole robot.}{%
+ROB is a real, evolving machine built over many years. These pages use real workshop photographs to explain how a big robot becomes possible: one smaller problem at a time.
+
+This volume is meant to be read with a parent, teacher, or maker mentor. Its activities use paper, pencils, blocks, and small battery-powered parts. The full-size robot contains heavy treads, powerful motors, pinch points, and high-energy batteries. Those parts belong to trained adults with a tested emergency-stop plan.
+
+\begin{center}
+\includegraphics[height=0.34\textheight]{rob-used-future-frontispiece.png}\\[-1pt]
+{\scriptsize\itshape Original illustrated portrait inspired by the real ROB; use photographs and drawings, not this artwork, as engineering evidence.}
+\end{center}
+}
+
+\ROBSeriesMap{Read the large words first, study the photographs, then try the mission box. Words in \textbf{bold} belong in your new engineering vocabulary. When a detail is not proven by the archive, the book says so instead of guessing.}
+
+\begin{safetybox}[title={THE THREE-ZONE RULE}]
+\textbf{Green zone:} paper models, unplugged code games, and simulations. Work independently.\par
+\textbf{Amber zone:} breadboards, LEDs, sensors, and small low-voltage kits. Work with an adult.\par
+\textbf{Red zone:} ROB's batteries, motor wiring, milling, welding, treads, arms, and actuators. Observe from a marked boundary unless a qualified adult has made the machine safe.
+\end{safetybox}
+
+\tableofcontents
+\clearpage
+
+\mainmatter
+\ROBChapterPhoto{Mission 1}{What makes a machine a robot?}{2019-rob-front-corner.jpg}
+
+\chapter{A robot is more than a machine}
+
+Look closely at ROB. You can find parts that roll, parts that bend, parts that see, parts that carry electricity, and parts that run programs. A robot appears to be one creature, but engineers see a \textbf{system of systems}.
+
+A machine becomes robot-like when it can take in information, choose what to do according to rules, and cause a change in the world. That does not mean it is alive or that it thinks like a person. It means its parts cooperate.
+
+\ROBSimpleSystemDiagram
+
+\begin{conceptbox}
+The sense-think-act loop is also an \textbf{input-process-output} pattern. A keyboard sends input to a computer. Software processes it. A screen produces output. Feedback tells the next loop what changed.
+\end{conceptbox}
+
+\ROBPhoto{2019-rob-side-profile.jpg}{A 2019 side view shows the big idea already in place: a tracked base, a torso, articulated arms, a camera head, wiring, and a computer-controlled personality.}
+
+\begin{missionbox}[title={SYSTEMS HUNT}]
+On the photograph, point to one possible \textbf{input}, one \textbf{processor}, and one \textbf{output}. Then name one thing you cannot see but the robot still needs, such as electrical power or software.
+\end{missionbox}
+
+\ROBPhoto[0.52\textheight]{2020-rob-front.jpg}{A 2020 front view gives you another systems puzzle. Trace one path from a sensor, through hidden computing, to a part that can move or make sound.}
+
+\clearpage
+\section*{Five teams inside ROB}
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.05in} >{\RaggedRight\arraybackslash}X >{\RaggedRight\arraybackslash}p{2.15in}}
+\toprule
+TEAM & JOB & EXAMPLES IN ROB\\
+\midrule
+Structure & Carries loads and keeps parts aligned. & Chassis plates, wooden prototype panels, brackets, shafts.\\
+Motion & Changes position by turning or extending. & Treads, flippers, arm joints, torso actuator.\\
+Power & Stores and safely distributes energy. & LiFePO4 battery bank described in the build presentation, power buses, converters.\\
+Sensing & Measures the robot and its surroundings. & IR distance sensors, IMU, OAK-D depth camera, RPLidar.\\
+Control & Turns human intent and sensor data into bounded commands. & Arduino base firmware, Mac mini running Cerebro, phone and wearable controllers.\\
+\bottomrule
+\end{tabularx}
+
+No team can succeed alone. A powerful motor without a bracket may twist itself loose. A perfect camera without software only produces pixels. A clever program without an emergency stop can be dangerous.
+
+\begin{buildbox}[title={MAKE A SYSTEMS MOBILE}]
+Cut five paper circles and label them Structure, Motion, Power, Sensing, and Control. Tie them to one ring. Add a sixth card labeled Human. Tug one card and watch the whole mobile move: a change in one subsystem affects the others.
+\end{buildbox}
+
+\ROBChapterPhoto{Mission 2}{Structure carries every idea}{2024-nearly-assembled-base.jpg}
+
+\chapter{The skeleton and the shell}
+
+The \textbf{chassis} is the robot's load-carrying frame. ROB's archive shows wooden prototype panels, metal brackets, shafts, bearings, fasteners, tread frames, and later mechanical revisions. Prototypes are useful because they let a builder test size and motion before paying for final parts.
+
+The tracked base must do several jobs at once:
+
+\begin{itemize}
+  \item hold the robot's weight without bending too much;
+  \item keep sprockets, wheels, and chains aligned;
+  \item protect batteries and wiring;
+  \item provide openings for inspection and repair;
+  \item leave room for a central actuator and moving flippers.
+\end{itemize}
+
+\ROBPhotoTwo{2022-bracket-fit-check.jpg}{A bracket is held in place before drilling. Fit checks catch mistakes while they are still easy to fix.}{2024-caliper-tread-measurement.jpg}{A digital caliper measures the tread frame. Engineers replace ``about this big'' with a number and unit.}
+
+\begin{conceptbox}
+A measurement is data. A useful measurement has a \textbf{value}, a \textbf{unit}, and an idea of \textbf{uncertainty}. Writing ``48'' is incomplete. Writing ``48.0 mm, measured with a caliper'' can guide another maker.
+\end{conceptbox}
+
+\begin{buildbox}[title={PAPER CHASSIS TEST}]
+Build two bridges from one sheet of paper. Leave one flat. Fold the other into a channel or triangle. Span the same gap and add coins one at a time. Record how many coins each design holds. Shape can add stiffness without adding material.
+\end{buildbox}
+
+\ROBPlaceholder{Add ROB's verified overall height, width, length, ready-to-run mass, primary chassis materials, and the story behind the name R.O.B. These values are not established by the presentation or repositories.}
+
+\ROBPhoto[0.53\textheight]{2022-bracket-assembly-front.jpg}{A 2022 bracket assembly connects an idea to the real chassis. Its shape is visible, but the final material, dimensions, fasteners, loads, and inspection record still need the builder's evidence.}
+
+\clearpage
+\section*{Iteration is not failure}
+
+\ROBPhotoTwo{2022-drilling-metal-rail.jpg}{A power drill, metal rails, and a bracket are visible during a 2022 modification. The photograph does not document secure clamping, eye protection, or the complete workholding setup; those controls are required for adult red-zone drilling.}{2024-sprocket-machined-opening.jpg}{By 2024, a sprocket and chain sit above a newly machined chassis opening. Clearance became a real, measurable design constraint.}
+
+An early design can answer a question even when it is not the final design. The ROB presentation records revisions such as moving the flippers, changing brackets, adding a third-wheel idea for easier turning, and finding new spaces for sensors and computing.
+
+Engineers often work in this loop:
+
+\begin{center}
+\begin{tikzpicture}[node distance=8mm,every node/.style={font=\robcondensed\bfseries\small,align=center,draw=ROBSteel,rounded corners=1mm,minimum width=1.07in,minimum height=0.48in}]
+\node[fill=ROBCyan!9] (ask) {ASK};
+\node[right=of ask,fill=ROBAmber!10] (sketch) {SKETCH};
+\node[right=of sketch,fill=ROBGreen!9] (build) {BUILD};
+\node[right=of build,fill=ROBPurple!8] (test) {TEST};
+\node[right=of test,fill=ROBRed!7] (learn) {LEARN};
+\draw[->,very thick,ROBAccent] (ask)--(sketch);
+\draw[->,very thick,ROBAccent] (sketch)--(build);
+\draw[->,very thick,ROBAccent] (build)--(test);
+\draw[->,very thick,ROBAccent] (test)--(learn);
+\draw[->,very thick,ROBAccent,bend left=32] (learn.south) to (ask.south);
+\end{tikzpicture}
+\end{center}
+
+The last arrow is the secret: learning returns you to a better question.
+
+\ROBChapterPhoto{Mission 3}{Power and information are different}{2024-batteries-and-power-leads.jpg}
+
+\chapter{Energy makes motion possible}
+
+Electric circuits carry energy and information, but those are not always the same job. A thick red cable may carry enough current to drive a motor. A small signal wire may only tell the motor controller what speed to use.
+
+ROB's presentation describes four 20 Ah LiFePO4 batteries arranged across the base for a total stated capacity of 80 Ah. A 2024 photograph shows two large batteries with red power leads inside the chassis. The archive does not prove the final series/parallel arrangement, protection devices, or present-day capacity, so this book does not invent them.
+
+\begin{safetybox}
+Large battery banks can produce fire, burns, arc flash, toxic smoke, and violent motion. Never copy a photograph as a wiring diagram. A qualified adult must design fusing, a disconnect, charging, cable sizes, insulation, strain relief, and the physical emergency-stop circuit.
+\end{safetybox}
+
+\ROBPhotoTwo{2024-power-cable-pass-through.jpg}{Red and black power cables pass through a fitted opening. A pass-through needs edge protection and strain relief so vibration cannot cut insulation.}{2024-voltage-gauge.jpg}{A chassis gauge reads 13.1 V in this photograph. One number is a clue, not a complete description of the battery system.}
+
+\begin{missionbox}[title={ENERGY OR MESSAGE?}]
+Sort these into likely energy paths or information paths: battery cable, USB cable, motor shaft, camera image, PWM control wire, speaker wire, emergency-stop contact. Some can carry both. Explain your choice instead of guessing by color. In \emph{Circuits and Signals}, a supervised Maker Faire lab opens a sacrificial, unplugged USB cable and uses its verified 5 V and GND conductors to power a small toy. It turns this sorting question into a real circuit while keeping cutting and electrical verification in an adult-only station.
+\end{missionbox}
+
+\ROBChapterPhoto{Mission 4}{Sensors turn the world into numbers}{2022-oakd-depth-camera.jpg}
+
+\chapter{How ROB notices things}
+
+A sensor is a translator. It converts something physical into data a computer can use.
+
+\begin{itemize}
+  \item The Arduino file declares six Sharp IR sensor objects. The active warning routine samples only the front and rear pairs; the left/right pair appears only in commented telemetry.
+  \item An MPU9250 \textbf{IMU} measures acceleration, turning rate, and magnetic direction. Software combines those readings into yaw, pitch, and roll.
+  \item An OAK-D camera can provide a color image plus depth values in millimeters.
+  \item RPLidar reports laser samples around the robot so software can reason about obstacles and maps.
+\end{itemize}
+
+\ROBPhoto{2025-rob-face-portrait.jpg}{ROB's speaker face, central depth camera, and upper mechanisms show that different sensors answer different questions; no single sensor knows everything.}
+
+\begin{fieldnotebox}
+The build presentation records a real lesson: IR light sometimes bounced from the floor, and grass produced noisy obstacle reports. In the checked-in Arduino code, sensor reading and warnings still run, but the lines that set the forward/backward shutdown flags are commented out. That is an experimental condition, not a finished safety system.
+\end{fieldnotebox}
+
+\begin{buildbox}[title={NOISY SENSOR GAME}]
+One student secretly chooses a distance from 10 to 100 cm. A ``sensor'' student reports it five times, adding or subtracting a few centimeters each time. Should a robot stop after one low reading, after several low readings, or after combining another sensor? Discuss the tradeoff between false alarms and missed obstacles.
+\end{buildbox}
+
+\ROBPhoto[0.50\textheight]{2022-rob-front-arms-raised.jpg}{Sensors ride on a moving, changing machine. A useful reading depends on where the sensor is mounted, which way it points, what the robot is doing, and what surrounds it.}
+
+\ROBChapterPhoto{Mission 5}{The brain is a conversation}{2022-fanless-computer-and-serial.jpg}
+
+\chapter{Commands travel in layers}
+
+ROB's Mac mini runs the Cerebro app. Controllers on a phone, Apple Watch, or Vision Pro can express human intent. Cerebro checks who is allowed to control, keeps track of a live session, coordinates cameras and higher-level behavior, and sends a compact command toward the base Arduino.
+
+\ROBControlStackDiagram
+
+Each layer has a smaller job:
+
+\begin{enumerate}
+  \item The human chooses a goal, such as ``drive slowly forward.''
+  \item A controller measures the joystick and creates numbers.
+  \item The network proves which paired device sent the message.
+  \item Cerebro decides who currently has control and translates the request.
+  \item USB serial carries a fixed-width text frame to the Arduino.
+  \item The Arduino sets brake, direction, PWM, and actuator commands.
+\end{enumerate}
+
+\begin{conceptbox}
+This is \textbf{abstraction}: each layer offers a simpler promise to the layer above. The phone does not need to know which Arduino pin drives the left tread. The Arduino does not need to know whether the command began on a phone or a headset.
+\end{conceptbox}
+
+\clearpage
+\section*{What happens when a message disappears?}
+
+For a moving robot, silence must not mean ``keep going forever.'' ROB's layers use different time rules: Vision uses a short input lease, the Watch relay has its own watchdog, Cerebro requires a fresh controller snapshot, and the Arduino has a separate heartbeat that commands zero speed if updates stop. Their physical stopping behavior still has to be measured.
+
+\ROBStopChainDiagram
+
+\begin{safetybox}
+Software stop layers are useful, but they do not replace a physical emergency stop that removes motion authority independently. Sensors can fail. Programs can freeze. Networks can disappear. Safety works best in layers with different failure modes.
+\end{safetybox}
+
+\begin{missionbox}[title={MESSAGE RELAY}]
+Form a line of five people: Operator, Controller, Cerebro, Arduino, Motor. Pass a card marked \texttt{FORWARD 20}. Every person must receive a fresh card before a five-count expires. If a card is delayed or unreadable, the next person passes \texttt{STOP}. This is a human-sized watchdog demonstration.
+\end{missionbox}
+
+\ROBChapterPhoto{Mission 6}{A robot grows through versions}{2025-rob-side-full-body.jpg}
+
+\chapter{ROB's build timeline}
+
+The archive is not a perfect diary, but it shows a machine changing in public.
+
+\section*{2019: the whole idea moves}
+\ROBPhotoTwo{2019-rob-front-corner.jpg}{The early black tracked robot already combines camera eyes, arms, a body, and a mobile base.}{2019-rob-side-profile.jpg}{The side view makes weight, balance, tread geometry, and exposed mechanisms easier to study.}
+
+\section*{2020-2021: open the body and learn}
+\ROBPhotoTwo{2020-rob-overhead.jpg}{An overhead view reveals how many mechanical and electrical paths compete for space.}{2021-open-electronics-bay.jpg}{An open rear bay exposes loose wiring beside an arm. Access for service is part of the design.}
+
+\clearpage
+\section*{2022: add computers, cameras, and brackets}
+\ROBPhotoTwo{2022-chassis-wiring-overhead.jpg}{Motor, wiring, wooden mounting pieces, and tread chassis share a crowded base.}{2022-mounted-clamp-and-bracket.jpg}{A newly installed clamp and upright bracket show the project moving from fit check to hardware.}
+
+\section*{2024: measure and rebuild the drivetrain}
+\ROBPhotoTwo{2024-chain-drive-closeup.jpg}{A close chain path makes alignment and clearance visible.}{2024-open-tracked-base.jpg}{An open base reveals motors, power wiring, batteries, and space reserved for mechanisms.}
+
+\clearpage
+\section*{2025: refine the current character}
+\ROBPhotoTwo{2025-rob-side-full-body.jpg}{The current body, tracked base, camera head, and articulated arm show how ROB's identity grew through many revisions.}{2025-neck-gear-train.jpg}{The neck mechanism exposes stacked gears, supports, and a maker's willingness to keep iterating.}
+
+\begin{fieldnotebox}[title={A FAIR PRESENTATION IS A TEST}]
+Maker Faire adds new requirements: a safe operating boundary, reliable setup, clear explanations, charging and transport plans, consent around cameras, and a quick way to stop motion. A robot is not finished when it moves; it is ready when people can experience it safely.
+\end{fieldnotebox}
+
+\chapter{Your first engineering log}
+
+Choose an imaginary helper robot. Give it one job, such as carrying library books or watering a plant. Fill in this one-page design brief.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.45in} X}
+\toprule
+USER & Who needs help? \rule{0pt}{0.42in}\\
+TASK & What one job should the robot do? \rule{0pt}{0.42in}\\
+INPUTS & What must it sense or be told? \rule{0pt}{0.42in}\\
+OUTPUTS & What motion, light, or sound will it make? \rule{0pt}{0.42in}\\
+POWER & What safe classroom energy source will it use? \rule{0pt}{0.42in}\\
+STOP RULE & What event must immediately make it stop? \rule{0pt}{0.42in}\\
+TEST & How will you know the idea worked? \rule{0pt}{0.42in}\\
+\bottomrule
+\end{tabularx}
+
+\begin{buildbox}[title={DRAW THE BLOCK DIAGRAM}]
+Draw boxes for Sense, Think, and Act. Add arrows showing the information path. Then add a Human box and a Stop path. A clear diagram is a tool for thinking, not decoration.
+\end{buildbox}
+
+\input{volume-1-deep-dive.tex}
+
+\clearpage
+\section*{Field words}
+
+\begin{multicols}{2}
+\ROBFact{Actuator}{A device that causes motion.}\par
+\ROBFact{Chassis}{The load-carrying frame.}\par
+\ROBFact{Command}{A message asking a system to do something.}\par
+\ROBFact{Feedback}{A measurement of what happened after an action.}\par
+\ROBFact{Input}{Information entering a system.}\par
+\ROBFact{Iteration}{A new version made after learning from a test.}\par
+\ROBFact{Output}{Information or action produced by a system.}\par
+\ROBFact{Prototype}{A version built to answer questions.}\par
+\ROBFact{Sensor}{A device that translates a physical quantity into data.}\par
+\ROBFact{System}{Connected parts that cooperate for a purpose.}\par
+\ROBFact{Watchdog}{A timer that responds when expected updates stop.}\par
+\end{multicols}
+
+\begin{missionbox}[title={FINAL CHECK}]
+Can you explain why ROB needs both energy paths and information paths? Can you name three systems inside him? Can you explain why a watchdog and a physical emergency stop are different? If yes, you are ready for Volume 2.
+\end{missionbox}
+
+\vfill
+\ROBSource{Presentation/ROB\_v3.pdf; ORobotics private gallery originals and gallery metadata; ROBOT Build/ROBOT\_CEREBELLULAR\_BASE\_APP.ino; current Cerebro, ROBController, and ROBControllerVision source snapshot inspected 2026-08-02.}
+
+\end{document}

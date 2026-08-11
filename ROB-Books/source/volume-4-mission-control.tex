@@ -1,0 +1,351 @@
+\documentclass[11pt,openany]{book}
+\usepackage{robbook}
+\SetROBAccent{ROBPurple}
+\SetROBVolume{VOLUME 4 - AGES 12-16}{MISSION CONTROL}
+
+\begin{document}
+\ROBTitle{Building R.O.B. - Volume 4}{MISSION CONTROL}{Arduino, Mac, networks, cameras, and responsible AI}{A computer-science field guide for makers ages 12-16}{2026-rob-lightsabers-overhead.jpg}
+
+\ROBFrontMatter{Programs cooperate by making promises}{Follow one command from a human hand to a moving tread, then follow sensor data back.}{%
+ROB's software spans Arduino C++, Objective-C and Objective-C++, Swift, Python helpers, Apple platforms, cameras, lidar, speech, and optional cloud AI. You do not need to master all of those at once. You need to understand the boundary each part owns.
+
+This book describes the source snapshot inspected on 2 August 2026. Some Cerebro Gemini and autonomy files have uncommitted work, so experimental features are labeled. The labs stay in simulation unless a qualified adult provides an isolated test rig.
+}
+
+\ROBSeriesMap{Use the diagrams to predict where data travels, where it is validated, and which component owns the final safety decision. Then run the paper or simulator mission. Never test new network or AI code first on powered treads.}
+
+\begin{safetybox}[title={SOFTWARE CAN MOVE HARDWARE}]
+A one-line program can command a high-energy actuator. All exercises default to printed frames, LEDs, or a simulated robot. Connecting to ROB requires a named operator, an exclusion zone, a spotter, a tested physical emergency stop, lifted-tread sign checks, strict speed limits, and permission from the builder.
+\end{safetybox}
+
+\tableofcontents
+\clearpage
+\mainmatter
+
+\ROBChapterPhoto{Mission 1}{Follow the control stack}{2022-fanless-computer-and-serial.jpg}
+
+\chapter{One goal, many programs}
+
+Imagine an operator nudges a joystick forward. ROB's controllers encode that gesture in different ways: the current iPhone path places raw joystick coordinates in its legacy snapshot, while the Vision Pro controller derives normalized linear and angular intent. A secure network carries the intent to Cerebro on the Mac mini. Cerebro decides whether that controller owns motion authority, translates the values into the historical base frame, and refreshes the Arduino over USB. The Arduino sets pins. Motor electronics drive the treads.
+
+\ROBControlStackDiagram
+
+This architecture separates concerns:
+
+\begin{itemize}
+  \item \textbf{Interface}: What does the human mean?
+  \item \textbf{Transport}: Which authenticated device sent the message, and is it fresh?
+  \item \textbf{Coordination}: Who currently controls the robot, and what behavior is allowed?
+  \item \textbf{Hardware adapter}: How does a controller command become ROB's legacy seven-field serial frame?
+  \item \textbf{Firmware}: Which output pins and controller bytes represent the command?
+  \item \textbf{Physical plant}: What motion actually occurs?
+\end{itemize}
+
+\begin{conceptbox}
+An \textbf{interface} is a promise between components. It should say valid inputs, outputs, timing, errors, and ownership. Internal code can change while the promise stays stable. That is how large systems remain understandable.
+\end{conceptbox}
+
+\ROBPhoto[0.53\textheight]{rob-v3-page-72.jpg}{Historical presentation page 72 sketches a Mac mini M1, two Raspberry Pi 4 controllers, an inverter, and a 12-to-24 V converter. It records an architecture idea; the present hardware arrangement needs builder confirmation.}
+
+\ROBPlaceholder{Confirm the current onboard computer inventory, operating systems, power converters, physical ports, USB device assignments, network topology, and which Raspberry Pi roles remain active.}
+
+\ROBChapterPhoto{Mission 2}{Cerebro coordinates the body}{2021-open-electronics-bay.jpg}
+
+\chapter{The Mac mini as a robot computer}
+
+Cerebro is the macOS controller and operator interface. Its current source contains several distinct responsibilities:
+
+\begin{itemize}
+  \item windows and controls for a human operator;
+  \item serial connections for base, torso, head, and servo hardware;
+  \item authenticated sessions from controllers and a role-limited lidar publisher;
+  \item camera capture, RGB-D helper supervision, Vision processing, and video service;
+  \item local speech recognition and speech synthesis;
+  \item bounded autonomy coordination and optional Gemini integration;
+  \item arm scripts and reusable keyframe animation data.
+\end{itemize}
+
+The project mixes Swift with Objective-C and Objective-C++. That is not automatically bad. Mature systems often cross language generations. A narrow adapter can let new typed code cooperate with a historical interface while migration happens safely.
+
+\ROBPhotoTwo{2022-fanless-computer-and-serial.jpg}{A fanless mini computer with labeled USB and serial connections shows the practical side of software architecture.}{rob-software-control-room.png}{Original illustration: abstract paths represent control, perception, and state without exposing real logs, accounts, or network details.}
+
+\section*{Event loops and state}
+
+A graphical Mac app reacts to events: a button click, a network message, a camera frame, a timer, or serial data. Long work cannot freeze the main event loop. Camera processing drops stale frames rather than building an unlimited backlog. A Python DepthAI helper is supervised as a separate process so a camera disconnect or SDK failure does not crash robot control.
+
+\begin{conceptbox}
+This is \textbf{fault isolation}. If one optional subsystem fails, the system reports its own unavailable state while unrelated safety and control paths continue. ``Everything in one giant loop'' is simple only until one slow task blocks every other job.
+\end{conceptbox}
+
+\section*{Mac message lab: build, inspect, do not transmit}
+
+The real Mac adapter is Objective-C, but a short Python exercise can reveal the same message shape without opening a serial port. Save this on a Mac and run it in Terminal. It only prints one neutral classroom frame.
+
+\begin{lstlisting}[language=Python,caption={A print-only Mac exercise; it does not connect to ROB.}]
+def field(value):
+    if not -9999 <= value <= 9999:
+        raise ValueError("outside signed five-character range")
+    return f"{value:+05d}"
+
+values = [0, 0, 0, 0, 0, 0, 0]
+frame = "~" + ",".join(field(value) for value in values)
+
+assert len(frame) == 42
+print(frame)
+\end{lstlisting}
+
+The companion file \texttt{tools/mac\_serial\_frame\_lab.py} also parses a frame and labels all seven values. A hardware version would need an approved serial device, exact baud configuration, complete input validation, a physical stop path, and supervised tests; those capabilities are intentionally absent from the lab.
+
+\begin{buildbox}[title={CHANGE ONE THING}]
+Run the offline lab, change one tread value from 0 to 100, and compare the two strings. Predict which five characters will change before running it. Then deliberately remove a comma and ask the companion parser to reject the frame.
+\end{buildbox}
+
+\begin{buildbox}[title={STATE-MACHINE CARDS}]
+Make cards labeled Disconnected, Connecting, Authenticated, Armed, Stopped, and Faulted. Draw only the allowed transitions. Does reconnecting automatically reset a stop? It should not. Add the event required for each arrow.
+\end{buildbox}
+
+\ROBChapterPhoto{Mission 3}{Many controllers, one authority}{2025-rob-side-full-body.jpg}
+
+\chapter{Phone, Watch, and Vision Pro}
+
+ROB has several ways to express operator intent, but only one component should own motion at a time.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.05in} X X}
+\toprule
+DEVICE & ROLE & IMPORTANT BOUNDARY\\
+\midrule
+iPhone / iPad & Joysticks, speed, flipper, actuator, autonomy and AI-action UI. & Holds its own paired controller identity and sends the established controller payload.\\
+Apple Watch & Voice and joystick intent relayed through the phone. & Does not browse for ROB or store robot credentials; stale watch motion stops at the relay.\\
+Vision Pro & SwiftUI control experience, simulator, normalized commands, and optional live video. & Uses a short input lease and a separate authenticated video connection.\\
+\bottomrule
+\end{tabularx}
+
+Normalized motion usually means values between -1 and +1. That keeps a user interface independent of physical top speed. The robot later converts the normalized request into its configured limits.
+
+One readable differential-drive mix is:
+
+\[
+L = \operatorname{clamp}(F + T,-1,1), \qquad
+R = \operatorname{clamp}(F - T,-1,1)
+\]
+
+where $F$ is forward intent and $T$ is turn intent. A speed cap multiplies both outputs before they reach the robot.
+
+\begin{buildbox}[title={JOYSTICK GRAPH}]
+Draw a coordinate square from -1 to +1 on each axis. Choose five $(F,T)$ points. Calculate $L$ and $R$, clamp them, and predict the motion. Then reverse the sign convention and notice why written coordinate definitions matter.
+\end{buildbox}
+
+\section*{Freshness is part of the command}
+
+Current controller layers use short timing limits: the Vision control model uses a 250 ms lease, the Watch relay uses roughly a 450 ms watchdog, and Cerebro expires a stale control snapshot at about 600 ms. These values belong to different layers and do not prove the Arduino's loop-count heartbeat duration.
+
+\ROBStopChainDiagram
+
+\begin{fieldnotebox}
+Cerebro sends one neutral/braked base frame when controller snapshots expire, then stops refreshing USB so the Arduino's independent heartbeat also expires. The current Arduino timeout command uses zero speeds with brake fields that map to released brakes. The physical coast/hold result must be measured; do not call it ``braked'' at the Arduino layer.
+\end{fieldnotebox}
+
+\ROBPhoto[0.50\textheight]{2025-emergency-stop-and-arm.jpg}{The software chain ends in a commanded state. An independently wired and verified physical stop must still interrupt motion authority when software, communications, or assumptions fail.}
+
+\ROBChapterPhoto{Mission 4}{Discovery is not trust}{2024-open-tracked-base.jpg}
+
+\chapter{Pairing and secure robot messages}
+
+ROBControl v2 uses a reliable QUIC stream over UDP with TLS 1.3. Cerebro advertises a local Bonjour service named \texttt{\_robctl.\_udp} and uses the application protocol name \texttt{robctl/2}. Those names help a controller find a candidate robot, but discovery alone does not prove identity.
+
+A simplified pairing story is:
+
+\begin{enumerate}
+  \item Cerebro creates a code for one named device and one narrow role.
+  \item The device stores the robot ID, its own credential ID and secret, and the exact server certificate fingerprint in Keychain.
+  \item On connection, TLS protects the link and the device pins the expected certificate.
+  \item Both sides prove knowledge of the pairing secret using a fresh challenge.
+  \item Each layer performs the checks that apply to its data: transport framing checks size, role, session, and sequence; timestamped sensor messages add capture-time freshness; controller freshness uses Cerebro's local receipt time; and the legacy application payload still needs its own parsing and validation.
+\end{enumerate}
+
+\begin{conceptbox}
+\textbf{Authentication} asks who the peer is. \textbf{Authorization} asks what that peer may do. ROB's lidar publisher may send typed sensor data but cannot request motion. A controller may request allowed control messages but cannot become a lidar publisher just by changing a word in its own payload.
+\end{conceptbox}
+
+\begin{safetybox}[title={NEVER PRINT REAL PAIRING MATERIAL}]
+Book screenshots and Maker Faire displays must not reveal enrollment codes, API keys, Wi-Fi passwords, SSH credentials, private keys, device secrets, precise location data, or private console logs. A server certificate fingerprint is a public identity pin, not a secret; it may still be redacted from screenshots as operational metadata. Give every device a unique secret so one device can be revoked without disabling another.
+
+The current iPhone controller requests Always location access and includes live latitude and longitude in each active legacy snapshot. Motion control does not inherently need precise location. Treat this as current privacy debt: remove it, minimize it, or document a specific need and consent policy before a public demonstration.
+\end{safetybox}
+
+\begin{buildbox}[title={LOCKED MAILBOX GAME}]
+Give three students cards: Operator, Lidar, and Guest. Write allowed message types on role cards. For each pretend packet, check identity first, then role, then sequence number, then freshness. A correctly signed Lidar packet still may not contain a drive command.
+\end{buildbox}
+
+\ROBChapterPhoto{Mission 5}{Keep video away from stop traffic}{2022-oakd-depth-camera.jpg}
+
+\chapter{Control and camera data take separate roads}
+
+Live video is much larger than a joystick command. If both share one congested queue, a delayed camera frame could sit in front of a stop message. Cerebro therefore advertises a separate authenticated \texttt{\_robvideo.\_udp} service using \texttt{robvideo/1}. The initial profile sends H.264 video on its own QUIC connection.
+
+\begin{center}
+\begin{tikzpicture}[node distance=8mm and 15mm,every node/.style={font=\robcondensed\small,align=center,draw=ROBSteel,rounded corners=1mm,minimum height=0.5in}]
+\node[fill=ROBPurple!8,minimum width=1.6in] (controller) {paired controller};
+\node[fill=ROBRed!8,right=of controller,minimum width=2.1in] (control) {small, urgent control\\\texttt{robctl/2}};
+\node[fill=ROBCyan!8,below=of control,minimum width=2.1in] (video) {large, droppable media\\\texttt{robvideo/1}};
+\node[fill=ROBAmber!9,right=of control,minimum width=1.6in] (cerebro) {Cerebro};
+\draw[->,very thick,ROBRed] (controller.east) -- (control.west);
+\draw[<->,very thick,ROBCyan] (controller.south east) -- (video.west);
+\draw[->,very thick,ROBRed] (control.east) -- (cerebro.west);
+\draw[<->,very thick,ROBCyan] (video.east) -- (cerebro.south west);
+\end{tikzpicture}
+\end{center}
+
+The video connection still depends on the exact live control session and the same authenticated controller. If control disconnects, the associated video session closes. If video fails, control can remain available.
+
+\begin{conceptbox}
+This is a \textbf{quality-of-service} decision expressed through architecture. Urgent control is small and bounded. Media may drop old frames when the sender falls behind. The freshest useful image is usually better than a growing pile of late images.
+\end{conceptbox}
+
+\ROBChapterPhoto{Mission 6}{Color, depth, and laser points}{2022-oakd-depth-camera.jpg}
+
+\chapter{How ROB sees space}
+
+ROB's camera path can produce aligned color and depth. A color pixel describes brightness and color channels. A depth pixel describes estimated distance, currently carried as an unsigned 16-bit number of millimeters; zero means invalid. Alignment lets software ask, ``What distance belongs to this color pixel?''
+
+A supervised Python DepthAI helper owns the OAK-D device and sends synchronized data to Cerebro through a user-only local Unix socket. RGB enters the camera/Vision path. Depth travels beside it in a frame set. If the helper or device fails, Cerebro reports camera state and retries with bounded backoff instead of terminating robot control.
+
+\ROBPhotoTwo{2022-oakd-depth-camera.jpg}{An OAK-D stereo depth camera has multiple optical elements because depth requires geometric information beyond one ordinary image.}{rob-v3-page-74.jpg}{Historical presentation page 74 combines the Insta360 head concept with an OAK-D Lite crown camera. Confirm the current head configuration before final captions.}
+
+\section*{Lidar uses polar samples}
+
+RPLidar reports distances at angles around the robot. A point $(r,\theta)$ can be converted into a flat Cartesian point:
+
+\[
+x = r\cos\theta, \qquad y = r\sin\theta.
+\]
+
+The companion app publishes typed, bounded scans and separate occupancy maps. Its current scan path first keeps only valid points closer than \(1\,\mathrm{m}\) and within about \(\pm0.50\) radians of the robot's front or back. The published scan is therefore not a full 360-degree view. Current local autonomy uses these fresh filtered samples, not the map, to choose cautious social-roam behavior. A stale sensor feed stops motion and leaves the autonomy session active in a waiting-for-lidar state.
+
+\begin{buildbox}[title={DRAW A TINY LIDAR MAP}]
+Plot these polar points on graph paper: $(4,0^\circ)$, $(4,90^\circ)$, $(4,180^\circ)$, and $(4,270^\circ)$. Convert each to $(x,y)$. Add noisy points and decide how many samples you need before calling a region occupied.
+\end{buildbox}
+
+\begin{advancedbox}
+Coordinate frames must be named: sensor frame, robot frame, map frame, camera frame, and arm frame. A point is not useful for grasping until calibrated transforms connect those frames. The repository does not yet contain the complete camera-to-arm calibration, inverse kinematics, collision checking, or verified grasp executor needed for autonomous pickup.
+\end{advancedbox}
+
+\ROBPhoto[0.43\textheight]{rob-v3-page-55.jpg}{Historical presentation page 55 places a proposed lidar stage above the base. A drawing can suggest a coordinate frame, but the installed transform must be measured.}
+
+\ROBChapterPhoto{Mission 7}{Speech and AI stay inside boundaries}{2025-detached-articulated-arm.jpg}
+
+\chapter{Helpful intelligence, human authority}
+
+Cerebro can recognize speech locally and speak responses through its existing voice path. An optional, explicitly enabled Gemini integration can receive microphone audio and sampled camera frames. That changes the privacy boundary because data may leave the robot for a cloud service.
+
+The safer action pattern below is a \emph{target architecture}. It shows the structure every physical action should eventually follow; it is not evidence that every current tool has an executor.
+
+\begin{center}
+\begin{tikzpicture}[node distance=6mm and 6mm,every node/.style={font=\robcondensed\scriptsize,align=center,draw=ROBSteel,rounded corners=1mm,minimum width=1.1in,minimum height=0.55in}]
+\node[fill=ROBCyan!8] (sense) {perceive\\and converse};
+\node[fill=ROBPurple!8,right=of sense] (propose) {propose a bounded\\high-level action};
+\node[fill=ROBAmber!10,right=of propose] (gate) {validate capability\\and human policy};
+\node[fill=ROBGreen!8,right=of gate] (exec) {deterministic\\executor};
+\node[fill=ROBGray!28,right=of exec] (result) {measured terminal\\result};
+\draw[->,very thick,ROBAccent] (sense)--(propose);
+\draw[->,very thick,ROBAccent] (propose)--(gate);
+\draw[->,very thick,ROBAccent] (gate)--(exec);
+\draw[->,very thick,ROBAccent] (exec)--(result);
+\end{tikzpicture}
+\end{center}
+
+The language model does not receive a tool for arbitrary raw serial bytes. The current schema names five proposals: \texttt{look\_at}, \texttt{play\_gesture}, \texttt{request\_pick}, \texttt{navigate\_relative}, and \texttt{stop\_motion}. Only \texttt{stop\_motion} has an immediate local executor, and its result is deliberately partial: Cerebro can software-stop the base, but arm hold remains unverified. The other four actions do not yet have deterministic executors. Outside autonomy they may reach a controller approval console, but approval records a human decision and does not actuate hardware; during active autonomy they fail as unavailable.
+
+\begin{tabularx}{\textwidth}{>{\ttfamily\scriptsize}p{1.35in} p{1.25in} X}
+\toprule
+ACTION & CURRENT STATUS & HONEST RESULT\\
+\midrule
+stop\_motion & Partial local executor & Preempts local coordinators, sends one neutral/braked base frame, and drops the base heartbeat; arm hold is unverified.\\
+look\_at & Schema only & No deterministic executor; approval alone does not move the neck.\\
+play\_gesture & Schema only & No deterministic executor; approval alone does not play a physical gesture.\\
+navigate\_relative & Schema only & No deterministic executor; it is not the social-roam controller.\\
+request\_pick & Planned / unavailable & Rejected until calibration, planning, feedback, and a verified grasp executor exist.\\
+\bottomrule
+\end{tabularx}
+
+\begin{fieldnotebox}
+In the inspected snapshot, general picking remains unavailable. The source explicitly lacks calibrated camera-to-arm transforms, complete neck-axis mapping, joint feedback, inverse kinematics, collision checking, and a verified grasp executor. The controller's AI approval console records a decision but does not by itself execute an arm action.
+\end{fieldnotebox}
+
+\begin{safetybox}[title={PUBLIC CAMERA AND MICROPHONE NOTICE}]
+A Maker Faire demonstration should clearly announce when cameras, microphones, recording, or cloud AI are active; provide a visible activity indicator and rapid disable control; avoid collecting unnecessary location or identity data; and obtain appropriate consent, especially around children. The entire Gemini integration defaults off. Once it is enabled, however, the current configuration defaults microphone-audio and camera-frame streaming on unless each is separately disabled; the robot-action tool remains separately off by default. Verify every switch rather than relying on one ``AI enabled'' label.
+\end{safetybox}
+
+\begin{buildbox}[title={HUMAN-IN-CHARGE ROLE PLAY}]
+One student is the model, one the validator, one the operator, and one the simulator. The model may propose only named actions. The validator rejects unsupported or unsafe parameters. The operator approves or denies. The simulator returns a measured result. Discuss why ``the model sounded confident'' is not a validation rule.
+\end{buildbox}
+
+\ROBPhoto[0.37\textheight]{rob-software-control-room.png}{Original illustration: the glowing pathways represent a proposed flow from perception to validation to deterministic execution. They are not a screenshot or proof that every action exists.}
+
+\ROBChapterPhoto{Mission 8}{Simulation makes mistakes inexpensive}{2025-rob-side-full-body.jpg}
+
+\chapter{Tests, logs, and reproducible missions}
+
+ROBControllerVision includes a deterministic simulator and a normalized control model. That is a powerful pattern: the same user interface can exercise a simulated endpoint before a physical adapter is selected.
+
+A useful test names:
+
+\begin{itemize}
+  \item initial state;
+  \item exact input and timestamp;
+  \item expected output or rejection;
+  \item deadline;
+  \item cleanup behavior;
+  \item evidence retained when it fails.
+\end{itemize}
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.35in} X}
+\toprule
+FAILURE TO INJECT & EXPECTED SAFE OBSERVATION\\
+\midrule
+Joystick release & Zero intent is sent promptly.\\
+Watch link disappears & Phone relay stops watch motion after its freshness deadline.\\
+Controller snapshots stop & Cerebro neutralizes once and lets the USB heartbeat expire.\\
+Malformed ROBControl frame & Transport rejects it before application dispatch.\\
+Malformed legacy controller payload & The application decoder must reject it; authenticated transport alone does not make payload contents valid.\\
+Video sender falls behind & Old video frames drop; control queue remains independent.\\
+Depth helper exits & Camera reports unavailable and retries; robot control remains alive.\\
+Lidar becomes stale & Autonomy stops and waits rather than inventing space.\\
+Unsupported AI action & A clear unavailable result returns; no motion is faked.\\
+\bottomrule
+\end{tabularx}
+
+\ROBPhotoTwo{rob-software-control-room.png}{Original illustration: software pathways are explanatory symbols, not a current-system screenshot.}{2025-rob-side-full-body.jpg}{The physical machine is the final test target; a successful display alone does not prove safe behavior.}
+
+\begin{buildbox}[title={WRITE A TEST TABLE}]
+Choose one simulated command. Create columns for sequence number, issue time, lease, left value, right value, and expected state. Add stale, duplicate, NaN, and out-of-range cases. A good test includes messages that must be rejected.
+\end{buildbox}
+
+\ROBPlaceholder{Before publication, add a tagged source snapshot, screenshots with all secrets and location data removed, a verified component version table, actual on-robot latency measurements, failure-injection results, and a diagram of current rather than proposed compute hardware.}
+
+\input{volume-4-deep-dive.tex}
+
+\clearpage
+\section*{Field words}
+
+\begin{multicols}{2}
+\ROBFact{Abstraction}{A simpler interface hiding internal detail.}\par
+\ROBFact{Authentication}{Proof of identity.}\par
+\ROBFact{Authorization}{Rules about allowed actions.}\par
+\ROBFact{Backpressure}{What a system does when data arrives too quickly.}\par
+\ROBFact{Coordinate frame}{A named origin and axes for measurements.}\par
+\ROBFact{Lease}{Permission that expires unless renewed.}\par
+\ROBFact{Process}{A running program with its own resources.}\par
+\ROBFact{Protocol}{An agreement about messages and behavior.}\par
+\ROBFact{Sequence number}{A counter used to detect replay or reordering.}\par
+\ROBFact{Simulation}{A model used to test behavior without the full physical system.}\par
+\end{multicols}
+
+\begin{missionbox}[title={FINAL CHECK}]
+Can you trace a joystick command to the Arduino? Can you explain why discovery does not prove trust? Can you explain why video uses a separate connection? Can you place an AI proposal behind a validator and human policy? You are ready for the complete field manual.
+\end{missionbox}
+
+\vfill
+\ROBSource{Current 2026-08-02 source snapshot: Cerebro, ROBController, ROBControllerVision, and M2M1-RPLIDAR; their active docs; ROB base firmware; private gallery originals. Experimental and uncommitted Cerebro work is labeled as such.}
+
+\end{document}

@@ -1,0 +1,5 @@
+Extend robshow v1 with an optional audience-response beat. The JSON may select
+only a named response policy and timeout. It may not contain executable code,
+raw motor values, file paths, hosts, ports, or arbitrary tool names. Update the
+schema, parser, negative fixtures, dry-run renderer, and docs before enabling
+runtime behavior. Preserve authored fallback and stop preemption.

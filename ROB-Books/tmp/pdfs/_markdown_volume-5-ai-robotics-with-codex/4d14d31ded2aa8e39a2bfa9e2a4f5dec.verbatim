@@ -1,0 +1,4 @@
+Trace protocol X in both repos. Produce a compatibility matrix for old client,
+new client, old server, and new server. Design golden fixtures before edits.
+Reject malformed and oversized input. No automatic security downgrade. Make
+changes in reviewable checkpoints and run both test suites.

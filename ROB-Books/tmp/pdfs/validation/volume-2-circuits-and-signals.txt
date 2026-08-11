@@ -1,0 +1,820 @@
+BUILDING R.O.B. - VOLUME 2
+
+
+CIRCUITS AND SIGNALS
+Arduino lessons from ROB's tracked base
+
+
+
+
+A LOW-VOLTAGE LEARNING GUIDE FOR MAKERS AGES 10-14
+Rodolfo Aramayo / Orbitus Robotics -   First Maker Faire Edition
+Electricity is powerful. Information
+makes it useful.
+In this volume, ROB's real base firmware becomes a map for safe classroom experiments.
+
+You will learn how circuits carry energy, how pins carry commands, how a serial message represents mo-
+tion, and why a robot must stop when messages vanish. The examples are based on ROBOT_CEREBELLULAR_
+BASE_APP.ino, but the classroom builds use LEDs, a simulator, or a small current-limited robotics kit.
+
+Do not connect ROB’s full-size batteries, motors, charger, or actuator from these pages. Photographs
+show where ideas came from; they are not wiring diagrams.
+
+
+
+
+Copyright © 2026 Rodolfo Aramayo / Orbitus Robotics. Photographs are from the private ROB build archive unless
+otherwise noted. The generated frontispiece is original artwork derived from a ROB reference photograph. This
+independent educational project is not affiliated with or endorsed by any film studio or franchise owner. Product
+and company names remain the property of their respective owners.
+
+First evidence-based draft: 2 August 2026. Build details marked Builder input needed are deliberate placeholders
+for the builder to complete.
+CIRCUITS AND SIGNALS                                                                         VOLUME 2 - AGES 10-14
+
+
+
+The Building R.O.B. library
+  VOLUME 1                Meet ROB: A Robot Is a Team of Systems - ages 8-12
+  VOLUME 2                Circuits and Signals with ROB - ages 10-14
+  VOLUME 3                Motion Workshop: Treads, Gears, and Fabrication - ages 10-15
+  VOLUME 4                Mission Control: Arduino, Mac, Networks, and Vision - ages 12-16
+  FIELD       MAN- Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
+  UAL
+
+
+   HOW TO USE THIS BOOK
+
+   Bring a notebook. For each activity, write your prediction, observation, and explanation. If the result
+   surprises you, the experiment worked: you found something worth learning.
+
+    ELECTRICAL LAB BOUNDARY
+
+    For learner activities, use only an approved low-voltage classroom supply or the USB-powered Ar-
+    duino setup selected by your teacher. Add current-limiting resistors to LEDs. Disconnect power be-
+    fore moving wires. ROB’s high-current battery and motor circuits are adult-only systems that require
+    fuses, a disconnect, insulated tools, proper wire sizing, and a tested physical emergency stop.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              3 / 25
+Contents
+1 Trace the energy path                    2
+
+2 Digital, analog, and PWM                 5
+
+3 The base controller’s connections        7
+
+4 Decode the seven-field message          10
+
+5 IR distance and the IMU                 13
+
+6 Watchdogs and fail-safe states          15
+
+7 Read old code like an engineer          17
+
+8 Build a mental oscilloscope             19
+
+9 Give a toy a new 5 V power path         20
+
+10 Messages need grammar and time         24
+
+
+
+
+                                      4
+MISSION 1
+
+Two networks: power and data
+MISSION 1
+
+
+Trace the energy path
+A circuit needs a complete path. A source raises electrical potential, a load changes electrical energy into
+light, sound, heat, or motion, and a return path completes the loop.
+Three ideas help us describe the circuit:
+
+• Voltage is electrical potential difference, measured in volts.
+• Current is the rate of charge flow, measured in amperes.
+• Resistance describes how strongly a path opposes current, measured in ohms.
+
+Ohm’s law, V = IR, connects them for a resistor. If an LED branch has 5 V, an LED drop of about 2 V, and
+a 220 Ω resistor, the estimated current is
+
+                                                     5V − 2V
+                                               I=            ≈ 0.014 A = 14 mA.
+                                                      220 Ω
+
+   COMPUTER SCIENCE CONNECTION
+  A formula is a model. Component tolerances, temperature, supply variation, and the LED’s real for-
+  ward voltage change the result. Measure with a suitable meter and compare the model to the obser-
+  vation.
+
+
+
+
+                                                                                                                      A cable crossing a panel
+Large batteries and red power leads occupy precious space in the          needs smooth edges, insulation, strain relief, and room for service.
+base. The visible arrangement does not prove the complete topology.
+
+
+
+Ground is a reference, not magic dirt
+In a low-voltage robot, ground usually names the common reference node used by circuits and signals.
+Two devices exchanging a voltage signal often need compatible reference levels. Power grounds, noisy
+
+                                                                      2
+CIRCUITS AND SIGNALS                                                                               VOLUME 2 - AGES 10-14
+
+
+
+motors, sensitive sensors, shields, and chassis connections require a deliberate grounding plan in a large
+robot.
+
+    BUILDER INPUT NEEDED
+    Publish the final power tree only after the builder verifies battery topology, BMS, charger, fuses or
+    breakers, main disconnect, emergency-stop contacts, converter ratings, wire gauges, connectors,
+    chassis bonding, and grounding strategy.
+
+   DRAW BEFORE YOU WIRE
+
+   Draw a safe LED circuit with a source, switch, resistor, LED, and return path. Use arrows to show
+   conventional current. Circle the point where the Arduino output signal enters. Ask a mentor to check
+   the drawing before building it.
+
+
+
+
+     A visible voltage gauge can help an operator notice change, but it does not replace a schematic, calibrated
+     measurements, battery-management data, or protective devices.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 25
+MISSION 2
+
+Pins turn numbers into signals
+     MISSION 2
+
+
+     Digital, analog, and PWM
+     An Arduino pin can represent information in several ways.
+
+     • A digital output chooses between two logic states, often called LOW and HIGH.
+     • An analog input measures a voltage and converts it into a number.
+     • PWM, or pulse-width modulation, switches quickly between states. The duty cycle controls the average
+       effect seen by a lamp or motor controller.
+
+     PWM is not automatically a lower analog voltage. It is a timed pattern.
+
+                                             level
+
+
+
+                                                                                                      time
+                                                25 percent duty cycle: short ON time, long OFF time
+
+
+     ROB’s tread code uses analogWrite(pin, 255 - abs(command)). That inversion matters: in this firmware,
+     a larger command magnitude produces a smaller PWM output value. The archived vendor material is
+     restricted, so this public edition does not use it to justify the electrical behavior. Verify the real controller
+     with an authorized current public datasheet and a supervised bench test. Do not assume every motor
+     driver works this way.
+
+          LED PWM MISSION
+
+          With a mentor-approved Arduino and LED circuit, write three fixed brightness levels using
+          analogWrite: 32, 128, and 224. Predict which looks brightest. Then make a slow fade. An LED
+          makes PWM visible without moving a heavy mechanism.
+
+
+                                      Listing 2.1: A safe LED fade pattern for a classroom PWM pin.
+1     const int LED_PIN = 9;
+2
+3     void setup() {
+4         pinMode(LED_PIN, OUTPUT);
+5     }
+6
+7     void loop() {
+8         for (int level = 0; level <= 255; level += 5) {
+9             analogWrite(LED_PIN, level);
+10            delay(25);
+11        }
+12        for (int level = 255; level >= 0; level -= 5) {
+13            analogWrite(LED_PIN, level);
+14            delay(25);
+15        }
+16    }
+
+
+
+
+                                                                            5
+MISSION 3
+
+Read ROB's pin map
+MISSION 3
+
+
+The base controller's
+connections
+The checked-in firmware names these connections. Pin numbers are facts about the file, not a verified
+public wiring harness. ROBController’s historical serial log calls the board an Arduino Mega. The exact
+Arduino-compatible board model, revision, core, and installed library versions are not recorded here.
+
+ SUBSYSTEM                     SPEED     BRAKE         DIRECTION     NOTE
+ Right tread                    D2           D3            D25       PWM speed output plus two digital con-
+                                                                     trols
+ Left tread                     D4           D5            D27       PWM speed output plus two digital con-
+                                                                     trols
+ Flipper                        D6           D7            D29       PWM speed output plus two digital con-
+                                                                     trols
+
+ SIGNAL                        PIN OR RATE        FIRMWARE ROLE
+ Linear actuator serial         D22 / D23         D22 receive is declared but unused; D23 transmits to a sim-
+ RX/TX                                            ple motor controller at 19,200 baud
+ Front-left / front-right IR      A5 / A4         Long-range Sharp IR model constant
+ Left / right IR                  A3 / A2         Medium-range Sharp IR model constant
+ Back-left / back-right IR        A1 / A0         Long-range Sharp IR model constant
+ Mac-to-Arduino serial         250,000 baud       Commands, logs, and sensor text share the port
+ IMU                            I2C via Wire      MPU9250 accelerometer, gyro, and magnetometer
+
+  FROM ROB'S BUILD LOG
+
+  The source contains TODOs for three motor speed-sensor inputs, ramped motion, and voltage mea-
+  surement. The comments disagree about left/right encoder assignment, and proposed D20 conflicts
+  with the likely Mega I2C SDA pin used by the active IMU. A TODO is evidence of intent, not evidence
+  that the feature works.
+
+
+
+
+                                                          7
+CIRCUITS AND SIGNALS                                                                                                   VOLUME 2 - AGES 10-14
+
+
+
+
+An overhead chassis view shows why a pin table alone is not enough:   Blue tape labels show an important maintenance habit. A durable
+routing, connectors, power separation, and service access matter.     harness plan should replace temporary labels before public operation.
+
+
+    BUILDER INPUT NEEDED
+    Add an author-verified connector-to-pin table, wire colors, connector types, harness branches, cable
+    gauges, strain relief, labels, and photographs taken after final wiring.
+
+
+
+
+     A close view of an earlier wiring revision shows why every connector needs a name, destination, expected
+     signal, safe state, and service plan.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        8 / 25
+MISSION 4
+
+A command is a tiny data structure
+MISSION 4
+
+
+Decode the seven-field
+message
+The base firmware waits for a tilde character, then reads seven signed, fixed-width text fields separated
+by commas:
+
+
+     ~+0000,+0100,+0000,+0100,+0000,+0000,+0000
+
+
+The positions are:
+
+1. left tread brake;
+2. left tread signed speed;
+3. right tread brake;
+4. right tread signed speed;
+5. flipper brake;
+6. flipper signed speed;
+7. linear actuator signed speed.
+
+The example above releases the brakes and asks both treads for +100, while the flipper and actuator
+remain at zero. The entire frame is 42 characters when every field is exactly five characters.
+
+
+Differential steering
+Two treads can steer without a steering wheel. If both sides move forward at the same speed, the robot
+travels roughly straight. If one moves forward while the other moves backward, the robot rotates.
+
+ INTENT                        LEFT          RIGHT        IDEA
+ Forward                      +100           +100         Same direction and magnitude
+ Backward                     -100           -100         Same reverse direction
+ Turn right                   +100           -100         Counter-rotating treads
+ Turn left                    -100           +100         Opposite counter-rotation
+ Gentle curve                 +70            +35          Outside tread travels faster
+ Stop                           0              0          Zero requested speed
+
+  COMPUTER SCIENCE CONNECTION
+  The message is a protocol: an agreement about order, spelling, valid ranges, and meaning. Pro-
+  tocols let programs written in different languages cooperate. The Mac code can be Objective-C or
+  Swift while the Arduino code is C++, yet both can understand the same frame.
+
+
+                                                   10
+     CIRCUITS AND SIGNALS                                                                                  VOLUME 2 - AGES 10-14
+
+
+
+     Build a safer parser on paper
+     The historical parser teaches useful ideas, but it is not a model for finished safety-critical code. It reads
+     when only one byte is known to be available, does not prove all 42 characters arrived, does not validate
+     comma positions or numeric ranges, and stores five characters without a sixth null terminator before call-
+     ing atoi. A damaged frame could be misread.
+     A safer receiving state machine would:
+
+     1. search for the start marker;
+     2. collect exactly one bounded frame;
+     3. verify all separators and signs;
+     4. convert each field only after validation;
+     5. reject values outside the allowed range;
+     6. update all outputs atomically, or update none;
+     7. command a safe stop after a deadline.
+
+                                          Listing 4.1: Pseudocode for an all-or-nothing command decoder.
+1      if (completeFrameAvailable()) {
+2          Frame candidate = readBoundedFrame();
+3          if (candidate.hasValidShape() &&
+4                candidate.valuesAreInRange()) {
+5              lastGoodCommand = candidate;
+6              lastGoodTime = millis();
+7          } else {
+8              reportBadFrame();
+9          }
+10     }
+11
+12     if (millis() - lastGoodTime > COMMAND_DEADLINE_MS) {
+13         commandNeutralAndBrake();
+14     }
+
+
+
+           FRAME INSPECTOR
+
+           Write five valid and five invalid frames. Include a missing comma, a wrong sign, an extra digit, a letter,
+           and an out-of-range speed. Trade with a partner and circle the first rule each invalid frame breaks.
+
+
+
+
+     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     11 / 25
+MISSION 5
+
+Sensors are measurements, not
+truth
+MISSION 5
+
+
+IR distance and the IMU
+The source declares six IR objects, but the active warning routine reads only the front and rear pairs. It com-
+pares those four readings with 25 cm and counts repeated low readings before announcing a shutdown
+warning. The left/right pair appears only in commented telemetry.
+That is a simple temporal filter: require evidence across several samples. It can reduce single-sample
+glitches, but it does not solve every problem. Grass, angled surfaces, sunlight, dark material, shiny mate-
+rial, sensor placement, and reflections from the floor can change optical range data.
+
+  FROM ROB'S BUILD LOG
+
+  The call that reads the IR sensors is active in the current loop. The assignments that would set the
+  forward and backward shutdown flags are commented out. The code therefore still reads and reports
+  warnings, but does not currently assert those movement-inhibit flags. The builder reports disabling
+  the behavior after many grass-triggered stops. The final policy and calibration need measurement
+  before publication as a safety feature.
+
+
+
+Three sensors become orientation
+The MPU9250 combines three sensor families:
+
+• accelerometer: linear acceleration and gravity;
+• gyroscope: rotation rate;
+• magnetometer: magnetic field direction.
+
+The firmware uses a Mahony quaternion filter, then prints yaw, pitch, and roll. This is sensor fusion: com-
+bine imperfect measurements to estimate a state no single sensor supplies reliably.
+
+  FILTER A DATA SET
+
+  Record ten distance readings from a safe classroom sensor aimed at a box. Compute the mean and
+  median. Move the box, record ten more, and graph both groups. Which summary handles one wild
+  reading better? Do not turn the result into an automatic stop rule without testing more surfaces and
+  conditions.
+
+
+
+
+                                                     13
+MISSION 6
+
+Silence must become stop
+    MISSION 6
+
+
+    Watchdogs and fail-safe states
+    ROB’s Arduino loop counts down a two-stage heartbeat. When it expires, the firmware calls the same
+    motor-command function with zero tread, zero flipper, and zero actuator values. However, the timeout
+    passes brake fields of zero, which the code interprets as released brakes. The physical result may be coast
+    rather than hold and must be measured.
+    The implementation counts loop iterations before checking the second counter, so the exact deadline
+    changes when other loop work changes. It also refreshes the deadline for any received byte before vali-
+    dating a complete frame; malformed traffic could therefore keep an earlier command alive. A production
+    version should refresh only after a valid frame, measure elapsed monotonic time directly, define the safe
+    brake state precisely, and test failures under load.
+
+      COMPUTER SCIENCE CONNECTION
+
+      A watchdog asks, “Did the expected event happen before the deadline?” A fail-safe state is the
+      state chosen when the answer is no. For a small lamp, OFF may be safe. For a heavy robot on a slope,
+      braking, de-energizing, and mechanical holding behavior must be engineered and tested.
+
+
+
+            input released             controller-specific             Cerebro 0.6 s                           Arduino serial                     commanded stop;
+            or manual stop             lease / watchdog               freshness gate                             deadman                        result must be tested
+
+
+
+
+                                                                                                 independent of software
+                                                             required verified physical E-stop                      independent contactor / controller stop path
+
+
+
+
+      SAFETY CHECK
+
+      The yellow emergency-stop hardware visible in the 2025 bench photograph is not enough to prove a
+      complete emergency-stop circuit. A public robot needs an independently verified stop architecture,
+      clear operator reach, reset rules, contactor or controller behavior appropriate to the hazards, and
+      documented tests.
+
+      WATCHDOG WITHOUT MOTORS
+
+      Program an Arduino LED to remain lit only while a serial “K” arrives at least once each second. Stop
+      the sender and confirm that the LED goes dark. Add a latched error LED that requires a deliberate
+      reset. This demonstrates the timing idea without motion.
+
+
+                                   Listing 6.1: A classroom heartbeat pattern using an LED.
+1    const unsigned long DEADLINE_MS = 1000;
+2    unsigned long lastHeartbeat = 0;
+3    bool heartbeatSeen = false;
+4
+5    void setup() {
+6      pinMode(LED_BUILTIN, OUTPUT);
+
+
+                                                                           15
+     CIRCUITS AND SIGNALS                                                                              VOLUME 2 - AGES 10-14
+
+
+
+7          digitalWrite(LED_BUILTIN, LOW);          // boot stale
+8          Serial.begin(9600);                      // classroom sender
+9      }
+10
+11     void loop() {
+12         if (Serial.available() && Serial.read() == 'K') {
+13             lastHeartbeat = millis();
+14             heartbeatSeen = true;
+15         }
+16         bool fresh = heartbeatSeen &&
+17                         millis() - lastHeartbeat <= DEADLINE_MS;
+18         digitalWrite(LED_BUILTIN, fresh ? HIGH : LOW);
+19     }
+
+
+
+
+           Software deadlines and a physical emergency stop solve different failure problems. The visible button is
+           evidence of hardware, not proof that the complete stop circuit has been verified.
+
+
+
+
+     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                 16 / 25
+MISSION 7
+
+
+Read old code like an engineer
+Historical code is a laboratory notebook. It preserves successful ideas, unfinished experiments, and mis-
+takes. Respect it by asking precise questions.
+
+                         ENGINEERING QUESTION
+ OBSERVATION
+                           Was the second branch intended to describe the opposite turn? Add unit tests
+ The rotation test repeats before changing behavior.
+ the same Boolean condi-
+ tion twice.
+                           Which direction does each physical tread actually move with each pin state?
+ Some method names, Record a wheels-off-ground test.
+ direction     comments,
+ and printed labels
+ disagree.
+                           What are the allowed command ranges, and what happens to malformed val-
+ Values are not clamped ues?
+ before PWM.
+                           What operating conditions caused false triggers, and what independent pro-
+ The IR inhibit assign- tections remain?
+ ments are commented.
+                           What acceleration, deceleration, encoder, and stopping-distance requirements
+ Ramping and speed should a new version meet?
+ feedback are TODOs.
+                           Should reset be a separate typed command instead of overloading speed?
+ The actuator accepts spe-
+ cial values 3201 and -
+ 3201 to clear safe start.
+
+  ADVANCED CHANNEL
+
+  Before modernizing the firmware, build a byte-for-byte protocol fixture and a hardware-in-the-loop
+  test stand with the drive load isolated. Characterize the existing behavior first. A refactor that looks
+  cleaner can still reverse a tread or release a brake.
+
+  BUILDER INPUT NEEDED
+  Add the Arduino board model, firmware library versions, verified motor polarity, safe-start controller
+  model, final command ranges, measured heartbeat deadline, bench-test procedure, IR calibration
+  data, and the exact reason and date for the grass-related policy change.
+
+
+
+
+                                                    17
+DEEP LAB
+
+Energy moves; signals describe
+MISSION 8
+
+
+Build a mental oscilloscope
+Voltage is a difference in electric potential between two points. Current is charge flow through a path.
+Resistance relates voltage and current for many components, but real motors, batteries, semiconductors,
+and sensors also change with time, temperature, and load. A signal uses a changing electrical quantity to
+represent information; the receiving circuit must agree on reference, range, timing, and meaning.
+
+
+Read a graph as a story in time
+An oscilloscope draws voltage vertically and time horizontally. A digital signal spends most of its time
+near two allowed ranges. An analog signal can take many values. PWM is digital switching whose duty
+cycle—the fraction of each period spent active—changes an average effect. Frequency answers how often
+a pattern repeats; duty cycle answers how much of each repetition is active.
+
+                               LEVEL
+
+
+
+
+                                                                        TIME
+
+
+
+  WAVEFORM DETECTIVE
+
+  Draw three PWM traces with the same period and duty cycles near one quarter, one half, and three
+  quarters. Without using a motor, represent their average effect by shading the active area. Then
+  draw two traces with equal duty cycle but different frequency. Explain what stayed the same and
+  what changed.
+
+
+
+A circuit needs a complete question
+“Is this pin high?” is incomplete until we know high relative to what reference, at which voltage, measured
+by which device, and at what time. “Can this output drive a motor?” is usually the wrong connection: a
+logic pin communicates intent to a properly designed driver; it does not supply traction power.
+
+  SAFETY CHECK
+
+  Use only an educator-approved, current-limited low-voltage learning kit. Disconnect power before
+  changing wiring. Never connect a classroom board to ROB, a wall outlet, an unknown battery, a
+  motor controller, or a high-current load.
+
+
+
+
+                                                    19
+MISSION 9
+
+
+Give a toy a new 5 V power
+path
+A USB cable can carry both electrical energy and information. In a common USB 2.0 cable, one conductor
+supplies about 5 V, one is the return path called GND, and two carry data. At the Maker Faire, a prepared
+cable lets us expose those roles and use the power pair to run a small toy that would normally use batteries.
+This is an experiment in energy conversion: the USB source provides electrical energy, the toy changes
+it into motion, light, or sound, and the ground conductor completes the circuit. It is also an experiment in
+evidence. Common color conventions are clues, not proof. A cable may use unexpected colors, contain
+extra wires, or omit data wires entirely, so a mentor must identify and measure the conductors before a
+learner connects a load.
+
+  UNPLUG, PREPARE, VERIFY, THEN ENERGIZE
+
+  Only an adult mentor cuts and strips a sacrificial cable, and the cable remains unplugged during all
+  cutting, stripping, separating, and insulating. Never cut a cable connected to a power bank, com-
+  puter, charger, or wall outlet. Use only the event’s approved 5 V current-limited USB source and a
+  known low-current toy rated for approximately 5 V. Never use ROB’s wiring, an unknown cable, USB-
+  C, a damaged power source, lithium cells, or a toy with batteries still installed. Stop for heat, odor,
+  noise, damaged insulation, or unexpected behavior.
+
+
+
+
+                                                    20
+CIRCUITS AND SIGNALS                                                                                                           VOLUME 2 - AGES 10-14
+
+
+
+
+   A mentor prepares and verifies the cable while it is unplugged. Red and black show the usual 5 V and GND convention; the meter, not the color,
+                                     establishes the result. The unused data conductors are insulated separately.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                              21 / 25
+CIRCUITS AND SIGNALS                                                                                       VOLUME 2 - AGES 10-14
+
+
+
+What is hiding inside the cable?
+The familiar colors in many USB 2.0 cables are:
+
+    USUAL                                      WHAT WE DO IN THIS LAB
+    COLOR               USUAL ROLE
+
+       Red                                     Mentor verifies it, adds current protection, and connects it to the toy’s
+                        VBUS, about +5 V       positive input.
+      Black                                    Mentor verifies it and connects it to the toy’s negative input.
+                        GND, return
+     White                                     Do not connect to the toy; insulate its end by itself.
+                        Data −
+     Green                                     Do not connect to the toy; insulate its end by itself.
+                        Data +
+   Bare foil,                                  Trim or secure it as the mentor’s cable plan specifies; never let it touch
+   braid, or            Shield                 a conductor.
+    drain
+
+   WHY TWO WIRES ARE ENOUGH FOR THIS TOY
+   The toy needs a potential difference across its two power terminals. The 5 V conductor is the outward
+   energy path and GND is the return path. The data pair is unnecessary for a simple power-only load.
+   This does not mean every USB device works from two wires: many devices communicate, negotiate
+   power, or require their original electronics.
+
+
+
+Match the source to the load
+Read the toy’s label or battery compartment before connecting anything. Three alkaline cells are com-
+monly described as 4.5 V, which may make some simple toys candidates for a carefully reviewed 5 V
+demonstration. A two-cell 3 V toy is not automatically a 5 V toy. The mentor must approve the voltage
+range and estimate or measure the running and startup current. Small motors can briefly draw much more
+current when starting or stalled.
+Power is the rate of energy transfer:
+                                                               P = V I.
+If a toy uses 0.20 A from a 5.0 V source, its input power is approximately
+
+                                                     P = (5.0 V)(0.20 A) = 1.0 W.
+
+The source’s current rating is a maximum capability, not current that it forces through every load. The load
+and circuit determine the current. Protection must still interrupt a short circuit, and the event source must
+tolerate the motor’s startup current without shutting down or overheating.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                          22 / 25
+CIRCUITS AND SIGNALS                                                                           VOLUME 2 - AGES 10-14
+
+
+
+Maker Faire mentor-and-learner procedure
+1. Choose and label. The mentor selects a sacrificial USB-A cable, a switch or clip lead set with covered
+   contacts, an inline fuse or other approved current protection, and a toy whose voltage and current
+   requirements are known. Mark the cable “5 V LAB ONLY.”
+2. Predict while unplugged. The learner sketches source → protection → switch → toy → return and
+   predicts which energy conversion will be visible.
+3. Open while unplugged. At an adult-only tool station, the mentor removes a short section of outer
+   jacket without nicking conductor insulation, separates the conductors, and exposes only the tiny length
+   needed at the two power leads. A USB breakout adapter is the preferred reusable alternative when
+   available.
+4. Isolate unused wires. The mentor caps the data conductors individually, secures any shield, adds
+   strain relief, and ensures no bare pieces can touch.
+5. Verify before the toy. With the prepared ends separated and enclosed against accidental contact, the
+   mentor connects the cable to the approved current-limited source and measures voltage and polarity
+   with a meter. Disconnect again before attaching the toy.
+6. Remove batteries. Confirm the toy’s batteries are absent. Never connect USB power in parallel with
+   installed cells or the toy’s charging circuit.
+7. Connect without power. Match verified +5 V to the toy’s positive terminal and verified GND to its
+   negative terminal. Cover every connection and provide strain relief. A mentor performs a continuity
+   and short-circuit check.
+8. Run a bounded trial. Place the toy so motion cannot catch hair, clothing, or fingers. Energize for a
+   few seconds, observe, then switch off and disconnect. The learner does not hold the toy or exposed
+   wiring while it is powered.
+9. Explain the evidence. Record measured voltage, observed motion/light/sound, and any change from
+   the prediction. Explain why opening either conductor stops the complete path.
+
+   THE LEARNER'S JOB
+
+   Point to the source, protection, switch, load, and return path. Before power is connected, predict
+   what will happen if the circuit is complete, the switch is open, or the polarity is reversed. The reverse-
+   polarity case is a paper prediction only; do not try it on the toy. After the safe trial, draw arrows for
+   conventional current and write one sentence about where the energy went.
+
+   MEASURE, DO NOT GUESS
+
+   Create a four-column lab record: question, prediction, measurement or observation, and expla-
+   nation. Include the source voltage before connection, voltage while the toy runs, current if the men-
+   tor’s approved setup measures it safely, and whether the source or toy became warm. A useful result
+   can be “the source shut down”—that is evidence of a limit, not permission to bypass protection.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              23 / 25
+MISSION 10
+
+
+Messages need grammar and
+time
+A serial frame is a sentence with a grammar. The receiver needs a start rule, fields, separators or lengths,
+valid character rules, numeric bounds, and an end rule. A checksum can detect many accidental changes
+but does not prove identity or permission. Authentication, authorization, freshness, and physical bounds
+answer different questions.
+
+                          CHECK
+ QUESTION
+                          Magic bytes, delimiter, or length-prefixed header.
+ Where        does   it
+ begin?
+                          Exact length, syntax, and optional error-detecting code.
+ Is it intact?
+                          Type, finite-number, range, and relationship checks.
+ Is each value mean-
+ ingful?
+                          Sequence number, timestamp, and expiring lease.
+ Is it new?
+                          Cryptographic authentication bound to a device identity.
+ Who sent it?
+                          Server-owned role and per-message authorization.
+ May that device do
+ this?
+                          Watchdog and defined safe state.
+ What if it stops?
+
+  HUMAN PARSER LAB
+
+  Invent a paper message for a two-light robot: start symbol, sequence number, red level, blue level,
+  and end symbol. Write five valid cards and five adversarial cards: missing field, duplicate sequence,
+  extra character, out-of-range value, and stale timestamp. Exchange decks. The receiver must reject
+  a whole invalid card without applying half of it.
+
+  STATE MACHINES BEAT WISHFUL PARSING
+  A parser can be modeled as states such as WaitingForStart, ReadingHeader, ReadingPayload, Vali-
+  dating, Accepted, and Rejected. Every byte causes one defined transition. Timeouts and oversize
+  lengths lead to Rejected. Only Accepted may update command state. Draw the transitions before
+  writing code; missing arrows expose ambiguous behavior.
+
+
+
+
+                                                       24
+CIRCUITS AND SIGNALS                                                                                                  VOLUME 2 - AGES 10-14
+
+
+
+Field words
+BAUD Symbol rate used by a serial link.                               string.
+CURRENT Rate of electric charge flow.                                 PWM Timed pulses whose duty cycle controls an
+                                                                      average effect.
+FRAME        One bounded protocol message.
+                                                                      RANGE CHECK A test that rejects values outside al-
+GROUND A chosen circuit reference node.                               lowed limits.
+IMU A motion-sensing unit containing inertial sen- SERIAL Sending symbols in sequence over a link.
+sors.
+                                                   WATCHDOG A deadline monitor for an expected up-
+NULL TERMINATOR The zero byte that ends a C date.
+
+   FINAL CHECK
+
+   Can you separate a power path from a signal path? Can you decode the seven fields? Can you
+   explain why a complete frame must be validated before any motor changes? Can you describe why
+   IR readings are evidence rather than truth? Then you are ready for Motion Workshop.
+
+
+
+
+Source trail: ROBOT Build/ROBOT_CEREBELLULAR_BASE_APP.ino, especially pin definitions, serial parser, IR checks, keepalive, and motor
+mapping; ROB_v3.pdf; gallery originals. Restricted vendor-document specifications were neither reproduced nor paraphrased.
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                     25 / 25
+

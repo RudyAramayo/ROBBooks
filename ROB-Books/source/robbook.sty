@@ -1,0 +1,315 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{robbook}[2026/08/02 ROB book visual system]
+
+\RequirePackage[letterpaper,top=0.69in,bottom=0.70in,inner=0.72in,outer=0.62in,headheight=21pt,headsep=10pt,footskip=26pt]{geometry}
+\RequirePackage{fontspec}
+\RequirePackage{graphicx}
+\RequirePackage[export]{adjustbox}
+\RequirePackage{tikz}
+\usetikzlibrary{positioning,calc}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{xcolor}
+\RequirePackage{tabularx}
+\RequirePackage{booktabs}
+\RequirePackage{array}
+\RequirePackage{enumitem}
+\RequirePackage{listings}
+\RequirePackage{fancyhdr}
+\RequirePackage{titlesec}
+\RequirePackage{hyperref}
+\RequirePackage{microtype}
+\RequirePackage{setspace}
+\RequirePackage{caption}
+\RequirePackage{multicol}
+\RequirePackage{ragged2e}
+\RequirePackage{ifthen}
+\RequirePackage{lastpage}
+
+\setmainfont{Avenir Next}
+\setsansfont{Avenir Next}
+\setmonofont{Menlo}[Scale=0.83]
+\newfontfamily\robdisplay{Futura}
+\newfontfamily\robcondensed{Avenir Next Condensed}
+
+\definecolor{ROBInk}{HTML}{111A22}
+\definecolor{ROBSteel}{HTML}{3F505D}
+\definecolor{ROBCream}{HTML}{F5E9D4}
+\definecolor{ROBPale}{HTML}{FFF9EE}
+\definecolor{ROBCyan}{HTML}{00A7C7}
+\definecolor{ROBAmber}{HTML}{F3A712}
+\definecolor{ROBRed}{HTML}{C84434}
+\definecolor{ROBGreen}{HTML}{2F8F67}
+\definecolor{ROBPurple}{HTML}{6657A8}
+\definecolor{ROBGray}{HTML}{D8D3C9}
+
+\providecolor{ROBAccent}{named}{ROBCyan}
+\colorlet{ROBAccent}{ROBCyan}
+\pagecolor{ROBPale}
+\color{ROBInk}
+
+\graphicspath{{../assets/photos/}{../assets/generated/}{../assets/slides/}}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5.5pt plus 1.5pt minus 1pt}
+\setlength{\emergencystretch}{1.5em}
+\linespread{1.03}
+\raggedbottom
+\setlist[itemize]{leftmargin=1.25em,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=1.45em,itemsep=2pt,topsep=3pt}
+\captionsetup{font=small,labelfont=bf,textfont=it,skip=4pt}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=ROBSteel,
+  urlcolor=ROBAccent,
+  citecolor=ROBSteel,
+  pdfborder={0 0 0}
+}
+
+\newcommand{\ROBVolumeLabel}{BUILDING R.O.B.}
+\newcommand{\ROBBookShortTitle}{MAKER FIELD GUIDE}
+\newcommand{\SetROBVolume}[2]{\renewcommand{\ROBVolumeLabel}{#1}\renewcommand{\ROBBookShortTitle}{#2}}
+\newcommand{\SetROBAccent}[1]{\colorlet{ROBAccent}{#1}}
+
+\AddToHook{shipout/background}{%
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[ROBPale] (current page.south west) rectangle (current page.north east);
+    \draw[ROBSteel!42,line width=0.55pt]
+      ([xshift=0.27in,yshift=0.27in]current page.south west)
+      rectangle
+      ([xshift=-0.27in,yshift=-0.27in]current page.north east);
+    \draw[ROBAccent,line width=1.5pt]
+      ([xshift=0.27in,yshift=-0.43in]current page.north west) -- ++(0.44in,0);
+    \draw[ROBAccent,line width=1.5pt]
+      ([xshift=-0.27in,yshift=0.43in]current page.south east) -- ++(-0.44in,0);
+    \foreach \x in {0.00,0.11,0.22}{
+      \fill[ROBSteel!55] ([xshift=\x in-0.48in,yshift=-0.41in]current page.north east) circle (1.05pt);
+    }
+  \end{tikzpicture}%
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\robcondensed\fontsize{8.5}{10}\selectfont\color{ROBSteel}\MakeUppercase{\ROBBookShortTitle}}
+\fancyhead[R]{\robcondensed\fontsize{8.5}{10}\selectfont\color{ROBAccent}\MakeUppercase{\ROBVolumeLabel}}
+\fancyfoot[L]{\robcondensed\fontsize{7.5}{9}\selectfont\color{ROBSteel}ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION}
+\fancyfoot[R]{\robdisplay\fontsize{9}{10}\selectfont\color{ROBAccent}\thepage\ / \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{ROBSteel!45}\leaders\hrule height \headrulewidth\hfill}}
+
+\newcommand{\ROBChapterPrefix}{Mission}
+\newcommand{\SetROBChapterPrefix}[1]{\renewcommand{\ROBChapterPrefix}{#1}}
+
+\titleformat{\chapter}[display]
+  {\robdisplay\bfseries\color{ROBInk}}
+  {\robcondensed\fontsize{12}{14}\selectfont\color{ROBAccent}\MakeUppercase{\ROBChapterPrefix\ \thechapter}}
+  {2pt}
+  {\fontsize{31}{33}\selectfont\raggedright}
+  [\vspace{3pt}{\color{ROBAccent}\titlerule[1.6pt]}]
+\titlespacing*{\chapter}{0pt}{-18pt}{14pt}
+
+\titleformat{\section}
+  {\robdisplay\bfseries\fontsize{18}{20}\selectfont\color{ROBInk}}
+  {}{0pt}{}
+  [\vspace{-2pt}{\color{ROBAccent!75}\titlerule[0.7pt]}]
+\titlespacing*{\section}{0pt}{15pt}{6pt}
+
+\titleformat{\subsection}
+  {\robcondensed\bfseries\fontsize{13}{15}\selectfont\color{ROBSteel}}
+  {}{0pt}{}
+\titlespacing*{\subsection}{0pt}{10pt}{3pt}
+
+\newtcolorbox{missionbox}[1][]{
+  enhanced,breakable,colback=ROBAccent!7,colframe=ROBAccent,
+  boxrule=0.8pt,arc=1mm,left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\robdisplay\bfseries,title={MISSION},#1
+}
+\newtcolorbox{buildbox}[1][]{
+  enhanced,breakable,colback=ROBGreen!7,colframe=ROBGreen,
+  boxrule=0.8pt,arc=1mm,left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\robdisplay\bfseries,title={MAKE IT},#1
+}
+\newtcolorbox{safetybox}[1][]{
+  enhanced,breakable,colback=ROBRed!7,colframe=ROBRed,
+  boxrule=1pt,arc=1mm,left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\robdisplay\bfseries,title={SAFETY CHECK},#1
+}
+\newtcolorbox{fieldnotebox}[1][]{
+  enhanced,breakable,colback=ROBAmber!8,colframe=ROBAmber!90!black,
+  boxrule=0.8pt,arc=1mm,left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\robdisplay\bfseries,title={FROM ROB'S BUILD LOG},#1
+}
+\newtcolorbox{placeholderbox}[1][]{
+  enhanced,breakable,colback=ROBGray!22,colframe=ROBSteel,
+  borderline west={3pt}{0pt}{ROBAccent},boxrule=0.45pt,arc=0mm,
+  left=9pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\robcondensed\bfseries,title={BUILDER INPUT NEEDED},#1
+}
+\newtcolorbox{conceptbox}[1][]{
+  enhanced,breakable,colback=ROBCyan!5,colframe=ROBSteel!70,
+  boxrule=0.55pt,arc=1mm,left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\robcondensed\bfseries,title={COMPUTER SCIENCE CONNECTION},#1
+}
+\newtcolorbox{advancedbox}[1][]{
+  enhanced,breakable,colback=ROBPurple!6,colframe=ROBPurple,
+  boxrule=0.7pt,arc=1mm,left=8pt,right=8pt,top=7pt,bottom=7pt,
+  fonttitle=\robcondensed\bfseries,title={ADVANCED CHANNEL},#1
+}
+
+\lstdefinestyle{robcode}{
+  basicstyle=\ttfamily\fontsize{8.2}{10}\selectfont,
+  keywordstyle=\color{ROBPurple}\bfseries,
+  commentstyle=\color{ROBGreen!70!black}\itshape,
+  stringstyle=\color{ROBRed!85!black},
+  numbers=left,numberstyle=\tiny\color{ROBSteel!75},numbersep=7pt,
+  frame=single,rulecolor=\color{ROBSteel!45},backgroundcolor=\color{ROBGray!18},
+  breaklines=true,breakatwhitespace=false,showstringspaces=false,
+  columns=fullflexible,keepspaces=true,tabsize=2,
+  xleftmargin=6pt,xrightmargin=4pt,aboveskip=6pt,belowskip=6pt
+}
+\lstset{style=robcode}
+
+\newcommand{\ROBTitle}[5]{%
+  \begin{titlepage}
+  \thispagestyle{empty}
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[ROBInk] (current page.south west) rectangle (current page.north east);
+    \node[inner sep=0] at (current page.center) {\includegraphics[height=\paperheight]{#5}};
+    \fill[ROBInk,opacity=0.86] (current page.north west) rectangle ([yshift=-3.52in]current page.north east);
+    \fill[ROBInk,opacity=0.80] ([yshift=1.34in]current page.south west) rectangle (current page.south east);
+    \draw[ROBAccent,line width=3pt] ([xshift=0.52in,yshift=-0.48in]current page.north west) -- ([xshift=-0.52in,yshift=-0.48in]current page.north east);
+    \draw[ROBAccent,line width=1.4pt] ([xshift=0.52in,yshift=1.27in]current page.south west) -- ([xshift=-0.52in,yshift=1.27in]current page.south east);
+    \node[anchor=north west,text width=7.25in,align=left] at ([xshift=0.56in,yshift=-0.67in]current page.north west) {\robcondensed\fontsize{12}{14}\selectfont\color{ROBAccent}\MakeUppercase{#1}\\[8pt]\robdisplay\bfseries\fontsize{33}{34}\selectfont\color{white}#2\\[7pt]\robcondensed\fontsize{16}{19}\selectfont\color{ROBCream}#3};
+    \node[anchor=south west,text width=7.1in,align=left] at ([xshift=0.56in,yshift=0.52in]current page.south west) {\robcondensed\fontsize{10.5}{12}\selectfont\color{ROBAccent}\MakeUppercase{#4}\\[4pt]\robcondensed\fontsize{9}{11}\selectfont\color{ROBCream}Rodolfo Aramayo / Orbitus Robotics\quad -\quad First Maker Faire Edition};
+  \end{tikzpicture}
+  \null
+  \end{titlepage}
+}
+
+\newcommand{\ROBFrontMatter}[3]{%
+  \thispagestyle{empty}
+  {\robdisplay\bfseries\fontsize{24}{27}\selectfont\raggedright #1\par}
+  {\robcondensed\fontsize{13}{16}\selectfont\color{ROBAccent}\raggedright #2\par}
+  \vspace{12pt}
+  #3
+  \vfill
+  {\small\color{ROBSteel}
+  Copyright \copyright\ 2026 Rodolfo Aramayo / Orbitus Robotics. Photographs are from the private ROB build archive unless otherwise noted. The generated frontispiece is original artwork derived from a ROB reference photograph. This independent educational project is not affiliated with or endorsed by any film studio or franchise owner. Product and company names remain the property of their respective owners.\par
+  \vspace{6pt}
+  First evidence-based draft: 2 August 2026. Build details marked \textbf{Builder input needed} are deliberate placeholders for the builder to complete.}
+  \clearpage
+}
+
+\newcommand{\ROBSeriesMap}[1]{%
+  \section*{The Building R.O.B. library}
+  \begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{0.82in} X}
+    VOLUME 1 & \textit{Meet ROB: A Robot Is a Team of Systems} - ages 8-12\\[4pt]
+    VOLUME 2 & \textit{Circuits and Signals with ROB} - ages 10-14\\[4pt]
+    VOLUME 3 & \textit{Motion Workshop: Treads, Gears, and Fabrication} - ages 10-15\\[4pt]
+    VOLUME 4 & \textit{Mission Control: Arduino, Mac, Networks, and Vision} - ages 12-16\\[4pt]
+    FIELD MANUAL & \textit{Building R.O.B.: The Complete Maker's Field Manual} - advanced builders\\
+  \end{tabularx}
+  \vspace{8pt}
+  \begin{missionbox}[title={HOW TO USE THIS BOOK}]
+  #1
+  \end{missionbox}
+}
+
+\newcommand{\ROBPhoto}[3][0.43\textheight]{%
+  \begin{center}
+    \includegraphics[width=\linewidth,height=#1,keepaspectratio]{#2}\\[-1pt]
+    \begin{minipage}{0.94\linewidth}\small\itshape\color{ROBSteel}#3\end{minipage}
+  \end{center}
+}
+
+\newcommand{\ROBPhotoTwo}[4]{%
+  \begin{center}
+  \begin{minipage}[t]{0.485\linewidth}
+    \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{#1}
+    {\scriptsize\itshape\color{ROBSteel}#2}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.485\linewidth}
+    \includegraphics[width=\linewidth,height=0.29\textheight,keepaspectratio]{#3}
+    {\scriptsize\itshape\color{ROBSteel}#4}
+  \end{minipage}
+  \end{center}
+}
+
+\newcommand{\ROBChapterPhoto}[3]{%
+  \clearpage
+  \thispagestyle{empty}
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[inner sep=0] at (current page.center) {\adjustbox{min size={\paperwidth}{\paperheight}}{\includegraphics[width=\paperwidth]{#3}}};
+    \fill[ROBInk,opacity=0.84] (current page.south west) rectangle ([yshift=2.45in]current page.south east);
+    \draw[ROBAccent,line width=2.4pt] ([xshift=0.5in,yshift=2.39in]current page.south west) -- ([xshift=-0.5in,yshift=2.39in]current page.south east);
+    \node[anchor=south west,text width=7.25in,align=left] at ([xshift=0.56in,yshift=0.62in]current page.south west) {\robcondensed\fontsize{11}{13}\selectfont\color{ROBAccent}\MakeUppercase{#1}\\[6pt]\robdisplay\bfseries\fontsize{29}{31}\selectfont\color{white}#2};
+  \end{tikzpicture}
+  \null
+  \clearpage
+}
+
+\newcommand{\ROBFact}[2]{\textcolor{ROBAccent}{\robcondensed\bfseries\MakeUppercase{#1}}\quad #2}
+\newcommand{\ROBSource}[1]{{\scriptsize\color{ROBSteel}\raggedright\sloppy\textit{Source trail: #1}\par}}
+\newcommand{\ROBPlaceholder}[1]{\begin{placeholderbox}#1\end{placeholderbox}}
+\newcommand{\ROBStatus}[2]{\tcbox[on line,colback=#1!10,colframe=#1,boxrule=0.6pt,arc=0.8mm,left=3pt,right=3pt,top=1pt,bottom=1pt]{\robcondensed\bfseries\scriptsize\MakeUppercase{#2}}}
+\newcommand{\Implemented}{\ROBStatus{ROBGreen}{Implemented}}
+\newcommand{\Commanded}{\ROBStatus{ROBCyan}{Commanded}}
+\newcommand{\Experimental}{\ROBStatus{ROBAmber}{Experimental / optional}}
+\newcommand{\Legacy}{\ROBStatus{ROBSteel}{Legacy}}
+\newcommand{\Planned}{\ROBStatus{ROBPurple}{Planned}}
+\newcommand{\Unverified}{\ROBStatus{ROBRed}{Builder verification needed}}
+
+\newcommand{\ROBSimpleSystemDiagram}{%
+  \begin{center}
+  \begin{tikzpicture}[node distance=6mm and 7mm, every node/.style={font=\robcondensed\small,align=center}]
+    \tikzstyle{sys}=[draw=ROBSteel,fill=ROBGray!24,rounded corners=1mm,minimum width=1.08in,minimum height=0.52in]
+    \node[sys] (sense) {SENSE\\camera + IR + IMU};
+    \node[sys,right=of sense] (think) {THINK\\Mac mini + apps};
+    \node[sys,right=of think] (act) {ACT\\motors + arms};
+    \draw[->,very thick,ROBAccent] (sense) -- (think);
+    \draw[->,very thick,ROBAccent] (think) -- (act);
+    \draw[->,very thick,ROBAmber!90!black,bend left=25] (act.south) to node[below,font=\scriptsize]{feedback changes the next choice} (sense.south);
+  \end{tikzpicture}
+  \end{center}
+}
+
+\newcommand{\ROBControlStackDiagram}{%
+  \begin{center}
+  \begin{tikzpicture}[node distance=5.5mm,every node/.style={font=\robcondensed\small,align=center,minimum width=5.45in,minimum height=0.42in,draw=ROBSteel,rounded corners=1mm}]
+    \node[fill=ROBCyan!10] (human) {Operator intent - iPhone, Apple Watch, or Vision Pro controller};
+    \node[below=of human,fill=ROBPurple!8] (network) {Authenticated control session - pairing, TLS/QUIC, roles, sequence, applicable freshness};
+    \node[below=of network,fill=ROBAmber!10] (cerebro) {Cerebro on macOS - UI, coordination, cameras, speech, autonomy gates};
+    \node[below=of cerebro,fill=ROBGreen!9] (serial) {USB serial heartbeat - fixed base command frame};
+    \node[below=of serial,fill=ROBRed!8] (arduino) {Arduino base controller - PWM, direction, brakes, actuator, IMU, IR};
+    \node[below=of arduino,fill=ROBGray!28] (physical) {Physical plant - treads, flippers, linear actuator (installed role to verify), battery and mechanics};
+    \draw[->,very thick,ROBAccent] (human) -- (network);
+    \draw[->,very thick,ROBAccent] (network) -- (cerebro);
+    \draw[->,very thick,ROBAccent] (cerebro) -- (serial);
+    \draw[->,very thick,ROBAccent] (serial) -- (arduino);
+    \draw[->,very thick,ROBAccent] (arduino) -- (physical);
+  \end{tikzpicture}
+  \end{center}
+}
+
+\newcommand{\ROBStopChainDiagram}{%
+  \begin{center}
+  \begin{tikzpicture}[node distance=5mm and 5mm,every node/.style={font=\robcondensed\scriptsize,align=center}]
+    \tikzstyle{softstop}=[draw=ROBAmber!90!black,fill=ROBAmber!8,rounded corners=1mm,minimum width=1.18in,minimum height=0.55in]
+    \tikzstyle{hardstop}=[draw=ROBRed,fill=ROBRed!8,rounded corners=1mm,minimum width=1.65in,minimum height=0.55in]
+    \node[softstop] (intent) {input released\\or manual stop};
+    \node[softstop,right=of intent] (lease) {controller-specific\\lease / watchdog};
+    \node[softstop,right=of lease] (watch) {Cerebro 0.6 s\\freshness gate};
+    \node[softstop,right=of watch] (dead) {Arduino serial\\deadman};
+    \node[softstop,right=of dead] (zero) {commanded stop;\\result must be tested};
+    \draw[->,thick,ROBAmber!90!black] (intent) -- (lease);
+    \draw[->,thick,ROBAmber!90!black] (lease) -- (watch);
+    \draw[->,thick,ROBAmber!90!black] (watch) -- (dead);
+    \draw[->,thick,ROBAmber!90!black] (dead) -- (zero);
+    \node[hardstop,below=8mm of watch] (hard) {required verified physical E-stop};
+    \node[hardstop,right=10mm of hard] (isolate) {independent contactor / controller stop path};
+    \draw[->,very thick,ROBRed] (hard) -- node[above,font=\robcondensed\tiny,text=ROBRed]{independent of software} (isolate);
+  \end{tikzpicture}
+  \end{center}
+}
+
+\endinput

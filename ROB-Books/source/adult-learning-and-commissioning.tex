@@ -1,0 +1,61 @@
+\chapter{Teach the architecture without hiding the hazards}
+
+The youth sequence and public website should use the same conceptual spine as the engineering record: system boundary; energy versus information; sense--estimate--plan--validate--act--measure; mechanics and operating envelope; message grammar and freshness; identity and authority; progressive evidence. The explanation may become simpler, but it must not become false.
+
+\section{A spiral curriculum for ROB}
+
+Return to the same ideas with increasing precision. Ages 8--12 classify inputs, outputs, energy, structure, and feedback using paper models. Ages 10--14 graph signals, parse bounded messages, and implement current-limited LED watchdogs. Ages 10--15 model forces, ratios, tolerances, and test ladders. Ages 12--16 reason about state machines, networking, trust, leases, perception limits, and bounded autonomy. Adult mentors connect each model to dated evidence and unresolved hazards.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.15in} X X}
+\toprule
+LEARNING MOVE & YOUTH EVIDENCE & ENGINEERING EVIDENCE\\
+\midrule
+Observe & annotated photo or sensor-map marks & calibrated log with timestamp and revision\\
+Model & block diagram, graph, state cards & interface control document or executable model\\
+Predict & written normal/change/failure result & acceptance criterion with uncertainty\\
+Test & paper, simulation, or low-energy kit & progressive restrained test with hazard controls\\
+Explain & claim linked to observation & traceable result, exception, and sign-off\\
+Revise & changed diagram and reason & controlled design revision and regression test\\
+\bottomrule
+\end{tabularx}
+
+\section{Facilitation pattern}
+
+Begin with a phenomenon, not a vocabulary list. Ask learners to notice; collect competing models without ridicule; choose a measurable prediction; test at the lowest safe energy; compare result and prediction; then introduce precise language. End by asking what remains unknown. This preserves curiosity while teaching that uncertainty is an engineering result.
+
+\begin{safetybox}
+Do not turn ROB into a youth build activity. The public curriculum must not invite access to traction batteries, mains or inverter circuits, drivetrain hardware, chains, machine tools, actuators, live controllers, or unrestricted network commands. Demonstrations use immobilized hardware, simulation, paper, or separately reviewed low-energy kits.
+\end{safetybox}
+
+\chapter{Commission the control path as one safety-related system}
+
+The transport should be verified from discovery through physical response. The current secure path uses Bonjour discovery, QUIC/TLS, exact certificate pinning, reciprocal pairing proof, a server-owned device role, framed application messages, controller freshness, Cerebro's base heartbeat ownership, and the Arduino's independent serial timeout. Each layer needs its own test because success at one layer cannot establish another.
+
+\section{Connection and enrollment matrix}
+
+Record clean enrollment, reconnect after launch-order reversal, local-network permission denial, missing Bonjour TXT metadata, wrong certificate, wrong secret, revoked device, duplicated credential, wrong role, stale sequence, Wi-Fi loss, and server restart. Capture both endpoint states and verify that no application callback occurs before authentication completes.
+
+\begin{fieldnotebox}[title={2026-08-10 TRANSPORT LESSON}]
+During live commissioning, iOS discovered the sole \texttt{\_robctl.\_udp} service but did not surface its Bonjour TXT record. The controller now permits a connection attempt only for that sole metadata-less candidate; the exact certificate pin and reciprocal proof still fail closed for another robot. A second issue exposed QUIC anti-amplification behavior: Cerebro attempted to send the challenge before the client address had enough validation traffic. The protocol now begins with a padded client pairing-hello carrying a registry-checked device identifier, then sends the fresh challenge. Treat this as a dated implementation note pending tagged release and regression fixtures.
+\end{fieldnotebox}
+
+\section{Measure the whole stop chain}
+
+Instrument controller issue time, validated receipt, Cerebro neutralization, last serial frame, driver output, tread speed, and complete physical stop. Inject joystick release, app suspension, cable removal, malformed frames, serial noise, stale sensors, helper failure, and E-stop activation separately. Report both software state and measured motion. A green authenticated-link indicator proves identity and readiness; it does not prove command freshness, brake behavior, or stopping distance.
+
+\begin{advancedbox}[title={RELEASE ARTIFACTS}]
+Archive source commits, pairing protocol version, component configuration, redacted logs, fixture results, hazard review, calibration set, operator checklist, known limitations, and rollback procedure. Make the public book and web lesson point to a release record rather than to a developer's working tree.
+\end{advancedbox}
+
+\chapter{Capture the builder's oral history}
+
+The future first-person story should be dictated as evidence-rich scenes, not forced into a polished chronology in one sitting. Record separate sessions for origin, early moving base, body and character, power and electronics, fabrication, sensing and software, public demonstrations, failures, collaborators, and the present mission. Preserve the speaker's exact recording privately; produce a reviewed transcript; mark uncertain dates; and link claims to photographs, commits, drawings, or test records.
+
+\section{Interview prompts}
+
+For each revision ask: What problem were you trying to solve? What did you believe then? What did you build? What surprised or failed? What changed next? Who helped? Which artifact proves the memory? What would you tell a child, and what would you tell an experienced builder? Do not fill technical placeholders from recollection when a measurement is required; use the story to identify the measurement or archive item to find.
+
+\begin{missionbox}[title={DICTATION WORKFLOW FOR THE NEXT EDITION}]
+Record one 20--30 minute chapter at a time. Start each with date range and visible artifact. Transcribe, separate direct memory from later interpretation, flag names and permissions, fact-check technical claims, then return the edited passage to the builder for voice and accuracy approval. Only approved passages enter the narrative edition.
+\end{missionbox}
+

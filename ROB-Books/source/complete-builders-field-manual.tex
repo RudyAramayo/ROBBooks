@@ -1,0 +1,909 @@
+\documentclass[10pt,openany]{book}
+\usepackage{robbook}
+\SetROBAccent{ROBRed}
+\SetROBVolume{COMPLETE FIELD MANUAL - ADVANCED}{BUILDING R.O.B.}
+\SetROBChapterPrefix{Chapter}
+
+\begin{document}
+\ROBTitle{Building R.O.B. - Complete Field Manual}{BUILDING R.O.B.}{The complete maker's field manual: fabrication, circuits, firmware, Mac software, perception, control, and operations}{Advanced evidence draft with builder placeholders}{2025-rob-side-full-body.jpg}
+
+\ROBFrontMatter{An honest build record}{Complete in scope, intentionally incomplete where the archive cannot prove the detail.}{%
+This manual connects ROB's 95-page design presentation, private construction-photo archive, Arduino base firmware, motor references, and current Mac, iPhone, Watch, Vision Pro, lidar, camera, speech, autonomy, and AI source trees.
+
+It is a first evidence-based edition, not a stamped mechanical design, production wiring schematic, safety certification, or permission to energize the machine. Use the status labels on every subsystem. Replace each Builder input needed box with measured, reviewed information as the book iterates.
+
+\begin{center}
+\includegraphics[height=0.27\textheight]{rob-used-future-frontispiece.png}\\[-1pt]
+{\scriptsize\itshape Original illustrated portrait inspired by ROB; it is visual storytelling, not engineering evidence.}
+\end{center}
+}
+
+\section*{Evidence-status legend}
+
+\begin{tabularx}{\textwidth}{p{1.75in} X}
+\Implemented & Confirmed in the inspected current source or directly visible hardware evidence.\\[5pt]
+\Commanded & Software sends a value, but this review did not measure the physical outcome.\\[5pt]
+\Experimental & Present behind a gate, dependent on external hardware, or still under active development.\\[5pt]
+\Legacy & Retained compatibility or historical behavior, not the preferred new design.\\[5pt]
+\Planned & Described in a slide, TODO, protocol, or interface without proof of completed execution.\\[5pt]
+\Unverified & The builder must measure, reconcile, or supply the missing record.\\
+\end{tabularx}
+
+\begin{safetybox}[title={NON-NEGOTIABLE SAFETY BOUNDARY}]
+ROB combines large batteries, high-current brushless motors, chains, treads, flippers, linear motion, long arms, machine-tool fabrication, networking, cameras, and software-controlled movement. Qualified adults must own the hazard analysis, power protection, emergency-stop architecture, workholding, guarding, lifting, test perimeter, and public operation. Never infer a safe circuit or fabrication dimension from a photograph. Never treat an ordinary IR sensor, software timeout, or cloud model as safety-rated protective equipment.
+\end{safetybox}
+
+\section*{Source snapshot and publication cautions}
+
+The software was inspected on 2 August 2026. Cerebro contains uncommitted Gemini and autonomy changes, so publication should record a tag or commit after the builder selects a release. Original gallery photographs were converted with orientation applied and metadata stripped. Attendee photographs, especially images containing children, require release review or careful exclusion.
+
+The archived B-COMMAND document prohibits reproduction without permission, and the HengDrive outline is marked proprietary and confidential. This manual does not reproduce or paraphrase their specifications. It mentions the motor-family label visible in a builder-owned photograph only to identify the open evidence gap. Obtain permission and a current authorized public datasheet before publication.
+
+\tableofcontents
+\clearpage
+\mainmatter
+
+\part{Intent and architecture}
+
+\ROBChapterPhoto{Chapter 1}{The robot as a long-running experiment}{2025-rob-face-portrait.jpg}
+
+\chapter{Design history and current scope}
+
+ROB is not one frozen machine. The archive shows a succession of working prototypes, public demonstrations, repair decisions, new sensors, drivetrain modifications, camera changes, arm work, and software migrations. A useful build manual must preserve that timeline because the answer to ``How is it built?'' depends on the date and subsystem.
+
+\section{Evidence-based chronology}
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{0.72in} X X}
+\toprule
+PERIOD & VISIBLE OR DOCUMENTED STATE & EDITORIAL INTERPRETATION\\
+\midrule
+2019 & Functional black tracked robot with screen torso, earlier camera head, exposed arms, and movement demonstrations. & An integrated early prototype existed; exact internal revision and specifications are not documented.\\
+2020-2021 & Open electronics, camera/head revisions, wooden base templates, tread geometry, battery layout, and plans for CNC aluminum. & The builder was using accessible materials to resolve packaging and mechanics before a final enclosure.\\
+2022 & Mini computer and serial cabling, base brackets, drilling, actuator hardware, arm electronics, OAK-D camera, and public appearances. & Major integration work joined mechanics with onboard computing and sensing.\\
+2023 & Public use and head/camera refinements, with fewer construction photographs. & Operational experience likely drove requirements, but the archive does not link each change to a written test.\\
+2024 & Sprocket-area machining, chain clearance, tread measurement, internal rewiring, batteries, actuator, voltage gauge, and controller board. & A substantial drivetrain and base-serviceability revision is strongly documented.\\
+2025 & Shoulder and neck gearing, arm removal/reassembly, cable labels, emergency-stop hardware, Mac software, vision, mapping, and chess reach studies. & The current visual identity and advanced software experiments are visible, while final calibration remains in progress.\\
+\bottomrule
+\end{tabularx}
+
+\ROBPhotoTwo{2019-rob-front-corner.jpg}{The 2019 machine already joins a tracked base, arms, sensors, and operator-facing character.}{2025-rob-side-full-body.jpg}{A 2025 side view shows the newer spherical camera head, speaker face, neck mechanism, articulated arm, and tracked base.}
+
+\section{Design principles that recur}
+
+Across the sources, several durable principles emerge:
+
+\begin{itemize}
+  \item use prototypes to discover packaging and load problems;
+  \item separate high-level intent from low-level actuator values;
+  \item keep independent stop layers close to each source of failure;
+  \item isolate optional cameras, Python helpers, video, speech, and AI from core motion control;
+  \item preserve service access and label wiring;
+  \item make unsupported capability fail honestly;
+  \item collect evidence before calling a proposal implemented.
+\end{itemize}
+
+\section{Current subsystem status at a glance}
+
+\begin{tabularx}{\textwidth}{p{1.42in} p{1.4in} X}
+\toprule
+SUBSYSTEM & STATUS & EVIDENCE-BASED SUMMARY\\
+\midrule
+Tracked base & \Implemented & Physical treads, chains, drive motors, brackets, batteries, and actuator are visible across multiple revisions. Exact final dimensions and performance are missing.\\
+Arduino base & \Implemented & Historical firmware parses a seven-field frame and commands treads, flipper, and actuator; it reads IMU and IR data. It has significant safety and parser defects.\\
+Flipper motion & \Commanded & Firmware and controller paths exist. Final geometry, limits, load rating, and measured motion are unverified.\\
+Torso / third-wheel actuator & \Commanded & Serial control and physical actuator evidence exist, but the presentation assigns conflicting roles across revisions.\\
+Mac mini / Cerebro & \Implemented & Central macOS coordination, serial, camera, speech, secure control, and autonomy infrastructure exist in source.\\
+Phone controller & \Implemented & Established control UI, pairing, autonomy, and action-console paths exist.\\
+Watch controller & \Implemented & Freshness-checked motion and speech intent relay through the phone.\\
+Vision Pro controller & \Experimental & Secure control adapter, simulator, leases, and separate H.264 viewing path exist; hardware deployment still needs release validation.\\
+RGB-D camera & \Experimental & Supervised DepthAI helper and aligned RGB/depth transport exist; device and environment validation remain necessary.\\
+RPLidar & \Experimental & Typed scan/map publication exists; native Mac deployment of the proprietary framework remains unresolved.\\
+Arms / neck & \Commanded & Servo, Amber script, and keyframe paths exist; calibration, feedback, limits, and collision safety are incomplete.\\
+Gemini actions & \Experimental & The multimodal session defaults off, while audio/video default on once that session is enabled unless separately disabled. The action tool is separately default-off; only \texttt{stop\_motion} has a partial local executor.\\
+\bottomrule
+\end{tabularx}
+
+\ROBPlaceholder{Builder narrative: add the project's origin, meaning of R.O.B., design goals, major failures, people and shops who contributed, dates of each hardware revision, and which public demonstrations changed the design.}
+
+\ROBChapterPhoto{Chapter 2}{System boundaries and ownership}{2024-open-tracked-base.jpg}
+
+\chapter{Whole-robot architecture}
+
+\ROBControlStackDiagram
+
+\section{Physical and information paths}
+
+The robot contains two overlapping architectures:
+
+\begin{enumerate}
+  \item The \textbf{energy architecture} moves stored electrical energy through protection, conversion, controllers, conductors, and motors.
+  \item The \textbf{information architecture} moves intent and measurements through interfaces, authentication, state machines, protocols, adapters, firmware, and feedback.
+\end{enumerate}
+
+The two paths meet at motor controllers and actuators. Keeping their documentation separate prevents a common error: assuming that a correct data value proves the high-current circuit is safe, or that a correctly wired motor proves the command path is authorized.
+
+\section{Desired component ownership map}
+
+The table below states the target responsibility split. It is a design contract, not a claim that every current implementation already satisfies every responsibility; gaps must remain visible in the subsystem status and verification chapters.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.32in} X X}
+\toprule
+OWNER & PRIMARY RESPONSIBILITY & MUST NOT ASSUME\\
+\midrule
+Human operator & Select mode, maintain line of sight and perimeter, respond to hazard, own start and stop. & That autonomy, sensors, or remote viewers replace supervision.\\
+Controller app & Capture fresh intent, apply its client-specific lease or watchdog, present authoritative mode and stop state. & That sending a packet proves movement occurred.\\
+Secure transport & Authenticate device, authorize role, bound and order messages, reject replay and stale sessions. & That an authenticated controller's payload is physically safe.\\
+Cerebro & Arbitrate control master, coordinate subsystems, validate high-level actions, adapt to hardware protocols. & That optional camera, AI, or lidar availability can weaken manual stop.\\
+Arduino base & Target: accept only complete bounded base commands, own a local deadline, and drive low-level pins and actuator serial. & That the current historical parser already meets this target, or that any arriving byte is a valid command or heartbeat.\\
+Motor electronics & Enforce rated electrical behavior, current limits, and safe-start rules. & That software alone prevents wiring or load faults.\\
+Mechanical system & Carry loads, constrain motion, guard hazards, survive declared environments. & That commanded direction, speed, or stop equals measured behavior.\\
+\bottomrule
+\end{tabularx}
+
+\section{Sense-plan-act without surrendering authority}
+
+\ROBSimpleSystemDiagram
+
+Manual control, deterministic autonomy, and AI-assisted behavior can all use the same physical plant, but they should enter through explicit authority gates. \Experimental\quad Current social-roam autonomy consumes fresh filtered lidar scans and, near 82 percent of its configured activation radius, attempts to turn and drive toward its origin. That behavior is not a physical geofence and does not prove containment. Optional Gemini tools declare high-level action proposals, but most do not yet have executors. Neither path should bypass local validation, the control-master state, the Arduino deadline, or the physical emergency stop.
+
+\begin{advancedbox}
+Document safety as a control hierarchy, not a list of features. For every hazard, name the prevention, detection, mitigation, independent stop, diagnostic coverage, proof test, and residual risk. Ordinary cameras, IR sensors, and software timers may support risk reduction but are not automatically safety-rated.
+\end{advancedbox}
+
+\ROBPlaceholder{Create an author-approved current block diagram showing installed batteries, disconnect and protection, DC buses, converters, Mac mini, any Raspberry Pi units, the Arduino-compatible base controller with exact model, motor controllers, Maestro, Amber arm controllers, cameras, lidar host, router, and every external port. Mark planned and removed hardware separately.}
+
+\part{Mechanical build}
+
+\ROBChapterPhoto{Chapter 3}{Chassis, treads, and drivetrain}{2024-nearly-assembled-base.jpg}
+
+\chapter{Build the mobile base}
+
+The base is the foundation for every later system. Presentation pages 3-9 show left and right wooden side templates, motor openings, wheel mounts, a battery opening, and the desire to reproduce the form in black powder-coated aluminum. Pages 10-20 document the tread tensioner, wheels, sprockets, and shaft collars. Later gallery photographs show extensive metal and wiring revisions.
+
+\section{Start from interfaces}
+
+Before drawing the final plate, freeze or explicitly version these interfaces:
+
+\begin{itemize}
+  \item tread-frame mounting points and full motion envelope;
+  \item drive and idler shaft positions, diameters, retention, and bearing supports;
+  \item motor face, shaft, and cable clearances;
+  \item chain line, sprocket sizes, guard volume, and service access;
+  \item flipper shaft, torque path, rear/front location, and end stops;
+  \item battery envelope, restraint, protection access, and removal path;
+  \item actuator mounts and full extension/retraction envelope;
+  \item lifting, tie-down, stand, cover, and inspection points.
+\end{itemize}
+
+\ROBPhotoTwo{2022-drive-assembly-rear.jpg}{A centered rear view shows the drive assembly between two treads.}{2024-sprocket-machined-opening.jpg}{A later sprocket view shows why chain-line and plate clearance need dimensioned control.}
+
+\section{Tread tension and support}
+
+The presentation describes aluminum bars with threaded holes that pull the tread assembly outward, free-spinning wheels retained on shafts, and a heavy-load problem that led to improvised HDPE and skateboard-bearing supports. These are valuable design clues but not a final service specification.
+
+Record a repeatable tension method. A statement such as ``tight enough'' cannot be audited. Depending on the tread system, the specification might be deflection under a known force, tensioner position, exposed thread length, torque plus verification, or the manufacturer's procedure.
+
+\ROBPhotoTwo{2022-chain-sprocket-interior.jpg}{A large sprocket and chain are visible inside the base.}{2024-chain-drive-closeup.jpg}{The close chain path illustrates alignment, abrasion, and guarding concerns.}
+
+\begin{safetybox}
+Chains, sprockets, and treads create drawing-in, nip, shear, and entanglement hazards. Disconnect and verify power, block stored motion, prevent unintended rolling, and use fixed guards before hands enter the mechanism.
+\end{safetybox}
+
+\section{Flipper revision and third-wheel concept}
+
+Presentation pages 21-26 say the flippers moved from the front wheels to the rear after a design revision. The deck also records a one-degree bar offset, cotter-pin concerns, and a proposed perpendicular third wheel raised by an actuator to reduce tread scrub while turning.
+
+\ROBPhoto[0.54\textheight]{rob-v3-page-23.jpg}{The annotated upside-down prototype on presentation page 23 captures the third-wheel idea and identifies a design revision. It is not a final drawing.}
+
+\Planned\quad Treat the third wheel as a separate design project until the builder supplies the geometry, load path, stability analysis, actuator selection, ground clearance, deployed/retracted sensing, failure response, and test evidence.
+
+\section{Provisional assembly sequence to verify}
+
+\begin{enumerate}
+  \item inspect plate dimensions, datum features, threads, deburring, and finish;
+  \item install bearings, shaft supports, and fixed structural brackets;
+  \item trial-fit tread frames, drive motors, shafts, sprockets, and chains without power;
+  \item measure shaft parallelism, sprocket coplanarity, tension range, and full-motion clearance;
+  \item install flipper shaft and drivetrain with temporary manual limits;
+  \item fit actuator brackets through the full stroke with the load supported independently;
+  \item install guarded power components and labeled harnesses only after mechanical inspection;
+  \item add batteries using a rated lift and restraint plan;
+  \item perform continuity, insulation, polarity, and protective-device checks;
+  \item test one actuator at a time on stands under a bounded current and command limit;
+  \item install guards and covers before floor testing.
+\end{enumerate}
+
+\ROBPlaceholder{Supply final chassis length, width, plate thicknesses and alloys, tread model, wheel and sprocket data, shafts, bearings, collars, chain, tension procedure, flipper dimensions, fastener schedule, torque values, guard drawings, total mass, center of mass, and as-built CAD.}
+
+\ROBChapterPhoto{Chapter 4}{Torso, body, head, and arms}{2025-rob-side-full-body.jpg}
+
+\chapter{Build above the base}
+
+The upper structure must hold cameras and arms while surviving acceleration, arm moments, cable pull, transport, and public interaction. The presentation openly records weak prototype areas: body-to-torso joints pulling on metal, bent L brackets, and wooden parts glued and screwed together.
+
+\section{Body-to-torso connection}
+
+Presentation pages 56-60 show the connection under load and call for mechanical improvement. A final design should provide:
+
+\begin{itemize}
+  \item a defined load path into the chassis;
+  \item bearing surfaces or pivots sized for radial, axial, and moment loads;
+  \item hard stops and motion limits independent of software;
+  \item retention that remains safe after one fastener loosens, where practicable;
+  \item inspection access and visible wear indicators;
+  \item cable routing that does not become the motion stop;
+  \item a transport lock that does not depend on powered holding torque.
+\end{itemize}
+
+\section{Body rotation and cable continuity}
+
+Presentation page 67 proposes a 36 mm motor and a body bearing with rotation constrained from $-\pi$ to $+\pi$ instead of using a slip ring. A nearby restricted B-COMMAND file exists, but its contents are excluded and the firmware and photographs do not prove that the associated component is installed.
+
+\Planned\quad A rotating body requires a controlled cable-wrap budget or an approved rotary interface, home/index sensing, hard and soft limits, collision envelopes, and a recovery plan after position loss.
+
+\ROBPhotoTwo{2025-rear-electronics-bay.jpg}{The rear bay shows how upper-body motion can pull on a dense harness.}{2025-labeled-cables.jpg}{Temporary labels aid teardown, but permanent routing must account for repeated flex and abrasion.}
+
+\section{Head and neck}
+
+The archive spans an earlier spherical multicamera head, an Insta360 Pro II concept, OAK-D sensors, a later spherical head, and a 2025 geared neck mechanism. The presentation calls the earlier hobby-servo arrangement inadequate and asks for tilt plus full rotation.
+
+\ROBPhotoTwo{2022-oakd-depth-camera.jpg}{The OAK-D stereo camera is a distinct sensing module, not the whole head design.}{2025-neck-gear-train.jpg}{The 2025 neck gear train exposes stacked gears and support plates that need calibrated limits and guarded pinch points.}
+
+\section{Arms}
+
+The deck proposes two Amber seven-degree-of-freedom arms with force/current-sensing grippers. Current software includes Amber Python/SSH paths, Maestro servo control, and keyframe fields. Photographs show the installed articulated arms and their controller boards. This establishes integration work, not a verified payload or autonomous grasp capability.
+
+\ROBPhotoTwo{2025-detached-articulated-arm.jpg}{A detached arm reveals its many joints and long reach.}{2022-arm-controller-board.jpg}{A circular controller board sits behind the arm mechanism.}
+
+\Commanded\quad Arm and neck values can be issued through current control paths.\par
+\Unverified\quad Joint feedback, zeroing, limits, load rating, collision envelope, emergency behavior, and physical outcome were not measured in this review.\par
+\Planned\quad General object pickup remains unavailable because camera-to-arm transforms, inverse kinematics, collision checking, and a verified grasp executor are incomplete.
+
+\ROBPlaceholder{Supply upper-body drawings; body bearing and motor; torso/third-wheel actuator roles; head sensor inventory; neck axes, ratios, limits, and home sensors; arm model/firmware, joint definitions, zeroing, payload, reach, current limits, gripper behavior, collision envelope, cable routing, and transport restraints.}
+
+\ROBChapterPhoto{Chapter 5}{From template to finished part}{2022-drilling-metal-rail.jpg}
+
+\chapter{Fabrication and finish}
+
+The presentation asks how to print and weld the aluminum, whether templates or a 3D scan would help, and whether an outside robotics shop should quote the metalwork. Those questions prove that a complete final fabrication recipe is not present. This chapter supplies the record structure the builder should fill.
+
+\section{Measurement plan}
+
+Choose datums before collecting dimensions. For every critical measurement, record:
+
+\begin{itemize}
+  \item feature and datum names;
+  \item nominal value and unit;
+  \item tolerance or functional clearance;
+  \item instrument and resolution;
+  \item repeated measurements and uncertainty;
+  \item temperature or load state if relevant;
+  \item photograph or drawing revision;
+  \item who measured and when.
+\end{itemize}
+
+\ROBPhotoTwo{2024-caliper-tread-measurement.jpg}{A digital caliper is used across the tread frame; the publication needs the datum and recorded value.}{2022-bracket-fit-check.jpg}{A fit check can reveal interface errors before a hole becomes permanent.}
+
+\section{Process traveler}
+
+For each fabricated part, create a traveler with these gates:
+
+\begin{enumerate}
+  \item released drawing and material certificate or stock identification;
+  \item saw/cut blank with allowance;
+  \item workholding setup and datum pickup;
+  \item roughing operation;
+  \item intermediate inspection;
+  \item finish holes, pockets, threads, bends, or weld preparation;
+  \item deburr and edge-break requirement;
+  \item weld/braze/bond sequence and distortion check, if applicable;
+  \item surface preparation and coating;
+  \item final dimensions, photographs, and acceptance signature;
+  \item nonconformance and rework record.
+\end{enumerate}
+
+\begin{safetybox}
+The builder or qualified shop must write the actual machine, cutter, feeds and speeds, workholding, coolant, chip control, guarding, ventilation, hot-work, welding, grinding, coating, and PPE instructions. A generic book cannot make a particular shop operation safe.
+\end{safetybox}
+
+\section{Design for assembly and service}
+
+Use captive or accessible fasteners where covers need regular removal. Separate abrasive motion and sharp edges from harnesses. Provide inspection windows for chain line, tension, battery restraints, and protective devices. Ensure a heavy component can be supported before its final fastener is removed. Include lifting points and a stand plan in the CAD, not as an afterthought.
+
+\ROBPlaceholder{Insert the builder-approved machining and assembly travelers, final CAD/template files, CNC or manual process, weld procedure, coating system, adhesives, inspection tools, rejected-part lessons, outside vendors, costs, and photographs paired with each actual operation.}
+
+\part{Power, electronics, and firmware}
+
+\ROBChapterPhoto{Chapter 6}{Power architecture}{2024-batteries-and-power-leads.jpg}
+
+\chapter{Store, convert, protect, and disconnect energy}
+
+\section{What the archive says}
+
+The 2021-2022 presentation describes four 20 Ah LiFePO4 batteries for a stated total of 80 Ah and shows a 12 V distribution bus, an onboard charger concept, a 120 VAC inverter, and a 12-to-24 V 240 W converter. Later photos show a different visible battery arrangement, including two large packs. The current topology is not proven.
+
+\ROBPhotoTwo{rob-v3-page-41.jpg}{Historical 2021--2022 presentation concept: page 41 sketches four batteries and packaging around the treads; it is not evidence of the current power topology.}{2024-batteries-and-power-leads.jpg}{The 2024 photograph shows the physical packs and leads visible in that revision.}
+
+\section{Required single-line diagram}
+
+The final manual needs an electrical single-line diagram from every energy source to every load. At minimum, identify:
+
+\begin{itemize}
+  \item battery pack chemistry, nominal and full-charge voltage, capacity, BMS, and series/parallel connection;
+  \item main fuse or breaker near each energy source;
+  \item main disconnect and emergency-stop contactor/controller path;
+  \item precharge, inrush, anti-spark, or safe connector sequence where required;
+  \item 12 V, 24 V, 5 V, and other buses with converter ratings and derating;
+  \item tread, flipper, actuator, arm, compute, sensor, light, audio, router, and accessory branches;
+  \item wire gauge, insulation rating, connector, polarity, routing, and strain relief;
+  \item grounding, chassis bonding, shielding, and separation of noisy and sensitive returns;
+  \item charger interlock, shore-power protection, inverter isolation, and exposed receptacles;
+  \item test points, indicators, and safe discharge behavior.
+\end{itemize}
+
+\ROBPhotoTwo{2024-power-cable-pass-through.jpg}{A pass-through needs abrasion protection and restraint.}{2024-voltage-gauge.jpg}{A 13.1 V display is a diagnostic clue, not proof of state of charge or system health.}
+
+\section{Motor electrical evidence}
+
+The motor label visible in build photographs identifies a HengDrive B5685G family, but the archived vendor sheets carry restrictive or confidential notices. This public draft therefore does not reproduce or paraphrase their specifications. Obtain written permission or current public datasheets, then identify each installed winding, gearbox, controller, wire function, current limit, branch protection, and measured operating envelope.
+
+\begin{advancedbox}
+A presentation slide proposes a 240 W converter. At 24 V, 240 W corresponds to 10 A before losses, but the installed topology and authorized motor ratings are not established. This does not approve or reject the circuit; it demonstrates why a measured current and power budget is mandatory.
+\end{advancedbox}
+
+\section{Emergency stop and safe energy state}
+
+A physical E-stop should be independent of the UI and ordinary network. Its design must follow the actual hazard analysis: which energy is removed, which holding brakes remain, whether abrupt removal creates a worse hazard, how reset works, how contact welding or controller failure is detected, and how the operator proves it before a show.
+
+\ROBPhoto{2025-emergency-stop-bench-layout.jpg}{A yellow emergency-stop button and control boxes appear in a 2025 bench layout. The photograph does not reveal contacts, safety category, or final wiring.}
+
+\ROBPlaceholder{Provide the authoritative as-built schematic and calculations: present battery packs and topology, BMS, chargers, fuses/breakers, disconnect, E-stop circuit and contact ratings, converters, branch currents, wire gauges, connectors, grounding/bonding, inverter/shore-power safety, runtime, thermal measurements, and fault tests.}
+
+\ROBChapterPhoto{Chapter 7}{Arduino base controller}{2024-dense-internal-routing.jpg}
+
+\chapter{Base electronics and firmware}
+
+\section{Confirmed pin and communication map}
+
+The firmware targets an Arduino-compatible controller, and historical controller logs call it an Arduino Mega. The exact board model and revision, core, and library versions remain to be supplied.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.38in} >{\centering\arraybackslash}p{0.7in} >{\centering\arraybackslash}p{0.7in} >{\centering\arraybackslash}p{0.78in} X}
+\toprule
+LOAD & SPEED & BRAKE & DIRECTION & NOTES\\
+\midrule
+Right tread & D2 & D3 & D25 & Active-low speed mapping in firmware\\
+Left tread & D4 & D5 & D27 & Mirrored direction polarity\\
+Flipper & D6 & D7 & D29 & No implemented limit input\\
+\bottomrule
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.55in} p{1.2in} X}
+\toprule
+FUNCTION & CONNECTION & CURRENT SOURCE BEHAVIOR\\
+\midrule
+Mac base serial & USB, 250,000 baud & Fixed-width command plus diagnostic text\\
+Actuator controller & SoftwareSerial D22/D23, 19,200 baud & Compact serial forward/reverse; nominal speed -3200 to +3200; special inputs +3201 and -3201 clear safe start before commanding the corresponding 3200 magnitude\\
+IR array & A5 through A0 & Six SharpIR instances; front/back warning thresholds at 25 cm\\
+IMU & I2C via Wire; D20/D21 if Mega & MPU9250 initialization and orientation telemetry\\
+Speed feedback & Proposed D18/D19/D20 & Commented TODOs disagree: the header calls D18 left and D19 right, while later pin declarations reverse them; D20 conflicts with Mega I2C SDA\\
+\bottomrule
+\end{tabularx}
+
+\section{Serial frame}
+
+\begin{center}
+\begin{tcolorbox}[colback=ROBInk,colframe=ROBAccent,width=0.96\textwidth,arc=0mm]
+{\ttfamily\color{white}\large
+\textcolor{ROBAccent}{\textasciitilde}+0000,+0100,+0000,+0100,+0000,+0000,+0000}
+\end{tcolorbox}
+\end{center}
+
+The 42 ASCII bytes represent left brake, left signed speed, right brake, right signed speed, flipper brake, flipper signed speed, and actuator signed speed. Brake field 0 maps to HIGH and is described as released; nonzero maps to LOW and is described as engaged. Tread and flipper speed output is \texttt{255 - abs(command)}, consistent with the active-low motor control concept. The physical brake electronics are not documented by the five-wire motor outline.
+
+\section{Actuator compact serial}
+
+The code sends 0x83 to exit safe start, 0x85 for forward, and 0x86 for reverse. It encodes magnitude in a five-bit low chunk and remaining high bits. Special input values +3201 and -3201 also clear safe start before becoming +3200 or -3200. Reset should be separated from speed in a future typed protocol.
+
+\section{IR and IMU status}
+
+\Experimental\quad Six IR sensors are constructed and front/back readings are sampled. After ten repeated close readings, the code prints a warning. The two lines that assert movement-inhibit flags are commented out, side sensors do not participate, and full six-value telemetry is commented. The builder reports grass/floor false triggers.\par
+
+\Implemented\quad MPU9250 acceleration, gyro, and magnetometer readings feed a Mahony quaternion filter and print yaw, pitch, roll, and temperature. The orientation is telemetry only; tilt does not inhibit motion. The yaw correction is hard-coded for an older Austin, Texas declination and must not be treated as current calibration.
+
+\section{Safety and correctness audit}
+
+The historical firmware should be preserved as an artifact, then replaced behind fixtures. Priority defects include:
+
+\begin{enumerate}
+  \item the five-byte numeric buffer lacks a C-string null terminator before \texttt{atoi} and debug printing;
+  \item one available byte triggers 41 further reads without proof of a complete frame;
+  \item separator positions, signs, ranges, checksum, and frame completeness are not validated;
+  \item an extra read after the seventh field can consume the next frame's start marker;
+  \item any received byte refreshes the deadman before frame validation;
+  \item the deadman depends on loop counts rather than elapsed monotonic time;
+  \item timeout sends zero speed with brake fields that release brakes;
+  \item IR inhibit assignments are disabled and would not update outputs until another command path runs;
+  \item one rotation test duplicates the same condition and omits the mirrored turn;
+  \item command values are not clamped to PWM and actuator ranges;
+  \item ramp constants, encoder feedback, and voltage monitoring are TODO-only;
+  \item brake, direction, and PWM update ordering has not been proven jerk-free;
+  \item the flipper and actuator have no firmware-visible end stops, position feedback, or motion timeout;
+  \item setup writes the inactive value 255 to both tread PWM pins but never initializes flipper PWM D6; after \texttt{pinMode(OUTPUT)}, its default LOW is the maximum-command level under the active-low mapping, so boot safety relies on the unverified flipper-brake path;
+  \item IMU initialization can abort before motor outputs are explicitly initialized safe;
+  \item direction method names, comments, and debug strings disagree.
+\end{enumerate}
+
+\begin{safetybox}
+Do not ``clean up'' direction logic on the live robot by inspection. First capture protocol fixtures, lift and guard the drivetrain, limit current and speed, verify every brake and direction state, measure timeout behavior, and retain an immediate independent stop.
+\end{safetybox}
+
+\section{Replacement-firmware architecture}
+
+A modern base controller should contain:
+
+\begin{itemize}
+  \item safe GPIO initialization before optional sensors;
+  \item bounded ring buffer and explicit framed decoder;
+  \item version, length, type, sequence, range, and checksum validation;
+  \item atomic command acceptance only after a complete valid frame;
+  \item a monotonic deadline refreshed only by a valid authorized command;
+  \item explicit states: boot-safe, disarmed, armed-neutral, moving, stopping, fault, E-stop;
+  \item separate commands for reset, arm, drive, flipper, actuator, and diagnostic requests;
+  \item clamped outputs, ramp and direction-change interlocks, and defined brake/coast policy;
+  \item end-stop, encoder, current, voltage, and temperature feedback where hardware supports it;
+  \item structured telemetry with units and status flags;
+  \item unit, parser-fuzz, timing, and hardware-in-the-loop tests.
+\end{itemize}
+
+\ROBPlaceholder{Confirm board model and core; installed libraries; every connector and logic voltage; brake circuit; motor/flipper polarity; allowed command ranges; measured deadman deadline; brake/coast behavior; encoder status; IR models/positions/calibration; IMU orientation; actuator controller, end stops, current limits, and safe state.}
+
+\part{Software and perception}
+
+\ROBChapterPhoto{Chapter 8}{Cerebro on macOS}{2022-fanless-computer-and-serial.jpg}
+
+\chapter{Central coordination on the Mac mini}
+
+Cerebro is a mixed Swift, Objective-C, and Objective-C++ macOS application. Its central view/controller layer coordinates UI state while specialized components own serial, camera, speech, autonomy, security, and animation.
+
+\section{Principal components}
+
+\begin{tabularx}{\textwidth}{>{\ttfamily\scriptsize}p{2.35in} X}
+\toprule
+SOURCE COMPONENT & RESPONSIBILITY\\
+\midrule
+ROBMainViewController.mm & Operator UI, controller messages, action/autonomy surfaces, subsystem coordination.\\
+ROBSerialBox.m / .h & Serial discovery and USB ownership for base, torso, head, and Maestro; base heartbeat rendering.\\
+CameraManager.swift & Camera providers, frame-set ownership, bounded delivery, RGB-D helper lifecycle.\\
+CameraViewController.swift & Vision processing and camera presentation.\\
+ROBSpeechBox.m & Local speech recognition configuration and speech synthesis.\\
+ROBAutonomyCoordinator.swift & Bounded session state and deterministic local autonomy coordination.\\
+ROBAI.swift & Optional multimodal Gemini session and high-level tool coordination.\\
+GeminiRoboticsProtocol.swift & Versioned messages and validation for model-facing robot actions.\\
+KeyframeAnimationManager.swift & JSON-persisted animation values for arms, head/neck, treads, flipper, actuator, torso, and speech.\\
+AutoNet shared/transport files & ROBControl v2 framing, pairing, roles, session identity, and authorization.\\
+\bottomrule
+\end{tabularx}
+
+\section{Base heartbeat ownership}
+
+Cerebro evaluates controller snapshots on a timer running at about 10 Hz and treats a snapshot as stale once its local receipt age exceeds 0.6 seconds. On the first transition from fresh to stale, it writes one neutral/braked serial frame, stops USB refresh, releases control authority, and allows the Arduino heartbeat to expire. This is a time-based gate, not a fixed count of three missed messages. The layered behavior is stronger than either deadline alone, but the Arduino's own elapsed time and physical stop result still require measurement.
+
+\section{External helpers and dependencies}
+
+The OAK-D path uses a supervised Python helper rather than loading DepthAI directly into the control process. Cerebro can select or create a Python environment and validate the required import. Optional Amber scripts and tools such as \texttt{sshpass} and \texttt{ticcmd} are preflighted; missing dependencies disable their feature instead of terminating the app.
+
+\begin{advancedbox}
+Subprocess boundaries create explicit failure and update surfaces. The parent must validate executable paths, avoid blocking reads, bound restart backoff, authenticate local IPC, limit message sizes, and make helper unavailability visible. A helper crash should never preserve motion authority.
+\end{advancedbox}
+
+\section{Legacy boundary}
+
+\Legacy\quad Historical controller data uses a fourteen-line keyed payload inside the newer authenticated transport. New domain code should not spread that format. A narrow adapter should translate modern typed commands into the legacy application payload until a deliberate migration replaces it.
+
+A malformed ROBControl header or frame can be rejected before application dispatch. A well-formed, authenticated envelope can still contain a malformed legacy controller payload, so the application adapter must validate that payload separately; transport authentication does not make its contents physically safe.
+
+\ROBPlaceholder{Tag the publication source; provide target macOS and hardware; identify enabled optional dependencies and versions; capture redacted current UI screenshots; document app startup/shutdown, serial-device names, selected Python runtime, and recovery after each subsystem fails.}
+
+\ROBChapterPhoto{Chapter 9}{Controllers and secure transport}{2024-open-tracked-base.jpg}
+
+\chapter{Control from iPhone, Watch, and Vision Pro}
+
+\section{Controller roles}
+
+The iPhone/iPad ROBController captures manual controls and presents pairing, autonomy, and action-approval surfaces. Its active legacy snapshot carries raw joystick coordinates; it does not use the Vision controller's normalized linear/angular representation. Apple Watch sends voice or joystick intent through the phone and keeps no robot credential. ROBControllerVision provides a SwiftUI/Swift 6 architecture with a deterministic simulator, normalized motion, a 250 ms lease, a latched software E-stop, secure Cerebro control, and separately transported H.264 video.
+
+\section{ROBControl v2}
+
+\Implemented\quad The production control path advertises \texttt{\_robctl.\_udp}, negotiates \texttt{robctl/2}, uses TLS 1.3 over QUIC, pins Cerebro's certificate, and performs a reciprocal HMAC-SHA-256 proof with a per-device 256-bit secret. Its fixed 40-byte RCTL header carries version, kind, flags, channel, bounded payload length, monotonic sequence, and message ID.
+
+Validation is layered rather than identical for every message. Transport framing checks applicable bounds, role, session, and sequence rules. Lidar telemetry adds capture-time freshness, while controller freshness is measured from Cerebro's local receipt time. The legacy fourteen-line application payload still requires its own decoder validation.
+
+Pairing creates a fresh device UUID and secret for one named device. The server registry remains authoritative for role and revocation. Bonjour advertises non-secret routing facts, not trust. Each device must receive its own credential. The pinned server-certificate fingerprint is a public identity value rather than a secret; security depends on protecting the device secret and private key.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.48in} X X}
+\toprule
+ROLE & MAY & MUST NOT\\
+\midrule
+operatorController & Send established control/action/autonomy messages and receive results. & Publish lidar as a trusted sensor role.\\
+lidarPublisher & Send bounded typed scan and map telemetry. & Request motion, authorize autonomy, or receive generic controller traffic.\\
+\bottomrule
+\end{tabularx}
+
+\section{Separate video service}
+
+\Implemented\quad Cerebro advertises \texttt{\_robvideo.\_udp} with \texttt{robvideo/1}. The initial profile is H.264 AVCC up to 960 by 540, 20 fps, and 1.5 Mbit/s on an ordered reliable QUIC stream. Video has separate framing, queues, authentication domain, and backpressure so media cannot queue in front of a stop command.
+
+Video authorization is bound to the exact live control-session ID and authenticated controller identity. Control disconnect or credential revocation closes associated video. Video failure does not close control.
+
+\section{Safety timing layers}
+
+\ROBStopChainDiagram
+
+Current timing points include a 250 ms Vision lease, about 450 ms Watch relay watchdog, about 600 ms Cerebro snapshot freshness, and an Arduino loop-count deadline that must be measured. The physical E-stop remains an independent required layer.
+
+\section{Privacy review}
+
+The current active iPhone path requests Always location authorization and includes live latitude and longitude in each controller snapshot. This is current privacy debt, not merely a historical format detail: remove the fields, minimize their precision and retention, or document a necessary purpose and consent policy before public use. Pairing codes, device secrets, private keys, IP addresses, SSH credentials, API keys, private logs, and location must be excluded from screenshots and sample data. A public certificate or fingerprint may be redacted as operational metadata, but it is not a secret. Each cloud-enabled camera or microphone path needs explicit public notice and consent handling.
+
+\ROBPlaceholder{Document exact controller release versions, supported OS/device matrix, pairing and revocation workflow, operator training, latency and packet-loss results, Wi-Fi/router configuration without secrets, public-location data policy, and current Vision Pro hardware validation.}
+
+\ROBChapterPhoto{Chapter 10}{Cameras, depth, lidar, and coordinate frames}{2022-oakd-depth-camera.jpg}
+
+\chapter{Perception and mapping}
+
+\section{RGB-D camera}
+
+\Experimental\quad The current camera design runs a pinned DepthAI helper and sends timestamp-synchronized RGB plus depth through a private local Unix socket. RGB enters the existing sample-buffer, Vision, Gemini, and video path. Depth is little-endian UInt16 millimeters aligned to RGB; zero is invalid. AVFoundation remains an RGB-only fallback.
+
+The helper owns the OAK device exclusively. Old frames are dropped when perception is busy. Missing hardware, malformed IPC, SDK failure, or helper exit becomes camera state and bounded retry rather than a control-process crash.
+
+\section{RPLidar}
+
+\Experimental\quad The companion app reads pose, location, laser points, and occupancy maps from Slamware. It publishes scans about every 0.2 seconds and maps about every 5 seconds through typed, sequenced, bounded telemetry. Before scan publication, the current code keeps only valid points closer than \(1\,\mathrm{m}\) and within approximately \(\pm0.50\) radians of the front or back; this scan is not a full 360-degree view. The occupancy map is a separate payload. The publisher role cannot drive the robot.
+
+Cerebro checks authenticated publisher identity, monotonic sequence, capture time, kind, and bounds. Stale data is rejected. Current social-roam autonomy consumes fresh scans, not occupancy maps.
+
+\section{IR and IMU}
+
+\Experimental\quad Front/back Sharp IR warnings remain active, but automatic movement-inhibit flag assignments are disabled. The floor/grass reflection history makes these sensors an ideal research topic, not a certified stop device.\par
+
+\Implemented\quad The MPU9250 reports inertial data and derived orientation. It is not a motion-inhibit input.
+
+\section{Coordinate-frame discipline}
+
+Name every transform:
+
+\begin{itemize}
+  \item lidar sensor to base;
+  \item base to local map;
+  \item color camera to depth camera alignment;
+  \item camera to head/neck;
+  \item head/neck to torso;
+  \item torso to each arm base;
+  \item arm joint chain to gripper tool frame.
+\end{itemize}
+
+Record axis direction, handedness, units, timestamp, calibration method, uncertainty, and valid motion range. A visually plausible transform can still command a gripper to the wrong side of an object.
+
+\ROBPhotoTwo{rob-v3-page-55.jpg}{Presentation page 55 proposes an RPLidar stage above the base.}{2024-open-tracked-base.jpg}{The open base shows how sensors, wiring, compute, and mechanisms become a serviceability problem.}
+
+\ROBPlaceholder{Confirm current camera models, lenses, mounting transforms, USB/Ethernet topology, DepthAI version, exposure and lighting behavior, lidar model/host/address, installed map workflow, IR positions and shrouds, calibration targets, timestamp synchronization, frame conventions, and measured accuracy.}
+
+\ROBChapterPhoto{Chapter 11}{Arms, animation, speech, autonomy, and AI}{2025-detached-articulated-arm.jpg}
+
+\chapter{Behavior above raw motor commands}
+
+\section{Servo and arm control}
+
+Cerebro uses Maestro servo channels plus optional Amber Python/SSH paths. A final arm-control chapter needs joint-by-joint calibration, not only button names. For each axis record commanded unit, zero reference, direction, soft and hard limits, feedback, maximum rate, acceleration, current/torque limit, collision envelope, and safe behavior after link loss.
+
+\section{Keyframe animation}
+
+\Implemented\quad \texttt{KeyframeAnimationManager.swift} persists JSON values for arm channels, head/neck, tread movement, flipper, actuator, torso rotation, and speech. Keyframes are reusable data: a sequence can describe expressive behavior independently of the UI that recorded it.
+
+\Commanded\quad Historical servo ``animation'' helpers in \texttt{ROBSerialBox.m} do not yet perform robust smooth interpolation; they update their targets immediately. New interpolation must respect joint rates, synchronization, limits, collisions, and cancellation.
+
+\section{Speech}
+
+\Implemented\quad Cerebro configures an Apple local speech-recognition path and uses local speech synthesis for completed responses. This path reduces network dependence, but it does not describe every microphone use: when the separately optional Gemini session is enabled, microphone audio may be streamed to an external cloud service. Both paths require microphone permissions, public notice, and a plan for unintended capture.
+
+\section{Controller-activated autonomy}
+
+\Experimental\quad The social-roam profile begins only after explicit controller authorization, captures an activation pose and radius, uses fresh filtered lidar scans, and limits tread speed. Near 82 percent of the configured radius it attempts to return toward its origin; this is not verified containment. Missing or stale lidar requests a motion stop and transitions to \texttt{waitingForLidar} while the autonomy session remains active. Manual takeover, explicit stop, expiry, replacement, or shutdown ends the session. Local deterministic code owns execution.
+
+\section{Gemini integration}
+
+\Experimental\quad The entire Gemini integration defaults off and requires explicit enablement plus credentials. Once enabled, the current configuration defaults camera-frame and microphone-audio streaming on unless each stream is separately disabled. The robot-action tool remains separately off by default. Its schema declares \texttt{look\_at}, \texttt{play\_gesture}, \texttt{request\_pick}, \texttt{navigate\_relative}, and \texttt{stop\_motion}; the model never receives arbitrary raw serial output. Only \texttt{stop\_motion} has an immediate local executor, and even that returns a partial result because arm hold is unverified. The other actions have no deterministic executor: the controller console records approval or rejection but does not actuate hardware.
+
+\Planned\quad General picking is intentionally unavailable. Missing prerequisites include calibrated camera-to-arm transforms, complete neck mapping, joint feedback, inverse kinematics, collision checking, grasp planning, and a verified executor.
+
+\section{Robot-action implementation status}
+
+\begin{tabularx}{\textwidth}{>{\ttfamily\scriptsize}p{1.35in} p{1.35in} X}
+\toprule
+ACTION & CURRENT STATUS & CURRENT BEHAVIOR\\
+\midrule
+stop\_motion & Partial local executor & Preempts local coordinators, writes one neutral/braked base frame, and drops the base heartbeat. Base stop is software-observed; Amber arm hold remains unverified.\\
+look\_at & Schema only & No deterministic local executor. Outside autonomy it may be offered to the manual approval console; approval does not move hardware.\\
+play\_gesture & Schema only & No deterministic local executor. Approval does not play a physical gesture.\\
+navigate\_relative & Schema only & No deterministic local executor. It is distinct from the social-roam coordinator.\\
+request\_pick & Planned / unavailable & Rejected until transforms, inverse kinematics, collision checking, joint feedback, grasp planning, and a verified executor exist.\\
+\bottomrule
+\end{tabularx}
+
+\begin{safetybox}
+Language-model confidence is not evidence of physical safety. Treat model output as an untrusted proposal. Validate types, values, state, authority, freshness, workspace, and collision policy in deterministic local code; require human approval where risk warrants it; and make rejection an ordinary result.
+\end{safetybox}
+
+\ROBPhotoTwo{2025-detached-articulated-arm.jpg}{The detached arm makes reach, joint order, cabling, and manipulation limits concrete.}{2022-oakd-depth-camera.jpg}{The depth camera is one input to a manipulation experiment; a successful image alone is not a grasp-validation test.}
+
+\ROBPlaceholder{Provide arm/neck calibration files, verified keyframes, joint feedback and limits, safe animation cancel behavior, speech privacy settings, autonomy speed/radius/obstacle requirements, Gemini model/release configuration, consent signage, action approval policy, and validation for every enabled tool.}
+
+\part{Integration, operation, and maintenance}
+
+\ROBChapterPhoto{Chapter 12}{Verification before motion}{2022-tracked-base-front.jpg}
+
+\chapter{Test strategy and safety case}
+
+\section{Requirements traceability}
+
+Every test should trace to a requirement and hazard. A simple matrix includes requirement ID, hazard ID, source revision, test method, equipment, pass criteria, result, evidence path, reviewer, and date. ``It worked once'' is not a repeatable acceptance criterion.
+
+\section{Progressive test ladder}
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{0.6in} X X}
+\toprule
+LEVEL & SCOPE & REQUIRED EVIDENCE\\
+\midrule
+0 & Design review and hazard analysis. & Reviewed drawings, calculations, assumptions, and unresolved risks.\\
+1 & Pure software fixtures and simulation. & Protocol, range, state, deadline, replay, and cleanup tests.\\
+2 & Logic outputs to indicators or dummy loads. & Pin states, ordering, safe initialization, timeout waveform.\\
+3 & One controller with a small surrogate or disconnected actuator. & Polarity, limits, current, fault and stop response.\\
+4 & Full hardware on rated stands with guards. & Direction, speed cap, coast/brake, current, temperature, E-stop timing.\\
+5 & Slow unloaded floor test in an exclusion zone. & Tracking, latency, stopping distance, spotter log, post-test inspection.\\
+6 & Incremental loads and declared surfaces. & Repeatable operating envelope and thermal/current margins.\\
+7 & Full show rehearsal. & Setup checklist, barrier, staffing, failure drills, privacy notice, teardown plan.\\
+\bottomrule
+\end{tabularx}
+
+\section{Failure injection}
+
+Test the robot's response when:
+
+\begin{itemize}
+  \item joystick input stops or becomes non-finite;
+  \item Watch-to-phone relay disappears;
+  \item controller packets duplicate, reorder, age, or exceed bounds;
+  \item control network disappears while video continues;
+  \item video decoder stalls or requests a keyframe;
+  \item USB serial is unplugged or filled with malformed bytes;
+  \item Arduino boots with IMU missing;
+  \item an IR sensor sticks low or produces grass reflections;
+  \item lidar data becomes stale or claims an impossible timestamp;
+  \item DepthAI helper exits or the camera disconnects;
+  \item an actuator reaches a mechanical stop;
+  \item one motor direction is reversed;
+  \item a credential is revoked during active control;
+  \item autonomy loses its sensor or leaves its radius;
+  \item an AI tool proposes an unsupported or stale action;
+  \item physical E-stop is pressed at each declared operating speed and pose.
+\end{itemize}
+
+\section{Measure stop behavior}
+
+For each layer, measure detection time, command time, electrical response, mechanical response, and final state. Report surface, slope, load, battery state, speed, controller mode, firmware/software revision, sample rate, and uncertainty. ``600 ms watchdog'' is not the same as ``stopped within 600 ms.''
+
+\begin{safetybox}
+Use rated stands, restraints, remote observation, current limiting, a spotter, and an independent stop before intentionally injecting failures. Some failures should be tested only in simulation or on surrogate hardware.
+\end{safetybox}
+
+\ROBPlaceholder{Insert the actual hazard analysis, operating envelope, requirements matrix, unit and fixture reports, current/thermal data, watchdog timing, E-stop test, stopping distances on hard floor and grass, slope tests, flipper/actuator load tests, arm collision tests, and sign-off authority.}
+
+\ROBChapterPhoto{Chapter 13}{Maker Faire operations}{2025-rob-side-full-body.jpg}
+
+\chapter{Present ROB safely in public}
+
+\section{Roles}
+
+Assign at least these responsibilities:
+
+\begin{itemize}
+  \item \textbf{Lead operator}: owns arm/disarm and the primary controller.
+  \item \textbf{Safety spotter}: watches the robot and crowd, keeps a hand near the physical E-stop, and may stop without asking.
+  \item \textbf{Educator}: explains ROB without distracting the operator.
+  \item \textbf{Technical support}: monitors power, temperature, logs, and recovery.
+  \item \textbf{Event liaison}: coordinates space, charging, barriers, accessibility, and emergency requirements.
+\end{itemize}
+
+One person may fill multiple roles only if workload and risk allow it. Never make the operator answer a long technical question while ROB moves near visitors.
+
+\section{Pre-show checklist}
+
+\begin{itemize}[label={\protect\raisebox{0.08em}{\protect\fbox{\protect\rule{0pt}{0.55em}\protect\rule{0.55em}{0pt}}}}]
+  \item current approved software/firmware versions recorded;
+  \item batteries inspected, charged under the approved procedure, and restrained;
+  \item fuses, disconnect, and E-stop visually inspected and function-tested;
+  \item treads, chain, sprockets, guards, shafts, collars, mounts, fasteners, and torque marks inspected;
+  \item arm, neck, flipper, and actuator limits checked in a protected area;
+  \item controllers uniquely paired; unused credentials revoked;
+  \item control and optional video links tested under venue network conditions;
+  \item speed cap and operating mode verified on every controller;
+  \item barrier, route, slope, floor transitions, cables, exits, and charging location inspected;
+  \item camera, microphone, recording, location, and cloud-AI policy displayed;
+  \item fire response, first aid, lift/transport, and fault-recovery plans briefed;
+  \item spare tools and parts controlled so visitors cannot reach them;
+  \item dry rehearsal completed with the full team.
+\end{itemize}
+
+\section{Show-state model}
+
+Use explicit visible states: Transport Safe, Display Only, Demo Armed, Moving, Stopped, Faulted, Charging, and Maintenance. Each transition names who authorizes it and what checklist applies. Reconnecting a controller or restarting software never silently arms motion.
+
+\section{Audience and privacy}
+
+Keep an accessible viewing route. Do not require visitors to step over cables. Mark pinch and tread boundaries clearly. Avoid publishing faces without consent. When camera, microphone, recording, or cloud processing is active, use plain-language signage and a visible indicator; provide a quick disable path and a non-recorded way to participate.
+
+\ROBPlaceholder{Insert venue-specific barrier dimensions, maximum public-demo speed, operator and spotter names, E-stop placement, battery/charging policy, transport vehicle and lift plan, insurance or venue requirements, photo/video release plan, privacy signage, scripted demonstrations, and abort criteria.}
+
+\ROBChapterPhoto{Chapter 14}{Maintenance and change control}{2025-rear-electronics-bay.jpg}
+
+\chapter{Keep the robot understandable}
+
+\section{Before and after every operating day}
+
+Inspect for loose fasteners, moved torque marks, chain and tread damage, shaft-collar movement, bracket cracks or bending, wire abrasion, connector heating, battery swelling or damage, fluid or debris, blocked ventilation, actuator looseness, unusual sound, camera security, E-stop function, and log errors.
+
+After operation, record runtime, surfaces, mode, maximum observed current and temperature if available, incidents, unexpected stops, repairs, and deferred defects. Quarantine the robot from powered use when a red condition remains unresolved.
+
+\section{Scheduled maintenance record}
+
+For every interval, name the component, task, acceptable condition, tool, replacement part, torque or measurement, evidence, and sign-off. Intervals may be hours, cycles, calendar time, or before each public show.
+
+\section{Configuration control}
+
+A change to code, pin mapping, motor polarity, brake logic, network framing, controller speed cap, arm limit, battery arrangement, or bracket can invalidate earlier tests. Give hardware, firmware, software, calibration, wiring, and operating procedure separate revision identifiers, then record the tested combination.
+
+\section{Troubleshooting by layer}
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.35in} X}
+\toprule
+SYMPTOM & SAFE DIAGNOSTIC PATH\\
+\midrule
+No controller connection & Keep motion disarmed; verify unique pairing, robot ID, Bonjour visibility, certificate pin, role, revocation, and session proof.\\
+Control works, no video & Keep control independent; inspect the separate video service, camera permission/state, capability handshake, session binding, and decoder recovery.\\
+Arduino not online & Disconnect actuator power as required; verify USB device, 250,000 baud, startup log, safe GPIO state, and dependency/IMU behavior.\\
+One tread reverses & Stop and lift/guard the base; compare requested sign, adapter output, Arduino pin, driver polarity, and physical mount. Do not fix by guessing in UI code.\\
+Unexpected IR warnings & Disable motion; log all raw readings with surface, angle, light, and distance; inspect shrouds and wiring; keep IR outside certified safety claims.\\
+Autonomy will not move & Treat as safe failure; verify explicit authorization, fresh lidar, activation radius, master control, and local planner state.\\
+Arm action rejected & Treat rejection as correct until capability, calibration, approval, and executor prerequisites are satisfied.\\
+\bottomrule
+\end{tabularx}
+
+\ROBPlaceholder{Add maintenance intervals, lubrication policy, tread and chain wear limits, fastener torques, battery retirement criteria, cable replacement rules, calibration intervals, spare-parts inventory, fault codes, backup/restore procedure, and configuration-release form.}
+
+\appendix
+
+\input{adult-learning-and-commissioning.tex}
+
+\chapter{Builder input ledger}
+
+This appendix is the iteration queue. Replace each line with a dated, reviewed answer and evidence reference.
+
+\begin{enumerate}
+  \item Project origin, name meaning, design requirements, contributors, shops, and dated revision history.
+  \item Final overall dimensions, ready-to-run mass, center of mass, load cases, operating surfaces, slopes, speed, and environmental limits.
+  \item As-built CAD/templates, plate materials and thicknesses, fasteners, shafts, bearings, sprockets, chains, tension procedure, guards, and coatings.
+  \item Actual milling, drilling, bending, welding, deburring, finishing, workholding, tooling, feeds/speeds, inspection, PPE, and vendor sequence.
+  \item Current tread and flipper motors, windings, gearbox ratios, controller circuits, brake polarity, current limits, and performance tests.
+  \item Flipper location and geometry, third-wheel status, actuator roles, models, strokes, loads, end stops, feedback, and failure behavior.
+  \item Battery packs, topology, BMS, charger, fusing, main disconnect, E-stop, converters, inverter, grounding, wire gauges, connectors, and power budget.
+  \item Arduino-compatible board model, core and libraries, pin-to-connector harness, command ranges, deadman timing, IMU calibration, IR positions/status, and speed-feedback status.
+  \item Current Mac mini/Raspberry Pi inventory, OS versions, ports, network devices, router role, serial-device ownership, and dependency versions.
+  \item Arm and neck models, geometry, calibration, zero/home, soft/hard limits, payload, current/torque limits, collision envelope, and safe transport.
+  \item Camera and lidar inventory, mounts, coordinate transforms, calibration, timestamp synchronization, accuracy, lighting, and present host path.
+  \item Controller compatibility, pairing/revocation, speed caps, latency, watchdogs, location-data policy, and Vision Pro validation.
+  \item Autonomy operating envelope, sensor requirements, aborts, AI model/tool configuration, approval policy, and camera/microphone/cloud consent.
+  \item Hazard analysis, protective measures, E-stop proof, test reports, Maker Faire perimeter and staffing, fire, lifting, and charging plans, plus insurance and venue requirements.
+  \item Final photo captions, permissions/releases, vendor-publication permissions, credits, and redacted screenshots.
+\end{enumerate}
+
+\chapter{Bill of materials worksheet}
+
+\begin{tabularx}{\textwidth}{p{0.35in} p{1.15in} X p{0.55in} p{0.75in} p{0.8in}}
+\toprule
+ID & SUBSYSTEM & MANUFACTURER / PART / REVISION & QTY & SOURCE & STATUS\\
+\midrule
+\rule{0pt}{0.34in} & & & & &\\
+\rule{0pt}{0.34in} & & & & &\\
+\rule{0pt}{0.34in} & & & & &\\
+\rule{0pt}{0.34in} & & & & &\\
+\rule{0pt}{0.34in} & & & & &\\
+\rule{0pt}{0.34in} & & & & &\\
+\rule{0pt}{0.34in} & & & & &\\
+\rule{0pt}{0.34in} & & & & &\\
+\bottomrule
+\end{tabularx}
+
+For each line add voltage, current, mechanical interface, firmware, calibration, supplier status, substitute, unit cost, lead time, safety documentation, and evidence photograph in the editable project record.
+
+\chapter{Wiring and connector worksheet}
+
+\begin{tabularx}{\textwidth}{p{0.55in} p{1in} p{1in} p{0.65in} p{0.58in} p{0.7in} X}
+\toprule
+NET & FROM & TO & VOLTS & MAX A & WIRE & PROTECTION / CONNECTOR\\
+\midrule
+\rule{0pt}{0.34in} & & & & & &\\
+\rule{0pt}{0.34in} & & & & & &\\
+\rule{0pt}{0.34in} & & & & & &\\
+\rule{0pt}{0.34in} & & & & & &\\
+\rule{0pt}{0.34in} & & & & & &\\
+\rule{0pt}{0.34in} & & & & & &\\
+\bottomrule
+\end{tabularx}
+
+Also record return path, chassis bond, shield termination, cable length, routing class, strain relief, flex cycles, color/label, fuse/breaker location, test point, polarity check, and continuity/insulation result.
+
+\chapter{Serial protocol reference}
+
+\section*{Historical base frame}
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{0.65in} p{1.55in} p{1.1in} X}
+\toprule
+FIELD & MEANING & EXAMPLE & CURRENT LIMIT / NOTE\\
+\midrule
+Start & Frame marker & \texttt{\textasciitilde} & One byte\\
+1 & Left brake & \texttt{+0000} & 0 described as release; nonzero engage\\
+2 & Left signed speed & \texttt{+0100} & Expected magnitude within 0-255; not clamped\\
+3 & Right brake & \texttt{+0000} & Same mapping\\
+4 & Right signed speed & \texttt{+0100} & Mirrored physical direction polarity\\
+5 & Flipper brake & \texttt{+0000} & Same mapping\\
+6 & Flipper signed speed & \texttt{+0000} & Expected magnitude within 0-255; not clamped\\
+7 & Actuator signed speed & \texttt{+0000} & Nominal -3200 to +3200; +3201 and -3201 clear safe start, then command +3200 and -3200 respectively\\
+\bottomrule
+\end{tabularx}
+
+Fields are five ASCII characters and separated by six commas. Total historical frame length is 42 bytes. The current decoder defects listed in Chapter 7 must be fixed before treating the format as safe. A replacement should add explicit version, message type, bounded length, sequence, integrity check, and typed state transitions.
+
+\chapter{Repository source map}
+
+\begin{tabularx}{\textwidth}{>{\ttfamily\scriptsize}p{2.65in} X}
+\toprule
+RELATIVE PATH & PUBLICATION USE\\
+\midrule
+Presentation/ROB\_v3.pdf & 95-page historical build and design deck; slides dated 2021 with 2022 modifications.\\
+ROBOT Build/ROBOT\_CEREBELLULAR\_BASE\_APP.ino & Base pin map, serial parser, treads, flipper, actuator, IR, IMU, heartbeat.\\
+ROBOT Build/Hengdrive*.pdf & Restricted files; contents excluded pending publication clearance.\\
+ROBOT Build/B-COMMAND*.pdf & Restricted file; contents excluded and associated installation unproven.\\
+ORobotics/media/gallery-originals & Private high-resolution construction and event photographs; strip metadata and review releases.\\
+ORobotics/data/gallery\_metadata.json & Visual descriptions useful for search and draft captions, not authoritative part identification.\\
+Cerebro/Cerebro/ROBSerialBox.m & Physical serial adapter, base heartbeat, servo/arm helpers.\\
+Cerebro/Cerebro/ROBMainViewController.mm & Operator coordination, controller/action/autonomy integration.\\
+Cerebro/Cerebro/CameraManager.swift & Camera, RGB-D helper, and bounded frame delivery.\\
+Cerebro/Cerebro/ROBAutonomyCoordinator.swift & Session-bounded local autonomy.\\
+Cerebro/Cerebro/ROBAI.swift & Optional multimodal Gemini path.\\
+Cerebro/Cerebro/GeminiRoboticsProtocol.swift & Versioned high-level action protocol.\\
+Cerebro/Cerebro/KeyframeAnimationManager.swift & Persisted animation data.\\
+Cerebro/docs & Current transport, video, depth, autonomy, and Gemini design notes.\\
+ROBController/Consciousness & iPhone/iPad UI, control payload, pairing, Watch relay, action console.\\
+ROBController/Consciousness-Watch Watch App & Watch user interface and relay intent.\\
+ROBControllerVision & Vision Pro controller, simulator, secure adapter, video decoder, tests.\\
+M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar & Slamware acquisition and typed lidar publisher.\\
+\bottomrule
+\end{tabularx}
+
+\chapter{Photo and artwork credits}
+
+All construction photographs in this edition originate from the private Orbitus Robotics gallery archive and are credited to Rodolfo Aramayo / Orbitus Robotics unless the builder supplies a different credit. The frontispiece and software-control illustrations are original generated artwork derived from ROB reference photographs and created for this book set. They contain no official franchise logo, character, or copied page design and are labeled as illustrations rather than engineering evidence.
+
+The book's visual system uses licensed system typefaces and an original weathered retro-space workshop palette. The project is independent and is not affiliated with or endorsed by any film studio, franchise owner, component vendor, or platform company.
+
+Before public printing, complete image releases, confirm third-party product-image and datasheet permissions, remove private metadata and secrets, and obtain a final legal/trademark review appropriate to the distribution plan.
+
+\vfill
+\begin{missionbox}[title={NEXT ITERATION}]
+Work through the Builder input ledger with the machine physically available. Replace placeholders with measured values, drawings, test reports, verified captions, and contributor stories. Then tag the source snapshot, rebuild all five PDFs, and perform a page-by-page technical and print proof before the Maker Faire print run.
+\end{missionbox}
+
+\ROBSource{This field manual was synthesized from the local ROB presentation, private photo originals and metadata, Arduino firmware and hardware references, and current Cerebro, ROBController, ROBControllerVision, and RPLidar repositories inspected on 2026-08-02.}
+
+\end{document}

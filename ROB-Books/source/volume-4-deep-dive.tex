@@ -1,0 +1,52 @@
+\ROBChapterPhoto{Deep Lab}{Trust, time, and authority}{rob-safe-autonomy-lab.png}
+
+\chapter{A robot never receives ``just a command''}
+
+A useful control message carries meaning in context: identity, role, session, sequence, issue time, lease, units, bounds, and intended recipient. Transport reliability can deliver bytes in order, yet the application must still decide whether those bytes are current, authorized, well formed, and safe to apply.
+
+\section*{Discovery, authentication, and authorization}
+
+Discovery answers ``What services are nearby?'' Authentication answers ``Can this peer prove the installed identity?'' Authorization answers ``May this identity publish lidar, operate controls, or view video?'' A certificate fingerprint can bind a controller to one robot, while a fresh challenge and keyed proof resist copied or replayed conversations. None of these checks replaces command bounds or a physical stop.
+
+\begin{missionbox}[title={THE FOUR GATES}]
+Make four paper gates labeled Find, Prove, Permit, and Validate. Give each student a message card with a service name, device identity, role, sequence, age, and value. A card advances only when each gate's rule passes. Try a real identity with the wrong role, an old sequence, and an out-of-range value. Explain why one successful gate cannot answer the others.
+\end{missionbox}
+
+\section*{Freshness is a continuously expiring claim}
+
+Suppose a command was valid when issued. Network delay, a paused app, or a lost controller can make it dangerous later. A monotonic clock measures elapsed time without being confused by wall-clock corrections. A lease says how long intent remains usable. Sequence numbers reject duplicates and reordering. A watchdog chooses a defined response when renewal stops.
+
+\begin{conceptbox}[title={LATENCY HAS A BUDGET}]
+End-to-end response includes sensing, sampling, encoding, queueing, network transit, validation, scheduling, actuation, and physical response. Measure distributions, not only one best case. Report typical behavior, high-percentile delay, worst observed cases, test conditions, and what happens after the deadline.
+\end{conceptbox}
+
+\clearpage
+\chapter{Autonomy is a bounded state machine}
+
+``Autonomous'' should not mean ``unlimited.'' A bounded session has an owner, profile, start condition, radius or workspace, speed limit, required sensors, freshness rules, timeout, stop transitions, and evidence. Manual control, stale perception, invalid calibration, internal faults, and operator stop can all end authority.
+
+\begin{center}
+\begin{tikzpicture}[node distance=11mm,>=stealth,every node/.style={font=\robcondensed\small,draw=ROBSteel,rounded corners,align=center,minimum width=1.18in,minimum height=.45in}]
+\node[fill=ROBGray!25] (off) {INACTIVE};
+\node[fill=ROBAmber!14,right=of off] (requested) {REQUESTED};
+\node[fill=ROBGreen!12,right=of requested] (active) {ACTIVE};
+\node[fill=ROBRed!10,below=of requested] (stopping) {STOPPING};
+\draw[->] (off)--node[above,draw=none,font=\scriptsize]{valid request}(requested);
+\draw[->] (requested)--node[above,draw=none,font=\scriptsize]{accepted}(active);
+\draw[->] (active)--node[right,draw=none,font=\scriptsize]{stop or fault}(stopping);
+\draw[->] (requested)--(stopping); \draw[->] (stopping)--(off);
+\end{tikzpicture}
+\end{center}
+
+\section*{Perception is not a permission slip}
+
+A camera or lidar measurement may support a world model, but it cannot prove the path is safe outside its field of view, range, calibration, timing, and tested conditions. Planning proposes a path through a model. Validation checks policy and bounds. A deterministic executor converts an accepted action into controlled outputs. Feedback tests whether reality agrees.
+
+\begin{buildbox}[title={OFFLINE MISSION SIMULATOR}]
+Draw a grid with a start, goal, obstacles, and unknown squares. One student reveals a sensor-limited neighborhood. One proposes a one-step move. One validates boundary, freshness, and collision rules. One records the new state. Add a stale sensor card and a manual-control card; both must end autonomous authority. No physical robot is used.
+\end{buildbox}
+
+\begin{advancedbox}[title={AI PROPOSES; VERIFIED SOFTWARE DISPOSES}]
+Natural-language models can help interpret or propose, but physical actions need typed schemas, bounded parameters, current state, policy, human authority where required, deterministic execution, cancellation, telemetry, and honest unavailable results. Fluency is not evidence of calibration, reachability, collision clearance, or completion.
+\end{advancedbox}
+

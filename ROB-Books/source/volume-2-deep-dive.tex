@@ -1,0 +1,132 @@
+\ROBChapterPhoto{Deep Lab}{Energy moves; signals describe}{rob-circuits-signals-lab.png}
+
+\chapter{Build a mental oscilloscope}
+
+Voltage is a difference in electric potential between two points. Current is charge flow through a path. Resistance relates voltage and current for many components, but real motors, batteries, semiconductors, and sensors also change with time, temperature, and load. A signal uses a changing electrical quantity to represent information; the receiving circuit must agree on reference, range, timing, and meaning.
+
+\section*{Read a graph as a story in time}
+
+An oscilloscope draws voltage vertically and time horizontally. A digital signal spends most of its time near two allowed ranges. An analog signal can take many values. PWM is digital switching whose duty cycle---the fraction of each period spent active---changes an average effect. Frequency answers how often a pattern repeats; duty cycle answers how much of each repetition is active.
+
+\begin{center}
+\begin{tikzpicture}[x=.72cm,y=.55cm,>=stealth]
+\draw[->,ROBSteel] (0,0)--(9,0) node[right]{\robcondensed\scriptsize TIME};
+\draw[->,ROBSteel] (0,-.2)--(0,3.2) node[above]{\robcondensed\scriptsize LEVEL};
+\draw[ROBCyan,very thick] (0,.4)--(1,.4)--(1,2.5)--(2,2.5)--(2,.4)--(4,.4)--(4,2.5)--(6,2.5)--(6,.4)--(9,.4);
+\draw[ROBPurple,very thick,smooth,domain=0:9,samples=100] plot (\x,{1.45+.8*sin(70*\x)});
+\end{tikzpicture}
+\end{center}
+
+\begin{missionbox}[title={WAVEFORM DETECTIVE}]
+Draw three PWM traces with the same period and duty cycles near one quarter, one half, and three quarters. Without using a motor, represent their average effect by shading the active area. Then draw two traces with equal duty cycle but different frequency. Explain what stayed the same and what changed.
+\end{missionbox}
+
+\section*{A circuit needs a complete question}
+
+``Is this pin high?'' is incomplete until we know high relative to what reference, at which voltage, measured by which device, and at what time. ``Can this output drive a motor?'' is usually the wrong connection: a logic pin communicates intent to a properly designed driver; it does not supply traction power.
+
+\begin{safetybox}
+Use only an educator-approved, current-limited low-voltage learning kit. Disconnect power before changing wiring. Never connect a classroom board to ROB, a wall outlet, an unknown battery, a motor controller, or a high-current load.
+\end{safetybox}
+
+\clearpage
+\chapter{Give a toy a new 5 V power path}
+
+A USB cable can carry both electrical energy and information. In a common USB 2.0 cable, one conductor supplies about 5 V, one is the return path called GND, and two carry data. At the Maker Faire, a prepared cable lets us expose those roles and use the power pair to run a small toy that would normally use batteries.
+
+This is an experiment in \textbf{energy conversion}: the USB source provides electrical energy, the toy changes it into motion, light, or sound, and the ground conductor completes the circuit. It is also an experiment in evidence. Common color conventions are clues, not proof. A cable may use unexpected colors, contain extra wires, or omit data wires entirely, so a mentor must identify and measure the conductors before a learner connects a load.
+
+\begin{safetybox}[title={UNPLUG, PREPARE, VERIFY, THEN ENERGIZE}]
+Only an adult mentor cuts and strips a sacrificial cable, and the cable remains unplugged during all cutting, stripping, separating, and insulating. Never cut a cable connected to a power bank, computer, charger, or wall outlet. Use only the event's approved 5 V current-limited USB source and a known low-current toy rated for approximately 5 V. Never use ROB's wiring, an unknown cable, USB-C, a damaged power source, lithium cells, or a toy with batteries still installed. Stop for heat, odor, noise, damaged insulation, or unexpected behavior.
+\end{safetybox}
+
+\begin{center}
+  \includegraphics[width=\textwidth,height=0.48\textheight,keepaspectratio]{usb-5v-toy-power-lab.png}
+
+  {\robcondensed\small A mentor prepares and verifies the cable while it is unplugged. Red and black show the usual 5 V and GND convention; the meter, not the color, establishes the result. The unused data conductors are insulated separately.}
+\end{center}
+
+\clearpage
+\section*{What is hiding inside the cable?}
+
+The familiar colors in many USB 2.0 cables are:
+
+\begin{tabularx}{\textwidth}{>{\centering\arraybackslash\bfseries}p{0.75in} >{\robcondensed\bfseries\color{ROBAccent}}p{1.05in} X}
+\toprule
+USUAL COLOR & USUAL ROLE & WHAT WE DO IN THIS LAB\\
+\midrule
+Red & VBUS, about +5 V & Mentor verifies it, adds current protection, and connects it to the toy's positive input.\\
+Black & GND, return & Mentor verifies it and connects it to the toy's negative input.\\
+White & Data $-$ & Do not connect to the toy; insulate its end by itself.\\
+Green & Data $+$ & Do not connect to the toy; insulate its end by itself.\\
+Bare foil, braid, or drain & Shield & Trim or secure it as the mentor's cable plan specifies; never let it touch a conductor.\\
+\bottomrule
+\end{tabularx}
+
+\begin{conceptbox}[title={WHY TWO WIRES ARE ENOUGH FOR THIS TOY}]
+The toy needs a potential difference across its two power terminals. The 5 V conductor is the outward energy path and GND is the return path. The data pair is unnecessary for a simple power-only load. This does \emph{not} mean every USB device works from two wires: many devices communicate, negotiate power, or require their original electronics.
+\end{conceptbox}
+
+\section*{Match the source to the load}
+
+Read the toy's label or battery compartment before connecting anything. Three alkaline cells are commonly described as 4.5 V, which may make some simple toys candidates for a carefully reviewed 5 V demonstration. A two-cell 3 V toy is \textbf{not} automatically a 5 V toy. The mentor must approve the voltage range and estimate or measure the running and startup current. Small motors can briefly draw much more current when starting or stalled.
+
+Power is the rate of energy transfer:
+\[
+P = V I.
+\]
+If a toy uses 0.20 A from a 5.0 V source, its input power is approximately
+\[
+P = (5.0\,\mathrm{V})(0.20\,\mathrm{A}) = 1.0\,\mathrm{W}.
+\]
+The source's current rating is a maximum capability, not current that it forces through every load. The load and circuit determine the current. Protection must still interrupt a short circuit, and the event source must tolerate the motor's startup current without shutting down or overheating.
+
+\clearpage
+\section*{Maker Faire mentor-and-learner procedure}
+
+\begin{enumerate}
+  \item \textbf{Choose and label.} The mentor selects a sacrificial USB-A cable, a switch or clip lead set with covered contacts, an inline fuse or other approved current protection, and a toy whose voltage and current requirements are known. Mark the cable ``5 V LAB ONLY.''
+  \item \textbf{Predict while unplugged.} The learner sketches source $\rightarrow$ protection $\rightarrow$ switch $\rightarrow$ toy $\rightarrow$ return and predicts which energy conversion will be visible.
+  \item \textbf{Open while unplugged.} At an adult-only tool station, the mentor removes a short section of outer jacket without nicking conductor insulation, separates the conductors, and exposes only the tiny length needed at the two power leads. A USB breakout adapter is the preferred reusable alternative when available.
+  \item \textbf{Isolate unused wires.} The mentor caps the data conductors individually, secures any shield, adds strain relief, and ensures no bare pieces can touch.
+  \item \textbf{Verify before the toy.} With the prepared ends separated and enclosed against accidental contact, the mentor connects the cable to the approved current-limited source and measures voltage and polarity with a meter. Disconnect again before attaching the toy.
+  \item \textbf{Remove batteries.} Confirm the toy's batteries are absent. Never connect USB power in parallel with installed cells or the toy's charging circuit.
+  \item \textbf{Connect without power.} Match verified +5 V to the toy's positive terminal and verified GND to its negative terminal. Cover every connection and provide strain relief. A mentor performs a continuity and short-circuit check.
+  \item \textbf{Run a bounded trial.} Place the toy so motion cannot catch hair, clothing, or fingers. Energize for a few seconds, observe, then switch off and disconnect. The learner does not hold the toy or exposed wiring while it is powered.
+  \item \textbf{Explain the evidence.} Record measured voltage, observed motion/light/sound, and any change from the prediction. Explain why opening either conductor stops the complete path.
+\end{enumerate}
+
+\begin{buildbox}[title={THE LEARNER'S JOB}]
+Point to the source, protection, switch, load, and return path. Before power is connected, predict what will happen if the circuit is complete, the switch is open, or the polarity is reversed. The reverse-polarity case is a paper prediction only; do not try it on the toy. After the safe trial, draw arrows for conventional current and write one sentence about where the energy went.
+\end{buildbox}
+
+\begin{missionbox}[title={MEASURE, DO NOT GUESS}]
+Create a four-column lab record: \textbf{question}, \textbf{prediction}, \textbf{measurement or observation}, and \textbf{explanation}. Include the source voltage before connection, voltage while the toy runs, current if the mentor's approved setup measures it safely, and whether the source or toy became warm. A useful result can be ``the source shut down''---that is evidence of a limit, not permission to bypass protection.
+\end{missionbox}
+
+\clearpage
+\chapter{Messages need grammar and time}
+
+A serial frame is a sentence with a grammar. The receiver needs a start rule, fields, separators or lengths, valid character rules, numeric bounds, and an end rule. A checksum can detect many accidental changes but does not prove identity or permission. Authentication, authorization, freshness, and physical bounds answer different questions.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.25in} X}
+\toprule
+QUESTION & CHECK\\
+\midrule
+Where does it begin? & Magic bytes, delimiter, or length-prefixed header.\\
+Is it intact? & Exact length, syntax, and optional error-detecting code.\\
+Is each value meaningful? & Type, finite-number, range, and relationship checks.\\
+Is it new? & Sequence number, timestamp, and expiring lease.\\
+Who sent it? & Cryptographic authentication bound to a device identity.\\
+May that device do this? & Server-owned role and per-message authorization.\\
+What if it stops? & Watchdog and defined safe state.\\
+\bottomrule
+\end{tabularx}
+
+\begin{buildbox}[title={HUMAN PARSER LAB}]
+Invent a paper message for a two-light robot: start symbol, sequence number, red level, blue level, and end symbol. Write five valid cards and five adversarial cards: missing field, duplicate sequence, extra character, out-of-range value, and stale timestamp. Exchange decks. The receiver must reject a whole invalid card without applying half of it.
+\end{buildbox}
+
+\begin{advancedbox}[title={STATE MACHINES BEAT WISHFUL PARSING}]
+A parser can be modeled as states such as WaitingForStart, ReadingHeader, ReadingPayload, Validating, Accepted, and Rejected. Every byte causes one defined transition. Timeouts and oversize lengths lead to Rejected. Only Accepted may update command state. Draw the transitions before writing code; missing arrows expose ambiguous behavior.
+\end{advancedbox}

@@ -1,0 +1,91 @@
+\contentsline {part}{I\hspace {1em}Intent and architecture}{1}{part.1}%
+\contentsline {chapter}{\numberline {1}Design history and current scope}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Evidence-based chronology}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Design principles that recur}{4}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Current subsystem status at a glance}{5}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Whole-robot architecture}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Physical and information paths}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Desired component ownership map}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Sense-plan-act without surrendering authority}{8}{section.2.3}%
+\contentsline {part}{II\hspace {1em}Mechanical build}{9}{part.2}%
+\contentsline {chapter}{\numberline {3}Build the mobile base}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Start from interfaces}{11}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Tread tension and support}{11}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Flipper revision and third-wheel concept}{12}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Provisional assembly sequence to verify}{13}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Build above the base}{15}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Body-to-torso connection}{15}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Body rotation and cable continuity}{15}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Head and neck}{16}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Arms}{16}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Fabrication and finish}{19}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Measurement plan}{19}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Process traveler}{19}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Design for assembly and service}{20}{section.5.3}%
+\contentsline {part}{III\hspace {1em}Power, electronics, and firmware}{21}{part.3}%
+\contentsline {chapter}{\numberline {6}Store, convert, protect, and disconnect energy}{23}{chapter.6}%
+\contentsline {section}{\numberline {6.1}What the archive says}{23}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Required single-line diagram}{23}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Motor electrical evidence}{24}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Emergency stop and safe energy state}{24}{section.6.4}%
+\contentsline {chapter}{\numberline {7}Base electronics and firmware}{27}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Confirmed pin and communication map}{27}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Serial frame}{27}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Actuator compact serial}{27}{section.7.3}%
+\contentsline {section}{\numberline {7.4}IR and IMU status}{27}{section.7.4}%
+\contentsline {section}{\numberline {7.5}Safety and correctness audit}{28}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Replacement-firmware architecture}{28}{section.7.6}%
+\contentsline {part}{IV\hspace {1em}Software and perception}{30}{part.4}%
+\contentsline {chapter}{\numberline {8}Central coordination on the Mac mini}{32}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Principal components}{32}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Base heartbeat ownership}{32}{section.8.2}%
+\contentsline {section}{\numberline {8.3}External helpers and dependencies}{32}{section.8.3}%
+\contentsline {section}{\numberline {8.4}Legacy boundary}{33}{section.8.4}%
+\contentsline {chapter}{\numberline {9}Control from iPhone, Watch, and Vision Pro}{35}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Controller roles}{35}{section.9.1}%
+\contentsline {section}{\numberline {9.2}ROBControl v2}{35}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Separate video service}{35}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Safety timing layers}{36}{section.9.4}%
+\contentsline {section}{\numberline {9.5}Privacy review}{36}{section.9.5}%
+\contentsline {chapter}{\numberline {10}Perception and mapping}{38}{chapter.10}%
+\contentsline {section}{\numberline {10.1}RGB-D camera}{38}{section.10.1}%
+\contentsline {section}{\numberline {10.2}RPLidar}{38}{section.10.2}%
+\contentsline {section}{\numberline {10.3}IR and IMU}{38}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Coordinate-frame discipline}{38}{section.10.4}%
+\contentsline {chapter}{\numberline {11}Behavior above raw motor commands}{41}{chapter.11}%
+\contentsline {section}{\numberline {11.1}Servo and arm control}{41}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Keyframe animation}{41}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Speech}{41}{section.11.3}%
+\contentsline {section}{\numberline {11.4}Controller-activated autonomy}{41}{section.11.4}%
+\contentsline {section}{\numberline {11.5}Gemini integration}{41}{section.11.5}%
+\contentsline {section}{\numberline {11.6}Robot-action implementation status}{42}{section.11.6}%
+\contentsline {part}{V\hspace {1em}Integration, operation, and maintenance}{43}{part.5}%
+\contentsline {chapter}{\numberline {12}Test strategy and safety case}{45}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Requirements traceability}{45}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Progressive test ladder}{45}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Failure injection}{45}{section.12.3}%
+\contentsline {section}{\numberline {12.4}Measure stop behavior}{46}{section.12.4}%
+\contentsline {chapter}{\numberline {13}Present ROB safely in public}{48}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Roles}{48}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Pre-show checklist}{48}{section.13.2}%
+\contentsline {section}{\numberline {13.3}Show-state model}{48}{section.13.3}%
+\contentsline {section}{\numberline {13.4}Audience and privacy}{49}{section.13.4}%
+\contentsline {chapter}{\numberline {14}Keep the robot understandable}{51}{chapter.14}%
+\contentsline {section}{\numberline {14.1}Before and after every operating day}{51}{section.14.1}%
+\contentsline {section}{\numberline {14.2}Scheduled maintenance record}{51}{section.14.2}%
+\contentsline {section}{\numberline {14.3}Configuration control}{51}{section.14.3}%
+\contentsline {section}{\numberline {14.4}Troubleshooting by layer}{51}{section.14.4}%
+\contentsline {chapter}{\numberline {A}Teach the architecture without hiding the hazards}{53}{appendix.A}%
+\contentsline {section}{\numberline {A.1}A spiral curriculum for ROB}{53}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Facilitation pattern}{53}{section.A.2}%
+\contentsline {chapter}{\numberline {B}Commission the control path as one safety-related system}{54}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Connection and enrollment matrix}{54}{section.B.1}%
+\contentsline {section}{\numberline {B.2}Measure the whole stop chain}{54}{section.B.2}%
+\contentsline {chapter}{\numberline {C}Capture the builder's oral history}{55}{appendix.C}%
+\contentsline {section}{\numberline {C.1}Interview prompts}{55}{section.C.1}%
+\contentsline {chapter}{\numberline {D}Builder input ledger}{56}{appendix.D}%
+\contentsline {chapter}{\numberline {E}Bill of materials worksheet}{57}{appendix.E}%
+\contentsline {chapter}{\numberline {F}Wiring and connector worksheet}{58}{appendix.F}%
+\contentsline {chapter}{\numberline {G}Serial protocol reference}{59}{appendix.G}%
+\contentsline {chapter}{\numberline {H}Repository source map}{60}{appendix.H}%
+\contentsline {chapter}{\numberline {I}Photo and artwork credits}{61}{appendix.I}%

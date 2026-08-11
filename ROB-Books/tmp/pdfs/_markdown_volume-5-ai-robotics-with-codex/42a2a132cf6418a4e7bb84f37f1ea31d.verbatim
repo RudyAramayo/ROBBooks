@@ -1,0 +1,6 @@
+Analyze ROBController and Cerebro together. Design a versioned replacement for
+the plaintext robot-control path. Requirements: QUIC with TLS 1.3, exact server
+certificate pinning, per-device pairing secrets in Keychain, reciprocal proof
+of possession, controller and lidar roles, persistent revocation, no automatic
+legacy downgrade, bounded framing, and deterministic fixture tests. Identify
+the files on both sides and list migration risks. Do not edit yet.

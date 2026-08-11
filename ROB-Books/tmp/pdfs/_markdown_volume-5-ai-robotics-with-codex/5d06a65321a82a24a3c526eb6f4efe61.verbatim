@@ -1,0 +1,7 @@
+Add an OpenAI Responses API provider behind the existing model-neutral
+improvisation/proposal interface. First inspect the current official OpenAI
+documentation. Keep the existing provider as default. Read the API key from a
+secure runtime source, never source or logs. Return only the existing strict
+schema. No model output may directly invoke serial, shell, network-control, or
+arm code. Add mocked success, timeout, malformed output, refusal, and
+cancellation tests. Do not enable the provider automatically.

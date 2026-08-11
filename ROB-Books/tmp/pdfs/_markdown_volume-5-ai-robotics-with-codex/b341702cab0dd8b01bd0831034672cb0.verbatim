@@ -1,0 +1,5 @@
+Diagnose the QUIC pairing stall using both repositories. Draw the client and
+server state machines from connection start through authenticated readiness.
+Find any state where both peers await input. Preserve certificate pinning,
+device-role lookup, and reciprocal proof. Add a regression fixture for the
+deadlock before changing production code.

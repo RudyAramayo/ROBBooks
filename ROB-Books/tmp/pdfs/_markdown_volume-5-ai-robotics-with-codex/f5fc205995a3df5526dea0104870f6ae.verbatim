@@ -1,0 +1,4 @@
+Add table-driven tests for authority arbitration. Stop must preempt every
+state. Manual control must end autonomy. Restart must default to autonomy off.
+An expired controller snapshot must produce exactly one neutral/braked write
+and no continuing heartbeat. Do not add arm movement.

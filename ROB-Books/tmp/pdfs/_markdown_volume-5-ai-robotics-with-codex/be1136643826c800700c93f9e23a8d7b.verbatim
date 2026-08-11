@@ -1,0 +1,4 @@
+Implement the approved codec checkpoint. Preserve unrelated changes. Run the
+narrow fixture tests first, then the relevant build. Review your own diff for
+security, concurrency, compatibility, and accidental secrets. Report commands,
+results, remaining hardware checks, and files changed.

@@ -1,0 +1,10 @@
+let proposal = try await openAI.responses.create(
+    model: configuredModel,
+    input: currentRobotContext,
+    tools: [robotActionProposalSchema]
+)
+
+let action = try RobotActionProtocol.validate(proposal)
+try authority.requireActiveSession(action.sessionID)
+try policy.requireAllowed(action)
+await operatorConsole.requestApproval(action)

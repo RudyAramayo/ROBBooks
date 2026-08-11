@@ -1,0 +1,719 @@
+BUILDING R.O.B. - VOLUME 1
+
+
+MEET ROB
+A robot is a team of systems
+
+
+
+
+A PICTURE-BOOK FIELD GUIDE FOR CURIOUS MAKERS AGES 8-12
+Rodolfo Aramayo / Orbitus Robotics -   First Maker Faire Edition
+Welcome, junior systems engineer
+Before we touch a wire, we learn to see the whole robot.
+
+ROB is a real, evolving machine built over many years. These pages use real workshop photographs to
+explain how a big robot becomes possible: one smaller problem at a time.
+This volume is meant to be read with a parent, teacher, or maker mentor. Its activities use paper, pencils,
+blocks, and small battery-powered parts. The full-size robot contains heavy treads, powerful motors, pinch
+points, and high-energy batteries. Those parts belong to trained adults with a tested emergency-stop
+plan.
+
+
+
+
+      Original illustrated portrait inspired by the real ROB; use photographs and drawings, not this artwork, as engineering evidence.
+
+
+
+
+Copyright © 2026 Rodolfo Aramayo / Orbitus Robotics. Photographs are from the private ROB build archive unless
+otherwise noted. The generated frontispiece is original artwork derived from a ROB reference photograph. This
+independent educational project is not affiliated with or endorsed by any film studio or franchise owner. Product
+and company names remain the property of their respective owners.
+
+First evidence-based draft: 2 August 2026. Build details marked Builder input needed are deliberate placeholders
+for the builder to complete.
+MEET ROB                                                                                     VOLUME 1 - AGES 8-12
+
+
+
+The Building R.O.B. library
+  VOLUME 1                Meet ROB: A Robot Is a Team of Systems - ages 8-12
+  VOLUME 2                Circuits and Signals with ROB - ages 10-14
+  VOLUME 3                Motion Workshop: Treads, Gears, and Fabrication - ages 10-15
+  VOLUME 4                Mission Control: Arduino, Mac, Networks, and Vision - ages 12-16
+  FIELD       MAN- Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
+  UAL
+
+
+   HOW TO USE THIS BOOK
+
+   Read the large words first, study the photographs, then try the mission box. Words in bold belong
+   in your new engineering vocabulary. When a detail is not proven by the archive, the book says so
+   instead of guessing.
+
+   THE THREE-ZONE RULE
+
+   Green zone: paper models, unplugged code games, and simulations. Work independently.
+   Amber zone: breadboards, LEDs, sensors, and small low-voltage kits. Work with an adult.
+   Red zone: ROB’s batteries, motor wiring, milling, welding, treads, arms, and actuators. Observe
+   from a marked boundary unless a qualified adult has made the machine safe.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             3 / 26
+Contents
+1 A robot is more than a machine           2
+
+2 The skeleton and the shell               6
+
+3 Energy makes motion possible            10
+
+4 How ROB notices things                  12
+
+5 Commands travel in layers               15
+
+6 ROB’s build timeline                    18
+
+7 Your first engineering log              21
+
+8 Think like a systems detective          23
+
+9 Uncertainty is useful information       25
+
+
+
+
+                                      4
+MISSION 1
+
+What makes a machine a robot?
+MISSION 1
+
+
+A robot is more than a
+machine
+Look closely at ROB. You can find parts that roll, parts that bend, parts that see, parts that carry electricity,
+and parts that run programs. A robot appears to be one creature, but engineers see a system of systems.
+A machine becomes robot-like when it can take in information, choose what to do according to rules, and
+cause a change in the world. That does not mean it is alive or that it thinks like a person. It means its parts
+cooperate.
+
+
+                                 SENSE                      THINK                      ACT
+                            camera + IR + IMU           Mac mini + apps            motors + arms
+
+
+
+                                                feedback changes the next choice
+
+
+  COMPUTER SCIENCE CONNECTION
+  The sense-think-act loop is also an input-process-output pattern. A keyboard sends input to a com-
+  puter. Software processes it. A screen produces output. Feedback tells the next loop what changed.
+
+
+
+
+   A 2019 side view shows the big idea already in place: a tracked base, a torso, articulated arms, a camera head,
+   wiring, and a computer-controlled personality.
+
+                                                               2
+MEET ROB                                                                                            VOLUME 1 - AGES 8-12
+
+
+
+   SYSTEMS HUNT
+
+   On the photograph, point to one possible input, one processor, and one output. Then name one
+   thing you cannot see but the robot still needs, such as electrical power or software.
+
+
+
+
+     A 2020 front view gives you another systems puzzle. Trace one path from a sensor, through hidden computing,
+     to a part that can move or make sound.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 26
+MEET ROB                                                                                           VOLUME 1 - AGES 8-12
+
+
+
+Five teams inside ROB
+                               JOB                                               EXAMPLES IN ROB
+  TEAM
+                               Carries loads and keeps parts aligned.            Chassis plates, wooden proto-
+  Structure                                                                      type panels, brackets, shafts.
+                               Changes position by turning or extending.         Treads, flippers, arm joints,
+  Motion                                                                         torso actuator.
+                               Stores and safely distributes energy.             LiFePO4 battery bank de-
+  Power                                                                          scribed in the build presenta-
+                                                                                 tion, power buses, converters.
+                               Measures the robot and its surroundings.          IR distance sensors, IMU, OAK-
+  Sensing                                                                        D depth camera, RPLidar.
+                               Turns human intent and sensor data into bounded   Arduino base firmware, Mac
+  Control                      commands.                                         mini running Cerebro, phone
+                                                                                 and wearable controllers.
+No team can succeed alone. A powerful motor without a bracket may twist itself loose. A perfect camera
+without software only produces pixels. A clever program without an emergency stop can be dangerous.
+
+   MAKE A SYSTEMS MOBILE
+
+   Cut five paper circles and label them Structure, Motion, Power, Sensing, and Control. Tie them to one
+   ring. Add a sixth card labeled Human. Tug one card and watch the whole mobile move: a change in
+   one subsystem affects the others.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   4 / 26
+MISSION 2
+
+Structure carries every idea
+MISSION 2
+
+
+The skeleton and the shell
+The chassis is the robot’s load-carrying frame. ROB’s archive shows wooden prototype panels, metal
+brackets, shafts, bearings, fasteners, tread frames, and later mechanical revisions. Prototypes are useful
+because they let a builder test size and motion before paying for final parts.
+The tracked base must do several jobs at once:
+
+• hold the robot’s weight without bending too much;
+• keep sprockets, wheels, and chains aligned;
+• protect batteries and wiring;
+• provide openings for inspection and repair;
+• leave room for a central actuator and moving flippers.
+
+
+
+
+A bracket is held in place before drilling. Fit checks catch mistakes       A digital caliper measures the tread frame. Engineers replace “about
+while they are still easy to fix.                                           this big” with a number and unit.
+
+
+   COMPUTER SCIENCE CONNECTION
+   A measurement is data. A useful measurement has a value, a unit, and an idea of uncertainty. Writ-
+   ing “48” is incomplete. Writing “48.0 mm, measured with a caliper” can guide another maker.
+
+   PAPER CHASSIS TEST
+
+   Build two bridges from one sheet of paper. Leave one flat. Fold the other into a channel or triangle.
+   Span the same gap and add coins one at a time. Record how many coins each design holds. Shape
+   can add stiffness without adding material.
+
+
+
+
+                                                                        6
+MEET ROB                                                                                               VOLUME 1 - AGES 8-12
+
+
+
+    BUILDER INPUT NEEDED
+    Add ROB’s verified overall height, width, length, ready-to-run mass, primary chassis materials, and
+    the story behind the name R.O.B. These values are not established by the presentation or repositories.
+
+
+
+
+     A 2022 bracket assembly connects an idea to the real chassis. Its shape is visible, but the final material, di-
+     mensions, fasteners, loads, and inspection record still need the builder’s evidence.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       7 / 26
+MEET ROB                                                                                                                VOLUME 1 - AGES 8-12
+
+
+
+Iteration is not failure
+
+
+
+
+                                                                                                                 By 2024, a sprocket and
+A power drill, metal rails, and a bracket are visible during a 2022     chain sit above a newly machined chassis opening. Clearance became
+modification. The photograph does not document secure clamping,         a real, measurable design constraint.
+eye protection, or the complete workholding setup; those controls are
+required for adult red-zone drilling.
+
+
+An early design can answer a question even when it is not the final design. The ROB presentation records
+revisions such as moving the flippers, changing brackets, adding a third-wheel idea for easier turning, and
+finding new spaces for sensors and computing.
+Engineers often work in this loop:
+
+
+                ASK                            SKETCH              BUILD                       TEST                    LEARN
+
+
+
+
+The last arrow is the secret: learning returns you to a better question.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        8 / 26
+MISSION 3
+
+Power and information are differ-
+ent
+MISSION 3
+
+
+Energy makes motion possible
+Electric circuits carry energy and information, but those are not always the same job. A thick red cable
+may carry enough current to drive a motor. A small signal wire may only tell the motor controller what
+speed to use.
+ROB’s presentation describes four 20 Ah LiFePO4 batteries arranged across the base for a total stated
+capacity of 80 Ah. A 2024 photograph shows two large batteries with red power leads inside the chas-
+sis. The archive does not prove the final series/parallel arrangement, protection devices, or present-day
+capacity, so this book does not invent them.
+
+   SAFETY CHECK
+
+   Large battery banks can produce fire, burns, arc flash, toxic smoke, and violent motion. Never copy a
+   photograph as a wiring diagram. A qualified adult must design fusing, a disconnect, charging, cable
+   sizes, insulation, strain relief, and the physical emergency-stop circuit.
+
+
+
+
+                                              Red and black power ca-
+bles pass through a fitted opening. A pass-through needs edge pro-           A chassis gauge reads 13.1 V in this photograph. One number is a
+tection and strain relief so vibration cannot cut insulation.                clue, not a complete description of the battery system.
+
+
+   ENERGY OR MESSAGE?
+
+   Sort these into likely energy paths or information paths: battery cable, USB cable, motor shaft, camera
+   image, PWM control wire, speaker wire, emergency-stop contact. Some can carry both. Explain your
+   choice instead of guessing by color. In Circuits and Signals, a supervised Maker Faire lab opens a
+   sacrificial, unplugged USB cable and uses its verified 5 V and GND conductors to power a small toy.
+   It turns this sorting question into a real circuit while keeping cutting and electrical verification in an
+   adult-only station.
+
+
+
+
+                                                                        10
+MISSION 4
+
+Sensors turn the world into num-
+bers
+MISSION 4
+
+
+How ROB notices things
+A sensor is a translator. It converts something physical into data a computer can use.
+
+• The Arduino file declares six Sharp IR sensor objects. The active warning routine samples only the front
+  and rear pairs; the left/right pair appears only in commented telemetry.
+• An MPU9250 IMU measures acceleration, turning rate, and magnetic direction. Software combines
+  those readings into yaw, pitch, and roll.
+• An OAK-D camera can provide a color image plus depth values in millimeters.
+• RPLidar reports laser samples around the robot so software can reason about obstacles and maps.
+
+
+
+
+   ROB’s speaker face, central depth camera, and upper mechanisms show that different sensors answer different
+   questions; no single sensor knows everything.
+
+
+  FROM ROB'S BUILD LOG
+
+  The build presentation records a real lesson: IR light sometimes bounced from the floor, and grass
+  produced noisy obstacle reports. In the checked-in Arduino code, sensor reading and warnings
+  still run, but the lines that set the forward/backward shutdown flags are commented out. That is an
+  experimental condition, not a finished safety system.
+
+
+
+
+                                                       12
+MEET ROB                                                                                      VOLUME 1 - AGES 8-12
+
+
+
+   NOISY SENSOR GAME
+
+   One student secretly chooses a distance from 10 to 100 cm. A “sensor” student reports it five times,
+   adding or subtracting a few centimeters each time. Should a robot stop after one low reading, after
+   several low readings, or after combining another sensor? Discuss the tradeoff between false alarms
+   and missed obstacles.
+
+
+
+
+     Sensors ride on a moving, changing machine. A useful reading depends on where the sensor is mounted,
+     which way it points, what the robot is doing, and what surrounds it.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            13 / 26
+MISSION 5
+
+The brain is a conversation
+MISSION 5
+
+
+Commands travel in layers
+ROB’s Mac mini runs the Cerebro app. Controllers on a phone, Apple Watch, or Vision Pro can express
+human intent. Cerebro checks who is allowed to control, keeps track of a live session, coordinates cameras
+and higher-level behavior, and sends a compact command toward the base Arduino.
+
+
+                                   Operator intent - iPhone, Apple Watch, or Vision Pro controller
+
+
+
+                      Authenticated control session - pairing, TLS/QUIC, roles, sequence, applicable freshness
+
+
+
+                              Cerebro on macOS - UI, coordination, cameras, speech, autonomy gates
+
+
+
+                                          USB serial heartbeat - fixed base command frame
+
+
+
+                                 Arduino base controller - PWM, direction, brakes, actuator, IMU, IR
+
+
+
+                   Physical plant - treads, flippers, linear actuator (installed role to verify), battery and mechanics
+
+
+
+Each layer has a smaller job:
+
+1. The human chooses a goal, such as “drive slowly forward.”
+2. A controller measures the joystick and creates numbers.
+3. The network proves which paired device sent the message.
+4. Cerebro decides who currently has control and translates the request.
+5. USB serial carries a fixed-width text frame to the Arduino.
+6. The Arduino sets brake, direction, PWM, and actuator commands.
+
+  COMPUTER SCIENCE CONNECTION
+  This is abstraction: each layer offers a simpler promise to the layer above. The phone does not need
+  to know which Arduino pin drives the left tread. The Arduino does not need to know whether the
+  command began on a phone or a headset.
+
+
+
+
+                                                                   15
+MEET ROB                                                                                                                                                       VOLUME 1 - AGES 8-12
+
+
+
+What happens when a message disappears?
+For a moving robot, silence must not mean “keep going forever.” ROB’s layers use different time rules:
+Vision uses a short input lease, the Watch relay has its own watchdog, Cerebro requires a fresh controller
+snapshot, and the Arduino has a separate heartbeat that commands zero speed if updates stop. Their
+physical stopping behavior still has to be measured.
+
+
+            input released                     controller-specific             Cerebro 0.6 s                           Arduino serial                     commanded stop;
+            or manual stop                     lease / watchdog               freshness gate                             deadman                        result must be tested
+
+
+
+
+                                                                                                         independent of software
+                                                                     required verified physical E-stop                      independent contactor / controller stop path
+
+
+
+
+    SAFETY CHECK
+
+    Software stop layers are useful, but they do not replace a physical emergency stop that removes
+    motion authority independently. Sensors can fail. Programs can freeze. Networks can disappear.
+    Safety works best in layers with different failure modes.
+
+   MESSAGE RELAY
+
+   Form a line of five people: Operator, Controller, Cerebro, Arduino, Motor. Pass a card marked
+   FORWARD 20. Every person must receive a fresh card before a five-count expires. If a card is delayed
+   or unreadable, the next person passes STOP. This is a human-sized watchdog demonstration.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                                                16 / 26
+MISSION 6
+
+A robot grows through versions
+MISSION 6
+
+
+ROB's build timeline
+The archive is not a perfect diary, but it shows a machine changing in public.
+
+
+2019: the whole idea moves
+
+
+
+
+                                          The early black tracked
+robot already combines camera eyes, arms, a body, and a mobile base.        The side view makes weight, balance, tread geometry, and exposed
+                                                                            mechanisms easier to study.
+
+
+
+2020-2021: open the body and learn
+
+
+
+
+                                          An overhead view reveals                                                      An open rear bay exposes
+how many mechanical and electrical paths compete for space.                 loose wiring beside an arm. Access for service is part of the design.
+
+
+
+
+                                                                       18
+MEET ROB                                                                                                                    VOLUME 1 - AGES 8-12
+
+
+
+2022: add computers, cameras, and brackets
+
+
+
+
+Motor, wiring, wooden mounting pieces, and tread chassis share a          A newly installed clamp and upright bracket show the project moving
+crowded base.                                                             from fit check to hardware.
+
+
+
+2024: measure and rebuild the drivetrain
+
+
+
+
+                                               A close chain path makes                                             An open base reveals mo-
+alignment and clearance visible.                                          tors, power wiring, batteries, and space reserved for mechanisms.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                          19 / 26
+MEET ROB                                                                                                                  VOLUME 1 - AGES 8-12
+
+
+
+2025: refine the current character
+
+
+
+
+                                               The current body, tracked
+base, camera head, and articulated arm show how ROB’s identity grew        The neck mechanism exposes stacked gears, supports, and a maker’s
+through many revisions.                                                    willingness to keep iterating.
+
+
+   A FAIR PRESENTATION IS A TEST
+
+   Maker Faire adds new requirements: a safe operating boundary, reliable setup, clear explanations,
+   charging and transport plans, consent around cameras, and a quick way to stop motion. A robot is
+   not finished when it moves; it is ready when people can experience it safely.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        20 / 26
+MISSION 7
+
+
+Your first engineering log
+Choose an imaginary helper robot. Give it one job, such as carrying library books or watering a plant. Fill
+in this one-page design brief.
+
+
+                         Who needs help?
+ USER
+
+
+                         What one job should the robot do?
+ TASK
+
+
+                         What must it sense or be told?
+ INPUTS
+
+
+                         What motion, light, or sound will it make?
+ OUTPUTS
+
+
+                         What safe classroom energy source will it use?
+ POWER
+
+
+                         What event must immediately make it stop?
+ STOP RULE
+
+
+                         How will you know the idea worked?
+ TEST
+
+  DRAW THE BLOCK DIAGRAM
+
+  Draw boxes for Sense, Think, and Act. Add arrows showing the information path. Then add a Human
+  box and a Stop path. A clear diagram is a tool for thinking, not decoration.
+
+
+
+
+                                                    21
+DEEP LAB
+
+See the loop, not just the parts
+MISSION 8
+
+
+Think like a systems detective
+A list of parts tells us what a robot has. A system model tells us what the parts must accomplish together.
+Systems engineers begin with a boundary: what is inside the system, what is outside, and what may cross
+the boundary? Energy, information, material, force, heat, and sound can cross it. Drawing the boundary
+prevents a common mistake—explaining one interesting part while forgetting the whole job.
+
+  THE WATER-DELIVERY ROBOT
+
+  Imagine a small classroom robot whose only job is to carry one sealed cup from a filling station to a
+  table. Name the user and success condition. Then list what crosses its boundary: electrical energy
+  enters from a battery; destination information enters from a person; wheel forces act on the floor;
+  heat and sound leave; the cup enters and exits. Which crossing could make the mission fail?
+
+
+
+A feedback loop has memory
+Open-loop action says, “Run the motor for one second.” Closed-loop action says, “Measure the result,
+compare it with the goal, and choose the next action.” The second approach needs a remembered goal
+and fresh measurements. It can correct some disturbances, such as a wheel moving less on carpet, but
+only when the sensor measures something useful.
+
+
+                            GOAL                COMPARE                  ACT
+
+
+
+
+                                                  SENSE
+
+
+
+  A SENSOR DOES NOT KNOW
+  A sensor translates a physical effect into a signal. A camera produces pixels; it does not automatically
+  know “cup.” Software builds an estimate from measurements, assumptions, and prior information.
+  Every estimate has limits. Strong glare, a hidden object, a dirty lens, or an old timestamp can change
+  what the data means.
+
+
+
+Make three predictions
+For every model, predict a normal case, a changed case, and a failure case. If ROB approaches a card-
+board box, what should a distance reading do? What changes if the box is dark or angled? What should
+happen if readings stop arriving? A prediction turns “I think it works” into something observable.
+
+
+
+
+                                                    23
+MEET ROB                                                                                            VOLUME 1 - AGES 8-12
+
+
+
+                                   PREDICTION                            EVIDENCE TO COLLECT
+  CASE
+                                   What pattern should appear?           A number, timestamp, photo, or state.
+  Normal
+                                   Which variable changes while others   Before-and-after observations.
+  Changed                          stay fixed?
+                                   Which safe state should appear?       Timeout, rejection, and recovery record.
+  Failure
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  24 / 26
+MISSION 9
+
+
+Uncertainty is useful
+information
+Measurements are not perfect labels. A ruler has limited marks. A camera pixel covers an area. A distance
+sensor samples a cone or ray. Repeating a measurement reveals spread. Engineers report a value with its
+unit, method, revision, and uncertainty instead of hiding variation.
+
+  PAPER SENSOR MAP
+
+  Place a sheet of graph paper on a table and choose one square as a pretend robot. A partner secretly
+  places three paper obstacles. You may ask for eight straight-line distance measurements in chosen
+  directions. Mark each result, including “no return.” Draw two maps: space supported by evidence
+  and space still unknown. Compare your map with the real layout. No electronics are needed.
+
+  CAUSE, CORRELATION, AND A FAIR TEST
+
+  If a robot slows down when its battery reading falls, the two events are correlated. That alone does
+  not prove the battery caused the slowdown; floor friction, software limits, temperature, or load may
+  also have changed. A fair test changes one planned variable, controls the others as well as practical,
+  repeats trials, and records exceptions.
+
+  SAFETY CHECK
+
+  These reasoning tools apply to ROB, but youth investigations remain on paper, in simulation, or with
+  current-limited classroom kits. Never probe ROB’s batteries, power branches, motor wiring, moving
+  treads, actuators, or exposed mechanisms.
+
+
+
+
+                                                   25
+MEET ROB                                                                                                         VOLUME 1 - AGES 8-12
+
+
+
+Field words
+ACTUATOR A device that causes motion.                             OUTPUT     Information or action produced by a sys-
+                                                                  tem.
+CHASSIS The load-carrying frame.
+COMMAND A message asking a system to do some- PROTOTYPE A version built to answer questions.
+thing.                                        SENSOR A device that translates a physical quantity
+FEEDBACK A measurement of what happened after into data.
+an action.                                                        SYSTEM Connected parts that cooperate for a pur-
+INPUT Information entering a system.                              pose.
+ITERATION A new version made after learning from WATCHDOG A timer that responds when expected
+a test.                                          updates stop.
+
+   FINAL CHECK
+
+   Can you explain why ROB needs both energy paths and information paths? Can you name three
+   systems inside him? Can you explain why a watchdog and a physical emergency stop are different?
+   If yes, you are ready for Volume 2.
+
+
+
+
+Source trail: Presentation/ROB_v3.pdf; ORobotics private gallery originals and gallery metadata; ROBOT
+Build/ROBOT_CEREBELLULAR_BASE_APP.ino; current Cerebro, ROBController, and ROBControllerVision source snapshot inspected
+2026-08-02.
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                               26 / 26
+

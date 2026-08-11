@@ -1,0 +1,4 @@
+Implement only the v2 frame codec and fixtures in both repositories. Do not
+open sockets and do not modify UI. Reject unknown mandatory versions, oversized
+payloads, truncated frames, and invalid role/action combinations. Run the
+fixture tests and show the exact diff.

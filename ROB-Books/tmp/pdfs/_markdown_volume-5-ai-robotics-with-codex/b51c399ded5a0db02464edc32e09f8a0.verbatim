@@ -1,0 +1,4 @@
+Treat model output as untrusted. Define a versioned strict schema, limits,
+allow-list, authority check, deadline, cancellation, idempotency rule, operator
+approval, terminal result, and audit event. Add negative fixtures. Do not wire
+physical execution until the protocol review is complete.
