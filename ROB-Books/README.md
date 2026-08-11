@@ -30,6 +30,8 @@ keeps its more technical workshop cover.
 
 The matching static web lesson lives in the ORobotics Hugo project at `/robot-lab/`. It is a four-mission, browser-only diagnostic game covering feedback, PWM, differential drive, and command freshness. It never connects to ROB or stores learner data.
 
+The companion ROB Training campaign now spans the Three.js website game and the native iOS/visionOS project in `../ROBTrainingGames/`. The shared level, component, scoring, and safety vocabulary is maintained in [`ROBOT_GAME_CURRICULUM.md`](ROBOT_GAME_CURRICULUM.md).
+
 ## Edition status
 
 These files are **layout proofs and an editorial first edition**, not certified build plans. ROB contains high-energy batteries, powerful motors, chains, treads, pinch and crush points, machine-made metal parts, networked control, cameras, microphones, and software-controlled motion. A qualified adult must own the electrical and mechanical design, guarding, emergency-stop system, hazard analysis, test perimeter, and public-show procedure.
