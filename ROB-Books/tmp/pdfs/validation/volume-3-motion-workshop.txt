@@ -48,6 +48,14 @@ The Building R.O.B. library
    Treat every photograph as evidence of one moment in an evolving prototype. Look for loads, motion
    paths, fasteners, alignment, access, and risk. Do not copy dimensions from perspective photographs.
 
+   ONE CURRENT ARDUINO, THREE HISTORICAL SKETCHES
+
+   The ROBArduino archive preserves Base, Torso, and Head sketches from an earlier three-Arduino de-
+   sign. The builder reports that present-day ROB uses only the Base sketch. This book therefore treats
+   Base behavior as the current low-level firmware reference and labels Torso and Head behavior as re-
+   tired historical evidence. Source files cannot prove which binary is flashed today; record the board
+   identity, firmware hash, build environment, and upload date before operation.
+
     MACHINE-TOOL RULE
 
    Young readers may plan, measure, sketch, make cardboard fixtures, and observe from a marked

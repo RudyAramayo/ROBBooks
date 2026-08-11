@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  10 AUG 2026 22:46
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  10 AUG 2026 23:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1469,7 +1469,14 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 ] [2]
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
-cmr.cfg) [3
+cmr.cfg)
+LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
+(Font)              scaled to size 9.08852pt on input line 16.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `Menlo' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [3
 
 ]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.toc)
@@ -1489,12 +1496,13 @@ bmp)
 
 ]
 Chapter 1.
-File: ../assets/slides/rob-v3-page-72.jpg Graphic file (type bmp)
-<../assets/slides/rob-v3-page-72.jpg>
 [2
 
 
-] [3]
+]
+File: ../assets/slides/rob-v3-page-72.jpg Graphic file (type bmp)
+<../assets/slides/rob-v3-page-72.jpg>
+ [3]
 File: ../assets/photos/2021-open-electronics-bay.jpg Graphic file (type bmp)
 <../assets/photos/2021-open-electronics-bay.jpg>
  [4
@@ -1505,7 +1513,7 @@ File: ../assets/photos/2022-fanless-computer-and-serial.jpg Graphic file (type
 bmp)
 <../assets/photos/2022-fanless-computer-and-serial.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 70--70
+Underfull \hbox (badness 10000) in paragraph at lines 73--73
 [][]
  []
 
@@ -1513,7 +1521,7 @@ File: ../assets/generated/rob-software-control-room.png Graphic file (type bmp)
 
 <../assets/generated/rob-software-control-room.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 70--70
+Underfull \hbox (badness 10000) in paragraph at lines 73--73
 [][]
  []
 
@@ -1526,17 +1534,11 @@ ang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 84.
+nput line 87.
 LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 9.08852pt on input line 84.
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `Menlo' (encoding: TU).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 6.806pt on input line 84.
+(Font)              scaled to size 6.806pt on input line 87.
 LaTeX Font Info:    Font shape `TU/Menlo(0)/b/n' will be
-(Font)              scaled to size 6.806pt on input line 85.
+(Font)              scaled to size 6.806pt on input line 88.
  [6]
 File: ../assets/photos/2025-rob-side-full-body.jpg Graphic file (type bmp)
 <../assets/photos/2025-rob-side-full-body.jpg>
@@ -1545,7 +1547,7 @@ File: ../assets/photos/2025-rob-side-full-body.jpg Graphic file (type bmp)
 ]
 Chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 121--121
+Underfull \hbox (badness 10000) in paragraph at lines 124--124
 []|\TU/AvenirNext(0)/m/n/10.95 SwiftUI control experience, simulator,
  []
 
@@ -1573,7 +1575,7 @@ File: ../assets/photos/2022-oakd-depth-camera.jpg Graphic file (type bmp)
 ]
 Chapter 5.
 LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 8.30002pt on input line 189.
+(Font)              scaled to size 8.30002pt on input line 192.
 [13
 
 
@@ -1587,14 +1589,14 @@ Chapter 6.
 File: ../assets/photos/2022-oakd-depth-camera.jpg Graphic file (type bmp)
 <../assets/photos/2022-oakd-depth-camera.jpg>
 
-Underfull \hbox (badness 1917) in paragraph at lines 213--213
+Underfull \hbox (badness 1917) in paragraph at lines 216--216
 [][] []\TU/AvenirNext(0)/m/it/8 An OAK-D stereo depth
  []
 
 File: ../assets/slides/rob-v3-page-74.jpg Graphic file (type bmp)
 <../assets/slides/rob-v3-page-74.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
+Underfull \hbox (badness 10000) in paragraph at lines 216--216
 [][]
  []
 
@@ -1613,12 +1615,12 @@ File: ../assets/photos/2025-detached-articulated-arm.jpg Graphic file (type bmp
 ]
 Chapter 7.
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--269
+Underfull \hbox (badness 10000) in paragraph at lines 272--272
 []|\TU/AvenirNext(0)/m/n/10.95 CURRENT STA-
  []
 
 
-Underfull \hbox (badness 2229) in paragraph at lines 269--269
+Underfull \hbox (badness 2229) in paragraph at lines 272--272
 []|\TU/AvenirNext(0)/m/n/10.95 Preempts local coordinators, sends one neutral/b
 raked
  []
@@ -1638,12 +1640,12 @@ File: ../assets/photos/2025-rob-side-full-body.jpg Graphic file (type bmp)
 ]
 Chapter 8.
 
-Underfull \hbox (badness 10000) in paragraph at lines 316--316
+Underfull \hbox (badness 10000) in paragraph at lines 319--319
 []|\TU/AvenirNextCondensed(0)/b/n/10.95 Controller snapshots
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 316--316
+Underfull \hbox (badness 10000) in paragraph at lines 319--319
 []|\TU/AvenirNextCondensed(0)/b/n/10.95 Malformed ROBCon-
  []
 
@@ -1651,7 +1653,7 @@ File: ../assets/generated/rob-software-control-room.png Graphic file (type bmp)
 
 <../assets/generated/rob-software-control-room.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 318--318
+Underfull \hbox (badness 10000) in paragraph at lines 321--321
 [][]
  []
 
@@ -1676,7 +1678,7 @@ Chapter 10.
 
 
 ]
-Underfull \hbox (badness 6047) in paragraph at lines 338--338
+Underfull \hbox (badness 6047) in paragraph at lines 341--341
 [][]\TU/AvenirNextCondensed(0)/b/n/10.95 PROCESS[] \TU/AvenirNext(0)/m/n/10.95 
 A running program with its own re-
  []
@@ -1695,13 +1697,13 @@ d.
 (rerunfilecheck)             Checksum: 8DCCD6BE105A1E08B63723840C584C17;2204.
  ) 
 Here is how much of TeX's memory you used:
- 35362 strings out of 468168
- 764560 string characters out of 5423555
- 1494539 words of memory out of 5000000
- 63454 multiletter control sequences out of 15000+600000
+ 35365 strings out of 468168
+ 764613 string characters out of 5423555
+ 1495120 words of memory out of 5000000
+ 63457 multiletter control sequences out of 15000+600000
  632142 words of font info for 134 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 101i,12n,131p,1021b,1281s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,12n,131p,1021b,1280s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-missi
-on-control.xdv (30 pages, 552936 bytes).
+on-control.xdv (30 pages, 566692 bytes).

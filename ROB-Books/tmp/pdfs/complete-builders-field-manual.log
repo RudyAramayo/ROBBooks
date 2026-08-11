@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  10 AUG 2026 22:46
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  10 AUG 2026 23:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1476,7 +1476,14 @@ mp)
 <../assets/generated/rob-used-future-frontispiece.png>
  [2]
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
-cmr.cfg) [3
+cmr.cfg)
+LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
+(Font)              scaled to size 8.30002pt on input line 36.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `Menlo' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [3
 
 ]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.
@@ -1498,37 +1505,37 @@ File: ../assets/photos/2025-rob-face-portrait.jpg Graphic file (type bmp)
 ]
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--67
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 []|\TU/AvenirNext(0)/m/n/10 Open electronics, camera/head revisions,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--67
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 \TU/AvenirNext(0)/m/n/10 wooden base templates, tread geometry,
  []
 
 
-Underfull \hbox (badness 2671) in paragraph at lines 67--67
+Underfull \hbox (badness 2671) in paragraph at lines 69--69
 []|\TU/AvenirNext(0)/m/n/10 Operational experience likely drove require-
  []
 
 
-Underfull \hbox (badness 3068) in paragraph at lines 67--67
+Underfull \hbox (badness 3068) in paragraph at lines 69--69
 \TU/AvenirNext(0)/m/n/10 ments, but the archive does not link each
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--67
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 []|\TU/AvenirNext(0)/m/n/10 Sprocket-area machining, chain clearance,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--67
+Underfull \hbox (badness 10000) in paragraph at lines 69--69
 []|\TU/AvenirNext(0)/m/n/10 Shoulder and neck gearing, arm re-
  []
 
 
-Underfull \hbox (badness 3623) in paragraph at lines 67--67
+Underfull \hbox (badness 3623) in paragraph at lines 69--69
 \TU/AvenirNext(0)/m/n/10 moval/reassembly, cable labels, emergency-
  []
 
@@ -1547,22 +1554,22 @@ File: ../assets/photos/2024-open-tracked-base.jpg Graphic file (type bmp)
 ]
 Chapter 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--141
+Underfull \hbox (badness 10000) in paragraph at lines 143--143
 []|\TU/AvenirNext(0)/m/n/10 Capture fresh intent, apply its client-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--141
+Underfull \hbox (badness 10000) in paragraph at lines 143--143
 \TU/AvenirNext(0)/m/n/10 specific lease or watchdog, present
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 141--141
+Underfull \hbox (badness 2285) in paragraph at lines 143--143
 \TU/AvenirNext(0)/m/n/10 and order messages, reject replay and
  []
 
 
-Underfull \hbox (badness 1275) in paragraph at lines 141--141
+Underfull \hbox (badness 1275) in paragraph at lines 143--143
 []|\TU/AvenirNext(0)/m/n/10 Target: accept only complete bounded
  []
 
@@ -1581,7 +1588,7 @@ Chapter 3.
 File: ../assets/photos/2022-drive-assembly-rear.jpg Graphic file (type bmp)
 <../assets/photos/2022-drive-assembly-rear.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--178
+Underfull \hbox (badness 10000) in paragraph at lines 180--180
 [][]
  []
 
@@ -1592,7 +1599,7 @@ File: ../assets/photos/2022-chain-sprocket-interior.jpg Graphic file (type bmp)
 
 <../assets/photos/2022-chain-sprocket-interior.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 186--186
+Underfull \hbox (badness 10000) in paragraph at lines 188--188
 [][]
  []
 
@@ -1616,12 +1623,12 @@ File: ../assets/photos/2025-rear-electronics-bay.jpg Graphic file (type bmp)
 File: ../assets/photos/2025-labeled-cables.jpg Graphic file (type bmp)
 <../assets/photos/2025-labeled-cables.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 244--244
+Underfull \hbox (badness 10000) in paragraph at lines 246--246
 [][]
  []
 
 
-Underfull \hbox (badness 2547) in paragraph at lines 244--244
+Underfull \hbox (badness 2547) in paragraph at lines 246--246
 []\TU/AvenirNext(0)/m/it/7 Temporary labels aid teardown, but permanent routing
  must account for
  []
@@ -1635,7 +1642,7 @@ File: ../assets/photos/2022-oakd-depth-camera.jpg Graphic file (type bmp)
 File: ../assets/photos/2025-neck-gear-train.jpg Graphic file (type bmp)
 <../assets/photos/2025-neck-gear-train.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--250
+Underfull \hbox (badness 10000) in paragraph at lines 252--252
 [][]
  []
 
@@ -1643,7 +1650,7 @@ File: ../assets/photos/2025-detached-articulated-arm.jpg Graphic file (type bmp
 )
 <../assets/photos/2025-detached-articulated-arm.jpg>
 
-Underfull \hbox (badness 2564) in paragraph at lines 256--256
+Underfull \hbox (badness 2564) in paragraph at lines 258--258
 [][] []\TU/AvenirNext(0)/m/it/7 A detached arm reveals its
  []
 
@@ -1660,14 +1667,14 @@ File: ../assets/photos/2024-caliper-tread-measurement.jpg Graphic file (type bm
 p)
 <../assets/photos/2024-caliper-tread-measurement.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 285--285
+Underfull \hbox (badness 10000) in paragraph at lines 287--287
 [][]
  []
 
 File: ../assets/photos/2022-bracket-fit-check.jpg Graphic file (type bmp)
 <../assets/photos/2022-bracket-fit-check.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 285--285
+Underfull \hbox (badness 10000) in paragraph at lines 287--287
 [][]
  []
 
@@ -1687,7 +1694,7 @@ Chapter 6.
 File: ../assets/slides/rob-v3-page-41.jpg Graphic file (type bmp)
 <../assets/slides/rob-v3-page-41.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 325--325
+Underfull \hbox (badness 10000) in paragraph at lines 327--327
 [][]
  []
 
@@ -1695,7 +1702,7 @@ File: ../assets/photos/2024-batteries-and-power-leads.jpg Graphic file (type bm
 p)
 <../assets/photos/2024-batteries-and-power-leads.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 325--325
+Underfull \hbox (badness 10000) in paragraph at lines 327--327
 [][]
  []
 
@@ -1705,7 +1712,7 @@ File: ../assets/photos/2024-power-cable-pass-through.jpg Graphic file (type bmp
 File: ../assets/photos/2024-voltage-gauge.jpg Graphic file (type bmp)
 <../assets/photos/2024-voltage-gauge.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 344--344
+Underfull \hbox (badness 10000) in paragraph at lines 346--346
 [][]
  []
 
@@ -1724,37 +1731,43 @@ File: ../assets/photos/2024-dense-internal-routing.jpg Graphic file (type bmp)
 ]
 Chapter 7.
 
-Underfull \hbox (badness 10000) in paragraph at lines 390--390
+Underfull \hbox (badness 10000) in paragraph at lines 380--380
+[]|[] \TU/AvenirNext(0)/m/n/10 current
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 408--408
 []|\TU/AvenirNext(0)/m/n/10 SoftwareSerial
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 390--390
+Underfull \hbox (badness 10000) in paragraph at lines 408--408
 \TU/AvenirNext(0)/m/n/10 D22/D23, 19,200
  []
 
 
-Underfull \hbox (badness 2932) in paragraph at lines 390--390
+Underfull \hbox (badness 2932) in paragraph at lines 408--408
 []|\TU/AvenirNext(0)/m/n/10 Compact serial forward/reverse; nominal speed -3200
  to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 390--390
+Underfull \hbox (badness 10000) in paragraph at lines 408--408
 []|\TU/AvenirNext(0)/m/n/10 I2C via Wire;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 390--390
+Underfull \hbox (badness 10000) in paragraph at lines 408--408
 []|\TU/AvenirNext(0)/m/n/10 Proposed
  []
 
-LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 9.96002pt on input line 396.
 [27
 
 
-] [28] [29] [30
+]
+LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
+(Font)              scaled to size 9.96002pt on input line 416.
+ [28] [29] [30
 
 ]
 File: ../assets/photos/2022-fanless-computer-and-serial.jpg Graphic file (type 
@@ -1765,7 +1778,7 @@ bmp)
 ]
 Chapter 8.
 
-Underfull \hbox (badness 1735) in paragraph at lines 485--485
+Underfull \hbox (badness 1735) in paragraph at lines 505--505
 []|\TU/AvenirNext(0)/m/n/10 Camera providers, frame-set ownership, bounded deli
 very, RGB-D
  []
@@ -1781,17 +1794,17 @@ File: ../assets/photos/2024-open-tracked-base.jpg Graphic file (type bmp)
 ]
 Chapter 9.
 
-Underfull \hbox (badness 10000) in paragraph at lines 530--530
+Underfull \hbox (badness 10000) in paragraph at lines 550--550
 []|\TU/AvenirNext(0)/m/n/10 Send established con-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 530--530
+Underfull \hbox (badness 10000) in paragraph at lines 550--550
 \TU/AvenirNext(0)/m/n/10 trol/action/autonomy messages and
  []
 
 
-Underfull \hbox (badness 5331) in paragraph at lines 530--530
+Underfull \hbox (badness 5331) in paragraph at lines 550--550
 []|\TU/AvenirNext(0)/m/n/10 Send bounded typed scan and map
  []
 
@@ -1808,7 +1821,7 @@ Chapter 10.
 File: ../assets/slides/rob-v3-page-55.jpg Graphic file (type bmp)
 <../assets/slides/rob-v3-page-55.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 588--588
+Underfull \hbox (badness 10000) in paragraph at lines 608--608
 [][]
  []
 
@@ -1822,7 +1835,7 @@ File: ../assets/photos/2025-detached-articulated-arm.jpg Graphic file (type bmp
 )
 <../assets/photos/2025-detached-articulated-arm.jpg>
 
-Underfull \hbox (badness 1248) in paragraph at lines 592--592
+Underfull \hbox (badness 1248) in paragraph at lines 612--612
 []\TU/Futura(0)/b/n/29 Arms, animation, speech, auton- 
  []
 
@@ -1849,12 +1862,12 @@ File: ../assets/photos/2022-tracked-base-front.jpg Graphic file (type bmp)
 ]
 Chapter 12.
 
-Underfull \hbox (badness 2134) in paragraph at lines 667--667
+Underfull \hbox (badness 2134) in paragraph at lines 687--687
 []|\TU/AvenirNext(0)/m/n/10 Protocol, range, state, deadline, replay, and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 667--667
+Underfull \hbox (badness 10000) in paragraph at lines 687--687
 []|\TU/AvenirNext(0)/m/n/10 Repeatable operating envelope and ther-
  []
 
@@ -1904,7 +1917,7 @@ Appendix E.
 ]
 Appendix F.
 
-Underfull \hbox (badness 10000) in paragraph at lines 842--842
+Underfull \hbox (badness 10000) in paragraph at lines 862--862
 []|\TU/AvenirNext(0)/m/n/10 PROTECTION / CON-
  []
 
@@ -1933,16 +1946,16 @@ L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `complete-builders-field-manual.out' has not 
 changed.
-(rerunfilecheck)             Checksum: 4D7F3F9A54099459AF2DBB33FEB05B4C;17057.
+(rerunfilecheck)             Checksum: 09AC5C691B0AA018227A52BF6DD0A0CA;17327.
  ) 
 Here is how much of TeX's memory you used:
- 35435 strings out of 468168
- 772579 string characters out of 5423555
- 1289019 words of memory out of 5000000
- 63519 multiletter control sequences out of 15000+600000
+ 35440 strings out of 468168
+ 772661 string characters out of 5423555
+ 1289870 words of memory out of 5000000
+ 63524 multiletter control sequences out of 15000+600000
  629199 words of font info for 126 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,13n,131p,1027b,945s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-build
-ers-field-manual.xdv (67 pages, 1336288 bytes).
+ers-field-manual.xdv (67 pages, 1374804 bytes).

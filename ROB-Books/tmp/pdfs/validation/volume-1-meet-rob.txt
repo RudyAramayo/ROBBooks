@@ -54,6 +54,14 @@ The Building R.O.B. library
    in your new engineering vocabulary. When a detail is not proven by the archive, the book says so
    instead of guessing.
 
+   ONE CURRENT ARDUINO, THREE HISTORICAL SKETCHES
+
+   The ROBArduino archive preserves Base, Torso, and Head sketches from an earlier three-Arduino de-
+   sign. The builder reports that present-day ROB uses only the Base sketch. This book therefore treats
+   Base behavior as the current low-level firmware reference and labels Torso and Head behavior as re-
+   tired historical evidence. Source files cannot prove which binary is flashed today; record the board
+   identity, firmware hash, build environment, and upload date before operation.
+
    THE THREE-ZONE RULE
 
    Green zone: paper models, unplugged code games, and simulations. Work independently.
@@ -686,19 +694,19 @@ unit, method, revision, and uncertainty instead of hiding variation.
 
 
                                                    25
-MEET ROB                                                                                                         VOLUME 1 - AGES 8-12
+MEET ROB                                                                                                                    VOLUME 1 - AGES 8-12
 
 
 
 Field words
-ACTUATOR A device that causes motion.                             OUTPUT     Information or action produced by a sys-
-                                                                  tem.
+ACTUATOR A device that causes motion.                                   OUTPUT       Information or action produced by a sys-
+                                                                        tem.
 CHASSIS The load-carrying frame.
 COMMAND A message asking a system to do some- PROTOTYPE A version built to answer questions.
 thing.                                        SENSOR A device that translates a physical quantity
 FEEDBACK A measurement of what happened after into data.
-an action.                                                        SYSTEM Connected parts that cooperate for a pur-
-INPUT Information entering a system.                              pose.
+an action.                                                              SYSTEM Connected parts that cooperate for a pur-
+INPUT Information entering a system.                                    pose.
 ITERATION A new version made after learning from WATCHDOG A timer that responds when expected
 a test.                                          updates stop.
 
@@ -711,10 +719,9 @@ a test.                                          updates stop.
 
 
 
-Source trail: Presentation/ROB_v3.pdf; ORobotics private gallery originals and gallery metadata; ROBOT
-Build/ROBOT_CEREBELLULAR_BASE_APP.ino; current Cerebro, ROBController, and ROBControllerVision source snapshot inspected
-2026-08-02.
+Source trail: Presentation/ROB_v3.pdf; ORobotics private gallery originals and gallery metadata; ROBArduino Base, retired Torso, and retired
+Head sketches; current Cerebro, ROBController, and ROBControllerVision source. Arduino archive inspected 2026-08-10.
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                               26 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                          26 / 26
 

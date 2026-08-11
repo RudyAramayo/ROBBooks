@@ -1,14 +1,14 @@
 # Fdb version 4
-["xdvipdfmx"] 1786427214.96877 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual" 1786427215.54327 0
+["xdvipdfmx"] 1786431504.7282 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual" 1786431505.31058 0
   "/Users/raramayo/dev/ROB-Books/tmp/pdfs/complete-builders-field-manual.xdv" 0 -1 0 ""
   "/Users/rob/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev/R.O.B./Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.xdv" 0 -1 0 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.xdv" 1786427214.89506 1336288 26f0c7ecec9348874336c8c0bf2ba667 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.xdv" 1786431504.65329 1374804 bf396a043698273ff17c232a2c8f0526 "xelatex"
   (generated)
   "/Users/raramayo/dev/ROB-Books/tmp/pdfs/complete-builders-field-manual.pdf"
   "/Users/rob/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev/R.O.B./Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.pdf"
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.pdf"
   (rewritten before read)
-["xelatex"] 1786427212.48491 "complete-builders-field-manual.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.xdv" "complete-builders-field-manual" 1786427215.54185 0
+["xelatex"] 1786431502.20325 "complete-builders-field-manual.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.xdv" "complete-builders-field-manual" 1786431505.30905 0
   "../assets/generated/rob-used-future-frontispiece.png" 1785739480 2830286 53609131355d8d77cecf6b577ef4cecc ""
   "../assets/photos/2019-rob-front-corner.jpg" 1785743334 2681899 364a44a8445431f90fd43660a8f7579f ""
   "../assets/photos/2022-arm-controller-board.jpg" 1785743338 2006010 c88b8797e4d8e992f853be2ab8fd0ca7 ""
@@ -38,9 +38,9 @@
   "../assets/slides/rob-v3-page-23.jpg" 1785743354 1050298 4f3c87cff78493b4357d62f448da9d91 ""
   "../assets/slides/rob-v3-page-41.jpg" 1785743356 1134342 ecbb76fa01931caf617dee75024a5dac ""
   "../assets/slides/rob-v3-page-55.jpg" 1785743358 1112312 525d3f23047556e12d90a17887d18f58 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.aux" 1786427214.89318 16800 3604e5c3385532a478df736578c8b37d "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.out" 1786427214.89454 17057 4d7f3f9a54099459af2dbb33feb05b4c "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.toc" 1786427214.8948 7747 7965433dd3f96ca5e7d91cae4c296298 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.aux" 1786431504.65124 16943 16cd07470cdf67a512a94680b3b3728a "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.out" 1786431504.65271 17327 09ac5c691b0aa018227a52bf6dd0a0ca "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.toc" 1786431504.65304 7848 d17da59f52e2bea52a1fb90f629a7e5b "xelatex"
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/fontname/texfonts.map" 1772380719 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1772380719 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1772380719 1004 54797486969f23fa377b128694d548df ""
@@ -220,8 +220,8 @@
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/web2c/texmf.cnf" 1772380719 43633 14bbc273cebd985e64ab1a698333eaf9 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-var/web2c/xetex/xelatex.fmt" 1772380719 5948959 3df9f026b6ab65867975c94eefb74cd0 ""
   "adult-learning-and-commissioning.tex" 1786423904.46605 6494 e5d652886e6f0e3a980c7d39cf04a1f7 ""
-  "complete-builders-field-manual.tex" 1786427146.16425 69126 b340c5520efe3cd51ffb07c5a4c06378 ""
-  "robbook.sty" 1786427194.07418 15573 feec43ffa7d8246c94375b9884405293 ""
+  "complete-builders-field-manual.tex" 1786431316.8398 71623 a7e99d27ca82a192ff64de2e3c808832 ""
+  "robbook.sty" 1786430474.58515 16203 6375adc85628b98505921601db00c3af ""
   (generated)
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.aux"
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.log"

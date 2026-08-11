@@ -49,6 +49,14 @@ The Building R.O.B. library
    Bring a notebook. For each activity, write your prediction, observation, and explanation. If the result
    surprises you, the experiment worked: you found something worth learning.
 
+   ONE CURRENT ARDUINO, THREE HISTORICAL SKETCHES
+
+   The ROBArduino archive preserves Base, Torso, and Head sketches from an earlier three-Arduino de-
+   sign. The builder reports that present-day ROB uses only the Base sketch. This book therefore treats
+   Base behavior as the current low-level firmware reference and labels Torso and Head behavior as re-
+   tired historical evidence. Source files cannot prove which binary is flashed today; record the board
+   identity, firmware hash, build environment, and upload date before operation.
+
     ELECTRICAL LAB BOUNDARY
 
     For learner activities, use only an approved low-voltage classroom supply or the USB-powered Ar-
@@ -221,39 +229,59 @@ Read ROB's pin map
 
 The base controller's
 connections
+Why the archive contains three names
+Earlier ROB software divided work among sketches named Base, Torso, and Head. Base handled tread,
+flipper, actuator, IR, and IMU work. The retired Torso sketch sent fourteen servo targets toward a Maestro
+for head and arm channels. The retired Head sketch experimented with IMU and PIR sensing. Present-
+day ROB uses only the Base code, according to the builder. The other two files teach us how the design
+evolved; they are not instructions to find or connect two more boards.
+The two Torso files in ROBArduino have the same SHA-256 hash, so they are byte-for-byte duplicates rather
+than different firmware versions. A filename can look like a revision even when its contents are identical—
+another reason engineers use hashes and release records.
 The checked-in firmware names these connections. Pin numbers are facts about the file, not a verified
 public wiring harness. ROBController’s historical serial log calls the board an Arduino Mega. The exact
 Arduino-compatible board model, revision, core, and installed library versions are not recorded here.
 
- SUBSYSTEM                     SPEED     BRAKE         DIRECTION     NOTE
- Right tread                    D2           D3            D25       PWM speed output plus two digital con-
-                                                                     trols
- Left tread                     D4           D5            D27       PWM speed output plus two digital con-
-                                                                     trols
- Flipper                        D6           D7            D29       PWM speed output plus two digital con-
-                                                                     trols
+ SUBSYSTEM                     SPEED      BRAKE          DIRECTION     NOTE
+ Right tread                    D2             D3            D25       PWM speed output plus two digital con-
+                                                                       trols
+ Left tread                     D4             D5            D27       PWM speed output plus two digital con-
+                                                                       trols
+ Flipper                        D6             D7            D29       PWM speed output plus two digital con-
+                                                                       trols
 
- SIGNAL                        PIN OR RATE        FIRMWARE ROLE
- Linear actuator serial         D22 / D23         D22 receive is declared but unused; D23 transmits to a sim-
- RX/TX                                            ple motor controller at 19,200 baud
- Front-left / front-right IR      A5 / A4         Long-range Sharp IR model constant
- Left / right IR                  A3 / A2         Medium-range Sharp IR model constant
- Back-left / back-right IR        A1 / A0         Long-range Sharp IR model constant
- Mac-to-Arduino serial         250,000 baud       Commands, logs, and sensor text share the port
- IMU                            I2C via Wire      MPU9250 accelerometer, gyro, and magnetometer
+ SIGNAL                        PIN OR RATE          FIRMWARE ROLE
+ Linear actuator serial         D22 / D23           D22 receive is declared but unused; D23 transmits to a sim-
+ RX/TX                                              ple motor controller at 19,200 baud
+ Front-left / front-right IR      A5 / A4           Long-range Sharp IR model constant
+ Left / right IR                  A3 / A2           Medium-range Sharp IR model constant
+ Back-left / back-right IR        A1 / A0           Long-range Sharp IR model constant
+ Mac-to-Arduino serial         250,000 baud         Commands, logs, sensor text, and the Base identity share the
+                                                    port
+ IMU                            I2C via Wire        MPU9250 accelerometer, gyro, and magnetometer
+The current Base sketch says “ROB:FIRMWARE=BASE;PROTOCOL=RHAPI-0.1” at startup and once per second.
+Cerebro listens without transmitting, tries only USB callout devices, and keeps the port whose message
+matches. This is safer than guessing a changing /dev/cu.* name or sending test commands to every
+attached board. The label identifies a firmware role and protocol; it does not certify the wiring or make a
+motion test safe.
+Once connected, the sketch reports six centimeter readings five times per second. Each line starts with
+ROB:IR= and then gives the fields FL, FR, L, R, BL, and BR. Cerebro draws six SceneKit beams around its
+robot model: green means at least 25 cm, red means closer than 25 cm, and orange means the data is
 
-  FROM ROB'S BUILD LOG
-
-  The source contains TODOs for three motor speed-sensor inputs, ramped motion, and voltage mea-
-  surement. The comments disagree about left/right encoder assignment, and proposed D20 conflicts
-  with the likely Mega I2C SDA pin used by the active IMU. A TODO is evidence of intent, not evidence
-  that the feature works.
-
-
-
-
-                                                          7
+                                                            7
 CIRCUITS AND SIGNALS                                                                                                   VOLUME 2 - AGES 10-14
+
+
+
+missing or stale. This display helps an operator notice an obstacle, but infrared sensors have blind spots
+and material-dependent errors; “path clear” is not permission to move without looking.
+
+   FROM ROB'S BUILD LOG
+
+   The source contains TODOs for three motor speed-sensor inputs, ramped motion, and voltage mea-
+   surement. The comments disagree about left/right encoder assignment, and proposed D20 conflicts
+   with the likely Mega I2C SDA pin used by the active IMU. A TODO is evidence of intent, not evidence
+   that the feature works.
 
 
 
@@ -271,8 +299,6 @@ routing, connectors, power separation, and service access matter.     harness pl
 
      A close view of an earlier wiring revision shows why every connector needs a name, destination, expected
      signal, safe state, and service plan.
-
-
 
 
 ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        8 / 25
@@ -788,17 +814,17 @@ answer different questions.
 
 
                                                        24
-CIRCUITS AND SIGNALS                                                                                                  VOLUME 2 - AGES 10-14
+CIRCUITS AND SIGNALS                                                                                                        VOLUME 2 - AGES 10-14
 
 
 
 Field words
-BAUD Symbol rate used by a serial link.                               string.
-CURRENT Rate of electric charge flow.                                 PWM Timed pulses whose duty cycle controls an
-                                                                      average effect.
+BAUD Symbol rate used by a serial link.                                  string.
+CURRENT Rate of electric charge flow.                                    PWM Timed pulses whose duty cycle controls an
+                                                                         average effect.
 FRAME        One bounded protocol message.
-                                                                      RANGE CHECK A test that rejects values outside al-
-GROUND A chosen circuit reference node.                               lowed limits.
+                                                                         RANGE CHECK A test that rejects values outside al-
+GROUND A chosen circuit reference node.                                  lowed limits.
 IMU A motion-sensing unit containing inertial sen- SERIAL Sending symbols in sequence over a link.
 sors.
                                                    WATCHDOG A deadline monitor for an expected up-
@@ -813,9 +839,10 @@ NULL TERMINATOR The zero byte that ends a C date.
 
 
 
-Source trail: ROBOT Build/ROBOT_CEREBELLULAR_BASE_APP.ino, especially pin definitions, serial parser, IR checks, keepalive, and motor
-mapping; ROB_v3.pdf; gallery originals. Restricted vendor-document specifications were neither reproduced nor paraphrased.
+Source trail: ROBArduino Base sketch, especially pin definitions, serial parser, IR checks, keepalive, and motor mapping; retired Torso and Head
+sketches for architecture history; ROB_v3.pdf; gallery originals. Arduino archive inspected 2026-08-10. Restricted vendor-document
+specifications were neither reproduced nor paraphrased.
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                     25 / 25
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                           25 / 25
 

@@ -13,6 +13,7 @@ Do not connect ROB's full-size batteries, motors, charger, or actuator from thes
 }
 
 \ROBSeriesMap{Bring a notebook. For each activity, write your prediction, observation, and explanation. If the result surprises you, the experiment worked: you found something worth learning.}
+\ROBArduinoStatus
 
 \begin{safetybox}[title={ELECTRICAL LAB BOUNDARY}]
 For learner activities, use only an approved low-voltage classroom supply or the USB-powered Arduino setup selected by your teacher. Add current-limiting resistors to LEDs. Disconnect power before moving wires. ROB's high-current battery and motor circuits are adult-only systems that require fuses, a disconnect, insulated tools, proper wire sizing, and a tested physical emergency stop.
@@ -112,6 +113,12 @@ void loop() {
 
 \chapter{The base controller's connections}
 
+\section*{Why the archive contains three names}
+
+Earlier ROB software divided work among sketches named \textbf{Base}, \textbf{Torso}, and \textbf{Head}. Base handled tread, flipper, actuator, IR, and IMU work. The retired Torso sketch sent fourteen servo targets toward a Maestro for head and arm channels. The retired Head sketch experimented with IMU and PIR sensing. Present-day ROB uses only the Base code, according to the builder. The other two files teach us how the design evolved; they are not instructions to find or connect two more boards.
+
+The two Torso files in \texttt{ROBArduino} have the same SHA-256 hash, so they are byte-for-byte duplicates rather than different firmware versions. A filename can look like a revision even when its contents are identical---another reason engineers use hashes and release records.
+
 The checked-in firmware names these connections. Pin numbers are facts about the file, not a verified public wiring harness. ROBController's historical serial log calls the board an Arduino Mega. The exact Arduino-compatible board model, revision, core, and installed library versions are not recorded here.
 
 \begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.40in} >{\centering\arraybackslash}p{0.68in} >{\centering\arraybackslash}p{0.68in} >{\centering\arraybackslash}p{0.83in} X}
@@ -132,10 +139,14 @@ Linear actuator serial RX/TX & D22 / D23 & D22 receive is declared but unused; D
 Front-left / front-right IR & A5 / A4 & Long-range Sharp IR model constant\\
 Left / right IR & A3 / A2 & Medium-range Sharp IR model constant\\
 Back-left / back-right IR & A1 / A0 & Long-range Sharp IR model constant\\
-Mac-to-Arduino serial & 250,000 baud & Commands, logs, and sensor text share the port\\
+Mac-to-Arduino serial & 250,000 baud & Commands, logs, sensor text, and the Base identity share the port\\
 IMU & I2C via Wire & MPU9250 accelerometer, gyro, and magnetometer\\
 \bottomrule
 \end{tabularx}
+
+The current Base sketch says “\texttt{ROB:FIRMWARE=BASE;}\allowbreak\texttt{PROTOCOL=RHAPI-0.1}” at startup and once per second. Cerebro listens without transmitting, tries only USB callout devices, and keeps the port whose message matches. This is safer than guessing a changing \texttt{/dev/cu.*} name or sending test commands to every attached board. The label identifies a firmware role and protocol; it does not certify the wiring or make a motion test safe.
+
+Once connected, the sketch reports six centimeter readings five times per second. Each line starts with \texttt{ROB:IR=} and then gives the fields FL, FR, L, R, BL, and BR. Cerebro draws six SceneKit beams around its robot model: green means at least 25 cm, red means closer than 25 cm, and orange means the data is missing or stale. This display helps an operator notice an obstacle, but infrared sensors have blind spots and material-dependent errors; ``path clear'' is not permission to move without looking.
 
 \begin{fieldnotebox}
 The source contains TODOs for three motor speed-sensor inputs, ramped motion, and voltage measurement. The comments disagree about left/right encoder assignment, and proposed D20 conflicts with the likely Mega I2C SDA pin used by the active IMU. A TODO is evidence of intent, not evidence that the feature works.
@@ -353,6 +364,6 @@ Can you separate a power path from a signal path? Can you decode the seven field
 \end{missionbox}
 
 \vfill
-\ROBSource{ROBOT Build/ROBOT\_CEREBELLULAR\_BASE\_APP.ino, especially pin definitions, serial parser, IR checks, keepalive, and motor mapping; ROB\_v3.pdf; gallery originals. Restricted vendor-document specifications were neither reproduced nor paraphrased.}
+\ROBSource{ROBArduino Base sketch, especially pin definitions, serial parser, IR checks, keepalive, and motor mapping; retired Torso and Head sketches for architecture history; ROB\_v3.pdf; gallery originals. Arduino archive inspected 2026-08-10. Restricted vendor-document specifications were neither reproduced nor paraphrased.}
 
 \end{document}

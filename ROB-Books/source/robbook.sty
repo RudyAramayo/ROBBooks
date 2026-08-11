@@ -216,6 +216,12 @@
   \end{missionbox}
 }
 
+\newcommand{\ROBArduinoStatus}{%
+  \begin{fieldnotebox}[title={ONE CURRENT ARDUINO, THREE HISTORICAL SKETCHES}]
+  The \texttt{ROBArduino} archive preserves Base, Torso, and Head sketches from an earlier three-Arduino design. The builder reports that present-day ROB uses \textbf{only the Base sketch}. This book therefore treats Base behavior as the current low-level firmware reference and labels Torso and Head behavior as retired historical evidence. Source files cannot prove which binary is flashed today; record the board identity, firmware hash, build environment, and upload date before operation.
+  \end{fieldnotebox}
+}
+
 \newcommand{\ROBPhoto}[3][0.43\textheight]{%
   \begin{center}
     \includegraphics[width=\linewidth,height=#1,keepaspectratio]{#2}\\[-1pt]

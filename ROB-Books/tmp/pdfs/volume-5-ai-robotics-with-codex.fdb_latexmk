@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1786427212.20823 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex" 1786427212.42564 0
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.xdv" 1786427212.13491 1031668 137d54e6f0eed63bc59c522867de8fab "xelatex"
+["xdvipdfmx"] 1786431501.91108 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex" 1786431502.1414 0
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.xdv" 1786431501.83843 1040328 fb6f8073cc3cb00103a83f6573a1d889 "xelatex"
   (generated)
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.pdf"
   (rewritten before read)
-["xelatex"] 1786427210.05025 "volume-5-ai-robotics-with-codex.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.xdv" "volume-5-ai-robotics-with-codex" 1786427212.42379 0
+["xelatex"] 1786431499.76368 "volume-5-ai-robotics-with-codex.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.xdv" "volume-5-ai-robotics-with-codex" 1786431502.13963 0
   "../assets/photos/2026-rob-lightsabers-front.jpg" 1786425671.68319 1771596 2696b37414e88c6615a5122dd987857b ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/05c2f09143b14bc47be21f6182ad9f85.verbatim" 1786426522.54443 251 05c2f09143b14bc47be21f6182ad9f85 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/116511f19a1eb2bdca5704af3f21757a.verbatim" 1786426522.54393 69 116511f19a1eb2bdca5704af3f21757a ""
@@ -47,9 +47,9 @@
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/e7fe232962210ca71aaed5f69d043e59.verbatim" 1786426214.07444 382 e7fe232962210ca71aaed5f69d043e59 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/ec817424852c9db7be104cf4c25dedb8.verbatim" 1786426214.07577 375 ec817424852c9db7be104cf4c25dedb8 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/f5fc205995a3df5526dea0104870f6ae.verbatim" 1786426214.07515 283 f5fc205995a3df5526dea0104870f6ae ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.aux" 1786427212.13283 27736 a964753861c9aa8265fa8d154ec68a9c "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.out" 1786427212.1344 21176 5f3b90ac6d329b54ddcae9a5e882b438 "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.toc" 1786427212.1347 9475 998409fa784a6410af7631b72ad995fa "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.aux" 1786431501.83642 27737 426bf2af1c8377346fb40ffaa822ef2e "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.out" 1786431501.83797 21176 5f3b90ac6d329b54ddcae9a5e882b438 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.toc" 1786431501.83826 9475 998409fa784a6410af7631b72ad995fa "xelatex"
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/fontname/texfonts.map" 1772380719 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1772380719 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1772380719 1536 06717a2b50de47d4087ac0e6cd759455 ""
@@ -268,9 +268,9 @@
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1772380719 5006 d7e899bb5d9717c7f214e9bc0284de7b ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/web2c/texmf.cnf" 1772380719 43633 14bbc273cebd985e64ab1a698333eaf9 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-var/web2c/xetex/xelatex.fmt" 1772380719 5948959 3df9f026b6ab65867975c94eefb74cd0 ""
-  "robbook.sty" 1786427194.07418 15573 feec43ffa7d8246c94375b9884405293 ""
+  "robbook.sty" 1786430474.58515 16203 6375adc85628b98505921601db00c3af ""
   "volume-5-ai-robotics-with-codex.md" 1786426545.91176 52924 bc17636d9f06ab923e2cfec04b6ad095 ""
-  "volume-5-ai-robotics-with-codex.tex" 1786426232.75883 2193 9790dc1e6d604146c8fa61f8bbf2f247 ""
+  "volume-5-ai-robotics-with-codex.tex" 1786430474.58882 2212 b78181493f0ce3c44b0e2a654ca077fe ""
   (generated)
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.aux"
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.log"

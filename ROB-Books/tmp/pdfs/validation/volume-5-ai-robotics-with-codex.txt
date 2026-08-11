@@ -40,6 +40,14 @@ for the builder to complete.
    with fixtures, simulators, lifted treads, strict limits, a spotter, and an independently verified physical
    emergency stop before operating powered hardware.
 
+   ONE CURRENT ARDUINO, THREE HISTORICAL SKETCHES
+
+   The ROBArduino archive preserves Base, Torso, and Head sketches from an earlier three-Arduino de-
+   sign. The builder reports that present-day ROB uses only the Base sketch. This book therefore treats
+   Base behavior as the current low-level firmware reference and labels Torso and Head behavior as re-
+   tired historical evidence. Source files cannot prove which binary is flashed today; record the board
+   identity, firmware hash, build environment, and upload date before operation.
+
 
 
 

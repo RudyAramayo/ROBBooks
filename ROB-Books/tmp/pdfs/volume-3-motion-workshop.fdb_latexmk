@@ -1,14 +1,14 @@
 # Fdb version 4
-["xdvipdfmx"] 1786427206.81868 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop" 1786427207.21793 0
+["xdvipdfmx"] 1786431496.51005 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop" 1786431496.91415 0
   "/Users/raramayo/dev/ROB-Books/tmp/pdfs/volume-3-motion-workshop.xdv" 0 -1 0 ""
   "/Users/rob/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev/R.O.B./Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.xdv" 0 -1 0 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.xdv" 1786427206.75148 498008 1d732674cf5cca5c446fff58afe53d2a "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.xdv" 1786431496.43997 506760 c9147670d475861fa26f408d86639cd9 "xelatex"
   (generated)
   "/Users/raramayo/dev/ROB-Books/tmp/pdfs/volume-3-motion-workshop.pdf"
   "/Users/rob/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev/R.O.B./Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.pdf"
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.pdf"
   (rewritten before read)
-["xelatex"] 1786427205.36677 "volume-3-motion-workshop.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.xdv" "volume-3-motion-workshop" 1786427207.2164 0
+["xelatex"] 1786431495.06924 "volume-3-motion-workshop.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.xdv" "volume-3-motion-workshop" 1786431496.91254 0
   "../assets/generated/rob-motion-mechanics-lab.png" 1786423707.35618 3151405 c63e5ac42079eb829b8b3b27eea1b3e3 ""
   "../assets/photos/2022-bracket-assembly-front.jpg" 1785743342 2395316 ce5fa42fcd3f92a49e82a0395013125a ""
   "../assets/photos/2022-chain-sprocket-interior.jpg" 1785743342 2099603 ea2d2001b6a0a338243da918b0a4db37 ""
@@ -34,9 +34,9 @@
   "../assets/photos/2026-rob-lightsabers-side.jpg" 1786425673.19103 1358125 2d8cd5c7e83445af6431fc6c4f2643e1 ""
   "../assets/slides/rob-v3-page-23.jpg" 1785743354 1050298 4f3c87cff78493b4357d62f448da9d91 ""
   "../assets/slides/rob-v3-page-54.jpg" 1785743358 1085620 6f5a18561d1457a3bf5c763d7278dcc2 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.aux" 1786427206.75017 4000 7ec03b79494d2c661c3e5833a99ad4bb "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.out" 1786427206.75111 2168 3fd4ba99feb5cb6022fcce4f44a60deb "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.toc" 1786427206.75141 891 c5c6d43b7ab088d8b3e004c88f5241d7 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.aux" 1786431496.43876 4001 9d0b6fa75bb7a140cb4697ed7ab585a1 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.out" 1786431496.4396 2168 3fd4ba99feb5cb6022fcce4f44a60deb "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.toc" 1786431496.43984 891 c5c6d43b7ab088d8b3e004c88f5241d7 "xelatex"
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/fontname/texfonts.map" 1772380719 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1772380719 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1772380719 1004 54797486969f23fa377b128694d548df ""
@@ -226,9 +226,9 @@
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1772380719 5006 d7e899bb5d9717c7f214e9bc0284de7b ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/web2c/texmf.cnf" 1772380719 43633 14bbc273cebd985e64ab1a698333eaf9 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-var/web2c/xetex/xelatex.fmt" 1772380719 5948959 3df9f026b6ab65867975c94eefb74cd0 ""
-  "robbook.sty" 1786427194.07418 15573 feec43ffa7d8246c94375b9884405293 ""
+  "robbook.sty" 1786430474.58515 16203 6375adc85628b98505921601db00c3af ""
   "volume-3-deep-dive.tex" 1786423904.46558 4180 010a35cfeacd6593f321700ce7e3bca8 ""
-  "volume-3-motion-workshop.tex" 1786425721.395 22419 99d406b46ed8f8f21fa569da5f2f5eb8 ""
+  "volume-3-motion-workshop.tex" 1786430474.58794 22437 7f2ab4c044928109ab64c4326fe56c28 ""
   (generated)
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.aux"
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.log"

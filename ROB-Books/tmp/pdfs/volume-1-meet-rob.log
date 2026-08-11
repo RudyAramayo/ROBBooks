@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  10 AUG 2026 22:46
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  10 AUG 2026 23:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1471,7 +1471,14 @@ mp)
 <../assets/generated/rob-used-future-frontispiece.png>
  [2]
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
-cmr.cfg) [3
+cmr.cfg)
+LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
+(Font)              scaled to size 9.08852pt on input line 21.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `Menlo' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [3
 
 ]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.toc)
@@ -1510,7 +1517,7 @@ Chapter 2.
 File: ../assets/photos/2022-bracket-fit-check.jpg Graphic file (type bmp)
 <../assets/photos/2022-bracket-fit-check.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--91
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
 [][]
  []
 
@@ -1518,7 +1525,7 @@ File: ../assets/photos/2024-caliper-tread-measurement.jpg Graphic file (type bm
 p)
 <../assets/photos/2024-caliper-tread-measurement.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 91--91
+Underfull \hbox (badness 10000) in paragraph at lines 92--92
 [][]
  []
 
@@ -1532,7 +1539,7 @@ File: ../assets/photos/2022-bracket-assembly-front.jpg Graphic file (type bmp)
 File: ../assets/photos/2022-drilling-metal-rail.jpg Graphic file (type bmp)
 <../assets/photos/2022-drilling-metal-rail.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 108--108
+Underfull \hbox (badness 10000) in paragraph at lines 109--109
 [][]
  []
 
@@ -1555,7 +1562,7 @@ File: ../assets/photos/2024-power-cable-pass-through.jpg Graphic file (type bmp
 File: ../assets/photos/2024-voltage-gauge.jpg Graphic file (type bmp)
 <../assets/photos/2024-voltage-gauge.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 143--143
+Underfull \hbox (badness 10000) in paragraph at lines 144--144
 [][]
  []
 
@@ -1566,7 +1573,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 143--143
 File: ../assets/photos/2022-oakd-depth-camera.jpg Graphic file (type bmp)
 <../assets/photos/2022-oakd-depth-camera.jpg>
 
-Underfull \hbox (badness 1199) in paragraph at lines 149--149
+Underfull \hbox (badness 1199) in paragraph at lines 150--150
 []\TU/Futura(0)/b/n/29 Sensors turn the world into num- 
  []
 
@@ -1593,14 +1600,7 @@ Chapter 5.
 [15
 
 
-]
-LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 9.08852pt on input line 209.
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `Menlo' (encoding: TU).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
- [16
+] [16
 
 ]
 File: ../assets/photos/2025-rob-side-full-body.jpg Graphic file (type bmp)
@@ -1612,14 +1612,14 @@ Chapter 6.
 File: ../assets/photos/2019-rob-front-corner.jpg Graphic file (type bmp)
 <../assets/photos/2019-rob-front-corner.jpg>
 
-Underfull \hbox (badness 3657) in paragraph at lines 219--219
+Underfull \hbox (badness 3657) in paragraph at lines 220--220
 [][] []\TU/AvenirNext(0)/m/it/8 The early black tracked
  []
 
 File: ../assets/photos/2019-rob-side-profile.jpg Graphic file (type bmp)
 <../assets/photos/2019-rob-side-profile.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--219
+Underfull \hbox (badness 10000) in paragraph at lines 220--220
 [][]
  []
 
@@ -1635,7 +1635,7 @@ File: ../assets/photos/2022-chassis-wiring-overhead.jpg Graphic file (type bmp)
 
 <../assets/photos/2022-chassis-wiring-overhead.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 226--226
+Underfull \hbox (badness 10000) in paragraph at lines 227--227
 [][]
  []
 
@@ -1643,7 +1643,7 @@ File: ../assets/photos/2022-mounted-clamp-and-bracket.jpg Graphic file (type bm
 p)
 <../assets/photos/2022-mounted-clamp-and-bracket.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 226--226
+Underfull \hbox (badness 10000) in paragraph at lines 227--227
 [][]
  []
 
@@ -1659,7 +1659,7 @@ File: ../assets/photos/2025-rob-side-full-body.jpg Graphic file (type bmp)
 File: ../assets/photos/2025-neck-gear-train.jpg Graphic file (type bmp)
 <../assets/photos/2025-neck-gear-train.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 233--233
+Underfull \hbox (badness 10000) in paragraph at lines 234--234
 [][]
  []
 
@@ -1702,13 +1702,13 @@ Package rerunfilecheck Info: File `volume-1-meet-rob.out' has not changed.
 (rerunfilecheck)             Checksum: 0FA822AFBBAA0AF6824F029F3234CC4A;1680.
  ) 
 Here is how much of TeX's memory you used:
- 35328 strings out of 468168
- 769240 string characters out of 5423555
- 1263007 words of memory out of 5000000
- 63414 multiletter control sequences out of 15000+600000
+ 35331 strings out of 468168
+ 769293 string characters out of 5423555
+ 1263577 words of memory out of 5000000
+ 63417 multiletter control sequences out of 15000+600000
  632110 words of font info for 130 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,12n,131p,1014b,941s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-
-rob.xdv (30 pages, 475052 bytes).
+rob.xdv (30 pages, 483916 bytes).

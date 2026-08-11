@@ -50,6 +50,14 @@ The Building R.O.B. library
    final safety decision. Then run the paper or simulator mission. Never test new network or AI code
    first on powered treads.
 
+   ONE CURRENT ARDUINO, THREE HISTORICAL SKETCHES
+
+   The ROBArduino archive preserves Base, Torso, and Head sketches from an earlier three-Arduino de-
+   sign. The builder reports that present-day ROB uses only the Base sketch. This book therefore treats
+   Base behavior as the current low-level firmware reference and labels Torso and Head behavior as re-
+   tired historical evidence. Source files cannot prove which binary is flashed today; record the board
+   identity, firmware hash, build environment, and upload date before operation.
+
     SOFTWARE CAN MOVE HARDWARE
 
    A one-line program can command a high-energy actuator. All exercises default to printed frames,
@@ -99,6 +107,11 @@ troller derives normalized linear and angular intent. A secure network carries t
 Mac mini. Cerebro decides whether that controller owns motion authority, translates the values into the
 historical base frame, and refreshes the Arduino over USB. The Arduino sets pins. Motor electronics drive
 the treads.
+The USB device name can change when a cable moves to another hub. Current Cerebro therefore
+scans only USB callout ports and listens for the Base sketch’s exact identity line, ROB:FIRMWARE=BASE;
+PROTOCOL=RHAPI-0.1. It sends no probe command to unknown boards. The refresh control closes the
+old Base connection and runs discovery again. Identity selects the intended firmware role; it is not
+authentication and does not prove the harness is safe.
 
 
                                    Operator intent - iPhone, Apple Watch, or Vision Pro controller
@@ -134,15 +147,17 @@ This architecture separates concerns:
 • Firmware: Which output pins and controller bytes represent the command?
 • Physical plant: What motion actually occurs?
 
-  COMPUTER SCIENCE CONNECTION
-
-  An interface is a promise between components. It should say valid inputs, outputs, timing, errors,
-  and ownership. Internal code can change while the promise stays stable. That is how large systems
-  remain understandable.
-
 
                                                                     2
 MISSION CONTROL                                                                                         VOLUME 4 - AGES 12-16
+
+
+
+   COMPUTER SCIENCE CONNECTION
+
+   An interface is a promise between components. It should say valid inputs, outputs, timing, errors,
+   and ownership. Internal code can change while the promise stays stable. That is how large systems
+   remain understandable.
 
 
 
@@ -171,7 +186,8 @@ Cerebro is the macOS controller and operator interface. Its current source conta
 sponsibilities:
 
 • windows and controls for a human operator;
-• serial connections for base, torso, head, and servo hardware;
+• the present Base Arduino serial connection, plus legacy Cerebro paths named for retired Torso and
+  Head Arduinos and servo hardware;
 • authenticated sessions from controllers and a role-limited lidar publisher;
 • camera capture, RGB-D helper supervision, Vision processing, and video service;
 • local speech recognition and speech synthesis;

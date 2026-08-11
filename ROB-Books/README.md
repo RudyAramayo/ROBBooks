@@ -40,7 +40,7 @@ Facts supported by the inspected archive are separated from proposals, historica
 
 - `../Presentation/ROB_v3.pdf` — 95-page design-history presentation.
 - `../ORobotics/media/gallery-originals/` and its gallery metadata — construction photographs from 2019–2025.
-- `../ROBOT Build/ROBOT_CEREBELLULAR_BASE_APP.ino` — historical Arduino base firmware for treads, flipper, linear actuator, IR sensors, and heartbeat behavior.
+- `../ROBArduino/` — Base, Torso, and Head firmware from the earlier three-Arduino architecture. The builder reports that only Base is presently used; see [`ARDUINO_FIRMWARE_HISTORY.md`](ARDUINO_FIRMWARE_HISTORY.md) for hashes, roles, protocols, and cautions.
 - `../Cerebro/` — central macOS application and its current experimental branches.
 - `../ROBController/` — iPhone and Watch control paths.
 - `../ROBControllerVision/` — Vision Pro controller and simulator.

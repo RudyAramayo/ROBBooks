@@ -29,12 +29,13 @@
 \contentsline {section}{\numberline {6.3}Motor electrical evidence}{24}{section.6.3}%
 \contentsline {section}{\numberline {6.4}Emergency stop and safe energy state}{24}{section.6.4}%
 \contentsline {chapter}{\numberline {7}Base electronics and firmware}{27}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Confirmed pin and communication map}{27}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Serial frame}{27}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Actuator compact serial}{27}{section.7.3}%
-\contentsline {section}{\numberline {7.4}IR and IMU status}{27}{section.7.4}%
-\contentsline {section}{\numberline {7.5}Safety and correctness audit}{28}{section.7.5}%
-\contentsline {section}{\numberline {7.6}Replacement-firmware architecture}{28}{section.7.6}%
+\contentsline {section}{\numberline {7.1}Three historical roles, one present role}{27}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Confirmed pin and communication map}{27}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Serial frame}{28}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Actuator compact serial}{28}{section.7.4}%
+\contentsline {section}{\numberline {7.5}IR and IMU status}{28}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Safety and correctness audit}{28}{section.7.6}%
+\contentsline {section}{\numberline {7.7}Replacement-firmware architecture}{29}{section.7.7}%
 \contentsline {part}{IV\hspace {1em}Software and perception}{30}{part.4}%
 \contentsline {chapter}{\numberline {8}Central coordination on the Mac mini}{32}{chapter.8}%
 \contentsline {section}{\numberline {8.1}Principal components}{32}{section.8.1}%

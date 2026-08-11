@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  10 AUG 2026 22:46
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  10 AUG 2026 23:58
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1601,7 +1601,14 @@ Package microtype Info: Loading generic protrusion settings for font family
 [1
 
 
-] [2] [3
+] [2]
+LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
+(Font)              scaled to size 9.08852pt on input line 44.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `Menlo' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [3
 
 ]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex
@@ -1657,12 +1664,6 @@ th-codex.luabridge.lua)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/3bdea109ba16a0597a9f5a6b8b5618bd.md.tex
 Chapter 1.
-LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 9.08852pt on input line 16.
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `Menlo' (encoding: TU).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 46.
 LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
@@ -1769,13 +1770,13 @@ Package rerunfilecheck Info: File `volume-5-ai-robotics-with-codex.out' has not
 (rerunfilecheck)             Checksum: 5F3B90AC6D329B54DDCAE9A5E882B438;21176.
  ) 
 Here is how much of TeX's memory you used:
- 38164 strings out of 468168
- 869383 string characters out of 5423555
- 1649983 words of memory out of 5000000
- 66076 multiletter control sequences out of 15000+600000
+ 38172 strings out of 468168
+ 869571 string characters out of 5423555
+ 1650554 words of memory out of 5000000
+ 66084 multiletter control sequences out of 15000+600000
  635832 words of font info for 144 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,13n,131p,1028b,2509s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-ro
-botics-with-codex.xdv (30 pages, 1031668 bytes).
+botics-with-codex.xdv (30 pages, 1040328 bytes).
