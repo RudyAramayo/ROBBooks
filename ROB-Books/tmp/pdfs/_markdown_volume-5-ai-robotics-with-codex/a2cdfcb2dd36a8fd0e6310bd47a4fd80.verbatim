@@ -1,0 +1,4 @@
+With Cerebro already listening, launch the Vision client. Both peers currently
+wait for the other to speak and the connection times out. Change the handshake
+so the client sends a bounded hello first and the server can associate it with
+the paired identity before issuing its challenge.

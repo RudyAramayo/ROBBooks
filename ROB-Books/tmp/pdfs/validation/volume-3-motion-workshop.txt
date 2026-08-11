@@ -29,7 +29,7 @@ and company names remain the property of their respective owners.
 
 First evidence-based draft: 2 August 2026. Build details marked Builder input needed are deliberate placeholders
 for the builder to complete.
-MOTION WORKSHOP                                                                                 VOLUME 3 - AGES 10-15
+MOTION WORKSHOP                                                                                   VOLUME 3 - AGES 10-15
 
 
 
@@ -38,8 +38,9 @@ The Building R.O.B. library
   VOLUME 2                Circuits and Signals with ROB - ages 10-14
   VOLUME 3                Motion Workshop: Treads, Gears, and Fabrication - ages 10-15
   VOLUME 4                Mission Control: Arduino, Mac, Networks, and Vision - ages 12-16
-  FIELD       MAN- Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
-  UAL
+  VOLUME 5                AI, Robotics, and Codex: Directing, Verifying, and Owning AI-Built Systems - advanced
+                          makers
+  MANUAL                  Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
 
 
    HOW TO USE THIS BOOK
@@ -57,7 +58,7 @@ The Building R.O.B. library
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                 3 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   3 / 28
 Contents
 1 What must the base survive?                    2
 

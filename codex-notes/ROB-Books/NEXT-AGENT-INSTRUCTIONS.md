@@ -32,7 +32,7 @@
    bash tools/validate_books.sh
    ~~~
 
-   The recorded baseline is five PDFs, 168 pages, and 26 placeholders. If that
+   The recorded baseline is six PDFs, 218 pages, and 26 placeholders. If that
    differs, determine whether a legitimate later edit exists before changing
    anything.
 
@@ -89,7 +89,7 @@
 
 ## Editing conventions
 
-- source/robbook.sty affects every book; rebuild and review all five after
+- source/robbook.sty affects every book; rebuild and review all six after
   changing it.
 - Use ROBPlaceholder for facts that require builder input.
 - Use the established fact, design/history, safety, maker decision, and evidence
@@ -107,4 +107,3 @@ crop marks, CMYK conversion, imposed signatures, a separate cover, or a measured
 spine. Create those as separate printer-specific outputs after receiving the
 printer's written specification; do not silently scale or overwrite the master
 PDFs.
-

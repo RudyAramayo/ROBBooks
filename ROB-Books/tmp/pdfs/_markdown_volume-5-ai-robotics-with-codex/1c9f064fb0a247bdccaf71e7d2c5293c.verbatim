@@ -1,0 +1,5 @@
+propose_named_pose(
+  pose_id: one of the calibrated catalog IDs,
+  speed_fraction: 0.0 through 0.2,
+  reason: short operator-visible text
+)

@@ -6,33 +6,35 @@ Project: /Users/raramayo/dev/ROB-Books
 
 ## Outcome at this checkpoint
 
-The first Maker Faire edition contains four youth volumes and one advanced
-manual. All five use US Letter pages and share one XeLaTeX design system.
+The first Maker Faire edition contains four youth volumes, one advanced AI and
+software volume, and one advanced field manual. All six use US Letter pages
+and share one XeLaTeX design system.
 
 | Deliverable | Audience | Source | PDF pages |
 |---|---|---|---:|
 | Volume 1 — Meet ROB | Ages 8–12 | source/volume-1-meet-rob.tex | 30 |
-| Volume 2 — Circuits & Signals | Ages 10–14 | source/volume-2-circuits-and-signals.tex | 25 |
+| Volume 2 — Circuits & Signals | Ages 10–14 | source/volume-2-circuits-and-signals.tex | 29 |
 | Volume 3 — Motion Workshop | Ages 10–15 | source/volume-3-motion-workshop.tex | 32 |
 | Volume 4 — Mission Control | Ages 12–16 | source/volume-4-mission-control.tex | 30 |
+| Volume 5 — AI, Robotics, and Codex | Advanced makers and software builders | source/volume-5-ai-robotics-with-codex.md plus .tex wrapper | 30 |
 | Complete Builder's Field Manual | Advanced makers and mentors | source/complete-builders-field-manual.tex | 67 |
 
-Total: **184 pages**.
+Total for these six books: **218 pages**.
 
 The editable source, output PDFs, rendered pages, contact sheets, selected
 assets, provenance, release gate, and helper scripts all live under ROB-Books.
-The five PDF files are in output/pdf.
+The six PDF files are in output/pdf.
 
 ## Project structure
 
 - source/robbook.sty — shared page geometry, typography, colors, boxes,
   diagrams, cover, and chapter-photo helpers.
-- source/*.tex — the five manuscripts.
+- source/*.tex and source/volume-5-ai-robotics-with-codex.md — the six manuscripts.
 - assets/photos/ — 42 selected, resized, sRGB, metadata-stripped photographs.
 - assets/slides/ — eight selected rendered presentation pages.
 - assets/generated/ — two original illustrations made with gpt-image-2.
 - tools/prepare_assets.sh — exact publication allowlists and metadata removal.
-- tools/build_books.sh — builds all five XeLaTeX PDFs.
+- tools/build_books.sh — builds all six XeLaTeX PDFs, converting the Volume 5 Markdown through its XeLaTeX wrapper.
 - tools/validate_books.sh — freshness, retired-image, PDF, LaTeX, text, and
   metadata checks.
 - tools/render_previews.sh — renders every PDF page and creates contact sheets.
@@ -188,7 +190,7 @@ or layouts.
 The final 2026-08-03 pass completed after correcting an orphaned 2025 timeline
 heading in Volume 1. Results:
 
-- all five PDFs built successfully;
+- all five PDFs in the original 2026-08-03 collection built successfully;
 - 168 PDF pages and 168 rendered-page images matched;
 - every PDF is 612 by 792 points, US Letter, unencrypted;
 - all listed fonts are embedded and subset;
@@ -248,4 +250,8 @@ Four project-local scientific-educational illustrations were generated with the 
 
 The ORobotics Hugo project gained `/robot-lab/`, a static four-mission game sharing the books' feedback, PWM, differential-drive, and command-freshness lessons. It has no backend, account, analytics, robot connection, or persistent learner data.
 
-The Homebrew toolchain was restored on 2026-08-10 (`node@22`, Hugo, Poppler, TeX Live, ImageMagick, and Exiv2). All five books were rebuilt as 184 US-Letter pages, every PDF passed `tools/validate_books.sh`, and all contact sheets were regenerated. The ORobotics production build and its gallery and subpath validators also passed through `npm test`.
+The Homebrew toolchain was restored on 2026-08-10 (`node@22`, Hugo, Poppler, TeX Live, ImageMagick, and Exiv2). The original five-book edition was rebuilt and every PDF passed `tools/validate_books.sh`; all contact sheets were regenerated. The ORobotics production build and its gallery and subpath validators also passed through `npm test`.
+
+Later on 2026-08-10, Volume 2 gained a four-page, mentor-led Maker Faire lab that opens a sacrificial, unplugged USB-A cable and uses the verified 5 V and GND conductors to power an approved low-current toy. The lesson includes a new generated cutaway illustration, conductor-role table, source/load matching, a bounded procedure, measurement prompts, and explicit controls for tools, shorts, polarity, startup current, USB-C, and installed batteries. The rebuilt Volume 2 is 29 pages.
+
+Volume 5 was then integrated as a full 30-page member of the series. It covers the source-based evolution of ROBController and Cerebro, AI development systems, communicating goals/context/output/boundaries, context engineering, evals, verification, deterministic robotics authority, a 30-day developer practice, and an AI change-contract worksheet. The complete six-book collection is 218 US-Letter pages.

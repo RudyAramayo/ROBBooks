@@ -1,0 +1,4 @@
+Review this diff as a skeptical maintainer. Find ways the new pose can become
+stale, swap chirality, bypass validation, break an older Cerebro receiver, or
+increase motion authority. Add focused tests for credible failures. Do not
+expand scope into arm control.

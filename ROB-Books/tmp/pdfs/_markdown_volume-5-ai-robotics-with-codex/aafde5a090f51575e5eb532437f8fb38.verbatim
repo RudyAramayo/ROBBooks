@@ -1,0 +1,2 @@
+Do not stop at storage. Include pose validity and timestamp fields in the model,
+but leave arm actuation for a calibrated follow-up.

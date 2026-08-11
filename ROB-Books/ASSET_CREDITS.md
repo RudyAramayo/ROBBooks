@@ -16,6 +16,7 @@ feel connected while giving every volume its own view:
 - Volume 2: `IMG_6318.HEIC` → `2026-rob-lightsabers-portrait.jpg`
 - Volume 3: `IMG_6303.HEIC` → `2026-rob-lightsabers-side.jpg`
 - Volume 4: `IMG_6325.HEIC` → `2026-rob-lightsabers-overhead.jpg`
+- Volume 5: reuses the print-safe `2026-rob-lightsabers-front.jpg` for the advanced AI/software guide
 
 These are metadata-stripped photographic conversions, not generated or
 composited images. The complete advanced field manual retains its technical

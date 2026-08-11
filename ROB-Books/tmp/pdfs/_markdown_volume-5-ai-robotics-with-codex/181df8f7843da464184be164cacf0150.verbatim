@@ -1,0 +1,17 @@
+Goal:
+[Describe the observable result.]
+
+Context:
+[Name the repositories, reproduction, relevant evidence, and known-good comparison.]
+
+Boundaries:
+[List the few invariants and authority limits that prevent real harm.]
+
+Acceptance:
+[List executable tests, builds, and remaining physical checks.]
+
+Start by inspecting the active data path and reporting confirmed facts versus
+hypotheses. Then implement the smallest complete change, verify it, review the
+diff for regressions and unsafe authority expansion, and give me an evidence-
+backed handoff. Do not claim validation that the available environment cannot
+perform.

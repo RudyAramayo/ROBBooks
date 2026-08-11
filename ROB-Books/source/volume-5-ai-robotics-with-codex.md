@@ -657,6 +657,656 @@ the location of humans around the robot belong to the real world.
 
 ---
 
+## 15. The developer after code generation
+
+Programming is not disappearing so much as moving upward. A developer once
+spent most of a day translating a known solution into syntax. An AI coding
+agent can now perform much of that translation, search a repository, connect
+call sites, write tests, run tools, and revise a patch. The scarce skill becomes
+the ability to define the right system, communicate its invariants, recognize
+false confidence, and decide whether the evidence is strong enough to ship.
+
+This is a profound change. Source code remains real and must still execute, but
+manually typing every line is no longer the center of the job. The new
+developer operates at several levels at once:
+
+- **Purpose:** What human outcome should improve?
+- **System:** Which components, data, authorities, and failure boundaries exist?
+- **Contract:** What must inputs, outputs, timing, and errors mean?
+- **Evidence:** What observation would prove the behavior works?
+- **Operations:** How will the system be deployed, monitored, stopped, and repaired?
+- **Responsibility:** Who accepts the consequences when software affects people or machines?
+
+The syntax layer has not become worthless. Reading code is still one way to
+audit the agent's interpretation, locate a security defect, or understand why
+a test passes for the wrong reason. But fluency increasingly means being able
+to move between intent, architecture, executable artifacts, and evidence. A
+developer can be less concerned with remembering an API name and more
+concerned with whether the API belongs in the design at all.
+
+### From implementation task to outcome contract
+
+A weak request says:
+
+```text
+Add controller position support.
+```
+
+A strong outcome contract says:
+
+```text
+ROBControllerVision has two spatial controllers. Capture a fresh left and
+right world-space pose, preserve chirality, and transmit position in meters
+plus normalized quaternion orientation through the authenticated control path.
+
+Cerebro must validate finite values, bounds, version, and freshness before
+storing a pose. Missing tracking must invalidate the pose instead of retaining
+the last arm target. Preserve the historical tread snapshot for older peers.
+Do not actuate an arm yet. Build both apps, add a wire-format fixture, and state
+what still requires a physical Vision Pro test.
+```
+
+The second request does not prescribe every class or function. It gives the AI
+room to inspect and design while making the result falsifiable. It names the
+world in which the code must be correct.
+
+### The new literacy
+
+The developer of this wave needs four complementary literacies.
+
+1. **Domain literacy** identifies what matters in robotics, medicine, finance,
+   media, education, or another field.
+2. **Systems literacy** traces state, timing, trust, feedback, and failure across
+   boundaries.
+3. **AI communication literacy** supplies goals, context, constraints, and
+   acceptance evidence without burying the task in ceremony.
+4. **Verification literacy** distinguishes plausible output from demonstrated
+   behavior.
+
+AI magnifies all four. It also magnifies their absence. A vague request can
+produce a large, polished, internally consistent mistake faster than a person
+could have typed it.
+
+---
+
+## 16. How an AI development system actually works
+
+An AI coding system is more than a chat box. It is a loop that combines a model
+with context, instructions, tools, an execution environment, and feedback.
+Understanding those parts helps a developer diagnose failures without treating
+the model as magic.
+
+### Model
+
+The model predicts and reasons over the information available in the current
+interaction. It can synthesize patterns across languages and domains, but it
+does not automatically know the current repository, physical robot, private
+requirements, or latest external facts. Confidence in its prose is not a
+measurement of truth.
+
+### Context
+
+Context includes the request, conversation, selected files, repository
+instructions, tool results, images, logs, and sometimes retrieved documents.
+Good context is not the largest possible pile of text. It is the smallest set
+that changes the decision.
+
+For a deadlock, the relevant context is usually both peers' state machines,
+the first reads and writes, cancellation behavior, and a reproducible trace.
+Hundreds of unrelated UI files can make the important relationship harder to
+see. Ask the agent to search first, then load the narrow data path.
+
+### Instructions and precedence
+
+An agent may receive durable project instructions in addition to the current
+request. These can define build commands, architectural rules, formatting,
+security restrictions, or files that must not be changed. Treat these files as
+part of the engineering system. Keep them concise, current, and testable.
+
+Instructions should express durable policy:
+
+```text
+- Run protocol fixture tests after changing either wire implementation.
+- Never enable an unauthenticated fallback.
+- Do not send arm commands from a generative model directly.
+- Preserve user changes in a dirty worktree.
+```
+
+Temporary details belong in the task, not the permanent policy file.
+
+### Tools
+
+Tools let the agent observe and change the world: search files, inspect Git,
+apply patches, compile, run tests, browse official documentation, render a PDF,
+or view an image. A model answer without tools is a proposal. A tool-using
+agent can produce evidence, although that evidence still needs interpretation.
+
+Tool authority should match the task. Reading and testing are lower risk than
+publishing, deleting, deploying, spending money, messaging another person, or
+energizing hardware. High-impact actions need explicit boundaries and often a
+human approval step.
+
+### Execution environment
+
+Local and cloud agents do not necessarily see the same files, credentials,
+devices, network, simulators, or operating-system APIs. State the important
+environment facts and ask the agent to report what it could not reproduce.
+“Build passed” may mean a simulator target compiled; it does not mean two real
+controllers tracked correctly on Vision Pro.
+
+### Feedback loop
+
+The most productive unit of AI development is not one perfect prompt. It is a
+controlled loop:
+
+```text
+state goal -> inspect -> form hypothesis -> change -> verify -> review -> revise
+```
+
+Each loop should reduce uncertainty. If an agent makes five speculative edits
+without producing new evidence, stop and return to inspection.
+
+---
+
+## 17. Communicating for reliable results
+
+Official OpenAI prompting guidance describes four useful ingredients for
+important work: goal, context, output, and boundaries. It also recommends
+starting with the result, adding only context that can change it, using
+follow-up messages, and reviewing the final result yourself. These ideas map
+especially well to software development.
+
+### Goal: define observable behavior
+
+“Improve networking” is a theme. “Reconnect after Wi-Fi interruption without
+reviving an expired motion lease” is a goal. Use nouns and verbs from the real
+system. Say which user, device, event, input, and output matter.
+
+When the goal contains multiple interpretations, name a concrete scenario:
+
+```text
+With Cerebro already listening, launch the Vision client. Both peers currently
+wait for the other to speak and the connection times out. Change the handshake
+so the client sends a bounded hello first and the server can associate it with
+the paired identity before issuing its challenge.
+```
+
+### Context: provide decision-changing facts
+
+Context is not a biography of the project. Useful context includes:
+
+- reproduction steps and exact error text;
+- affected repositories and platforms;
+- a known-good comparison implementation;
+- protocol fixtures, schemas, or hardware limits;
+- recent changes that might explain a regression;
+- files that contain user work and must be preserved.
+
+If you believe two bugs share a cause, offer that as a hypothesis rather than a
+command: “This resembles the QUICK simultaneous-read deadlock we fixed in
+ROBController; compare the state machines and confirm before reusing the fix.”
+That invites transfer without forcing a false analogy.
+
+### Output: say what done looks like
+
+Name the artifacts required at handoff: implementation, migration, tests,
+documentation, screenshot, fixture, benchmark, or printable PDF. Specify the
+audience and level when it affects the result. Ask for a concise final report
+with changed files, test commands, limitations, and the next physical check.
+
+### Boundaries: protect what matters
+
+The best boundaries prevent expensive mistakes. They do not micromanage every
+keystroke.
+
+```text
+- Keep the legacy 14-line controller snapshot byte-compatible.
+- Do not change pairing identity or certificate validation.
+- Never retain a stale pose as a valid target.
+- Do not actuate hardware in this task.
+- Do not discard unrelated working-tree changes.
+```
+
+Boundaries can also define when the agent must ask. A request to draft release
+notes does not authorize publishing them. A request to diagnose a robot motion
+fault does not authorize sending a test command.
+
+### Acceptance evidence
+
+Acceptance criteria turn communication into an engineering contract:
+
+```text
+Acceptance:
+- a valid left/right pose round-trips through the authenticated archive;
+- malformed, nonfinite, out-of-range, and unsupported-version poses fail closed;
+- an older payload still parses;
+- ROBControllerVision and Cerebro Debug builds pass;
+- physical-device validation remains clearly marked pending.
+```
+
+This is stronger than “make sure it works.” It tells both human and AI which
+claims the evidence must support.
+
+### Steering without restarting
+
+When the agent is already working, correct direction with the smallest useful
+message. Examples:
+
+```text
+Preserve the existing wire keys; add versioned optional keys instead.
+```
+
+```text
+The green connection light is accurate. Focus on profile classification and
+controller aggregation, not discovery.
+```
+
+```text
+Do not stop at storage. Include pose validity and timestamp fields in the model,
+but leave arm actuation for a calibrated follow-up.
+```
+
+Good steering adds evidence or a constraint. It does not require restating the
+whole project.
+
+---
+
+## 18. Context engineering for large repositories
+
+AI performance depends on what it can see and how the repository exposes its
+meaning. Context engineering is the practice of arranging code, tests,
+documentation, and instructions so the agent can recover the right model of
+the system.
+
+### Give the repository a map
+
+A short project map should name entry points and ownership:
+
+```text
+ROBControllerVision/App          UI and session presentation
+ROBControlCore/Control           typed intent and dead-man policy
+ROBCerebroTransport/Control      authenticated wire compatibility
+Cerebro/ROBMainViewController    legacy receive integration
+Cerebro/ROBBaseControllerModel   shared accepted controller state
+```
+
+This does not replace search. It reduces the chance that the agent edits a
+similarly named but inactive path.
+
+### Preserve executable knowledge
+
+Tests and fixtures are better context than prose alone because they can reject
+a misunderstanding. For every important promise, ask whether it can become:
+
+- a unit test for a pure transformation;
+- a golden byte fixture for a protocol;
+- an integration test across a fake transport;
+- a state-machine test for cancellation and timeout;
+- a simulator scenario for operator behavior;
+- a physical checklist for facts software cannot prove.
+
+When a hardware discovery is made, first write it down, then encode the portion
+that can be checked automatically. “The arm sign is reversed” should become a
+calibration artifact or mapping test, not remain only in a chat transcript.
+
+### Separate durable truth from session history
+
+Conversation is useful working memory but a poor sole archive. After a task,
+place durable knowledge where the next developer and agent will find it:
+
+- protocol contracts beside the implementation;
+- operational steps in a runbook;
+- repository conventions in project instructions;
+- architectural decisions in a short decision record;
+- verified limits in machine-readable configuration;
+- uncertain physical facts in a clearly labeled validation checklist.
+
+Avoid copying an entire conversation into the repository. Preserve decisions,
+evidence, and unresolved questions.
+
+### Ask for evidence-backed exploration
+
+For an unfamiliar system, use a staged request:
+
+```text
+Inspect without editing. Trace a controller sample from GameController through
+the dead-man lease, transport encoder, Cerebro receiver, and accepted model.
+Cite symbols and files. Identify where chirality, freshness, and invalidation
+could be lost. Separate confirmed behavior from hypotheses.
+```
+
+Review that map before implementation. This is not bureaucracy; it is a cheap
+way to discover that the visible UI and active data path are different.
+
+### Manage context decay
+
+Long tasks accumulate superseded hypotheses. Periodically restate the current
+facts:
+
+```text
+Current verified state:
+- connection succeeds and the green indicator is correct;
+- both PSVR controllers enumerate;
+- the remaining defect is unsupported profile mapping;
+- tread values must remain independent floats;
+- dead-man behavior is retained.
+```
+
+This compact checkpoint helps the agent stop pursuing an earlier diagnosis.
+
+---
+
+## 19. Verification is the product
+
+AI makes producing an implementation inexpensive. Therefore the value moves to
+proof. A professional AI-assisted change should carry an evidence ladder whose
+top rung matches the risk of the claim.
+
+### The evidence ladder
+
+1. **Static inspection:** types, call sites, schemas, and configuration agree.
+2. **Focused test:** the changed transformation or failure case is executable.
+3. **Regression suite:** neighboring promises still hold.
+4. **Build:** the real target, SDK, and language mode compile.
+5. **Integration:** both sides communicate under representative timing.
+6. **Simulation:** user interaction and state transitions behave together.
+7. **Bench test:** hardware is constrained, low energy, and supervised.
+8. **Operational test:** the complete system runs with stop paths and observers.
+
+Do not skip from static inspection to a claim about physical behavior. Each
+rung answers a different question.
+
+### Ask the agent to falsify its own patch
+
+After implementation, change roles. Ask:
+
+```text
+Review this diff as a skeptical maintainer. Find ways the new pose can become
+stale, swap chirality, bypass validation, break an older Cerebro receiver, or
+increase motion authority. Add focused tests for credible failures. Do not
+expand scope into arm control.
+```
+
+An AI can generate both the patch and the critique, but independence is not
+guaranteed. The critique still improves coverage by forcing a different search
+objective. Human review, separate test design, and real measurements remain
+valuable.
+
+### Evaluate repeated AI workflows
+
+When the same task occurs often—triaging controller logs, drafting protocol
+tests, reviewing dependencies, or generating release notes—build a small eval
+set. Include normal cases, difficult edge cases, and cases that should be
+refused or escalated.
+
+Record measurable outcomes:
+
+- Did the agent identify the active implementation?
+- Did it preserve backward compatibility?
+- Did it distinguish compilation from hardware validation?
+- Did it avoid secrets and destructive actions?
+- Did the test fail before the fix and pass after it?
+- Did the final report accurately describe limitations?
+
+Run the eval when instructions, tools, models, or repository architecture
+change. A beautiful demonstration is one sample; an eval set measures a
+pattern.
+
+### Stop conditions are part of verification
+
+Define when work must pause:
+
+- the requested behavior depends on an unknown physical limit;
+- the only available test could move unguarded hardware;
+- credentials or permissions are missing;
+- a generated migration could irreversibly alter user data;
+- two authoritative specifications conflict;
+- the diff overlaps unexplained user changes.
+
+Stopping with a precise blocker is a successful safety behavior, not a failure
+of intelligence.
+
+---
+
+## 20. Designing AI-native software systems
+
+Using AI to write an ordinary application is only the first wave. An AI-native
+system is designed around uncertain model output, typed tools, observable
+state, evals, and deterministic boundaries.
+
+### Separate proposal from execution
+
+The model should propose a bounded intent:
+
+```text
+turn 20 degrees left at inspection speed
+```
+
+A deterministic layer should decide whether that intent is allowed, translate
+it into units, apply limits, acquire authority, monitor freshness, and stop.
+The model should not manufacture raw motor bytes or bypass the controller
+lease.
+
+For an arm, a safer progression is:
+
+```text
+language goal
+  -> typed task proposal
+  -> scene and capability checks
+  -> deterministic planner / IK
+  -> joint, velocity, and collision validation
+  -> operator approval when required
+  -> feedback-controlled executor
+  -> independent stop
+```
+
+Each arrow is an inspectable contract.
+
+### Give tools narrow schemas
+
+A tool named `run_any_shell_command` offers enormous accidental authority. A
+robot tool should expose the smallest operation that can be made safe. Its
+schema should constrain units, ranges, identifiers, and optionality before
+execution code sees the request.
+
+```text
+propose_named_pose(
+  pose_id: one of the calibrated catalog IDs,
+  speed_fraction: 0.0 through 0.2,
+  reason: short operator-visible text
+)
+```
+
+Even a valid schema does not prove the pose is currently collision-free. Tool
+validation, world state, executor feedback, and operator policy remain separate
+layers.
+
+### Treat retrieval as evidence selection
+
+An AI system can retrieve manuals, logs, code, and prior decisions. Retrieval
+quality determines which evidence reaches the model. Store documents with
+source, date, version, authority, and scope. Prefer a current verified wiring
+map over an old brainstorming note, and make conflicts visible rather than
+silently blending them.
+
+### Design for uncertainty
+
+Model output may be incomplete, inconsistent, or wrong. The system needs:
+
+- structured outputs that reject invalid shapes;
+- timeouts and cancellation;
+- bounded retries and queue sizes;
+- idempotent operations where possible;
+- explicit unavailable and uncertain states;
+- audit events for proposals, approvals, actions, and outcomes;
+- human escalation for consequential ambiguity.
+
+Do not convert “the model did not answer” into a default motion. In robotics,
+absence of valid intent should converge to neutral.
+
+### Observe the whole loop
+
+Measure more than model latency. Track tool selection, validation failures,
+approval delays, execution outcomes, cancellation, stale state, and recovery.
+Keep sensitive data out of logs and define retention. An AI system that cannot
+explain which source and tool produced an action will be difficult to debug and
+unsafe to trust.
+
+---
+
+## 21. A thirty-day AI developer practice
+
+The fastest way to learn this new form of development is to practice on real,
+bounded work while increasing authority slowly.
+
+### Week 1: learn to specify
+
+Each day, take one vague task and write an outcome contract with goal, context,
+output, boundaries, and acceptance evidence. Ask the AI to inspect before
+editing. Compare its system map with the code.
+
+Exercises:
+
+1. Trace one UI action to its side effect.
+2. Explain one protocol field and its validation.
+3. Find one timeout and list what state it protects.
+4. Turn one bug report into reproducible steps.
+5. Convert one workshop fact into a testable invariant.
+
+### Week 2: build evidence loops
+
+Choose low-risk bugs. Require a failing reproduction or fixture before the
+patch. Ask the agent to run the smallest test, then the neighboring suite, then
+the real build. Review every claim in the handoff against command output.
+
+Keep a notebook with three columns: claim, evidence, remaining uncertainty.
+This trains the distinction between “the code looks right” and “this behavior
+was observed.”
+
+### Week 3: direct cross-system changes
+
+Work across two components without expanding physical authority. Examples are
+a versioned optional field, a status message, or a simulator-only control.
+Require a shared fixture and independent validation at the receiver.
+
+Practice steering when the first hypothesis is wrong. Give the agent the new
+fact without rewriting its entire plan. Watch whether it updates the causal
+model or merely patches around the symptom.
+
+### Week 4: design an AI-native capability
+
+Design—but do not energize—a narrow AI proposal tool. Define its schema,
+authorization, freshness, deterministic checks, refusal cases, audit record,
+and eval set. Threat-model prompt injection, stale retrieval, malformed tool
+arguments, repeated calls, cancellation races, and operator confusion.
+
+Finish with a review packet:
+
+- system diagram;
+- typed contract;
+- ten normal eval cases;
+- ten adversarial or failure cases;
+- deterministic validator tests;
+- simulator demonstration;
+- physical validation plan owned by a qualified operator.
+
+### Graduation test
+
+You are ready for greater autonomy when you can reliably answer:
+
+1. What exact outcome is requested?
+2. Which source is authoritative for each fact?
+3. What authority does the AI have?
+4. What deterministic boundary contains it?
+5. What evidence supports each completion claim?
+6. How does the system fail neutral?
+7. Who can stop it, and how?
+
+The future developer is not the person who types the most code. It is the
+person who can turn human intent into a well-bounded system, use AI to explore
+and construct it rapidly, and produce evidence strong enough for others to
+trust.
+
+---
+
+## 22. The AI change contract worksheet
+
+Complete this worksheet before a consequential AI-assisted change. Short,
+specific answers are more valuable than polished language.
+
+### Outcome
+
+- Who experiences the problem?
+- What behavior should become observably different?
+- What example demonstrates success?
+- What is explicitly outside this change?
+
+### Sources and system map
+
+- Which repository, branch, target, and device are involved?
+- Which files or symbols are likely entry points?
+- What specification, fixture, measurement, or operator statement is authoritative?
+- Which facts are hypotheses that the agent must confirm?
+- What recent known-good implementation should be compared?
+
+### Invariants and authority
+
+- What existing behavior must remain byte-compatible or user-compatible?
+- Which values, rates, sizes, lifetimes, and coordinate systems are bounded?
+- Who owns mutable state?
+- What may the AI read, edit, execute, or propose?
+- Which actions require approval?
+- Which actions are forbidden in this task?
+
+### Failure behavior
+
+- What happens when input disappears, tracking is lost, or a peer disconnects?
+- What happens when a value is malformed, nonfinite, stale, duplicated, or unsupported?
+- Can cancellation race with completion?
+- Can one optional subsystem block control or stop handling?
+- Does restart preserve an emergency stop or accidentally clear it?
+
+### Acceptance evidence
+
+- What test must fail before the fix?
+- What focused test proves the new contract?
+- What regression suites and builds must pass?
+- What integration or simulator scenario must be observed?
+- What remains a physical-device test?
+- What limitation must appear in the final report?
+
+### Ready-to-use prompt
+
+```text
+Goal:
+[Describe the observable result.]
+
+Context:
+[Name the repositories, reproduction, relevant evidence, and known-good comparison.]
+
+Boundaries:
+[List the few invariants and authority limits that prevent real harm.]
+
+Acceptance:
+[List executable tests, builds, and remaining physical checks.]
+
+Start by inspecting the active data path and reporting confirmed facts versus
+hypotheses. Then implement the smallest complete change, verify it, review the
+diff for regressions and unsafe authority expansion, and give me an evidence-
+backed handoff. Do not claim validation that the available environment cannot
+perform.
+```
+
+### Human sign-off
+
+Before shipping or energizing hardware, the responsible developer should be
+able to say: I understand the intended behavior; I reviewed the authority and
+failure boundaries; the cited evidence supports the claims; unresolved
+physical facts are labeled; and a tested independent stop exists where motion
+can affect people or equipment.
+
+---
+
 ## Epilogue: authorship after acceleration
 
 The early repositories preserve the voice of one person working from several
@@ -695,10 +1345,10 @@ and the decision to energize the machine.
 
 ### Official OpenAI documentation
 
+- [Prompting for ChatGPT and Codex](https://learn.chatgpt.com/docs/prompting)
 - [Codex use cases](https://developers.openai.com/codex/use-cases)
 - [OpenAI model guidance](https://developers.openai.com/api/docs/guides/latest-model)
 - [OpenAI API models](https://developers.openai.com/api/docs/models)
 
 Consult the current official documentation when implementing; models,
 capabilities, availability, and SDK shapes can change after this edition.
-

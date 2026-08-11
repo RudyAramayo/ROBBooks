@@ -42,5 +42,5 @@ Canonical layout:
 - A local Markdown-link check covered the 12 central files plus the ROB-Books
   project README and found zero missing relative targets.
 - Cerebro and ORobotics no longer report a project-local codex-notes path.
-- The ROB-Books validation suite still passed for all five PDFs after its README
-  gained the central handoff link.
+- The ROB-Books validation suite still passed for all five PDFs in the collection
+  that existed at consolidation time after its README gained the central handoff link.

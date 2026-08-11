@@ -1,0 +1,8 @@
+language goal
+  -> typed task proposal
+  -> scene and capability checks
+  -> deterministic planner / IK
+  -> joint, velocity, and collision validation
+  -> operator approval when required
+  -> feedback-controlled executor
+  -> independent stop

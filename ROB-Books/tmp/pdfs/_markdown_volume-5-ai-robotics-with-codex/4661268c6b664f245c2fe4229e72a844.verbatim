@@ -1,0 +1,9 @@
+ROBControllerVision has two spatial controllers. Capture a fresh left and
+right world-space pose, preserve chirality, and transmit position in meters
+plus normalized quaternion orientation through the authenticated control path.
+
+Cerebro must validate finite values, bounds, version, and freshness before
+storing a pose. Missing tracking must invalidate the pose instead of retaining
+the last arm target. Preserve the historical tread snapshot for older peers.
+Do not actuate an arm yet. Build both apps, add a wire-format fixture, and state
+what still requires a physical Vision Pro test.

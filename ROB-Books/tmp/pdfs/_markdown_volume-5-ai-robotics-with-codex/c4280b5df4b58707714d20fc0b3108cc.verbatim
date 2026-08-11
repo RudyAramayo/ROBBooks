@@ -1,0 +1,4 @@
+- Run protocol fixture tests after changing either wire implementation.
+- Never enable an unauthenticated fallback.
+- Do not send arm commands from a generative model directly.
+- Preserve user changes in a dirty worktree.

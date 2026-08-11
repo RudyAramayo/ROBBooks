@@ -1,0 +1,5 @@
+ROBControllerVision/App          UI and session presentation
+ROBControlCore/Control           typed intent and dead-man policy
+ROBCerebroTransport/Control      authenticated wire compatibility
+Cerebro/ROBMainViewController    legacy receive integration
+Cerebro/ROBBaseControllerModel   shared accepted controller state

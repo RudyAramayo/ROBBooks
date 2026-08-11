@@ -1,0 +1,5 @@
+- Keep the legacy 14-line controller snapshot byte-compatible.
+- Do not change pairing identity or certificate validation.
+- Never retain a stale pose as a valid target.
+- Do not actuate hardware in this task.
+- Do not discard unrelated working-tree changes.

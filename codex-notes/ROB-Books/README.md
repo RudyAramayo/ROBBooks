@@ -4,7 +4,7 @@ Checkpoint: **2026-08-03**
 
 Project directory: /Users/raramayo/dev/ROB-Books
 
-Status: five illustrated book manuscripts and five validated PDF layout proofs
+Status: six illustrated book manuscripts and six validated PDF layout proofs
 exist. The project is a plain folder, not a standalone Git worktree. The books
 are not yet certified engineering plans or printer-specific press files.
 
@@ -51,4 +51,3 @@ are not yet certified engineering plans or printer-specific press files.
 > distinction, placeholder, privacy exclusion, safety boundary, and existing
 > user file. Then continue the builder's newest editorial or publication task,
 > rebuild all affected PDFs, render every page, and run the validation suite.
-

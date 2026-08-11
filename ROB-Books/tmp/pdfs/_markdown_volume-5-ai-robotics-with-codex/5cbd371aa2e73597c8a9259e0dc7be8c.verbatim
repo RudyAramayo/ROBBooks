@@ -1,0 +1,6 @@
+Acceptance:
+- a valid left/right pose round-trips through the authenticated archive;
+- malformed, nonfinite, out-of-range, and unsupported-version poses fail closed;
+- an older payload still parses;
+- ROBControllerVision and Cerebro Debug builds pass;
+- physical-device validation remains clearly marked pending.

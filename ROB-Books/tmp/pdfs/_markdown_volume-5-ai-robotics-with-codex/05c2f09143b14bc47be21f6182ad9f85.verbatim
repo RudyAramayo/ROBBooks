@@ -1,0 +1,6 @@
+Current verified state:
+- connection succeeds and the green indicator is correct;
+- both PSVR controllers enumerate;
+- the remaining defect is unsupported profile mapping;
+- tread values must remain independent floats;
+- dead-man behavior is retained.

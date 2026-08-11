@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  10 AUG 2026 22:32
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  10 AUG 2026 22:46
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1469,12 +1469,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 ] [2]
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
-cmr.cfg)
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-[]|\TU/AvenirNextCondensed(0)/b/n/10.95 FIELD MAN-
- []
-
-[3
+cmr.cfg) [3
 
 ]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.toc)
@@ -1702,11 +1697,11 @@ d.
 Here is how much of TeX's memory you used:
  35362 strings out of 468168
  764560 string characters out of 5423555
- 1494432 words of memory out of 5000000
+ 1494539 words of memory out of 5000000
  63454 multiletter control sequences out of 15000+600000
  632142 words of font info for 134 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,12n,131p,1021b,1281s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-missi
-on-control.xdv (30 pages, 551984 bytes).
+on-control.xdv (30 pages, 552936 bytes).

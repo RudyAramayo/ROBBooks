@@ -7,11 +7,11 @@ This folder contains the editable sources, selected print-safe photographs, and 
 | Book | Audience | Pages | Main idea | PDF |
 |---|---|---:|---|---|
 | Volume 1 — *Meet ROB* | Ages 8–12 | 30 | Systems thinking, structure, energy, sensors, iteration, and engineering logs | [`output/pdf/volume-1-meet-rob.pdf`](output/pdf/volume-1-meet-rob.pdf) |
-| Volume 2 — *Circuits & Signals* | Ages 10–14 | 25 | Circuits, digital/analog/PWM signals, Arduino pins, serial messages, sensors, and watchdogs | [`output/pdf/volume-2-circuits-and-signals.pdf`](output/pdf/volume-2-circuits-and-signals.pdf) |
+| Volume 2 — *Circuits & Signals* | Ages 10–14 | 29 | Circuits, a supervised USB-to-5 V toy lab, digital/analog/PWM signals, Arduino pins, serial messages, sensors, and watchdogs | [`output/pdf/volume-2-circuits-and-signals.pdf`](output/pdf/volume-2-circuits-and-signals.pdf) |
 | Volume 3 — *Motion Workshop* | Ages 10–15 | 32 | Loads, differential drive, gearing, actuators, materials, fabrication, assembly, and testing | [`output/pdf/volume-3-motion-workshop.pdf`](output/pdf/volume-3-motion-workshop.pdf) |
 | Volume 4 — *Mission Control* | Ages 12–16 | 30 | Mac/Arduino responsibilities, state, secure controllers, camera/depth/lidar data, AI boundaries, and simulation | [`output/pdf/volume-4-mission-control.pdf`](output/pdf/volume-4-mission-control.pdf) |
+| Volume 5 — *AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro* | Advanced makers and software builders | 30 | Source-based software history and a practical guide to directing, testing, and owning AI-built systems while preserving robot safety and human responsibility | [`output/pdf/volume-5-ai-robotics-with-codex.pdf`](output/pdf/volume-5-ai-robotics-with-codex.pdf) |
 | *Complete Builder's Field Manual* | Advanced makers and mentors | 67 | Evidence-based full-build record, architecture, fabrication, power, firmware, software, verification, show operations, maintenance, and worksheets | [`output/pdf/complete-builders-field-manual.pdf`](output/pdf/complete-builders-field-manual.pdf) |
-| Volume 5 — *AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro* | Advanced makers and software builders | Printable edition | Source-based software history and a practical guide to using Codex and OpenAI while preserving robot safety, evidence, review, and human responsibility | [`output/pdf/volume-5-ai-robotics-with-codex.pdf`](output/pdf/volume-5-ai-robotics-with-codex.pdf) |
 
 Volume 5's factual commit-by-commit appendix is maintained separately as the
 [`Volume 5 Change Atlas`](source/volume-5-change-atlas.md). The manuscript was
