@@ -30,7 +30,7 @@ and company names remain the property of their respective owners.
 
 First evidence-based draft: 2 August 2026. Build details marked Builder input needed are deliberate placeholders
 for the builder to complete.
-DUAL-ARM ROBOTICS                                                                            VOLUME 6 - ADVANCED MAKERS
+DUAL-ARM ROBOTICS                                                                             VOLUME 6 - ADVANCED MAKERS
 
 
 
@@ -51,6 +51,8 @@ The Building R.O.B. library
   VOLUME 5                AI, Robotics, and Codex: Directing, Verifying, and Owning AI-Built Systems - advanced
                           makers
   VOLUME 6                Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu - advanced makers
+  VOLUME 7                Engineering ROBControllerVision: Swift, Spatial Input, Video, and Speech - Swift devel-
+                          opers
   MANUAL                  Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
 
 
@@ -76,84 +78,99 @@ The Building R.O.B. library
    virtual environment, or machine-specific identifiers. Volume 6 documents the inspected protocol,
    URDF models, reproducible setup, verification gates, and unresolved configuration differences.
 
+   HOW TO FIND THE FILES
+
+   Every printed path is relative to the shared workspace root, /Users/rob/dev in the inspected edi-
+   tion. Start at that root, enter the first directory in the path, and follow each slash. Source
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 21
+DUAL-ARM ROBOTICS                                                                  VOLUME 6 - ADVANCED MAKERS
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   3 / 20
+
+   code is spread across independent repositories—including ROBArduino, Cerebro, ROBController,
+   ROBControllerVision, ORobotics, and ROBTrainingGames—rather than one giant ROB project. See
+   Presentation/ROB-Books/OPEN-SOURCE-CODE-MAP.md for repository locations, licenses, primary files,
+   and commands for finding renamed files.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                         4 / 21
 Contents
-1 The arm system we actually have                                                                                   1
+1 The arm system we actually have                                                                                  1
    1.1 An evidence ledger . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     1
 
-2 Read the repository without copying a whole computer                                                              2
-   2.1 Snapshot record . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    2
+2 Read the repository without copying a whole computer                                                             3
+   2.1 Snapshot record . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    3
 
-3 URDF is a geometric sentence                                                                                      3
-   3.1 The single B1 chain . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    3
-   3.2 The dual model has a warning in its own source . . . . . . . . . . . . . . . . . . . . . . . . . .           4
+3 URDF is a geometric sentence                                                                                     4
+   3.1 The single B1 chain . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    4
+   3.2 The dual model has a warning in its own source . . . . . . . . . . . . . . . . . . . . . . . . . .           5
 
-4 Measure two arms into ROB’s coordinate system                                                                     5
-   4.1 Mount-transform worksheet . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        5
+4 Measure two arms into ROB’s coordinate system                                                                    6
+   4.1 Mount-transform worksheet . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        6
 
-5 CAN: stable identity before traffic                                                                               6
-   5.1 Prefer a deterministic host binding . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      6
-   5.2 CAN fault questions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    6
+5 CAN: stable identity before traffic                                                                              7
+   5.1 Prefer a deterministic host binding . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      7
+   5.2 CAN fault questions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    7
 
-6 Configure one core per side                                                                                       7
+6 Configure one core per side                                                                                      8
 
-7 The observed UDP protocol                                                                                         8
-   7.1 Command catalogue . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        8
-   7.2 Gripper sequence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     9
-   7.3 Protocol hardening needed . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        9
+7 The observed UDP protocol                                                                                        9
+   7.1 Command catalogue . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        9
+   7.2 Gripper sequence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+   7.3 Protocol hardening needed . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
 
-8 LCM and ROS 2 interfaces                                                                                         10
+8 LCM and ROS 2 interfaces                                                                                         11
 
-9 Build a clean Ubuntu runtime                                                                                     11
-   9.1 Reproduction procedure . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
-   9.2 Service order . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+9 Build a clean Ubuntu runtime                                                                                     12
+   9.1 Reproduction procedure . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+   9.2 Service order . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
 
-10 A status-only Python lesson                                                                                     13
+10 A status-only Python lesson                                                                                     14
 
-11 Commission from no motion to bounded motion                                                                     14
-   11.1 Gate 0: paper review . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
-   11.2 Gate 1: power isolated . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
-   11.3 Gate 2: status only . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+11 Commission from no motion to bounded motion                                                                     15
+   11.1 Gate 0: paper review . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+   11.2 Gate 1: power isolated . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+   11.3 Gate 2: status only . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
 
 
-                                                         4
+                                                         5
 DUAL-ARM ROBOTICS                                                                           VOLUME 6 - ADVANCED MAKERS
 
 
 
-     11.4 Gate 3: supported, torque-limited joint identification . . . . . . . . . . . . . . . . . . . . . . . 14
-     11.5 Gate 4: model agreement . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
-     11.6 Gate 5: independent single-arm envelopes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
-     11.7 Gate 6: dual-arm coordination . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+     11.4 Gate 3: supported, torque-limited joint identification . . . . . . . . . . . . . . . . . . . . . . . 15
+     11.5 Gate 4: model agreement . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+     11.6 Gate 5: independent single-arm envelopes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+     11.7 Gate 6: dual-arm coordination . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
 
-12 Diagnose by layer                                                                                              16
+12 Diagnose by layer                                                                                              17
 
-13 Connect the arms to Cerebro responsibly                                                                        17
+13 Connect the arms to Cerebro responsibly                                                                        18
 
-14 What remains unknown                                                                                           18
+14 What remains unknown                                                                                           19
 
-15 Reproduction acceptance sheet                                                                                  19
+15 Reproduction acceptance sheet                                                                                  20
 
-16 Teach it as a systems lesson                                                                                   20
-
-
-
-
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  5 / 20
-DUAL-ARM ROBOTICS                              VOLUME 6 - ADVANCED MAKERS
+16 Teach it as a systems lesson                                                                                   21
 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     6 / 20
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  6 / 21
      CHAPTER 1
 
 
      The arm system we actually
      have
+              SOURCE TRAIL — ANALYZING NOW: AmberHomeFolder/amber/L-10/launch.json and
+           AmberHomeFolder/amber/R-11/launch.json. This chapter derives the left/right topology from
+           those two captured configuration files.
+
      ROB’s manipulation system is not one abstract “robot arm.” It is two AMBER B1 arms, each with seven
      revolute joints and a gripper actuator. The inspected Ubuntu snapshot names the deployed sides L-10
      and R-11. Their current launch files separate the sides at every important boundary:
@@ -194,13 +211,22 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     6 / 20
      • Observed: directly readable in a source file, launch file, URDF, or captured configuration.
      • Derived: calculated from observed values, such as converting radians to degrees.
      • Reported: supplied by the builder but not independently demonstrated by the snapshot.
-     • Unknown: requires measurement, vendor documentation, or a controlled test.
-
-     The two arms, seven-joint count, ports, prefixes, core settings, UDP structures, and URDF geometry are
-     observed. The exact mounting transforms on ROB, current safe payload, braking behavior, CAN adapter
-     bitrate interpretation, and the firmware actually running today still require confirmation.
 
                                                                    1
+DUAL-ARM ROBOTICS                                                                 VOLUME 6 - ADVANCED MAKERS
+
+
+
+• Unknown: requires measurement, vendor documentation, or a controlled test.
+
+The two arms, seven-joint count, ports, prefixes, core settings, UDP structures, and URDF geometry are
+observed. The exact mounting transforms on ROB, current safe payload, braking behavior, CAN adapter
+bitrate interpretation, and the firmware actually running today still require confirmation.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                        2 / 21
      CHAPTER 2
 
 
@@ -257,11 +283,15 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     6 / 20
 
 
 
-                                                                     2
+                                                                     3
 CHAPTER 3
 
 
 URDF is a geometric sentence
+         SOURCE TRAIL — ANALYZING NOW: amber_b1.urdf in the Amber URDF folder defines the
+      independent arm. DualArm.urdf in the captured urdf/dual_b1 folder defines the combined
+      model. The code map supplies full paths and side-specific alternatives.
+
 A Unified Robot Description Format file is XML that describes a tree of links connected by joints. Links
 carry visual geometry, collision geometry, and optionally mass and inertia. Joints name a parent link, child
 link, origin transform, axis, type, and limits. Together they let visualization, forward kinematics, inverse
@@ -300,14 +330,12 @@ joints. That is not identical to the joint-specific URDF limits. Treat both as i
 envelope, never select whichever value permits more motion, and add a robot-specific conservative limit
 layer above the vendor client.
 
-
-The dual model has a warning in its own source
-                                                      3
+                                                      4
     DUAL-ARM ROBOTICS                                                                      VOLUME 6 - ADVANCED MAKERS
 
 
 
-
+    The dual model has a warning in its own source
     DualArm.urdf contains both L... and R... chains attached to a shared base_link. Its leading comment
     says axes 2, 4, and 6 have opposite rotation directions at the driver layer and warns that left/right labels
     were defined from an observer-facing convention. The launch files likewise give the solver an alternating
@@ -327,7 +355,7 @@ The dual model has a warning in its own source
 
 
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             4 / 20
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             5 / 21
     CHAPTER 4
 
 
@@ -368,12 +396,16 @@ The dual model has a warning in its own source
 
 
 
-                                                                  5
+                                                                  6
     CHAPTER 5
 
 
     CAN: stable identity before
     traffic
+             SOURCE TRAIL — ANALYZING NOW: initCan.sh in amber_core/init and its adjacent
+          SerialNumber.txt. An older amber/initCAN.sh also exists; compare rather than merging their
+          assumptions. The code map gives both full paths.
+
     Linux may assign /dev/ttyACM0, /dev/ttyACM1, and later numbers according to discovery order. Moving
     a USB adapter to another hub can reorder them. The archived improved initialization script addresses
     this by reading each adapter’s USB serial number, looking it up in SerialNumber.txt, and binding the
@@ -412,13 +444,15 @@ The dual model has a warning in its own source
     will hold, brake, or become harmless.
 
 
-
-
-                                                         6
+                                                         7
     CHAPTER 6
 
 
     Configure one core per side
+             SOURCE TRAIL — ANALYZING NOW: return to the two launch.json files. The executables
+          beside them are captured binaries, not readable source; the book documents their configured
+          boundary without claiming to analyze their internal CAN implementation.
+
     Both current launch files select CAN_BUS, seven degrees of freedom, a 200 Hz control frequency, gear ratios
     of 50, a gripper numbered 8, Drake solving, UDP, and ROS 2. Their maximum-velocity, acceleration, and
     jerk arrays are controller configuration units. The files do not prove those values are safe physical SI limits.
@@ -448,11 +482,16 @@ The dual model has a warning in its own source
 
 
 
-                                                           7
+                                                           8
 CHAPTER 7
 
 
 The observed UDP protocol
+        SOURCE TRAIL — ANALYZING NOW: amber_robot.py in Cerebro’s AMBER V2 API pro-
+     vides the high-level wrapper. Exact packed structures live in its basic_cmd directory: cmd_1.py,
+     cmd_4.py, cmd_6.py, cmd_7.py, cmd_9.py, cmd_10.py, and cmd_110.py.
+
+
 The V2 Python API uses packed ctypes.Structure records sent in UDP datagrams. Every observed mes-
 sage begins with:
 
@@ -489,15 +528,12 @@ positions and a six-element Cartesian pose. “Position returned” does not pro
 rectly zeroed after a controller boot.
 
 
-Gripper sequence
-
-
-                                                     8
+                                                     9
 DUAL-ARM ROBOTICS                                                                    VOLUME 6 - ADVANCED MAKERS
 
 
 
-
+Gripper sequence
 The V2 examples calibrate actuator 8 after each power cycle, then use action 0 for open and action 1 for
 close with an integer intensity. Calibration moves hardware: keep fingers, cables, and objects clear. The
 code alone does not establish a safe force or intensity for ROB’s installed grippers.
@@ -526,11 +562,15 @@ and 26002. Select ports from reviewed configuration, not from whichever example 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           9 / 20
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          10 / 21
 CHAPTER 8
 
 
 LCM and ROS 2 interfaces
+        SOURCE TRAIL — ANALYZING NOW: the captured sin_wave/rawLcm directory contains
+     human-readable .lcm schemas. Nearby lcmTypes Python files are generated outputs; edit and
+     regenerate from the schema definitions.
+
 The saved LCM configuration composes channels from a side prefix and suffix. Examples are Left_PosCmd,
 Left_ArmStatus, Right_PosCmd, and Right_ArmStatus. Other configured suffixes include position plans and
 tasks, inverse- and forward-kinematics tasks, solver responses, mode changes, and gripper control.
@@ -557,7 +597,7 @@ ownership, and safety behavior are production-ready.
 
 
 
-                                                    10
+                                                    11
     CHAPTER 9
 
 
@@ -604,7 +644,7 @@ ownership, and safety behavior are production-ready.
 
     Service order
 
-                                                       11
+                                                       12
 DUAL-ARM ROBOTICS                                                                       VOLUME 6 - ADVANCED MAKERS
 
 
@@ -618,11 +658,16 @@ cores, then isolate energy according to the hardware procedure.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             12 / 20
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             13 / 21
     CHAPTER 10
 
 
     A status-only Python lesson
+             SOURCE TRAIL — ANALYZING NOW: import behavior comes from amber_api/__init__.py
+          and amber_robot.py inside Cerebro’s AMBER V2 API. Read the directory-local README.md and
+          LICENSE before installing or redistributing it.
+
+
     Use the repository’s reviewed V2 package rather than reproducing packet layouts in multiple applications.
     The first test should only request state:
 1    from amber_api import Amber_Robot
@@ -648,7 +693,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-                                                                 13
+                                                                 14
 CHAPTER 11
 
 
@@ -692,7 +737,7 @@ ture, gripper, and cable volume.
 
 
 
-                                                    14
+                                                    15
 DUAL-ARM ROBOTICS                                                                 VOLUME 6 - ADVANCED MAKERS
 
 
@@ -705,7 +750,7 @@ rored commands, crossing workspaces, communication loss on one side, cancellatio
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                       15 / 20
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                       16 / 21
 CHAPTER 12
 
 
@@ -734,12 +779,16 @@ observation. Never collect private keys or passwords into a diagnostic archive.
 
 
 
-                                                    16
+                                                    17
 CHAPTER 13
 
 
 Connect the arms to Cerebro
 responsibly
+        SOURCE TRAIL — ANALYZING NOW: Cerebro has one AMBER V2 directory under
+     TaskControllers and another under Amber-PythonAPI. The chapter recommends consolidating
+     these entry points. The code map prints both exact paths.
+
 Cerebro should expose one typed arm service rather than launching miscellaneous Python scripts with
 implicit addresses. Its interface should name side, joint, units, duration, correlation identifier, desired
 mode, deadline, and operator authority. Returned state should include measured joint position, velocity,
@@ -762,7 +811,7 @@ connection indicator must never mean “safe to enter the workspace.”
 
 
 
-                                                    17
+                                                    18
 CHAPTER 14
 
 
@@ -787,7 +836,7 @@ Unknown does not mean failure. It means the next experiment has a clear question
 
 
 
-                                                    18
+                                                    19
 CHAPTER 15
 
 
@@ -815,7 +864,7 @@ Before labeling a replacement Ubuntu box ready, require signatures for:
 
 
 
-                                                   19
+                                                   20
 CHAPTER 16
 
 
@@ -835,5 +884,5 @@ detail a name, a source, a test, and a responsible human owner.
 
 
 
-                                                   20
+                                                   21
 

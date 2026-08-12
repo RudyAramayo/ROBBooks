@@ -1,0 +1,2 @@
+dns-sd -B _robctl._udp local.
+dns-sd -B _robvideo._udp local.

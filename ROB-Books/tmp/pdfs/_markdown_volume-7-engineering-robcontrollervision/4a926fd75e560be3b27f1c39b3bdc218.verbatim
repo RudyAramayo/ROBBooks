@@ -1,0 +1,2 @@
+request.shouldReportPartialResults = true
+request.requiresOnDeviceRecognition = recognizer.supportsOnDeviceRecognition

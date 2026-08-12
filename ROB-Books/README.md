@@ -2,17 +2,23 @@
 
 This folder contains the editable sources, selected print-safe photographs, and PDF layout proofs for a picture-heavy ROB learning series. The set follows one real robot from early prototypes through mechanics, circuits, firmware, macOS software, controllers, sensing, autonomy, and public operation.
 
-## The seven books
+## The nine books
 
 | Book | Audience | Pages | Main idea | PDF |
 |---|---|---:|---|---|
-| Volume 1 — *Meet ROB* | Ages 8–12 | 30 | Systems thinking, structure, energy, sensors, iteration, and engineering logs | [`output/pdf/volume-1-meet-rob.pdf`](output/pdf/volume-1-meet-rob.pdf) |
-| Volume 2 — *Circuits & Signals* | Ages 10–14 | 29 | Circuits, a supervised USB-to-5 V toy lab, digital/analog/PWM signals, Arduino pins, serial messages, sensors, and watchdogs | [`output/pdf/volume-2-circuits-and-signals.pdf`](output/pdf/volume-2-circuits-and-signals.pdf) |
-| Volume 3 — *Motion Workshop* | Ages 10–15 | 32 | Loads, differential drive, gearing, actuators, materials, fabrication, assembly, and testing | [`output/pdf/volume-3-motion-workshop.pdf`](output/pdf/volume-3-motion-workshop.pdf) |
-| Volume 4 — *Mission Control* | Ages 12–16 | 30 | Mac/Arduino responsibilities, state, secure controllers, camera/depth/lidar data, AI boundaries, and simulation | [`output/pdf/volume-4-mission-control.pdf`](output/pdf/volume-4-mission-control.pdf) |
+| Volume 1 — *Meet ROB* | Ages 8–12 | 36 | Systems thinking, structure, energy, sensors, iteration, and engineering logs | [`output/pdf/volume-1-meet-rob.pdf`](output/pdf/volume-1-meet-rob.pdf) |
+| Volume 2 — *Circuits & Signals* | Ages 10–14 | 33 | Circuits, a supervised USB-to-5 V toy lab, digital/analog/PWM signals, Arduino pins, serial messages, sensors, and watchdogs | [`output/pdf/volume-2-circuits-and-signals.pdf`](output/pdf/volume-2-circuits-and-signals.pdf) |
+| Volume 3 — *Motion Workshop* | Ages 10–15 | 34 | Loads, differential drive, gearing, actuators, materials, fabrication, assembly, and testing | [`output/pdf/volume-3-motion-workshop.pdf`](output/pdf/volume-3-motion-workshop.pdf) |
+| Volume 4 — *Mission Control* | Ages 12–16 | 33 | Mac/Arduino responsibilities, state, secure controllers, camera/depth/lidar data, AI boundaries, and simulation | [`output/pdf/volume-4-mission-control.pdf`](output/pdf/volume-4-mission-control.pdf) |
 | Volume 5 — *AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro* | Advanced makers and software builders | 39 | Source-based software history plus practical Swift/MLX, Llama, MLXVLM, model-safe stage-show, and Vision Pro lessons that preserve robot safety and human responsibility | [`output/pdf/volume-5-ai-robotics-with-codex.pdf`](output/pdf/volume-5-ai-robotics-with-codex.pdf) |
-| Volume 6 — *Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu* | Advanced makers and robot integrators | 26 | Two seven-joint AMBER arms, URDF and frame calibration, stable CAN identity, UDP/LCM protocols, clean Ubuntu reproduction, diagnostics, and staged commissioning | [`output/pdf/volume-6-amber-dual-arm-robotics.pdf`](output/pdf/volume-6-amber-dual-arm-robotics.pdf) |
-| *Complete Builder's Field Manual* | Advanced makers and mentors | 68 | Evidence-based full-build record, architecture, fabrication, power, firmware, software, verification, show operations, maintenance, and worksheets | [`output/pdf/complete-builders-field-manual.pdf`](output/pdf/complete-builders-field-manual.pdf) |
+| Volume 6 — *Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu* | Advanced makers and robot integrators | 27 | Two seven-joint AMBER arms, URDF and frame calibration, stable CAN identity, UDP/LCM protocols, clean Ubuntu reproduction, diagnostics, and staged commissioning | [`output/pdf/volume-6-amber-dual-arm-robotics.pdf`](output/pdf/volume-6-amber-dual-arm-robotics.pdf) |
+| Volume 7 — *Engineering ROBControllerVision* | Swift and visionOS developers | 36 | Swift 6 architecture, Observation, actors, spatial UI, controller/dead-man input, head pose, secure QUIC, H.264 video, local dictation, typed text transport, testing, and production review | [`output/pdf/volume-7-engineering-robcontrollervision.pdf`](output/pdf/volume-7-engineering-robcontrollervision.pdf) |
+| Volume 8 — *Engineering Cerebro* | Swift and Objective-C developers | 37 | Mixed-language architecture, ROBSerialBox, serial safety, AVFoundation, Luxonis RGB-D, Vision/SceneKit, MLX LLM/VLM, Gemini Live, bounded rendering, Kinect history, battle training, comedy shows, and the Vision Pro server contract | [`output/pdf/volume-8-engineering-cerebro.pdf`](output/pdf/volume-8-engineering-cerebro.pdf) |
+| *Complete Builder's Field Manual* | Advanced makers and developers | 79 | Unified evidence-based build record plus ROBSerialBox, RGB-D perception, MLX/VLM, Gemini, stage shows, Vision Pro control, advanced H.264 encoding/decoding, secure media transport, verification, operations, and maintenance | [`output/pdf/complete-builders-field-manual.pdf`](output/pdf/complete-builders-field-manual.pdf) |
+
+## Standalone picture story
+
+*ROB and the Lost Yellow Ball* is a separate 23-page read-aloud picture book for ages 5–6; it is not a numbered technical-series volume. Its gentle story introduces sensing, stopping, planning, checking, counting, kindness, and feedback through large illustrations and simple diagrams. It contains no robot-building instructions. PDF: [`output/pdf/rob-and-the-lost-yellow-ball.pdf`](output/pdf/rob-and-the-lost-yellow-ball.pdf).
 
 Volume 5's factual commit-by-commit appendix is maintained separately as the
 [`Volume 5 Change Atlas`](source/volume-5-change-atlas.md). The manuscript was
@@ -54,16 +60,20 @@ Facts supported by the inspected archive are separated from proposals, historica
 
 The exact inspection snapshot is recorded in [`SOURCE_SNAPSHOT.md`](SOURCE_SNAPSHOT.md). Restricted vendor PDFs were not reproduced or paraphrased for publication; only visible component identity is mentioned, with a request for authorized public documentation.
 
+Readers can move from every book lesson to the implementation through [`OPEN-SOURCE-CODE-MAP.md`](OPEN-SOURCE-CODE-MAP.md). Each volume now prints the workspace-root convention and “SOURCE TRAIL — ANALYZING NOW” boxes at code-backed chapters. The map also distinguishes explicitly licensed open source, locally readable source without a discovered license grant, captured configuration, and binary-only AMBER components.
+
+[`IMAGE_USAGE_POLICY.md`](IMAGE_USAGE_POLICY.md) gives every numbered volume its own visual territory and documents the single intentional cross-volume photograph. `tools/audit_image_reuse.sh` enforces that allowlist during validation and reports the complete field manual's deliberate evidence-photo overlap separately.
+
 ## Project map
 
 ```text
 ROB-Books/
-├── source/                 editable XeLaTeX manuscripts, Volume 5 Markdown, and shared style
+├── source/                 editable XeLaTeX manuscripts, advanced-volume Markdown, and shared style
 ├── assets/photos/          selected, resized, metadata-stripped build photos
 ├── assets/slides/          selected presentation-page images
 ├── assets/generated/       original illustrative artwork, not engineering evidence
 ├── tools/                  asset, build, validation, preview, and learning tools
-├── output/pdf/             the seven printable PDF layout proofs
+├── output/pdf/             the nine printable PDF layout proofs
 ├── output/previews/        contact sheets for quick visual review
 └── tmp/                    generated build files and excluded private-review images
 ```

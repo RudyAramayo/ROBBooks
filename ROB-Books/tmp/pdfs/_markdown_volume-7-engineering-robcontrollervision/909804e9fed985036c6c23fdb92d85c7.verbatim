@@ -1,0 +1,5 @@
+private func finishAction(_ id: UUID) {
+    guard actionID == id else { return }
+    actionID = nil
+    actionTask = nil
+}

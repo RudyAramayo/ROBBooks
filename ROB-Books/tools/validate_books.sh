@@ -15,6 +15,10 @@ mkdir -p "$validation_dir"
 
 failure=0
 
+if ! bash "$project_root/tools/audit_image_reuse.sh"; then
+  failure=1
+fi
+
 books=(
   volume-1-meet-rob
   volume-2-circuits-and-signals
@@ -22,6 +26,9 @@ books=(
   volume-4-mission-control
   volume-5-ai-robotics-with-codex
   volume-6-amber-dual-arm-robotics
+  volume-7-engineering-robcontrollervision
+  volume-8-engineering-cerebro
+  rob-and-the-lost-yellow-ball
   complete-builders-field-manual
 )
 

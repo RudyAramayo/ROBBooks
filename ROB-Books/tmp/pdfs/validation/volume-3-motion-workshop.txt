@@ -41,6 +41,8 @@ The Building R.O.B. library
   VOLUME 5                AI, Robotics, and Codex: Directing, Verifying, and Owning AI-Built Systems - advanced
                           makers
   VOLUME 6                Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu - advanced makers
+  VOLUME 7                Engineering ROBControllerVision: Swift, Spatial Input, Video, and Speech - Swift devel-
+                          opers
   MANUAL                  Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
 
 
@@ -66,6 +68,23 @@ The Building R.O.B. library
    virtual environment, or machine-specific identifiers. Volume 6 documents the inspected protocol,
    URDF models, reproducible setup, verification gates, and unresolved configuration differences.
 
+   HOW TO FIND THE FILES
+
+   Every printed path is relative to the shared workspace root, /Users/rob/dev in the inspected edi-
+   tion. Start at that root, enter the first directory in the path, and follow each slash. Source
+   code is spread across independent repositories—including ROBArduino, Cerebro, ROBController,
+   ROBControllerVision, ORobotics, and ROBTrainingGames—rather than one giant ROB project. See
+   Presentation/ROB-Books/OPEN-SOURCE-CODE-MAP.md for repository locations, licenses, primary files,
+   and commands for finding renamed files.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 28
+MOTION WORKSHOP                                                                                 VOLUME 3 - AGES 10-15
+
+
+
     MACHINE-TOOL RULE
 
    Young readers may plan, measure, sketch, make cardboard fixtures, and observe from a marked
@@ -76,13 +95,13 @@ The Building R.O.B. library
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                 4 / 28
 Contents
-1 What must the base survive?                    2
+1 What must the base survive?                   2
 
-2 Differential drive and ground friction         5
+2 Differential drive and ground friction        5
 
-3 Motors, gearing, and sprockets                 8
+3 Motors, gearing, and sprockets                8
 
 4 Change one kind of motion into another        12
 
@@ -101,7 +120,13 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-                                            4
+                                            5
+MOTION WORKSHOP                                VOLUME 3 - AGES 10-15
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                6 / 28
 MISSION 1
 
 Start with loads, not shapes
@@ -169,6 +194,12 @@ Two treads create a path
 
 Differential drive and ground
 friction
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: ROBArduino/ROBOT_CEREBELLULAR_BASE_APP/ROBOT_CEREBELLULAR_BASE_APP.ino
+  Why it is here: The Base sketch supplies the actual left/right tread command behavior discussed
+  here; the mechanical photographs explain what those outputs must move.
+
 ROB steers by commanding the left and right treads differently. This is differential drive. It is mechanically
 simple because there is no steering linkage, but turning a long tread on high-friction ground can demand
 a great deal of torque. Parts of the tread must slide sideways as the robot rotates.
@@ -184,18 +215,17 @@ was completed.
    proposed third-wheel load path. This is a concept record, not a dimensioned fabrication drawing.
 
 
-  COMPUTER SCIENCE CONNECTION
-  Computer commands and mechanical behavior meet at the floor. A program can request equal
-  tread speeds, but wheel diameter, track tension, battery voltage, load, surface, and slip decide the
-  real path. Open-loop command is not measured motion.
-
-
 
 
                                                       5
 MOTION WORKSHOP                                                                                VOLUME 3 - AGES 10-15
 
 
+
+   COMPUTER SCIENCE CONNECTION
+   Computer commands and mechanical behavior meet at the floor. A program can request equal
+   tread speeds, but wheel diameter, track tension, battery voltage, load, surface, and slip decide the
+   real path. Open-loop command is not measured motion.
 
    PAPER TREAD PATHS
 
@@ -322,6 +352,13 @@ Flippers and linear motion
 
 Change one kind of motion
 into another
+   SOURCE TRAIL --- ANALYZING NOW
+
+  File: Cerebro/Cerebro/KeyframeAnimationManager.swift
+  Why it is here: This software source records commanded motion values over time. It is paired with
+  the mechanical discussion to show that a numeric target still needs a real actuator, linkage, limit, and
+  feedback path.
+
 ROB uses rotating motors for the treads and flipper mechanism. The base firmware’s nominal actuator
 convention uses signed commands from -3200 to +3200, but it does not clamp received values and over-
 loads +3201 and -3201 for a safe-start reset. The presentation describes an actuator moving the torso
@@ -345,20 +382,20 @@ lash, mounting style, current limit, and end-of-travel behavior.
   An open-loop system sends a command but may not measure the result. A closed-loop system
   measures position or speed and corrects error. The base sketch contains no actuator position input,
   no flipper limit input, and no implemented wheel encoder feedback. Software command is therefore
-  not proof of final position.
-
-   CARDBOARD LINKAGE
-
-   Join two cardboard strips with a paper fastener. Add a sliding paper link that pushes one strip. Move
-   the slider equal distances and measure the angle change. Notice that linkage geometry can make
-   equal actuator steps produce unequal angular steps.
-
 
 
                                                                         12
 MOTION WORKSHOP                                                                                     VOLUME 3 - AGES 10-15
 
 
+
+   not proof of final position.
+
+   CARDBOARD LINKAGE
+
+   Join two cardboard strips with a paper fastener. Add a sliding paper link that pushes one strip. Move
+   the slider equal distances and measure the angle change. Notice that linkage geometry can make
+   equal actuator steps produce unequal angular steps.
 
     SAFETY CHECK
 
@@ -543,15 +580,15 @@ This is a planning scaffold, not ROB’s confirmed build order:
 
 
 
-                                                                                                                      Dense wiring makes con-
- Temporary labels make a complex teardown easier to understand. A          nector access, bend radius, heat, abrasion, and fault isolation design
- permanent harness should use durable IDs and an updated schematic.        problems.
+                                              The rear bay makes connec-
+ tor access, bend radius, heat, abrasion, and fault isolation into physical        Conceptual illustration: assembly order is a dependency problem. A
+ design problems.                                                                  real service plan must name which cover, cable, and fastener moves
+                                                                                   at each step.
 
 
 
-
-                                                                      21
-MOTION WORKSHOP                                                                                 VOLUME 3 - AGES 10-15
+                                                                              21
+MOTION WORKSHOP                                                                                      VOLUME 3 - AGES 10-15
 
 
 
@@ -564,13 +601,13 @@ This is a planning scaffold, not ROB’s confirmed build order:
 
 
 
-     An overhead build view is a dependency map made physical: each cable, bracket, board, and cover changes
-     what can be installed or reached next.
+     Conceptual illustration: each cable, bracket, board, and cover changes what can be installed or reached next.
+     Use the real photographs elsewhere in this volume to turn the dependency map into a verified assembly order.
 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                               22 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    22 / 28
 MISSION 8
 
 Test from gentle to demanding

@@ -356,8 +356,8 @@ INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-rob
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.out
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.out
 OUTPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.out
-INPUT ../assets/photos/2025-detached-articulated-arm.jpg
-INPUT ../assets/photos/2025-detached-articulated-arm.jpg
+INPUT ../assets/generated/rob-dual-arm-feedback-lesson.png
+INPUT ../assets/generated/rob-dual-arm-feedback-lesson.png
 OUTPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.xdv
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
@@ -400,9 +400,9 @@ INPUT ./volume-6-amber-dual-arm-robotics.md
 INPUT volume-6-amber-dual-arm-robotics.md
 OUTPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.luabridge.lua
 INPUT texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.luabridge.lua
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/3033732086e32238e467b9d11e327f4b.md.tex
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/3033732086e32238e467b9d11e327f4b.md.tex
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/3033732086e32238e467b9d11e327f4b.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/10d4f05988c5a7d150f01ff528b68a42.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/10d4f05988c5a7d150f01ff528b68a42.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/10d4f05988c5a7d150f01ff528b68a42.md.tex
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/99923fb453be3526787049c00682445f.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/99923fb453be3526787049c00682445f.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/99923fb453be3526787049c00682445f.verbatim

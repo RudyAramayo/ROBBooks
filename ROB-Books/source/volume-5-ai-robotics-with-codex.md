@@ -40,6 +40,8 @@ the robot does.
 
 ## 1. The robot is a distributed system
 
+> **SOURCE TRAIL — ANALYZING NOW:** use Cerebro's main Objective-C++ view controller, ROBController's `ConsciousViewController.mm`, and ROBControllerVision's `ContentView.swift`. These are three entry points into one distributed robot. `OPEN-SOURCE-CODE-MAP.md` prints the exact full paths.
+
 R.O.B. is best understood as two cooperating products.
 
 `ROBController` is the operator edge. It runs on Apple mobile devices, accepts
@@ -196,6 +198,8 @@ more of the reasoning that previously lived only in the builder's head.”
 
 ## 5. Rebuilding the secure control plane with Codex
 
+> **SOURCE TRAIL — ANALYZING NOW:** compare the identically named protocol files in ROBController's `AutoNetClient` and Cerebro's `AutoNetShared`. Then read the transport-security and integration fixtures. The code map gives every exact filename and full path.
+
 The v2 control plane is the strongest example of how to use Codex on a
 cross-repository change.
 
@@ -303,6 +307,8 @@ explicitly excluded.
 
 ## 7. Vision, depth, and video as bounded pipelines
 
+> **SOURCE TRAIL — ANALYZING NOW:** `CameraManager.swift` owns camera delivery and `ROBVideoServer.swift` owns video serving in Cerebro. Vision Pro receiver and presentation code live in ROBControllerVision's `Features/Video` directory.
+
 Cerebro's camera path evolves from selecting webcams to a multi-provider
 perception system.
 
@@ -338,6 +344,8 @@ slow-consumer tests; separate simulator evidence from hardware validation.
 ---
 
 ## 8. AI inside Cerebro: proposals, tools, and speech
+
+> **SOURCE TRAIL — ANALYZING NOW:** `Cerebro/Cerebro/ROBAI.swift` is the optional AI integration, while `Cerebro/Cerebro/GeminiRoboticsProtocol.swift` defines bounded high-level proposals. Search callers before assuming that a declared action has a physical executor.
 
 The repositories currently document Gemini Robotics Live as the runtime model
 integration. OpenAI enters this story in two different ways:
@@ -1309,6 +1317,8 @@ can affect people or equipment.
 
 ## 23. Local intelligence on Apple silicon: Swift, MLX, and Llama
 
+> **SOURCE TRAIL — ANALYZING NOW:** find the current local-model implementation with `rg -n "MLX|Llama|MLXVLM|LocalModel" Cerebro`. Package declarations and lockfiles establish which library revision is actually available; prose examples do not.
+
 Cerebro can now run a small language model directly on the Mac inside the
 robot. This is not one product called “SwiftMLX.” The pieces have distinct
 jobs:
@@ -1583,6 +1593,8 @@ cancel path, and deterministic fallback.
 ---
 
 ## 26. Vision Pro as ROB's voice and spatial control desk
+
+> **SOURCE TRAIL — ANALYZING NOW:** `OperatorSpeechPanel.swift`, `ControlPanel.swift`, and `VideoPanel.swift` implement operator-facing features. Transport lives separately in the ROBControllerVision package named `ROBControlCore`. The code map prints each full path.
 
 ROBControllerVision now adds a **Voice & Puppet Speech** panel beside the
 camera and telemetry controls. It supports two intentionally different

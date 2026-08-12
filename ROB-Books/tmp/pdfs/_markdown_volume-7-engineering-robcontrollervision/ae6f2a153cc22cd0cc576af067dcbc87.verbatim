@@ -1,0 +1,6 @@
+init(
+    session: RobotSession = RobotSession(),
+    simulator: SimulatedRobotEndpoint? = nil,
+    videoPipeline: VideoPipelineCoordinator = VideoPipelineCoordinator(),
+    pairingStore: ROBCerebroPairingStore = ROBCerebroPairingStore()
+)

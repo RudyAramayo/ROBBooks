@@ -4,7 +4,7 @@
 \SetROBVolume{VOLUME 1 - AGES 8-12}{MEET ROB}
 
 \begin{document}
-\ROBTitle{Building R.O.B. - Volume 1}{MEET ROB}{A robot is a team of systems}{A picture-book field guide for curious makers ages 8-12}{2026-rob-lightsabers-front.jpg}
+\ROBTitle{Building R.O.B. - Volume 1}{MEET ROB}{A robot is a team of systems}{A picture-book field guide for curious makers ages 8-12}{rob-systems-feedback-lab.png}
 
 \ROBFrontMatter{Welcome, junior systems engineer}{Before we touch a wire, we learn to see the whole robot.}{%
 ROB is a real, evolving machine built over many years. These pages use real workshop photographs to explain how a big robot becomes possible: one smaller problem at a time.
@@ -12,7 +12,7 @@ ROB is a real, evolving machine built over many years. These pages use real work
 This volume is meant to be read with a parent, teacher, or maker mentor. Its activities use paper, pencils, blocks, and small battery-powered parts. The full-size robot contains heavy treads, powerful motors, pinch points, and high-energy batteries. Those parts belong to trained adults with a tested emergency-stop plan.
 
 \begin{center}
-\includegraphics[height=0.34\textheight]{rob-used-future-frontispiece.png}\\[-1pt]
+\includegraphics[height=0.34\textheight]{rob-systems-feedback-lab.png}\\[-1pt]
 {\scriptsize\itshape Original illustrated portrait inspired by the real ROB; use photographs and drawings, not this artwork, as engineering evidence.}
 \end{center}
 }
@@ -20,6 +20,7 @@ This volume is meant to be read with a parent, teacher, or maker mentor. Its act
 \ROBSeriesMap{Read the large words first, study the photographs, then try the mission box. Words in \textbf{bold} belong in your new engineering vocabulary. When a detail is not proven by the archive, the book says so instead of guessing.}
 \ROBArduinoStatus
 \ROBAmberStatus
+\ROBSourceRoot
 
 \begin{safetybox}[title={THE THREE-ZONE RULE}]
 \textbf{Green zone:} paper models, unplugged code games, and simulations. Work independently.\par
@@ -74,7 +75,7 @@ No team can succeed alone. A powerful motor without a bracket may twist itself l
 Cut five paper circles and label them Structure, Motion, Power, Sensing, and Control. Tie them to one ring. Add a sixth card labeled Human. Tug one card and watch the whole mobile move: a change in one subsystem affects the others.
 \end{buildbox}
 
-\ROBChapterPhoto{Mission 2}{Structure carries every idea}{2024-nearly-assembled-base.jpg}
+\ROBChapterPhoto{Mission 2}{Structure carries every idea}{2021-shoulder-gear-and-cable.jpg}
 
 \chapter{The skeleton and the shell}
 
@@ -90,7 +91,7 @@ The tracked base must do several jobs at once:
   \item leave room for a central actuator and moving flippers.
 \end{itemize}
 
-\ROBPhotoTwo{2022-bracket-fit-check.jpg}{A bracket is held in place before drilling. Fit checks catch mistakes while they are still easy to fix.}{2024-caliper-tread-measurement.jpg}{A digital caliper measures the tread frame. Engineers replace ``about this big'' with a number and unit.}
+\ROBPhotoTwo{2021-cable-loop-and-arm.jpg}{A cable loop beside an arm shows that structure must provide a safe path for things that bend and move.}{2021-shoulder-gear-and-cable.jpg}{A shoulder gear, plate, and cable share one crowded interface. Structure is also about clearance and service access.}
 
 \begin{conceptbox}
 A measurement is data. A useful measurement has a \textbf{value}, a \textbf{unit}, and an idea of \textbf{uncertainty}. Writing ``48'' is incomplete. Writing ``48.0 mm, measured with a caliper'' can guide another maker.
@@ -102,12 +103,12 @@ Build two bridges from one sheet of paper. Leave one flat. Fold the other into a
 
 \ROBPlaceholder{Add ROB's verified overall height, width, length, ready-to-run mass, primary chassis materials, and the story behind the name R.O.B. These values are not established by the presentation or repositories.}
 
-\ROBPhoto[0.53\textheight]{2022-bracket-assembly-front.jpg}{A 2022 bracket assembly connects an idea to the real chassis. Its shape is visible, but the final material, dimensions, fasteners, loads, and inspection record still need the builder's evidence.}
+\ROBPhoto[0.53\textheight]{2020-rob-overhead.jpg}{The overhead view turns ROB into a structure puzzle: find the plates, mounts, gaps, and cable paths that let many systems share one body.}
 
 \clearpage
 \section*{Iteration is not failure}
 
-\ROBPhotoTwo{2022-drilling-metal-rail.jpg}{A power drill, metal rails, and a bracket are visible during a 2022 modification. The photograph does not document secure clamping, eye protection, or the complete workholding setup; those controls are required for adult red-zone drilling.}{2024-sprocket-machined-opening.jpg}{By 2024, a sprocket and chain sit above a newly machined chassis opening. Clearance became a real, measurable design constraint.}
+\ROBPhotoTwo{2021-open-electronics-bay.jpg}{An open body reveals how structure must support electronics while leaving room to inspect and repair them.}{2021-shoulder-gear-and-cable.jpg}{Parts that rotate need clearance. Cables need bend room. A successful structure makes both paths understandable.}
 
 An early design can answer a question even when it is not the final design. The ROB presentation records revisions such as moving the flippers, changing brackets, adding a third-wheel idea for easier turning, and finding new spaces for sensors and computing.
 
@@ -130,7 +131,7 @@ Engineers often work in this loop:
 
 The last arrow is the secret: learning returns you to a better question.
 
-\ROBChapterPhoto{Mission 3}{Power and information are different}{2024-batteries-and-power-leads.jpg}
+\ROBChapterPhoto{Mission 3}{Power and information are different}{rob-systems-feedback-lab.png}
 
 \chapter{Energy makes motion possible}
 
@@ -142,13 +143,13 @@ ROB's presentation describes four 20 Ah LiFePO4 batteries arranged across the ba
 Large battery banks can produce fire, burns, arc flash, toxic smoke, and violent motion. Never copy a photograph as a wiring diagram. A qualified adult must design fusing, a disconnect, charging, cable sizes, insulation, strain relief, and the physical emergency-stop circuit.
 \end{safetybox}
 
-\ROBPhotoTwo{2024-power-cable-pass-through.jpg}{Red and black power cables pass through a fitted opening. A pass-through needs edge protection and strain relief so vibration cannot cut insulation.}{2024-voltage-gauge.jpg}{A chassis gauge reads 13.1 V in this photograph. One number is a clue, not a complete description of the battery system.}
+\ROBPhoto[0.46\textheight]{rob-systems-feedback-lab.png}{Conceptual illustration: amber paths represent energy and cyan paths represent information. It is a thinking map, not ROB's as-built wiring diagram.}
 
 \begin{missionbox}[title={ENERGY OR MESSAGE?}]
 Sort these into likely energy paths or information paths: battery cable, USB cable, motor shaft, camera image, PWM control wire, speaker wire, emergency-stop contact. Some can carry both. Explain your choice instead of guessing by color. In \emph{Circuits and Signals}, a supervised Maker Faire lab opens a sacrificial, unplugged USB cable and uses its verified 5 V and GND conductors to power a small toy. It turns this sorting question into a real circuit while keeping cutting and electrical verification in an adult-only station.
 \end{missionbox}
 
-\ROBChapterPhoto{Mission 4}{Sensors turn the world into numbers}{2022-oakd-depth-camera.jpg}
+\ROBChapterPhoto{Mission 4}{Sensors turn the world into numbers}{2025-rob-face-portrait.jpg}
 
 \chapter{How ROB notices things}
 
@@ -171,11 +172,12 @@ The build presentation records a real lesson: IR light sometimes bounced from th
 One student secretly chooses a distance from 10 to 100 cm. A ``sensor'' student reports it five times, adding or subtracting a few centimeters each time. Should a robot stop after one low reading, after several low readings, or after combining another sensor? Discuss the tradeoff between false alarms and missed obstacles.
 \end{buildbox}
 
-\ROBPhoto[0.50\textheight]{2022-rob-front-arms-raised.jpg}{Sensors ride on a moving, changing machine. A useful reading depends on where the sensor is mounted, which way it points, what the robot is doing, and what surrounds it.}
+\ROBPhoto[0.50\textheight]{2020-rob-front.jpg}{Sensors ride on a moving, changing machine. A useful reading depends on where the sensor is mounted, which way it points, what the robot is doing, and what surrounds it.}
 
-\ROBChapterPhoto{Mission 5}{The brain is a conversation}{2022-fanless-computer-and-serial.jpg}
+\ROBChapterPhoto{Mission 5}{The brain is a conversation}{rob-systems-feedback-lab.png}
 
 \chapter{Commands travel in layers}
+\ROBSourceNow{Cerebro/Cerebro/ROBSerialBox.m}{This implementation connects the Mac coordinator to the present Base Arduino serial protocol; young readers can follow it as evidence that one visible action crosses several systems.}
 
 ROB's Mac mini runs the Cerebro app. Controllers on a phone, Apple Watch, or Vision Pro can express human intent. Cerebro checks who is allowed to control, keeps track of a live session, coordinates cameras and higher-level behavior, and sends a compact command toward the base Arduino.
 
@@ -214,6 +216,7 @@ Form a line of five people: Operator, Controller, Cerebro, Arduino, Motor. Pass 
 \ROBChapterPhoto{Mission 6}{A robot grows through versions}{2025-rob-side-full-body.jpg}
 
 \chapter{ROB's build timeline}
+\ROBSourceNow{Presentation/ROB_v3.pdf}{This historical design deck and the dated gallery photographs are the evidence for the timeline. It is documentation evidence, not executable source code.}
 
 The archive is not a perfect diary, but it shows a machine changing in public.
 
@@ -225,10 +228,10 @@ The archive is not a perfect diary, but it shows a machine changing in public.
 
 \clearpage
 \section*{2022: add computers, cameras, and brackets}
-\ROBPhotoTwo{2022-chassis-wiring-overhead.jpg}{Motor, wiring, wooden mounting pieces, and tread chassis share a crowded base.}{2022-mounted-clamp-and-bracket.jpg}{A newly installed clamp and upright bracket show the project moving from fit check to hardware.}
+\ROBPhoto{2022-chassis-wiring-overhead.jpg}{This 2022 overhead build view records the year's integration work: motor hardware, wiring, mounting pieces, and tread chassis all compete for space. This photograph is intentionally shared with the circuits book: Volume 1 treats it as timeline evidence, while Volume 2 studies its routing.}
 
 \section*{2024: measure and rebuild the drivetrain}
-\ROBPhotoTwo{2024-chain-drive-closeup.jpg}{A close chain path makes alignment and clearance visible.}{2024-open-tracked-base.jpg}{An open base reveals motors, power wiring, batteries, and space reserved for mechanisms.}
+\ROBPhoto{2024-nearly-assembled-base.jpg}{The nearly assembled 2024 base records a major physical revision. Volume 3 studies its mechanics in detail; here it is one dated step in ROB's longer story.}
 
 \clearpage
 \section*{2025: refine the current character}

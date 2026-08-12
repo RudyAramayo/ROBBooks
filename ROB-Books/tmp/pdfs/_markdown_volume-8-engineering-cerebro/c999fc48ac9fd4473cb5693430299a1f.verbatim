@@ -1,0 +1,7 @@
+controller freshness expires
+        ↓
+Cerebro emits one neutral frame
+        ↓
+Cerebro stops refreshing Arduino heartbeat
+        ↓
+Base firmware independently de-energizes motion

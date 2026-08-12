@@ -42,6 +42,8 @@ The Building R.O.B. library
   VOLUME 5                AI, Robotics, and Codex: Directing, Verifying, and Owning AI-Built Systems - advanced
                           makers
   VOLUME 6                Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu - advanced makers
+  VOLUME 7                Engineering ROBControllerVision: Swift, Spatial Input, Video, and Speech - Swift devel-
+                          opers
   MANUAL                  Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
 
 
@@ -67,6 +69,23 @@ The Building R.O.B. library
    virtual environment, or machine-specific identifiers. Volume 6 documents the inspected protocol,
    URDF models, reproducible setup, verification gates, and unresolved configuration differences.
 
+   HOW TO FIND THE FILES
+
+   Every printed path is relative to the shared workspace root, /Users/rob/dev in the inspected edi-
+   tion. Start at that root, enter the first directory in the path, and follow each slash. Source
+   code is spread across independent repositories—including ROBArduino, Cerebro, ROBController,
+   ROBControllerVision, ORobotics, and ROBTrainingGames—rather than one giant ROB project. See
+   Presentation/ROB-Books/OPEN-SOURCE-CODE-MAP.md for repository locations, licenses, primary files,
+   and commands for finding renamed files.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 27
+CIRCUITS AND SIGNALS                                                                       VOLUME 2 - AGES 10-14
+
+
+
     ELECTRICAL LAB BOUNDARY
 
     For learner activities, use only an approved low-voltage classroom supply or the USB-powered Ar-
@@ -77,32 +96,38 @@ The Building R.O.B. library
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 25
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            4 / 27
 Contents
-1 Trace the energy path                    2
+1 Trace the energy path                   2
 
-2 Digital, analog, and PWM                 5
+2 Digital, analog, and PWM                5
 
-3 The base controller’s connections        7
+3 The base controller’s connections       7
 
-4 Decode the seven-field message          10
+4 Decode the seven-field message          11
 
-5 IR distance and the IMU                 13
+5 IR distance and the IMU                 15
 
-6 Watchdogs and fail-safe states          15
+6 Watchdogs and fail-safe states          17
 
-7 Read old code like an engineer          17
+7 Read old code like an engineer          19
 
-8 Build a mental oscilloscope             19
+8 Build a mental oscilloscope             21
 
-9 Give a toy a new 5 V power path         20
+9 Give a toy a new 5 V power path         22
 
-10 Messages need grammar and time         24
-
-
+10 Messages need grammar and time         26
 
 
-                                      4
+
+
+                                      5
+CIRCUITS AND SIGNALS                           VOLUME 2 - AGES 10-14
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                6 / 27
 MISSION 1
 
 Two networks: power and data
@@ -171,7 +196,7 @@ robot.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 25
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 27
 MISSION 2
 
 Pins turn numbers into signals
@@ -239,6 +264,14 @@ Read ROB's pin map
 
 The base controller's
 connections
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: ROBArduino/ROBOT_CEREBELLULAR_BASE_APP/ROBOT_CEREBELLULAR_BASE_APP.ino
+  Why it is here: This is the present low-level firmware reference analyzed for pins, serial parsing,
+  treads, flipper, actuator, IR inputs, IMU behavior, and watchdog logic.
+
+
+
 Why the archive contains three names
 Earlier ROB software divided work among sketches named Base, Torso, and Head. Base handled tread,
 flipper, actuator, IR, and IMU work. The retired Torso sketch sent fourteen servo targets toward a Maestro
@@ -270,6 +303,12 @@ Arduino-compatible board model, revision, core, and installed library versions a
                                                     line share the port
  IMU                            I2C via Wire        MPU9250 accelerometer, gyro, and magnetometer
 The existing Base sketch says BEGIN BASE STARTUP SEQUENCE; the retired sketches say Head or Torso in-
+
+                                                            7
+CIRCUITS AND SIGNALS                                                                                                   VOLUME 2 - AGES 10-14
+
+
+
 stead. Cerebro resets each USB serial candidate and listens for the Base line without sending command
 bytes. This is safer than guessing a changing /dev/cu.* name and requires no show-day firmware flash.
 The label identifies a firmware role; it does not certify the wiring or make a motion test safe.
@@ -277,11 +316,6 @@ Without changing that firmware, Cerebro can also recognize its existing front an
 tences. SceneKit shows a recent warning in red, then changes to “clearance unknown” rather than claiming
 the path is clear. Grass and uneven terrain can fool IR sensors; RPLidar room geometry, direct observation,
 and the physical stop remain separate layers.
-
-                                                            7
-CIRCUITS AND SIGNALS                                                                                                   VOLUME 2 - AGES 10-14
-
-
 
    FROM ROB'S BUILD LOG
 
@@ -304,13 +338,19 @@ routing, connectors, power separation, and service access matter.     harness pl
 
 
 
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        8 / 27
+CIRCUITS AND SIGNALS                                                                             VOLUME 2 - AGES 10-14
+
+
+
+
      A close view of an earlier wiring revision shows why every connector needs a name, destination, expected
      signal, safe state, and service plan.
 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        8 / 25
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  9 / 27
 MISSION 4
 
 A command is a tiny data structure
@@ -319,6 +359,12 @@ A command is a tiny data structure
 
 Decode the seven-field
 message
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: Cerebro/Cerebro/ROBSerialBox.m
+  Why it is here: Read this beside the Base sketch: the Mac writes the text frame and the Arduino
+  parses it. Neither half alone defines the complete exchange.
+
 The base firmware waits for a tilde character, then reads seven signed, fixed-width text fields separated
 by commas:
 
@@ -352,13 +398,21 @@ travels roughly straight. If one moves forward while the other moves backward, t
  Gentle curve                 +70            +35          Outside tread travels faster
  Stop                           0              0          Zero requested speed
 
-  COMPUTER SCIENCE CONNECTION
-  The message is a protocol: an agreement about order, spelling, valid ranges, and meaning. Pro-
-  tocols let programs written in different languages cooperate. The Mac code can be Objective-C or
-  Swift while the Arduino code is C++, yet both can understand the same frame.
+
+                                                   11
+CIRCUITS AND SIGNALS                                                                   VOLUME 2 - AGES 10-14
 
 
-                                                   10
+
+   COMPUTER SCIENCE CONNECTION
+   The message is a protocol: an agreement about order, spelling, valid ranges, and meaning. Pro-
+   tocols let programs written in different languages cooperate. The Mac code can be Objective-C or
+   Swift while the Arduino code is C++, yet both can understand the same frame.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                      12 / 27
      CIRCUITS AND SIGNALS                                                                                  VOLUME 2 - AGES 10-14
 
 
@@ -404,7 +458,7 @@ travels roughly straight. If one moves forward while the other moves backward, t
 
 
 
-     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     11 / 25
+     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     13 / 27
 MISSION 5
 
 Sensors are measurements, not
@@ -450,7 +504,7 @@ bine imperfect measurements to estimate a state no single sensor supplies reliab
 
 
 
-                                                     13
+                                                     15
 MISSION 6
 
 Silence must become stop
@@ -511,7 +565,7 @@ Silence must become stop
 6      pinMode(LED_BUILTIN, OUTPUT);
 
 
-                                                                           15
+                                                                           17
      CIRCUITS AND SIGNALS                                                                              VOLUME 2 - AGES 10-14
 
 
@@ -539,11 +593,17 @@ Silence must become stop
 
 
 
-     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                 16 / 25
+     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                 18 / 27
 MISSION 7
 
 
 Read old code like an engineer
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: ROBArduino/ROBOT_CEREBELLULAR_TORSO_APP/ROBOT_CEREBELLULAR_TORSO_APP.ino
+  Why it is here: This retired sketch is historical open-source evidence from the former three-Arduino
+  architecture; it is not instructions to install another active controller.
+
 Historical code is a laboratory notebook. It preserves successful ideas, unfinished experiments, and mis-
 takes. Respect it by asking precise questions.
 
@@ -585,8 +645,7 @@ takes. Respect it by asking precise questions.
 
 
 
-
-                                                    17
+                                                    19
 DEEP LAB
 
 Energy moves; signals describe
@@ -638,7 +697,7 @@ logic pin communicates intent to a properly designed driver; it does not supply 
 
 
 
-                                                    19
+                                                    21
 MISSION 9
 
 
@@ -665,7 +724,7 @@ learner connects a load.
 
 
 
-                                                    20
+                                                    22
 CIRCUITS AND SIGNALS                                                                                                           VOLUME 2 - AGES 10-14
 
 
@@ -677,7 +736,7 @@ learner connects a load.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                              21 / 25
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                              23 / 27
 CIRCUITS AND SIGNALS                                                                                       VOLUME 2 - AGES 10-14
 
 
@@ -727,7 +786,7 @@ tolerate the motor’s startup current without shutting down or overheating.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                          22 / 25
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                          24 / 27
 CIRCUITS AND SIGNALS                                                                           VOLUME 2 - AGES 10-14
 
 
@@ -775,7 +834,7 @@ Maker Faire mentor-and-learner procedure
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              23 / 25
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              25 / 27
 MISSION 10
 
 
@@ -822,7 +881,7 @@ answer different questions.
 
 
 
-                                                       24
+                                                       26
 CIRCUITS AND SIGNALS                                                                                                        VOLUME 2 - AGES 10-14
 
 
@@ -853,5 +912,5 @@ sketches for architecture history; ROB_v3.pdf; gallery originals. Arduino archiv
 specifications were neither reproduced nor paraphrased.
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                           25 / 25
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                           27 / 27
 

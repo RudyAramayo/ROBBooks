@@ -1,0 +1,7 @@
+{
+  "schema": "com.orbitusrobotics.local-improvisation-plan",
+  "version": 1,
+  "beat": "robot_joke",
+  "delivery": "deadpan",
+  "offline_line": "My timing is local; your laughter is distributed."
+}

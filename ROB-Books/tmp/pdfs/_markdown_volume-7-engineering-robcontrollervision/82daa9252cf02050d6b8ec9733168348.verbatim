@@ -1,0 +1,7 @@
+view intent -> RobotViewModel -> RobotSession actor -> RobotTransport
+                                      |
+                                      v
+                              AsyncStream snapshots
+                                      |
+                                      v
+                              main-actor presentation

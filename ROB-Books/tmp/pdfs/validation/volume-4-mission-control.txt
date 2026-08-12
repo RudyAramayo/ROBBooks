@@ -42,6 +42,8 @@ The Building R.O.B. library
   VOLUME 5                AI, Robotics, and Codex: Directing, Verifying, and Owning AI-Built Systems - advanced
                           makers
   VOLUME 6                Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu - advanced makers
+  VOLUME 7                Engineering ROBControllerVision: Swift, Spatial Input, Video, and Speech - Swift devel-
+                          opers
   MANUAL                  Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
 
 
@@ -68,6 +70,23 @@ The Building R.O.B. library
    virtual environment, or machine-specific identifiers. Volume 6 documents the inspected protocol,
    URDF models, reproducible setup, verification gates, and unresolved configuration differences.
 
+   HOW TO FIND THE FILES
+
+   Every printed path is relative to the shared workspace root, /Users/rob/dev in the inspected edi-
+   tion. Start at that root, enter the first directory in the path, and follow each slash. Source
+   code is spread across independent repositories—including ROBArduino, Cerebro, ROBController,
+   ROBControllerVision, ORobotics, and ROBTrainingGames—rather than one giant ROB project. See
+   Presentation/ROB-Books/OPEN-SOURCE-CODE-MAP.md for repository locations, licenses, primary files,
+   and commands for finding renamed files.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 27
+MISSION CONTROL                                                                               VOLUME 4 - AGES 12-16
+
+
+
     SOFTWARE CAN MOVE HARDWARE
 
    A one-line program can command a high-energy actuator. All exercises default to printed frames,
@@ -78,32 +97,38 @@ The Building R.O.B. library
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                               4 / 27
 Contents
-1 One goal, many programs                            2
+1 One goal, many programs                           2
 
-2 The Mac mini as a robot computer                   5
+2 The Mac mini as a robot computer                  5
 
-3 Phone, Watch, and Vision Pro                       8
+3 Phone, Watch, and Vision Pro                      8
 
 4 Pairing and secure robot messages                 11
 
-5 Control and camera data take separate roads       13
+5 Control and camera data take separate roads       14
 
-6 How ROB sees space                                15
+6 How ROB sees space                                16
 
-7 Helpful intelligence, human authority             18
+7 Helpful intelligence, human authority             19
 
-8 Tests, logs, and reproducible missions            21
+8 Tests, logs, and reproducible missions            22
 
-9 A robot never receives “just a command”           24
+9 A robot never receives “just a command”           25
 
-10 Autonomy is a bounded state machine              25
-
-
+10 Autonomy is a bounded state machine              26
 
 
-                                                4
+
+
+                                                5
+MISSION CONTROL                                VOLUME 4 - AGES 12-16
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                6 / 27
 MISSION 1
 
 Follow the control stack
@@ -183,7 +208,7 @@ This architecture separates concerns:
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                         3 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                         3 / 27
 MISSION 2
 
 Cerebro coordinates the body
@@ -192,6 +217,13 @@ Cerebro coordinates the body
 
 The Mac mini as a robot
 computer
+   SOURCE TRAIL --- ANALYZING NOW
+
+   File: Cerebro/Cerebro/ROBMainViewController.mm
+   Why it is here: This central coordinator joins controller intent, robot state, helpers, autonomy, and
+   operator-visible behavior. Follow its referenced classes rather than treating one large file as the entire
+   system.
+
 Cerebro is the macOS controller and operator interface. Its current source contains several distinct re-
 sponsibilities:
 
@@ -214,19 +246,16 @@ torical interface while migration happens safely.
 A fanless mini computer with labeled USB and serial connections       Original illustration: abstract paths represent control, perception, and
 shows the practical side of software architecture.                    state without exposing real logs, accounts, or network details.
 
-
-
-Event loops and state
-A graphical Mac app reacts to events: a button click, a network message, a camera frame, a timer, or serial
-data. Long work cannot freeze the main event loop. Camera processing drops stale frames rather than
-building an unlimited backlog. A Python DepthAI helper is supervised as a separate process so a camera
-disconnect or SDK failure does not crash robot control.
-
-
                                                                   5
      MISSION CONTROL                                                                                           VOLUME 4 - AGES 12-16
 
 
+
+     Event loops and state
+     A graphical Mac app reacts to events: a button click, a network message, a camera frame, a timer, or serial
+     data. Long work cannot freeze the main event loop. Camera processing drops stale frames rather than
+     building an unlimited backlog. A Python DepthAI helper is supervised as a separate process so a camera
+     disconnect or SDK failure does not crash robot control.
 
         COMPUTER SCIENCE CONNECTION
 
@@ -275,7 +304,7 @@ disconnect or SDK failure does not crash robot control.
 
 
 
-     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                           6 / 26
+     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                           6 / 27
 MISSION 3
 
 Many controllers, one authority
@@ -283,25 +312,33 @@ Many controllers, one authority
 
 
 Phone, Watch, and Vision Pro
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: ROBController/Consciousness/ConsciousViewController.mm
+  Why it is here: This is the starting point for the handheld controller UI. Compare its shared mes-
+  sage types with the corresponding decoder in Cerebro and the SwiftUI spatial controller under
+  ROBControllerVision.
+
+
 ROB has several ways to express operator intent, but only one component should own motion at a time.
 
-                           ROLE                                                              IMPORTANT BOUNDARY
+                   ROLE                                         IMPORTANT BOUNDARY
  DEVICE
-                           Joysticks, speed, flipper, actuator, auton- Holds its own paired controller identity
- iPhone / iPad             omy and AI-action UI.                       and sends the established controller pay-
-                                                                       load.
-                           Voice and joystick intent relayed through Does not browse for ROB or store robot
- Apple Watch               the phone.                                  credentials; stale watch motion stops at
-                                                                       the relay.
-                           SwiftUI control experience, simulator, Uses a short input lease and a separate
- Vision Pro                normalized commands, and optional live authenticated video connection.
-                           video.
+                   Joysticks, speed, flipper, actuator, auton- Holds its own paired controller identity
+ iPhone / iPad     omy and AI-action UI.                       and sends the established controller pay-
+                                                               load.
+                   Voice and joystick intent relayed through Does not browse for ROB or store robot
+ Apple Watch       the phone.                                  credentials; stale watch motion stops at
+                                                               the relay.
+                   SwiftUI control experience, simulator, Uses a short input lease and a separate
+ Vision Pro        normalized commands, and optional live authenticated video connection.
+                   video.
 Normalized motion usually means values between -1 and +1. That keeps a user interface independent of
 physical top speed. The robot later converts the normalized request into its configured limits.
 One readable differential-drive mix is:
 
 
-                                  L = clamp(F + T, −1, 1),                    R = clamp(F − T, −1, 1)
+                          L = clamp(F + T, −1, 1),       R = clamp(F − T, −1, 1)
 
 where F is forward intent and T is turn intent. A speed cap multiplies both outputs before they reach the
 robot.
@@ -320,20 +357,22 @@ relay uses roughly a 450 ms watchdog, and Cerebro expires a stale control snapsh
 These values belong to different layers and do not prove the Arduino’s loop-count heartbeat duration.
 
 
-          input released           controller-specific             Cerebro 0.6 s                           Arduino serial                     commanded stop;
-          or manual stop           lease / watchdog               freshness gate                             deadman                        result must be tested
+
+
+                                                     8
+MISSION CONTROL                                                                                                                                               VOLUME 4 - AGES 12-16
+
+
+
+            input released                     controller-specific             Cerebro 0.6 s                           Arduino serial                     commanded stop;
+            or manual stop                     lease / watchdog               freshness gate                             deadman                        result must be tested
 
 
 
 
-                                                                                             independent of software
-                                                         required verified physical E-stop                      independent contactor / controller stop path
+                                                                                                         independent of software
+                                                                     required verified physical E-stop                      independent contactor / controller stop path
 
-
-
-
-                                                                        8
-MISSION CONTROL                                                                                   VOLUME 4 - AGES 12-16
 
 
 
@@ -347,13 +386,13 @@ These values belong to different layers and do not prove the Arduino’s loop-co
 
 
 
-     The software chain ends in a commanded state. An independently wired and verified physical stop must still
-     interrupt motion authority when software, communications, or assumptions fail.
+     Conceptual illustration: the software chain ends in a commanded state. An independently wired and verified
+     physical stop must still interrupt motion authority when software, communications, or assumptions fail.
 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   9 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                                                    9 / 27
 MISSION 4
 
 Discovery is not trust
@@ -362,6 +401,14 @@ Discovery is not trust
 
 Pairing and secure robot
 messages
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: ROBController/Consciousness/AutoNetClient/AutoNetDataTransferProtocol.swift
+  Why it is here:       This client-side wire-contract implementation is the file being ana-
+  lyzed for identity, framing, authentication, sequencing, and freshness.    Compare it with
+  Cerebro/Cerebro/AutoNet/AutoNetShared/AutoNetDataTransferProtocol.swift.
+
+
 ROBControl v2 uses a reliable QUIC stream over UDP with TLS 1.3. Cerebro advertises a local Bonjour
 service named _robctl._udp and uses the application protocol name robctl/2. Those names help a con-
 troller find a candidate robot, but discovery alone does not prove identity.
@@ -393,16 +440,23 @@ A simplified pairing story is:
   this as current privacy debt: remove it, minimize it, or document a specific need and consent policy
   before a public demonstration.
 
-  LOCKED MAILBOX GAME
-
-  Give three students cards: Operator, Lidar, and Guest. Write allowed message types on role cards.
-  For each pretend packet, check identity first, then role, then sequence number, then freshness. A
-  correctly signed Lidar packet still may not contain a drive command.
-
-
 
 
                                                       11
+MISSION CONTROL                                                                        VOLUME 4 - AGES 12-16
+
+
+
+   LOCKED MAILBOX GAME
+
+   Give three students cards: Operator, Lidar, and Guest. Write allowed message types on role cards.
+   For each pretend packet, check identity first, then role, then sequence number, then freshness. A
+   correctly signed Lidar packet still may not contain a drive command.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                      12 / 27
 MISSION 5
 
 Keep video away from stop traffic
@@ -441,7 +495,7 @@ If control disconnects, the associated video session closes. If video fails, con
 
 
 
-                                                     13
+                                                     14
 MISSION 6
 
 Color, depth, and laser points
@@ -449,6 +503,13 @@ Color, depth, and laser points
 
 
 How ROB sees space
+   SOURCE TRAIL --- ANALYZING NOW
+
+  File: Cerebro/Cerebro/CameraManager.swift
+  Why it is here: This file owns a bounded camera/depth delivery path. Lidar acquisition lives sep-
+  arately under M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar; the chapter names the source when it
+  changes sensor.
+
 ROB’s camera path can produce aligned color and depth. A color pixel describes brightness and color
 channels. A depth pixel describes estimated distance, currently carried as an unsigned 16-bit number of
 millimeters; zero means invalid. Alignment lets software ask, “What distance belongs to this color pixel?”
@@ -476,17 +537,15 @@ point:
 
 The companion app publishes typed, bounded scans and separate occupancy maps. Its current scan path
 first keeps only valid points closer than 1 m and within about ±0.50 radians of the robot’s front or back. The
-published scan is therefore not a full 360-degree view. Current local autonomy uses these fresh filtered
-samples, not the map, to choose cautious social-roam behavior. A stale sensor feed stops motion and
-leaves the autonomy session active in a waiting-for-lidar state.
 
-
-
-
-                                                                      15
+                                                                      16
 MISSION CONTROL                                                                                      VOLUME 4 - AGES 12-16
 
 
+
+published scan is therefore not a full 360-degree view. Current local autonomy uses these fresh filtered
+samples, not the map, to choose cautious social-roam behavior. A stale sensor feed stops motion and
+leaves the autonomy session active in a waiting-for-lidar state.
 
    DRAW A TINY LIDAR MAP
    Plot these polar points on graph paper: (4, 0◦ ), (4, 90◦ ), (4, 180◦ ), and (4, 270◦ ). Convert each to (x, y).
@@ -508,7 +567,7 @@ leaves the autonomy session active in a waiting-for-lidar state.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    16 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    17 / 27
 MISSION 7
 
 Speech and AI stay inside bound-
@@ -562,7 +621,7 @@ not actuate hardware; during active autonomy they fail as unavailable.
 
 
 
-                                                           18
+                                                           19
 MISSION CONTROL                                                                                      VOLUME 4 - AGES 12-16
 
 
@@ -593,7 +652,7 @@ not actuate hardware; during active autonomy they fail as unavailable.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    19 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    20 / 27
 MISSION 8
 
 Simulation makes mistakes inex-
@@ -643,15 +702,15 @@ A useful test names:
 
 
 
-                                                     21
-MISSION CONTROL                                                                                                            VOLUME 4 - AGES 12-16
+                                                     22
+MISSION CONTROL                                                                                                           VOLUME 4 - AGES 12-16
 
 
 
 
-                                                                                                                   The physical machine is the
-Original illustration: software pathways are explanatory symbols, not   final test target; a successful display alone does not prove safe behav-
-a current-system screenshot.                                            ior.
+Original illustration: software pathways are explanatory symbols, not   Conceptual illustration: the test ladder leads from bounded simulation
+a current-system screenshot.                                            toward reviewed physical tests; a successful display alone does not
+                                                                        prove safe behavior.
 
 
    WRITE A TEST TABLE
@@ -668,7 +727,7 @@ a current-system screenshot.                                            ior.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                          22 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                         23 / 27
 DEEP LAB
 
 Trust, time, and authority
@@ -712,7 +771,7 @@ A watchdog chooses a defined response when renewal stops.
 
 
 
-                                                     24
+                                                     25
 MISSION 10
 
 
@@ -761,14 +820,14 @@ controlled outputs. Feedback tests whether reality agrees.
 
 
 
-                                                        25
+                                                        26
 MISSION CONTROL                                                                                                       VOLUME 4 - AGES 12-16
 
 
 
 Field words
-ABSTRACTION             A simpler interface hiding internal de- PROCESS A running program with its own re-
-tail.                                                           sources.
+ABSTRACTION A simpler interface hiding internal de- PROCESS A running program with its own re-
+tail.                                               sources.
 AUTHENTICATION Proof of identity.
                                                                      PROTOCOL An agreement about messages and be-
 AUTHORIZATION Rules about allowed actions.                           havior.
@@ -792,5 +851,5 @@ Source trail: Current 2026-08-02 source snapshot: Cerebro, ROBController, ROBCon
 base firmware; private gallery originals. Experimental and uncommitted Cerebro work is labeled as such.
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                     26 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                     27 / 27
 

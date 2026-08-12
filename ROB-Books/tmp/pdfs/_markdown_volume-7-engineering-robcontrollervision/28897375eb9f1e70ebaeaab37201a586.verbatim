@@ -1,0 +1,16 @@
+struct ContentView: View {
+    @Bindable var model: RobotViewModel
+    @FocusState private var receivesControllerEvents: Bool
+
+    var body: some View {
+        HStack { /* left controls, video, right diagnostics */ }
+            .handlesGameControllerEvents(matching: .gamepad)
+            .focusable()
+            .focused($receivesControllerEvents)
+            .task {
+                receivesControllerEvents = true
+                model.start()
+            }
+            .onDisappear { model.stop() }
+    }
+}

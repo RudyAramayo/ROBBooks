@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 19:43
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 21:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1477,27 +1477,28 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
  [3
 
-]
+] [4]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.toc)
 \tf@toc=\write5
 \openout5 = `volume-3-motion-workshop.toc'.
 
 
-[4
+[5
+
+] [6
+
 
 ]
-File: ../assets/photos/2024-nearly-assembled-base.jpg Graphic file (type bmp)
-<../assets/photos/2024-nearly-assembled-base.jpg>
+File: ../assets/generated/rob-motion-mechanics-lab.png Graphic file (type bmp)
+<../assets/generated/rob-motion-mechanics-lab.png>
  [1
-
-
 
 ]
 Chapter 1.
 File: ../assets/photos/2022-bracket-assembly-front.jpg Graphic file (type bmp)
 <../assets/photos/2022-bracket-assembly-front.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--44
+Underfull \hbox (badness 10000) in paragraph at lines 45--45
 [][]
  []
 
@@ -1505,7 +1506,7 @@ File: ../assets/photos/2025-detached-articulated-arm.jpg Graphic file (type bmp
 )
 <../assets/photos/2025-detached-articulated-arm.jpg>
 
-Underfull \hbox (badness 3229) in paragraph at lines 44--44
+Underfull \hbox (badness 3229) in paragraph at lines 45--45
 [][] []\TU/AvenirNext(0)/m/it/8 A removed arm reveals
  []
 
@@ -1544,7 +1545,7 @@ File: ../assets/photos/2025-intermeshing-shoulder-gears.jpg Graphic file (type
 bmp)
 <../assets/photos/2025-intermeshing-shoulder-gears.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 98--98
+Underfull \hbox (badness 10000) in paragraph at lines 100--100
 [][] []\TU/AvenirNext(0)/m/it/8 Intermeshing shoulder
  []
 
@@ -1559,7 +1560,7 @@ File: ../assets/photos/2022-chain-sprocket-interior.jpg Graphic file (type bmp)
 
 <../assets/photos/2022-chain-sprocket-interior.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 123--123
+Underfull \hbox (badness 10000) in paragraph at lines 125--125
 [][]
  []
 
@@ -1582,7 +1583,7 @@ File: ../assets/photos/2022-medium-duty-bracket-package.jpg Graphic file (type
 bmp)
 <../assets/photos/2022-medium-duty-bracket-package.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--135
+Underfull \hbox (badness 10000) in paragraph at lines 138--138
 [][]
  []
 
@@ -1593,37 +1594,38 @@ Underfull \hbox (badness 10000) in paragraph at lines 135--135
 File: ../assets/slides/rob-v3-page-54.jpg Graphic file (type bmp)
 <../assets/slides/rob-v3-page-54.jpg>
  [13]
-File: ../assets/photos/2022-drilling-metal-rail.jpg Graphic file (type bmp)
-<../assets/photos/2022-drilling-metal-rail.jpg>
+File: ../assets/photos/2022-medium-duty-bracket-package.jpg Graphic file (type 
+bmp)
+<../assets/photos/2022-medium-duty-bracket-package.jpg>
  [14
 
 ]
 Chapter 5.
 
-Underfull \hbox (badness 1365) in paragraph at lines 159--160
+Underfull \hbox (badness 1365) in paragraph at lines 162--163
 \TU/AvenirNext(0)/m/n/10.95 The presentation describes inexpensive quarter-inch
  plywood scraps in early tread-layout models,
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 172--172
+Underfull \hbox (badness 1478) in paragraph at lines 175--175
 []|\TU/AvenirNext(0)/m/n/10.95 High strength and wear resistance for
  []
 
 
-Underfull \hbox (badness 1661) in paragraph at lines 172--172
+Underfull \hbox (badness 1661) in paragraph at lines 175--175
 []|\TU/AvenirNext(0)/m/n/10.95 Mass, rust protection, weldability, ma-
  []
 
 File: ../assets/photos/2022-drilling-metal-rail.jpg Graphic file (type bmp)
 <../assets/photos/2022-drilling-metal-rail.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--178
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
 [][]
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 178--178
+Underfull \hbox (badness 2503) in paragraph at lines 181--181
 []\TU/AvenirNext(0)/m/it/8 The drill operation shows work supported on a red fi
 xture. A
  []
@@ -1632,7 +1634,7 @@ File: ../assets/photos/2022-mounted-clamp-and-bracket.jpg Graphic file (type bm
 p)
 <../assets/photos/2022-mounted-clamp-and-bracket.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--178
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
 [][]
  []
 
@@ -1643,9 +1645,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 178--178
 File: ../assets/photos/2022-bracket-assembly-front.jpg Graphic file (type bmp)
 <../assets/photos/2022-bracket-assembly-front.jpg>
  [16]
-File: ../assets/photos/2024-caliper-tread-measurement.jpg Graphic file (type bm
-p)
-<../assets/photos/2024-caliper-tread-measurement.jpg>
+File: ../assets/generated/rob-motion-mechanics-lab.png Graphic file (type bmp)
+<../assets/generated/rob-motion-mechanics-lab.png>
  [17
 
 ]
@@ -1654,7 +1655,7 @@ File: ../assets/photos/2024-caliper-tread-measurement.jpg Graphic file (type bm
 p)
 <../assets/photos/2024-caliper-tread-measurement.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 210--210
+Underfull \hbox (badness 10000) in paragraph at lines 213--213
 [][]
  []
 
@@ -1667,10 +1668,10 @@ File: ../assets/photos/2024-open-tracked-base.jpg Graphic file (type bmp)
 File: ../assets/photos/2022-drilling-metal-rail.jpg Graphic file (type bmp)
 <../assets/photos/2022-drilling-metal-rail.jpg>
  [19]
-File: ../assets/photos/2025-rear-electronics-bay.jpg Graphic file (type bmp)
-<../assets/photos/2025-rear-electronics-bay.jpg>
+File: ../assets/generated/rob-motion-mechanics-lab.png Graphic file (type bmp)
+<../assets/generated/rob-motion-mechanics-lab.png>
 
-Underfull \hbox (badness 1442) in paragraph at lines 220--220
+Underfull \hbox (badness 1442) in paragraph at lines 223--223
 []\TU/Futura(0)/b/n/29 Assembly order is part of the de- 
  []
 
@@ -1678,22 +1679,21 @@ Underfull \hbox (badness 1442) in paragraph at lines 220--220
 
 ]
 Chapter 7.
-File: ../assets/photos/2025-labeled-cables.jpg Graphic file (type bmp)
-<../assets/photos/2025-labeled-cables.jpg>
+File: ../assets/photos/2025-rear-electronics-bay.jpg Graphic file (type bmp)
+<../assets/photos/2025-rear-electronics-bay.jpg>
+File: ../assets/generated/rob-motion-mechanics-lab.png Graphic file (type bmp)
+<../assets/generated/rob-motion-mechanics-lab.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 243--243
+Underfull \hbox (badness 10000) in paragraph at lines 246--246
 [][]
  []
 
-File: ../assets/photos/2025-rear-electronics-bay.jpg Graphic file (type bmp)
-<../assets/photos/2025-rear-electronics-bay.jpg>
 [21
 
 
 ]
-File: ../assets/photos/2022-chassis-wiring-overhead.jpg Graphic file (type bmp)
-
-<../assets/photos/2022-chassis-wiring-overhead.jpg>
+File: ../assets/generated/rob-motion-mechanics-lab.png Graphic file (type bmp)
+<../assets/generated/rob-motion-mechanics-lab.png>
  [22]
 File: ../assets/photos/2022-tracked-base-front.jpg Graphic file (type bmp)
 <../assets/photos/2022-tracked-base-front.jpg>
@@ -1702,12 +1702,12 @@ File: ../assets/photos/2022-tracked-base-front.jpg Graphic file (type bmp)
 ]
 Chapter 8.
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--270
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 []|\TU/AvenirNext(0)/m/n/10.95 Full drive hardware on rated stands,
  []
 
 
-Underfull \hbox (badness 1303) in paragraph at lines 270--270
+Underfull \hbox (badness 1303) in paragraph at lines 273--273
 []|\TU/AvenirNext(0)/m/n/10.95 Tracking, stopping distance, thermal and
  []
 
@@ -1748,13 +1748,13 @@ d.
 (rerunfilecheck)             Checksum: 3FD4BA99FEB5CB6022FCCE4F44A60DEB;2168.
  ) 
 Here is how much of TeX's memory you used:
- 35063 strings out of 468168
- 764301 string characters out of 5423555
- 1268080 words of memory out of 5000000
- 63154 multiletter control sequences out of 15000+600000
+ 35042 strings out of 468168
+ 762991 string characters out of 5423555
+ 1269980 words of memory out of 5000000
+ 63136 multiletter control sequences out of 15000+600000
  632078 words of font info for 126 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 101i,12n,131p,1021b,945s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,12n,131p,1021b,1037s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motio
-n-workshop.xdv (32 pages, 517272 bytes).
+n-workshop.xdv (34 pages, 552368 bytes).

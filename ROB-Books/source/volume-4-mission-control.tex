@@ -15,6 +15,7 @@ This book describes the source snapshot inspected on 2 August 2026. Some Cerebro
 \ROBSeriesMap{Use the diagrams to predict where data travels, where it is validated, and which component owns the final safety decision. Then run the paper or simulator mission. Never test new network or AI code first on powered treads.}
 \ROBArduinoStatus
 \ROBAmberStatus
+\ROBSourceRoot
 
 \begin{safetybox}[title={SOFTWARE CAN MOVE HARDWARE}]
 A one-line program can command a high-energy actuator. All exercises default to printed frames, LEDs, or a simulated robot. Connecting to ROB requires a named operator, an exclusion zone, a spotter, a tested physical emergency stop, lifted-tread sign checks, strict speed limits, and permission from the builder.
@@ -24,7 +25,7 @@ A one-line program can command a high-energy actuator. All exercises default to 
 \clearpage
 \mainmatter
 
-\ROBChapterPhoto{Mission 1}{Follow the control stack}{2022-fanless-computer-and-serial.jpg}
+\ROBChapterPhoto{Mission 1}{Follow the control stack}{rob-software-control-room.png}
 
 \chapter{One goal, many programs}
 
@@ -53,9 +54,10 @@ An \textbf{interface} is a promise between components. It should say valid input
 
 \ROBPlaceholder{Confirm the current onboard computer inventory, operating systems, power converters, physical ports, USB device assignments, network topology, and which Raspberry Pi roles remain active.}
 
-\ROBChapterPhoto{Mission 2}{Cerebro coordinates the body}{2021-open-electronics-bay.jpg}
+\ROBChapterPhoto{Mission 2}{Cerebro coordinates the body}{rob-software-control-room.png}
 
 \chapter{The Mac mini as a robot computer}
+\ROBSourceNow{Cerebro/Cerebro/ROBMainViewController.mm}{This central coordinator joins controller intent, robot state, helpers, autonomy, and operator-visible behavior. Follow its referenced classes rather than treating one large file as the entire system.}
 
 Cerebro is the macOS controller and operator interface. Its current source contains several distinct responsibilities:
 
@@ -108,9 +110,10 @@ Run the offline lab, change one tread value from 0 to 100, and compare the two s
 Make cards labeled Disconnected, Connecting, Authenticated, Armed, Stopped, and Faulted. Draw only the allowed transitions. Does reconnecting automatically reset a stop? It should not. Add the event required for each arrow.
 \end{buildbox}
 
-\ROBChapterPhoto{Mission 3}{Many controllers, one authority}{2025-rob-side-full-body.jpg}
+\ROBChapterPhoto{Mission 3}{Many controllers, one authority}{rob-safe-autonomy-lab.png}
 
 \chapter{Phone, Watch, and Vision Pro}
+\ROBSourceNow{ROBController/Consciousness/ConsciousViewController.mm}{This is the starting point for the handheld controller UI. Compare its shared message types with the corresponding decoder in Cerebro and the SwiftUI spatial controller under \texttt{ROBControllerVision}.}
 
 ROB has several ways to express operator intent, but only one component should own motion at a time.
 
@@ -149,11 +152,12 @@ Current controller layers use short timing limits: the Vision control model uses
 Cerebro sends one neutral/braked base frame when controller snapshots expire, then stops refreshing USB so the Arduino's independent heartbeat also expires. The current Arduino timeout command uses zero speeds with brake fields that map to released brakes. The physical coast/hold result must be measured; do not call it ``braked'' at the Arduino layer.
 \end{fieldnotebox}
 
-\ROBPhoto[0.50\textheight]{2025-emergency-stop-and-arm.jpg}{The software chain ends in a commanded state. An independently wired and verified physical stop must still interrupt motion authority when software, communications, or assumptions fail.}
+\ROBPhoto[0.50\textheight]{rob-safe-autonomy-lab.png}{Conceptual illustration: the software chain ends in a commanded state. An independently wired and verified physical stop must still interrupt motion authority when software, communications, or assumptions fail.}
 
-\ROBChapterPhoto{Mission 4}{Discovery is not trust}{2024-open-tracked-base.jpg}
+\ROBChapterPhoto{Mission 4}{Discovery is not trust}{rob-safe-autonomy-lab.png}
 
 \chapter{Pairing and secure robot messages}
+\ROBSourceNow{ROBController/Consciousness/AutoNetClient/AutoNetDataTransferProtocol.swift}{This client-side wire-contract implementation is the file being analyzed for identity, framing, authentication, sequencing, and freshness. Compare it with \texttt{Cerebro/Cerebro/AutoNet/AutoNetShared/AutoNetDataTransferProtocol.swift}.}
 
 ROBControl v2 uses a reliable QUIC stream over UDP with TLS 1.3. Cerebro advertises a local Bonjour service named \texttt{\_robctl.\_udp} and uses the application protocol name \texttt{robctl/2}. Those names help a controller find a candidate robot, but discovery alone does not prove identity.
 
@@ -209,6 +213,7 @@ This is a \textbf{quality-of-service} decision expressed through architecture. U
 \ROBChapterPhoto{Mission 6}{Color, depth, and laser points}{2022-oakd-depth-camera.jpg}
 
 \chapter{How ROB sees space}
+\ROBSourceNow{Cerebro/Cerebro/CameraManager.swift}{This file owns a bounded camera/depth delivery path. Lidar acquisition lives separately under \texttt{M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar}; the chapter names the source when it changes sensor.}
 
 ROB's camera path can produce aligned color and depth. A color pixel describes brightness and color channels. A depth pixel describes estimated distance, currently carried as an unsigned 16-bit number of millimeters; zero means invalid. Alignment lets software ask, ``What distance belongs to this color pixel?''
 
@@ -236,7 +241,7 @@ Coordinate frames must be named: sensor frame, robot frame, map frame, camera fr
 
 \ROBPhoto[0.43\textheight]{rob-v3-page-55.jpg}{Historical presentation page 55 places a proposed lidar stage above the base. A drawing can suggest a coordinate frame, but the installed transform must be measured.}
 
-\ROBChapterPhoto{Mission 7}{Speech and AI stay inside boundaries}{2025-detached-articulated-arm.jpg}
+\ROBChapterPhoto{Mission 7}{Speech and AI stay inside boundaries}{rob-safe-autonomy-lab.png}
 
 \chapter{Helpful intelligence, human authority}
 
@@ -286,7 +291,7 @@ One student is the model, one the validator, one the operator, and one the simul
 
 \ROBPhoto[0.37\textheight]{rob-software-control-room.png}{Original illustration: the glowing pathways represent a proposed flow from perception to validation to deterministic execution. They are not a screenshot or proof that every action exists.}
 
-\ROBChapterPhoto{Mission 8}{Simulation makes mistakes inexpensive}{2025-rob-side-full-body.jpg}
+\ROBChapterPhoto{Mission 8}{Simulation makes mistakes inexpensive}{rob-software-control-room.png}
 
 \chapter{Tests, logs, and reproducible missions}
 
@@ -319,7 +324,7 @@ Unsupported AI action & A clear unavailable result returns; no motion is faked.\
 \bottomrule
 \end{tabularx}
 
-\ROBPhotoTwo{rob-software-control-room.png}{Original illustration: software pathways are explanatory symbols, not a current-system screenshot.}{2025-rob-side-full-body.jpg}{The physical machine is the final test target; a successful display alone does not prove safe behavior.}
+\ROBPhotoTwo{rob-software-control-room.png}{Original illustration: software pathways are explanatory symbols, not a current-system screenshot.}{rob-safe-autonomy-lab.png}{Conceptual illustration: the test ladder leads from bounded simulation toward reviewed physical tests; a successful display alone does not prove safe behavior.}
 
 \begin{buildbox}[title={WRITE A TEST TABLE}]
 Choose one simulated command. Create columns for sequence number, issue time, lease, left value, right value, and expected state. Add stale, duplicate, NaN, and out-of-range cases. A good test includes messages that must be rejected.

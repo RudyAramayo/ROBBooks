@@ -15,6 +15,7 @@ The activities in this book use paper, cardboard, rulers, craft fasteners, and s
 \ROBSeriesMap{Treat every photograph as evidence of one moment in an evolving prototype. Look for loads, motion paths, fasteners, alignment, access, and risk. Do not copy dimensions from perspective photographs.}
 \ROBArduinoStatus
 \ROBAmberStatus
+\ROBSourceRoot
 
 \begin{safetybox}[title={MACHINE-TOOL RULE}]
 Young readers may plan, measure, sketch, make cardboard fixtures, and observe from a marked boundary. Only trained adults should select cutters, clamp metal, operate drills or mills, deburr edges, tension chains, lift ROB, or energize the drivetrain. Eye, hearing, clothing, hair, chip, fire, and pinch-point controls must match the actual machine and material.
@@ -24,7 +25,7 @@ Young readers may plan, measure, sketch, make cardboard fixtures, and observe fr
 \clearpage
 \mainmatter
 
-\ROBChapterPhoto{Mission 1}{Start with loads, not shapes}{2024-nearly-assembled-base.jpg}
+\ROBChapterPhoto{Mission 1}{Start with loads, not shapes}{rob-motion-mechanics-lab.png}
 
 \chapter{What must the base survive?}
 
@@ -58,6 +59,7 @@ Hold a ruler at one end. Place one coin 2 cm from your hand, then move it to 20 
 \ROBChapterPhoto{Mission 2}{Two treads create a path}{2024-chain-drive-closeup.jpg}
 
 \chapter{Differential drive and ground friction}
+\ROBSourceNow{ROBArduino/ROBOT_CEREBELLULAR_BASE_APP/ROBOT_CEREBELLULAR_BASE_APP.ino}{The Base sketch supplies the actual left/right tread command behavior discussed here; the mechanical photographs explain what those outputs must move.}
 
 ROB steers by commanding the left and right treads differently. This is \textbf{differential drive}. It is mechanically simple because there is no steering linkage, but turning a long tread on high-friction ground can demand a great deal of torque. Parts of the tread must slide sideways as the robot rotates.
 
@@ -129,6 +131,7 @@ Never inspect or adjust a chain while power is connected. Stored energy can rema
 \ROBChapterPhoto{Mission 4}{Flippers and linear motion}{2024-base-actuator-between-treads.jpg}
 
 \chapter{Change one kind of motion into another}
+\ROBSourceNow{Cerebro/Cerebro/KeyframeAnimationManager.swift}{This software source records commanded motion values over time. It is paired with the mechanical discussion to show that a numeric target still needs a real actuator, linkage, limit, and feedback path.}
 
 ROB uses rotating motors for the treads and flipper mechanism. The base firmware's nominal actuator convention uses signed commands from -3200 to +3200, but it does not clamp received values and overloads +3201 and -3201 for a safe-start reset. The presentation describes an actuator moving the torso forward and backward, and elsewhere proposes an actuator for the third-wheel idea. Those may be revisions or separate mechanisms; the archive does not resolve the conflict.
 
@@ -152,7 +155,7 @@ Linear actuators and flippers create powerful pinch and crush zones, even when t
 
 \ROBPlaceholder{Identify every installed actuator and controller: model, voltage, stroke, force, speed, duty cycle, current limit, mounting hardware, limit switches, feedback, and whether it serves torso tilt, the third wheel, or another revision.}
 
-\ROBChapterPhoto{Mission 5}{Prototype materials answer questions}{2022-drilling-metal-rail.jpg}
+\ROBChapterPhoto{Mission 5}{Prototype materials answer questions}{2022-medium-duty-bracket-package.jpg}
 
 \chapter{Wood, aluminum, HDPE, and fasteners}
 
@@ -185,7 +188,7 @@ Draw a plate with two holes 50 mm apart. Ask three classmates to mark the second
 
 \ROBPhoto[0.45\textheight]{2022-bracket-assembly-front.jpg}{The assembled bracket is a chance to compare the planned hole pattern with the physical result. A final drawing should make that comparison repeatable.}
 
-\ROBChapterPhoto{Mission 6}{Plan the cut before making chips}{2024-caliper-tread-measurement.jpg}
+\ROBChapterPhoto{Mission 6}{Plan the cut before making chips}{rob-motion-mechanics-lab.png}
 
 \chapter{From measurement to machined part}
 
@@ -217,7 +220,7 @@ Machine selection, feeds and speeds, tool choice, workholding, chip control, coo
 
 \ROBPhoto[0.40\textheight]{2022-drilling-metal-rail.jpg}{This archive image records a drilling moment, not a complete machine procedure. The approved process still needs secure workholding, PPE, tooling, speed, chip control, and inspection documented by a qualified adult.}
 
-\ROBChapterPhoto{Mission 7}{Assembly order is part of the design}{2025-rear-electronics-bay.jpg}
+\ROBChapterPhoto{Mission 7}{Assembly order is part of the design}{rob-motion-mechanics-lab.png}
 
 \chapter{Make it buildable and repairable}
 
@@ -240,13 +243,13 @@ This is a planning scaffold, not ROB's confirmed build order:
   \item record torque marks, photos, measurements, and test results.
 \end{enumerate}
 
-\ROBPhotoTwo{2025-labeled-cables.jpg}{Temporary labels make a complex teardown easier to understand. A permanent harness should use durable IDs and an updated schematic.}{2025-rear-electronics-bay.jpg}{Dense wiring makes connector access, bend radius, heat, abrasion, and fault isolation design problems.}
+\ROBPhotoTwo{2025-rear-electronics-bay.jpg}{The rear bay makes connector access, bend radius, heat, abrasion, and fault isolation into physical design problems.}{rob-motion-mechanics-lab.png}{Conceptual illustration: assembly order is a dependency problem. A real service plan must name which cover, cable, and fastener moves at each step.}
 
 \begin{buildbox}[title={ASSEMBLY CARD SORT}]
 Write each step above on a separate card. Add cards for ``install cover,'' ``inspect fuse,'' and ``replace motor.'' Rearrange them until both assembly and later service are possible. Draw arrows for prerequisites. This is a dependency graph.
 \end{buildbox}
 
-\ROBPhoto[0.50\textheight]{2022-chassis-wiring-overhead.jpg}{An overhead build view is a dependency map made physical: each cable, bracket, board, and cover changes what can be installed or reached next.}
+\ROBPhoto[0.50\textheight]{rob-motion-mechanics-lab.png}{Conceptual illustration: each cable, bracket, board, and cover changes what can be installed or reached next. Use the real photographs elsewhere in this volume to turn the dependency map into a verified assembly order.}
 
 \ROBChapterPhoto{Mission 8}{Test from gentle to demanding}{2022-tracked-base-front.jpg}
 

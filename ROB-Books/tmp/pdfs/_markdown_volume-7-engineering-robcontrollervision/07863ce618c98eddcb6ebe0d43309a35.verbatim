@@ -1,0 +1,8 @@
+Vision Pro microphone
+  -> AVAudioEngine input node
+  -> 1024-frame tap
+  -> SFSpeechAudioBufferRecognitionRequest
+  -> SFSpeechRecognizer
+  -> partial/final transcript
+  -> editable SwiftUI String
+  -> OperatorTextMessage over authenticated control

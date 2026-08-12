@@ -1,0 +1,4 @@
+producer offers frame N
+worker busy? replace pending frame, do not append
+worker finishes
+consume newest pending frame, if any

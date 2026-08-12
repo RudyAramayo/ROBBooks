@@ -1,0 +1,2 @@
+let linear = (leftTread + rightTread) * 0.5
+let angular = (leftTread - rightTread) * 0.5

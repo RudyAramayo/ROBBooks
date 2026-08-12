@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 19:43
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 21:59
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1556,9 +1556,9 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-File: ../assets/photos/2025-detached-articulated-arm.jpg Graphic file (type bmp
-)
-<../assets/photos/2025-detached-articulated-arm.jpg>
+File: ../assets/generated/rob-dual-arm-feedback-lesson.png Graphic file (type b
+mp)
+<../assets/generated/rob-dual-arm-feedback-lesson.png>
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `AvenirNextCondensed' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
@@ -1589,18 +1589,15 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
  [3
 
-]
+] [4]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotic
-s.toc [4
+s.toc [5
 
 ])
 \tf@toc=\write9
 \openout9 = `volume-6-amber-dual-arm-robotics.toc'.
 
- [5] [6
-
-
-]
+ [6]
 
 Package markdown Info: Including markdown document
 (markdown)             "volume-6-amber-dual-arm-robotics.md"
@@ -1619,41 +1616,49 @@ Package luabridge Info: Executing a helper Lua script from file
 (|texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm
 -robotics.luabridge.lua)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-a
-rm-robotics/3033732086e32238e467b9d11e327f4b.md.tex
+rm-robotics/10d4f05988c5a7d150f01ff528b68a42.md.tex
 Chapter 1.
+
+Underfull \hbox (badness 2197) in paragraph at lines 5--5
+[]\TU/AvenirNext(0)/b/n/10.95 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10
+.95 AmberHomeFolder/amber/L-10/launch.json \TU/AvenirNext(0)/m/n/10.95 and
+ []
+
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 7.
+nput line 9.
 LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 6.806pt on input line 7.
+(Font)              scaled to size 6.806pt on input line 9.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-a
 rm-robotics/99923fb453be3526787049c00682445f.verbatim) [1
 
-]
+
+
+] [2]
 Chapter 2.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-a
 rm-robotics/d3276e0785b71a8743233e0a4a787b62.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-a
-rm-robotics/ec704a8c25a946b2c6071a454dd55670.verbatim) [2
+rm-robotics/ec704a8c25a946b2c6071a454dd55670.verbatim) [3
 
 ]
 Chapter 3.
-[3
+[4
 
 ]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-a
-rm-robotics/ab5acdd5964bcc4fe3ef17df0a8977f2.verbatim) [4]
+rm-robotics/ab5acdd5964bcc4fe3ef17df0a8977f2.verbatim) [5]
 Chapter 4.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-a
-rm-robotics/f292067fa251e8098021e09b26da0e02.verbatim) [5
+rm-robotics/f292067fa251e8098021e09b26da0e02.verbatim) [6
 
 ]
 Chapter 5.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-a
-rm-robotics/ff751083778f07712f5f42b8c45c1513.verbatim) [6
+rm-robotics/ff751083778f07712f5f42b8c45c1513.verbatim) [7
 
 ]
 Chapter 6.
@@ -1661,23 +1666,23 @@ Chapter 6.
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-a
 rm-robotics/b8663b218a8318e4c0e3b06689634eba.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-a
-rm-robotics/281d75d1ffe0f61959869d966fdba0e5.verbatim) [7
+rm-robotics/281d75d1ffe0f61959869d966fdba0e5.verbatim) [8
 
 ]
 Chapter 7.
-[8
+[9
 
-] [9]
+] [10]
 Chapter 8.
-[10
+[11
 
 ]
 Chapter 9.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-a
-rm-robotics/8128f382f1de2717c4e0cf14f819b2f5.verbatim) [11
+rm-robotics/8128f382f1de2717c4e0cf14f819b2f5.verbatim) [12
 
-] [12]
+] [13]
 Chapter 10.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/listings/lstl
@@ -1688,33 +1693,39 @@ File: lstlang1.sty 2025/11/14 1.11b listings language file
 rm-robotics/b41906f63cc360d28a0594874ea854bf.verbatim
 LaTeX Font Info:    Font shape `TU/Menlo(0)/b/n' will be
 (Font)              scaled to size 6.806pt on input line 1.
-) [13
+) [14
 
 ]
 Chapter 11.
-[14
+[15
 
-] [15]
+] [16]
 Chapter 12.
 LaTeX Font Info:    Font shape `TU/Menlo(0)/b/n' will be
-(Font)              scaled to size 9.08852pt on input line 218.
-[16
-
-]
-Chapter 13.
+(Font)              scaled to size 9.08852pt on input line 232.
 [17
 
 ]
-Chapter 14.
+Chapter 13.
+
+Underfull \hbox (badness 1117) in paragraph at lines 246--246
+[]\TU/AvenirNext(0)/b/n/10.95 SOURCE TRAIL — ANALYZING NOW: \TU/AvenirNext(0)/m
+/n/10.95 Cerebro has one AMBER V2 directory under
+ []
+
 [18
 
 ]
-Chapter 15.
+Chapter 14.
 [19
 
 ]
+Chapter 15.
+[20
+
+]
 Chapter 16.
-) [20
+) [21
 
 ] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
@@ -1730,13 +1741,13 @@ t changed.
 (rerunfilecheck)             Checksum: 555E5DA9EF059A8378762C3737CFCB0C;6990.
  ) 
 Here is how much of TeX's memory you used:
- 37853 strings out of 468168
- 845161 string characters out of 5423555
- 1707930 words of memory out of 5000000
- 65873 multiletter control sequences out of 15000+600000
+ 37861 strings out of 468168
+ 845339 string characters out of 5423555
+ 1708866 words of memory out of 5000000
+ 65881 multiletter control sequences out of 15000+600000
  633305 words of font info for 131 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 101i,12n,131p,1160b,1638s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,12n,131p,1160b,1643s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber
--dual-arm-robotics.xdv (26 pages, 558288 bytes).
+-dual-arm-robotics.xdv (27 pages, 593240 bytes).

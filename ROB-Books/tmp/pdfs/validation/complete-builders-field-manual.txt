@@ -14,8 +14,8 @@ Rodolfo Aramayo / Orbitus Robotics -   First Maker Faire Edition
 Complete in scope, intentionally incomplete where the archive cannot prove the detail.
 
 This manual connects ROB’s 95-page design presentation, private construction-photo archive, Arduino base
-firmware, motor references, and current Mac, iPhone, Watch, Vision Pro, lidar, camera, speech, autonomy, and AI
-source trees.
+firmware, motor references, and current Mac, iPhone, Watch, Vision Pro, lidar, RGB-D camera, serial, MLX/VLM,
+Gemini, stage-show, arm, autonomy, H.264, and secure-control source trees.
 It is a first evidence-based edition, not a stamped mechanical design, production wiring schematic, safety certifica-
 tion, or permission to energize the machine. Use the status labels on every subsystem. Replace each Builder input
 needed box with measured, reviewed information as the book iterates.
@@ -77,13 +77,29 @@ Evidence-status legend
    tion gates, and unresolved configuration differences.
 
 
+   HOW TO FIND THE FILES
+
+   Every printed path is relative to the shared workspace root, /Users/rob/dev in the inspected edition. Start
+   at that root, enter the first directory in the path, and follow each slash. Source code is spread across in-
+   dependent repositories—including ROBArduino, Cerebro, ROBController, ROBControllerVision, ORobotics, and
+   ROBTrainingGames—rather than one giant ROB project. See Presentation/ROB-Books/OPEN-SOURCE-CODE-MAP.md
+   for repository locations, licenses, primary files, and commands for finding renamed files.
+
+
 
 
 Source snapshot and publication cautions
-The software was inspected on 2 August 2026. Cerebro contains uncommitted Gemini and autonomy changes, so
-publication should record a tag or commit after the builder selects a release. Original gallery photographs were
-converted with orientation applied and metadata stripped. Attendee photographs, especially images containing
-children, require release review or careful exclusion.
+The initial evidence pass began on 2 August 2026; the consolidated Cerebro, Vision Pro, local-model, stage-show,
+AMBER, and advanced video pass reflects the working trees inspected through 11 August 2026. Active changes still
+require an explicit tag or commit before publication. Original gallery photographs were converted with orientation
+applied and metadata stripped. Attendee photographs, especially images containing children, require release
+review or careful exclusion.
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                   3 / 71
+BUILDING R.O.B.                                                                        COMPLETE FIELD MANUAL - ADVANCED
+
+
 The archived B-COMMAND document prohibits reproduction without permission, and the HengDrive outline is
 marked proprietary and confidential. This manual does not reproduce or paraphrase their specifications. It men-
 tions the motor-family label visible in a builder-owned photograph only to identify the open evidence gap. Obtain
@@ -92,148 +108,172 @@ permission and a current authorized public datasheet before publication.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                   3 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   4 / 71
 Contents
 
-I Intent and architecture                                                                                                       1
+I     Intent and architecture                                                                                                    1
 
-1 Design history and current scope                                                                                               3
-   1.1 Evidence-based chronology . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         3
-   1.2 Design principles that recur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      4
-   1.3 Current subsystem status at a glance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        5
+1 Design history and current scope                                                                                                3
+      1.1 Evidence-based chronology . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       3
+      1.2 Design principles that recur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    4
+      1.3 Current subsystem status at a glance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      5
 
-2 Whole-robot architecture                                                                                                       7
-   2.1 Physical and information paths . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        7
-   2.2 Desired component ownership map . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .             7
-   2.3 Sense-plan-act without surrendering authority . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           8
-
-
-II Mechanical build                                                                                                             9
-
-3 Build the mobile base                                                                                                        11
-   3.1 Start from interfaces     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
-   3.2 Tread tension and support . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
-   3.3 Flipper revision and third-wheel concept . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
-   3.4 Provisional assembly sequence to verify . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
-
-4 Build above the base                                                                                                         15
-   4.1 Body-to-torso connection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
-   4.2 Body rotation and cable continuity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
-   4.3 Head and neck . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
-   4.4 Arms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
-
-5 Fabrication and finish                                                                                                       19
-   5.1 Measurement plan . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
-   5.2 Process traveler . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
-   5.3 Design for assembly and service . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+2 Whole-robot architecture                                                                                                        7
+      2.1 Physical and information paths . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      7
+      2.2 Desired component ownership map . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           7
+      2.3 Sense-plan-act without surrendering authority . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         8
 
 
-III Power, electronics, and firmware                                                                                          21
+II     Mechanical build                                                                                                          9
 
-6 Store, convert, protect, and disconnect energy                                                                               23
-   6.1 What the archive says . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
-   6.2 Required single-line diagram . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
-   6.3 Motor electrical evidence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
-   6.4 Emergency stop and safe energy state . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+3 Build the mobile base                                                                                                          11
+      3.1 Start from interfaces . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+      3.2 Tread tension and support . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+      3.3 Flipper revision and third-wheel concept . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+      3.4 Provisional assembly sequence to verify . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
 
-                                                               4
-BUILDING R.O.B.                                                                                       COMPLETE FIELD MANUAL - ADVANCED
+4 Build above the base                                                                                                           15
+      4.1 Body-to-torso connection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+      4.2 Body rotation and cable continuity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+      4.3 Head and neck . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+      4.4 Arms . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+
+5 Fabrication and finish                                                                                                         19
+      5.1 Measurement plan . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+      5.2 Process traveler . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+      5.3 Design for assembly and service . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
 
 
-7 Base electronics and firmware                                                                                                   27
+III     Power, electronics, and firmware                                                                                         21
+
+6 Store, convert, protect, and disconnect energy                                                                                 23
+      6.1 What the archive says . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+      6.2 Required single-line diagram . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+      6.3 Motor electrical evidence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+      6.4 Emergency stop and safe energy state . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+
+                                                                 5
+BUILDING R.O.B.                                                                                         COMPLETE FIELD MANUAL - ADVANCED
+
+
+7 Base electronics and firmware                                                                                                     27
      7.1 Three historical roles, one present role . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
      7.2 Confirmed pin and communication map . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
      7.3 Serial frame . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
      7.4 Actuator compact serial . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
      7.5 IR and IMU status . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
-     7.6 Safety and correctness audit . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
-     7.7 Replacement-firmware architecture           . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+     7.6 Safety and correctness audit . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+     7.7 Replacement-firmware architecture            . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
 
 
 
-IV      Software and perception                                                                                                  30
+IV Software and perception                                                                                                         31
 
-8 Central coordination on the Mac mini                                                                                            32
-     8.1 Principal components . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
-     8.2 Base heartbeat ownership . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
-     8.3 External helpers and dependencies . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
-     8.4 Legacy boundary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+8 Central coordination on the Mac mini                                                                                              33
+     8.1 Principal components . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+     8.2 Base heartbeat ownership . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+     8.3 ROBSerialBox as an integration history . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+     8.4 External helpers and dependencies . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+     8.5 Legacy boundary . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+     8.6 Typed scene state and local intelligence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
 
-9 Control from iPhone, Watch, and Vision Pro                                                                                      35
-     9.1 Controller roles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
-     9.2 ROBControl v2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
-     9.3 Separate video service . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
-     9.4 Safety timing layers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
-     9.5 Privacy review . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+9 Control from iPhone, Watch, and Vision Pro                                                                                        37
+     9.1 Controller roles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+     9.2 ROBControl v2 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+     9.3 Separate video service . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+     9.4 Safety timing layers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+     9.5 Privacy review . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
 
-10 Perception and mapping                                                                                                         38
-     10.1 RGB-D camera . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
-     10.2 RPLidar . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
-     10.3 IR and IMU . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
-     10.4 Coordinate-frame discipline . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
-
-11 Behavior above raw motor commands                                                                                              41
-     11.1 Servo and arm control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
-     11.2 Keyframe animation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
-     11.3 Speech . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
-     11.4 Controller-activated autonomy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
-     11.5 Gemini integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
-     11.6 Robot-action implementation status . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
-
+10 Encode, transport, decode, and present live video                                                                                40
+     10.1 The end-to-end frame pipeline . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+     10.2 Scale into the encoder’s pixel format . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+     10.3 Configure low-latency H.264 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+     10.4 Understand AVCC, SPS, PPS, and access units . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+     10.5 Wrap media in two bounded layers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+     10.6 Apply backpressure before latency accumulates . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+     10.7 Decode framing before decoding H.264 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+     10.8 Present and recover without blocking control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+     10.9 Advanced verification matrix         . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  5 / 62
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                    6 / 71
 BUILDING R.O.B.                                                                                       COMPLETE FIELD MANUAL - ADVANCED
 
 
-V Integration, operation, and maintenance                                                                                        44
+11 Perception and mapping                                                                                                         45
+     11.1 RGB-D camera . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+     11.2 Perception snapshots and bounded rendering . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+     11.3 Kinect, OpenNI, NiTE, and PCL archaeology . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+     11.4 RPLidar . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+     11.5 IR and IMU . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+     11.6 Coordinate-frame discipline . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
 
-12 Test strategy and safety case                                                                                                  46
-     12.1 Requirements traceability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
-     12.2 Progressive test ladder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
-     12.3 Failure injection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
-     12.4 Measure stop behavior . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 47
-
-13 Present ROB safely in public                                                                                                   49
-     13.1 Roles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
-     13.2 Pre-show checklist . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
-     13.3 Show-state model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
-     13.4 Audience and privacy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 50
-
-14 Keep the robot understandable                                                                                                  52
-     14.1 Before and after every operating day . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
-     14.2 Scheduled maintenance record . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
-     14.3 Configuration control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
-     14.4 Troubleshooting by layer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
-
-A Teach the architecture without hiding the hazards                                                                               54
-     A.1 A spiral curriculum for ROB . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
-     A.2 Facilitation pattern . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
-
-B Commission the control path as one safety-related system                                                                        55
-     B.1 Connection and enrollment matrix . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55
-     B.2 Measure the whole stop chain . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55
-
-C Capture the builder’s oral history                                                                                              56
-     C.1 Interview prompts . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 56
-
-D Builder input ledger                                                                                                            57
-
-E Bill of materials worksheet                                                                                                     58
-
-F Wiring and connector worksheet                                                                                                  59
-
-G Serial protocol reference                                                                                                       60
-
-H Repository source map                                                                                                           61
-
-I    Photo and artwork credits                                                                                                    62
+12 Behavior above raw motor commands                                                                                              49
+     12.1 Servo and arm control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+     12.2 Keyframe animation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+     12.3 Speech . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+     12.4 Controller-activated autonomy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 50
+     12.5 Gemini integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 50
+     12.6 Local MLX, comedy, and battle training . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 50
+     12.7 Robot-action implementation status . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
 
 
 
+V     Integration, operation, and maintenance                                                                                    52
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  6 / 62
+13 Test strategy and safety case                                                                                                  54
+     13.1 Requirements traceability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+     13.2 Progressive test ladder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+     13.3 Failure injection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+     13.4 Measure stop behavior . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55
+
+14 Present ROB safely in public                                                                                                   57
+     14.1 Roles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+     14.2 Pre-show checklist . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+     14.3 Show-state model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+     14.4 Audience and privacy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58
+
+15 Keep the robot understandable                                                                                                  60
+     15.1 Before and after every operating day . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
+     15.2 Scheduled maintenance record . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
+     15.3 Configuration control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
+     15.4 Troubleshooting by layer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
+
+A Teach the architecture without hiding the hazards                                                                               62
+     A.1 A spiral curriculum for ROB . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 62
+     A.2 Facilitation pattern . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 62
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  7 / 71
+BUILDING R.O.B.                                                                                     COMPLETE FIELD MANUAL - ADVANCED
+
+
+B Commission the control path as one safety-related system                                                                      63
+     B.1 Connection and enrollment matrix . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 63
+     B.2 Measure the whole stop chain . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 63
+
+C Capture the builder’s oral history                                                                                            64
+     C.1 Interview prompts . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 64
+
+D Builder input ledger                                                                                                          65
+
+E Bill of materials worksheet                                                                                                   66
+
+F Wiring and connector worksheet                                                                                                67
+
+G Serial protocol reference                                                                                                     68
+
+H Repository source map                                                                                                         69
+
+I    Photo and artwork credits                                                                                                  71
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                8 / 71
          Part I
 
 Intent and architecture
@@ -315,7 +355,7 @@ Current subsystem status at a glance
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                       4 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                       4 / 71
 BUILDING R.O.B.                                                                                            COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -360,7 +400,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                       5 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                       5 / 71
 CHAPTER 2
 
 System boundaries and ownership
@@ -481,7 +521,7 @@ control-master state, the Arduino deadline, or the physical emergency stop.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                     8 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                     8 / 71
      Part II
 
 Mechanical build
@@ -560,7 +600,7 @@ actuator to reduce tread scrub while turning.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  12 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  12 / 71
  BUILDING R.O.B.                                                                               COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -596,7 +636,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
- ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                         13 / 62
+ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                         13 / 71
 CHAPTER 4
 
 Torso, body, head, and arms
@@ -677,7 +717,7 @@ many joints and long reach.                                                   be
  BUILDER VERIFICATION NEEDED Joint feedback, zeroing, limits, load rating, collision envelope, emergency behavior, and
 physical outcome were not measured in this review.
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                      16 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                      16 / 71
 BUILDING R.O.B.                                                                              COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -693,7 +733,7 @@ sion checking, and a verified grasp executor are incomplete.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        17 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        17 / 71
 CHAPTER 5
 
 From template to finished part
@@ -773,7 +813,7 @@ plan in the CAD, not as an afterthought.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     20 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     20 / 71
              Part III
 
 Power, electronics, and firmware
@@ -857,7 +897,7 @@ show.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                      24 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                      24 / 71
 BUILDING R.O.B.                                                                             COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -876,7 +916,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       25 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       25 / 71
 CHAPTER 7
 
 Arduino base controller
@@ -884,20 +924,29 @@ Arduino base controller
 
 
 Base electronics and firmware
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: ROBArduino/ROBOT_CEREBELLULAR_BASE_APP/ROBOT_CEREBELLULAR_BASE_APP.ino
+  Why it is here: This is the current firmware reference for the entire chapter. Torso and Head sketches are cited
+  only where their retired behavior is being compared.
+
+
+
+
 Three historical roles, one present role
 The ROBArduino archive resolves an important architecture question. Earlier ROB revisions had three named Arduino
 sketches, but the builder reports that present-day ROB uses only the Base code.
 
- ROLE              PUBLICATION STATUS            INSPECTED SOURCE BEHAVIOR
- Base               IMPLEMENTED        current   Seven-field tread/flipper/actuator command; IR and MPU9250 process-
-                   role reported                 ing; USB host link and actuator SoftwareSerial. The exact flashed binary
-                                                 and board remain to be recorded.
- Torso              LEGACY   retired             Fourteen four-character Maestro targets for channels 0, 1, and 6–17;
-                                                 MPU9250; disabled GPS path. Its timeout actuation is commented out.
-                                                 Two archived filenames contain identical bytes.
- Head               LEGACY   retired             MPU9250 and PIR experiment with disabled GPS declarations. The ac-
-                                                 tive parser consumes only one copied legacy field, not the Base seven-
-                                                 field command; timeout stop actuation is commented out.
+ ROLE           PUBLICATION STATUS            INSPECTED SOURCE BEHAVIOR
+ Base            IMPLEMENTED        current   Seven-field tread/flipper/actuator command; IR and MPU9250 process-
+                role reported                 ing; USB host link and actuator SoftwareSerial. The exact flashed binary
+                                              and board remain to be recorded.
+ Torso           LEGACY   retired             Fourteen four-character Maestro targets for channels 0, 1, and 6–17;
+                                              MPU9250; disabled GPS path. Its timeout actuation is commented out.
+                                              Two archived filenames contain identical bytes.
+ Head            LEGACY   retired             MPU9250 and PIR experiment with disabled GPS declarations. The ac-
+                                              tive parser consumes only one copied legacy field, not the Base seven-
+                                              field command; timeout stop actuation is commented out.
 
 Current diagrams, startup procedures, and hardware counts must show one Base Arduino. Historical diagrams may
 show all three only when labeled with their revision context. Cerebro still contains serial names and helpers for Base,
@@ -910,33 +959,35 @@ Confirmed pin and communication map
 The firmware targets an Arduino-compatible controller, and historical controller logs call it an Arduino Mega. The
 exact board model and revision, core, and library versions remain to be supplied.
 
- LOAD                             SPEED          BRAKE       DIRECTION      NOTES
- Right tread                       D2              D3            D25        Active-low speed mapping in firmware
- Left tread                        D4              D5            D27        Mirrored direction polarity
- Flipper                           D6              D7            D29        No implemented limit input
+ LOAD                          SPEED          BRAKE       DIRECTION      NOTES
+ Right tread                    D2              D3            D25        Active-low speed mapping in firmware
+ Left tread                     D4              D5            D27        Mirrored direction polarity
+ Flipper                        D6              D7            D29        No implemented limit input
 
- FUNCTION                         CONNECTION              CURRENT SOURCE BEHAVIOR
- Mac base serial                  USB, 250,000 baud  Fixed-width command plus diagnostic text and an existing role-
-                                                     specific startup line
- Actuator controller              SoftwareSerial     Compact serial forward/reverse; nominal speed -3200 to
-                                  D22/D23, 19,200 +3200; special inputs +3201 and -3201 clear safe start before
-                                  baud               commanding the corresponding 3200 magnitude
- IR array                         A5 through A0      Six SharpIR instances; front/back warning thresholds at 25 cm;
-                                                     numeric six-sensor printout is commented out
- IMU                              I2C    via   Wire; MPU9250 initialization and orientation telemetry
-                                  D20/D21 if Mega
- Speed feedback                   Proposed           Commented TODOs disagree: the header calls D18 left and
-                                  D18/D19/D20        D19 right, while later pin declarations reverse them; D20 con-
-                                                     flicts with Mega I2C SDA
+
+
+
+                                                            27
+BUILDING R.O.B.                                                                                         COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+  FUNCTION                                     CONNECTION          CURRENT SOURCE BEHAVIOR
+  Mac base serial                              USB, 250,000 baud  Fixed-width command plus diagnostic text and an existing role-
+                                                                  specific startup line
+  Actuator controller                          SoftwareSerial     Compact serial forward/reverse; nominal speed -3200 to
+                                               D22/D23, 19,200 +3200; special inputs +3201 and -3201 clear safe start before
+                                               baud               commanding the corresponding 3200 magnitude
+  IR array                                     A5 through A0      Six SharpIR instances; front/back warning thresholds at 25 cm;
+                                                                  numeric six-sensor printout is commented out
+  IMU                                          I2C    via   Wire; MPU9250 initialization and orientation telemetry
+                                               D20/D21 if Mega
+  Speed feedback                               Proposed           Commented TODOs disagree: the header calls D18 left and
+                                               D18/D19/D20        D19 right, while later pin declarations reverse them; D20 con-
+                                                                  flicts with Mega I2C SDA
 
 Cerebro consumes the existing WARNING! FRONT, WARNING! BACK, and blocking-error sentences without requiring a
 firmware flash. Its SceneKit diagnostic highlights the corresponding pair for three seconds. Silence becomes “clear-
-
-
-                                                               27
-BUILDING R.O.B.                                                                            COMPLETE FIELD MANUAL - ADVANCED
-
-
 ance unknown,” not “path clear,” because the legacy stream has neither explicit clear events nor numeric distances.
 These terrain-sensitive IR warnings do not replace RPLidar traversability or a physical stop.
 The existing Base sketch emits BEGIN BASE STARTUP SEQUENCE after IMU initialization. Cerebro pulses DTR to restart
@@ -975,23 +1026,24 @@ is hard-coded for an older Austin, Texas declination and must not be treated as 
 
 
 
-Safety and correctness audit
-The historical firmware should be preserved as an artifact, then replaced behind fixtures. Priority defects include:
 
-1. the five-byte numeric buffer lacks a C-string null terminator before atoi and debug printing;
-2. one available byte triggers 41 further reads without proof of a complete frame;
-3. separator positions, signs, ranges, checksum, and frame completeness are not validated;
-4. an extra read after the seventh field can consume the next frame’s start marker;
-5. any received byte refreshes the deadman before frame validation;
-6. the deadman depends on loop counts rather than elapsed monotonic time;
-7. timeout sends zero speed with brake fields that release brakes;
-8. IR inhibit assignments are disabled and would not update outputs until another command path runs;
-9. one rotation test duplicates the same condition and omits the mirrored turn;
-
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                      28 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                   28 / 71
  BUILDING R.O.B.                                                                              COMPLETE FIELD MANUAL - ADVANCED
 
 
+
+ Safety and correctness audit
+ The historical firmware should be preserved as an artifact, then replaced behind fixtures. Priority defects include:
+
+ 1. the five-byte numeric buffer lacks a C-string null terminator before atoi and debug printing;
+ 2. one available byte triggers 41 further reads without proof of a complete frame;
+ 3. separator positions, signs, ranges, checksum, and frame completeness are not validated;
+ 4. an extra read after the seventh field can consume the next frame’s start marker;
+ 5. any received byte refreshes the deadman before frame validation;
+ 6. the deadman depends on loop counts rather than elapsed monotonic time;
+ 7. timeout sends zero speed with brake fields that release brakes;
+ 8. IR inhibit assignments are disabled and would not update outputs until another command path runs;
+ 9. one rotation test duplicates the same condition and omits the mirrored turn;
 10. command values are not clamped to PWM and actuator ranges;
 11. ramp constants, encoder feedback, and voltage monitoring are TODO-only;
 12. brake, direction, and PWM update ordering has not been proven jerk-free;
@@ -1010,7 +1062,6 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-
  Replacement-firmware architecture
  A modern base controller should contain:
 
@@ -1026,17 +1077,22 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
  • structured telemetry with units and status flags;
  • unit, parser-fuzz, timing, and hardware-in-the-loop tests.
 
-     BUILDER INPUT NEEDED
 
-     Confirm board model and core; installed libraries; every connector and logic voltage; brake circuit; mo-
-     tor/flipper polarity; allowed command ranges; measured deadman deadline; brake/coast behavior; encoder
-     status; IR models/positions/calibration; IMU orientation; actuator controller, end stops, current limits, and safe
-     state.
+ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        29 / 71
+BUILDING R.O.B.                                                                              COMPLETE FIELD MANUAL - ADVANCED
 
 
+    BUILDER INPUT NEEDED
+
+    Confirm board model and core; installed libraries; every connector and logic voltage; brake circuit; mo-
+    tor/flipper polarity; allowed command ranges; measured deadman deadline; brake/coast behavior; encoder
+    status; IR models/positions/calibration; IMU orientation; actuator controller, end stops, current limits, and safe
+    state.
 
 
- ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        29 / 62
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        30 / 71
         Part IV
 
 Software and perception
@@ -1044,7 +1100,7 @@ Software and perception
 
 
 
-           30
+           31
 CHAPTER 8
 
 Cerebro on macOS
@@ -1053,6 +1109,12 @@ Cerebro on macOS
 
 Central coordination on the
 Mac mini
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: Cerebro/Cerebro/ROBMainViewController.mm
+  Why it is here: This chapter begins at Cerebro’s coordinator, then names each helper source as ownership
+  crosses into serial, camera, autonomy, AI, or animation code.
+
 Cerebro is a mixed Swift, Objective-C, and Objective-C++ macOS application. Its central view/controller layer co-
 ordinates UI state while specialized components own serial, camera, speech, autonomy, security, and animation.
 
@@ -1088,18 +1150,46 @@ the Arduino’s own elapsed time and physical stop result still require measurem
 
 
 
+ROBSerialBox as an integration history
+
+
+                                                          33
+BUILDING R.O.B.                                                                            COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+
+   SOURCE TRAIL --- ANALYZING NOW
+
+   File: Cerebro/Cerebro/ROBSerialBox.m
+   Why it is here:           Read initialize_connection,   usbSerialPortPaths,   connectToDetectedBase,
+   probeBaseFirmwareAtPath,     consumeBaseSerialBytes,  the    Vision  neck/torso    methods,     and
+   stopBaseMotionAndDropHeartbeat together.
+
+
+ROBSerialBox is the current physical-I/O façade and an archaeological record. It contains Base, Maestro, Tic, AMBER,
+controller, and retired Head/Torso surfaces. At startup every POSIX descriptor receives the closed sentinel −1. Base
+discovery enumerates only USB callout devices, opens candidates at 250,000 baud, pulses DTR, sends no probe
+command bytes, and passively waits up to 15 seconds for the already-flashed firmware line BEGIN BASE STARTUP
+SEQUENCE. Hub-dependent /dev/cu.* names therefore need not be stored. The banner identifies a firmware role; it
+does not authenticate the board or verify wiring.
+Serial reads are arbitrary byte chunks, not messages. Cerebro accumulates bounded data, extracts newline-
+delimited records, and then interprets them. It recognizes the existing front/back IR warning sentences and a
+bounded six-value numeric form when available. Legacy warning silence is reported as clearance unknown. Mae-
+stro selection instead uses USB vendor/product/interface identity, while the waist Tic path uses preflighted ticcmd;
+device discovery is protocol-specific rather than “first port wins.”
+The next refactor should retain the existing Objective-C façade for Interface Builder while moving each descriptor,
+read loop, write queue, reconnect generation, and parser into a single-owner component. Checking fd != -1 can-
+not by itself make a concurrent close/write atomic. This is the practical lesson behind historical Bad file descriptor
+floods.
+
+
+
 External helpers and dependencies
 The OAK-D path uses a supervised Python helper rather than loading DepthAI directly into the control process.
 Cerebro can select or create a Python environment and validate the required import. Optional Amber scripts and
 tools such as sshpass and ticcmd are preflighted; missing dependencies disable their feature instead of terminating
 the app.
-
-
-
-
-                                                          32
-BUILDING R.O.B.                                                                         COMPLETE FIELD MANUAL - ADVANCED
-
 
    ADVANCED CHANNEL
 
@@ -1118,6 +1208,39 @@ A malformed ROBControl header or frame can be rejected before application dispat
 cated envelope can still contain a malformed legacy controller payload, so the application adapter must validate
 that payload separately; transport authentication does not make its contents physically safe.
 
+
+
+Typed scene state and local intelligence
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                      34 / 71
+BUILDING R.O.B.                                                                          COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+
+   SOURCE TRAIL --- ANALYZING NOW
+
+   File: Cerebro/Cerebro/ROBSceneSnapshot.swift
+   Why it is here:           Compare the latest-value snapshot store with ROBMLXRuntime.swift,
+   ROBMLXImprovisationProvider.swift, and ROBAI.swift. None of these types is a real-time motor controller.
+
+
+SceneSnapshot is the consolidation boundary for people, objects, gestures, depth/lidar free-space regions, arm joint
+pose, reverse camera pose, camera quality, timestamps, and confidence. Missing observations remain missing.
+Fresh lidar is retained only briefly; aligned depth is sampled in left/forward/right bands; language serialization
+labels the JSON as untrusted sensor data rather than instructions. A macOS 26 Foundation Models interpreter may
+return a typed high-level AssistantIntent, but not servo or tread values.
+The local ROBMLXEngine actor owns selected model containers, loading, diagnostics, sampled VLM observations,
+embeddings, and a process-local semantic store bounded to 200 entries. The inspected initial models are a four-
+bit Llama 3.2 1B instruct model, a four-bit Qwen2-VL 2B vision-language model, and a small GTE embedding model.
+The informal term “VLX” in project conversation refers to this MLX VLM path, not a separate framework. Camera
+admission is sampled on a multi-second interval and returns observation text only. It never calls motor code.
+Local improvisation must decode as one exact versioned JSON plan with allow-listed beat and delivery values.
+Gemini remains an optional cloud path with separately effective connection, microphone, camera, and action-tool
+switches. Both providers produce bounded proposals; deterministic policy, operator authority, and physical execu-
+tors remain separate.
+
     BUILDER INPUT NEEDED
 
     Tag the publication source; provide target macOS and hardware; identify enabled optional dependencies
@@ -1127,7 +1250,7 @@ that payload separately; transport authentication does not make its contents phy
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   33 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    35 / 71
 CHAPTER 9
 
 Controllers and secure transport
@@ -1136,6 +1259,16 @@ Controllers and secure transport
 
 Control from iPhone, Watch,
 and Vision Pro
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: ROBController/Consciousness/AutoNetClient/AutoNetDataTransferProtocol.swift
+  Why it is here: The client control contract is the anchor.          Compare it with Cerebro’s matching
+  AutoNetDataTransferProtocol.swift; the sending UI is in ConsciousViewController.mm, Watch relay in its Watch
+  app directory, and spatial client under ROBControllerVision.
+
+
+
+
 Controller roles
 The iPhone/iPad ROBController captures manual controls and presents pairing, autonomy, and action-approval
 surfaces. Its active legacy snapshot carries raw joystick coordinates; it does not use the Vision controller’s normalized
@@ -1171,6 +1304,11 @@ on protecting the device secret and private key.
 Separate video service
  IMPLEMENTED   Cerebro advertises _robvideo._udp with robvideo/1. The initial profile is H.264 AVCC up to 960 by
 540, 20 fps, and 1.5 Mbit/s on an ordered reliable QUIC stream. Video has separate framing, queues, authentication
+
+                                                          37
+BUILDING R.O.B.                                                                                                                                   COMPLETE FIELD MANUAL - ADVANCED
+
+
 domain, and backpressure so media cannot queue in front of a stop command.
 Video authorization is bound to the exact live control-session ID and authenticated controller identity. Control dis-
 connect or credential revocation closes associated video. Video failure does not close control.
@@ -1178,13 +1316,6 @@ connect or credential revocation closes associated video. Video failure does not
 
 
 Safety timing layers
-
-                                                          35
-BUILDING R.O.B.                                                                                                                                   COMPLETE FIELD MANUAL - ADVANCED
-
-
-
-
              input released                    controller-specific             Cerebro 0.6 s                             Arduino serial                          commanded stop;
              or manual stop                    lease / watchdog               freshness gate                               deadman                             result must be tested
 
@@ -1221,23 +1352,265 @@ consent handling.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                                                           36 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                                                           38 / 71
 CHAPTER 10
+
+Advanced H.264 video transport
+CHAPTER 10
+
+
+Encode, transport, decode,
+and present live video
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: Cerebro/Cerebro/ROBCameraH264Encoder.swift
+  Why it is here: Follow one frame through ROBVideoServer.swift and ROBVideoProtocol.swift; then cross
+  repositories into ROBControllerVision’s H264SampleBufferFactory.swift, H264VideoReceiver.swift, transport
+  decoder, and display-layer bridge.
+
+This chapter consolidates the robot-side and Vision Pro books into one advanced media path. It describes the
+implemented initial profile, not a generic H.264 tutorial and not a promise of spatial video, audio, recording, HEVC,
+or unreliable datagrams.
+
+
+
+The end-to-end frame pipeline
+                                  CMSampleBuffer    NV12 + letterbox   VideoToolbox H.264
+
+
+
+
+                                  sample renderer   stream validator      RVID / RBVD
+
+
+
+
+Camera capture produces a Core Media CMSampleBuffer containing a pixel buffer and timing. Cerebro retains only
+the newest offered raw sample while server work is pending. An accepted, authenticated subscription creates an
+encoder at the negotiated even width/height, frame rate, and bitrate. The initial published ceiling is 960 by 540, 20
+frames/s, and 1.5 Mbit/s.
+
+
+
+Scale into the encoder's pixel format
+ROBCameraH264Encoder creates a VTCompressionSession whose destination buffers use video-range bi-planar 4:2:0
+YCbCr (NV12). A reusable VTPixelTransferSession scales the source with letterboxing so aspect ratio is preserved.
+The compression-session pool supplies destination buffers; allocation uses a threshold of six so pressure becomes
+a dropped frame rather than unbounded buffer growth.
+At 20 fps, the target interval is 50 ms. Samples arriving sooner are intentionally skipped before conversion. A
+dropped allocation or compression result requests a future recovery key frame. Every completion object can be
+claimed once, preventing synchronous drop flags and an asynchronous VideoToolbox callback from delivering the
+same logical completion twice.
+
+
+
+Configure low-latency H.264
+The encoder requests real-time operation, disables frame reordering, prefers constrained baseline profile when
+supported, supplies expected frame rate and average bitrate, and limits the key-frame interval to approximately
+one second. Disabling reordering means this initial stream does not depend on B-frames; decode timestamps can
+remain invalid and presentation order follows the reliable stream.
+
+                                                          40
+BUILDING R.O.B.                                                                                     COMPLETE FIELD MANUAL - ADVANCED
+
+
+Each encoded result owns copied bytes rather than a borrowed VideoToolbox buffer. The encoder records a mono-
+tonically increasing access-unit sequence, capture time in Unix milliseconds, presentation time and duration in mi-
+croseconds, synchronization/key-frame state, NAL-length width, SPS/PPS parameter sets when present, and one
+complete AVCC access-unit payload.
+
+
+
+Understand AVCC, SPS, PPS, and access units
+H.264 consists of Network Abstraction Layer (NAL) units. Annex-B streams separate NAL units with start codes such
+as 00 00 00 01. This implementation does not transmit Annex-B. AVCC stores a big-endian byte length before each
+NAL unit. The receiver must use the negotiated length-field width; it must not search for start-code patterns inside
+compressed data.
+The Sequence Parameter Set (SPS) describes coded properties needed to construct a decoder format. The Picture
+Parameter Set (PPS) supplies picture-level decoding parameters. Cerebro sends them in a codec-configuration mes-
+sage with a positive generation before access units using that generation. A new configuration, encoder recovery,
+or requested key frame resends the configuration. An IDR key frame lets the decoder restart without depending on
+earlier reference pictures.
+
+   ADVANCED CHANNEL
+
+   Codec configuration is state, not decoration. A payload can be valid H.264 bytes yet undecodable with the
+   wrong SPS/PPS, NAL-length width, dimensions, stream ID, or generation. Validate all of them before asking
+   Core Media to allocate decoder state.
+
+
+
+Wrap media in two bounded layers
+The outer ordered-stream frame is RVID version 1. Its 32-byte header carries magic, version, header length, mes-
+sage kind, bounded payload length, monotonic connection sequence, and reserved-zero fields. Authentication,
+capability, subscription, feedback, configuration, access-unit, and end messages receive distinct kinds.
+Encoded configuration and access units use an inner RBVD version-1 header of 92 bytes. It binds media to ses-
+sion UUID, subscription UUID, media sequence, capture time, presentation time, duration, timescale, codec-
+configuration generation, NAL-length width, flags, and payload length. Integers are network byte order. Current
+hard payload limits are 64 KiB for codec configuration and 2 MiB for one access unit; control JSON is capped at 64
+KiB and rejects unknown fields.
+
+                                   PRIMARY CHECKS          WHY IT EXISTS
+  BOUNDARY
+                                   pinned      identity,   Authentic peer and protected ordered bytes.
+  TLS/QUIC                         proof, role
+                                   magic,      version,    Incremental connection framing before allocation.
+  RVID                             kind, length, se-
+                                   quence
+                                   IDs, codec, timing,     Media belongs to the negotiated live stream.
+  RBVD                             generation, lengths
+                                   NAL lengths and         Compressed payload can be reconstructed safely.
+  AVCC                             configuration
+                                   coded/presentation      SPS/PPS cannot silently exceed negotiated geometry.
+  Core Media                       dimensions
+
+
+
+Apply backpressure before latency accumulates
+Video has its own listener, connections, queue, encoder, authentication domain, and send state. It never shares
+the control message queue. Cerebro permits only one pending raw source frame, one pending encoder output
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                               41 / 71
+BUILDING R.O.B.                                                                          COMPLETE FIELD MANUAL - ADVANCED
+
+
+per subscription, and one media send in flight. If encoding or send work is occupied, newer unencoded work is
+dropped rather than queued. One actual encoded drop or undeliverable output forces a later IDR; replacing a
+not-yet-encoded raw frame does not break decoder references.
+Every RVID send has a ten-second completion deadline. A newly accepted stream has 15 seconds to produce its
+first frame, and a running stream may not remain silent beyond 15 seconds. A peer that stops reading loses the
+stream instead of retaining unlimited memory. At the published maximum, two viewers can still consume roughly 3
+Mbit/s plus protocol overhead, so data-plane separation prevents queue coupling but not shared-radio contention.
+
+
+
+Decode framing before decoding H.264
+On Vision Pro, the Network.framework adapter first reconstructs complete RVID frames from arbitrary receive chunks.
+It rejects invalid magic, version, reserved bytes, payload sizes, and ordering before decoding JSON or RBVD. The
+media decoder then checks session ID, subscription ID, codec, configuration generation, sequence, timing, AVCC
+length width, and size. These checks occur before creating Core Media state.
+H264SampleBufferFactory sorts and extracts SPS/PPS, copies their bytes into temporary stable pointers, and calls
+CMVideoFormatDescriptionCreateFromH264ParameterSets. It verifies that coded dimensions remain within mac-
+roblock rounding of the negotiated size and that clean-aperture presentation dimensions match. This prevents
+hostile or corrupted parameter sets from expanding the decoder beyond the agreed geometry.
+For each accepted access unit, the factory allocates a CMBlockBuffer, copies the bounded AVCC payload, creates
+timing, and asks Core Media to create a ready sample buffer. The not-sync attachment mirrors the key-frame flag.
+The display-immediately attachment requests low-latency presentation rather than building a long presentation
+queue.
+
+
+
+Present and recover without blocking control
+The actor-owned H264VideoReceiver feeds an AVSampleBufferVideoRenderer obtained from the UI’s display layer. If
+the renderer is temporarily full, it waits only about 50 ms in short cancellable intervals. Continued pressure drops
+the access unit and begins recovery rather than accumulating frames.
+Sequence gaps, missing configuration, generation mismatch, decoder failure, or requiresFlushToResumeDecoding
+make the validator require a key frame. Recovery flushes decoder presentation state, rate-limits key-frame feedback
+to no faster than 500 ms, and discards dependent frames until a valid key frame arrives. A configuration-generation
+change also flushes before accepting the new decoder state. Statistics report received, rendered, dropped, bytes,
+last sequence, and key-frame requests at a bounded update rate.
+
+
+
+Timing, reliability, and tradeoffs
+Capture wall-clock time measures end-to-end age. Presentation timestamps provide an internal monotonic media
+timeline. Duration is derived from the negotiated frame rate. These clocks answer different questions and should
+not be substituted for one another.
+Ordered reliable QUIC simplifies configuration and access-unit ordering, but packet loss can delay later video
+bytes through head-of-line blocking. Because control uses another QUIC connection, video loss does not queue
+a stop command, although both flows share Wi-Fi airtime. Future QUIC datagrams would trade retransmission for
+application-managed loss recovery and require a new negotiated contract; they are not silently enabled by the
+current enum.
+
+
+
+Advanced verification matrix
+Test the media pipeline with synthetic frames before live hardware:
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    42 / 71
+BUILDING R.O.B.                                                                         COMPLETE FIELD MANUAL - ADVANCED
+
+
+• verify scaling, even dimensions, NV12 allocation limits, bitrate, frame-rate skipping, IDR interval, and SPS/PPS
+  extraction;
+• reject truncated, oversized, mis-versioned, wrong-session, wrong-generation, unknown-field, and out-of-order
+  messages before allocation;
+• inject access-unit loss and confirm one bounded recovery sequence and key-frame request;
+• change codec generation and confirm flush, reconfiguration, and key-frame resume;
+• stall the renderer and network independently and prove memory remains bounded;
+• close or revoke the control session and prove its video subscription ends;
+• measure capture-to-display age, encoded size, drops, recovery time, CPU/GPU use, thermal state, and control
+  latency concurrently;
+• repeat camera unplug, app background, viewer close, and shutdown while a send and encode callback are in
+  flight.
+
+Volume 7 explains the Swift/visionOS client composition and user-facing display. Volume 8 explains Cerebro’s
+broader camera and model scheduling. This chapter is the shared wire-level and Core Media reference.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   43 / 71
+CHAPTER 11
 
 Cameras, depth, lidar, and coordi-
 nate frames
-CHAPTER 10
+CHAPTER 11
 
 
 Perception and mapping
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: Cerebro/Cerebro/CameraManager.swift
+  Why it is here: Camera ownership starts here. Depth helpers remain in Cerebro; lidar transport and fixtures
+  live in the separate RPLidar repository named in the repository source map.
+
+
+
+
 RGB-D camera
-  EXPERIMENTAL / OPTIONAL The current camera design runs a pinned DepthAI helper and sends timestamp-synchronized
+                    The current camera design runs a pinned DepthAI helper and sends timestamp-synchronized
+ EXPERIMENTAL / OPTIONAL
 RGB plus depth through a private local Unix socket. RGB enters the existing sample-buffer, Vision, Gemini, and
 video path. Depth is little-endian UInt16 millimeters aligned to RGB; zero is invalid. AVFoundation remains an
 RGB-only fallback.
 The helper owns the OAK device exclusively. Old frames are dropped when perception is busy. Missing hardware,
 malformed IPC, SDK failure, or helper exit becomes camera state and bounded retry rather than a control-process
 crash.
+The helper uses DepthAI Camera, Depth, and Sync nodes, requests 640 by 400 undistorted RGB, aligns RAW16
+millimeter depth to RGB, and emits a versioned CDP1 packet over a private Unix socket. Cerebro validates dimen-
+sions, pixel formats, byte counts, and maximum allocation before constructing a CoreVideo buffer. The process
+boundary contains SDK and USB failure; a future native or XPC helper should preserve the same CameraFrameSet
+provider contract.
+
+
+
+Perception snapshots and bounded rendering
+Camera rate is not inference rate. Preview may consume the newest RGB frame while Vision pose detection, col-
+ored depth, point-cloud geometry, Gemini JPEG sampling, MLX VLM sampling, and H.264 encoding run at distinct
+bounded rates. Slow consumers use latest-value mailboxes. SceneKit reuses or replaces named node roots instead
+of appending forever; Core Image contexts and pixel-buffer pools are reused; model containers stay actor-owned.
+Profile repeated source toggles and 30-minute runs, not one still frame. Look for retained CMSampleBuffer ob-
+jects, per-frame CIContext construction, ever-growing SceneKit textures or nodes, missing autorelease pools on
+Objective-C worker threads, duplicate model loads, and repeated diagnostics overwhelming the main thread.
+
+
+
+Kinect, OpenNI, NiTE, and PCL archaeology
+  LEGACY   The ROBNiTEManager, TaskControllers, FreenectPCL, k2g, viewer, shader, serialization, and duplicated “2”
+files preserve an older Kinect/OpenNI/NiTE/PCL depth stack. They entered the present Git history in the 2025
+initial import, which does not establish their original creation date. They are useful evidence for coordinate and
+visualization experiments, not the recommended OAK setup.
+Before removal, check Xcode target membership, runtime selectors, duplicated model provenance, and any co-
+ordinate knowledge that should move into tests or documentation. The modern DepthAI helper improves failure
+containment by placing the camera SDK and USB ownership outside the control process.
+
+
+
+
+                                                        45
+BUILDING R.O.B.                                                                                           COMPLETE FIELD MANUAL - ADVANCED
 
 
 
@@ -1256,7 +1629,7 @@ IR and IMU
  EXPERIMENTAL / OPTIONAL Front/back Sharp IR warnings remain active, but automatic movement-inhibit flag assignments
 are disabled. The floor/grass reflection history makes these sensors an ideal research topic, not a certified stop
 device.
- IMPLEMENTED   The MPU9250 reports inertial data and derived orientation. It is not a motion-inhibit input.
+  IMPLEMENTED        The MPU9250 reports inertial data and derived orientation. It is not a motion-inhibit input.
 
 
 
@@ -1274,14 +1647,17 @@ Name every transform:
 Record axis direction, handedness, units, timestamp, calibration method, uncertainty, and valid motion range. A
 visually plausible transform can still command a gripper to the wrong side of an object.
 
-                                                         38
-BUILDING R.O.B.                                                                                          COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+                                                                                                                The open base shows how sen-
+Presentation page 55 proposes an RPLidar stage above the base.    sors, wiring, compute, and mechanisms become a serviceability problem.
 
 
 
 
-                                                                                                               The open base shows how sen-
-Presentation page 55 proposes an RPLidar stage above the base.   sors, wiring, compute, and mechanisms become a serviceability problem.
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        46 / 71
+BUILDING R.O.B.                                                                       COMPLETE FIELD MANUAL - ADVANCED
 
 
     BUILDER INPUT NEEDED
@@ -1293,16 +1669,25 @@ Presentation page 55 proposes an RPLidar stage above the base.   sors, wiring, c
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                       39 / 62
-CHAPTER 11
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                 47 / 71
+CHAPTER 12
 
 Arms, animation, speech, auton-
 omy, and AI
-CHAPTER 11
+CHAPTER 12
 
 
 Behavior above raw motor
 commands
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: Cerebro/Amber-PythonAPI/AmberV2API/amber_api/amber_robot.py
+  Why it is here: This is the readable high-level AMBER client. Compare its packed command files with the
+  Ubuntu launch JSON and LCM schemas; the captured amber_core executable is not open source in this snap-
+  shot.
+
+
+
 Servo and arm control
 Cerebro uses Maestro servo channels plus AMBER Python paths. ROB’s present AMBER evidence describes two
 seven-joint B1 arms and separate grippers. The Ubuntu-side directories L-10 and R-11 bind can10/can11, UDP ports
@@ -1324,7 +1709,7 @@ Keyframe animation
   IMPLEMENTED  KeyframeAnimationManager.swift persists JSON values for arm channels, head/neck, tread movement,
 flipper, actuator, torso rotation, and speech. Keyframes are reusable data: a sequence can describe expressive
 behavior independently of the UI that recorded it.
-  COMMANDED  Historical servo “animation” helpers in ROBSerialBox.m do not yet perform robust smooth interpolation;
+ COMMANDED   Historical servo “animation” helpers in ROBSerialBox.m do not yet perform robust smooth interpolation;
 they update their targets immediately. New interpolation must respect joint rates, synchronization, limits, collisions,
 and cancellation.
 
@@ -1338,9 +1723,14 @@ Both paths require microphone permissions, public notice, and a plan for uninten
 
 
 
+
+                                                          49
+BUILDING R.O.B.                                                                               COMPLETE FIELD MANUAL - ADVANCED
+
+
+
 Controller-activated autonomy
-                       The social-roam profile begins only after explicit controller authorization, captures an activa-
- EXPERIMENTAL / OPTIONAL
+  EXPERIMENTAL / OPTIONAL The social-roam profile begins only after explicit controller authorization, captures an activa-
 tion pose and radius, uses fresh filtered lidar scans, and limits tread speed. Near 82 percent of the configured
 radius it attempts to return toward its origin; this is not verified containment. Missing or stale lidar requests a mo-
 tion stop and transitions to waitingForLidar while the autonomy session remains active. Manual takeover, explicit
@@ -1348,13 +1738,9 @@ stop, expiry, replacement, or shutdown ends the session. Local deterministic cod
 
 
 
-                                                          41
-BUILDING R.O.B.                                                                                                            COMPLETE FIELD MANUAL - ADVANCED
-
-
-
 Gemini integration
-  EXPERIMENTAL / OPTIONAL The entire Gemini integration defaults off and requires explicit enablement plus credentials.
+                      The entire Gemini integration defaults off and requires explicit enablement plus credentials.
+  EXPERIMENTAL / OPTIONAL
 Once enabled, the current configuration defaults camera-frame and microphone-audio streaming on unless each
 stream is separately disabled. The robot-action tool remains separately off by default. Its schema declares look_at,
 play_gesture, request_pick, navigate_relative, and stop_motion; the model never receives arbitrary raw serial out-
@@ -1367,7 +1753,40 @@ a verified executor.
 
 
 
+Local MLX, comedy, and battle training
+   SOURCE TRAIL --- ANALYZING NOW
+
+   File: Cerebro/Cerebro/ROBStageShowCoordinator.swift
+   Why it is here:         Read the strict show protocol and fixture tests first, then compare
+   ROBMLXImprovisationProvider.swift, ROBSaberChoreography.swift, and the JSON catalog under StageShows.
+
+
+The stage-show coordinator is a cancellable state machine rather than a sequence of arbitrary shell or motor com-
+mands. Show JSON may request speech, waits, checkpoints, allow-listed gestures, and adaptive dialogue; it may
+not contain raw joints, hosts, ports, or shell commands. Dry Run has no side effects. Offline uses authored lines.
+Local mode may use a schema-validated MLX or loopback llama.cpp line. Adaptive mode may give a trusted local
+plan to Gemini, but timeout and failure fall back through validated local text to mandatory authored text. Late model
+completions are correlated and discarded.
+The comedy show demonstrates why fallback belongs to creative design: roughly ten minutes of timing cannot
+depend on one network or model response. Progressive saber training maps named profiles to bounded Carte-
+sian transforms and duration. It must remain theatrical, slow, guarded choreography with soft props, a participant
+boundary, dry-run visualization, independent stop, transform, inverse-kinematics, and collision validation, and no
+autonomous contact. Vision may score timing or offer spoken coaching; pixels do not directly command the AMBER
+arms.
+
+
+
 Robot-action implementation status
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                         50 / 71
+BUILDING R.O.B.                                                                                                            COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+
   ACTION                               CURRENT STATUS                 CURRENT BEHAVIOR
   stop_motion                          Partial local executor         Preempts local coordinators, writes one neutral/braked base
                                                                       frame, and drops the base heartbeat. Base stop is software-
@@ -1396,10 +1815,6 @@ joint order, cabling, and manipulation limits concrete.                         
                                                                                  test.
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                          42 / 62
-BUILDING R.O.B.                                                                              COMPLETE FIELD MANUAL - ADVANCED
-
-
     BUILDER INPUT NEEDED
 
     Provide arm/neck calibration files, verified keyframes, joint feedback and limits, safe animation cancel behavior,
@@ -1409,7 +1824,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        43 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                           51 / 71
                  Part V
 
 Integration, operation, and maintenance
@@ -1417,11 +1832,11 @@ Integration, operation, and maintenance
 
 
 
-                   44
-CHAPTER 12
+                   52
+CHAPTER 13
 
 Verification before motion
-CHAPTER 12
+CHAPTER 13
 
 
 Test strategy and safety case
@@ -1469,7 +1884,7 @@ Test the robot’s response when:
 • DepthAI helper exits or the camera disconnects;
 
 
-                                                           46
+                                                           54
 BUILDING R.O.B.                                                                            COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -1501,11 +1916,11 @@ uncertainty. “600 ms watchdog” is not the same as “stopped within 600 ms.�
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                      47 / 62
-CHAPTER 13
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                      55 / 71
+CHAPTER 14
 
 Maker Faire operations
-CHAPTER 13
+CHAPTER 14
 
 
 Present ROB safely in public
@@ -1549,7 +1964,7 @@ restarting software never silently arms motion.
 
 
 
-                                                            49
+                                                            57
 BUILDING R.O.B.                                                                         COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -1569,11 +1984,11 @@ participate.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   50 / 62
-CHAPTER 14
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   58 / 71
+CHAPTER 15
 
 Maintenance and change control
-CHAPTER 14
+CHAPTER 15
 
 
 Keep the robot
@@ -1622,7 +2037,7 @@ Troubleshooting by layer
 
 
 
-                                                             52
+                                                             60
 BUILDING R.O.B.                                                                             COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -1635,7 +2050,7 @@ Troubleshooting by layer
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       53 / 62
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       61 / 71
 CHAPTER A
 
 
@@ -1687,7 +2102,7 @@ an engineering result.
 
 
 
-                                                          54
+                                                          62
 CHAPTER B
 
 
@@ -1735,7 +2150,7 @@ brake behavior, or stopping distance.
 
 
 
-                                                         55
+                                                         63
 CHAPTER C
 
 
@@ -1765,7 +2180,7 @@ when a measurement is required; use the story to identify the measurement or arc
 
 
 
-                                                        56
+                                                        64
  CHAPTER D
 
 
@@ -1804,7 +2219,7 @@ when a measurement is required; use the story to identify the measurement or arc
 
 
 
-                                                           57
+                                                           65
 CHAPTER E
 
 
@@ -1820,7 +2235,7 @@ lead time, safety documentation, and evidence photograph in the editable project
 
 
 
-                                                          58
+                                                          66
 CHAPTER F
 
 
@@ -1838,7 +2253,7 @@ color/label, fuse/breaker location, test point, polarity check, and continuity/i
 
 
 
-                                                        59
+                                                        67
 CHAPTER G
 
 
@@ -1863,7 +2278,7 @@ explicit version, message type, bounded length, sequence, integrity check, and t
 
 
 
-                                                        60
+                                                        68
 CHAPTER H
 
 
@@ -1901,20 +2316,50 @@ Repository source map
  Cerebro/Cerebro/ROBAutonomyCoordinator.swift     Session-bounded local autonomy.
  Cerebro/Cerebro/ROBAI.swift                      Optional multimodal Gemini path.
  Cerebro/Cerebro/GeminiRoboticsProtocol.swift     Versioned high-level action protocol.
- Cerebro/Cerebro/KeyframeAnimationManager.swift   Persisted animation data.
- Cerebro/docs                                     Current transport, video, depth, autonomy, and Gemini design
-                                                  notes.
- ROBController/Consciousness                      iPhone/iPad UI, control payload, pairing, Watch relay, action con-
-                                                  sole.
- ROBController/Consciousness-Watch Watch App      Watch user interface and relay intent.
- ROBControllerVision                              Vision Pro controller, simulator, secure adapter, video decoder,
-                                                  tests.
- M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar         Slamware acquisition and typed lidar publisher.
+
+
+
+Advanced software source map
 
 
 
 
-                                                           61
+                                                           69
+BUILDING R.O.B.                                                                              COMPLETE FIELD MANUAL - ADVANCED
+
+
+
+
+  RELATIVE PATH                                    PUBLICATION USE
+  Cerebro/Cerebro/ROBSceneSnapshot.swift           Typed people, object, free-space, arm/camera-pose, quality, and
+                                                   confidence boundary for models.
+  Cerebro/Cerebro/ROBMLXRuntime.swift              Actor-owned local LLM, VLM sampling, embeddings, bounded se-
+                                                   mantic memory, and diagnostics.
+  Cerebro/Cerebro/ROBVideoProtocol.swift           RVID/RBVD video framing, negotiation, limits, codec configuration,
+                                                   and access units.
+  Cerebro/Cerebro/ROBCameraH264Encoder.swift       VideoToolbox NV12 scaling, real-time H.264 encoding, SPS/PPS,
+                                                   AVCC, and recovery output.
+  Cerebro/Cerebro/ROBVideoServer.swift             Authenticated session-bound video subscriptions, bounded send
+                                                   state, feedback, and liveness.
+  Cerebro/Cerebro/ROBStageShow*.swift              Strict show schema, cancellable cue state machine, local/cloud fall-
+                                                   back, and diagnostics.
+  Cerebro/Cerebro/ROBSaberChoreography.swift       Allow-listed progressive training transforms and duration profiles.
+  Cerebro/Cerebro/KeyframeAnimationManager.swift   Persisted animation data.
+  Cerebro/docs                                     Current transport, video, depth, autonomy, and Gemini design
+                                                   notes.
+  ROBController/Consciousness                      iPhone/iPad UI, control payload, pairing, Watch relay, action con-
+                                                   sole.
+  ROBController/Consciousness-Watch Watch App      Watch user interface and relay intent.
+  ROBControllerVision                              Vision Pro controller, simulator, secure adapter, video decoder,
+                                                   tests.
+  ROBControllerVision/.../ROBVideoPipeline         H.264 validation, SPS/PPS format construction, AVCC sample
+                                                   buffers, renderer recovery, and bounded synthetic fixtures.
+  M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar         Slamware acquisition and typed lidar publisher.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        70 / 71
 CHAPTER I
 
 
@@ -1938,11 +2383,12 @@ plan.
 
    Work through the Builder input ledger with the machine physically available. Replace placeholders with mea-
    sured values, drawings, test reports, verified captions, and contributor stories. Then tag the source snapshot,
-   rebuild all six PDFs, and perform a page-by-page technical and print proof before the Maker Faire print run.
+   rebuild all nine PDFs, and perform a page-by-page technical and print proof before the Maker Faire print run.
 
 Source trail: This field manual was synthesized from the local ROB presentation, private photo originals and metadata, Arduino firmware and hardware references,
-and current Cerebro, ROBController, ROBControllerVision, and RPLidar repositories inspected on 2026-08-02.
+and current Cerebro, ROBController, ROBControllerVision, AMBER, and RPLidar repositories. The software consolidation and advanced video pass was completed
+on 2026-08-11.
 
 
-                                                                               62
+                                                                               71
 

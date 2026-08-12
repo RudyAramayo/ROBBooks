@@ -1,0 +1,7 @@
+model text/tool suggestion
+        ↓ strict decoding
+typed proposal
+        ↓ policy and operator approval
+bounded action state machine
+        ↓ hardware-specific executor
+measured result or explicit unavailable

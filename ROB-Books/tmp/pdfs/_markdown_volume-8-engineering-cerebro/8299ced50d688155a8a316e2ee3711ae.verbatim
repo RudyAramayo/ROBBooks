@@ -1,0 +1,6 @@
+ROBSerialBox façade for existing outlets/selectors
+├── ROBBaseSerialChannel
+├── ROBMaestroChannel
+├── ROBTicWaistController
+├── ROBAmberArmGatewayClient
+└── ROBControllerCommandArbiter

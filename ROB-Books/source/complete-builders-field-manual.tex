@@ -8,7 +8,7 @@
 \ROBTitle{Building R.O.B. - Complete Field Manual}{BUILDING R.O.B.}{The complete maker's field manual: fabrication, circuits, firmware, Mac software, perception, control, and operations}{Advanced evidence draft with builder placeholders}{2025-rob-side-full-body.jpg}
 
 \ROBFrontMatter{An honest build record}{Complete in scope, intentionally incomplete where the archive cannot prove the detail.}{%
-This manual connects ROB's 95-page design presentation, private construction-photo archive, Arduino base firmware, motor references, and current Mac, iPhone, Watch, Vision Pro, lidar, camera, speech, autonomy, and AI source trees.
+This manual connects ROB's 95-page design presentation, private construction-photo archive, Arduino base firmware, motor references, and current Mac, iPhone, Watch, Vision Pro, lidar, RGB-D camera, serial, MLX/VLM, Gemini, stage-show, arm, autonomy, H.264, and secure-control source trees.
 
 It is a first evidence-based edition, not a stamped mechanical design, production wiring schematic, safety certification, or permission to energize the machine. Use the status labels on every subsystem. Replace each Builder input needed box with measured, reviewed information as the book iterates.
 
@@ -35,10 +35,11 @@ ROB combines large batteries, high-current brushless motors, chains, treads, fli
 
 \ROBArduinoStatus
 \ROBAmberStatus
+\ROBSourceRoot
 
 \section*{Source snapshot and publication cautions}
 
-The software was inspected on 2 August 2026. Cerebro contains uncommitted Gemini and autonomy changes, so publication should record a tag or commit after the builder selects a release. Original gallery photographs were converted with orientation applied and metadata stripped. Attendee photographs, especially images containing children, require release review or careful exclusion.
+The initial evidence pass began on 2 August 2026; the consolidated Cerebro, Vision Pro, local-model, stage-show, AMBER, and advanced video pass reflects the working trees inspected through 11 August 2026. Active changes still require an explicit tag or commit before publication. Original gallery photographs were converted with orientation applied and metadata stripped. Attendee photographs, especially images containing children, require release review or careful exclusion.
 
 The archived B-COMMAND document prohibits reproduction without permission, and the HengDrive outline is marked proprietary and confidential. This manual does not reproduce or paraphrase their specifications. It mentions the motor-family label visible in a builder-owned photograph only to identify the open evidence gap. Obtain permission and a current authorized public datasheet before publication.
 
@@ -365,6 +366,7 @@ A physical E-stop should be independent of the UI and ordinary network. Its desi
 \ROBChapterPhoto{Chapter 7}{Arduino base controller}{2024-dense-internal-routing.jpg}
 
 \chapter{Base electronics and firmware}
+\ROBSourceNow{ROBArduino/ROBOT_CEREBELLULAR_BASE_APP/ROBOT_CEREBELLULAR_BASE_APP.ino}{This is the current firmware reference for the entire chapter. Torso and Head sketches are cited only where their retired behavior is being compared.}
 
 \section{Three historical roles, one present role}
 
@@ -485,6 +487,7 @@ A modern base controller should contain:
 \ROBChapterPhoto{Chapter 8}{Cerebro on macOS}{2022-fanless-computer-and-serial.jpg}
 
 \chapter{Central coordination on the Mac mini}
+\ROBSourceNow{Cerebro/Cerebro/ROBMainViewController.mm}{This chapter begins at Cerebro's coordinator, then names each helper source as ownership crosses into serial, camera, autonomy, AI, or animation code.}
 
 Cerebro is a mixed Swift, Objective-C, and Objective-C++ macOS application. Its central view/controller layer coordinates UI state while specialized components own serial, camera, speech, autonomy, security, and animation.
 
@@ -511,6 +514,15 @@ AutoNet shared/transport files & ROBControl v2 framing, pairing, roles, session 
 
 Cerebro evaluates controller snapshots on a timer running at about 10 Hz and treats a snapshot as stale once its local receipt age exceeds 0.6 seconds. On the first transition from fresh to stale, it writes one neutral/braked serial frame, stops USB refresh, releases control authority, and allows the Arduino heartbeat to expire. This is a time-based gate, not a fixed count of three missed messages. The layered behavior is stronger than either deadline alone, but the Arduino's own elapsed time and physical stop result still require measurement.
 
+\section{ROBSerialBox as an integration history}
+\ROBSourceNow{Cerebro/Cerebro/ROBSerialBox.m}{Read \texttt{initialize\_connection}, \texttt{usbSerialPortPaths}, \texttt{connectToDetectedBase}, \texttt{probeBaseFirmwareAtPath}, \texttt{consumeBaseSerialBytes}, the Vision neck/torso methods, and \texttt{stopBaseMotionAndDropHeartbeat} together.}
+
+\texttt{ROBSerialBox} is the current physical-I/O façade and an archaeological record. It contains Base, Maestro, Tic, AMBER, controller, and retired Head/Torso surfaces. At startup every POSIX descriptor receives the closed sentinel $-1$. Base discovery enumerates only USB callout devices, opens candidates at 250,000 baud, pulses DTR, sends no probe command bytes, and passively waits up to 15 seconds for the already-flashed firmware line \texttt{BEGIN BASE STARTUP SEQUENCE}. Hub-dependent \texttt{/dev/cu.*} names therefore need not be stored. The banner identifies a firmware role; it does not authenticate the board or verify wiring.
+
+Serial reads are arbitrary byte chunks, not messages. Cerebro accumulates bounded data, extracts newline-delimited records, and then interprets them. It recognizes the existing front/back IR warning sentences and a bounded six-value numeric form when available. Legacy warning silence is reported as clearance unknown. Maestro selection instead uses USB vendor/product/interface identity, while the waist Tic path uses preflighted \texttt{ticcmd}; device discovery is protocol-specific rather than ``first port wins.''
+
+The next refactor should retain the existing Objective-C façade for Interface Builder while moving each descriptor, read loop, write queue, reconnect generation, and parser into a single-owner component. Checking \texttt{fd != -1} cannot by itself make a concurrent close/write atomic. This is the practical lesson behind historical \texttt{Bad file descriptor} floods.
+
 \section{External helpers and dependencies}
 
 The OAK-D path uses a supervised Python helper rather than loading DepthAI directly into the control process. Cerebro can select or create a Python environment and validate the required import. Optional Amber scripts and tools such as \texttt{sshpass} and \texttt{ticcmd} are preflighted; missing dependencies disable their feature instead of terminating the app.
@@ -525,11 +537,21 @@ Subprocess boundaries create explicit failure and update surfaces. The parent mu
 
 A malformed ROBControl header or frame can be rejected before application dispatch. A well-formed, authenticated envelope can still contain a malformed legacy controller payload, so the application adapter must validate that payload separately; transport authentication does not make its contents physically safe.
 
+\section{Typed scene state and local intelligence}
+\ROBSourceNow{Cerebro/Cerebro/ROBSceneSnapshot.swift}{Compare the latest-value snapshot store with \texttt{ROBMLXRuntime.swift}, \texttt{ROBMLXImprovisationProvider.swift}, and \texttt{ROBAI.swift}. None of these types is a real-time motor controller.}
+
+\texttt{SceneSnapshot} is the consolidation boundary for people, objects, gestures, depth/lidar free-space regions, arm joint pose, reverse camera pose, camera quality, timestamps, and confidence. Missing observations remain missing. Fresh lidar is retained only briefly; aligned depth is sampled in left/forward/right bands; language serialization labels the JSON as untrusted sensor data rather than instructions. A macOS 26 Foundation Models interpreter may return a typed high-level \texttt{AssistantIntent}, but not servo or tread values.
+
+The local \texttt{ROBMLXEngine} actor owns selected model containers, loading, diagnostics, sampled VLM observations, embeddings, and a process-local semantic store bounded to 200 entries. The inspected initial models are a four-bit Llama 3.2 1B instruct model, a four-bit Qwen2-VL 2B vision-language model, and a small GTE embedding model. The informal term ``VLX'' in project conversation refers to this MLX VLM path, not a separate framework. Camera admission is sampled on a multi-second interval and returns observation text only. It never calls motor code.
+
+Local improvisation must decode as one exact versioned JSON plan with allow-listed beat and delivery values. Gemini remains an optional cloud path with separately effective connection, microphone, camera, and action-tool switches. Both providers produce bounded proposals; deterministic policy, operator authority, and physical executors remain separate.
+
 \ROBPlaceholder{Tag the publication source; provide target macOS and hardware; identify enabled optional dependencies and versions; capture redacted current UI screenshots; document app startup/shutdown, serial-device names, selected Python runtime, and recovery after each subsystem fails.}
 
 \ROBChapterPhoto{Chapter 9}{Controllers and secure transport}{2024-open-tracked-base.jpg}
 
 \chapter{Control from iPhone, Watch, and Vision Pro}
+\ROBSourceNow{ROBController/Consciousness/AutoNetClient/AutoNetDataTransferProtocol.swift}{The client control contract is the anchor. Compare it with Cerebro's matching \texttt{AutoNetDataTransferProtocol.swift}; the sending UI is in \texttt{ConsciousViewController.mm}, Watch relay in its Watch app directory, and spatial client under \texttt{ROBControllerVision}.}
 
 \section{Controller roles}
 
@@ -570,15 +592,140 @@ The current active iPhone path requests Always location authorization and includ
 
 \ROBPlaceholder{Document exact controller release versions, supported OS/device matrix, pairing and revocation workflow, operator training, latency and packet-loss results, Wi-Fi/router configuration without secrets, public-location data policy, and current Vision Pro hardware validation.}
 
-\ROBChapterPhoto{Chapter 10}{Cameras, depth, lidar, and coordinate frames}{2022-oakd-depth-camera.jpg}
+\ROBChapterPhoto{Chapter 10}{Advanced H.264 video transport}{2022-oakd-depth-camera.jpg}
+
+\chapter{Encode, transport, decode, and present live video}
+\ROBSourceNow{Cerebro/Cerebro/ROBCameraH264Encoder.swift}{Follow one frame through \texttt{ROBVideoServer.swift} and \texttt{ROBVideoProtocol.swift}; then cross repositories into ROBControllerVision's \texttt{H264SampleBufferFactory.swift}, \texttt{H264VideoReceiver.swift}, transport decoder, and display-layer bridge.}
+
+This chapter consolidates the robot-side and Vision Pro books into one advanced media path. It describes the implemented initial profile, not a generic H.264 tutorial and not a promise of spatial video, audio, recording, HEVC, or unreliable datagrams.
+
+\section{The end-to-end frame pipeline}
+
+\begin{center}
+\begin{tikzpicture}[node distance=0.42cm and 0.24cm,every node/.style={font=\scriptsize}]
+\node[draw,rounded corners,fill=ROBCyan!10,minimum width=1.0in,minimum height=0.42in] (capture) {CMSampleBuffer};
+\node[draw,rounded corners,fill=ROBAmber!12,right=of capture,minimum width=0.98in,minimum height=0.42in] (scale) {NV12 + letterbox};
+\node[draw,rounded corners,fill=ROBAmber!12,right=of scale,minimum width=0.98in,minimum height=0.42in] (encode) {VideoToolbox H.264};
+\node[draw,rounded corners,fill=ROBCyan!10,below=of encode,minimum width=0.98in,minimum height=0.42in] (wire) {RVID / RBVD};
+\node[draw,rounded corners,fill=ROBCyan!10,left=of wire,minimum width=0.98in,minimum height=0.42in] (validate) {stream validator};
+\node[draw,rounded corners,fill=ROBGreen!12,left=of validate,minimum width=1.0in,minimum height=0.42in] (present) {sample renderer};
+\draw[->,thick] (capture) -- (scale);
+\draw[->,thick] (scale) -- (encode);
+\draw[->,thick] (encode) -- (wire);
+\draw[->,thick] (wire) -- (validate);
+\draw[->,thick] (validate) -- (present);
+\end{tikzpicture}
+\end{center}
+
+Camera capture produces a Core Media \texttt{CMSampleBuffer} containing a pixel buffer and timing. Cerebro retains only the newest offered raw sample while server work is pending. An accepted, authenticated subscription creates an encoder at the negotiated even width/height, frame rate, and bitrate. The initial published ceiling is 960 by 540, 20 frames/s, and 1.5 Mbit/s.
+
+\section{Scale into the encoder's pixel format}
+
+\texttt{ROBCameraH264Encoder} creates a \texttt{VTCompressionSession} whose destination buffers use video-range bi-planar 4:2:0 YCbCr (NV12). A reusable \texttt{VTPixelTransferSession} scales the source with letterboxing so aspect ratio is preserved. The compression-session pool supplies destination buffers; allocation uses a threshold of six so pressure becomes a dropped frame rather than unbounded buffer growth.
+
+At 20 fps, the target interval is 50 ms. Samples arriving sooner are intentionally skipped before conversion. A dropped allocation or compression result requests a future recovery key frame. Every completion object can be claimed once, preventing synchronous drop flags and an asynchronous VideoToolbox callback from delivering the same logical completion twice.
+
+\section{Configure low-latency H.264}
+
+The encoder requests real-time operation, disables frame reordering, prefers constrained baseline profile when supported, supplies expected frame rate and average bitrate, and limits the key-frame interval to approximately one second. Disabling reordering means this initial stream does not depend on B-frames; decode timestamps can remain invalid and presentation order follows the reliable stream.
+
+Each encoded result owns copied bytes rather than a borrowed VideoToolbox buffer. The encoder records a monotonically increasing access-unit sequence, capture time in Unix milliseconds, presentation time and duration in microseconds, synchronization/key-frame state, NAL-length width, SPS/PPS parameter sets when present, and one complete AVCC access-unit payload.
+
+\section{Understand AVCC, SPS, PPS, and access units}
+
+H.264 consists of Network Abstraction Layer (NAL) units. Annex-B streams separate NAL units with start codes such as \texttt{00 00 00 01}. This implementation does not transmit Annex-B. AVCC stores a big-endian byte length before each NAL unit. The receiver must use the negotiated length-field width; it must not search for start-code patterns inside compressed data.
+
+The Sequence Parameter Set (SPS) describes coded properties needed to construct a decoder format. The Picture Parameter Set (PPS) supplies picture-level decoding parameters. Cerebro sends them in a codec-configuration message with a positive generation before access units using that generation. A new configuration, encoder recovery, or requested key frame resends the configuration. An IDR key frame lets the decoder restart without depending on earlier reference pictures.
+
+\begin{advancedbox}
+Codec configuration is state, not decoration. A payload can be valid H.264 bytes yet undecodable with the wrong SPS/PPS, NAL-length width, dimensions, stream ID, or generation. Validate all of them before asking Core Media to allocate decoder state.
+\end{advancedbox}
+
+\section{Wrap media in two bounded layers}
+
+The outer ordered-stream frame is \texttt{RVID} version 1. Its 32-byte header carries magic, version, header length, message kind, bounded payload length, monotonic connection sequence, and reserved-zero fields. Authentication, capability, subscription, feedback, configuration, access-unit, and end messages receive distinct kinds.
+
+Encoded configuration and access units use an inner \texttt{RBVD} version-1 header of 92 bytes. It binds media to session UUID, subscription UUID, media sequence, capture time, presentation time, duration, timescale, codec-configuration generation, NAL-length width, flags, and payload length. Integers are network byte order. Current hard payload limits are 64 KiB for codec configuration and 2 MiB for one access unit; control JSON is capped at 64 KiB and rejects unknown fields.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries\color{ROBAccent}}p{1.2in} p{1.25in} X}
+\toprule
+BOUNDARY & PRIMARY CHECKS & WHY IT EXISTS\\
+\midrule
+TLS/QUIC & pinned identity, proof, role & Authentic peer and protected ordered bytes.\\
+RVID & magic, version, kind, length, sequence & Incremental connection framing before allocation.\\
+RBVD & IDs, codec, timing, generation, lengths & Media belongs to the negotiated live stream.\\
+AVCC & NAL lengths and configuration & Compressed payload can be reconstructed safely.\\
+Core Media & coded/presentation dimensions & SPS/PPS cannot silently exceed negotiated geometry.\\
+\bottomrule
+\end{tabularx}
+
+\section{Apply backpressure before latency accumulates}
+
+Video has its own listener, connections, queue, encoder, authentication domain, and send state. It never shares the control message queue. Cerebro permits only one pending raw source frame, one pending encoder output per subscription, and one media send in flight. If encoding or send work is occupied, newer unencoded work is dropped rather than queued. One actual encoded drop or undeliverable output forces a later IDR; replacing a not-yet-encoded raw frame does not break decoder references.
+
+Every RVID send has a ten-second completion deadline. A newly accepted stream has 15 seconds to produce its first frame, and a running stream may not remain silent beyond 15 seconds. A peer that stops reading loses the stream instead of retaining unlimited memory. At the published maximum, two viewers can still consume roughly 3 Mbit/s plus protocol overhead, so data-plane separation prevents queue coupling but not shared-radio contention.
+
+\section{Decode framing before decoding H.264}
+
+On Vision Pro, the Network.framework adapter first reconstructs complete RVID frames from arbitrary receive chunks. It rejects invalid magic, version, reserved bytes, payload sizes, and ordering before decoding JSON or RBVD. The media decoder then checks session ID, subscription ID, codec, configuration generation, sequence, timing, AVCC length width, and size. These checks occur before creating Core Media state.
+
+\texttt{H264SampleBufferFactory} sorts and extracts SPS/PPS, copies their bytes into temporary stable pointers, and calls \texttt{CMVideoFormatDescriptionCreateFromH264ParameterSets}. It verifies that coded dimensions remain within macroblock rounding of the negotiated size and that clean-aperture presentation dimensions match. This prevents hostile or corrupted parameter sets from expanding the decoder beyond the agreed geometry.
+
+For each accepted access unit, the factory allocates a \texttt{CMBlockBuffer}, copies the bounded AVCC payload, creates timing, and asks Core Media to create a ready sample buffer. The not-sync attachment mirrors the key-frame flag. The display-immediately attachment requests low-latency presentation rather than building a long presentation queue.
+
+\section{Present and recover without blocking control}
+
+The actor-owned \texttt{H264VideoReceiver} feeds an \texttt{AVSampleBufferVideoRenderer} obtained from the UI's display layer. If the renderer is temporarily full, it waits only about 50 ms in short cancellable intervals. Continued pressure drops the access unit and begins recovery rather than accumulating frames.
+
+Sequence gaps, missing configuration, generation mismatch, decoder failure, or \texttt{requiresFlushToResumeDecoding} make the validator require a key frame. Recovery flushes decoder presentation state, rate-limits key-frame feedback to no faster than 500 ms, and discards dependent frames until a valid key frame arrives. A configuration-generation change also flushes before accepting the new decoder state. Statistics report received, rendered, dropped, bytes, last sequence, and key-frame requests at a bounded update rate.
+
+\section*{Timing, reliability, and tradeoffs}
+
+Capture wall-clock time measures end-to-end age. Presentation timestamps provide an internal monotonic media timeline. Duration is derived from the negotiated frame rate. These clocks answer different questions and should not be substituted for one another.
+
+Ordered reliable QUIC simplifies configuration and access-unit ordering, but packet loss can delay later video bytes through head-of-line blocking. Because control uses another QUIC connection, video loss does not queue a stop command, although both flows share Wi-Fi airtime. Future QUIC datagrams would trade retransmission for application-managed loss recovery and require a new negotiated contract; they are not silently enabled by the current enum.
+
+\section{Advanced verification matrix}
+
+Test the media pipeline with synthetic frames before live hardware:
+
+\begin{itemize}
+  \item verify scaling, even dimensions, NV12 allocation limits, bitrate, frame-rate skipping, IDR interval, and SPS/PPS extraction;
+  \item reject truncated, oversized, mis-versioned, wrong-session, wrong-generation, unknown-field, and out-of-order messages before allocation;
+  \item inject access-unit loss and confirm one bounded recovery sequence and key-frame request;
+  \item change codec generation and confirm flush, reconfiguration, and key-frame resume;
+  \item stall the renderer and network independently and prove memory remains bounded;
+  \item close or revoke the control session and prove its video subscription ends;
+  \item measure capture-to-display age, encoded size, drops, recovery time, CPU/GPU use, thermal state, and control latency concurrently;
+  \item repeat camera unplug, app background, viewer close, and shutdown while a send and encode callback are in flight.
+\end{itemize}
+
+Volume 7 explains the Swift/visionOS client composition and user-facing display. Volume 8 explains Cerebro's broader camera and model scheduling. This chapter is the shared wire-level and Core Media reference.
+
+\ROBChapterPhoto{Chapter 11}{Cameras, depth, lidar, and coordinate frames}{2022-oakd-depth-camera.jpg}
 
 \chapter{Perception and mapping}
+\ROBSourceNow{Cerebro/Cerebro/CameraManager.swift}{Camera ownership starts here. Depth helpers remain in Cerebro; lidar transport and fixtures live in the separate RPLidar repository named in the repository source map.}
 
 \section{RGB-D camera}
 
 \Experimental\quad The current camera design runs a pinned DepthAI helper and sends timestamp-synchronized RGB plus depth through a private local Unix socket. RGB enters the existing sample-buffer, Vision, Gemini, and video path. Depth is little-endian UInt16 millimeters aligned to RGB; zero is invalid. AVFoundation remains an RGB-only fallback.
 
 The helper owns the OAK device exclusively. Old frames are dropped when perception is busy. Missing hardware, malformed IPC, SDK failure, or helper exit becomes camera state and bounded retry rather than a control-process crash.
+
+The helper uses DepthAI Camera, Depth, and Sync nodes, requests 640 by 400 undistorted RGB, aligns RAW16 millimeter depth to RGB, and emits a versioned \texttt{CDP1} packet over a private Unix socket. Cerebro validates dimensions, pixel formats, byte counts, and maximum allocation before constructing a CoreVideo buffer. The process boundary contains SDK and USB failure; a future native or XPC helper should preserve the same \texttt{CameraFrameSet} provider contract.
+
+\section{Perception snapshots and bounded rendering}
+
+Camera rate is not inference rate. Preview may consume the newest RGB frame while Vision pose detection, colored depth, point-cloud geometry, Gemini JPEG sampling, MLX VLM sampling, and H.264 encoding run at distinct bounded rates. Slow consumers use latest-value mailboxes. SceneKit reuses or replaces named node roots instead of appending forever; Core Image contexts and pixel-buffer pools are reused; model containers stay actor-owned.
+
+Profile repeated source toggles and 30-minute runs, not one still frame. Look for retained \texttt{CMSampleBuffer} objects, per-frame \texttt{CIContext} construction, ever-growing SceneKit textures or nodes, missing autorelease pools on Objective-C worker threads, duplicate model loads, and repeated diagnostics overwhelming the main thread.
+
+\section{Kinect, OpenNI, NiTE, and PCL archaeology}
+
+\Legacy\quad The \texttt{ROBNiTEManager}, \texttt{TaskControllers}, \texttt{FreenectPCL}, \texttt{k2g}, viewer, shader, serialization, and duplicated ``2'' files preserve an older Kinect/OpenNI/NiTE/PCL depth stack. They entered the present Git history in the 2025 initial import, which does not establish their original creation date. They are useful evidence for coordinate and visualization experiments, not the recommended OAK setup.
+
+Before removal, check Xcode target membership, runtime selectors, duplicated model provenance, and any coordinate knowledge that should move into tests or documentation. The modern DepthAI helper improves failure containment by placing the camera SDK and USB ownership outside the control process.
 
 \section{RPLidar}
 
@@ -612,9 +759,10 @@ Record axis direction, handedness, units, timestamp, calibration method, uncerta
 
 \ROBPlaceholder{Confirm current camera models, lenses, mounting transforms, USB/Ethernet topology, DepthAI version, exposure and lighting behavior, lidar model/host/address, installed map workflow, IR positions and shrouds, calibration targets, timestamp synchronization, frame conventions, and measured accuracy.}
 
-\ROBChapterPhoto{Chapter 11}{Arms, animation, speech, autonomy, and AI}{2025-detached-articulated-arm.jpg}
+\ROBChapterPhoto{Chapter 12}{Arms, animation, speech, autonomy, and AI}{2025-detached-articulated-arm.jpg}
 
 \chapter{Behavior above raw motor commands}
+\ROBSourceNow{Cerebro/Amber-PythonAPI/Amber V2 API/amber_api/amber_robot.py}{This is the readable high-level AMBER client. Compare its packed command files with the Ubuntu launch JSON and LCM schemas; the captured \texttt{amber\_core} executable is not open source in this snapshot.}
 
 \section{Servo and arm control}
 
@@ -644,6 +792,14 @@ URDF models provide link geometry, joint origins, axes, and limits, but they do 
 
 \Planned\quad General picking is intentionally unavailable. Missing prerequisites include calibrated camera-to-arm transforms, complete neck mapping, joint feedback, inverse kinematics, collision checking, grasp planning, and a verified executor.
 
+\section{Local MLX, comedy, and battle training}
+
+\ROBSourceNow{Cerebro/Cerebro/ROBStageShowCoordinator.swift}{Read the strict show protocol and fixture tests first, then compare \texttt{ROBMLXImprovisationProvider.swift}, \texttt{ROBSaberChoreography.swift}, and the JSON catalog under \texttt{StageShows}.}
+
+The stage-show coordinator is a cancellable state machine rather than a sequence of arbitrary shell or motor commands. Show JSON may request speech, waits, checkpoints, allow-listed gestures, and adaptive dialogue; it may not contain raw joints, hosts, ports, or shell commands. Dry Run has no side effects. Offline uses authored lines. Local mode may use a schema-validated MLX or loopback llama.cpp line. Adaptive mode may give a trusted local plan to Gemini, but timeout and failure fall back through validated local text to mandatory authored text. Late model completions are correlated and discarded.
+
+The comedy show demonstrates why fallback belongs to creative design: roughly ten minutes of timing cannot depend on one network or model response. Progressive saber training maps named profiles to bounded Cartesian transforms and duration. It must remain theatrical, slow, guarded choreography with soft props, a participant boundary, dry-run visualization, independent stop, transform, inverse-kinematics, and collision validation, and no autonomous contact. Vision may score timing or offer spoken coaching; pixels do not directly command the AMBER arms.
+
 \section{Robot-action implementation status}
 
 \begin{tabularx}{\textwidth}{>{\ttfamily\scriptsize}p{1.35in} p{1.35in} X}
@@ -668,7 +824,7 @@ Language-model confidence is not evidence of physical safety. Treat model output
 
 \part{Integration, operation, and maintenance}
 
-\ROBChapterPhoto{Chapter 12}{Verification before motion}{2022-tracked-base-front.jpg}
+\ROBChapterPhoto{Chapter 13}{Verification before motion}{2022-tracked-base-front.jpg}
 
 \chapter{Test strategy and safety case}
 
@@ -726,7 +882,7 @@ Use rated stands, restraints, remote observation, current limiting, a spotter, a
 
 \ROBPlaceholder{Insert the actual hazard analysis, operating envelope, requirements matrix, unit and fixture reports, current/thermal data, watchdog timing, E-stop test, stopping distances on hard floor and grass, slope tests, flipper/actuator load tests, arm collision tests, and sign-off authority.}
 
-\ROBChapterPhoto{Chapter 13}{Maker Faire operations}{2025-rob-side-full-body.jpg}
+\ROBChapterPhoto{Chapter 14}{Maker Faire operations}{2025-rob-side-full-body.jpg}
 
 \chapter{Present ROB safely in public}
 
@@ -772,7 +928,7 @@ Keep an accessible viewing route. Do not require visitors to step over cables. M
 
 \ROBPlaceholder{Insert venue-specific barrier dimensions, maximum public-demo speed, operator and spotter names, E-stop placement, battery/charging policy, transport vehicle and lift plan, insurance or venue requirements, photo/video release plan, privacy signage, scripted demonstrations, and abort criteria.}
 
-\ROBChapterPhoto{Chapter 14}{Maintenance and change control}{2025-rear-electronics-bay.jpg}
+\ROBChapterPhoto{Chapter 15}{Maintenance and change control}{2025-rear-electronics-bay.jpg}
 
 \chapter{Keep the robot understandable}
 
@@ -915,11 +1071,28 @@ Cerebro/Cerebro/CameraManager.swift & Camera, RGB-D helper, and bounded frame de
 Cerebro/Cerebro/ROBAutonomyCoordinator.swift & Session-bounded local autonomy.\\
 Cerebro/Cerebro/ROBAI.swift & Optional multimodal Gemini path.\\
 Cerebro/Cerebro/GeminiRoboticsProtocol.swift & Versioned high-level action protocol.\\
+\bottomrule
+\end{tabularx}
+
+\section*{Advanced software source map}
+
+\begin{tabularx}{\textwidth}{>{\ttfamily\scriptsize}p{2.65in} X}
+\toprule
+RELATIVE PATH & PUBLICATION USE\\
+\midrule
+Cerebro/Cerebro/ROBSceneSnapshot.swift & Typed people, object, free-space, arm/camera-pose, quality, and confidence boundary for models.\\
+Cerebro/Cerebro/ROBMLXRuntime.swift & Actor-owned local LLM, VLM sampling, embeddings, bounded semantic memory, and diagnostics.\\
+Cerebro/Cerebro/ROBVideoProtocol.swift & RVID/RBVD video framing, negotiation, limits, codec configuration, and access units.\\
+Cerebro/Cerebro/ROBCameraH264Encoder.swift & VideoToolbox NV12 scaling, real-time H.264 encoding, SPS/PPS, AVCC, and recovery output.\\
+Cerebro/Cerebro/ROBVideoServer.swift & Authenticated session-bound video subscriptions, bounded send state, feedback, and liveness.\\
+Cerebro/Cerebro/ROBStageShow*.swift & Strict show schema, cancellable cue state machine, local/cloud fallback, and diagnostics.\\
+Cerebro/Cerebro/ROBSaberChoreography.swift & Allow-listed progressive training transforms and duration profiles.\\
 Cerebro/Cerebro/KeyframeAnimationManager.swift & Persisted animation data.\\
 Cerebro/docs & Current transport, video, depth, autonomy, and Gemini design notes.\\
 ROBController/Consciousness & iPhone/iPad UI, control payload, pairing, Watch relay, action console.\\
 ROBController/Consciousness-Watch Watch App & Watch user interface and relay intent.\\
 ROBControllerVision & Vision Pro controller, simulator, secure adapter, video decoder, tests.\\
+ROBControllerVision/.../ROBVideoPipeline & H.264 validation, SPS/PPS format construction, AVCC sample buffers, renderer recovery, and bounded synthetic fixtures.\\
 M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar & Slamware acquisition and typed lidar publisher.\\
 \bottomrule
 \end{tabularx}
@@ -934,9 +1107,9 @@ Before public printing, complete image releases, confirm third-party product-ima
 
 \vfill
 \begin{missionbox}[title={NEXT ITERATION}]
-Work through the Builder input ledger with the machine physically available. Replace placeholders with measured values, drawings, test reports, verified captions, and contributor stories. Then tag the source snapshot, rebuild all six PDFs, and perform a page-by-page technical and print proof before the Maker Faire print run.
+Work through the Builder input ledger with the machine physically available. Replace placeholders with measured values, drawings, test reports, verified captions, and contributor stories. Then tag the source snapshot, rebuild all nine PDFs, and perform a page-by-page technical and print proof before the Maker Faire print run.
 \end{missionbox}
 
-\ROBSource{This field manual was synthesized from the local ROB presentation, private photo originals and metadata, Arduino firmware and hardware references, and current Cerebro, ROBController, ROBControllerVision, and RPLidar repositories inspected on 2026-08-02.}
+\ROBSource{This field manual was synthesized from the local ROB presentation, private photo originals and metadata, Arduino firmware and hardware references, and current Cerebro, ROBController, ROBControllerVision, AMBER, and RPLidar repositories. The software consolidation and advanced video pass was completed on 2026-08-11.}
 
 \end{document}

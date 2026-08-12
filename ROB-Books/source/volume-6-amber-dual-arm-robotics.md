@@ -1,5 +1,7 @@
 # The arm system we actually have
 
+> **SOURCE TRAIL — ANALYZING NOW:** `AmberHomeFolder/amber/L-10/launch.json` and `AmberHomeFolder/amber/R-11/launch.json`. This chapter derives the left/right topology from those two captured configuration files.
+
 ROB's manipulation system is not one abstract “robot arm.” It is two AMBER B1 arms, each with seven revolute joints and a gripper actuator. The inspected Ubuntu snapshot names the deployed sides `L-10` and `R-11`. Their current launch files separate the sides at every important boundary:
 
 | Concern | Left arm | Right arm |
@@ -89,6 +91,8 @@ Keep this manifest beside the deployment package, not inside an unfiltered home-
 
 # URDF is a geometric sentence
 
+> **SOURCE TRAIL — ANALYZING NOW:** `amber_b1.urdf` in the `Amber URDF` folder defines the independent arm. `DualArm.urdf` in the captured `urdf/dual_b1` folder defines the combined model. The code map supplies full paths and side-specific alternatives.
+
 A Unified Robot Description Format file is XML that describes a tree of **links** connected by **joints**. Links carry visual geometry, collision geometry, and optionally mass and inertia. Joints name a parent link, child link, origin transform, axis, type, and limits. Together they let visualization, forward kinematics, inverse kinematics, motion planning, and collision tools speak about the same mechanism.
 
 A URDF answers “where would the next link be if this joint had a known angle?” It does not, by itself, answer:
@@ -164,6 +168,8 @@ Validate the transform with several poses, not only a home pose. Compare predict
 
 # CAN: stable identity before traffic
 
+> **SOURCE TRAIL — ANALYZING NOW:** `initCan.sh` in `amber_core/init` and its adjacent `SerialNumber.txt`. An older `amber/initCAN.sh` also exists; compare rather than merging their assumptions. The code map gives both full paths.
+
 Linux may assign `/dev/ttyACM0`, `/dev/ttyACM1`, and later numbers according to discovery order. Moving a USB adapter to another hub can reorder them. The archived improved initialization script addresses this by reading each adapter's USB serial number, looking it up in `SerialNumber.txt`, and binding the matching adapter to a stable SocketCAN name such as `can10` or `can11`.
 
 The script then runs `slcand` with `-o -c -s8`, brings the interface up, and sets transmit queue length to 1000. Preserve the exact adapter option as an observed configuration value; verify its bitrate meaning against the installed adapter and `slcand` version before connecting hardware.
@@ -192,6 +198,8 @@ For each side test and record: adapter absent at boot, swapped adapters, duplica
 
 # Configure one core per side
 
+> **SOURCE TRAIL — ANALYZING NOW:** return to the two `launch.json` files. The executables beside them are captured binaries, not readable source; the book documents their configured boundary without claiming to analyze their internal CAN implementation.
+
 Both current launch files select `CAN_BUS`, seven degrees of freedom, a 200 Hz control frequency, gear ratios of 50, a gripper numbered 8, Drake solving, UDP, and ROS 2. Their maximum-velocity, acceleration, and jerk arrays are controller configuration units. The files do not prove those values are safe physical SI limits.
 
 Important left settings are:
@@ -217,6 +225,8 @@ UDP_Port: 26002
 Keep separate working directories if the executable resolves the URDF path relative to its current directory. Capture standard output and standard error under a supervised service. Give each core its own non-root account where possible, explicit working directory, read-only configuration, restart policy, resource limits, and dependency on its CAN interface. Do not automatically restart into an energized motion mode.
 
 # The observed UDP protocol
+
+> **SOURCE TRAIL — ANALYZING NOW:** `amber_robot.py` in Cerebro's AMBER V2 API provides the high-level wrapper. Exact packed structures live in its `basic_cmd` directory: `cmd_1.py`, `cmd_4.py`, `cmd_6.py`, `cmd_7.py`, `cmd_9.py`, `cmd_10.py`, and `cmd_110.py`.
 
 The V2 Python API uses packed `ctypes.Structure` records sent in UDP datagrams. Every observed message begins with:
 
@@ -268,6 +278,8 @@ A production adapter should:
 The older V1 examples commonly use port 25001, whereas the current two-core launch files use 26001 and 26002. Select ports from reviewed configuration, not from whichever example happens to run.
 
 # LCM and ROS 2 interfaces
+
+> **SOURCE TRAIL — ANALYZING NOW:** the captured `sin_wave/rawLcm` directory contains human-readable `.lcm` schemas. Nearby `lcmTypes` Python files are generated outputs; edit and regenerate from the schema definitions.
 
 The saved LCM configuration composes channels from a side prefix and suffix. Examples are `Left_PosCmd`, `Left_ArmStatus`, `Right_PosCmd`, and `Right_ArmStatus`. Other configured suffixes include position plans and tasks, inverse- and forward-kinematics tasks, solver responses, mode changes, and gripper control.
 
@@ -325,6 +337,8 @@ Run `ldd` on the core executables and record every resolved library, but do not 
 The safe logical order is network policy, CAN discovery, CAN validation, left core, right core, read-only status clients, operator UI, then a separately authorized mode transition. Shutdown reverses authority first: stop new commands, return through the documented mode procedure, verify the result, stop clients and cores, then isolate energy according to the hardware procedure.
 
 # A status-only Python lesson
+
+> **SOURCE TRAIL — ANALYZING NOW:** import behavior comes from `amber_api/__init__.py` and `amber_robot.py` inside Cerebro's AMBER V2 API. Read the directory-local `README.md` and `LICENSE` before installing or redistributing it.
 
 Use the repository's reviewed V2 package rather than reproducing packet layouts in multiple applications. The first test should only request state:
 
@@ -387,6 +401,8 @@ Only after both single-arm cases pass should a planner own both arms in one coll
 Collect one synchronized incident bundle: UTC time, host manifest, core hashes, launch hashes, interface statistics, process status, sanitized logs, request counter, response source, operator action, and physical observation. Never collect private keys or passwords into a diagnostic archive.
 
 # Connect the arms to Cerebro responsibly
+
+> **SOURCE TRAIL — ANALYZING NOW:** Cerebro has one AMBER V2 directory under `TaskControllers` and another under `Amber-PythonAPI`. The chapter recommends consolidating these entry points. The code map prints both exact paths.
 
 Cerebro should expose one typed arm service rather than launching miscellaneous Python scripts with implicit addresses. Its interface should name side, joint, units, duration, correlation identifier, desired mode, deadline, and operator authority. Returned state should include measured joint position, velocity, current/status when available, receive time, source, mode, and confidence in calibration.
 

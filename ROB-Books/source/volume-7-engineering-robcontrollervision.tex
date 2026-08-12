@@ -1,0 +1,53 @@
+\documentclass[10pt,openany]{book}
+\usepackage{robbook}
+\usepackage[
+  contentBlocks,
+  fencedCode,
+  pipeTables,
+  relativeReferences,
+  smartEllipses,
+  strikeThrough,
+  tableCaptions,
+  taskLists,
+  texMathDollars,
+  tightLists=false
+]{markdown}
+
+\SetROBAccent{ROBCyan}
+\SetROBVolume{VOLUME 7 - SWIFT DEVELOPERS}{ENGINEERING ROBCONTROLLERVISION}
+\SetROBChapterPrefix{Chapter}
+\lstdefinelanguage{text}{}
+\lstdefinelanguage{swift}{}
+\lstdefinelanguage{json}{}
+
+\hypersetup{
+  pdftitle={Building R.O.B. Volume 7: Engineering ROBControllerVision},
+  pdfauthor={Rodolfo Aramayo / Orbitus Robotics},
+  pdfsubject={An implementation-level Swift and visionOS guide to spatial robot control, secure transport, video, controller input, and speech},
+  pdfkeywords={Swift, visionOS, Vision Pro, GameController, ARKit, Network framework, QUIC, H.264, AVFoundation, Speech}
+}
+
+\begin{document}
+
+\ROBTitle{Building R.O.B. - Volume 7}{ENGINEERING ROBControllerVision}{Swift 6, spatial input, secure transport, H.264 video, and speech}{An implementation-level guide for Swift developers}{rob-system-cutaway-lesson.png}
+
+\ROBFrontMatter{Write the controller as a safety-critical distributed client}{A beautiful spatial interface still needs strict state, time, identity, and ownership boundaries.}{%
+This volume reads the current ROBControllerVision source as a serious Swift codebase. It explains why types live in the application or package, how actor isolation and structured concurrency protect lifecycle state, how controller and head pose become leased demands, how authenticated control and video remain separate, how H.264 reaches an AVSampleBufferDisplayLayer, and how explicit microphone capture becomes bounded text rather than raw audio streaming.
+
+Paths are relative to the inspected workspace. Every chapter names the exact source files being analyzed. Code changes after this edition must be checked against the repository, tests, SDK documentation, and physical robot behavior.
+}
+
+\begin{safetybox}[title={A VISION PRO APP IS NOT THE ROBOT'S FINAL SAFETY LAYER}]
+Client-side arming, dead-man evaluation, leases, and emergency-stop commands are valuable but cannot stop hardware after every possible network, process, power, or actuator failure. Cerebro and lower layers must reject stale input and stop independently. A verified physical emergency stop and controlled test procedure remain mandatory.
+\end{safetybox}
+
+\ROBSeriesMap{This is a code-reading and implementation book. Keep the repository open beside the PDF, run package tests after each domain change, compile the visionOS target, and use the simulator before attempting a two-device or powered-hardware test.}
+\ROBSourceRoot
+
+\tableofcontents
+\clearpage
+\mainmatter
+
+\markdownInput{volume-7-engineering-robcontrollervision.md}
+
+\end{document}

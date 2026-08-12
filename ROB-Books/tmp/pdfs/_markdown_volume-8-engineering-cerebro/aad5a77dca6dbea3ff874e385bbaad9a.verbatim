@@ -1,0 +1,5 @@
+xcodebuild -project Cerebro.xcodeproj \
+  -scheme Cerebro -configuration Debug \
+  -destination 'platform=macOS' \
+  -derivedDataPath /tmp/CerebroDerivedData \
+  CODE_SIGNING_ALLOWED=NO build

@@ -41,7 +41,7 @@ Do not copy these files into a print package. If the builder wants their subject
 
 ## Original generated illustrations
 
-Six bitmap illustrations were generated with OpenAI's image-generation tooling. The first two were created on 2026-08-02; four educational plates were created on 2026-08-10. They are captioned as conceptual storytelling, not engineering evidence.
+Fourteen bitmap illustrations were generated with OpenAI's image-generation tooling. The first two were created on 2026-08-02; four educational plates were created on 2026-08-10; and eight additional system, dual-arm, Cerebro, and standalone story illustrations were created on 2026-08-11. They are captioned as conceptual storytelling, not engineering evidence.
 
 ### `assets/generated/rob-used-future-frontispiece.png`
 
@@ -65,6 +65,21 @@ The images are reinterpretations for atmosphere. Real photographs, measured draw
 - `rob-safe-autonomy-lab.png` — perception, planning, authority, separate data paths, freshness, watchdogs, and physical stop layers.
 
 All four use a scientific-educational prompt derived from the established visual direction and reference ROB's real appearance. Shared constraints required painterly gouache with crisp technical linework, a warm cream retro workshop, charcoal/amber/cyan/violet/green safety palette, no brands or franchise elements, no credentials or as-built wiring claims, and explicit symbolic rather than evidentiary pathways. The Mission Control plate received a targeted edit to remove a generated person and readable labels, replacing them with an unoccupied console and nonverbal icons. Built-in image generation was used; final project assets are the files listed above.
+
+### 2026-08-11 system plates
+
+- `rob-system-cutaway-lesson.png` — conceptual cutaway of a tracked two-arm robot with cyan information paths and amber energy paths; used as Volume 7's Swift-controller cover rather than as-built evidence.
+- `rob-dual-arm-feedback-lesson.png` — conceptual two-arm joint, camera-marker, command, and feedback composition for future unique AMBER illustrations.
+
+Both were produced with the built-in image-generation tool in the established scientific-educational, warm-cream, charcoal, amber, and cyan visual language. Prompts prohibited text, logos, watermarks, copyrighted characters, and claims of exact physical construction.
+
+### `assets/generated/cerebro-perception-control-lesson.png`
+
+This Volume 8 plate was generated with the built-in image-generation tool as a conceptual portrait of Cerebro's bounded data flow: camera and depth perception, serial hardware, local MLX language and vision models, optional cloud reasoning, guarded actuation, stage-show behavior, and a separate spatial-controller link. The scientific-educational prompt requested retro-futurist gouache and crisp linework in charcoal, cream, cyan, amber, and restrained green, with no text, logos, watermarks, franchise material, literal UI, or claim of exact construction. It is teaching art, not a wiring diagram or screenshot.
+
+### Standalone story: `rob-little-helper-*.png`
+
+Five illustrations were generated with the built-in image-generation tool for *ROB and the Lost Yellow Ball*: the morning workshop cover, the puddle problem, the careful bridge-and-ball solution, the puppy reunion, and the goodnight scene. The cover established a simple child-friendly ROB with a charcoal rectangular body, two cyan eyes, a central camera, gentle grippers, and tank treads. Each subsequent prompt used that file as a character/style reference and requested a new scene in warm hand-painted gouache with large rounded forms, soft paper texture, no text or logos, no people, no exposed dangerous wiring, and no frightening or franchise imagery. These scenes are imaginary storytelling, not evidence of ROB's exact construction or safe autonomous capability.
 
 ## Visual identity
 

@@ -1,0 +1,291 @@
+\documentclass[14pt,openany]{book}
+\usepackage{robbook}
+\SetROBAccent{ROBGreen}
+\SetROBVolume{A STANDALONE READ-ALOUD STORY}{ROB AND THE LOST YELLOW BALL}
+\SetROBChapterPrefix{Story}
+
+\hypersetup{
+  pdftitle={ROB and the Lost Yellow Ball},
+  pdfauthor={Rodolfo Aramayo / Orbitus Robotics},
+  pdfsubject={A gentle robot story for children ages five and six},
+  pdfkeywords={robot, picture book, children, kindness, sensing, planning, safety}
+}
+
+\newcommand{\StoryPage}[2]{%
+  \clearpage\thispagestyle{empty}
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[#1!9] ([xshift=0.28in,yshift=0.28in]current page.south west)
+      rectangle ([xshift=-0.28in,yshift=-0.28in]current page.north east);
+  \end{tikzpicture}
+  \vspace*{0.9in}
+  \begin{center}
+    \begin{minipage}{0.84\textwidth}
+      \centering\robdisplay\bfseries\fontsize{27}{34}\selectfont\color{ROBInk}#2
+    \end{minipage}
+  \end{center}
+}
+
+\newcommand{\PicturePage}[2]{%
+  \clearpage\thispagestyle{empty}
+  \begin{tikzpicture}[remember picture,overlay]
+    \node[inner sep=0] at (current page.center)
+      {\includegraphics[width=\paperwidth,height=\paperheight,keepaspectratio]{#1}};
+    \fill[ROBInk,opacity=0.76]
+      ([yshift=0.42in]current page.south west)
+      rectangle ([yshift=1.72in]current page.south east);
+    \node[text width=6.8in,align=center,text=white,font=\robdisplay\bfseries\fontsize{22}{27}\selectfont]
+      at ([yshift=1.03in]current page.south) {#2};
+  \end{tikzpicture}
+  \null
+}
+
+\newcommand{\CircleStep}[4]{%
+  \node[draw=#1!85!black,fill=#1!15,circle,minimum size=1.22in,
+    align=center,font=\robdisplay\bfseries\fontsize{14}{16}\selectfont] (#2) at #3 {#4};
+}
+
+\begin{document}
+
+\ROBTitle{A STORY ABOUT R.O.B.}{ROB AND THE LOST YELLOW BALL}{A little robot stops, looks, thinks, and helps}{Ages 5--6 • Read aloud together}{rob-little-helper-cover.png}
+
+\clearpage\thispagestyle{empty}
+\vspace*{0.55in}
+\begin{center}
+{\robdisplay\bfseries\fontsize{24}{29}\selectfont A note for grown-ups}\par
+\vspace{0.25in}
+\begin{minipage}{0.79\textwidth}
+\fontsize{14}{21}\selectfont
+This is an imaginary story inspired by the real ROB. The pictures are gentle illustrations, not build plans.
+
+Read slowly. Let your child point, predict, count, and make ROB's sounds. Ask, ``What should ROB do next?''
+
+The repeating idea is simple:
+
+\begin{center}
+\robdisplay\bfseries\color{ROBGreen}
+STOP • LOOK • THINK • CHOOSE • CHECK
+\end{center}
+
+ROB is a helper, but a trusted grown-up is always responsible for a real robot.
+\end{minipage}
+\end{center}
+
+\StoryPage{ROBCyan}{This is ROB.\\[12pt]
+ROB has bright blue eyes,\\
+two gentle hands,\\
+and rumbling treads.}
+
+\clearpage\thispagestyle{empty}
+\vspace*{0.35in}
+\begin{center}
+{\robdisplay\bfseries\fontsize{25}{30}\selectfont What parts help ROB?}\par
+\vspace{0.35in}
+\begin{tikzpicture}[every node/.style={font=\robdisplay\bfseries}]
+  \node[draw=ROBSteel,fill=ROBGray!35,rounded corners=12pt,minimum width=3.0in,minimum height=1.25in] (head) at (0,2.1) {};
+  \fill[ROBCyan!55] (-0.72,2.2) circle (0.28);
+  \fill[ROBCyan!55] (0.72,2.2) circle (0.28);
+  \fill[ROBInk] (0,1.92) circle (0.10);
+  \node[draw=ROBSteel,fill=ROBGray!28,rounded corners=8pt,minimum width=2.45in,minimum height=1.55in] (body) at (0,0.55) {};
+  \draw[line width=10pt,ROBInk] (-0.8,-0.45) -- (-0.8,-1.25);
+  \draw[line width=10pt,ROBInk] (0.8,-0.45) -- (0.8,-1.25);
+  \draw[->,line width=2pt,ROBAmber] (-2.5,2.8) -- (-0.9,2.35);
+  \node[anchor=east,text=ROBAmber!70!black] at (-2.55,2.8) {EYES SEE};
+  \draw[->,line width=2pt,ROBGreen] (2.55,1.0) -- (1.2,0.8);
+  \node[anchor=west,text=ROBGreen!70!black] at (2.6,1.0) {BODY THINKS};
+  \draw[->,line width=2pt,ROBCyan] (-2.5,-1.3) -- (-1.05,-1.1);
+  \node[anchor=east,text=ROBCyan!70!black] at (-2.55,-1.3) {TREADS ROLL};
+\end{tikzpicture}
+\vspace{0.3in}
+
+{\fontsize{15}{21}\selectfont Point to ROB's eyes. Point to ROB's treads.}
+\end{center}
+
+\PicturePage{rob-little-helper-cover.png}{One sunny morning, ROB saw a yellow ball.\\``Beep-boop! A round surprise!''}
+
+\StoryPage{ROBAmber}{The ball rolled out the door.\\[12pt]
+Roll, roll, roll!\\[12pt]
+ROB rolled after it.\\
+Rumble, rumble, rumble!}
+
+\clearpage\thispagestyle{empty}
+\vspace*{0.55in}
+\begin{center}
+{\robdisplay\bfseries\fontsize{25}{30}\selectfont ROB's little loop}\par
+\vspace{0.45in}
+\begin{tikzpicture}
+  \CircleStep{ROBCyan}{see}{(-2.15in,0)}{SEE}
+  \CircleStep{ROBAmber}{think}{(0,0)}{THINK}
+  \CircleStep{ROBGreen}{move}{(2.15in,0)}{MOVE}
+  \draw[->,line width=3pt,ROBSteel] (see) -- (think);
+  \draw[->,line width=3pt,ROBSteel] (think) -- (move);
+  \draw[->,line width=3pt,ROBSteel,rounded corners=12pt]
+    (move.south) -- ++(0,-1.0) -| (see.south);
+\end{tikzpicture}
+\vspace{0.6in}
+
+{\fontsize{17}{24}\selectfont
+ROB looks.\\
+ROB thinks.\\
+ROB makes one small move.\\[10pt]
+Then ROB looks again.}
+\end{center}
+
+\PicturePage{rob-little-helper-puddle.png}{Splash? No, thank you!\\ROB stopped before the puddle.}
+
+\StoryPage{ROBCyan}{ROB did not guess.\\[12pt]
+ROB looked left.\\
+ROB looked right.\\
+ROB looked at the water.}
+
+\clearpage\thispagestyle{empty}
+\vspace*{0.45in}
+\begin{center}
+{\robdisplay\bfseries\fontsize{25}{30}\selectfont What did ROB notice?}\par
+\vspace{0.35in}
+\begin{tikzpicture}[font=\robdisplay\bfseries]
+  \node[draw=ROBCyan,fill=ROBCyan!12,rounded corners=16pt,minimum width=2.0in,minimum height=1.25in] (water) at (-2.1,1.3) {WATER};
+  \node[draw=ROBAmber,fill=ROBAmber!14,circle,minimum size=1.25in] (ball) at (2.1,1.3) {BALL};
+  \node[draw=ROBGreen,fill=ROBGreen!12,rounded corners=12pt,minimum width=2.1in,minimum height=1.2in] (dry) at (0,-1.0) {DRY PATH};
+  \draw[->,line width=2.5pt,ROBSteel] (water) -- (dry);
+  \draw[->,line width=2.5pt,ROBSteel] (ball) -- (dry);
+\end{tikzpicture}
+\vspace{0.55in}
+
+{\fontsize{17}{24}\selectfont
+The puddle was wet.\\
+The ball was far.\\
+The edge was dry.\\[8pt]
+``I need a careful plan,'' said ROB.}
+\end{center}
+
+\StoryPage{ROBPurple}{Then ROB heard a sound.\\[12pt]
+``Yip! Yip!''\\[12pt]
+A little puppy was looking\\
+for something round and yellow.}
+
+\clearpage\thispagestyle{empty}
+\vspace*{0.45in}
+\begin{center}
+{\robdisplay\bfseries\fontsize{25}{30}\selectfont ROB's careful plan}\par
+\vspace{0.35in}
+\begin{tikzpicture}[node distance=0.48in,font=\robdisplay\bfseries]
+  \node[draw=ROBRed,fill=ROBRed!12,rounded corners=10pt,minimum width=1.35in,minimum height=0.72in] (stop) {1. STOP};
+  \node[draw=ROBCyan,fill=ROBCyan!12,rounded corners=10pt,below=of stop,minimum width=1.35in,minimum height=0.72in] (look) {2. LOOK};
+  \node[draw=ROBAmber,fill=ROBAmber!12,rounded corners=10pt,below=of look,minimum width=1.35in,minimum height=0.72in] (think) {3. THINK};
+  \node[draw=ROBGreen,fill=ROBGreen!12,rounded corners=10pt,below=of think,minimum width=1.35in,minimum height=0.72in] (choose) {4. CHOOSE};
+  \node[draw=ROBPurple,fill=ROBPurple!10,rounded corners=10pt,below=of choose,minimum width=1.35in,minimum height=0.72in] (check) {5. CHECK};
+  \draw[->,line width=2pt,ROBSteel] (stop) -- (look);
+  \draw[->,line width=2pt,ROBSteel] (look) -- (think);
+  \draw[->,line width=2pt,ROBSteel] (think) -- (choose);
+  \draw[->,line width=2pt,ROBSteel] (choose) -- (check);
+\end{tikzpicture}
+\end{center}
+
+\PicturePage{rob-little-helper-bridge.png}{One board. Two boards.\\A little path over the puddle!}
+
+\StoryPage{ROBAmber}{ROB moved slowly.\\[12pt]
+Rumble… stop.\\
+Rumble… stop.\\[12pt]
+Look again.\\
+Everything was steady.}
+
+\clearpage\thispagestyle{empty}
+\vspace*{0.55in}
+\begin{center}
+{\robdisplay\bfseries\fontsize{25}{30}\selectfont Count with ROB}\par
+\vspace{0.55in}
+\begin{tikzpicture}[font=\robdisplay\bfseries]
+  \foreach \x/\n in {-2.4/1,0/2,2.4/3}{
+    \node[draw=ROBAmber,fill=ROBAmber!16,circle,minimum size=1.25in] at (\x,1.1) {\n};
+  }
+  \node at (-2.4,-0.15) {LOOK};
+  \node at (0,-0.15) {ROLL};
+  \node at (2.4,-0.15) {STOP};
+  \draw[->,line width=2.5pt,ROBGreen] (-1.65,1.1) -- (-0.75,1.1);
+  \draw[->,line width=2.5pt,ROBGreen] (0.75,1.1) -- (1.65,1.1);
+\end{tikzpicture}
+\vspace{0.65in}
+
+{\fontsize{18}{25}\selectfont
+How many little steps?\\[8pt]
+One. Two. Three.}
+\end{center}
+
+\PicturePage{rob-little-helper-friend.png}{``My ball!'' yipped the puppy.\\``Your ball,'' beeped ROB.}
+
+\StoryPage{ROBGreen}{The puppy's tail went\\
+swish-swish-swish!\\[12pt]
+ROB's blue eyes went\\
+blink-blink-blink!\\[12pt]
+Helping felt bright inside.}
+
+\clearpage\thispagestyle{empty}
+\vspace*{0.55in}
+\begin{center}
+{\robdisplay\bfseries\fontsize{25}{30}\selectfont A helper uses a loop}\par
+\vspace{0.45in}
+\begin{tikzpicture}[font=\robdisplay\bfseries]
+  \node[draw=ROBCyan,fill=ROBCyan!12,rounded corners=14pt,minimum width=2.0in,minimum height=1.0in] (notice) at (-2.3,1.0) {NOTICE};
+  \node[draw=ROBAmber,fill=ROBAmber!12,rounded corners=14pt,minimum width=2.0in,minimum height=1.0in] (choose) at (2.3,1.0) {CHOOSE};
+  \node[draw=ROBGreen,fill=ROBGreen!12,rounded corners=14pt,minimum width=2.0in,minimum height=1.0in] (check) at (0,-1.15) {CHECK};
+  \draw[->,line width=3pt,ROBSteel] (notice) -- (choose);
+  \draw[->,line width=3pt,ROBSteel] (choose) -- (check);
+  \draw[->,line width=3pt,ROBSteel] (check) -- (notice);
+\end{tikzpicture}
+\vspace{0.5in}
+
+{\fontsize{16}{23}\selectfont
+Did it work?\\
+Is everyone safe?\\
+What did we learn?}
+\end{center}
+
+\StoryPage{ROBCyan}{ROB and the puppy played.\\[12pt]
+The puppy nudged the ball.\\
+ROB nudged it back.\\[12pt]
+Softly. Slowly. Together.}
+
+\PicturePage{rob-little-helper-goodnight.png}{At sunset, ROB rolled home.\\``Goodnight, little friend.''}
+
+\StoryPage{ROBPurple}{ROB had found more\\
+than a yellow ball.\\[12pt]
+ROB had found a friend.\\[18pt]
+Beep-boop.\\
+The end.}
+
+\clearpage\thispagestyle{empty}
+\vspace*{0.45in}
+\begin{center}
+{\robdisplay\bfseries\fontsize{25}{30}\selectfont Talk about the story}\par
+\vspace{0.3in}
+\begin{minipage}{0.78\textwidth}
+\fontsize{16}{23}\selectfont
+\begin{enumerate}
+  \item What did ROB see?
+  \item Why did ROB stop?
+  \item What sound did the puppy make?
+  \item How many little steps did you count?
+  \item How did ROB check the plan?
+  \item What is one kind thing you can do?
+\end{enumerate}
+\end{minipage}
+\vspace{0.35in}
+
+{\robdisplay\bfseries\fontsize{20}{24}\selectfont Draw ROB helping someone!}
+\end{center}
+
+\clearpage\thispagestyle{empty}
+\vspace*{1.1in}
+\begin{center}
+{\robdisplay\bfseries\fontsize{27}{32}\selectfont ROB REMEMBERS}\par
+\vspace{0.55in}
+{\robdisplay\bfseries\fontsize{22}{30}\selectfont\color{ROBRed} STOP}\par
+{\robdisplay\bfseries\fontsize{22}{30}\selectfont\color{ROBCyan} LOOK}\par
+{\robdisplay\bfseries\fontsize{22}{30}\selectfont\color{ROBAmber} THINK}\par
+{\robdisplay\bfseries\fontsize{22}{30}\selectfont\color{ROBGreen} CHOOSE}\par
+{\robdisplay\bfseries\fontsize{22}{30}\selectfont\color{ROBPurple} CHECK}\par
+\vspace{0.6in}
+{\fontsize{15}{22}\selectfont A kind helper goes one careful step at a time.}
+\end{center}
+
+\end{document}

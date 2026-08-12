@@ -1,9 +1,9 @@
 \contentsline {chapter}{\numberline {1}A robot is more than a machine}{2}{chapter.1}%
 \contentsline {chapter}{\numberline {2}The skeleton and the shell}{6}{chapter.2}%
 \contentsline {chapter}{\numberline {3}Energy makes motion possible}{10}{chapter.3}%
-\contentsline {chapter}{\numberline {4}How ROB notices things}{12}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Commands travel in layers}{15}{chapter.5}%
-\contentsline {chapter}{\numberline {6}ROB's build timeline}{18}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Your first engineering log}{21}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Think like a systems detective}{23}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Uncertainty is useful information}{25}{chapter.9}%
+\contentsline {chapter}{\numberline {4}How ROB notices things}{13}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Commands travel in layers}{16}{chapter.5}%
+\contentsline {chapter}{\numberline {6}ROB's build timeline}{20}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Your first engineering log}{25}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Think like a systems detective}{27}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Uncertainty is useful information}{29}{chapter.9}%

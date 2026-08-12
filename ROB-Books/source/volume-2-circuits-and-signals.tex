@@ -15,6 +15,7 @@ Do not connect ROB's full-size batteries, motors, charger, or actuator from thes
 \ROBSeriesMap{Bring a notebook. For each activity, write your prediction, observation, and explanation. If the result surprises you, the experiment worked: you found something worth learning.}
 \ROBArduinoStatus
 \ROBAmberStatus
+\ROBSourceRoot
 
 \begin{safetybox}[title={ELECTRICAL LAB BOUNDARY}]
 For learner activities, use only an approved low-voltage classroom supply or the USB-powered Arduino setup selected by your teacher. Add current-limiting resistors to LEDs. Disconnect power before moving wires. ROB's high-current battery and motor circuits are adult-only systems that require fuses, a disconnect, insulated tools, proper wire sizing, and a tested physical emergency stop.
@@ -110,9 +111,10 @@ void loop() {
 }
 \end{lstlisting}
 
-\ROBChapterPhoto{Mission 3}{Read ROB's pin map}{2024-hengdrive-motor-label.jpg}
+\ROBChapterPhoto{Mission 3}{Read ROB's pin map}{rob-circuits-signals-lab.png}
 
 \chapter{The base controller's connections}
+\ROBSourceNow{ROBArduino/ROBOT_CEREBELLULAR_BASE_APP/ROBOT_CEREBELLULAR_BASE_APP.ino}{This is the present low-level firmware reference analyzed for pins, serial parsing, treads, flipper, actuator, IR inputs, IMU behavior, and watchdog logic.}
 
 \section*{Why the archive contains three names}
 
@@ -159,9 +161,10 @@ The source contains TODOs for three motor speed-sensor inputs, ramped motion, an
 
 \ROBPhoto[0.32\textheight]{2021-wiring-closeup.jpg}{A close view of an earlier wiring revision shows why every connector needs a name, destination, expected signal, safe state, and service plan.}
 
-\ROBChapterPhoto{Mission 4}{A command is a tiny data structure}{2022-fanless-computer-and-serial.jpg}
+\ROBChapterPhoto{Mission 4}{A command is a tiny data structure}{rob-circuits-signals-lab.png}
 
 \chapter{Decode the seven-field message}
+\ROBSourceNow{Cerebro/Cerebro/ROBSerialBox.m}{Read this beside the Base sketch: the Mac writes the text frame and the Arduino parses it. Neither half alone defines the complete exchange.}
 
 The base firmware waits for a tilde character, then reads seven signed, fixed-width text fields separated by commas:
 
@@ -245,7 +248,7 @@ if (millis() - lastGoodTime > COMMAND_DEADLINE_MS) {
 Write five valid and five invalid frames. Include a missing comma, a wrong sign, an extra digit, a letter, and an out-of-range speed. Trade with a partner and circle the first rule each invalid frame breaks.
 \end{buildbox}
 
-\ROBChapterPhoto{Mission 5}{Sensors are measurements, not truth}{2022-oakd-depth-camera.jpg}
+\ROBChapterPhoto{Mission 5}{Sensors are measurements, not truth}{rob-circuits-signals-lab.png}
 
 \chapter{IR distance and the IMU}
 
@@ -320,6 +323,7 @@ void loop() {
 \ROBPhoto[0.42\textheight]{2025-emergency-stop-and-arm.jpg}{Software deadlines and a physical emergency stop solve different failure problems. The visible button is evidence of hardware, not proof that the complete stop circuit has been verified.}
 
 \chapter{Read old code like an engineer}
+\ROBSourceNow{ROBArduino/ROBOT_CEREBELLULAR_TORSO_APP/ROBOT_CEREBELLULAR_TORSO_APP.ino}{This retired sketch is historical open-source evidence from the former three-Arduino architecture; it is not instructions to install another active controller.}
 
 Historical code is a laboratory notebook. It preserves successful ideas, unfinished experiments, and mistakes. Respect it by asking precise questions.
 

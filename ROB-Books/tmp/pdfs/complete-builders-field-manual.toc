@@ -34,59 +34,74 @@
 \contentsline {section}{\numberline {7.3}Serial frame}{28}{section.7.3}%
 \contentsline {section}{\numberline {7.4}Actuator compact serial}{28}{section.7.4}%
 \contentsline {section}{\numberline {7.5}IR and IMU status}{28}{section.7.5}%
-\contentsline {section}{\numberline {7.6}Safety and correctness audit}{28}{section.7.6}%
+\contentsline {section}{\numberline {7.6}Safety and correctness audit}{29}{section.7.6}%
 \contentsline {section}{\numberline {7.7}Replacement-firmware architecture}{29}{section.7.7}%
-\contentsline {part}{IV\hspace {1em}Software and perception}{30}{part.4}%
-\contentsline {chapter}{\numberline {8}Central coordination on the Mac mini}{32}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Principal components}{32}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Base heartbeat ownership}{32}{section.8.2}%
-\contentsline {section}{\numberline {8.3}External helpers and dependencies}{32}{section.8.3}%
-\contentsline {section}{\numberline {8.4}Legacy boundary}{33}{section.8.4}%
-\contentsline {chapter}{\numberline {9}Control from iPhone, Watch, and Vision Pro}{35}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Controller roles}{35}{section.9.1}%
-\contentsline {section}{\numberline {9.2}ROBControl v2}{35}{section.9.2}%
-\contentsline {section}{\numberline {9.3}Separate video service}{35}{section.9.3}%
-\contentsline {section}{\numberline {9.4}Safety timing layers}{36}{section.9.4}%
-\contentsline {section}{\numberline {9.5}Privacy review}{36}{section.9.5}%
-\contentsline {chapter}{\numberline {10}Perception and mapping}{38}{chapter.10}%
-\contentsline {section}{\numberline {10.1}RGB-D camera}{38}{section.10.1}%
-\contentsline {section}{\numberline {10.2}RPLidar}{38}{section.10.2}%
-\contentsline {section}{\numberline {10.3}IR and IMU}{38}{section.10.3}%
-\contentsline {section}{\numberline {10.4}Coordinate-frame discipline}{38}{section.10.4}%
-\contentsline {chapter}{\numberline {11}Behavior above raw motor commands}{41}{chapter.11}%
-\contentsline {section}{\numberline {11.1}Servo and arm control}{41}{section.11.1}%
-\contentsline {section}{\numberline {11.2}Keyframe animation}{41}{section.11.2}%
-\contentsline {section}{\numberline {11.3}Speech}{41}{section.11.3}%
-\contentsline {section}{\numberline {11.4}Controller-activated autonomy}{41}{section.11.4}%
-\contentsline {section}{\numberline {11.5}Gemini integration}{42}{section.11.5}%
-\contentsline {section}{\numberline {11.6}Robot-action implementation status}{42}{section.11.6}%
-\contentsline {part}{V\hspace {1em}Integration, operation, and maintenance}{44}{part.5}%
-\contentsline {chapter}{\numberline {12}Test strategy and safety case}{46}{chapter.12}%
-\contentsline {section}{\numberline {12.1}Requirements traceability}{46}{section.12.1}%
-\contentsline {section}{\numberline {12.2}Progressive test ladder}{46}{section.12.2}%
-\contentsline {section}{\numberline {12.3}Failure injection}{46}{section.12.3}%
-\contentsline {section}{\numberline {12.4}Measure stop behavior}{47}{section.12.4}%
-\contentsline {chapter}{\numberline {13}Present ROB safely in public}{49}{chapter.13}%
-\contentsline {section}{\numberline {13.1}Roles}{49}{section.13.1}%
-\contentsline {section}{\numberline {13.2}Pre-show checklist}{49}{section.13.2}%
-\contentsline {section}{\numberline {13.3}Show-state model}{49}{section.13.3}%
-\contentsline {section}{\numberline {13.4}Audience and privacy}{50}{section.13.4}%
-\contentsline {chapter}{\numberline {14}Keep the robot understandable}{52}{chapter.14}%
-\contentsline {section}{\numberline {14.1}Before and after every operating day}{52}{section.14.1}%
-\contentsline {section}{\numberline {14.2}Scheduled maintenance record}{52}{section.14.2}%
-\contentsline {section}{\numberline {14.3}Configuration control}{52}{section.14.3}%
-\contentsline {section}{\numberline {14.4}Troubleshooting by layer}{52}{section.14.4}%
-\contentsline {chapter}{\numberline {A}Teach the architecture without hiding the hazards}{54}{appendix.A}%
-\contentsline {section}{\numberline {A.1}A spiral curriculum for ROB}{54}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Facilitation pattern}{54}{section.A.2}%
-\contentsline {chapter}{\numberline {B}Commission the control path as one safety-related system}{55}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Connection and enrollment matrix}{55}{section.B.1}%
-\contentsline {section}{\numberline {B.2}Measure the whole stop chain}{55}{section.B.2}%
-\contentsline {chapter}{\numberline {C}Capture the builder's oral history}{56}{appendix.C}%
-\contentsline {section}{\numberline {C.1}Interview prompts}{56}{section.C.1}%
-\contentsline {chapter}{\numberline {D}Builder input ledger}{57}{appendix.D}%
-\contentsline {chapter}{\numberline {E}Bill of materials worksheet}{58}{appendix.E}%
-\contentsline {chapter}{\numberline {F}Wiring and connector worksheet}{59}{appendix.F}%
-\contentsline {chapter}{\numberline {G}Serial protocol reference}{60}{appendix.G}%
-\contentsline {chapter}{\numberline {H}Repository source map}{61}{appendix.H}%
-\contentsline {chapter}{\numberline {I}Photo and artwork credits}{62}{appendix.I}%
+\contentsline {part}{IV\hspace {1em}Software and perception}{31}{part.4}%
+\contentsline {chapter}{\numberline {8}Central coordination on the Mac mini}{33}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Principal components}{33}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Base heartbeat ownership}{33}{section.8.2}%
+\contentsline {section}{\numberline {8.3}ROBSerialBox as an integration history}{34}{section.8.3}%
+\contentsline {section}{\numberline {8.4}External helpers and dependencies}{34}{section.8.4}%
+\contentsline {section}{\numberline {8.5}Legacy boundary}{34}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Typed scene state and local intelligence}{35}{section.8.6}%
+\contentsline {chapter}{\numberline {9}Control from iPhone, Watch, and Vision Pro}{37}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Controller roles}{37}{section.9.1}%
+\contentsline {section}{\numberline {9.2}ROBControl v2}{37}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Separate video service}{37}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Safety timing layers}{38}{section.9.4}%
+\contentsline {section}{\numberline {9.5}Privacy review}{38}{section.9.5}%
+\contentsline {chapter}{\numberline {10}Encode, transport, decode, and present live video}{40}{chapter.10}%
+\contentsline {section}{\numberline {10.1}The end-to-end frame pipeline}{40}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Scale into the encoder's pixel format}{40}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Configure low-latency H.264}{40}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Understand AVCC, SPS, PPS, and access units}{41}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Wrap media in two bounded layers}{41}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Apply backpressure before latency accumulates}{41}{section.10.6}%
+\contentsline {section}{\numberline {10.7}Decode framing before decoding H.264}{42}{section.10.7}%
+\contentsline {section}{\numberline {10.8}Present and recover without blocking control}{42}{section.10.8}%
+\contentsline {section}{\numberline {10.9}Advanced verification matrix}{42}{section.10.9}%
+\contentsline {chapter}{\numberline {11}Perception and mapping}{45}{chapter.11}%
+\contentsline {section}{\numberline {11.1}RGB-D camera}{45}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Perception snapshots and bounded rendering}{45}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Kinect, OpenNI, NiTE, and PCL archaeology}{45}{section.11.3}%
+\contentsline {section}{\numberline {11.4}RPLidar}{46}{section.11.4}%
+\contentsline {section}{\numberline {11.5}IR and IMU}{46}{section.11.5}%
+\contentsline {section}{\numberline {11.6}Coordinate-frame discipline}{46}{section.11.6}%
+\contentsline {chapter}{\numberline {12}Behavior above raw motor commands}{49}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Servo and arm control}{49}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Keyframe animation}{49}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Speech}{49}{section.12.3}%
+\contentsline {section}{\numberline {12.4}Controller-activated autonomy}{50}{section.12.4}%
+\contentsline {section}{\numberline {12.5}Gemini integration}{50}{section.12.5}%
+\contentsline {section}{\numberline {12.6}Local MLX, comedy, and battle training}{50}{section.12.6}%
+\contentsline {section}{\numberline {12.7}Robot-action implementation status}{51}{section.12.7}%
+\contentsline {part}{V\hspace {1em}Integration, operation, and maintenance}{52}{part.5}%
+\contentsline {chapter}{\numberline {13}Test strategy and safety case}{54}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Requirements traceability}{54}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Progressive test ladder}{54}{section.13.2}%
+\contentsline {section}{\numberline {13.3}Failure injection}{54}{section.13.3}%
+\contentsline {section}{\numberline {13.4}Measure stop behavior}{55}{section.13.4}%
+\contentsline {chapter}{\numberline {14}Present ROB safely in public}{57}{chapter.14}%
+\contentsline {section}{\numberline {14.1}Roles}{57}{section.14.1}%
+\contentsline {section}{\numberline {14.2}Pre-show checklist}{57}{section.14.2}%
+\contentsline {section}{\numberline {14.3}Show-state model}{57}{section.14.3}%
+\contentsline {section}{\numberline {14.4}Audience and privacy}{58}{section.14.4}%
+\contentsline {chapter}{\numberline {15}Keep the robot understandable}{60}{chapter.15}%
+\contentsline {section}{\numberline {15.1}Before and after every operating day}{60}{section.15.1}%
+\contentsline {section}{\numberline {15.2}Scheduled maintenance record}{60}{section.15.2}%
+\contentsline {section}{\numberline {15.3}Configuration control}{60}{section.15.3}%
+\contentsline {section}{\numberline {15.4}Troubleshooting by layer}{60}{section.15.4}%
+\contentsline {chapter}{\numberline {A}Teach the architecture without hiding the hazards}{62}{appendix.A}%
+\contentsline {section}{\numberline {A.1}A spiral curriculum for ROB}{62}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Facilitation pattern}{62}{section.A.2}%
+\contentsline {chapter}{\numberline {B}Commission the control path as one safety-related system}{63}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Connection and enrollment matrix}{63}{section.B.1}%
+\contentsline {section}{\numberline {B.2}Measure the whole stop chain}{63}{section.B.2}%
+\contentsline {chapter}{\numberline {C}Capture the builder's oral history}{64}{appendix.C}%
+\contentsline {section}{\numberline {C.1}Interview prompts}{64}{section.C.1}%
+\contentsline {chapter}{\numberline {D}Builder input ledger}{65}{appendix.D}%
+\contentsline {chapter}{\numberline {E}Bill of materials worksheet}{66}{appendix.E}%
+\contentsline {chapter}{\numberline {F}Wiring and connector worksheet}{67}{appendix.F}%
+\contentsline {chapter}{\numberline {G}Serial protocol reference}{68}{appendix.G}%
+\contentsline {chapter}{\numberline {H}Repository source map}{69}{appendix.H}%
+\contentsline {chapter}{\numberline {I}Photo and artwork credits}{71}{appendix.I}%

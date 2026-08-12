@@ -2,9 +2,9 @@
 \contentsline {chapter}{\numberline {2}The Mac mini as a robot computer}{5}{chapter.2}%
 \contentsline {chapter}{\numberline {3}Phone, Watch, and Vision Pro}{8}{chapter.3}%
 \contentsline {chapter}{\numberline {4}Pairing and secure robot messages}{11}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Control and camera data take separate roads}{13}{chapter.5}%
-\contentsline {chapter}{\numberline {6}How ROB sees space}{15}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Helpful intelligence, human authority}{18}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Tests, logs, and reproducible missions}{21}{chapter.8}%
-\contentsline {chapter}{\numberline {9}A robot never receives ``just a command''}{24}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Autonomy is a bounded state machine}{25}{chapter.10}%
+\contentsline {chapter}{\numberline {5}Control and camera data take separate roads}{14}{chapter.5}%
+\contentsline {chapter}{\numberline {6}How ROB sees space}{16}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Helpful intelligence, human authority}{19}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Tests, logs, and reproducible missions}{22}{chapter.8}%
+\contentsline {chapter}{\numberline {9}A robot never receives ``just a command''}{25}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Autonomy is a bounded state machine}{26}{chapter.10}%

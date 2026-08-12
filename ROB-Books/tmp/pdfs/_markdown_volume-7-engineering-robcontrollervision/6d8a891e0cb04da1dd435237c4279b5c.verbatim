@@ -1,0 +1,4 @@
+let relative = baseline.inverse * orientation
+let forward = simd_normalize(relative.act(SIMD3<Float>(0, 0, -1)))
+let yaw = atan2(-forward.x, -forward.z)
+let pitch = asin(max(-1, min(1, forward.y)))

@@ -1,0 +1,391 @@
+\markdownRendererDocumentBegin
+\markdownRendererSectionBegin
+\markdownRendererHeadingOne{Read this book with the repository open}\markdownRendererInterblockSeparator
+{}ROBControllerVision is a native SwiftUI visionOS controller with a reusable Swift package. It connects to the real Cerebro application through authenticated Network.framework transports or to a deterministic simulator. The source root for this volume is:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/7f769449b193716cad5d4cdcebae69ef.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}The application is under \markdownRendererCodeSpan{ROBControllerVision/ROBControllerVision}. Reusable domain, video, and Cerebro adapter code is under \markdownRendererCodeSpan{ROBControllerVision/Packages/ROBControlCore}. Tests live beside that package. Matching robot-side behavior is in the separate \markdownRendererCodeSpan{Cerebro} repository.\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{ROBControllerVision/README.md}, \markdownRendererCodeSpan{docs/architecture.md}, \markdownRendererCodeSpan{docs/protocol-v2.md}, and \markdownRendererCodeSpan{docs/real-video-integration.md} describe the intended system. Source and tests decide what the current build actually does.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}This book uses \markdownRendererStrongEmphasis{observed} for behavior directly supported by the inspected source, \markdownRendererStrongEmphasis{design requirement} for an invariant the code intends to preserve, and \markdownRendererStrongEmphasis{proposed} for an extension not yet implemented.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Start with the build graph}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{ROBControllerVision.xcodeproj/project.pbxproj} and \markdownRendererCodeSpan{Packages/ROBControlCore/Package.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The Xcode application target owns visionOS lifecycle, SwiftUI presentation, ARKit, GameController, speech permission, and the app-facing view model. The Swift package declares three libraries:\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{4}{2}{dd}{{Product}{Responsibility}}{{\markdownRendererCodeSpan{ROBControlCore}}{pure domain types, session state, leases, dead-man logic, simulator, and video-domain contracts}}{{\markdownRendererCodeSpan{ROBCerebroTransport}}{Network.framework, Security.framework, pairing, discovery, pinned TLS, legacy control compatibility, and the separate video client}}{{\markdownRendererCodeSpan{ROBVideoPipeline}}{bounded media channels, H.264 encoding/decoding support, validation, sample-buffer construction, and synthetic video}}\markdownRendererInterblockSeparator
+{}This dependency direction is deliberate. Domain code must not import SwiftUI, GameController, ARKit, or a concrete network adapter. The app may import all three products. The transport imports the domain contract. The video pipeline imports the video-domain types.\markdownRendererParagraphSeparator
+{}The package requires Swift tools 6.0 and supports iOS 18, macOS 15, and visionOS 2. Swift 6 concurrency checking therefore belongs to the architecture, not merely compiler polish.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Reproduce the build}\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/1b22a8418d98ff5200d384f6d955bf3f.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Change the placeholder bundle identifier and select a development team only when preparing a physical-device build. Do not commit a personal signing identity.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Compose the application at one obvious boundary}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{App/ROBControllerVisionApp.swift}, \markdownRendererCodeSpan{App/ContentView.swift}, and \markdownRendererCodeSpan{App/RobotViewModel.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The app entry creates long-lived application state. \markdownRendererCodeSpan{ContentView} receives a bindable model and composes three fixed cockpit regions in an \markdownRendererCodeSpan{HStack}: controls on the left, a large camera surface in the center, and connection, speech, telemetry, and safety information on the right.\markdownRendererParagraphSeparator
+{}The layout intentionally has no vertical \markdownRendererCodeSpan{ScrollView}. The window is 1760 by 920 points; the center camera is 920 points wide and each side wing is 360 by 820. Side panels receive an eight-degree Y-axis \markdownRendererCodeSpan{rotation3DEffect}, a 42-point Z offset, perspective 0.22, and a shadow. This produces depth without placing safety controls in a fully immersive scene.\markdownRendererParagraphSeparator
+{}The central SwiftUI pattern is:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/28897375eb9f1e70ebaeaab37201a586.verbatim}{swift}{swift}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{@Bindable} projects bindings from an Observation model. \markdownRendererCodeSpan{@FocusState} is operational: GameController events depend on the view receiving focus. The \markdownRendererCodeSpan{.task} modifier couples asynchronous startup to view presence, while \markdownRendererCodeSpan{onDisappear} forces teardown.\markdownRendererParagraphSeparator
+{}Do not hide process ownership in many views. \markdownRendererCodeSpan{RobotViewModel} is the application coordinator; feature views render state and invoke named intents.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Use Observation without turning everything into UI state}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{App/RobotViewModel.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{RobotViewModel} is \markdownRendererCodeSpan{@MainActor}, \markdownRendererCodeSpan{@Observable}, and \markdownRendererCodeSpan{final}. That combination communicates three decisions:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}UI-observable mutation occurs on the main actor.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}SwiftUI can track properties without \markdownRendererCodeSpan{ObservableObject} and \markdownRendererCodeSpan{@Published} boilerplate.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}The class is not designed for inheritance.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}Properties used for rendering—snapshot, status messages, selected endpoint, speed, text draft—remain observable. Internal tasks, the session actor, simulator, pairing store, lifecycle IDs, and cached input samples use \markdownRendererCodeSpan{@ObservationIgnored}. This prevents observation tracking from becoming an accidental synchronization mechanism.\markdownRendererParagraphSeparator
+{}The initializer performs dependency injection:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/ae6f2a153cc22cd0cc576af067dcbc87.verbatim}{swift}{swift}\markdownRendererInterblockSeparator
+{}Defaults keep production composition easy. Parameters let tests substitute controlled dependencies. The simulator default receives a \markdownRendererCodeSpan{SyntheticVideoDataSource}, so offline UI development exercises the real video-domain contract.\markdownRendererParagraphSeparator
+{}Closure callbacks capture \markdownRendererCodeSpan{[weak self]}. That avoids a cycle between the coordinator and long-lived input helpers. Callback bodies mutate main-actor state because the helpers themselves are main-actor isolated.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Make lifecycle cancellation explicit}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{RobotViewModel.start()}, \markdownRendererCodeSpan{stop()}, \markdownRendererCodeSpan{setSceneActive(\markdownRendererUnderscore{}:)}, and \markdownRendererCodeSpan{deinit}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The controller owns several independent tasks: session updates, connect/disconnect actions, virtual input refresh, video actions, and video-pipeline lifecycle. Each task has a property and an identity when stale completion could race a replacement.\markdownRendererParagraphSeparator
+{}\markdownRendererCodeSpan{start()} is idempotent: it returns if the updates task already exists. It starts physical input providers, obtains the session's asynchronous update stream, and iterates with cancellation checks. \markdownRendererCodeSpan{stop()} cancels every owned task, invalidates motion, stops video and speech, stops hardware input, and asynchronously disconnects the session.\markdownRendererParagraphSeparator
+{}The scene phase is a safety input. When inactive, the view model clears the uninstalled pairing draft, cancels video actions, ends virtual motion, stops decoding, tells the session that the scene is inactive, and attempts to unsubscribe. Returning active does not silently arm motion.\markdownRendererParagraphSeparator
+{}Use a lifecycle generation or action UUID when cancellation alone is insufficient. A cancelled operation may still unwind later. The completion method checks identity before clearing the current task slot:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/909804e9fed985036c6c23fdb92d85c7.verbatim}{swift}{swift}\markdownRendererInterblockSeparator
+{}This is a compact defense against an old task erasing ownership of a newer one.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Put the state machine in an actor}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Packages/ROBControlCore/Sources/ROBControlCore/Connection/RobotSession.swift} and \markdownRendererCodeSpan{ConnectionModels.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{RobotSession} owns connection phase, handshake, command sequencing, safety evaluation, pending video continuations, timeouts, open media-channel ownership, and the asynchronous snapshot stream. An actor serializes these mutations without forcing network and media work onto the main actor.\markdownRendererParagraphSeparator
+{}The view model never edits a connection snapshot directly. It asks the actor to connect, disconnect, arm, stop, update input, or subscribe. The actor publishes immutable snapshots. This is unidirectional data flow:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/82daa9252cf02050d6b8ec9733168348.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Pending subscription calls use checked continuations, indexed by subscription ID, with independent timeout tasks. Cancellation removes abandoned IDs and prevents a late reply from resurrecting an abandoned operation. Open data channels remember which transport owns them so teardown calls the correct adapter.\markdownRendererParagraphSeparator
+{}When adding a new request/reply operation, copy this discipline: unique request ID, exactly one continuation, deadline, cancellation handler, late-reply rejection, disconnect cleanup, and tests for every ordering.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Define a domain protocol before a wire format}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Control/ControlProtocol.swift}, \markdownRendererCodeSpan{Video/VideoProtocol.swift}, \markdownRendererCodeSpan{Video/VideoDataTransport.swift}, and \markdownRendererCodeSpan{CerebroRobotTransport.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{RobotTransport} is a \markdownRendererCodeSpan{Sendable} protocol with connect, disconnect, send, and events operations. Application and session code depend on it instead of Network.framework.\markdownRendererParagraphSeparator
+{}The command domain includes arming, drive, stop, emergency stop, reset, video messages, and operator text. \markdownRendererCodeSpan{RobotCommandEnvelope} carries protocol version, session UUID, monotonically increasing sequence, issue time, lease duration, and command. These fields make freshness and session binding explicit.\markdownRendererParagraphSeparator
+{}Numeric value objects sanitize at construction. \markdownRendererCodeSpan{MotionVector}, \markdownRendererCodeSpan{CameraVector}, and \markdownRendererCodeSpan{TorsoVector} convert non-finite values to zero and clamp finite values to -1 through 1. \markdownRendererCodeSpan{ControllerPose} rejects non-finite data, negative timestamps, and implausible quaternion magnitude, then normalizes the quaternion.\markdownRendererParagraphSeparator
+{}This technique prevents invalid floating-point values from spreading, but it should not silently conceal every programming error. Add debug assertions or diagnostics at trusted call sites when sanitization occurs.\markdownRendererParagraphSeparator
+{}Codable enums use an explicit \markdownRendererCodeSpan{type} discriminator and associated payload keys. This is more stable and reviewable than relying on synthesized representation for a protocol shared between repositories.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Treat dead-man logic as a pure decision function}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Control/DeadManController.swift} and \markdownRendererCodeSpan{Tests/ROBControlCoreTests/DeadManControllerTests.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{DeadManController} is a value type. It remembers armed state, latched emergency stop, scene activity, latest sequenced sample, receipt time, and a forced inhibit reason. Its default input timeout is 250 milliseconds.\markdownRendererParagraphSeparator
+{}Evaluation follows a deliberate precedence:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}emergency stop;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}connection readiness;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}active scene;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}armed state;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}forced inhibit;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}presence of input;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}held dead-man state;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{8}input age;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{9}drive decision.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}That ordering makes failures deterministic. A diagnostic controller pose may survive into a stop decision, but motion, camera, gripper, and torso authority do not.\markdownRendererParagraphSeparator
+{}Arming does not manufacture a fresh input. Resetting emergency stop disarms. A new sample must have a greater sequence than the retained sample. Use \markdownRendererCodeSpan{ContinuousClock}, not wall-clock time, for local lease age because wall time can jump.\markdownRendererParagraphSeparator
+{}Tests should cover equality at the deadline, stale sequence, NaN clamping, disconnect, scene transitions, arming while E-stop is latched, reset behavior, and release.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Translate controller hardware into one sample}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Platform/GameController/GameControllerInput.swift} and \markdownRendererCodeSpan{Resources/Info.plist}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The app declares both \markdownRendererCodeSpan{SpatialGamepad} and \markdownRendererCodeSpan{ExtendedGamepad} profiles. \markdownRendererCodeSpan{GameControllerInput} observes connect/disconnect notifications, configures already-connected devices, starts wireless discovery, and stores state by \markdownRendererCodeSpan{ObjectIdentifier}.\markdownRendererParagraphSeparator
+{}A conventional extended gamepad controls both treads. The left and right thumbstick Y axes remain independent tank-drive demands. The right thumbstick also supplies camera axes for compatibility. A conventional dead-man is A \markdownRendererStrongEmphasis{or both shoulder buttons}. Index triggers remain reserved for grippers.\markdownRendererParagraphSeparator
+{}PSVR Sense-style spatial controllers arrive as \markdownRendererCodeSpan{GCPhysicalInputProfile} rather than \markdownRendererCodeSpan{GCExtendedGamepad}. The first supported one is assigned left, the next right. Singular and left/right element names are probed because SDK and controller mappings differ. Each controller's grip is the hold gesture; its index trigger becomes that side's Boolean gripper request.\markdownRendererParagraphSeparator
+{}Two VR grips must be held in the combined sample. Releasing either removes the continuous dead-man. Trigger values use a threshold above 0.5. Gripper commands are desired open/closed states, not measured jaw position.\markdownRendererParagraphSeparator
+{}Callbacks are not trusted as an everlasting stream. The implementation also polls \markdownRendererCodeSpan{lastEventTimestamp} every 50 milliseconds and processes only a strictly newer timestamp. Missing fresh callbacks must lead to expiry in the session rather than replaying retained stick values.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Combine two controllers carefully}\markdownRendererInterblockSeparator
+{}Per-device state contains side, last timestamp, primary stick, second stick, camera values, optional pose, grip, and trigger. Combination must be independent of dictionary iteration order. Left and right sides populate their corresponding tread, trigger, and pose. The aggregate \markdownRendererCodeSpan{deadManIsHeld} requires the intended hardware combination.\markdownRendererParagraphSeparator
+{}When controller mappings change, add fixture logging on a development build, update the lookup table, and keep unknown element names out of production logs if they reveal device details.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Convert tank drive without losing information}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{RobotViewModel.sendCombinedControllerSample()}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The wire domain uses linear and angular motion while VR sticks produce left and right tread values. The exact reversible conversion used by the app is:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/05f796e05701d711cc87a227fdc3042c.verbatim}{swift}{swift}\markdownRendererInterblockSeparator
+{}The receiver can reconstruct left as \markdownRendererCodeSpan{linear + angular} and right as \markdownRendererCodeSpan{linear - angular}, subject to later limiting. Multiplying the two resulting components by one speed limit preserves their relationship.\markdownRendererParagraphSeparator
+{}Every combined sample increments a wrapping \markdownRendererCodeSpan{UInt64} sequence, declares \markdownRendererCodeSpan{.gameController}, includes head-derived camera and torso values, carries gripper Booleans and optional controller poses, and repeats the dead-man state. The session—not the input class—decides whether the sample has authority.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Track head orientation relative to consent}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Platform/HeadOrientationInput.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{HeadOrientationInput} owns an \markdownRendererCodeSpan{ARKitSession} and \markdownRendererCodeSpan{WorldTrackingProvider}. It polls a device anchor every 40 milliseconds using \markdownRendererCodeSpan{CACurrentMediaTime}. It does nothing unless the dead-man is held.\markdownRendererParagraphSeparator
+{}The first tracked orientation after the hold begins becomes the baseline. Relative orientation is:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/6d8a891e0cb04da1dd435237c4279b5c.verbatim}{swift}{swift}\markdownRendererInterblockSeparator
+{}Yaw maps to full camera pan at ±60 degrees. Pitch maps to full camera tilt at ±35 degrees. Both normalize to -1 through 1. Torso rotation remains zero inside the neck range; excess yaw between 60 and 180 degrees maps to normalized torso demand. Cerebro owns the Pololu Tic safety and physical position conversion.\markdownRendererParagraphSeparator
+{}Releasing the dead-man clears the baseline and emits unavailable. Tracking loss while held also emits unavailable. This prevents an old head pose from remaining active. Re-engaging naturally recenters at the current viewing direction.\markdownRendererParagraphSeparator
+{}Coordinate-frame bugs are common here. Record whether a transform maps anchor to origin or origin to anchor, define forward, and test signed yaw and pitch with known poses. Never “fix” one direction by adding unexplained negations downstream.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Understand controller pose as telemetry, not authority}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{GameControllerInput.swift}, \markdownRendererCodeSpan{ControlProtocol.swift}, and \markdownRendererCodeSpan{TelemetryPanel.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}Spatial controller poses are normalized, timestamped data included in a control sample and reflected in diagnostics. They do not bypass arming, dead-man, freshness, collision policy, or the robot's physical stop.\markdownRendererParagraphSeparator
+{}The position and quaternion describe a pose in the framework's tracking frame. They are not automatically an AMBER arm joint solution. Turning pose into arm motion requires calibrated transforms, workspace constraints, inverse kinematics, self/robot/environment collision checks, rate limiting, joint feedback, and cancellation behavior.\markdownRendererParagraphSeparator
+{}Keep raw pose, calibrated target, planned joint state, commanded joint state, and measured joint state as separate types. A single seven-float array cannot express their different truth claims.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Design press-and-hold spatial controls}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Features/Control/ControlPanel.swift} and \markdownRendererCodeSpan{RobotViewModel.beginVirtualMotion()}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The UI alternative to a gamepad uses press-and-hold controls. Beginning a hold checks active scene, ready connection, armed state, and unlatched emergency stop. It captures speed-limited linear/angular values and starts an 80-millisecond refresh task. Ending cancels the task and explicitly invalidates input as dead-man released.\markdownRendererParagraphSeparator
+{}Do not implement motion as a one-shot button tap followed by a timer on the robot. The client should continuously renew a short lease, and the receiver should independently stop when renewal ceases.\markdownRendererParagraphSeparator
+{}SwiftUI gestures can end through release, cancellation, focus change, view removal, scene inactivity, or application termination. Route every observable end into the same invalidation method. Still assume the client can disappear without calling it; the robot-side watchdog is mandatory.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Pair identity, not merely an address}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Pairing/ROBCerebroCredential.swift}, \markdownRendererCodeSpan{ROBCerebroPairingStore.swift}, \markdownRendererCodeSpan{ROBCerebroPinnedTLS.swift}, \markdownRendererCodeSpan{Control/ROBControlDiscovery.swift}, and \markdownRendererCodeSpan{CerebroPairingSheet.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The user pastes a complete \markdownRendererCodeSpan{ROBCTL2:} enrollment code. Installation parses and stores a unique controller credential plus Cerebro certificate pin in Keychain. “Credential installed” means local storage succeeded; only a live pinned-TLS and reciprocal-proof exchange earns “Connected and verified.”\markdownRendererParagraphSeparator
+{}Bonjour \markdownRendererCodeSpan{\markdownRendererUnderscore{}robctl.\markdownRendererUnderscore{}udp} discovery filters for the paired robot identity. Each physical controller needs a distinct credential so it can be revoked and duplicate sessions can be detected. Never copy another controller's Keychain item.\markdownRendererParagraphSeparator
+{}Pinned TLS prevents a same-LAN service with another certificate from silently impersonating Cerebro. Reciprocal HMAC proof binds both peers to the pairing secret and role. The accepted handshake establishes the exact live session UUID used in subsequent envelopes and video authorization.\markdownRendererParagraphSeparator
+{}Certificate rotation must be intentional. An unexpected pin change should fail closed; deleting pin checks to make a demo connect converts an availability problem into an authentication vulnerability.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Separate control and video failure domains}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{CerebroRobotTransport.swift}, \markdownRendererCodeSpan{Control/ROBControlClient.swift}, \markdownRendererCodeSpan{Video/ROBVideoClient.swift}, and both discovery files.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}Control uses \markdownRendererCodeSpan{\markdownRendererUnderscore{}robctl.\markdownRendererUnderscore{}udp} with application protocol \markdownRendererCodeSpan{robctl/2}. Video uses \markdownRendererCodeSpan{\markdownRendererUnderscore{}robvideo.\markdownRendererUnderscore{}udp} with \markdownRendererCodeSpan{robvideo/1}. Both are QUIC/TLS services, but they have distinct discovery, authentication exchanges, clients, framing, and lifecycle.\markdownRendererParagraphSeparator
+{}The authenticated control connection creates the live session UUID. Video proof and subscription carry that exact UUID. Disconnecting or replacing control, revoking credentials, suspending the scene, or unsubscribing tears down video. Video discovery or decode failure must not disconnect authenticated motion control.\markdownRendererParagraphSeparator
+{}This separation prevents megabytes of media and decoder backpressure from delaying a stop command. It also keeps optional camera availability from becoming a prerequisite for control.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Negotiate video before allocating a decoder}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Video/VideoProtocol.swift}, \markdownRendererCodeSpan{ROBVideoWireTypes.swift}, and \markdownRendererCodeSpan{RobotViewModel.videoRequest}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}After authentication, Cerebro sends bounded camera capabilities. The client requests a camera ID, preferred codecs, dimensions, frame rate, bitrate, and delivery mode. The current production request is H.264, at most 960 by 540, 20 frames per second, and 1.5 Mbit/s. Production selects \markdownRendererCodeSpan{reliableStream}; the synthetic simulator uses its in-memory datagram-shaped path.\markdownRendererParagraphSeparator
+{}The wire mapper rejects empty or oversized identifiers, duplicate cameras, zero dimensions, limits above hard caps, missing H.264, missing reliable-stream support, unknown JSON keys, and unsupported delivery combinations.\markdownRendererParagraphSeparator
+{}Only an accepted response creates a \markdownRendererCodeSpan{VideoStreamDescriptor}. The descriptor carries session, subscription, codec, geometry, rate, bitrate, and delivery facts used to validate subsequent media.\markdownRendererParagraphSeparator
+{}Subscription code uses a unique ID and a continuation. The session rejects duplicate IDs, times out the request, handles cancellation, and remembers abandoned IDs so a late response cannot create an unwanted stream.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Frame ordered QUIC video defensively}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Video/ROBVideoFramer.swift}, \markdownRendererCodeSpan{ROBVideoWireTypes.swift}, and \markdownRendererCodeSpan{ROBVideoAuthentication.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The ordered stream uses a fixed 32-byte big-endian \markdownRendererCodeSpan{RVID} header:\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{9}{3}{rrd}{{Offset}{Size}{Field}}{{0}{4}{magic \markdownRendererCodeSpan{RVID}}}{{4}{1}{protocol version}}{{5}{1}{header size}}{{6}{2}{message type}}{{8}{4}{payload length}}{{12}{4}{reserved zeros}}{{16}{8}{increasing sequence}}{{24}{8}{reserved zeros}}\markdownRendererInterblockSeparator
+{}The framer rejects invalid magic, version, size, type, reserved bits, excessive payload, and non-increasing input sequence. Control JSON is capped at 64 KiB. Codec configuration is capped at 64 KiB. Access units are capped at 2 MiB, and total framed media has a derived maximum.\markdownRendererParagraphSeparator
+{}Network.framework's \markdownRendererCodeSpan{NWProtocolFramerImplementation} separates message boundaries from stream reads. \markdownRendererCodeSpan{parseInput} first waits for an exact header; \markdownRendererCodeSpan{deliverInputNoCopy} delivers one validated payload with message metadata. Output writes the header and payload without copying when possible.\markdownRendererParagraphSeparator
+{}Sequence protects stream logic from duplicate or reordered application frames; TLS provides confidentiality and integrity. It is not a replacement for the session/stream/access-unit sequence validation inside the media domain.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Carry codec configuration and access units explicitly}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Video/EncodedVideoProtocol.swift}, \markdownRendererCodeSpan{H264SampleBufferFactory.swift}, and \markdownRendererCodeSpan{H264VideoReceiver.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}H.264 decoding needs parameter sets and access units. The protocol sends codec configuration separately with SPS/PPS bytes, NAL length-field size, generation, session ID, and stream ID. Access units carry sequence, presentation timestamp, timescale, duration, keyframe flag, and AVCC payload.\markdownRendererParagraphSeparator
+{}\markdownRendererCodeSpan{VideoStreamValidator} binds every message to the negotiated session and stream, checks configuration generation, sequence, timestamps, dimensions, and keyframe recovery state. A gap makes predictive frames unsafe because they may depend on a missing reference. The receiver drops them, requires a new keyframe, and sends bounded feedback.\markdownRendererParagraphSeparator
+{}\markdownRendererCodeSpan{H264SampleBufferFactory} creates a \markdownRendererCodeSpan{CMVideoFormatDescription} from parameter sets and constructs timed \markdownRendererCodeSpan{CMSampleBuffer} values from AVCC payload. It validates expected dimensions rather than trusting the bitstream to allocate arbitrary surfaces.\markdownRendererParagraphSeparator
+{}Never assume Annex B start codes and AVCC length-prefixed NAL units are interchangeable. Convert at one named boundary and test both malformed and valid fixtures.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Decode without blocking control or the main actor}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{ROBVideoPipeline/H264VideoReceiver.swift} and \markdownRendererCodeSpan{Platform/Video/VideoPipelineCoordinator.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{H264VideoReceiver} is an actor. It consumes an \markdownRendererCodeSpan{AsyncThrowingStream}, updates statistics, validates messages, configures the sample-buffer factory, and enqueues accepted frames. Decoder pressure never waits indefinitely: renderer readiness gets a 50-millisecond bounded wait with two-millisecond cancellation-aware polling.\markdownRendererParagraphSeparator
+{}When the renderer fails or requires a flush, the receiver drops the access unit, flushes, requires a keyframe, and requests one. Keyframe requests are rate-limited to one per 500 milliseconds during continuing recovery. Statistics publish at most twice per second unless forced.\markdownRendererParagraphSeparator
+{}\markdownRendererCodeSpan{AVSampleBufferVideoRenderer} is documented for background enqueueing, but its SDK annotation does not satisfy Swift 6 isolation when obtained from a main-actor display layer. The code uses a narrow \markdownRendererCodeSpan{@unchecked Sendable} handle that records this framework guarantee. Do not spread \markdownRendererCodeSpan{@unchecked Sendable} across the display layer or arbitrary UIKit objects; isolate the exception and explain it.\markdownRendererParagraphSeparator
+{}\markdownRendererCodeSpan{VideoPipelineCoordinator} remains \markdownRendererCodeSpan{@MainActor} because it owns display state. A lifecycle generation and pipeline UUID prevent an old open/close operation from taking over a replacement pipeline. It closes an unowned channel on every failed handoff, avoiding media-channel leaks.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Present AVFoundation media inside SwiftUI}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Platform/Video/SampleBufferVideoView.swift} and \markdownRendererCodeSpan{Features/Video/VideoPanel.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{SampleBufferVideoView} is a \markdownRendererCodeSpan{UIViewRepresentable}. Its host view owns no decoder; it attaches the coordinator's \markdownRendererCodeSpan{AVSampleBufferDisplayLayer}, removes any prior layer, uses \markdownRendererCodeSpan{.resizeAspect}, and updates the layer frame in \markdownRendererCodeSpan{layoutSubviews} with implicit animations disabled.\markdownRendererParagraphSeparator
+{}\markdownRendererCodeSpan{dismantleUIView} detaches the display layer. This matters when SwiftUI reconstructs or removes the representable. A display layer must not remain attached to two superlayers.\markdownRendererParagraphSeparator
+{}\markdownRendererCodeSpan{VideoPanel} treats availability, subscription, pipeline state, and statistics as different concepts. A connected control session may have no camera. A camera may exist with no subscription. A subscription may be accepted while decoding is starting or failed.\markdownRendererParagraphSeparator
+{}Keep the camera large and visually primary, but do not overlay controls that can hide connection or safety state.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Understand audio: capture locally, transmit text}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Platform/VisionSpeechInput.swift}, \markdownRendererCodeSpan{Features/Control/OperatorSpeechPanel.swift}, \markdownRendererCodeSpan{RobotViewModel.sendOperatorText()}, and \markdownRendererCodeSpan{ControlProtocol.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The current Vision Pro controller does \markdownRendererStrongEmphasis{not} stream microphone audio to Cerebro. Its audio path is:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/07863ce618c98eddcb6ebe0d43309a35.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}The input first requests Speech authorization, then microphone permission. It creates a recognizer for \markdownRendererCodeSpan{Locale.current}, verifies availability, enables partial results, and requires on-device recognition when the device supports it:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/4a926fd75e560be3b27f1c39b3bdc218.verbatim}{swift}{swift}\markdownRendererInterblockSeparator
+{}That assignment does not promise every locale or OS state can recognize offline; it requests on-device operation when supported. The UI must report unavailability rather than silently changing privacy behavior.\markdownRendererParagraphSeparator
+{}The \markdownRendererCodeSpan{AVAudioEngine} input node installs a bus-zero tap with a 1024-frame buffer and the node's output format. Each buffer is appended to the recognition request. \markdownRendererCodeSpan{prepare()} and \markdownRendererCodeSpan{start()} may throw. Every failure and stop path removes the tap, ends/cancels recognition, clears retained objects, and updates UI state.\markdownRendererParagraphSeparator
+{}Recognition callbacks enter a \markdownRendererCodeSpan{Task \markdownRendererLeftBrace{} @MainActor ... \markdownRendererRightBrace{}} before touching observable state. Partial transcripts update the draft. A final transcript invokes the callback with \markdownRendererCodeSpan{isFinal}, updates status, and stops capture.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Command versus puppet speech}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{OperatorTextMode.command} asks Cerebro to process text like its local text input. \markdownRendererCodeSpan{puppetSpeech} asks ROB to speak the text verbatim without sending it to the AI or motion parser. Both modes carry a Codable \markdownRendererCodeSpan{OperatorTextMessage}; neither arms motion.\markdownRendererParagraphSeparator
+{}The current initializer automatically sends a final dictation using the mode selected at completion time. The panel also offers explicit Send as Input and ROB Says It buttons. For higher-consequence installations, consider changing auto-send to review-before-send, especially when ambient speech may be misrecognized.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{If true audio streaming is added later}\markdownRendererInterblockSeparator
+{}Treat it as a new protocol, not an extra field in operator text. Specify format, sample rate, channel count, frames per packet, timestamps, clock domain, jitter buffer, congestion/backpressure policy, echo cancellation, interruption handling, authentication, consent indication, retention, and receiver ownership. Keep it off the motion channel. Add Info.plist disclosure and an unmistakable live microphone indicator.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Declare privacy and device capabilities}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Resources/Info.plist}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The plist declares:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem local-network usage for robot discovery;\markdownRendererUlItemEnd 
+\markdownRendererUlItem Bonjour service types \markdownRendererCodeSpan{\markdownRendererUnderscore{}robctl.\markdownRendererUnderscore{}udp} and \markdownRendererCodeSpan{\markdownRendererUnderscore{}robvideo.\markdownRendererUnderscore{}udp};\markdownRendererUlItemEnd 
+\markdownRendererUlItem microphone use for explicit dictation;\markdownRendererUlItemEnd 
+\markdownRendererUlItem speech recognition for conversion to reviewable text;\markdownRendererUlItemEnd 
+\markdownRendererUlItem accessory tracking for spatial-controller pose;\markdownRendererUlItemEnd 
+\markdownRendererUlItem spatial and extended game-controller profiles;\markdownRendererUlItemEnd 
+\markdownRendererUlItem one window scene.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Usage descriptions should say what data is used for and when. They are user communication, not mere App Store obstacles. Adding raw audio transmission would make the present wording incomplete.\markdownRendererParagraphSeparator
+{}Test permission states independently: not determined, denied, restricted, authorized, recognizer unavailable, microphone interruption, local network denied, and accessory tracking unavailable.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Design failures as ordinary states}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{ConnectionStatusView.swift}, \markdownRendererCodeSpan{TelemetryPanel.swift}, \markdownRendererCodeSpan{ROBCerebroTransportError.swift}, and video pipeline error types.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The UI should distinguish disconnected, connecting, handshaking, connected, disconnecting, and failed. Installed pairing is not verified pairing. Video unavailable is not control unavailable. Speech unavailable is not motion failure. Tracking unavailable must neutralize camera/torso demand without inventing a pose.\markdownRendererParagraphSeparator
+{}Prefer typed error cases with \markdownRendererCodeSpan{LocalizedError} descriptions at presentation boundaries. Avoid logging secrets, pairing codes, HMAC material, certificate private keys, or raw dictated content by default.\markdownRendererParagraphSeparator
+{}Status strings help a human, but state must remain typed. Do not make button enablement depend on parsing a status message.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Test the package in layers}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} all files under \markdownRendererCodeSpan{Packages/ROBControlCore/Tests}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The package includes:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem dead-man transition and timeout tests;\markdownRendererUlItemEnd 
+\markdownRendererUlItem simulator connection and watchdog tests;\markdownRendererUlItemEnd 
+\markdownRendererUlItem video-domain Codable and validation tests;\markdownRendererUlItemEnd 
+\markdownRendererUlItem synthetic pixel-buffer and end-to-end pipeline tests;\markdownRendererUlItemEnd 
+\markdownRendererUlItem legacy payload compatibility tests;\markdownRendererUlItemEnd 
+\markdownRendererUlItem control wire, pairing, pinning, and authentication tests;\markdownRendererUlItemEnd 
+\markdownRendererUlItem video wire compatibility tests.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Write pure tests for value normalization and state machines first. Use actors and asynchronous streams in integration tests. Give every async expectation a deadline. Explicitly cancel tasks and close streams so a passing test does not leak work into the next test.\markdownRendererParagraphSeparator
+{}The simulator is a protocol peer, not a visual mock. It independently evaluates input age, integrates a deterministic pose, reports telemetry, negotiates video, and serves synthetic H.264 through the same domain boundaries.\markdownRendererParagraphSeparator
+{}Package tests cannot validate visionOS focus delivery, actual controllers, ARKit tracking, Local Network permission, Bonjour on a LAN, Keychain entitlements, camera capture on Cerebro, decoder behavior on device, or physical stopping. Maintain a separate two-device checklist.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Debug without drowning Xcode}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{README.md} diagnostics plus the relevant transport state handlers.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}Use focused evidence:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/327fc9210acb78827dfdba812794d8f4.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Then observe one layer at a time: controller connection and timestamp, app focus, dead-man sample, session decision, control handshake, command acknowledgement, video authentication, subscription, codec configuration, access-unit sequence, render statistics.\markdownRendererParagraphSeparator
+{}Rate-limit repetitive logs. The earlier “bad file descriptor” style flood can make the debugger unusable and hide the first failure. Log state transitions and counters, not every poll. Use unified logging categories with privacy annotations in a future hardening pass.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Add a feature without breaking authority}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} use the whole chain for the nearest existing feature before editing.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}For a new controller gesture:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}identify the physical element and supported profiles;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}add per-device state without changing dead-man semantics;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}combine deterministically;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}add a bounded domain type;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}include it in the control sample and decision;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}encode it in an explicit protocol field;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}update the matching Cerebro decoder;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{8}keep execution behind robot-side state and limits;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{9}add fixture and state-machine tests;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{10}test simulator, then two devices, then restrained hardware.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}For a new video codec, update capability negotiation, hard limits, wire representation, configuration records, decoder factory, recovery rules, fixtures, and robot encoder. Do not select a codec merely because both platforms expose a framework enum.\markdownRendererParagraphSeparator
+{}For a new speech mode, add a Codable enum case, deterministic Cerebro routing, UI explanation, backward-compatibility behavior, and tests proving it cannot arm or create raw motion.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Swift techniques worth carrying elsewhere}\markdownRendererInterblockSeparator
+{}The codebase demonstrates several reusable techniques:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem \markdownRendererCodeSpan{@MainActor @Observable final class} for presentation coordination;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{@ObservationIgnored} for internal tasks and services;\markdownRendererUlItemEnd 
+\markdownRendererUlItem actors for mutable session and media state;\markdownRendererUlItemEnd 
+\markdownRendererUlItem immutable Sendable value objects at boundaries;\markdownRendererUlItemEnd 
+\markdownRendererUlItem explicit clamping and finite-number validation;\markdownRendererUlItemEnd 
+\markdownRendererUlItem dependency inversion through transport protocols;\markdownRendererUlItemEnd 
+\markdownRendererUlItem AsyncStream for state/event delivery;\markdownRendererUlItemEnd 
+\markdownRendererUlItem checked continuations with cancellation and deadlines;\markdownRendererUlItemEnd 
+\markdownRendererUlItem generation tokens against stale async completion;\markdownRendererUlItemEnd 
+\markdownRendererUlItem weak callback capture against ownership cycles;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ContinuousClock} for leases and local timeouts;\markdownRendererUlItemEnd 
+\markdownRendererUlItem narrow, documented \markdownRendererCodeSpan{@unchecked Sendable} framework adapters;\markdownRendererUlItemEnd 
+\markdownRendererUlItem UIViewRepresentable for a carefully owned AVFoundation surface;\markdownRendererUlItemEnd 
+\markdownRendererUlItem separate optional media and authoritative control failure domains;\markdownRendererUlItemEnd 
+\markdownRendererUlItem explicit protocol versions, discriminators, limits, reserved fields, and sequence numbers.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}None of these techniques is automatically correct. Their value comes from matching ownership and failure behavior to the real system.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Production review checklist}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem \markdownRendererUntickedBox{} package tests pass under the committed Swift toolchain;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} visionOS simulator target builds without signing;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} bundle ID, team, and entitlements are intentionally configured;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} every device has a unique pairing credential;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} certificate pin and reciprocal proof fail closed;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} app focus and scene inactivity invalidate input;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} 250 ms client lease and Cerebro watchdog are measured together;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} controller disconnect and missing callbacks stop motion;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} both VR grips implement the intended dead-man gesture;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} index triggers affect only the matching gripper request;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} head baseline resets on every hold and tracking loss neutralizes output;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} torso rotation begins only outside the neck range;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} video failure never delays or disconnects control;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} video messages are session/stream/sequence bounded;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} decoder pressure drops or recovers media rather than blocking;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} microphone and speech permissions are understandable;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} documentation states that microphone audio is local and only text is transmitted;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} command and puppet-speech routes remain distinct;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} logs exclude secrets and dictated content by default;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} simulator, two-device, and restrained-hardware tests are recorded;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} physical emergency stop behavior is independently verified.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{File-by-file reading order}\markdownRendererInterblockSeparator
+{}Use this order for a new Swift contributor:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}\markdownRendererCodeSpan{README.md}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}\markdownRendererCodeSpan{Packages/ROBControlCore/Package.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}\markdownRendererCodeSpan{Control/ControlProtocol.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}\markdownRendererCodeSpan{Control/DeadManController.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}\markdownRendererCodeSpan{Connection/RobotSession.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}\markdownRendererCodeSpan{Simulation/SimulatedRobotEndpoint.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}\markdownRendererCodeSpan{App/RobotViewModel.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{8}\markdownRendererCodeSpan{App/ContentView.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{9}\markdownRendererCodeSpan{Platform/GameController/GameControllerInput.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{10}\markdownRendererCodeSpan{Platform/HeadOrientationInput.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{11}\markdownRendererCodeSpan{Platform/VisionSpeechInput.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{12}\markdownRendererCodeSpan{ROBCerebroTransport/CerebroRobotTransport.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{13}control discovery, wire, client, and pairing files\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{14}\markdownRendererCodeSpan{Video/VideoProtocol.swift} and \markdownRendererCodeSpan{EncodedVideoProtocol.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{15}video discovery, authentication, framer, wire types, and client\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{16}\markdownRendererCodeSpan{H264VideoReceiver.swift} and \markdownRendererCodeSpan{H264SampleBufferFactory.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{17}\markdownRendererCodeSpan{VideoPipelineCoordinator.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{18}\markdownRendererCodeSpan{SampleBufferVideoView.swift} and \markdownRendererCodeSpan{VideoPanel.swift}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{19}feature panels\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{20}every corresponding test before making a change\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}When a shortened path is ambiguous, use \markdownRendererCodeSpan{OPEN-SOURCE-CODE-MAP.md} or find it from the workspace root:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/a3fea1fec3880823e941c1b2ad239d6a.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Closing principle}\markdownRendererInterblockSeparator
+{}ROBControllerVision is compelling because Vision Pro can combine a large first-person camera, spatial controls, tracked head orientation, controller pose, dictation, and a wraparound instrument deck. It is trustworthy only when those rich inputs are translated into small, typed, bounded, expiring requests.\markdownRendererParagraphSeparator
+{}The most important Swift skill in this controller is not a particular modifier or framework call. It is making ownership visible: which actor owns state, which task owns work, which session owns a message, which view owns a layer, which controller owns an input, which permission owns capture, which receiver owns a timeout, and which physical mechanism remains outside the app's authority.
+\markdownRendererSectionEnd \markdownRendererDocumentEnd

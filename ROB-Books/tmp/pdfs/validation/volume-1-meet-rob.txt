@@ -34,7 +34,7 @@ and company names remain the property of their respective owners.
 
 First evidence-based draft: 2 August 2026. Build details marked Builder input needed are deliberate placeholders
 for the builder to complete.
-MEET ROB                                                                                           VOLUME 1 - AGES 8-12
+MEET ROB                                                                                            VOLUME 1 - AGES 8-12
 
 
 
@@ -46,6 +46,8 @@ The Building R.O.B. library
   VOLUME 5                AI, Robotics, and Codex: Directing, Verifying, and Owning AI-Built Systems - advanced
                           makers
   VOLUME 6                Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu - advanced makers
+  VOLUME 7                Engineering ROBControllerVision: Swift, Spatial Input, Video, and Speech - Swift devel-
+                          opers
   MANUAL                  Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
 
 
@@ -72,6 +74,23 @@ The Building R.O.B. library
    virtual environment, or machine-specific identifiers. Volume 6 documents the inspected protocol,
    URDF models, reproducible setup, verification gates, and unresolved configuration differences.
 
+   HOW TO FIND THE FILES
+
+   Every printed path is relative to the shared workspace root, /Users/rob/dev in the inspected edi-
+   tion. Start at that root, enter the first directory in the path, and follow each slash. Source
+   code is spread across independent repositories—including ROBArduino, Cerebro, ROBController,
+   ROBControllerVision, ORobotics, and ROBTrainingGames—rather than one giant ROB project. See
+   Presentation/ROB-Books/OPEN-SOURCE-CODE-MAP.md for repository locations, licenses, primary files,
+   and commands for finding renamed files.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 30
+MEET ROB                                                                               VOLUME 1 - AGES 8-12
+
+
+
    THE THREE-ZONE RULE
 
    Green zone: paper models, unplugged code games, and simulations. Work independently.
@@ -82,30 +101,36 @@ The Building R.O.B. library
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   3 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                       4 / 30
 Contents
-1 A robot is more than a machine           2
+1 A robot is more than a machine          2
 
-2 The skeleton and the shell               6
+2 The skeleton and the shell              6
 
 3 Energy makes motion possible            10
 
-4 How ROB notices things                  12
+4 How ROB notices things                  13
 
-5 Commands travel in layers               15
+5 Commands travel in layers               16
 
-6 ROB’s build timeline                    18
+6 ROB’s build timeline                    20
 
-7 Your first engineering log              21
+7 Your first engineering log              25
 
-8 Think like a systems detective          23
+8 Think like a systems detective          27
 
-9 Uncertainty is useful information       25
-
-
+9 Uncertainty is useful information       29
 
 
-                                      4
+
+
+                                      5
+MEET ROB                                       VOLUME 1 - AGES 8-12
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION               6 / 30
 MISSION 1
 
 What makes a machine a robot?
@@ -158,7 +183,7 @@ cooperate.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 30
 MEET ROB                                                                                           VOLUME 1 - AGES 8-12
 
 
@@ -190,7 +215,7 @@ without software only produces pixels. A clever program without an emergency sto
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   4 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   4 / 30
 MISSION 2
 
 Structure carries every idea
@@ -212,8 +237,9 @@ The tracked base must do several jobs at once:
 
 
 
-A bracket is held in place before drilling. Fit checks catch mistakes       A digital caliper measures the tread frame. Engineers replace “about
-while they are still easy to fix.                                           this big” with a number and unit.
+                                          A cable loop beside an arm                                                  A shoulder gear, plate, and
+shows that structure must provide a safe path for things that bend and       cable share one crowded interface. Structure is also about clearance
+move.                                                                        and service access.
 
 
    COMPUTER SCIENCE CONNECTION
@@ -229,8 +255,8 @@ while they are still easy to fix.                                           this
 
 
 
-                                                                        6
-MEET ROB                                                                                               VOLUME 1 - AGES 8-12
+                                                                         6
+MEET ROB                                                                                             VOLUME 1 - AGES 8-12
 
 
 
@@ -241,14 +267,14 @@ while they are still easy to fix.                                           this
 
 
 
-     A 2022 bracket assembly connects an idea to the real chassis. Its shape is visible, but the final material, di-
-     mensions, fasteners, loads, and inspection record still need the builder’s evidence.
+     The overhead view turns ROB into a structure puzzle: find the plates, mounts, gaps, and cable paths that let
+     many systems share one body.
 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       7 / 26
-MEET ROB                                                                                                                VOLUME 1 - AGES 8-12
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     7 / 30
+MEET ROB                                                                                                                 VOLUME 1 - AGES 8-12
 
 
 
@@ -257,11 +283,9 @@ Iteration is not failure
 
 
 
-                                                                                                                 By 2024, a sprocket and
-A power drill, metal rails, and a bracket are visible during a 2022     chain sit above a newly machined chassis opening. Clearance became
-modification. The photograph does not document secure clamping,         a real, measurable design constraint.
-eye protection, or the complete workholding setup; those controls are
-required for adult red-zone drilling.
+                                                 An open body reveals how                                        Parts that rotate need clear-
+structure must support electronics while leaving room to inspect and        ance. Cables need bend room. A successful structure makes both
+repair them.                                                                paths understandable.
 
 
 An early design can answer a question even when it is not the final design. The ROB presentation records
@@ -270,7 +294,7 @@ finding new spaces for sensors and computing.
 Engineers often work in this loop:
 
 
-                ASK                            SKETCH              BUILD                       TEST                    LEARN
+                ASK                            SKETCH                  BUILD                        TEST                LEARN
 
 
 
@@ -280,7 +304,7 @@ The last arrow is the secret: learning returns you to a better question.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        8 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                         8 / 30
 MISSION 3
 
 Power and information are differ-
@@ -297,18 +321,24 @@ capacity of 80 Ah. A 2024 photograph shows two large batteries with red power le
 sis. The archive does not prove the final series/parallel arrangement, protection devices, or present-day
 capacity, so this book does not invent them.
 
-   SAFETY CHECK
+  SAFETY CHECK
 
-   Large battery banks can produce fire, burns, arc flash, toxic smoke, and violent motion. Never copy a
-   photograph as a wiring diagram. A qualified adult must design fusing, a disconnect, charging, cable
-   sizes, insulation, strain relief, and the physical emergency-stop circuit.
-
-
+  Large battery banks can produce fire, burns, arc flash, toxic smoke, and violent motion. Never copy a
+  photograph as a wiring diagram. A qualified adult must design fusing, a disconnect, charging, cable
+  sizes, insulation, strain relief, and the physical emergency-stop circuit.
 
 
-                                              Red and black power ca-
-bles pass through a fitted opening. A pass-through needs edge pro-           A chassis gauge reads 13.1 V in this photograph. One number is a
-tection and strain relief so vibration cannot cut insulation.                clue, not a complete description of the battery system.
+
+
+   Conceptual illustration: amber paths represent energy and cyan paths represent information. It is a thinking
+   map, not ROB’s as-built wiring diagram.
+
+
+
+
+                                                       10
+MEET ROB                                                                                        VOLUME 1 - AGES 8-12
+
 
 
    ENERGY OR MESSAGE?
@@ -323,7 +353,7 @@ tection and strain relief so vibration cannot cut insulation.                clu
 
 
 
-                                                                        10
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              11 / 30
 MISSION 4
 
 Sensors turn the world into num-
@@ -358,7 +388,7 @@ A sensor is a translator. It converts something physical into data a computer ca
 
 
 
-                                                       12
+                                                       13
 MEET ROB                                                                                      VOLUME 1 - AGES 8-12
 
 
@@ -379,7 +409,7 @@ A sensor is a translator. It converts something physical into data a computer ca
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            13 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            14 / 30
 MISSION 5
 
 The brain is a conversation
@@ -387,6 +417,12 @@ The brain is a conversation
 
 
 Commands travel in layers
+  SOURCE TRAIL --- ANALYZING NOW
+
+  File: Cerebro/Cerebro/ROBSerialBox.m
+  Why it is here: This implementation connects the Mac coordinator to the present Base Arduino serial
+  protocol; young readers can follow it as evidence that one visible action crosses several systems.
+
 ROB’s Mac mini runs the Cerebro app. Controllers on a phone, Apple Watch, or Vision Pro can express
 human intent. Cerebro checks who is allowed to control, keeps track of a live session, coordinates cameras
 and higher-level behavior, and sends a compact command toward the base Arduino.
@@ -425,15 +461,23 @@ Each layer has a smaller job:
 5. USB serial carries a fixed-width text frame to the Arduino.
 6. The Arduino sets brake, direction, PWM, and actuator commands.
 
-  COMPUTER SCIENCE CONNECTION
-  This is abstraction: each layer offers a simpler promise to the layer above. The phone does not need
-  to know which Arduino pin drives the left tread. The Arduino does not need to know whether the
-  command began on a phone or a headset.
+
+
+
+                                                                   16
+MEET ROB                                                                                   VOLUME 1 - AGES 8-12
+
+
+
+   COMPUTER SCIENCE CONNECTION
+   This is abstraction: each layer offers a simpler promise to the layer above. The phone does not need
+   to know which Arduino pin drives the left tread. The Arduino does not need to know whether the
+   command began on a phone or a headset.
 
 
 
 
-                                                                   15
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                         17 / 30
 MEET ROB                                                                                                                                                       VOLUME 1 - AGES 8-12
 
 
@@ -472,7 +516,7 @@ physical stopping behavior still has to be measured.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                                                16 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                                                18 / 30
 MISSION 6
 
 A robot grows through versions
@@ -480,6 +524,12 @@ A robot grows through versions
 
 
 ROB's build timeline
+   SOURCE TRAIL --- ANALYZING NOW
+
+   File: Presentation/ROB_v3.pdf
+   Why it is here: This historical design deck and the dated gallery photographs are the evidence for
+   the timeline. It is documentation evidence, not executable source code.
+
 The archive is not a perfect diary, but it shows a machine changing in public.
 
 
@@ -499,14 +549,20 @@ robot already combines camera eyes, arms, a body, and a mobile base.        The 
 
 
 
-                                          An overhead view reveals                                                      An open rear bay exposes
-how many mechanical and electrical paths compete for space.                 loose wiring beside an arm. Access for service is part of the design.
+                                                                       20
+MEET ROB                                                                                                                      VOLUME 1 - AGES 8-12
 
 
 
 
-                                                                       18
-MEET ROB                                                                                                                    VOLUME 1 - AGES 8-12
+                                               An overhead view reveals                                               An open rear bay exposes
+how many mechanical and electrical paths compete for space.               loose wiring beside an arm. Access for service is part of the design.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                            21 / 30
+MEET ROB                                                                                               VOLUME 1 - AGES 8-12
 
 
 
@@ -515,9 +571,9 @@ how many mechanical and electrical paths compete for space.                 loos
 
 
 
-Motor, wiring, wooden mounting pieces, and tread chassis share a          A newly installed clamp and upright bracket show the project moving
-crowded base.                                                             from fit check to hardware.
-
+     This 2022 overhead build view records the year’s integration work: motor hardware, wiring, mounting pieces,
+     and tread chassis all compete for space. This photograph is intentionally shared with the circuits book: Volume
+     1 treats it as timeline evidence, while Volume 2 studies its routing.
 
 
 2024: measure and rebuild the drivetrain
@@ -525,13 +581,19 @@ crowded base.                                                             from f
 
 
 
-                                               A close chain path makes                                             An open base reveals mo-
-alignment and clearance visible.                                          tors, power wiring, batteries, and space reserved for mechanisms.
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     22 / 30
+MEET ROB                                                                                            VOLUME 1 - AGES 8-12
 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                          19 / 26
+     The nearly assembled 2024 base records a major physical revision. Volume 3 studies its mechanics in detail;
+     here it is one dated step in ROB’s longer story.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  23 / 30
 MEET ROB                                                                                                                  VOLUME 1 - AGES 8-12
 
 
@@ -555,7 +617,7 @@ through many revisions.                                                    willi
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        20 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        24 / 30
 MISSION 7
 
 
@@ -599,7 +661,7 @@ in this one-page design brief.
 
 
 
-                                                    21
+                                                    25
 DEEP LAB
 
 See the loop, not just the parts
@@ -653,7 +715,7 @@ happen if readings stop arriving? A prediction turns “I think it works” into
 
 
 
-                                                    23
+                                                    27
 MEET ROB                                                                                            VOLUME 1 - AGES 8-12
 
 
@@ -670,7 +732,7 @@ happen if readings stop arriving? A prediction turns “I think it works” into
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  24 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  28 / 30
 MISSION 9
 
 
@@ -703,7 +765,7 @@ unit, method, revision, and uncertainty instead of hiding variation.
 
 
 
-                                                   25
+                                                   29
 MEET ROB                                                                                                                    VOLUME 1 - AGES 8-12
 
 
@@ -733,5 +795,5 @@ Source trail: Presentation/ROB_v3.pdf; ORobotics private gallery originals and g
 Head sketches; current Cerebro, ROBController, and ROBControllerVision source. Arduino archive inspected 2026-08-10.
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                          26 / 26
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                          30 / 30
 

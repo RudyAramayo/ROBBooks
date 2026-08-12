@@ -407,9 +407,9 @@ INPUT ./volume-5-ai-robotics-with-codex.md
 INPUT volume-5-ai-robotics-with-codex.md
 OUTPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.luabridge.lua
 INPUT texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.luabridge.lua
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/b7971fa04f75f3a22f28b8559c21de0a.md.tex
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/b7971fa04f75f3a22f28b8559c21de0a.md.tex
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/b7971fa04f75f3a22f28b8559c21de0a.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/38baf9158d91d22fc0b7f6936bf5cce6.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/38baf9158d91d22fc0b7f6936bf5cce6.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/38baf9158d91d22fc0b7f6936bf5cce6.md.tex
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/9b1b0c8be9856fc9d5bb1df5e95db737.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/9b1b0c8be9856fc9d5bb1df5e95db737.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/9b1b0c8be9856fc9d5bb1df5e95db737.verbatim

@@ -1,10 +1,10 @@
 \contentsline {chapter}{\numberline {1}Trace the energy path}{2}{chapter.1}%
 \contentsline {chapter}{\numberline {2}Digital, analog, and PWM}{5}{chapter.2}%
 \contentsline {chapter}{\numberline {3}The base controller's connections}{7}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Decode the seven-field message}{10}{chapter.4}%
-\contentsline {chapter}{\numberline {5}IR distance and the IMU}{13}{chapter.5}%
-\contentsline {chapter}{\numberline {6}Watchdogs and fail-safe states}{15}{chapter.6}%
-\contentsline {chapter}{\numberline {7}Read old code like an engineer}{17}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Build a mental oscilloscope}{19}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Give a toy a new 5 V power path}{20}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Messages need grammar and time}{24}{chapter.10}%
+\contentsline {chapter}{\numberline {4}Decode the seven-field message}{11}{chapter.4}%
+\contentsline {chapter}{\numberline {5}IR distance and the IMU}{15}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Watchdogs and fail-safe states}{17}{chapter.6}%
+\contentsline {chapter}{\numberline {7}Read old code like an engineer}{19}{chapter.7}%
+\contentsline {chapter}{\numberline {8}Build a mental oscilloscope}{21}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Give a toy a new 5 V power path}{22}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Messages need grammar and time}{26}{chapter.10}%

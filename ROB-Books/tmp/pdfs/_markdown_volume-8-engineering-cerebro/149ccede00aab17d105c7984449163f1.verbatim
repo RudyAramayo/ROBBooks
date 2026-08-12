@@ -1,0 +1,3 @@
+if (serialFileDescriptor != -1) {
+    write(serialFileDescriptor, bytes, length);
+}

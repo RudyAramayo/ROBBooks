@@ -1,0 +1,9 @@
+swift test --package-path Packages/ROBControlCore
+
+xcodebuild \
+  -project ROBControllerVision.xcodeproj \
+  -scheme ROBControllerVision \
+  -configuration Debug \
+  -destination 'generic/platform=visionOS Simulator' \
+  -derivedDataPath /tmp/ROBControllerVisionDerivedData \
+  CODE_SIGNING_ALLOWED=NO build

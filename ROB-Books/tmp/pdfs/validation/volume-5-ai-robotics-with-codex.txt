@@ -67,6 +67,15 @@ ROB-Books/ROBOT_GAME_CURRICULUM.md.
    virtual environment, or machine-specific identifiers. Volume 6 documents the inspected protocol,
    URDF models, reproducible setup, verification gates, and unresolved configuration differences.
 
+   HOW TO FIND THE FILES
+
+   Every printed path is relative to the shared workspace root, /Users/rob/dev in the inspected edi-
+   tion. Start at that root, enter the first directory in the path, and follow each slash. Source
+   code is spread across independent repositories—including ROBArduino, Cerebro, ROBController,
+   ROBControllerVision, ORobotics, and ROBTrainingGames—rather than one giant ROB project. See
+   Presentation/ROB-Books/OPEN-SOURCE-CODE-MAP.md for repository locations, licenses, primary files,
+   and commands for finding renamed files.
+
 
 
 
@@ -78,13 +87,13 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
   1.3 1. The robot is a distributed system . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         1
   1.4 2. Era one: handmade foundations, 2022–2023 . . . . . . . . . . . . . . . . . . . . . . . . . .                2
        1.4.1 What Codex should learn from this era . . . . . . . . . . . . . . . . . . . . . . . . . . .             2
-  1.5 3. Era two: the solo workshop, August–September 2025 . . . . . . . . . . . . . . . . . . . . .                 2
+  1.5 3. Era two: the solo workshop, August–September 2025 . . . . . . . . . . . . . . . . . . . . .                 3
        1.5.1 Turning workshop knowledge into specifications . . . . . . . . . . . . . . . . . . . . .                3
   1.6 4. The acceleration hinge: August 1, 2026 . . . . . . . . . . . . . . . . . . . . . . . . . . . . .            3
        1.6.1 Why this resembles AI-assisted engineering . . . . . . . . . . . . . . . . . . . . . . . .              4
   1.7 5. Rebuilding the secure control plane with Codex . . . . . . . . . . . . . . . . . . . . . . . .              4
        1.7.1 5.1 Start with a contract . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       4
-       1.7.2 5.2 Implement the shared wire format first . . . . . . . . . . . . . . . . . . . . . . . . .            4
+       1.7.2 5.2 Implement the shared wire format first . . . . . . . . . . . . . . . . . . . . . . . . .            5
        1.7.3 5.3 Add transport without weakening authentication . . . . . . . . . . . . . . . . . . .                5
   1.8 6. Operator authority, Watch control, and autonomy . . . . . . . . . . . . . . . . . . . . . . .               5
   1.9 7. Vision, depth, and video as bounded pipelines . . . . . . . . . . . . . . . . . . . . . . . . .             6
@@ -94,13 +103,13 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
   1.12 10. Dependencies are part of robot safety         . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   8
   1.13 11. A repeatable Codex workflow for these repositories . . . . . . . . . . . . . . . . . . . . .              8
        1.13.1 Step 1: protect the worktree . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         8
-       1.13.2 Step 2: state outcome and invariants . . . . . . . . . . . . . . . . . . . . . . . . . . . .           8
+       1.13.2 Step 2: state outcome and invariants . . . . . . . . . . . . . . . . . . . . . . . . . . . .           9
        1.13.3 Step 3: ask for read-only diagnosis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        9
        1.13.4 Step 4: divide at stable boundaries . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          9
        1.13.5 Step 5: make Codex edit and verify . . . . . . . . . . . . . . . . . . . . . . . . . . . . .           9
        1.13.6 Step 6: inspect the diff yourself . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      9
        1.13.7 Step 7: validate in layers . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     9
-       1.13.8 Step 8: commit the reasoning . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         9
+       1.13.8 Step 8: commit the reasoning . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
   1.14 12. Prompt recipes for the actual change families . . . . . . . . . . . . . . . . . . . . . . . . . 10
        1.14.1 Cross-repository protocol change . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
        1.14.2 Concurrency bug . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
@@ -114,38 +123,38 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
               1.14.4 New AI tool . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
               1.14.5 Arm feature . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
               1.14.6 Documentation from code . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
-     1.15 13. Reviewing AI-generated robot code . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
-              1.15.1 Safety . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+     1.15 13. Reviewing AI-generated robot code . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+              1.15.1 Safety . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
               1.15.2 Security . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
               1.15.3 Concurrency . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
               1.15.4 Compatibility . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
               1.15.5 Evidence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
-     1.16 14. What remains intentionally unfinished . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+     1.16 14. What remains intentionally unfinished . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
      1.17 15. The developer after code generation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
-              1.17.1 From implementation task to outcome contract . . . . . . . . . . . . . . . . . . . . . . 12
+              1.17.1 From implementation task to outcome contract . . . . . . . . . . . . . . . . . . . . . . 13
               1.17.2 The new literacy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
      1.18 16. How an AI development system actually works . . . . . . . . . . . . . . . . . . . . . . . . . 13
-              1.18.1 Model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
-              1.18.2 Context . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+              1.18.1 Model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+              1.18.2 Context . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
               1.18.3 Instructions and precedence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
               1.18.4 Tools . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
               1.18.5 Execution environment . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
               1.18.6 Feedback loop . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
-     1.19 17. Communicating for reliable results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
-              1.19.1 Goal: define observable behavior . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+     1.19 17. Communicating for reliable results . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+              1.19.1 Goal: define observable behavior . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
               1.19.2 Context: provide decision-changing facts . . . . . . . . . . . . . . . . . . . . . . . . . . 15
               1.19.3 Output: say what done looks like . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
               1.19.4 Boundaries: protect what matters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
-              1.19.5 Acceptance evidence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+              1.19.5 Acceptance evidence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
               1.19.6 Steering without restarting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
      1.20 18. Context engineering for large repositories . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
               1.20.1 Give the repository a map . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
-              1.20.2 Preserve executable knowledge . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+              1.20.2 Preserve executable knowledge . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
               1.20.3 Separate durable truth from session history . . . . . . . . . . . . . . . . . . . . . . . . . 17
               1.20.4 Ask for evidence-backed exploration . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
-              1.20.5 Manage context decay . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
-     1.21 19. Verification is the product . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
-              1.21.1 The evidence ladder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+              1.20.5 Manage context decay . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+     1.21 19. Verification is the product . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+              1.21.1 The evidence ladder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
 
 ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                           5 / 31
 AI, ROBOTICS, AND CODEX                                                                             VOLUME 5 - ADVANCED MAKERS
@@ -154,39 +163,39 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
               1.21.2 Ask the agent to falsify its own patch . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
               1.21.3 Evaluate repeated AI workflows . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
-              1.21.4 Stop conditions are part of verification . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+              1.21.4 Stop conditions are part of verification . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
      1.22 20. Designing AI-native software systems . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
               1.22.1 Separate proposal from execution . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
-              1.22.2 Give tools narrow schemas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
-              1.22.3 Treat retrieval as evidence selection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+              1.22.2 Give tools narrow schemas . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+              1.22.3 Treat retrieval as evidence selection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
               1.22.4 Design for uncertainty . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
               1.22.5 Observe the whole loop . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
-     1.23 21. A thirty-day AI developer practice . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
-              1.23.1 Week 1: learn to specify . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+     1.23 21. A thirty-day AI developer practice . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+              1.23.1 Week 1: learn to specify . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
               1.23.2 Week 2: build evidence loops . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
               1.23.3 Week 3: direct cross-system changes . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
               1.23.4 Week 4: design an AI-native capability . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
-              1.23.5 Graduation test . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+              1.23.5 Graduation test . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
      1.24 22. The AI change contract worksheet . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
               1.24.1 Outcome . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
               1.24.2 Sources and system map . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
-              1.24.3 Invariants and authority . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
-              1.24.4 Failure behavior . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+              1.24.3 Invariants and authority . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+              1.24.4 Failure behavior . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
               1.24.5 Acceptance evidence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
               1.24.6 Ready-to-use prompt . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
-              1.24.7 Human sign-off . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
-     1.25 23. Local intelligence on Apple silicon: Swift, MLX, and Llama . . . . . . . . . . . . . . . . . . 23
+              1.24.7 Human sign-off . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+     1.25 23. Local intelligence on Apple silicon: Swift, MLX, and Llama . . . . . . . . . . . . . . . . . . 24
               1.25.1 23.1 The actual Cerebro model stack . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
-              1.25.2 23.2 Tokens, context, temperature, and hallucination . . . . . . . . . . . . . . . . . . . 24
+              1.25.2 23.2 Tokens, context, temperature, and hallucination . . . . . . . . . . . . . . . . . . . 25
               1.25.3 23.3 Llama through MLX versus llama.cpp . . . . . . . . . . . . . . . . . . . . . . . . . 25
               1.25.4 Lab: trace one local sentence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
-     1.26 24. Giving a language model eyes with MLXVLM . . . . . . . . . . . . . . . . . . . . . . . . . 25
+     1.26 24. Giving a language model eyes with MLXVLM . . . . . . . . . . . . . . . . . . . . . . . . . 26
               1.26.1 24.1 Sampling protects the camera and controls . . . . . . . . . . . . . . . . . . . . . . 26
-              1.26.2 24.2 Confidence is a gate, not decoration . . . . . . . . . . . . . . . . . . . . . . . . . . 26
-              1.26.3 Lab: make the vision result fail safely     . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+              1.26.2 24.2 Confidence is a gate, not decoration . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+              1.26.3 Lab: make the vision result fail safely     . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
      1.27 25. Implementing model-safe show logic . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
-              1.27.1 25.1 How to add a safe model cue . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
-              1.27.2 25.2 A show is a state machine . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+              1.27.1 25.1 How to add a safe model cue . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+              1.27.2 25.2 A show is a state machine . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
               1.27.3 Rehearsal checklist . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
 
 ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                          6 / 31
@@ -195,13 +204,13 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
      1.28 26. Vision Pro as ROB’s voice and spatial control desk . . . . . . . . . . . . . . . . . . . . . . . 28
-              1.28.1 26.1 Demonstrating the new controls . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+              1.28.1 26.1 Demonstrating the new controls . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
               1.28.2 26.2 The rest of the spatial control path . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
-              1.28.3 Build exercise: add a third text mode without adding authority . . . . . . . . . . . . . 29
-     1.29 Epilogue: authorship after acceleration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+              1.28.3 Build exercise: add a third text mode without adding authority . . . . . . . . . . . . . 30
+     1.29 Epilogue: authorship after acceleration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
      1.30 Sources and further reading . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
               1.30.1 Repository sources . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
-              1.30.2 Official OpenAI documentation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+              1.30.2 Official OpenAI documentation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
 
 
 
@@ -213,57 +222,60 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
-    CHAPTER 1
+CHAPTER 1
 
 
-    Building R.O.B.
-    AI, Robotics, and the Codex-Accelerated Evolution of
-    ROBController and Cerebro
-    A source-based field guide
-    Expanded local-model edition, August 11, 2026
-
-
-
-
-    Preface: one builder, many keyboards
-    R.O.B. did not begin as an “AI-written robot.” It began the normal way: one person, several computers,
-    physical hardware, partial ideas, experiments that worked once, experiments that broke connectors, and
-    commits made before a fragile discovery disappeared.
-    The Git record uses three author-name spellings—Orbitus, RudyAramayo, and Rudy Aramayo—but the same
-    orbitus@orbitusrobotics.com email. That is consistent with one builder committing from differently con-
-    figured computers. It is not evidence of three developers. Nor can Git prove which lines were suggested
-    by an AI. Commit metadata records the person who accepted and committed a change, not every tool
-    involved in producing it.
-    Still, the history has a visible hinge. Through September 2025, commits read like a lab notebook: tune
-    a servo, repair a port, checkpoint an animation, avoid sending commands too quickly. Beginning Au-
-    gust 1, 2026, the repositories gain coordinated transport protocols, certificate pinning, Keychain-backed
-    pairing, formal message schemas, fixture tests, failure boundaries, and long operator documents. ROB-
-    Controller’s first large 2026 change adds roughly 5,345 lines and Cerebro’s adds roughly 16,478. That is
-    the point at which the work looks AI-accelerated.
-    This book treats August 1, 2026 as the start of the Codex-accelerated era. That is an interpretation based
-    on scale and engineering form, not an authorship claim. Rudy remains the author and operator: the
-    person choosing the goal, checking the diff, testing the hardware, and assuming responsibility for what
-    the robot does.
+Building R.O.B.
+AI, Robotics, and the Codex-Accelerated Evolution of
+ROBController and Cerebro
+A source-based field guide
+Expanded local-model edition, August 11, 2026
 
 
 
 
-    1. The robot is a distributed system
-    R.O.B. is best understood as two cooperating products.
-    ROBController is the operator edge. It runs on Apple mobile devices, accepts human intent, shows state,
-    relays Watch commands, and acts as the approval console. Cerebro is the robot-side macOS application.
-    It owns perception, speech, AI sessions, serial hardware, Python helpers, arm scripts, autonomy, stage
-    shows, and the server side of the control link.
-    The important flow is:
-1    human / Apple Watch
+Preface: one builder, many keyboards
+R.O.B. did not begin as an “AI-written robot.” It began the normal way: one person, several computers,
+physical hardware, partial ideas, experiments that worked once, experiments that broke connectors, and
+commits made before a fragile discovery disappeared.
+The Git record uses three author-name spellings—Orbitus, RudyAramayo, and Rudy Aramayo—but the same
+orbitus@orbitusrobotics.com email. That is consistent with one builder committing from differently con-
+figured computers. It is not evidence of three developers. Nor can Git prove which lines were suggested
+by an AI. Commit metadata records the person who accepted and committed a change, not every tool
+involved in producing it.
+Still, the history has a visible hinge. Through September 2025, commits read like a lab notebook: tune
+a servo, repair a port, checkpoint an animation, avoid sending commands too quickly. Beginning Au-
+gust 1, 2026, the repositories gain coordinated transport protocols, certificate pinning, Keychain-backed
+pairing, formal message schemas, fixture tests, failure boundaries, and long operator documents. ROB-
+Controller’s first large 2026 change adds roughly 5,345 lines and Cerebro’s adds roughly 16,478. That is
+the point at which the work looks AI-accelerated.
+This book treats August 1, 2026 as the start of the Codex-accelerated era. That is an interpretation based
+on scale and engineering form, not an authorship claim. Rudy remains the author and operator: the
+person choosing the goal, checking the diff, testing the hardware, and assuming responsibility for what
+the robot does.
 
 
 
-                                                        1
+
+1. The robot is a distributed system
+        SOURCE TRAIL — ANALYZING NOW: use Cerebro’s main Objective-C++ view controller,
+     ROBController’s ConsciousViewController.mm, and ROBControllerVision’s ContentView.swift.
+     These are three entry points into one distributed robot. OPEN-SOURCE-CODE-MAP.md prints the
+     exact full paths.
+
+R.O.B. is best understood as two cooperating products.
+ROBController is the operator edge. It runs on Apple mobile devices, accepts human intent, shows state,
+relays Watch commands, and acts as the approval console. Cerebro is the robot-side macOS application.
+
+                                                    1
     AI, ROBOTICS, AND CODEX                                                                VOLUME 5 - ADVANCED MAKERS
 
 
 
+    It owns perception, speech, AI sessions, serial hardware, Python helpers, arm scripts, autonomy, stage
+    shows, and the server side of the control link.
+    The important flow is:
+1     human / Apple Watch
 2                |
 3                v
 4     ROBController -- authenticated intent --> Cerebro -- bounded commands --> hardware
@@ -313,16 +325,17 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
 
     3. Era two: the solo workshop, August–September
     2025
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             2 / 31
+    AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
+
+
+
+
     Cerebro’s fresh repository begins August 5, 2025, but its initial import is already a substantial robot
     program. It includes a macOS storyboard, camera management, speech, serial control, AutoNet, lidar,
     Kinect/RealSense-era components, Leap Motion, RTSP video, task launchers, Core ML assets, and a large
     body of mixed Objective-C++ and Swift.
     The following weeks read like a maker’s engineering diary:
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             2 / 31
-    AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
-
-
 
     • Gemini is connected, speech delays are adjusted, and OAK camera input begins.
     • Camera devices become discoverable at runtime.
@@ -365,18 +378,17 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
     and Watch command protocols, approval/status surfaces, autonomy controls, tests, and documentation.
     In Cerebro, the corresponding change introduces the server side of the secure control plane, Gemini
     Robotics Live integration, an autonomy coordinator, camera H.264 transport for Vision Pro, a supervised
-    Python runtime, system dependency management, action/video protocols, extensive tests, and a major
-    documentation set.
-    This is the maturity jump. The old system primarily moved bytes and trusted its environment. The new
-    system names roles, versions messages, authenticates peers, bounds queues, records operator intent,
-    and fails closed.
-
-
 
     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           3 / 31
     AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
 
 
+
+    Python runtime, system dependency management, action/video protocols, extensive tests, and a major
+    documentation set.
+    This is the maturity jump. The old system primarily moved bytes and trusted its environment. The new
+    system names roles, versions messages, authenticates peers, bounds queues, records operator intent,
+    and fails closed.
 
     Why this resembles AI-assisted engineering
     No single clue proves AI use. Together, these clues make acceleration a reasonable inference:
@@ -398,6 +410,10 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
 
 
     5. Rebuilding the secure control plane with Codex
+                 SOURCE TRAIL — ANALYZING NOW: compare the identically named protocol files in ROB-
+             Controller’s AutoNetClient and Cerebro’s AutoNetShared. Then read the transport-security and
+             integration fixtures. The code map gives every exact filename and full path.
+
     The v2 control plane is the strongest example of how to use Codex on a cross-repository change.
 
     5.1 Start with a contract
@@ -416,6 +432,12 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
     • Identity: which Cerebro instance is this?
     • Pairing: has this device been enrolled?
     • Authorization: is it an operator or telemetry publisher?
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            4 / 31
+    AI, ROBOTICS, AND CODEX                                                                  VOLUME 5 - ADVANCED MAKERS
+
+
+
     • Freshness: is this proof from the current connection rather than a replay?
 
     Only then authorize implementation in checkpoints.
@@ -424,14 +446,6 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
     Message formats should have explicit magic bytes, versions, lengths, limits, and error behavior. Generate
     the same golden fixtures on client and server. Codex is especially useful here because it can compare
     two implementations and find drift.
-
-
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            4 / 31
-    AI, ROBOTICS, AND CODEX                                                                  VOLUME 5 - ADVANCED MAKERS
-
-
-
 1     Implement only the v2 frame codec and fixtures in both repositories. Do not
 2     open sockets and do not modify UI. Reject unknown mandatory versions, oversized
 3     payloads, truncated frames, and invalid role/action combinations. Run the
@@ -480,6 +494,11 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
 
 
 
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                               5 / 31
+    AI, ROBOTICS, AND CODEX                                                                VOLUME 5 - ADVANCED MAKERS
+
+
+
     Ask Codex to encode this hierarchy in tests, not just comments:
 1     Add table-driven tests for authority arbitration. Stop must preempt every
 2     state. Manual control must end autonomy. Restart must default to autonomy off.
@@ -491,13 +510,14 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
     The final sentence matters. Mature agents are capable of expanding a coherent feature beyond its safe
     scope. Tell Codex which adjacent capability is explicitly excluded.
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                               5 / 31
-    AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
-
 
 
 
     7. Vision, depth, and video as bounded pipelines
+                SOURCE TRAIL — ANALYZING NOW: CameraManager.swift owns camera delivery and
+             ROBVideoServer.swift owns video serving in Cerebro.     Vision Pro receiver and presentation
+             code live in ROBControllerVision’s Features/Video directory.
+
     Cerebro’s camera path evolves from selecting webcams to a multi-provider perception system.
     The 2026 implementation runs DepthAI in a supervised Python helper and sends synchronized RGB and
     aligned depth over a local user-only Unix socket. Keeping the SDK outside Cerebro isolates USB dis-
@@ -525,27 +545,28 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
 
 
     8. AI inside Cerebro: proposals, tools, and speech
-    The repositories currently document Gemini Robotics Live as the runtime model integration. OpenAI
-    enters this story in two different ways:
+                SOURCE TRAIL — ANALYZING NOW: Cerebro/Cerebro/ROBAI.swift is the optional AI in-
+             tegration, while Cerebro/Cerebro/GeminiRoboticsProtocol.swift defines bounded high-level
+             proposals. Search callers before assuming that a declared action has a physical executor.
 
-    1. Codex develops and maintains the codebase.
-    2. The OpenAI Responses API can power a future model-neutral robot brain.
-
-    These roles should not be conflated. A coding agent may edit a protocol while an application model later
-    uses that protocol as a tool.
-    For an OpenAI-backed adapter, preserve Cerebro’s deterministic boundaries. The model receives ob-
-    servations and returns structured proposals. Cerebro validates the schema, allow-list, session, deadline,
-    and current authority. ROBController approves where required. Only a deterministic executor may touch
-    hardware.
-    Conceptual Swift-like pseudocode:
-
-
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           6 / 31
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             6 / 31
      AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
 
 
 
+     The repositories currently document Gemini Robotics Live as the runtime model integration. OpenAI
+     enters this story in two different ways:
+
+     1. Codex develops and maintains the codebase.
+     2. The OpenAI Responses API can power a future model-neutral robot brain.
+
+     These roles should not be conflated. A coding agent may edit a protocol while an application model later
+     uses that protocol as a tool.
+     For an OpenAI-backed adapter, preserve Cerebro’s deterministic boundaries. The model receives ob-
+     servations and returns structured proposals. Cerebro validates the schema, allow-list, session, deadline,
+     and current authority. ROBController approves where required. Only a deterministic executor may touch
+     hardware.
+     Conceptual Swift-like pseudocode:
 1      let proposal = try await openAI.responses.create(
 2           model: configuredModel,
 3           input: currentRobotContext,
@@ -589,23 +610,23 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
      This feature demonstrates layered trust:
 
      • authored dialogue is the mandatory fallback;
-     • local generation may select only allow-listed beats and delivery;
-     • Gemini may add live context to a trusted brief;
-     • show files cannot contain raw joints, servo values, hosts, ports, or shell;
-     • uncalibrated gestures fail closed;
-     • expired stage contexts permanently reject non-stop tool calls;
-     • stop_motion remains available through a priority stop lane.
-
-     Generative language becomes safe not because the model is guaranteed to behave, but because un-
-     trusted output has a narrow grammar and a deterministic fallback.
-     When asking Codex to extend a show format, request the validator and negative fixtures before the run-
-     ner:
 
      ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           7 / 31
     AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
 
 
 
+    • local generation may select only allow-listed beats and delivery;
+    • Gemini may add live context to a trusted brief;
+    • show files cannot contain raw joints, servo values, hosts, ports, or shell;
+    • uncalibrated gestures fail closed;
+    • expired stage contexts permanently reject non-stop tool calls;
+    • stop_motion remains available through a priority stop lane.
+
+    Generative language becomes safe not because the model is guaranteed to behave, but because un-
+    trusted output has a narrow grammar and a deterministic fallback.
+    When asking Codex to extend a show format, request the validator and negative fixtures before the run-
+    ner:
 1     Extend robshow v1 with an optional audience-response beat. The JSON may select
 2     only a named response policy and timeout. It may not contain executable code,
 3     raw motor values, file paths, hosts, ports, or arbitrary tool names. Update the
@@ -642,6 +663,13 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
     ries
     Step 1: protect the worktree
     Start every session with:
+
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           8 / 31
+    AI, ROBOTICS, AND CODEX                                                             VOLUME 5 - ADVANCED MAKERS
+
+
+
 1     Inspect git status in ROBController and Cerebro. Existing changes belong to me.
 2     Do not overwrite, revert, stage, or commit them. Identify generated Xcode user
 3     state separately. Summarize the relevant architecture before editing.
@@ -654,14 +682,6 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
     Step 2: state outcome and invariants
     Prefer “When control packets stop, the base brakes once and becomes silent” to “refactor ROBSerialBox.”
     The former is testable and safety-relevant.
-
-
-
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           8 / 31
-    AI, ROBOTICS, AND CODEX                                                             VOLUME 5 - ADVANCED MAKERS
-
-
 
     Step 3: ask for read-only diagnosis
     For cross-language and cross-repository behavior, have Codex trace the entire path before implementa-
@@ -697,6 +717,13 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
 
     Codex may complete layers one through five. It must never imply that they prove layers six and seven.
 
+
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          9 / 31
+    AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
+
+
+
     Step 8: commit the reasoning
     A mature message explains behavior and risk:
 1     fix(network): prevent QUIC pairing handshake deadlock
@@ -710,11 +737,6 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
 
     The history then becomes usable context for the next human or AI session.
 
-
-
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          9 / 31
-    AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
 
 
 
@@ -766,6 +788,13 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
     Documentation from code
 1     Update the operator document from the implemented diff. Distinguish implemented,
 2     tested in fixtures, built, simulator-tested, and hardware-validated. List known
+
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          10 / 31
+    AI, ROBOTICS, AND CODEX                                                   VOLUME 5 - ADVANCED MAKERS
+
+
+
 3     gaps plainly. Do not describe planned behavior as present behavior.
 
 
@@ -777,39 +806,39 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
     Safety
     • Does loss of input converge to neutral?
     • Is stop independent, prioritized, and idempotent?
+    • Are speeds, positions, payload sizes, and durations bounded?
+    • Does restart return to a safe state?
+    • Does an unavailable sensor prevent motion that depends on it?
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          10 / 31
-AI, ROBOTICS, AND CODEX                                                            VOLUME 5 - ADVANCED MAKERS
+    Security
+    • Are identity, enrollment, authorization, and freshness distinct?
+    • Are secrets absent from source, logs, process arguments, and Bonjour?
+    • Is there any fallback to plaintext or unauthenticated behavior?
+    • Can revocation terminate a live session?
+    • Can a telemetry role become a control role by editing its payload?
+
+    Concurrency
+    • Which queue owns each mutable state variable?
+    • Can both peers wait forever?
+    • Can cancellation race with completion or a late tool call?
+    • Can a slow camera/model consumer block control?
+
+    Compatibility
+    • Are protocol versions explicit?
+    • Are unknown fields tolerated only where intended?
+    • Do both repositories share golden fixtures?
+    • Is legacy behavior opt-in, observable, and removable?
+
+    Evidence
+    • What tests ran?
+    • What could not run in the environment?
+    • Was hardware actually exercised?
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                               11 / 31
+AI, ROBOTICS, AND CODEX                                                                 VOLUME 5 - ADVANCED MAKERS
 
 
 
-• Are speeds, positions, payload sizes, and durations bounded?
-• Does restart return to a safe state?
-• Does an unavailable sensor prevent motion that depends on it?
-
-Security
-• Are identity, enrollment, authorization, and freshness distinct?
-• Are secrets absent from source, logs, process arguments, and Bonjour?
-• Is there any fallback to plaintext or unauthenticated behavior?
-• Can revocation terminate a live session?
-• Can a telemetry role become a control role by editing its payload?
-
-Concurrency
-• Which queue owns each mutable state variable?
-• Can both peers wait forever?
-• Can cancellation race with completion or a late tool call?
-• Can a slow camera/model consumer block control?
-
-Compatibility
-• Are protocol versions explicit?
-• Are unknown fields tolerated only where intended?
-• Do both repositories share golden fixtures?
-• Is legacy behavior opt-in, observable, and removable?
-
-Evidence
-• What tests ran?
-• What could not run in the environment?
-• Was hardware actually exercised?
 • Are documentation claims no stronger than the evidence?
 
 
@@ -823,41 +852,43 @@ ecutor. Gesture cues fail closed without a calibrated catalog and feedback-capab
 records operator intent but does not by itself start physical action.
 These are the next safe milestones:
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                        11 / 31
-    AI, ROBOTICS, AND CODEX                                                                 VOLUME 5 - ADVANCED MAKERS
+1. Establish measured coordinate frames and calibration artifacts.
+2. Add feedback and freshness to joint state.
+3. Build offline IK with joint and velocity bounds.
+4. Add collision models and swept-volume checks.
+5. Simulate and dry-run named motions.
+6. Validate one arm on a bench at low speed.
+7. Introduce a deterministic executor with stop preemption.
+8. Only then expose a narrow, schema-constrained AI proposal tool.
 
-
-
-    1. Establish measured coordinate frames and calibration artifacts.
-    2. Add feedback and freshness to joint state.
-    3. Build offline IK with joint and velocity bounds.
-    4. Add collision models and swept-volume checks.
-    5. Simulate and dry-run named motions.
-    6. Validate one arm on a bench at low speed.
-    7. Introduce a deterministic executor with stop preemption.
-    8. Only then expose a narrow, schema-constrained AI proposal tool.
-
-    Codex can help at every milestone, but it cannot supply missing physical facts from code. Calibration
-    measurements, payload limits, wiring, clearances, and the location of humans around the robot belong
-    to the real world.
+Codex can help at every milestone, but it cannot supply missing physical facts from code. Calibration
+measurements, payload limits, wiring, clearances, and the location of humans around the robot belong
+to the real world.
 
 
 
 
-    15. The developer after code generation
-    Programming is not disappearing so much as moving upward. A developer once spent most of a day
-    translating a known solution into syntax. An AI coding agent can now perform much of that translation,
-    search a repository, connect call sites, write tests, run tools, and revise a patch. The scarce skill becomes
-    the ability to define the right system, communicate its invariants, recognize false confidence, and decide
-    whether the evidence is strong enough to ship.
-    This is a profound change. Source code remains real and must still execute, but manually typing every
-    line is no longer the center of the job. The new developer operates at several levels at once:
+15. The developer after code generation
+Programming is not disappearing so much as moving upward. A developer once spent most of a day
+translating a known solution into syntax. An AI coding agent can now perform much of that translation,
+search a repository, connect call sites, write tests, run tools, and revise a patch. The scarce skill becomes
+the ability to define the right system, communicate its invariants, recognize false confidence, and decide
+whether the evidence is strong enough to ship.
+This is a profound change. Source code remains real and must still execute, but manually typing every
+line is no longer the center of the job. The new developer operates at several levels at once:
 
-    • Purpose: What human outcome should improve?
-    • System: Which components, data, authorities, and failure boundaries exist?
-    • Contract: What must inputs, outputs, timing, and errors mean?
-    • Evidence: What observation would prove the behavior works?
-    • Operations: How will the system be deployed, monitored, stopped, and repaired?
+• Purpose: What human outcome should improve?
+• System: Which components, data, authorities, and failure boundaries exist?
+• Contract: What must inputs, outputs, timing, and errors mean?
+• Evidence: What observation would prove the behavior works?
+• Operations: How will the system be deployed, monitored, stopped, and repaired?
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             12 / 31
+    AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
+
+
+
     • Responsibility: Who accepts the consequences when software affects people or machines?
 
     The syntax layer has not become worthless. Reading code is still one way to audit the agent’s interpre-
@@ -873,12 +904,6 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
     A strong outcome contract says:
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             12 / 31
-    AI, ROBOTICS, AND CODEX                                                                VOLUME 5 - ADVANCED MAKERS
-
-
-
 1     ROBControllerVision has two spatial controllers. Capture a fresh left and
 2     right world-space pose, preserve chirality, and transmit position in meters
 3     plus normalized quaternion orientation through the authenticated control path.
@@ -915,6 +940,14 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
     tools, an execution environment, and feedback. Understanding those parts helps a developer diagnose
     failures without treating the model as magic.
 
+
+
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           13 / 31
+    AI, ROBOTICS, AND CODEX                                                                VOLUME 5 - ADVANCED MAKERS
+
+
+
     Model
     The model predicts and reasons over the information available in the current interaction. It can synthesize
     patterns across languages and domains, but it does not automatically know the current repository, phys-
@@ -928,11 +961,6 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
     For a deadlock, the relevant context is usually both peers’ state machines, the first reads and writes, can-
     cellation behavior, and a reproducible trace. Hundreds of unrelated UI files can make the important rela-
     tionship harder to see. Ask the agent to search first, then load the narrow data path.
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            13 / 31
-    AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
-
-
 
     Instructions and precedence
     An agent may receive durable project instructions in addition to the current request. These can define
@@ -968,6 +996,12 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            14 / 31
+    AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
+
+
+
     Each loop should reduce uncertainty. If an agent makes five speculative edits without producing new
     evidence, stop and return to inspection.
 
@@ -984,12 +1018,6 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 “Improve networking” is a theme. “Reconnect after Wi-Fi interruption without reviving an expired motion
 lease” is a goal. Use nouns and verbs from the real system. Say which user, device, event, input, and
 output matter.
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           14 / 31
-    AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
-
-
-
     When the goal contains multiple interpretations, name a concrete scenario:
 1     With Cerebro already listening, launch the Vision client. Both peers currently
 2     wait for the other to speak and the connection times out. Change the handshake
@@ -1020,6 +1048,13 @@ output matter.
 
     Boundaries: protect what matters
     The best boundaries prevent expensive mistakes. They do not micromanage every keystroke.
+
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          15 / 31
+    AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
+
+
+
 1     - Keep the legacy 14-line controller snapshot byte-compatible.
 2     - Do not change pairing identity or certificate validation.
 3     - Never retain a stale pose as a valid target.
@@ -1044,11 +1079,6 @@ output matter.
 
     This is stronger than “make sure it works.” It tells both human and AI which claims the evidence must
     support.
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          15 / 31
-    AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
-
-
 
     Steering without restarting
     When the agent is already working, correct direction with the smallest useful message. Examples:
@@ -1084,6 +1114,12 @@ output matter.
 
 
 
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          16 / 31
+    AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
+
+
+
     This does not replace search. It reduces the chance that the agent edits a similarly named but inactive
     path.
 
@@ -1101,13 +1137,6 @@ output matter.
     When a hardware discovery is made, first write it down, then encode the portion that can be checked
     automatically. “The arm sign is reversed” should become a calibration artifact or mapping test, not remain
     only in a chat transcript.
-
-
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           16 / 31
-    AI, ROBOTICS, AND CODEX                                                            VOLUME 5 - ADVANCED MAKERS
-
-
 
     Separate durable truth from session history
     Conversation is useful working memory but a poor sole archive. After a task, place durable knowledge
@@ -1135,6 +1164,14 @@ output matter.
     Review that map before implementation. This is not bureaucracy; it is a cheap way to discover that the
     visible UI and active data path are different.
 
+
+
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           17 / 31
+    AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
+
+
+
     Manage context decay
     Long tasks accumulate superseded hypotheses. Periodically restate the current facts:
 1     Current verified state:
@@ -1158,13 +1195,6 @@ output matter.
     The evidence ladder
     1. Static inspection: types, call sites, schemas, and configuration agree.
     2. Focused test: the changed transformation or failure case is executable.
-
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                        17 / 31
-    AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
-
-
-
     3. Regression suite: neighboring promises still hold.
     4. Build: the real target, SDK, and language mode compile.
     5. Integration: both sides communicate under representative timing.
@@ -1192,6 +1222,12 @@ output matter.
     When the same task occurs often—triaging controller logs, drafting protocol tests, reviewing dependen-
     cies, or generating release notes—build a small eval set. Include normal cases, difficult edge cases, and
     cases that should be refused or escalated.
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          18 / 31
+    AI, ROBOTICS, AND CODEX                                                                  VOLUME 5 - ADVANCED MAKERS
+
+
+
     Record measurable outcomes:
 
     • Did the agent identify the active implementation?
@@ -1210,12 +1246,6 @@ output matter.
     • the requested behavior depends on an unknown physical limit;
     • the only available test could move unguarded hardware;
     • credentials or permissions are missing;
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          18 / 31
-    AI, ROBOTICS, AND CODEX                                                                  VOLUME 5 - ADVANCED MAKERS
-
-
-
     • a generated migration could irreversibly alter user data;
     • two authoritative specifications conflict;
     • the diff overlaps unexplained user changes.
@@ -1240,10 +1270,18 @@ output matter.
     bypass the controller lease.
     For an arm, a safer progression is:
 1     language goal
-2         -> typed task proposal
-3         -> scene and capability checks
-4         -> deterministic planner / IK
-5         -> joint, velocity, and collision validation
+2       -> typed task proposal
+3       -> scene and capability checks
+4       -> deterministic planner / IK
+5       -> joint, velocity, and collision validation
+
+
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              19 / 31
+    AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
+
+
+
 6         -> operator approval when required
 7         -> feedback-controlled executor
 8         -> independent stop
@@ -1270,35 +1308,33 @@ output matter.
     Treat retrieval as evidence selection
     An AI system can retrieve manuals, logs, code, and prior decisions. Retrieval quality determines which
     evidence reaches the model. Store documents with source, date, version, authority, and scope. Prefer a
+    current verified wiring map over an old brainstorming note, and make conflicts visible rather than silently
+    blending them.
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              19 / 31
-AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
+    Design for uncertainty
+    Model output may be incomplete, inconsistent, or wrong. The system needs:
+
+    • structured outputs that reject invalid shapes;
+    • timeouts and cancellation;
+    • bounded retries and queue sizes;
+    • idempotent operations where possible;
+    • explicit unavailable and uncertain states;
+    • audit events for proposals, approvals, actions, and outcomes;
+    • human escalation for consequential ambiguity.
+
+    Do not convert “the model did not answer” into a default motion. In robotics, absence of valid intent
+    should converge to neutral.
+
+    Observe the whole loop
+    Measure more than model latency. Track tool selection, validation failures, approval delays, execution
+    outcomes, cancellation, stale state, and recovery. Keep sensitive data out of logs and define retention.
+    An AI system that cannot explain which source and tool produced an action will be difficult to debug and
+    unsafe to trust.
 
 
 
-current verified wiring map over an old brainstorming note, and make conflicts visible rather than silently
-blending them.
-
-Design for uncertainty
-Model output may be incomplete, inconsistent, or wrong. The system needs:
-
-• structured outputs that reject invalid shapes;
-• timeouts and cancellation;
-• bounded retries and queue sizes;
-• idempotent operations where possible;
-• explicit unavailable and uncertain states;
-• audit events for proposals, approvals, actions, and outcomes;
-• human escalation for consequential ambiguity.
-
-Do not convert “the model did not answer” into a default motion. In robotics, absence of valid intent
-should converge to neutral.
-
-Observe the whole loop
-Measure more than model latency. Track tool selection, validation failures, approval delays, execution
-outcomes, cancellation, stale state, and recovery. Keep sensitive data out of logs and define retention.
-An AI system that cannot explain which source and tool produced an action will be difficult to debug and
-unsafe to trust.
-
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           20 / 31
+AI, ROBOTICS, AND CODEX                                                                  VOLUME 5 - ADVANCED MAKERS
 
 
 
@@ -1316,14 +1352,6 @@ Exercises:
 3. Find one timeout and list what state it protects.
 4. Turn one bug report into reproducible steps.
 5. Convert one workshop fact into a testable invariant.
-
-
-
-
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           20 / 31
-AI, ROBOTICS, AND CODEX                                                                  VOLUME 5 - ADVANCED MAKERS
-
-
 
 Week 2: build evidence loops
 Choose low-risk bugs. Require a failing reproduction or fixture before the patch. Ask the agent to run the
@@ -1350,6 +1378,13 @@ Finish with a review packet:
 • ten normal eval cases;
 • ten adversarial or failure cases;
 • deterministic validator tests;
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              21 / 31
+AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
+
+
+
 • simulator demonstration;
 • physical validation plan owned by a qualified operator.
 
@@ -1363,14 +1398,6 @@ You are ready for greater autonomy when you can reliably answer:
 5. What evidence supports each completion claim?
 6. How does the system fail neutral?
 7. Who can stop it, and how?
-
-
-
-
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              21 / 31
-AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
-
-
 
 The future developer is not the person who types the most code. It is the person who can turn human
 intent into a well-bounded system, use AI to explore and construct it rapidly, and produce evidence strong
@@ -1396,26 +1423,28 @@ Sources and system map
 • Which facts are hypotheses that the agent must confirm?
 • What recent known-good implementation should be compared?
 
-Invariants and authority
-• What existing behavior must remain byte-compatible or user-compatible?
-• Which values, rates, sizes, lifetimes, and coordinate systems are bounded?
-• Who owns mutable state?
-• What may the AI read, edit, execute, or propose?
-• Which actions require approval?
-• Which actions are forbidden in this task?
 
-Failure behavior
-• What happens when input disappears, tracking is lost, or a peer disconnects?
-• What happens when a value is malformed, nonfinite, stale, duplicated, or unsupported?
-• Can cancellation race with completion?
-• Can one optional subsystem block control or stop handling?
-• Does restart preserve an emergency stop or accidentally clear it?
 
 
 ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           22 / 31
      AI, ROBOTICS, AND CODEX                                                                  VOLUME 5 - ADVANCED MAKERS
 
 
+
+     Invariants and authority
+     • What existing behavior must remain byte-compatible or user-compatible?
+     • Which values, rates, sizes, lifetimes, and coordinate systems are bounded?
+     • Who owns mutable state?
+     • What may the AI read, edit, execute, or propose?
+     • Which actions require approval?
+     • Which actions are forbidden in this task?
+
+     Failure behavior
+     • What happens when input disappears, tracking is lost, or a peer disconnects?
+     • What happens when a value is malformed, nonfinite, stale, duplicated, or unsupported?
+     • Can cancellation race with completion?
+     • Can one optional subsystem block control or stop handling?
+     • Does restart preserve an emergency stop or accidentally clear it?
 
      Acceptance evidence
      • What test must fail before the fix?
@@ -1447,61 +1476,70 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-     Human sign-off
-     Before shipping or energizing hardware, the responsible developer should be able to say: I understand
-     the intended behavior; I reviewed the authority and failure boundaries; the cited evidence supports the
-     claims; unresolved physical facts are labeled; and a tested independent stop exists where motion can
-     affect people or equipment.
-
-
-
-
-     23. Local intelligence on Apple silicon: Swift, MLX, and
-     Llama
-     Cerebro can now run a small language model directly on the Mac inside the robot. This is not one product
-     called “SwiftMLX.” The pieces have distinct jobs:
-
-     • Swift is the programming language used by Cerebro’s local-AI layer.
-     • MLX Swift is the Swift interface to Apple’s MLX array and machine-learning framework for Apple silicon.
-     • MLXLLM loads and runs text-generating large language models.
-     • Llama is a family of language-model architectures and weights. It is a model, not the runtime around
-       it.
-     • llama.cpp is a separate local runtime with an HTTP server. Cerebro can use it as an alternative provider.
-
      ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              23 / 31
-     AI, ROBOTICS, AND CODEX                                                                VOLUME 5 - ADVANCED MAKERS
+    AI, ROBOTICS, AND CODEX                                                                VOLUME 5 - ADVANCED MAKERS
 
 
 
-     • MLXVLM runs vision-language models. “VLM” means vision-language model; this repository does not
-       use a framework named VLX.
-
-     That vocabulary matters. A model is the learned set of weights. A runtime loads the weights and performs
-     inference. A tokenizer turns text into numeric tokens. A model container holds the loaded model and
-     tokenizer. Application code supplies a prompt, validates the result, and decides what the result is allowed
-     to influence.
-
-     23.1 The actual Cerebro model stack
-     ROBMLXRuntime.swift imports MLX, MLXLLM, MLXLMCommon, MLXVLM, and the tokenizer and Hugging Face load-
-     ers. Its current defaults are:
-1      static let defaultLLMModel =
-2           "mlx-community/Llama-3.2-1B-Instruct-4bit"
-3      static let defaultVLMModel =
-4           "mlx-community/Qwen2-VL-2B-Instruct-4bit"
-5      static let defaultEmbeddingModel = "TaylorAI/gte-tiny"
+    Human sign-off
+    Before shipping or energizing hardware, the responsible developer should be able to say: I understand
+    the intended behavior; I reviewed the authority and failure boundaries; the cited evidence supports the
+    claims; unresolved physical facts are labeled; and a tested independent stop exists where motion can
+    affect people or equipment.
 
 
 
-     The suffix 4bit means the weights have been quantized to use fewer bits per value. Quantization reduces
-     memory and often makes local inference practical, at the cost of some numerical precision. A one-billion-
-     parameter model is not small in the everyday sense, but it is deliberately modest for an embedded stage
-     assistant.
-     The engine is a Swift actor:
+
+    23. Local intelligence on Apple silicon: Swift, MLX, and
+    Llama
+                SOURCE TRAIL — ANALYZING NOW: find the current local-model implementation with
+             rg -n "MLX|Llama|MLXVLM|LocalModel" Cerebro. Package declarations and lockfiles establish
+             which library revision is actually available; prose examples do not.
+
+    Cerebro can now run a small language model directly on the Mac inside the robot. This is not one product
+    called “SwiftMLX.” The pieces have distinct jobs:
+
+    • Swift is the programming language used by Cerebro’s local-AI layer.
+    • MLX Swift is the Swift interface to Apple’s MLX array and machine-learning framework for Apple silicon.
+    • MLXLLM loads and runs text-generating large language models.
+    • Llama is a family of language-model architectures and weights. It is a model, not the runtime around
+      it.
+    • llama.cpp is a separate local runtime with an HTTP server. Cerebro can use it as an alternative provider.
+    • MLXVLM runs vision-language models. “VLM” means vision-language model; this repository does not
+      use a framework named VLX.
+
+    That vocabulary matters. A model is the learned set of weights. A runtime loads the weights and performs
+    inference. A tokenizer turns text into numeric tokens. A model container holds the loaded model and
+    tokenizer. Application code supplies a prompt, validates the result, and decides what the result is allowed
+    to influence.
+
+    23.1 The actual Cerebro model stack
+    ROBMLXRuntime.swift imports MLX, MLXLLM, MLXLMCommon, MLXVLM, and the tokenizer and Hugging Face load-
+    ers. Its current defaults are:
+1     static let defaultLLMModel =
+2          "mlx-community/Llama-3.2-1B-Instruct-4bit"
+3     static let defaultVLMModel =
+4          "mlx-community/Qwen2-VL-2B-Instruct-4bit"
+5     static let defaultEmbeddingModel = "TaylorAI/gte-tiny"
+
+
+
+    The suffix 4bit means the weights have been quantized to use fewer bits per value. Quantization reduces
+    memory and often makes local inference practical, at the cost of some numerical precision. A one-billion-
+    parameter model is not small in the everyday sense, but it is deliberately modest for an embedded stage
+    assistant.
+    The engine is a Swift actor:
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            24 / 31
+     AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
+
+
+
 1      public actor ROBMLXEngine {
-2           private var llm: ModelContainer?
-3           private var vlm: ModelContainer?
+2            private var llm: ModelContainer?
+3            private var vlm: ModelContainer?
 4
-5           public func generate(prompt: String) async throws -> String {
+5            public func generate(prompt: String) async throws -> String {
 6                 let container = try await loadLLM(modelID: Self.defaultLLMModel)
 7                 let input = try await container.prepare(
 8                      input: UserInput(prompt: prompt)
@@ -1514,7 +1552,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 15                     )
 16                )
 17                // Collect bounded text chunks and reject tool calls.
-18          }
+18           }
 19     }
 
 
@@ -1530,35 +1568,35 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
      mistakes.
      The model does not retrieve truth from its weights like a database. It predicts likely next tokens. Fluent
      output can therefore be wrong. ROB never treats local prose as a servo command. For the stage, the
+     model returns a tiny JSON plan, and deterministic code verifies its exact keys, enum values, length, and
+     prohibited control language.
 
-     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            24 / 31
+     23.3 Llama through MLX versus llama.cpp
+     Cerebro supports two local-provider paths:
+1      MLX Swift provider
+2          Cerebro process -> MLX model container -> validated plan
+3
+4      llama.cpp provider
+5          Cerebro process -> bounded localhost HTTP -> llama.cpp server
+6                               -> validated plan
+
+
+
+     MLX Swift keeps inference native and private inside Cerebro. The llama.cpp path is useful when a builder
+     already operates a compatible local server or wants a model format supported by that ecosystem. They
+     can run the same Llama family, but they are not interchangeable APIs. In both cases the output must pass
+     ROBLocalImprovisationPlanCodec; the provider does not gain hardware authority merely because it runs
+     locally.
+
+     Lab: trace one local sentence
+     1. Open Cerebro’s Stage Show window.
+     2. Select MLX Swift (private/offline) as the local provider.
+
+     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           25 / 31
     AI, ROBOTICS, AND CODEX                                                                VOLUME 5 - ADVANCED MAKERS
 
 
 
-    model returns a tiny JSON plan, and deterministic code verifies its exact keys, enum values, length, and
-    prohibited control language.
-
-    23.3 Llama through MLX versus llama.cpp
-    Cerebro supports two local-provider paths:
-1     MLX Swift provider
-2         Cerebro process -> MLX model container -> validated plan
-3
-4     llama.cpp provider
-5         Cerebro process -> bounded localhost HTTP -> llama.cpp server
-6                              -> validated plan
-
-
-
-    MLX Swift keeps inference native and private inside Cerebro. The llama.cpp path is useful when a builder
-    already operates a compatible local server or wants a model format supported by that ecosystem. They
-    can run the same Llama family, but they are not interchangeable APIs. In both cases the output must pass
-    ROBLocalImprovisationPlanCodec; the provider does not gain hardware authority merely because it runs
-    locally.
-
-    Lab: trace one local sentence
-    1. Open Cerebro’s Stage Show window.
-    2. Select MLX Swift (private/offline) as the local provider.
     3. Run the provider health check before the audience arrives. The first run may download model files
        and will be much slower than a warm run.
     4. Load MakerFaireOpening.robshow.json and choose Local improv.
@@ -1586,13 +1624,6 @@ A text-only Llama model receives text. It cannot inspect a camera frame merely b
     The current Qwen2-VL model is asked for a deliberately narrow stage observation: whether an audience
     is present, an estimated person count, whether the presenter and demonstration object are visible, an
     audience activity category, one short scene-change sentence, and confidence.
-
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            25 / 31
-    AI, ROBOTICS, AND CODEX                                                                   VOLUME 5 - ADVANCED MAKERS
-
-
-
 1     {
 2         "audience_present": true,
 3         "estimated_people": 4,
@@ -1622,34 +1653,33 @@ A text-only Llama model receives text. It cannot inspect a camera frame merely b
     loop. Navigation should continue to use measured lidar, validated free-space geometry, explicit auton-
     omy policy, and stop behavior.
 
-    24.2 Confidence is a gate, not decoration
-    Cerebro includes stage observations only when they are fresh and meet the configured confidence thresh-
-    old. If the fact is old or weak, the dialogue prompt says that no reliable camera fact is available. This avoids
-    turning an uncertain guess into a confident claim about a person.
-    Do not infer identity, emotion, disability, ethnicity, or other sensitive traits from a Maker Faire camera. The
-    stage schema asks only for coarse, performance-relevant facts and must never identify an individual child.
 
-    Lab: make the vision result fail safely
-    Test five frames: an empty stage, one presenter, a small audience, a partially covered camera, and a
-    deliberately ambiguous scene. For each frame:
-
-    1. Save only the validated observation and latency, not unnecessary audience imagery.
-    2. Compare the estimate with a human count.
-    3. Confirm malformed JSON is rejected.
-    4. Confirm a low-confidence observation does not enter the stage prompt.
-    5. Confirm disabling vision does not interrupt speech, stop handling, or manual robot control.
-
-
-
-
-    25. Implementing model-safe show logic
-
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                               26 / 31
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            26 / 31
      AI, ROBOTICS, AND CODEX                                                                        VOLUME 5 - ADVANCED MAKERS
 
 
 
+     24.2 Confidence is a gate, not decoration
+     Cerebro includes stage observations only when they are fresh and meet the configured confidence thresh-
+     old. If the fact is old or weak, the dialogue prompt says that no reliable camera fact is available. This avoids
+     turning an uncertain guess into a confident claim about a person.
+     Do not infer identity, emotion, disability, ethnicity, or other sensitive traits from a Maker Faire camera. The
+     stage schema asks only for coarse, performance-relevant facts and must never identify an individual child.
 
+     Lab: make the vision result fail safely
+     Test five frames: an empty stage, one presenter, a small audience, a partially covered camera, and a
+     deliberately ambiguous scene. For each frame:
+
+     1. Save only the validated observation and latency, not unnecessary audience imagery.
+     2. Compare the estimate with a human count.
+     3. Confirm malformed JSON is rejected.
+     4. Confirm a low-confidence observation does not enter the stage prompt.
+     5. Confirm disabling vision does not interrupt speech, stop handling, or manual robot control.
+
+
+
+
+     25. Implementing model-safe show logic
      Stage-show files are data, not programs. They may contain dialogue, timing, named gestures, check-
      points, and model scene goals. They may not contain raw joint values, servo positions, hosts, ports, or
      shell commands.
@@ -1683,47 +1713,59 @@ A text-only Llama model receives text. It cannot inspect a camera frame merely b
 
      The local model is constrained to a five-field dialogue plan: schema, version, beat, delivery, and
      offline_line. It cannot return a gesture name or a tool call. Gesture cues remain separately authored
-     and resolved through a named, allowlisted action. This separation is the core implementation lesson: AI
-     can shape performance language without inheriting control of the machine.
-
-     25.1 How to add a safe model cue
-     1. Write a narrow scene goal describing the desired spoken result.
-     2. Explicitly forbid physical actions and unsupported factual claims.
-     3. Author a complete fallback sentence that works with no model and no network.
-     4. Give the cue a short deadline. A show should advance or fall back rather than wait indefinitely.
-     5. Validate the entire show before rehearsal.
-     6. Rehearse in Dry run, then Speech only, then Local improv.
-     7. Use Adaptive only after both the local provider and cloud path have passed preflight.
-
-     25.2 A show is a state machine
-     At any moment the coordinator awaits exactly one event: speech completion, local generation, Gemini,
-     a named gesture, a checkpoint, or a timer. Stop cancels pending model requests and timers. Each asyn-
-     chronous completion carries an identifier so a late response cannot complete a newer cue. This pattern
-     is useful far beyond theater: give every delayed operation an identity, deadline, cancel path, and deter-
-     ministic fallback.
-
 
      ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    27 / 31
-    AI, ROBOTICS, AND CODEX                                                             VOLUME 5 - ADVANCED MAKERS
+AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
 
 
 
-    Rehearsal checklist
-    • The physical E-stop is reachable and independently tested.
-    • The stage is clear before any gesture cue.
-    • The model and VLM are downloaded before relying on offline operation.
-    • The local provider health check and generated-plan preflight pass.
-    • Every model_turn has acceptable authored fallback text.
-    • Camera confidence is visible to the operator.
-    • Dry-run logs show no unknown fields, late completions, or unbounded waits.
-    • Speech-only mode can complete the entire show without AI.
+and resolved through a named, allowlisted action. This separation is the core implementation lesson: AI
+can shape performance language without inheriting control of the machine.
+
+25.1 How to add a safe model cue
+1. Write a narrow scene goal describing the desired spoken result.
+2. Explicitly forbid physical actions and unsupported factual claims.
+3. Author a complete fallback sentence that works with no model and no network.
+4. Give the cue a short deadline. A show should advance or fall back rather than wait indefinitely.
+5. Validate the entire show before rehearsal.
+6. Rehearse in Dry run, then Speech only, then Local improv.
+7. Use Adaptive only after both the local provider and cloud path have passed preflight.
+
+25.2 A show is a state machine
+At any moment the coordinator awaits exactly one event: speech completion, local generation, Gemini,
+a named gesture, a checkpoint, or a timer. Stop cancels pending model requests and timers. Each asyn-
+chronous completion carries an identifier so a late response cannot complete a newer cue. This pattern
+is useful far beyond theater: give every delayed operation an identity, deadline, cancel path, and deter-
+ministic fallback.
+
+Rehearsal checklist
+• The physical E-stop is reachable and independently tested.
+• The stage is clear before any gesture cue.
+• The model and VLM are downloaded before relying on offline operation.
+• The local provider health check and generated-plan preflight pass.
+• Every model_turn has acceptable authored fallback text.
+• Camera confidence is visible to the operator.
+• Dry-run logs show no unknown fields, late completions, or unbounded waits.
+• Speech-only mode can complete the entire show without AI.
 
 
 
 
-    26. Vision Pro as ROB's voice and spatial control desk
-    ROBControllerVision now adds a Voice & Puppet Speech panel beside the camera and telemetry con-
-    trols. It supports two intentionally different meanings for the same recognized sentence.
+26. Vision Pro as ROB's voice and spatial control desk
+            SOURCE TRAIL — ANALYZING NOW: OperatorSpeechPanel.swift, ControlPanel.swift,
+         and VideoPanel.swift implement operator-facing features. Transport lives separately in the
+         ROBControllerVision package named ROBControlCore. The code map prints each full path.
+
+ROBControllerVision now adds a Voice & Puppet Speech panel beside the camera and telemetry con-
+trols. It supports two intentionally different meanings for the same recognized sentence.
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          28 / 31
+    AI, ROBOTICS, AND CODEX                                                                 VOLUME 5 - ADVANCED MAKERS
+
+
+
     Command sends the finalized phrase to Cerebro’s normal inputText: path. ROB interprets it just as if the
     operator typed into Cerebro. Existing local handling—such as stop-oriented text—and the configured AI
     path remain in one place.
@@ -1754,28 +1796,28 @@ A text-only Llama model receives text. It cannot inspect a camera frame merely b
     5. Disconnect and verify the buttons cannot send across a nonexistent session.
     6. Deny microphone permission and verify typed text still works.
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                         28 / 31
-AI, ROBOTICS, AND CODEX                                                                 VOLUME 5 - ADVANCED MAKERS
+    The voice feature does not arm motion, grant motion authority, or bypass the physical emergency stop.
+    Never present a spoken phrase as a replacement for a dead-man control.
+
+    26.2 The rest of the spatial control path
+    The Vision Pro interface also makes previously invisible robot state easier to teach:
+
+    • the main camera is the large center view;
+    • side panels keep connection, voice, telemetry, and controls visible without vertical scrolling;
+    • head orientation can drive the robot camera/neck while the required dead-man control is active;
+    • torso rotation follows the bounded head-turn control path when enabled;
+    • controller triggers are reserved for the left and right grippers;
+    • controller pose and head commands are reflected in the SceneKit view for debugging;
+    • transport remains paired and authenticated, and stale motion converges to neutral.
+
+    These features demonstrate an important design distinction. Spatial input is continuous and safety-leased.
+    Voice input is discrete text. Puppet speech is performance output. They may share one headset and one
+    network connection, but they should not share ambiguous authority.
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             29 / 31
+AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
 
 
-
-The voice feature does not arm motion, grant motion authority, or bypass the physical emergency stop.
-Never present a spoken phrase as a replacement for a dead-man control.
-
-26.2 The rest of the spatial control path
-The Vision Pro interface also makes previously invisible robot state easier to teach:
-
-• the main camera is the large center view;
-• side panels keep connection, voice, telemetry, and controls visible without vertical scrolling;
-• head orientation can drive the robot camera/neck while the required dead-man control is active;
-• torso rotation follows the bounded head-turn control path when enabled;
-• controller triggers are reserved for the left and right grippers;
-• controller pose and head commands are reflected in the SceneKit view for debugging;
-• transport remains paired and authenticated, and stale motion converges to neutral.
-
-These features demonstrate an important design distinction. Spatial input is continuous and safety-leased.
-Voice input is discrete text. Puppet speech is performance output. They may share one headset and one
-network connection, but they should not share ambiguous authority.
 
 Build exercise: add a third text mode without adding authority
 Imagine a captionOnly mode that displays a sentence on ROB’s screen but does not speak or interpret it.
@@ -1801,14 +1843,6 @@ that voice. It gives it leverage.
 The mature system is better not merely because it contains more code. It has contracts where there were
 assumptions, bounded queues where there could be backlogs, explicit authority where there was trust,
 tests where there was only memory, and documentation where knowledge once lived in the workshop.
-
-
-
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             29 / 31
-AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
-
-
-
 That is the best use of Codex in robotics. Let AI search widely, trace deeply, draft quickly, compare both
 sides of a protocol, and remember every edge case you name. Keep the human responsible for scope,
 evidence, physical validation, and the decision to energize the machine.
@@ -1827,6 +1861,12 @@ Repository sources
 • Cerebro/docs/controller-activated-autonomy.md
 • Cerebro/docs/depth-camera.md
 • Cerebro/docs/vision-pro-video.md
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          30 / 31
+AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
+
+
+
 • Cerebro/docs/gemini-robotics-live.md
 • Cerebro/docs/gemini-robotics-stage-action-plan.md
 • Cerebro/docs/local-improvisation-provider.md
@@ -1843,6 +1883,13 @@ Official OpenAI documentation
 • Codex use cases2
 • OpenAI model guidance3
 • OpenAI API models4
+
+Consult the current official documentation when implementing; models, capabilities, availability, and SDK
+shapes can change after this edition.
+
+
+
+
     1
         https://learn.chatgpt.com/docs/prompting
     2
@@ -1851,18 +1898,6 @@ Official OpenAI documentation
         https://developers.openai.com/api/docs/guides/latest-model
     4
         https://developers.openai.com/api/docs/models
-
-
-
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          30 / 31
-AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
-
-
-
-Consult the current official documentation when implementing; models, capabilities, availability, and SDK
-shapes can change after this edition.
-
-
 
 
 ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          31 / 31

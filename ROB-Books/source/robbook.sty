@@ -209,6 +209,7 @@
     VOLUME 4 & \textit{Mission Control: Arduino, Mac, Networks, and Vision} - ages 12-16\\[4pt]
     VOLUME 5 & \textit{AI, Robotics, and Codex: Directing, Verifying, and Owning AI-Built Systems} - advanced makers\\[4pt]
     VOLUME 6 & \textit{Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu} - advanced makers\\[4pt]
+    VOLUME 7 & \textit{Engineering ROBControllerVision: Swift, Spatial Input, Video, and Speech} - Swift developers\\[4pt]
     MANUAL & \textit{Building R.O.B.: The Complete Maker's Field Manual} - advanced builders\\
   \end{tabularx}
   \vspace{8pt}
@@ -226,6 +227,19 @@
 \newcommand{\ROBAmberStatus}{%
   \begin{fieldnotebox}[title={TWO AMBER B1 ARMS, ONE DOCUMENTED CONTROL CHAIN}]
   ROB carries two seven-joint AMBER B1 arms. The repository snapshot separates their Ubuntu-side cores as \texttt{L-10} and \texttt{R-11}: network clients use UDP or LCM, each core binds a stable CAN interface, and CAN carries commands and feedback between that core and its arm actuators. The \texttt{AmberHomeFolder} tree is evidence from one Ubuntu machine, not a deployable image; never copy its credentials, logs, virtual environment, or machine-specific identifiers. Volume 6 documents the inspected protocol, URDF models, reproducible setup, verification gates, and unresolved configuration differences.
+  \end{fieldnotebox}
+}
+
+\newcommand{\ROBSourceRoot}{%
+  \begin{fieldnotebox}[title={HOW TO FIND THE FILES}]
+  Every printed path is relative to the shared workspace root, \texttt{/Users/rob/dev} in the inspected edition. Start at that root, enter the first directory in the path, and follow each slash. Source code is spread across independent repositories---including \texttt{ROBArduino}, \texttt{Cerebro}, \texttt{ROBController}, \texttt{ROBControllerVision}, \texttt{ORobotics}, and \texttt{ROBTrainingGames}---rather than one giant ROB project. See \texttt{Presentation/ROB-Books/OPEN-SOURCE-CODE-MAP.md} for repository locations, licenses, primary files, and commands for finding renamed files.
+  \end{fieldnotebox}
+}
+
+\newcommand{\ROBSourceNow}[2]{%
+  \begin{fieldnotebox}[title={SOURCE TRAIL --- ANALYZING NOW}]
+  \textbf{File:} \nolinkurl{#1}\par
+  \textbf{Why it is here:} #2
   \end{fieldnotebox}
 }
 
