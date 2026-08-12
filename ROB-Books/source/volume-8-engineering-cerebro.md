@@ -1,6 +1,6 @@
 # Read Cerebro as a living robot system
 
-Cerebro is the macOS application at the center of ROB. It is not one algorithm. It is a boundary between cameras, serial devices, robot controllers, speech, local models, cloud models, two AMBER arms, a stage-show engine, and a human operator. The source root for this volume is:
+Cerebro is the macOS application at the center of ROB. It is not one algorithm. It is a boundary between cameras, serial devices, robot controllers, speech, local models, cloud models, two AMBER arms, a stage-show engine, and a human operator. The public source is <https://github.com/RudyAramayo/Cerebro>. Clone it, then use this repository root:
 
 ```text
 Cerebro/

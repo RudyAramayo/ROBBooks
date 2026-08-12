@@ -294,6 +294,8 @@ INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/rerunfile
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/microtype.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/microtype.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/microtype-xetex.def
@@ -366,9 +368,6 @@ OUTPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-
 INPUT ../assets/photos/2026-rob-lightsabers-front.jpg
 INPUT ../assets/photos/2026-rob-lightsabers-front.jpg
 OUTPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.xdv
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.toc
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.toc
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.toc
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
@@ -402,6 +401,9 @@ INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.toc
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.toc
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.toc
 OUTPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex.toc
 INPUT ./volume-5-ai-robotics-with-codex.md
 INPUT volume-5-ai-robotics-with-codex.md

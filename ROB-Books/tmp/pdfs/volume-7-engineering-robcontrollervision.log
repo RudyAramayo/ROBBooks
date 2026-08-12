@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 21:59
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:40
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1020,6 +1020,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip73
 )
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
+)
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
 rotype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
@@ -1300,7 +1303,7 @@ Package fontspec Info:
 (fontspec)             <->"Avenir Next
 (fontspec)             Condensed/BI/OT:script=latn;language=dflt;+smcp;"
 
-Package hyperref Info: Option `colorlinks' set `true' on input line 66.
+Package hyperref Info: Option `colorlinks' set `true' on input line 67.
 )
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/markdown/mark
 down.sty
@@ -1608,24 +1611,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--32
 [1
 
 
-] [2]
-(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsa
-.fd)
-(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
-msa.cfg)
-(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsb
-.fd)
-(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
-msb.cfg)
-(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
-cmr.cfg)
+]
 LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 8.30002pt on input line 45.
+(Font)              scaled to size 8.30002pt on input line 38.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `Menlo' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [3
+LaTeX Font Info:    Trying to load font information for U+msa on input line 38.
+
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsa
+.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 38.
+
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsb
+.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+) [2] [3
 
 ]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrol
@@ -1657,7 +1676,7 @@ Package luabridge Info: Executing a helper Lua script from file
 (|texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-ro
 bcontrollervision.luabridge.lua)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-
-robcontrollervision/d0be003a77f9eb987fa9b36a54719e42.md.tex
+robcontrollervision/21440a2959ae9b0f7dfb705bfac0a173.md.tex
 Chapter 1.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 5.
@@ -1804,6 +1823,8 @@ Chapter 28.
 
 ]
 Chapter 29.
+LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
+(Font)              scaled to size 6.64001pt on input line 388.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-
 robcontrollervision/a3fea1fec3880823e941c1b2ad239d6a.verbatim) [29
@@ -1826,13 +1847,13 @@ Package rerunfilecheck Info: File `volume-7-engineering-robcontrollervision.out
 (rerunfilecheck)             Checksum: 2BB3F037FD5918ABEE378CD30C9E82EE;8508.
  ) 
 Here is how much of TeX's memory you used:
- 37951 strings out of 468168
- 849672 string characters out of 5423555
- 1498931 words of memory out of 5000000
- 65964 multiletter control sequences out of 15000+600000
- 630645 words of font info for 119 fonts, out of 8000000 for 9000
+ 38018 strings out of 468168
+ 851111 string characters out of 5423555
+ 1499550 words of memory out of 5000000
+ 66017 multiletter control sequences out of 15000+600000
+ 633769 words of font info for 134 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 101i,12n,131p,1037b,1369s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,12n,131p,1037b,1375s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engin
-eering-robcontrollervision.xdv (36 pages, 646228 bytes).
+eering-robcontrollervision.xdv (36 pages, 660188 bytes).

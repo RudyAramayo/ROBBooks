@@ -15,6 +15,17 @@ mkdir -p "$validation_dir"
 
 failure=0
 
+echo "===== private-path publication guard ====="
+if private_source_matches="$(rg -n '/Users/[^/]+/' \
+  "$project_root"/*.md "$source_dir" \
+  --glob '*.md' --glob '*.tex' --glob '*.sty' 2>/dev/null)"; then
+  echo "ERROR: private macOS user path appears in publishable book source:"
+  printf '%s\n' "$private_source_matches"
+  failure=1
+else
+  echo "No private macOS user paths detected in publishable book source."
+fi
+
 if ! bash "$project_root/tools/audit_image_reuse.sh"; then
   failure=1
 fi
@@ -115,6 +126,11 @@ for book_name in "${books[@]}"; do
 
   pdfinfo "$pdf_path" | awk '/^Pages:|^Page size:|^File size:|^Encrypted:/'
   pdftotext -layout "$pdf_path" "$validation_dir/$book_name.txt"
+  if rg -q '/Users/[^/]+/' "$validation_dir/$book_name.txt"; then
+    echo "ERROR: private macOS user path appears in extracted PDF text"
+    rg -n '/Users/[^/]+/' "$validation_dir/$book_name.txt"
+    failure=1
+  fi
   if ! rg -q "R\.O\.B\.|ROB" "$validation_dir/$book_name.txt"; then
     echo "ERROR: expected ROB text was not extracted"
     failure=1

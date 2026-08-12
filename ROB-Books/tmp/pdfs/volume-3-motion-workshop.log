@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 21:59
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1020,6 +1020,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip73
 )
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
+)
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
 rotype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
@@ -1300,7 +1303,7 @@ Package fontspec Info:
 (fontspec)             <->"Avenir Next
 (fontspec)             Condensed/BI/OT:script=latn;language=dflt;+smcp;"
 
-Package hyperref Info: Option `colorlinks' set `true' on input line 66.
+Package hyperref Info: Option `colorlinks' set `true' on input line 67.
 )
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.aux)
 \openout1 = `volume-3-motion-workshop.aux'.
@@ -1748,13 +1751,13 @@ d.
 (rerunfilecheck)             Checksum: 3FD4BA99FEB5CB6022FCCE4F44A60DEB;2168.
  ) 
 Here is how much of TeX's memory you used:
- 35042 strings out of 468168
- 762991 string characters out of 5423555
- 1269980 words of memory out of 5000000
- 63136 multiletter control sequences out of 15000+600000
+ 35067 strings out of 468168
+ 763648 string characters out of 5423555
+ 1281566 words of memory out of 5000000
+ 63157 multiletter control sequences out of 15000+600000
  632078 words of font info for 126 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,12n,131p,1021b,1037s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motio
-n-workshop.xdv (34 pages, 552368 bytes).
+n-workshop.xdv (34 pages, 560484 bytes).

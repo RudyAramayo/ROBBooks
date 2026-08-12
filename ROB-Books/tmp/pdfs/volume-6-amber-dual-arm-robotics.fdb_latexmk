@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1786510790.14317 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics" 1786510790.72253 0
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.xdv" 1786510790.07068 593240 99d35f09c718b75b66aacde61ceb1cb8 "xelatex"
+["xdvipdfmx"] 1786513208.37064 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics" 1786513208.95358 0
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.xdv" 1786513208.29657 601344 7bdedfc289179622feedb4899c252c5a "xelatex"
   (generated)
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.pdf"
   (rewritten before read)
-["xelatex"] 1786510788.13622 "volume-6-amber-dual-arm-robotics.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.xdv" "volume-6-amber-dual-arm-robotics" 1786510790.72093 0
+["xelatex"] 1786513206.36748 "volume-6-amber-dual-arm-robotics.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.xdv" "volume-6-amber-dual-arm-robotics" 1786513208.95182 0
   "../assets/generated/rob-dual-arm-feedback-lesson.png" 1786509542.97985 2723475 eb38feb39f2e7850721d6a1033b70f20 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/10d4f05988c5a7d150f01ff528b68a42.md.tex" 1786509341.10923 50434 379fee5d768b73622b73ffe37d582f74 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/281d75d1ffe0f61959869d966fdba0e5.verbatim" 1786502556.49694 115 281d75d1ffe0f61959869d966fdba0e5 ""
@@ -17,9 +17,9 @@
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/ec704a8c25a946b2c6071a454dd55670.verbatim" 1786502556.49573 289 ec704a8c25a946b2c6071a454dd55670 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/f292067fa251e8098021e09b26da0e02.verbatim" 1786502556.49637 210 f292067fa251e8098021e09b26da0e02 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/ff751083778f07712f5f42b8c45c1513.verbatim" 1786502556.49665 142 ff751083778f07712f5f42b8c45c1513 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.aux" 1786510790.06923 10339 a040af69ee4f88548c5be8491c1e70d4 "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.out" 1786510790.07013 6990 555e5da9ef059a8378762c3737cfcb0c "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.toc" 1786510790.07038 3059 4b1dc816f5db499630188381eee8fec8 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.aux" 1786513208.29468 10339 a040af69ee4f88548c5be8491c1e70d4 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.out" 1786513208.29596 6990 555e5da9ef059a8378762c3737cfcb0c "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber-dual-arm-robotics.toc" 1786513208.29628 3059 4b1dc816f5db499630188381eee8fec8 "xelatex"
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/fontname/texfonts.map" 1772380719 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1772380719 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1772380719 1004 54797486969f23fa377b128694d548df ""
@@ -227,9 +227,10 @@
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/varwidth/varwidth.sty" 1772380719 10894 d359a13923460b2a73d4312d613554c8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1772380719 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1772380719 5006 d7e899bb5d9717c7f214e9bc0284de7b ""
+  "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty" 1772380719 4675 e4b8c405820368c2dfb03526e16d725a ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/web2c/texmf.cnf" 1772380719 43633 14bbc273cebd985e64ab1a698333eaf9 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-var/web2c/xetex/xelatex.fmt" 1772380719 5948959 3df9f026b6ab65867975c94eefb74cd0 ""
-  "robbook.sty" 1786509627.72271 18057 ba6788e1d40d5a27905ab70432f2347b ""
+  "robbook.sty" 1786513183.41505 18343 efe854e77ba918206dcffd01effb0188 ""
   "volume-6-amber-dual-arm-robotics.md" 1786509325.54697 31910 d5101eb85d2327d3c3206c92ae1c5331 ""
   "volume-6-amber-dual-arm-robotics.tex" 1786510037.93864 2396 a0b91b0106c9002d06cb2ef239ad6c1d ""
   (generated)

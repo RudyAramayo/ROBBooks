@@ -20,9 +20,10 @@ and its POSIX/IOKit device paths, AVFoundation capture, the isolated Luxonis Dep
 rendering, MLX language and vision-language inference, bounded semantic memory, Gemini Live media and tools,
 SceneSnapshot, historical Kinect artifacts, safe light-saber choreography, comedy-show state machines, and the
 separate Vision Pro control/video contract taught in Volume 7.
-Paths are relative to the inspected workspace. Every chapter names the exact implementation or test being ana-
-lyzed. Historical artifacts are not automatically recommended, model output is never motor authority, and physical
-behavior must be verified under a controlled commissioning procedure.
+Paths are relative to the public https://github.com/RudyAramayo/Cerebro repository, with the spatial client in
+https://github.com/RudyAramayo/ROBControllerVision. Every chapter names the exact implementation or test
+being analyzed. Historical artifacts are not automatically recommended, model output is never motor authority, and
+physical behavior must be verified under a controlled commissioning procedure.
 
 
 
@@ -67,11 +68,14 @@ The Building R.O.B. library
 
    HOW TO FIND THE FILES
 
-   Every printed path is relative to the shared workspace root, /Users/rob/dev in the inspected edition. Start
-   at that root, enter the first directory in the path, and follow each slash. Source code is spread across in-
-   dependent repositories—including ROBArduino, Cerebro, ROBController, ROBControllerVision, ORobotics, and
-   ROBTrainingGames—rather than one giant ROB project. See Presentation/ROB-Books/OPEN-SOURCE-CODE-MAP.md
-   for repository locations, licenses, primary files, and commands for finding renamed files.
+   Open the public repositories on GitHub and follow each printed repository-relative path: https://github.com
+   /RudyAramayo/ROBBooks, https://github.com/RudyAramayo/ROBArduino, https://github.com/RudyAramayo/C
+   erebro, https://github.com/RudyAramayo/ROBController, https://github.com/RudyAramayo/ROBController
+   Vision, https://github.com/RudyAramayo/Amber-HomeFolder, and https://github.com/RudyAramayo/ROBTrai
+   ningGames. The website is published separately at https://github.com/OrbitusRoboticsWebSite/ORobotics.
+   See https://github.com/RudyAramayo/ROBBooks/blob/main/ROB-Books/OPEN-SOURCE-CODE-MAP.md for clickable
+   repository and file links, license cautions, and renamed-file search instructions. A named archival item without
+   a verified public repository is labeled as evidence, not given an invented URL.
 
 
 
@@ -171,8 +175,9 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
     Read Cerebro as a living robot
     system
     Cerebro is the macOS application at the center of ROB. It is not one algorithm. It is a boundary between cameras,
-    serial devices, robot controllers, speech, local models, cloud models, two AMBER arms, a stage-show engine, and
-    a human operator. The source root for this volume is:
+    serial devices, robot controllers, speech, local models, cloud models, two AMBER arms, a stage-show engine, and a
+    human operator. The public source is https://github.com/RudyAramayo/Cerebro. Clone it, then use this repository
+    root:
 1    Cerebro/
 
 

@@ -80,25 +80,28 @@ The Building R.O.B. library
 
    HOW TO FIND THE FILES
 
-   Every printed path is relative to the shared workspace root, /Users/rob/dev in the inspected edi-
-   tion. Start at that root, enter the first directory in the path, and follow each slash. Source
+   Open the public repositories on GitHub and follow each printed repository-relative path: https:
+   //github.com/RudyAramayo/ROBBooks, https://github.com/RudyAramayo/ROBArduino, https:
+
 
 
 ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 21
-DUAL-ARM ROBOTICS                                                                  VOLUME 6 - ADVANCED MAKERS
+DUAL-ARM ROBOTICS                                                                       VOLUME 6 - ADVANCED MAKERS
+
+
+
+   //github.com/RudyAramayo/Cerebro, https://github.com/RudyAramayo/ROBController, https://gi
+   thub.com/RudyAramayo/ROBControllerVision, https://github.com/RudyAramayo/Amber-HomeFolder,
+   and https://github.com/RudyAramayo/ROBTrainingGames. The website is published separately
+   at https://github.com/OrbitusRoboticsWebSite/ORobotics. See https://github.com/RudyA
+   ramayo/ROBBooks/blob/main/ROB-Books/OPEN-SOURCE-CODE-MAP.md for clickable repository and file
+   links, license cautions, and renamed-file search instructions. A named archival item without a verified
+   public repository is labeled as evidence, not given an invented URL.
 
 
 
 
-   code is spread across independent repositories—including ROBArduino, Cerebro, ROBController,
-   ROBControllerVision, ORobotics, and ROBTrainingGames—rather than one giant ROB project. See
-   Presentation/ROB-Books/OPEN-SOURCE-CODE-MAP.md for repository locations, licenses, primary files,
-   and commands for finding renamed files.
-
-
-
-
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                         4 / 21
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              4 / 21
 Contents
 1 The arm system we actually have                                                                                  1
    1.1 An evidence ledger . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     1

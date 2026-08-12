@@ -1,14 +1,14 @@
 # Fdb version 4
-["xdvipdfmx"] 1786510779.29184 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals" 1786510780.07779 0
+["xdvipdfmx"] 1786513195.68545 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals" 1786513196.47012 0
   "/Users/raramayo/dev/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.xdv" 0 -1 0 ""
   "/Users/rob/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev/R.O.B./Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.xdv" 0 -1 0 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.xdv" 1786510779.22107 662320 873121d11f294dc6dad3121bbba10e36 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.xdv" 1786513195.61572 670420 e0ed51d37a2b89a4433ec9acc7c53366 "xelatex"
   (generated)
   "/Users/raramayo/dev/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.pdf"
   "/Users/rob/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev/R.O.B./Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.pdf"
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.pdf"
   (rewritten before read)
-["xelatex"] 1786510777.55966 "volume-2-circuits-and-signals.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.xdv" "volume-2-circuits-and-signals" 1786510780.07619 0
+["xelatex"] 1786513193.94377 "volume-2-circuits-and-signals.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.xdv" "volume-2-circuits-and-signals" 1786513196.46862 0
   "../assets/generated/rob-circuits-signals-lab.png" 1786423707.35084 2921367 93d5169d8cf1036477bae460523eb38e ""
   "../assets/generated/usb-5v-toy-power-lab.png" 1786426292.62537 2761231 1aed72b8eea87ecca0fde2462846608d ""
   "../assets/photos/2021-wiring-closeup.jpg" 1785743336 1832654 b8399b62cf4b53deb700aa004f29ab6e ""
@@ -22,9 +22,9 @@
   "../assets/photos/2025-emergency-stop-bench-layout.jpg" 1785743352 2191368 23b8015ddc55d6b0e96f15f3b8fb7118 ""
   "../assets/photos/2025-labeled-cables.jpg" 1785743350 1532194 c4fbe8a56f40e4ee12f2936251964ef4 ""
   "../assets/photos/2026-rob-lightsabers-portrait.jpg" 1786425672.43556 1565591 c785536a2c725019b9e8101becfc9c4f ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.aux" 1786510779.21959 4421 984a6064c10e931a5d1de2a9936f524a "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.out" 1786510779.22041 1944 9bacd46c04c52eb37f290c97478f5e03 "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.toc" 1786510779.22067 848 e53e544af8997813191fd1076ecca348 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.aux" 1786513195.61404 4421 984a6064c10e931a5d1de2a9936f524a "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.out" 1786513195.6151 1944 9bacd46c04c52eb37f290c97478f5e03 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-2-circuits-and-signals.toc" 1786513195.61536 848 e53e544af8997813191fd1076ecca348 "xelatex"
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/fontname/texfonts.map" 1772380719 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1772380719 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1772380719 1004 54797486969f23fa377b128694d548df ""
@@ -213,9 +213,10 @@
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/varwidth/varwidth.sty" 1772380719 10894 d359a13923460b2a73d4312d613554c8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1772380719 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1772380719 5006 d7e899bb5d9717c7f214e9bc0284de7b ""
+  "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty" 1772380719 4675 e4b8c405820368c2dfb03526e16d725a ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/web2c/texmf.cnf" 1772380719 43633 14bbc273cebd985e64ab1a698333eaf9 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-var/web2c/xetex/xelatex.fmt" 1772380719 5948959 3df9f026b6ab65867975c94eefb74cd0 ""
-  "robbook.sty" 1786509627.72271 18057 ba6788e1d40d5a27905ab70432f2347b ""
+  "robbook.sty" 1786513183.41505 18343 efe854e77ba918206dcffd01effb0188 ""
   "volume-2-circuits-and-signals.tex" 1786510121.67518 23276 0e8c1b3ba025e4a6cd9dd8972d6552f5 ""
   "volume-2-deep-dive.tex" 1786426352.06838 11497 bfa180d8f6b36e2c4a987f616d25761d ""
   (generated)

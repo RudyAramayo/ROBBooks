@@ -294,6 +294,8 @@ INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/rerunfile
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/microtype.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/microtype.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/microtype-xetex.def
@@ -399,9 +401,9 @@ INPUT ./volume-8-engineering-cerebro.md
 INPUT volume-8-engineering-cerebro.md
 OUTPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.luabridge.lua
 INPUT texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.luabridge.lua
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/e8fe9f485254400015744ebcacdefef9.md.tex
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/e8fe9f485254400015744ebcacdefef9.md.tex
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/e8fe9f485254400015744ebcacdefef9.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/a1ec5d3fb66993d41edbc4f90dc07e65.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/a1ec5d3fb66993d41edbc4f90dc07e65.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/a1ec5d3fb66993d41edbc4f90dc07e65.md.tex
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/9fd0e41554294ec56b231a6826111832.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/9fd0e41554294ec56b231a6826111832.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/9fd0e41554294ec56b231a6826111832.verbatim

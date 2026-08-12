@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:01
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:40
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1020,6 +1020,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip73
 )
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
+)
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
 rotype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
@@ -1300,7 +1303,7 @@ Package fontspec Info:
 (fontspec)             <->"Avenir Next
 (fontspec)             Condensed/BI/OT:script=latn;language=dflt;+smcp;"
 
-Package hyperref Info: Option `colorlinks' set `true' on input line 66.
+Package hyperref Info: Option `colorlinks' set `true' on input line 67.
 )
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/markdown/mark
 down.sty
@@ -1602,23 +1605,40 @@ Package microtype Info: Loading generic protrusion settings for font family
 [1
 
 
-] [2]
-(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsa
-.fd)
-(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
-msa.cfg)
-(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsb
-.fd)
-(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
-msb.cfg)
-(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
-cmr.cfg)
+]
 LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 8.30002pt on input line 46.
+(Font)              scaled to size 8.30002pt on input line 39.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `Menlo' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 39.
+
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsa
+.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 39.
+
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsb
+.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+) [2]
 File: ../assets/generated/cerebro-perception-control-lesson.png Graphic file (t
 ype bmp)
 <../assets/generated/cerebro-perception-control-lesson.png>
@@ -1652,7 +1672,7 @@ Package luabridge Info: Executing a helper Lua script from file
 (|texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-ce
 rebro.luabridge.lua)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
-cerebro/e8fe9f485254400015744ebcacdefef9.md.tex
+cerebro/a1ec5d3fb66993d41edbc4f90dc07e65.md.tex
 Chapter 1.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 5.
@@ -1962,13 +1982,13 @@ anged.
 (rerunfilecheck)             Checksum: 940C5B7FA4040B88A885289F159F0420;8550.
  ) 
 Here is how much of TeX's memory you used:
- 37954 strings out of 468168
- 847542 string characters out of 5423555
- 1406802 words of memory out of 5000000
- 65972 multiletter control sequences out of 15000+600000
+ 37980 strings out of 468168
+ 848216 string characters out of 5423555
+ 1407433 words of memory out of 5000000
+ 65994 multiletter control sequences out of 15000+600000
  630653 words of font info for 120 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 101i,12n,131p,1025b,1358s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,12n,131p,1025b,1362s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engin
-eering-cerebro.xdv (37 pages, 619712 bytes).
+eering-cerebro.xdv (37 pages, 631180 bytes).

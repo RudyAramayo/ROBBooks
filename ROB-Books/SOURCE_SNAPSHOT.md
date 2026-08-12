@@ -1,7 +1,7 @@
 # Building R.O.B. — inspected source snapshot
 
 Inspection date: **2026-08-10**
-Workspace: `/Users/rob/dev`
+Public repository index: <https://github.com/RudyAramayo/ROBBooks/blob/main/ROB-Books/OPEN-SOURCE-CODE-MAP.md>
 
 The books are a synthesis of a changing workshop archive. These identifiers make the first edition reproducible enough to review while the builder selects a true publication release.
 

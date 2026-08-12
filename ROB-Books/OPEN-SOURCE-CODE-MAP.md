@@ -1,15 +1,23 @@
 # R.O.B. source-code map
 
-This map tells book readers exactly where to begin. All paths are relative to the workspace root used for this edition:
+This map tells book readers exactly where to begin in the public source. The principal repositories are:
 
-```text
-/Users/rob/dev
-```
+- [github.com/RudyAramayo/ROBBooks](https://github.com/RudyAramayo/ROBBooks)
+- [github.com/RudyAramayo/ROBArduino](https://github.com/RudyAramayo/ROBArduino)
+- [github.com/RudyAramayo/Cerebro](https://github.com/RudyAramayo/Cerebro)
+- [github.com/RudyAramayo/ROBController](https://github.com/RudyAramayo/ROBController)
+- [github.com/RudyAramayo/ROBControllerVision](https://github.com/RudyAramayo/ROBControllerVision)
+- [github.com/RudyAramayo/Amber-HomeFolder](https://github.com/RudyAramayo/Amber-HomeFolder)
+- [github.com/RudyAramayo/ROBTrainingGames](https://github.com/RudyAramayo/ROBTrainingGames)
 
-On another computer, replace that prefix with the directory where the repositories were checked out. For example:
+The website has its own organization repository at [github.com/OrbitusRoboticsWebSite/ORobotics](https://github.com/OrbitusRoboticsWebSite/ORobotics). Each path printed in the books begins with its repository name. Remove that first name and append the remainder to the matching GitHub repository URL. For example, `ROBArduino/ROBOT_CEREBELLULAR_BASE_APP/ROBOT_CEREBELLULAR_BASE_APP.ino` opens at [the Base firmware source](https://github.com/RudyAramayo/ROBArduino/blob/main/ROBOT_CEREBELLULAR_BASE_APP/ROBOT_CEREBELLULAR_BASE_APP.ino).
+
+To follow along locally, clone only the public repositories needed for the chapter:
 
 ```bash
-cd /path/to/dev
+git clone https://github.com/RudyAramayo/ROBArduino.git
+git clone https://github.com/RudyAramayo/Cerebro.git
+git clone https://github.com/RudyAramayo/ROBControllerVision.git
 sed -n '1,220p' ROBArduino/ROBOT_CEREBELLULAR_BASE_APP/ROBOT_CEREBELLULAR_BASE_APP.ino
 rg -n "ROBControl" Cerebro ROBController ROBControllerVision
 ```

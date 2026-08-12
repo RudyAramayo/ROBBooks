@@ -79,11 +79,14 @@ Evidence-status legend
 
    HOW TO FIND THE FILES
 
-   Every printed path is relative to the shared workspace root, /Users/rob/dev in the inspected edition. Start
-   at that root, enter the first directory in the path, and follow each slash. Source code is spread across in-
-   dependent repositories—including ROBArduino, Cerebro, ROBController, ROBControllerVision, ORobotics, and
-   ROBTrainingGames—rather than one giant ROB project. See Presentation/ROB-Books/OPEN-SOURCE-CODE-MAP.md
-   for repository locations, licenses, primary files, and commands for finding renamed files.
+   Open the public repositories on GitHub and follow each printed repository-relative path: https://github.com
+   /RudyAramayo/ROBBooks, https://github.com/RudyAramayo/ROBArduino, https://github.com/RudyAramayo/C
+   erebro, https://github.com/RudyAramayo/ROBController, https://github.com/RudyAramayo/ROBController
+   Vision, https://github.com/RudyAramayo/Amber-HomeFolder, and https://github.com/RudyAramayo/ROBTrai
+   ningGames. The website is published separately at https://github.com/OrbitusRoboticsWebSite/ORobotics.
+   See https://github.com/RudyAramayo/ROBBooks/blob/main/ROB-Books/OPEN-SOURCE-CODE-MAP.md for clickable
+   repository and file links, license cautions, and renamed-file search instructions. A named archival item without
+   a verified public repository is labeled as evidence, not given an invented URL.
 
 
 
@@ -92,14 +95,13 @@ Source snapshot and publication cautions
 The initial evidence pass began on 2 August 2026; the consolidated Cerebro, Vision Pro, local-model, stage-show,
 AMBER, and advanced video pass reflects the working trees inspected through 11 August 2026. Active changes still
 require an explicit tag or commit before publication. Original gallery photographs were converted with orientation
-applied and metadata stripped. Attendee photographs, especially images containing children, require release
-review or careful exclusion.
-
 
 ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                   3 / 71
 BUILDING R.O.B.                                                                        COMPLETE FIELD MANUAL - ADVANCED
 
 
+applied and metadata stripped. Attendee photographs, especially images containing children, require release
+review or careful exclusion.
 The archived B-COMMAND document prohibits reproduction without permission, and the HengDrive outline is
 marked proprietary and confidential. This manual does not reproduce or paraphrase their specifications. It men-
 tions the motor-family label visible in a builder-owned photograph only to identify the open evidence gap. Obtain

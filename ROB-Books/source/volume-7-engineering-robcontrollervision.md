@@ -1,6 +1,6 @@
 # Read this book with the repository open
 
-ROBControllerVision is a native SwiftUI visionOS controller with a reusable Swift package. It connects to the real Cerebro application through authenticated Network.framework transports or to a deterministic simulator. The source root for this volume is:
+ROBControllerVision is a native SwiftUI visionOS controller with a reusable Swift package. It connects to the real Cerebro application through authenticated Network.framework transports or to a deterministic simulator. The public source is <https://github.com/RudyAramayo/ROBControllerVision>. Clone it, then use this repository root:
 
 ```text
 ROBControllerVision/
@@ -548,7 +548,7 @@ Use this order for a new Swift contributor:
 19. feature panels
 20. every corresponding test before making a change
 
-When a shortened path is ambiguous, use `OPEN-SOURCE-CODE-MAP.md` or find it from the workspace root:
+When a shortened path is ambiguous, use the [public source-code map](https://github.com/RudyAramayo/ROBBooks/blob/main/ROB-Books/OPEN-SOURCE-CODE-MAP.md) or search inside the cloned repository:
 
 ```text
 rg --files ROBControllerVision | rg 'DeadManController|VisionSpeechInput|ROBVideoFramer'

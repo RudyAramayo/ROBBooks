@@ -1,0 +1,324 @@
+\markdownRendererDocumentBegin
+\markdownRendererSectionBegin
+\markdownRendererHeadingOne{Read Cerebro as a living robot system}\markdownRendererInterblockSeparator
+{}Cerebro is the macOS application at the center of ROB. It is not one algorithm. It is a boundary between cameras, serial devices, robot controllers, speech, local models, cloud models, two AMBER arms, a stage-show engine, and a human operator. The public source is \markdownRendererLink{https://github.com/RudyAramayo/Cerebro}{https://github.com/RudyAramayo/Cerebro}{https://github.com/RudyAramayo/Cerebro}{}. Clone it, then use this repository root:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/9fd0e41554294ec56b231a6826111832.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Keep Xcode and the repository open while reading. Paths beginning \markdownRendererCodeSpan{Cerebro/} are relative to that repository. Tests are under \markdownRendererCodeSpan{Tests/}; operational notes are under \markdownRendererCodeSpan{docs/}. The companion spatial client is in the sibling \markdownRendererCodeSpan{ROBControllerVision/} repository and is taught in Volume 7.\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{README.md}, \markdownRendererCodeSpan{Cerebro.xcodeproj/project.pbxproj}, \markdownRendererCodeSpan{Cerebro/AppDelegate.m}, and \markdownRendererCodeSpan{Cerebro/ROBMainViewController.mm} establish the application boundary and composition graph.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}This book uses \markdownRendererStrongEmphasis{observed} for behavior supported by the inspected source, \markdownRendererStrongEmphasis{historical artifact} for retained code that is not the preferred current path, and \markdownRendererStrongEmphasis{proposed} for an improvement. Never infer that a compiled control button proves a physical mechanism is safe or calibrated.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Map the mixed-language architecture}\markdownRendererInterblockSeparator
+{}Cerebro grew across generations of Apple and robotics technology. Its composition therefore crosses Objective-C, Objective-C++, C++, Swift, Python, shell helpers, JSON, Core ML models, and SceneKit assets.\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Application shell:} \markdownRendererCodeSpan{AppDelegate.m} and \markdownRendererCodeSpan{ROBMainWindowController.m} own lifecycle, windows, service startup, and dependency checks.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Operator coordination:} \markdownRendererCodeSpan{ROBMainViewController.mm} joins camera, speech, transport, shows, and robot state.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Physical I/O:} \markdownRendererCodeSpan{ROBSerialBox.h/.m} reaches Base, Maestro, Tic, AMBER, and historical serial roles.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Camera and perception:} \markdownRendererCodeSpan{CameraManager.swift} and \markdownRendererCodeSpan{CameraViewController.swift} separate provider lifecycle from Vision/SceneKit presentation.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Local and cloud intelligence:} \markdownRendererCodeSpan{ROBMLXRuntime.swift}, \markdownRendererCodeSpan{ROBAI.swift}, and \markdownRendererCodeSpan{GeminiRoboticsProtocol.swift} keep provider concerns separate.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Typed world state:} \markdownRendererCodeSpan{ROBSceneSnapshot.swift} describes people, objects, free space, poses, and confidence.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Performance:} the \markdownRendererCodeSpan{ROBStageShow} files and \markdownRendererCodeSpan{ROBSaberChoreography.swift} validate cues and gesture names.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Spatial remote:} the sibling \markdownRendererCodeSpan{ROBControllerVision/} repository owns Vision Pro input, video decoding, and operator UI.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Objective-C owns much of the hardware-facing application because it grew from Cocoa-era controller code. Swift supplies newer protocol, concurrency, machine-learning, and media boundaries. The bridging header is therefore architectural infrastructure, not a temporary embarrassment. Keep exposed interfaces narrow, nullability explicit, and callbacks asynchronous.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Reproduce the build before changing behavior}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Package.resolved} inside the Xcode workspace, plus \markdownRendererCodeSpan{Cerebro/PythonRequirements.txt} and \markdownRendererCodeSpan{README.md}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The project pins MLX-family packages. The inspected documentation records \markdownRendererCodeSpan{mlx-swift} 0.31.3, \markdownRendererCodeSpan{mlx-swift-lm} 3.31.3, \markdownRendererCodeSpan{swift-tokenizers-mlx} 0.3.0, and \markdownRendererCodeSpan{swift-hf-api-mlx} 0.2.0. Pinning matters: model-loading APIs, tokenizers, Metal kernels, and model configurations evolve together.\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/aad5a77dca6dbea3ff874e385bbaad9a.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Install the Xcode Metal component if MLX compilation requests it. Configure DepthAI through Cerebro's Python Settings rather than inserting a personal interpreter path. Download local models before an offline show and test cold load, warm load, sustained memory, thermal behavior, camera reconnect, and stop behavior on the production Mac.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Enter through AppDelegate, then find ownership}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{AppDelegate} is where process-lifetime services belong: secure control/video listeners, camera helper supervision, optional dependency discovery, and coordinated shutdown. \markdownRendererCodeSpan{ROBMainViewController} connects those services to windows and UI state. \markdownRendererCodeSpan{ROBSerialBox} owns hardware channels. \markdownRendererCodeSpan{CameraViewController} owns presentation and perception work, while \markdownRendererCodeSpan{CameraManager} owns camera-provider mechanics.\markdownRendererParagraphSeparator
+{}The essential ownership questions are:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}Who starts this resource?\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}Who stops it on window closure, disconnect, camera replacement, and app termination?\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}Which queue or actor mutates it?\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}How are late callbacks from a retired generation rejected?\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}What bounded state survives when the consumer is slower than the producer?\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}A robot app should not rely on \markdownRendererCodeSpan{deinit} as its only shutdown protocol. Cameras, file descriptors, subprocess pipes, Network.framework connections, timers, model tasks, and SceneKit nodes all need explicit lifecycle edges.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Dissect ROBSerialBox: the hardware boundary}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Cerebro/ROBSerialBox.h} and \markdownRendererCodeSpan{Cerebro/ROBSerialBox.m}, especially \markdownRendererCodeSpan{initialize\markdownRendererUnderscore{}connection}, \markdownRendererCodeSpan{usbSerialPortPaths}, \markdownRendererCodeSpan{connectToDetectedBase}, \markdownRendererCodeSpan{probeBaseFirmwareAtPath}, \markdownRendererCodeSpan{consumeBaseSerialBytes}, \markdownRendererCodeSpan{renderController}, and \markdownRendererCodeSpan{stopBaseMotionAndDropHeartbeat}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{ROBSerialBox} is both valuable and overloaded. Its header exposes serial selection, tread and flipper controls, neck and torso commands, Pololu Maestro and Tic operations, two AMBER-arm command families, controller snapshots, and legacy Head/Torso surfaces. Treat it as an archaeological map of physical integration.\markdownRendererParagraphSeparator
+{}At initialization it sets every descriptor to \markdownRendererCodeSpan{-1}, initializes demanded and actual speeds, creates a bounded Base receive buffer, begins Base discovery asynchronously, identifies the Maestro, starts a 100 ms controller timer, and later starts AMBER log-tail helpers. The retired Head and Torso Arduino UI remains visible, but automatic opening is commented out because only Base is presently installed.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{File descriptors are state machines}\markdownRendererInterblockSeparator
+{}A descriptor is not merely an integer. It moves through closed, opening, configured, readable/writable, failed, and closing states. \markdownRendererCodeSpan{-1} is the closed sentinel. Every read and write must use a stable ownership rule; otherwise a reconnect can close a descriptor while an old thread is writing, producing the historical \markdownRendererCodeSpan{Bad file descriptor} flood.\markdownRendererParagraphSeparator
+{}The current low-level serial configuration uses POSIX \markdownRendererCodeSpan{open}, \markdownRendererCodeSpan{termios}, \markdownRendererCodeSpan{select}, \markdownRendererCodeSpan{read}, and \markdownRendererCodeSpan{write}. Cocoa objects may format diagnostics, but blocking I/O must not run on the main thread. A modern refactor should wrap each channel in a serial executor or actor-like Objective-C object and expose typed commands rather than public descriptor-dependent methods.\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/149ccede00aab17d105c7984449163f1.verbatim}{objc}{objc}\markdownRendererInterblockSeparator
+{}That check alone does not make concurrent close/write atomic. The durable pattern is one queue owning open, read, write, and close, plus an incrementing connection generation attached to callbacks.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Discover the Base Arduino by firmware response}\markdownRendererInterblockSeparator
+{}Cerebro enumerates IOKit serial services, accepts only \markdownRendererCodeSpan{/dev/cu.usbmodem*} and \markdownRendererCodeSpan{/dev/cu.usbserial*}, and sorts candidates. It opens each candidate at 250,000 baud, pulses DTR to reset an Arduino, sends no probe command bytes, and waits up to 15 seconds for the existing startup line:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/acfafe86ee40f44f1d691aaf02ef9922.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Only the matching descriptor becomes \markdownRendererCodeSpan{serialFileDescriptor\markdownRendererUnderscore{}base}. This is better than remembering a \markdownRendererCodeSpan{/dev/cu.*} name because hub topology can rename ports. It also avoids sending an accidental motion-like byte to an unidentified device. The startup string is role discovery—not authentication, wiring validation, or proof that motion is safe.\markdownRendererParagraphSeparator
+{}The probe retains at most 8 KiB and trims older bytes. The running line parser caps unterminated input similarly. Those small limits matter: a noisy serial device must not grow application memory forever.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Parse lines before interpreting meaning}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{consumeBaseSerialBytes} accumulates arbitrary read chunks, extracts newline-delimited records, and then calls \markdownRendererCodeSpan{handleBaseSerialLine}. This respects a fundamental serial fact: one \markdownRendererCodeSpan{read} is not one application message.\markdownRendererParagraphSeparator
+{}The parser recognizes existing warning strings such as \markdownRendererCodeSpan{WARNING! FRONT} and \markdownRendererCodeSpan{WARNING! BACK}. It also accepts a proposed numeric six-sensor line beginning \markdownRendererCodeSpan{ROB:IR=} when available. Each field must contain only decimal digits and be at most 1000. Legacy warnings expire visually; silence means \markdownRendererStrongEmphasis{clearance unknown}, never \markdownRendererStrongEmphasis{path clear}.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Separate devices by identity and protocol}\markdownRendererInterblockSeparator
+{}Base discovery uses a firmware banner because that is what the existing sketch emits. Maestro discovery instead inspects USB vendor, product, interface name, and interface number, preferring the named command port. The Tic waist-rotation path invokes validated \markdownRendererCodeSpan{ticcmd} arguments. These are three different identity strategies because the devices expose different trustworthy evidence.\markdownRendererParagraphSeparator
+{}Do not create a universal “pick the first USB port” helper. Build a device registry whose match result includes device role, evidence, path, generation, capabilities, and last error. A UI can then report “Base verified by startup banner” and “Maestro matched by USB identity” instead of showing a misleading green dot.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Translate controller intent without extending stale motion}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{controllerPassthrough} turns controller state into the legacy Base frame and actuator targets. \markdownRendererCodeSpan{renderController} runs at 10 Hz while snapshots are expected at 5 Hz. Cerebro expires controller snapshots after three missed updates, writes one neutral/braked frame, and then stops Base USB writes so the Arduino's own heartbeat deadman can expire.\markdownRendererParagraphSeparator
+{}This is a two-layer timeout:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/c999fc48ac9fd4473cb5693430299a1f.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Never solve packet loss by endlessly replaying the last nonzero command. The more powerful the actuator, the more important command age, authority owner, and stop semantics become.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Control Maestro neck servos and Tic torso rotation}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{ROBSerialBox.m} methods \markdownRendererCodeSpan{applyVisionNeckPan:tilt:}, \markdownRendererCodeSpan{applyVisionTorsoActive:rotation:}, \markdownRendererCodeSpan{waistRotationSliderAction:}, \markdownRendererCodeSpan{exitSafeStartWaistRotationToggle:}, and \markdownRendererCodeSpan{energizeToggle:}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}Vision Pro head orientation arrives as normalized intent. Cerebro clamps it, maps it into Maestro target units, avoids redundant writes, and sends compact protocol bytes. Torso follow maps bounded orientation into Tic position units. The Tic must exit safe start and be energized before accepting motion; the UI mirrors those states and its full rotation range.\markdownRendererParagraphSeparator
+{}Commanded position is not measured position. On boot, an actuator controller can believe a coordinate origin that does not match the physical pose. The book's rule is therefore:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/ca591f4c594505042628ca5a2307484c.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Store each with source, timestamp, confidence, and calibration generation. Never overwrite one with another just because they share units.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Bridge Objective-C and Swift deliberately}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Cerebro/Cerebro-Bridging-Header.h}, \markdownRendererCodeSpan{ROBMainViewController.mm}, \markdownRendererCodeSpan{ROBAI.swift}, and the \markdownRendererCodeSpan{@objc} entry points in newer Swift services.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}Objective-C callers need stable selector-shaped APIs and Foundation-compatible types. Swift implementation types can keep actors, \markdownRendererCodeSpan{Sendable}, async functions, and enums internally, then expose a façade that translates callbacks and notifications.\markdownRendererParagraphSeparator
+{}Use these boundaries:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem cross with \markdownRendererCodeSpan{NSString}, \markdownRendererCodeSpan{NSData}, \markdownRendererCodeSpan{NSNumber}, \markdownRendererCodeSpan{NSArray}, \markdownRendererCodeSpan{NSDictionary}, and explicitly Objective-C-compatible classes;\markdownRendererUlItemEnd 
+\markdownRendererUlItem turn Objective-C delegate events into immutable Swift values immediately;\markdownRendererUlItemEnd 
+\markdownRendererUlItem dispatch UI mutation to the main actor/main queue;\markdownRendererUlItemEnd 
+\markdownRendererUlItem never expose an MLX tensor, \markdownRendererCodeSpan{CVPixelBuffer} lifetime assumption, or actor-isolated mutable object through the bridge;\markdownRendererUlItemEnd 
+\markdownRendererUlItem make ownership weak where the caller and service retain one another;\markdownRendererUlItemEnd 
+\markdownRendererUlItem give errors a bounded, user-safe category and keep secrets out of descriptions.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Capture RGB with AVFoundation}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Cerebro/CameraManager.swift} types \markdownRendererCodeSpan{CameraSource}, \markdownRendererCodeSpan{CameraSourceState}, \markdownRendererCodeSpan{CameraFrameSet}, and its AVFoundation capture methods.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The AVFoundation path discovers a camera, chooses a format, configures \markdownRendererCodeSpan{AVCaptureSession}, and receives \markdownRendererCodeSpan{CMSampleBuffer} frames. Configuration should occur inside \markdownRendererCodeSpan{beginConfiguration}/\markdownRendererCodeSpan{commitConfiguration}; capture callbacks belong on a dedicated queue; UI work belongs on the main actor.\markdownRendererParagraphSeparator
+{}\markdownRendererCodeSpan{CMSampleBuffer} preserves image buffer and timing. Keep it intact as long as possible. Converting every frame into \markdownRendererCodeSpan{NSImage}, then \markdownRendererCodeSpan{CIImage}, then a new pixel buffer creates copies and allocation churn. Consumers should receive one frame set and select the cheapest representation they actually need.\markdownRendererParagraphSeparator
+{}Camera lifecycle is demand-driven. Local preview, Gemini sampling, MLX vision, and Vision Pro streaming may each create demand. The session should run when at least one demand exists, not restart every time a checkbox changes. A run generation prevents callbacks queued by an old session from contaminating a replacement session.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Acquire aligned RGB-D from Luxonis}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{docs/depth-camera.md}, \markdownRendererCodeSpan{Cerebro/Webcam\markdownRendererUnderscore{}color.py}, \markdownRendererCodeSpan{CameraManager.swift}, \markdownRendererCodeSpan{ROBPythonRuntime.m}, and \markdownRendererCodeSpan{Tests/DepthCameraIPCFixtureTests.py}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The primary OAK path uses DepthAI 3.8.0 in a supervised Python helper. The helper alone owns the device, builds Camera + Depth + Sync nodes, requests 640 by 400 undistorted RGB, aligns depth to RGB, and sends paired frames through a private Unix-domain socket.\markdownRendererParagraphSeparator
+{}The versioned \markdownRendererCodeSpan{CDP1} packet contains bounded metadata, RGB888 bytes, and little-endian unsigned 16-bit depth in millimeters. Zero depth is invalid. Cerebro validates magic, version, dimensions, lengths, pixel formats, and maximum allocation before creating CoreVideo objects.\markdownRendererParagraphSeparator
+{}The out-of-process boundary is a reliability feature. USB disconnects, SDK exceptions, malformed packets, and native-library faults disable/restart the camera provider without taking robot control down. Retries use bounded backoff. AVFoundation remains an RGB-only fallback, while legacy OAK UVC fallback is explicit opt-in so two providers never fight for the same device.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Understand alignment}\markdownRendererInterblockSeparator
+{}Depth alignment means pixel \markdownRendererCodeSpan{(x,y)} in the depth plane refers to the same camera ray as pixel \markdownRendererCodeSpan{(x,y)} in RGB after calibration and resampling. It does not mean every depth is valid. Reflective, transparent, too-near, too-far, or texture-poor surfaces can return zero or noisy values.\markdownRendererParagraphSeparator
+{}\markdownRendererCodeSpan{CameraDepthFrame.distanceMillimeters(x:y:)} validates coordinates and byte offsets. Downstream code rejects implausible distances. A person's estimated range is the median of a small interior grid, not a single fragile pixel.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Build a bounded perception pipeline}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{CameraViewController.swift}, \markdownRendererCodeSpan{HumanBodyPose3DDetector.swift}, \markdownRendererCodeSpan{HumanBodySkeletonRenderer.swift}, and \markdownRendererCodeSpan{ROBSceneSnapshot.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}Camera rate is not inference rate. A 20–30 fps camera may feed a body request only when the previous request has finished. The UI may display the newest RGB frame while depth visualization, pose inference, MLX VLM sampling, Gemini JPEG encoding, and remote H.264 encoding operate at different bounded rates.\markdownRendererParagraphSeparator
+{}The reliable pattern is a latest-value mailbox:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/4a9d3bb22c85c3d3aa3ab1ebba53e5be.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}This bounds latency and memory. A robot benefits more from the newest frame than from processing a five-second-old queue perfectly.\markdownRendererParagraphSeparator
+{}Vision observations are normalized and carry confidence. SceneKit nodes should be reused or replaced as a group, not appended forever. Heavy geometry creation stays off the main thread where APIs allow; final scene mutation is serialized. Wrap temporary per-frame Objective-C objects in autorelease pools on long-running queues.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Render perception without leaking memory}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{CameraViewController} combines preview, pose overlays, depth coloring, point-cloud geometry, camera-pose visualization, and notifications. Every render path needs an explicit budget:\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{11}{2}{dd}{{Resource}{Bounded strategy}}{{Raw RGB}{newest frame only for slow consumers}}{{Depth}{fixed dimensions and validated byte count}}{{Vision requests}{one in flight per detector}}{{SceneKit nodes}{reuse named roots; replace children atomically}}{{Point cloud}{stride/downsample based on detail setting}}{{CI rendering}{reuse \markdownRendererCodeSpan{CIContext}; avoid per-frame context creation}}{{Pixel buffers}{pool where encoding requires conversion}}{{ML models}{one actor-owned container per selected model}}{{Semantic memory}{maximum 200 in-process entries}}{{Logs}{rate-limit repeated camera/model/device failures}}\markdownRendererInterblockSeparator
+{}Use Instruments Allocations and Memory Graph while toggling camera sources repeatedly. A stable single-frame memory profile is insufficient; test 30 minutes of capture, disconnect/reconnect, window close/reopen, model load, and remote video subscription.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Turn observations into SceneSnapshot}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{SceneSnapshot} is the typed boundary between real-time sensing and language reasoning. It contains tracked people, objects, gestures, free-space regions, arm joint poses, reverse camera pose, camera quality, and aggregate confidence. Missing data stays missing.\markdownRendererParagraphSeparator
+{}The store locks only long enough to replace small value arrays or take a snapshot. It calculates three depth free-space bands—left, forward, right—using strided samples, valid-depth confidence, an 800 mm clearance test, and a 75 percent clear-fraction threshold. Fresh lidar regions are merged only for 1.5 seconds after their update.\markdownRendererParagraphSeparator
+{}Its language-model serialization wraps sorted JSON as \markdownRendererStrongEmphasis{untrusted sensor data, not instructions}. That distinction prevents text observed in the scene from silently becoming a model instruction. A macOS 26 Foundation Models interpreter can return a typed \markdownRendererCodeSpan{AssistantIntent}, but the intent contains high-level suggestions rather than tread or joint commands.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Run MLX privately on Apple silicon}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Cerebro/ROBMLXRuntime.swift}, \markdownRendererCodeSpan{ROBMLXImprovisationProvider.swift}, \markdownRendererCodeSpan{ROBMLXStageObservation.swift}, \markdownRendererCodeSpan{docs/mlx-local-ai.md}, and \markdownRendererCodeSpan{Package.resolved}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{ROBMLXEngine} is an actor. This serializes model-container state, loading, diagnostics, VLM admission, embeddings, and semantic memory without blocking the main actor. The initial local LLM is \markdownRendererCodeSpan{mlx-community/Llama-3.2-1B-Instruct-4bit}; vision uses \markdownRendererCodeSpan{mlx-community/Qwen2-VL-2B-Instruct-4bit}; retrieval uses \markdownRendererCodeSpan{TaylorAI/gte-tiny}.\markdownRendererParagraphSeparator
+{}\markdownRendererCodeSpan{ensureLLMReady} avoids duplicate loading. \markdownRendererCodeSpan{generate} creates user input, applies token and temperature limits, records latency and throughput, and keeps model output outside motor control. Model downloads occur on first use through the Hugging Face cache, so show-day preparation must prefetch and prewarm.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{MLX VLM—sometimes abbreviated incorrectly as VLX}\markdownRendererInterblockSeparator
+{}The repository integrates an MLX vision-language model through \markdownRendererCodeSpan{VLMModelFactory}; “VLX” in conversation should be read as this MLX VLM path, not as a separate framework. \markdownRendererCodeSpan{offerVisionFrame} is nonblocking and admits at most one selected image every five seconds, never faster than three seconds. The VLM returns observational stage context. It cannot actuate hardware.\markdownRendererParagraphSeparator
+{}Sampling protects three budgets at once: GPU/Metal memory, thermal headroom, and perception latency. Record active and peak MLX Metal memory, generated tokens per second, model load state, sampled-frame count, and last error. Clear temporary caches only at safe lifecycle boundaries; do not unload/reload a model between cues.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Add bounded semantic memory}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{remember} embeds short text. \markdownRendererCodeSpan{retrieve} embeds a query, calculates cosine similarity, sorts matches, and returns a limited result set. The current store holds at most 200 entries and is process-local.\markdownRendererParagraphSeparator
+{}This is retrieval, not truth. Each memory needs provenance and a future persistent design would require encryption, deletion, retention, model-version tracking, and re-embedding policy. Never store raw camera images or secrets merely because embeddings feel abstract.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Constrain local model output}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{ROBMLXImprovisationProvider} asks for exactly one JSON document with a fixed schema, allow-listed beat, allow-listed delivery, and bounded offline line. It then decodes and validates the output independently. Prompt instructions are a generation aid; the codec is the trust boundary.\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/0dd41ca32e96b4eff655b714e202e2da.verbatim}{json}{json}\markdownRendererInterblockSeparator
+{}Cancellation is correlated by request ID. A completion that arrives after cancellation is discarded. Health checks load the selected model without granting it a physical tool. The alternate llama.cpp provider uses the same domain protocol and loopback HTTP, preserving the stage coordinator and validation logic.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Integrate Gemini Live without coupling safety}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{Cerebro/ROBAI.swift}, \markdownRendererCodeSpan{GeminiRoboticsProtocol.swift}, \markdownRendererCodeSpan{ROBGeminiDiagnosticsWindowController.swift}, \markdownRendererCodeSpan{docs/gemini-robotics-live.md}, and \markdownRendererCodeSpan{Tests/GeminiRoboticsProtocolFixtureTests.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{ROBAI} is the Objective-C-facing façade over a Swift live-session actor. Configuration comes from explicit environment settings and credentials. Connection, microphone streaming, camera streaming, and the optional robot-action tool are separate effective switches.\markdownRendererParagraphSeparator
+{}The audio adapter converts captured samples to the PCM format required by the live protocol and preserves event ordering. The video adapter samples frames and produces bounded JPEG data. Neither should enqueue unlimited media. Diagnostics report effective input mode, counters, transcription state, model turns, and redacted errors without logging credentials or private payloads.\markdownRendererParagraphSeparator
+{}The secure WebSocket setup, realtime messages, transcription fragments, tool calls, interruptions, deadlines, and turn completion are parsed into typed events. A reconnect starts a new session generation; late callbacks from the old socket cannot complete the new turn.\markdownRendererParagraphSeparator
+{}Use \markdownRendererCodeSpan{GEMINI\markdownRendererUnderscore{}EPHEMERAL\markdownRendererUnderscore{}TOKEN} where an issuing service exists; a development \markdownRendererCodeSpan{GEMINI\markdownRendererUnderscore{}API\markdownRendererUnderscore{}KEY} is supported. Never place either in source, a show JSON file, a screenshot, or a book. Camera and microphone remain off unless the operator explicitly enables them.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Treat model tools as proposals}\markdownRendererInterblockSeparator
+{}The optional \markdownRendererCodeSpan{robot\markdownRendererUnderscore{}action} path validates a versioned proposal, routes it to the operator approval surface, correlates result messages, and returns only terminal outcomes to Gemini. Approval currently records operator intent; it does not prove physical execution exists.\markdownRendererParagraphSeparator
+{}Stage-originated Gemini turns reject non-stop physical tool calls even after the cue has timed out. \markdownRendererCodeSpan{stop\markdownRendererUnderscore{}motion} uses a priority path: stop coordinators, write one neutral/braked Base frame, drop the heartbeat, and return control authority to Brain. AMBER arm hold remains explicitly unverified.\markdownRendererParagraphSeparator
+{}A safe model architecture is:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/8900aaf09ec0b695a56b97173cca51af.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Never connect model tokens directly to \markdownRendererCodeSpan{write}, \markdownRendererCodeSpan{ticcmd}, a servo target, shell command, or AMBER packet.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Stream camera video to Vision Pro separately}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{ROBVideoServer.swift}, \markdownRendererCodeSpan{ROBVideoProtocol.swift}, \markdownRendererCodeSpan{ROBCameraH264Encoder.swift}, \markdownRendererCodeSpan{docs/vision-pro-video.md}, and Volume 7.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}Cerebro advertises \markdownRendererCodeSpan{\markdownRendererUnderscore{}robvideo.\markdownRendererUnderscore{}udp} with ALPN \markdownRendererCodeSpan{robvideo/1}, separately from \markdownRendererCodeSpan{\markdownRendererUnderscore{}robctl.\markdownRendererUnderscore{}udp} control. Both use TLS 1.3 and the paired certificate/secret relationship, but video uses its own authentication transcript and requires a matching live operator control session.\markdownRendererParagraphSeparator
+{}The initial profile is H.264 AVCC, at most 960 by 540, 20 fps, and 1.5 Mbps, with B-frames disabled and key frames at least every second. One raw frame may wait; one encoder output may wait; one send may be in flight. Congestion drops work instead of accumulating latency. Receiver recovery can request a key frame and codec configuration.\markdownRendererParagraphSeparator
+{}Volume 7 explains the other half: Vision Pro discovery, pinned identity, subscription, defensive framing, H.264 sample-buffer creation, \markdownRendererCodeSpan{AVSampleBufferDisplayLayer}, controller input, head pose, speech-to-text, and dead-man authority. Read the two books side by side whenever changing the wire contract.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Excavate the Kinect and OpenNI past}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} the \markdownRendererCodeSpan{ROBNiTEManager} and \markdownRendererCodeSpan{TaskControllers} directories: \markdownRendererCodeSpan{ROBNiTEManager.mm}, \markdownRendererCodeSpan{FreenectPCL.mm}, \markdownRendererCodeSpan{k2g.h}, \markdownRendererCodeSpan{viewer.*}, shaders, duplicated \markdownRendererCodeSpan{* 2.*} artifacts, and initial commit \markdownRendererCodeSpan{4c4f1d4} from 2025-08-05.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The repository contains an older depth-vision stack built around Kinect/OpenNI/NiTE-style naming, libfreenect/PCL bridges, C++ point clouds, GL viewers, skeletal tracking, shaders, and serialized task-controller processes. These files arrived in the current Git history with the initial import; that history does not establish when the original experiments were written.\markdownRendererParagraphSeparator
+{}The artifacts teach important lessons:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem camera SDKs age faster than domain concepts;\markdownRendererUlItemEnd 
+\markdownRendererUlItem C++ exception and ABI boundaries can destabilize an app process;\markdownRendererUlItemEnd 
+\markdownRendererUlItem duplicated filenames with \markdownRendererCodeSpan{ 2} indicate migration debt, not alternate APIs to call casually;\markdownRendererUlItemEnd 
+\markdownRendererUlItem shader and viewer code may embody useful coordinate conventions even when its device path is retired;\markdownRendererUlItemEnd 
+\markdownRendererUlItem binary Core ML models such as \markdownRendererCodeSpan{ObjectDetector.mlmodel} need provenance, input/output documentation, license review, and a reproducible evaluation set before reuse.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Do not delete ancient code merely because it looks strange. First map whether project files still compile it, whether runtime selectors reference it, whether a modern test covers its surviving behavior, and whether historical knowledge should move into documentation. Then retire it in a small commit with a rollback point.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Compare Kinect-era and Luxonis-era design}\markdownRendererInterblockSeparator
+{}The old path intertwined device SDK, C++ processing, visualization, and task launching. The new Luxonis path defines a provider contract and isolates the SDK in a supervised helper. The improvement is not simply “new camera has better depth.” It is failure containment and replaceability.\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{7}{3}{ddd}{{Question}{Historical depth stack}{Current OAK design}}{{Device boundary}{native C++/framework integration}{supervised Python process}}{{Transfer}{internal objects/task artifacts}{versioned local \markdownRendererCodeSpan{CDP1} bytes}}{{RGB-depth pairing}{implementation-specific}{timestamp-sync and RGB alignment}}{{Crash scope}{potentially Cerebro process}{helper can restart independently}}{{Fallback}{separate historical controllers}{explicit AVFoundation RGB-only path}}{{Contract tests}{sparse artifacts}{malformed/oversized IPC fixtures}}\markdownRendererInterblockSeparator
+{}The next evolution could replace Python with an XPC/native helper while preserving \markdownRendererCodeSpan{CameraFrameSet}. Stable contracts let implementation technology change without rewriting perception and UI.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Build a reliable light-saber battle trainer}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{ROBSaberChoreography.swift}, \markdownRendererCodeSpan{StageShows/ProgressiveSaberTraining.robshow.json}, \markdownRendererCodeSpan{GalacticSaberBattle.robshow.json}, \markdownRendererCodeSpan{ROBAmberB1Kinematics.swift}, and \markdownRendererCodeSpan{Tests/ROBSaberChoreographyFixtureTests.swift}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}The trainer uses named gestures and a progressive profile rather than embedding arbitrary joints in show files. \markdownRendererCodeSpan{ROBSaberChoreography} maps an allow-listed gesture name to bounded Cartesian transforms and reports a requested duration. The real AMBER kinematics and calibration layers must still validate reachability and transform frames before execution.\markdownRendererParagraphSeparator
+{}A good training progression begins with guard pose and slow single-plane movements, then alternates direction, timing, and combinations. It should enforce a participant boundary, soft prop policy, low speed, reduced force, guarded robot workspace, independent emergency stop, and a dry-run visualization. “Battle” is theatrical choreography, never permission for autonomous contact.\markdownRendererParagraphSeparator
+{}The perception loop can score timing and approximate pose without commanding the arm from pixels. It observes participant pose, estimates phase, compares against the authored target, and chooses spoken coaching. Motion remains authored and bounded.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Engineer the comedy show as a state machine}\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+\markdownRendererStrongEmphasis{SOURCE TRAIL — ANALYZING NOW:} \markdownRendererCodeSpan{ROBStageShowProtocol.swift}, the coordinator and window controller, the \markdownRendererCodeSpan{OrbitusTenMinuteComedy} file under \markdownRendererCodeSpan{StageShows}, and \markdownRendererCodeSpan{ROBStageShowFixtureTests.swift} under \markdownRendererCodeSpan{Tests}.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}A \markdownRendererCodeSpan{.robshow.json} document contains typed cues such as speech, wait, checkpoint, gesture, and Gemini turn. The codec rejects unknown or dangerous content. Show files cannot contain raw joint values, hosts, ports, or shell commands.\markdownRendererParagraphSeparator
+{}The coordinator advances one cue at a time and records what it is awaiting: speech completion, checkpoint, gesture, local model, Gemini, or timer. Each asynchronous request has an ID and deadline. Cancellation clears scheduled work and rejects late completion.\markdownRendererParagraphSeparator
+{}Four execution modes preserve rehearsability:\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{5}{4}{dddd}{{Mode}{Local model}{Gemini}{Spoken fallback}}{{Dry Run}{no}{no}{none; validate without side effects}}{{Offline}{no}{no}{authored line}}{{Local}{optional MLX/llama.cpp}{no}{validated local line, then authored line}}{{Adaptive}{optional}{yes}{Gemini, validated local line, authored line}}\markdownRendererInterblockSeparator
+{}The comedy file targets roughly ten minutes and includes multiple adaptive moments. A clever line is never allowed to block the show forever: timeouts, authored fallback, and explicit cue advancement are part of the creative system.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Test at contracts, not only windows}\markdownRendererInterblockSeparator
+{}The repository includes fixture executables for Gemini messages, robot-action proposals, secure control, video framing and encoding, DepthAI IPC, local improvisation, stage shows, saber choreography, MLX stage observations, and catalog validity. These tests are valuable because most can run without moving ROB.\markdownRendererParagraphSeparator
+{}For every boundary, test:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}smallest valid message;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}largest valid message;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}truncated header and payload;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}oversized length before allocation;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}unknown version, enum, or field;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}stale sequence/generation/request ID;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}cancellation before and after callback scheduling;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{8}unavailable hardware/model/network;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{9}repeated reconnect and shutdown;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{10}redaction of secrets and private media.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}Then perform a staged hardware test: no-power simulation, powered actuators mechanically isolated, wheels/treads raised, low limits, one subsystem, verified emergency stop, and only then integrated operation.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Profile memory, latency, and thermals}\markdownRendererInterblockSeparator
+{}Measure end-to-end age, not just inference duration. Attach capture timestamp to every frame and preserve it through RGB-D pairing, Vision, snapshot, model sampling, encoding, network transfer, and presentation.\markdownRendererParagraphSeparator
+{}Use Instruments Time Profiler, Allocations, Leaks, Metal System Trace, and Points of Interest. Add signposts around camera receive, RGB conversion, depth render, Vision request, VLM admission, model generation, H.264 encode, and main-thread scene update.\markdownRendererParagraphSeparator
+{}Watch for these characteristic failures:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem steadily rising SceneKit nodes or textures;\markdownRendererUlItemEnd 
+\markdownRendererUlItem a new \markdownRendererCodeSpan{CIContext}, formatter, or pixel-buffer pool per frame;\markdownRendererUlItemEnd 
+\markdownRendererUlItem retained \markdownRendererCodeSpan{CMSampleBuffer} objects in asynchronous closures;\markdownRendererUlItemEnd 
+\markdownRendererUlItem autoreleased Objective-C objects accumulating on worker threads;\markdownRendererUlItemEnd 
+\markdownRendererUlItem model containers loaded more than once;\markdownRendererUlItemEnd 
+\markdownRendererUlItem an unbounded array of diagnostics, semantic memories, or network frames;\markdownRendererUlItemEnd 
+\markdownRendererUlItem main-thread image conversion causing controller lag;\markdownRendererUlItemEnd 
+\markdownRendererUlItem repeated identical errors overwhelming Xcode and hiding state transitions.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Define production budgets for memory, frame age, UI frame time, model latency, camera restart time, and stop latency. A green light without those measurements is only a connection indication.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Refactor without erasing history}\markdownRendererInterblockSeparator
+{}The highest-value seam is to split \markdownRendererCodeSpan{ROBSerialBox} by device and responsibility:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/8299ced50d688155a8a316e2ee3711ae.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Move parsing and mapping into pure functions with fixtures first. Preserve the Objective-C façade so Interface Builder and existing callers keep working. Introduce typed state snapshots. Move every descriptor to one owning queue. Rate-limit diagnostics. Remove Head/Torso UI only after confirming no nib binding or operator workflow still requires it.\markdownRendererParagraphSeparator
+{}For camera work, preserve \markdownRendererCodeSpan{CameraManagerProtocol} and \markdownRendererCodeSpan{CameraFrameSet}. For model work, preserve \markdownRendererCodeSpan{ROBLocalImprovisationProviding}, \markdownRendererCodeSpan{SceneSnapshot}, and strict codecs. For Vision Pro work, preserve the versioned control/video contracts and update both repositories in lockstep.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{File-by-file reading route}\markdownRendererInterblockSeparator
+{}Read in this order and make notes beside the code:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}\markdownRendererCodeSpan{README.md} and \markdownRendererCodeSpan{docs/} for declared behavior and operational boundaries.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}\markdownRendererCodeSpan{AppDelegate.m} and \markdownRendererCodeSpan{ROBMainViewController.mm} for process composition.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}\markdownRendererCodeSpan{ROBSerialBox.h/.m} for hardware history, current Base discovery, Maestro/Tic, and arm seams.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}\markdownRendererCodeSpan{CameraManager.swift} and \markdownRendererCodeSpan{Webcam\markdownRendererUnderscore{}color.py} for provider ownership and RGB-D framing.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}\markdownRendererCodeSpan{CameraViewController.swift}, pose detector, and skeleton renderer for perception/display cost.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}\markdownRendererCodeSpan{ROBSceneSnapshot.swift} for typed world state and confidence.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}\markdownRendererCodeSpan{ROBMLXRuntime.swift}, MLX provider, and local-improvisation protocol for private inference.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{8}\markdownRendererCodeSpan{GeminiRoboticsProtocol.swift} before \markdownRendererCodeSpan{ROBAI.swift}; learn the wire types before the session actor.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{9}\markdownRendererCodeSpan{ROBStageShowProtocol.swift} before its coordinator; learn allowed data before lifecycle.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{10}\markdownRendererCodeSpan{ROBSaberChoreography.swift}, AMBER kinematics, and visual calibration together.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{11}\markdownRendererCodeSpan{ROBVideoProtocol.swift}, encoder, and server, followed by Volume 7's receiver chapters.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{12}Every matching fixture test before making a change.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Production review checklist}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem \markdownRendererUntickedBox{} Every serial descriptor has one owner and bounded reconnect behavior.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Base identity is detected by its existing firmware response without probe commands.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Stale controller input produces one neutral frame and then drops heartbeat.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Commanded, measured, and visually estimated poses remain distinct.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Camera ownership cannot race between DepthAI and UVC providers.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Every IPC and network length is validated before allocation.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Slow perception, inference, encoding, and network consumers retain newest-only bounded work.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Vision and model work never blocks controller or main-thread responsiveness.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} SceneKit nodes, contexts, pixel buffers, and model containers remain bounded over long runs.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Local and cloud model output crosses strict typed codecs.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} No language model has direct motor, shell, serial, or arm authority.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Stage cues have deadlines, cancellation correlation, and authored fallback.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Camera and microphone streaming show explicit effective operator state.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Vision Pro control and video protocol versions match Volume 7's client.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Historical Kinect artifacts are documented before removal or reuse.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} Tests pass before any powered-hardware commissioning.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Closing principle}\markdownRendererInterblockSeparator
+{}Cerebro is strongest when every subsystem admits uncertainty and owns failure locally. Serial discovery should identify rather than guess. Depth should mark invalid pixels. Vision should preserve confidence. Models should propose typed meaning rather than emit actuator bytes. Stage shows should continue through bounded fallback. Video should drop frames rather than delay control. The Vision Pro should express fresh human intent, while Cerebro and the robot enforce authority, time, and safe limits.\markdownRendererParagraphSeparator
+{}That is how a mixed Swift and Objective-C codebase becomes a dependable robot mind: not through one magical model, but through explicit contracts between imperfect parts.
+\markdownRendererSectionEnd \markdownRendererDocumentEnd

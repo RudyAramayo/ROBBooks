@@ -294,6 +294,8 @@ INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/rerunfile
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/microtype.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/microtype.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/microtype-xetex.def
@@ -397,9 +399,9 @@ INPUT ./volume-7-engineering-robcontrollervision.md
 INPUT volume-7-engineering-robcontrollervision.md
 OUTPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.luabridge.lua
 INPUT texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.luabridge.lua
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/d0be003a77f9eb987fa9b36a54719e42.md.tex
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/d0be003a77f9eb987fa9b36a54719e42.md.tex
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/d0be003a77f9eb987fa9b36a54719e42.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/21440a2959ae9b0f7dfb705bfac0a173.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/21440a2959ae9b0f7dfb705bfac0a173.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/21440a2959ae9b0f7dfb705bfac0a173.md.tex
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/7f769449b193716cad5d4cdcebae69ef.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/7f769449b193716cad5d4cdcebae69ef.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/7f769449b193716cad5d4cdcebae69ef.verbatim
@@ -433,6 +435,18 @@ INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineer
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/327fc9210acb78827dfdba812794d8f4.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/327fc9210acb78827dfdba812794d8f4.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/327fc9210acb78827dfdba812794d8f4.verbatim
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam7.tfm
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/a3fea1fec3880823e941c1b2ad239d6a.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/a3fea1fec3880823e941c1b2ad239d6a.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/a3fea1fec3880823e941c1b2ad239d6a.verbatim

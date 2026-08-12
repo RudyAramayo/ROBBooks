@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:20
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1020,6 +1020,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip73
 )
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
+)
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
 rotype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
@@ -1300,7 +1303,7 @@ Package fontspec Info:
 (fontspec)             <->"Avenir Next
 (fontspec)             Condensed/BI/OT:script=latn;language=dflt;+smcp;"
 
-Package hyperref Info: Option `colorlinks' set `true' on input line 66.
+Package hyperref Info: Option `colorlinks' set `true' on input line 67.
 )
 
 LaTeX Warning: Unused global option(s):
@@ -1564,10 +1567,10 @@ anged.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 34870 strings out of 468168
- 753055 string characters out of 5423555
- 1254877 words of memory out of 5000000
- 63005 multiletter control sequences out of 15000+600000
+ 34895 strings out of 468168
+ 753712 string characters out of 5423555
+ 1255463 words of memory out of 5000000
+ 63026 multiletter control sequences out of 15000+600000
  629055 words of font info for 108 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,7n,131p,1025b,772s stack positions out of 10000i,1000n,20000p,200000b,200000s

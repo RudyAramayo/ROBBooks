@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 21:59
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1020,6 +1020,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip73
 )
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
+)
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
 rotype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
@@ -1300,7 +1303,7 @@ Package fontspec Info:
 (fontspec)             <->"Avenir Next
 (fontspec)             Condensed/BI/OT:script=latn;language=dflt;+smcp;"
 
-Package hyperref Info: Option `colorlinks' set `true' on input line 66.
+Package hyperref Info: Option `colorlinks' set `true' on input line 67.
 )
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.aux)
 \openout1 = `volume-4-mission-control.aux'.
@@ -1716,13 +1719,13 @@ d.
 (rerunfilecheck)             Checksum: 8DCCD6BE105A1E08B63723840C584C17;2204.
  ) 
 Here is how much of TeX's memory you used:
- 35330 strings out of 468168
- 762452 string characters out of 5423555
- 1498881 words of memory out of 5000000
- 63426 multiletter control sequences out of 15000+600000
+ 35355 strings out of 468168
+ 763109 string characters out of 5423555
+ 1499458 words of memory out of 5000000
+ 63447 multiletter control sequences out of 15000+600000
  632150 words of font info for 135 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,12n,131p,1021b,1280s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-missi
-on-control.xdv (33 pages, 629120 bytes).
+on-control.xdv (33 pages, 637204 bytes).

@@ -1,0 +1,73 @@
+===== private-path publication guard =====
+No private macOS user paths detected in publishable book source.
+Numbered-volume image sets:
+  volume-1: 13 unique image file(s)
+  volume-2: 13 unique image file(s)
+  volume-3: 22 unique image file(s)
+  volume-4: 8 unique image file(s)
+  volume-5: 1 unique image file(s)
+  volume-6: 1 unique image file(s)
+  volume-7: 1 unique image file(s)
+  volume-8: 1 unique image file(s)
+Approved numbered-volume overlaps: 1
+Field-manual evidence overlaps (reported exception): 26
+Reports: /Users/rob/dev/Presentation/ROB-Books/tmp/image-audit
+===== retired-asset publication guard =====
+===== volume-1-meet-rob =====
+Pages:           36
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+File size:       27823586 bytes
+===== volume-2-circuits-and-signals =====
+Pages:           33
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+File size:       27248486 bytes
+===== volume-3-motion-workshop =====
+Pages:           34
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+File size:       48109072 bytes
+===== volume-4-mission-control =====
+Pages:           33
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+File size:       14821713 bytes
+===== volume-5-ai-robotics-with-codex =====
+Pages:           39
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+File size:       2031652 bytes
+===== volume-6-amber-dual-arm-robotics =====
+Pages:           27
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+File size:       2874692 bytes
+===== volume-7-engineering-robcontrollervision =====
+Pages:           36
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+File size:       2988774 bytes
+===== volume-8-engineering-cerebro =====
+Pages:           37
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+File size:       2710153 bytes
+===== rob-and-the-lost-yellow-ball =====
+Pages:           23
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+File size:       12230418 bytes
+===== complete-builders-field-manual =====
+Pages:           79
+Encrypted:       no
+Page size:       612 x 792 pts (letter)
+File size:       61494629 bytes
+===== prepared-photo privacy check =====
+No GPS or camera make/model tags detected in prepared photos.
+===== source placeholder count =====
+/Users/rob/dev/Presentation/ROB-Books/source/complete-builders-field-manual.tex:14
+/Users/rob/dev/Presentation/ROB-Books/source/volume-4-mission-control.tex:2
+/Users/rob/dev/Presentation/ROB-Books/source/volume-3-motion-workshop.tex:6
+/Users/rob/dev/Presentation/ROB-Books/source/volume-1-meet-rob.tex:1
+/Users/rob/dev/Presentation/ROB-Books/source/volume-2-circuits-and-signals.tex:3

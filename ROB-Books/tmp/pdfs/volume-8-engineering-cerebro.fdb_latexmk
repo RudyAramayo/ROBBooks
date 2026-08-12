@@ -1,10 +1,10 @@
 # Fdb version 4
-["xdvipdfmx"] 1786510887.67721 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro" 1786510888.43465 0
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.xdv" 1786510887.59693 619712 099626c0ac325492a82a9e8b566056a8 "xelatex"
+["xdvipdfmx"] 1786513213.88817 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro" 1786513214.64961 0
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.xdv" 1786513213.79459 631180 0feb14feb547ed738baac54acbd03c58 "xelatex"
   (generated)
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.pdf"
   (rewritten before read)
-["xelatex"] 1786510885.28387 "volume-8-engineering-cerebro.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.xdv" "volume-8-engineering-cerebro" 1786510888.43295 0
+["xelatex"] 1786513211.81617 "volume-8-engineering-cerebro.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.xdv" "volume-8-engineering-cerebro" 1786513214.64807 0
   "../assets/generated/cerebro-perception-control-lesson.png" 1786510457.19819 2768491 44c603f1f55d8823ea42fc1e507755af ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/0dd41ca32e96b4eff655b714e202e2da.verbatim" 1786510795.46676 198 0dd41ca32e96b4eff655b714e202e2da ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/149ccede00aab17d105c7984449163f1.verbatim" 1786510795.46536 83 149ccede00aab17d105c7984449163f1 ""
@@ -12,14 +12,14 @@
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/8299ced50d688155a8a316e2ee3711ae.verbatim" 1786510795.4677 215 8299ced50d688155a8a316e2ee3711ae ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/8900aaf09ec0b695a56b97173cca51af.verbatim" 1786510795.46701 218 8900aaf09ec0b695a56b97173cca51af ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/9fd0e41554294ec56b231a6826111832.verbatim" 1786510795.46463 8 9fd0e41554294ec56b231a6826111832 ""
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/a1ec5d3fb66993d41edbc4f90dc07e65.md.tex" 1786513141.40643 56964 27a9940be753b48aba62b3aeab6bdbf2 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/aad5a77dca6dbea3ff874e385bbaad9a.verbatim" 1786510795.46506 191 aad5a77dca6dbea3ff874e385bbaad9a ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/acfafe86ee40f44f1d691aaf02ef9922.verbatim" 1786510795.46547 27 acfafe86ee40f44f1d691aaf02ef9922 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/c999fc48ac9fd4473cb5693430299a1f.verbatim" 1786510795.4657 187 c999fc48ac9fd4473cb5693430299a1f ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/ca591f4c594505042628ca5a2307484c.verbatim" 1786510795.46583 65 ca591f4c594505042628ca5a2307484c ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-cerebro/e8fe9f485254400015744ebcacdefef9.md.tex" 1786510887.22186 56793 46c3bde8bf6e807abac64d6a9df9c6cc ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.aux" 1786510887.59513 12226 55209d177343cb254ace6d9e46242164 "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.out" 1786510887.59644 8550 940c5b7fa4040b88a885289f159f0420 "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.toc" 1786510887.59674 3351 765c2d8f207c496d460d82a7c0dccdeb "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.aux" 1786513213.79245 12226 55209d177343cb254ace6d9e46242164 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.out" 1786513213.79414 8550 940c5b7fa4040b88a885289f159f0420 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.toc" 1786513213.79441 3351 765c2d8f207c496d460d82a7c0dccdeb "xelatex"
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/fontname/texfonts.map" 1772380719 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1772380719 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1772380719 1536 06717a2b50de47d4087ac0e6cd759455 ""
@@ -221,11 +221,12 @@
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/varwidth/varwidth.sty" 1772380719 10894 d359a13923460b2a73d4312d613554c8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1772380719 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1772380719 5006 d7e899bb5d9717c7f214e9bc0284de7b ""
+  "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty" 1772380719 4675 e4b8c405820368c2dfb03526e16d725a ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/web2c/texmf.cnf" 1772380719 43633 14bbc273cebd985e64ab1a698333eaf9 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-var/web2c/xetex/xelatex.fmt" 1772380719 5948959 3df9f026b6ab65867975c94eefb74cd0 ""
-  "robbook.sty" 1786509627.72271 18057 ba6788e1d40d5a27905ab70432f2347b ""
-  "volume-8-engineering-cerebro.md" 1786510873.59039 36146 f00586cb233d65b899d398274b4ae1e5 ""
-  "volume-8-engineering-cerebro.tex" 1786510835.97852 3623 99fb7579db73d6f0ade997ad70ba8f8c ""
+  "robbook.sty" 1786513183.41505 18343 efe854e77ba918206dcffd01effb0188 ""
+  "volume-8-engineering-cerebro.md" 1786512960.84719 36214 1d162734acbba6a1852086b4d028cbd2 ""
+  "volume-8-engineering-cerebro.tex" 1786513183.41576 3751 324a8f04ee8acd65bd7d9b5e1a75a594 ""
   (generated)
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.aux"
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.log"

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 21:59
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:40
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1020,6 +1020,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip73
 )
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
+)
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
 rotype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
@@ -1300,7 +1303,7 @@ Package fontspec Info:
 (fontspec)             <->"Avenir Next
 (fontspec)             Condensed/BI/OT:script=latn;language=dflt;+smcp;"
 
-Package hyperref Info: Option `colorlinks' set `true' on input line 66.
+Package hyperref Info: Option `colorlinks' set `true' on input line 67.
 )
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/markdown/mark
 down.sty
@@ -1741,13 +1744,13 @@ t changed.
 (rerunfilecheck)             Checksum: 555E5DA9EF059A8378762C3737CFCB0C;6990.
  ) 
 Here is how much of TeX's memory you used:
- 37861 strings out of 468168
- 845339 string characters out of 5423555
- 1708866 words of memory out of 5000000
- 65881 multiletter control sequences out of 15000+600000
+ 37888 strings out of 468168
+ 846032 string characters out of 5423555
+ 1709447 words of memory out of 5000000
+ 65904 multiletter control sequences out of 15000+600000
  633305 words of font info for 131 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,12n,131p,1160b,1643s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-6-amber
--dual-arm-robotics.xdv (27 pages, 593240 bytes).
+-dual-arm-robotics.xdv (27 pages, 601344 bytes).

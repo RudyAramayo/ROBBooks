@@ -294,6 +294,8 @@ INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/rerunfile
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/microtype.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/microtype.sty
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/microtype-xetex.def

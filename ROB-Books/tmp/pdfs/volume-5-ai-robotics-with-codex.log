@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 21:59
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:40
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1020,6 +1020,9 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip73
 )
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty
+Package: xurl 2022/01/09 v 0.10 modify URL breaks
+)
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mic
 rotype.sty
 Package: microtype 2026/03/01 v3.2d Micro-typographical refinements (RS)
@@ -1300,7 +1303,7 @@ Package fontspec Info:
 (fontspec)             <->"Avenir Next
 (fontspec)             Condensed/BI/OT:script=latn;language=dflt;+smcp;"
 
-Package hyperref Info: Option `colorlinks' set `true' on input line 66.
+Package hyperref Info: Option `colorlinks' set `true' on input line 67.
 )
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/markdown/mark
 down.sty
@@ -1608,12 +1611,8 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `Menlo' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [3
+LaTeX Font Info:    Trying to load font information for U+msa on input line 50.
 
-]
-(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex
-.toc
-LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsa
 .fd
@@ -1623,7 +1622,8 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 50.
+
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsb
 .fd
@@ -1637,7 +1637,11 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
-) [4
+) [3
+
+]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-with-codex
+.toc [4
 
 ] [5] [6])
 \tf@toc=\write9
@@ -1790,13 +1794,13 @@ Package rerunfilecheck Info: File `volume-5-ai-robotics-with-codex.out' has not
 (rerunfilecheck)             Checksum: 5AC5225108E74691F2915574FD8AC133;26035.
  ) 
 Here is how much of TeX's memory you used:
- 38251 strings out of 468168
- 876348 string characters out of 5423555
- 1691540 words of memory out of 5000000
- 66137 multiletter control sequences out of 15000+600000
+ 38277 strings out of 468168
+ 877024 string characters out of 5423555
+ 1692144 words of memory out of 5000000
+ 66159 multiletter control sequences out of 15000+600000
  635824 words of font info for 143 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,13n,131p,1028b,2838s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-ro
-botics-with-codex.xdv (39 pages, 1353772 bytes).
+botics-with-codex.xdv (39 pages, 1361892 bytes).

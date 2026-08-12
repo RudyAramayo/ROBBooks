@@ -1,14 +1,14 @@
 # Fdb version 4
-["xdvipdfmx"] 1786510776.9999 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob" 1786510777.48316 0
+["xdvipdfmx"] 1786513193.38508 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob" 1786513193.86756 0
   "/Users/raramayo/dev/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" 0 -1 0 ""
   "/Users/rob/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev/R.O.B./Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" 0 -1 0 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" 1786510776.93091 538988 601f224d590789fb74d60575b2e6002b "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" 1786513193.31851 547036 8a87aff66f616cdd247a7785d9692212 "xelatex"
   (generated)
   "/Users/raramayo/dev/ROB-Books/tmp/pdfs/volume-1-meet-rob.pdf"
   "/Users/rob/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev/R.O.B./Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.pdf"
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.pdf"
   (rewritten before read)
-["xelatex"] 1786510775.2911 "volume-1-meet-rob.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" "volume-1-meet-rob" 1786510777.48153 0
+["xelatex"] 1786513191.70407 "volume-1-meet-rob.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.xdv" "volume-1-meet-rob" 1786513193.86605 0
   "../assets/generated/rob-systems-feedback-lab.png" 1786423707.34551 3065700 fa149af3268af1ce126be80b44c28ff8 ""
   "../assets/photos/2019-rob-front-corner.jpg" 1785743334 2681899 364a44a8445431f90fd43660a8f7579f ""
   "../assets/photos/2019-rob-side-profile.jpg" 1785743334 1615964 20d6567147997356901afd3769d126ec ""
@@ -22,9 +22,9 @@
   "../assets/photos/2025-neck-gear-train.jpg" 1785743354 1630819 230c3c290599638f52f4827aeb8adcf9 ""
   "../assets/photos/2025-rob-face-portrait.jpg" 1785743352 2178747 a643c6c19e15c98a2ccf8c21be069f89 ""
   "../assets/photos/2025-rob-side-full-body.jpg" 1785743354 2571287 baa44e8432a1dd6dbc9e9fd2016671a3 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.aux" 1786510776.92966 3809 a13960297e5e2084c9aff37ad2ed7ab9 "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.out" 1786510776.93052 1680 0fa822afbbaa0af6824f029f3234cc4a "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.toc" 1786510776.93076 751 77f884047be5ac9fed250cec423a33da "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.aux" 1786513193.31702 3809 a13960297e5e2084c9aff37ad2ed7ab9 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.out" 1786513193.31804 1680 0fa822afbbaa0af6824f029f3234cc4a "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-1-meet-rob.toc" 1786513193.31835 751 77f884047be5ac9fed250cec423a33da "xelatex"
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/fontname/texfonts.map" 1772380719 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1772380719 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1772380719 1004 54797486969f23fa377b128694d548df ""
@@ -212,9 +212,10 @@
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/varwidth/varwidth.sty" 1772380719 10894 d359a13923460b2a73d4312d613554c8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xcolor/xcolor.sty" 1772380719 55384 b454dec21c2d9f45ec0b793f0995b992 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xkeyval/xkeyval.sty" 1772380719 5006 d7e899bb5d9717c7f214e9bc0284de7b ""
+  "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty" 1772380719 4675 e4b8c405820368c2dfb03526e16d725a ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/web2c/texmf.cnf" 1772380719 43633 14bbc273cebd985e64ab1a698333eaf9 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-var/web2c/xetex/xelatex.fmt" 1772380719 5948959 3df9f026b6ab65867975c94eefb74cd0 ""
-  "robbook.sty" 1786509627.72271 18057 ba6788e1d40d5a27905ab70432f2347b ""
+  "robbook.sty" 1786513183.41505 18343 efe854e77ba918206dcffd01effb0188 ""
   "volume-1-deep-dive.tex" 1786423904.46506 4875 822c8e47d8a2ccd0ad48641f9a023c99 ""
   "volume-1-meet-rob.tex" 1786510271.20982 19375 b90480f8bac429e54c5ee68e7cf0ab82 ""
   (generated)
