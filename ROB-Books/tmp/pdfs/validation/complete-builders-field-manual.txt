@@ -67,6 +67,16 @@ Evidence-status legend
    ronment, and upload date before operation.
 
 
+   TWO AMBER B1 ARMS, ONE DOCUMENTED CONTROL CHAIN
+
+   ROB carries two seven-joint AMBER B1 arms. The repository snapshot separates their Ubuntu-side cores as
+   L-10 and R-11: network clients use UDP or LCM, each core binds a stable CAN interface, and CAN carries com-
+   mands and feedback between that core and its arm actuators. The AmberHomeFolder tree is evidence from one
+   Ubuntu machine, not a deployable image; never copy its credentials, logs, virtual environment, or machine-
+   specific identifiers. Volume 6 documents the inspected protocol, URDF models, reproducible setup, verifica-
+   tion gates, and unresolved configuration differences.
+
+
 
 
 Source snapshot and publication cautions
@@ -82,7 +92,7 @@ permission and a current authorized public datasheet before publication.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                   3 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                   3 / 62
 Contents
 
 I Intent and architecture                                                                                                       1
@@ -167,63 +177,63 @@ IV      Software and perception                                                 
      11.2 Keyframe animation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
      11.3 Speech . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
      11.4 Controller-activated autonomy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
-     11.5 Gemini integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 41
+     11.5 Gemini integration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
      11.6 Robot-action implementation status . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  5 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  5 / 62
 BUILDING R.O.B.                                                                                       COMPLETE FIELD MANUAL - ADVANCED
 
 
-V Integration, operation, and maintenance                                                                                        43
+V Integration, operation, and maintenance                                                                                        44
 
-12 Test strategy and safety case                                                                                                  45
-     12.1 Requirements traceability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
-     12.2 Progressive test ladder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
-     12.3 Failure injection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
-     12.4 Measure stop behavior . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+12 Test strategy and safety case                                                                                                  46
+     12.1 Requirements traceability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+     12.2 Progressive test ladder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+     12.3 Failure injection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+     12.4 Measure stop behavior . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 47
 
-13 Present ROB safely in public                                                                                                   48
-     13.1 Roles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
-     13.2 Pre-show checklist . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
-     13.3 Show-state model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
-     13.4 Audience and privacy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+13 Present ROB safely in public                                                                                                   49
+     13.1 Roles . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+     13.2 Pre-show checklist . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+     13.3 Show-state model . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+     13.4 Audience and privacy . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 50
 
-14 Keep the robot understandable                                                                                                  51
-     14.1 Before and after every operating day . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
-     14.2 Scheduled maintenance record . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
-     14.3 Configuration control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
-     14.4 Troubleshooting by layer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+14 Keep the robot understandable                                                                                                  52
+     14.1 Before and after every operating day . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
+     14.2 Scheduled maintenance record . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
+     14.3 Configuration control . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
+     14.4 Troubleshooting by layer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
 
-A Teach the architecture without hiding the hazards                                                                               53
-     A.1 A spiral curriculum for ROB . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 53
-     A.2 Facilitation pattern . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 53
+A Teach the architecture without hiding the hazards                                                                               54
+     A.1 A spiral curriculum for ROB . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+     A.2 Facilitation pattern . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
 
-B Commission the control path as one safety-related system                                                                        54
-     B.1 Connection and enrollment matrix . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
-     B.2 Measure the whole stop chain . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+B Commission the control path as one safety-related system                                                                        55
+     B.1 Connection and enrollment matrix . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55
+     B.2 Measure the whole stop chain . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55
 
-C Capture the builder’s oral history                                                                                              55
-     C.1 Interview prompts . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55
+C Capture the builder’s oral history                                                                                              56
+     C.1 Interview prompts . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 56
 
-D Builder input ledger                                                                                                            56
+D Builder input ledger                                                                                                            57
 
-E Bill of materials worksheet                                                                                                     57
+E Bill of materials worksheet                                                                                                     58
 
-F Wiring and connector worksheet                                                                                                  58
+F Wiring and connector worksheet                                                                                                  59
 
-G Serial protocol reference                                                                                                       59
+G Serial protocol reference                                                                                                       60
 
-H Repository source map                                                                                                           60
+H Repository source map                                                                                                           61
 
-I    Photo and artwork credits                                                                                                    61
-
-
+I    Photo and artwork credits                                                                                                    62
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  6 / 61
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  6 / 62
          Part I
 
 Intent and architecture
@@ -305,7 +315,7 @@ Current subsystem status at a glance
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                       4 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                       4 / 62
 BUILDING R.O.B.                                                                                            COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -350,7 +360,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                       5 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                       5 / 62
 CHAPTER 2
 
 System boundaries and ownership
@@ -471,7 +481,7 @@ control-master state, the Arduino deadline, or the physical emergency stop.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                     8 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                     8 / 62
      Part II
 
 Mechanical build
@@ -550,7 +560,7 @@ actuator to reduce tread scrub while turning.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  12 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                  12 / 62
  BUILDING R.O.B.                                                                               COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -586,7 +596,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
- ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                         13 / 61
+ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                         13 / 62
 CHAPTER 4
 
 Torso, body, head, and arms
@@ -667,7 +677,7 @@ many joints and long reach.                                                   be
  BUILDER VERIFICATION NEEDED Joint feedback, zeroing, limits, load rating, collision envelope, emergency behavior, and
 physical outcome were not measured in this review.
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                      16 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                      16 / 62
 BUILDING R.O.B.                                                                              COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -683,7 +693,7 @@ sion checking, and a verified grasp executor are incomplete.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        17 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        17 / 62
 CHAPTER 5
 
 From template to finished part
@@ -763,7 +773,7 @@ plan in the CAD, not as an afterthought.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     20 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     20 / 62
              Part III
 
 Power, electronics, and firmware
@@ -847,7 +857,7 @@ show.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                      24 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                      24 / 62
 BUILDING R.O.B.                                                                             COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -866,7 +876,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       25 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       25 / 62
 CHAPTER 7
 
 Arduino base controller
@@ -978,7 +988,7 @@ The historical firmware should be preserved as an artifact, then replaced behind
 8. IR inhibit assignments are disabled and would not update outputs until another command path runs;
 9. one rotation test duplicates the same condition and omits the mirrored turn;
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                      28 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                      28 / 62
  BUILDING R.O.B.                                                                              COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -1026,7 +1036,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
- ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        29 / 61
+ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        29 / 62
         Part IV
 
 Software and perception
@@ -1117,7 +1127,7 @@ that payload separately; transport authentication does not make its contents phy
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   33 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   33 / 62
 CHAPTER 9
 
 Controllers and secure transport
@@ -1211,7 +1221,7 @@ consent handling.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                                                           36 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                                                           36 / 62
 CHAPTER 10
 
 Cameras, depth, lidar, and coordi-
@@ -1283,7 +1293,7 @@ Presentation page 55 proposes an RPLidar stage above the base.   sors, wiring, c
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                       39 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                       39 / 62
 CHAPTER 11
 
 Arms, animation, speech, auton-
@@ -1294,10 +1304,19 @@ omy, and AI
 Behavior above raw motor
 commands
 Servo and arm control
-Cerebro uses Maestro servo channels plus optional Amber Python/SSH paths. A final arm-control chapter needs
-joint-by-joint calibration, not only button names. For each axis record commanded unit, zero reference, direction,
-soft and hard limits, feedback, maximum rate, acceleration, current/torque limit, collision envelope, and safe behav-
-ior after link loss.
+Cerebro uses Maestro servo channels plus AMBER Python paths. ROB’s present AMBER evidence describes two
+seven-joint B1 arms and separate grippers. The Ubuntu-side directories L-10 and R-11 bind can10/can11, UDP ports
+26001/26002, and LCM prefixes Left_/Right_. Network clients send UDP or LCM to one core per side; each core,
+not the client, interfaces with its actuators over CAN.
+The checked-in V2 protocol provides status, joint and Cartesian moves, calibration, gripper control, and mode
+control. Its packed UDP header contains a 16-bit command, 16-bit length, and 32-bit counter. The current client
+needs stronger validation of source, size, command, counter, freshness, finite values, and authentication before
+production use. Archived binaries do not include enough source to reconstruct their actuator-level CAN protocol.
+URDF models provide link geometry, joint origins, axes, and limits, but they do not prove ROB’s physical mount
+transforms, encoder zero, payload, safe stopping, or cable collision volume. Measure torso-to-left-base, torso-to-
+right-base, and each tool transform; then verify forward kinematics over several supported poses before inverse
+kinematics. Volume 6 contains the protocol tables, joint model, Ubuntu reproduction procedure, and staged dual-
+arm commissioning gates.
 
 
 
@@ -1320,7 +1339,8 @@ Both paths require microphone permissions, public notice, and a plan for uninten
 
 
 Controller-activated autonomy
-  EXPERIMENTAL / OPTIONAL The social-roam profile begins only after explicit controller authorization, captures an activa-
+                       The social-roam profile begins only after explicit controller authorization, captures an activa-
+ EXPERIMENTAL / OPTIONAL
 tion pose and radius, uses fresh filtered lidar scans, and limits tread speed. Near 82 percent of the configured
 radius it attempts to return toward its origin; this is not verified containment. Missing or stale lidar requests a mo-
 tion stop and transitions to waitingForLidar while the autonomy session remains active. Manual takeover, explicit
@@ -1328,20 +1348,19 @@ stop, expiry, replacement, or shutdown ends the session. Local deterministic cod
 
 
 
+                                                          41
+BUILDING R.O.B.                                                                                                            COMPLETE FIELD MANUAL - ADVANCED
+
+
+
 Gemini integration
-                      The entire Gemini integration defaults off and requires explicit enablement plus credentials.
- EXPERIMENTAL / OPTIONAL
+  EXPERIMENTAL / OPTIONAL The entire Gemini integration defaults off and requires explicit enablement plus credentials.
 Once enabled, the current configuration defaults camera-frame and microphone-audio streaming on unless each
 stream is separately disabled. The robot-action tool remains separately off by default. Its schema declares look_at,
 play_gesture, request_pick, navigate_relative, and stop_motion; the model never receives arbitrary raw serial out-
 put. Only stop_motion has an immediate local executor, and even that returns a partial result because arm hold is
 unverified. The other actions have no deterministic executor: the controller console records approval or rejection
 but does not actuate hardware.
-
-                                                           41
-BUILDING R.O.B.                                                                                                            COMPLETE FIELD MANUAL - ADVANCED
-
-
   PLANNED   General picking is intentionally unavailable. Missing prerequisites include calibrated camera-to-arm
 transforms, complete neck mapping, joint feedback, inverse kinematics, collision checking, grasp planning, and
 a verified executor.
@@ -1377,6 +1396,10 @@ joint order, cabling, and manipulation limits concrete.                         
                                                                                  test.
 
 
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                          42 / 62
+BUILDING R.O.B.                                                                              COMPLETE FIELD MANUAL - ADVANCED
+
+
     BUILDER INPUT NEEDED
 
     Provide arm/neck calibration files, verified keyframes, joint feedback and limits, safe animation cancel behavior,
@@ -1386,7 +1409,7 @@ joint order, cabling, and manipulation limits concrete.                         
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                          42 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        43 / 62
                  Part V
 
 Integration, operation, and maintenance
@@ -1394,7 +1417,7 @@ Integration, operation, and maintenance
 
 
 
-                   43
+                   44
 CHAPTER 12
 
 Verification before motion
@@ -1446,7 +1469,7 @@ Test the robot’s response when:
 • DepthAI helper exits or the camera disconnects;
 
 
-                                                           45
+                                                           46
 BUILDING R.O.B.                                                                            COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -1478,7 +1501,7 @@ uncertainty. “600 ms watchdog” is not the same as “stopped within 600 ms.�
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                      46 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                      47 / 62
 CHAPTER 13
 
 Maker Faire operations
@@ -1526,7 +1549,7 @@ restarting software never silently arms motion.
 
 
 
-                                                            48
+                                                            49
 BUILDING R.O.B.                                                                         COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -1546,7 +1569,7 @@ participate.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   49 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   50 / 62
 CHAPTER 14
 
 Maintenance and change control
@@ -1599,7 +1622,7 @@ Troubleshooting by layer
 
 
 
-                                                             51
+                                                             52
 BUILDING R.O.B.                                                                             COMPLETE FIELD MANUAL - ADVANCED
 
 
@@ -1612,7 +1635,7 @@ Troubleshooting by layer
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       52 / 61
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       53 / 62
 CHAPTER A
 
 
@@ -1664,7 +1687,7 @@ an engineering result.
 
 
 
-                                                          53
+                                                          54
 CHAPTER B
 
 
@@ -1712,7 +1735,7 @@ brake behavior, or stopping distance.
 
 
 
-                                                         54
+                                                         55
 CHAPTER C
 
 
@@ -1742,7 +1765,7 @@ when a measurement is required; use the story to identify the measurement or arc
 
 
 
-                                                        55
+                                                        56
  CHAPTER D
 
 
@@ -1781,7 +1804,7 @@ when a measurement is required; use the story to identify the measurement or arc
 
 
 
-                                                           56
+                                                           57
 CHAPTER E
 
 
@@ -1797,7 +1820,7 @@ lead time, safety documentation, and evidence photograph in the editable project
 
 
 
-                                                          57
+                                                          58
 CHAPTER F
 
 
@@ -1815,7 +1838,7 @@ color/label, fuse/breaker location, test point, polarity check, and continuity/i
 
 
 
-                                                        58
+                                                        59
 CHAPTER G
 
 
@@ -1840,7 +1863,7 @@ explicit version, message type, bounded length, sequence, integrity check, and t
 
 
 
-                                                        59
+                                                        60
 CHAPTER H
 
 
@@ -1854,6 +1877,17 @@ Repository source map
                                                   abled GPS/timeout behavior.
  ROBArduino/ROBOT_CEREBELLULAR_HEAD_APP/...ino    Retired Head-role history: IMU/PIR experiment, disabled GPS path,
                                                   incomplete copied parser.
+ AmberHomeFolder/amber/L-10 and R-11              Captured Ubuntu runtime evidence for the two AMBER cores;
+                                                  launch configuration binds left/right CAN interfaces, LCM prefixes,
+                                                  UDP ports, solvers, and URDFs. Treat the broader home snapshot
+                                                  as private forensic material, not a deployable image.
+ AmberHomeFolder/amber/sin_wave/rawLcm            Source definitions for joint targets, arm feedback, Cartesian tasks,
+                                                  plans, solver responses, and gripper control.
+ Amber URDF/amber_b1.urdf                         Independent seven-joint single-arm geometry and model limits; re-
+                                                  quires measured ROB mounting and tool transforms.
+ Cerebro/Amber-PythonAPI/Amber V2 API             Packed UDP reference client for status, motion, mode, calibration,
+                                                  and gripper commands; requires protocol hardening before pro-
+                                                  duction authority.
  ROBOT Build/Hengdrive*.pdf                       Restricted files; contents excluded pending publication clearance.
  ROBOT Build/B-COMMAND*.pdf                       Restricted file; contents excluded and associated installation un-
                                                   proven.
@@ -1880,7 +1914,7 @@ Repository source map
 
 
 
-                                                           60
+                                                           61
 CHAPTER I
 
 
@@ -1910,5 +1944,5 @@ Source trail: This field manual was synthesized from the local ROB presentation,
 and current Cerebro, ROBController, ROBControllerVision, and RPLidar repositories inspected on 2026-08-02.
 
 
-                                                                               61
+                                                                               62
 

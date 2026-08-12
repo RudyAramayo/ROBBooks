@@ -1,0 +1,5 @@
+ls -l /dev/serial/by-id/
+ip -details link show can10
+ip -details link show can11
+ip -statistics link show can10
+ip -statistics link show can11

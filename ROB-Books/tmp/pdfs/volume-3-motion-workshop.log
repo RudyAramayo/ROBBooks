@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 10:59
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 19:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1497,7 +1497,7 @@ Chapter 1.
 File: ../assets/photos/2022-bracket-assembly-front.jpg Graphic file (type bmp)
 <../assets/photos/2022-bracket-assembly-front.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 43--43
+Underfull \hbox (badness 10000) in paragraph at lines 44--44
 [][]
  []
 
@@ -1505,7 +1505,7 @@ File: ../assets/photos/2025-detached-articulated-arm.jpg Graphic file (type bmp
 )
 <../assets/photos/2025-detached-articulated-arm.jpg>
 
-Underfull \hbox (badness 3229) in paragraph at lines 43--43
+Underfull \hbox (badness 3229) in paragraph at lines 44--44
 [][] []\TU/AvenirNext(0)/m/it/8 A removed arm reveals
  []
 
@@ -1544,7 +1544,7 @@ File: ../assets/photos/2025-intermeshing-shoulder-gears.jpg Graphic file (type
 bmp)
 <../assets/photos/2025-intermeshing-shoulder-gears.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 97--97
+Underfull \hbox (badness 10000) in paragraph at lines 98--98
 [][] []\TU/AvenirNext(0)/m/it/8 Intermeshing shoulder
  []
 
@@ -1559,7 +1559,7 @@ File: ../assets/photos/2022-chain-sprocket-interior.jpg Graphic file (type bmp)
 
 <../assets/photos/2022-chain-sprocket-interior.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--122
+Underfull \hbox (badness 10000) in paragraph at lines 123--123
 [][]
  []
 
@@ -1582,7 +1582,7 @@ File: ../assets/photos/2022-medium-duty-bracket-package.jpg Graphic file (type
 bmp)
 <../assets/photos/2022-medium-duty-bracket-package.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 134--134
+Underfull \hbox (badness 10000) in paragraph at lines 135--135
 [][]
  []
 
@@ -1600,30 +1600,30 @@ File: ../assets/photos/2022-drilling-metal-rail.jpg Graphic file (type bmp)
 ]
 Chapter 5.
 
-Underfull \hbox (badness 1365) in paragraph at lines 158--159
+Underfull \hbox (badness 1365) in paragraph at lines 159--160
 \TU/AvenirNext(0)/m/n/10.95 The presentation describes inexpensive quarter-inch
  plywood scraps in early tread-layout models,
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 171--171
+Underfull \hbox (badness 1478) in paragraph at lines 172--172
 []|\TU/AvenirNext(0)/m/n/10.95 High strength and wear resistance for
  []
 
 
-Underfull \hbox (badness 1661) in paragraph at lines 171--171
+Underfull \hbox (badness 1661) in paragraph at lines 172--172
 []|\TU/AvenirNext(0)/m/n/10.95 Mass, rust protection, weldability, ma-
  []
 
 File: ../assets/photos/2022-drilling-metal-rail.jpg Graphic file (type bmp)
 <../assets/photos/2022-drilling-metal-rail.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--177
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 [][]
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 177--177
+Underfull \hbox (badness 2503) in paragraph at lines 178--178
 []\TU/AvenirNext(0)/m/it/8 The drill operation shows work supported on a red fi
 xture. A
  []
@@ -1632,7 +1632,7 @@ File: ../assets/photos/2022-mounted-clamp-and-bracket.jpg Graphic file (type bm
 p)
 <../assets/photos/2022-mounted-clamp-and-bracket.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 177--177
+Underfull \hbox (badness 10000) in paragraph at lines 178--178
 [][]
  []
 
@@ -1654,7 +1654,7 @@ File: ../assets/photos/2024-caliper-tread-measurement.jpg Graphic file (type bm
 p)
 <../assets/photos/2024-caliper-tread-measurement.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 209--209
+Underfull \hbox (badness 10000) in paragraph at lines 210--210
 [][]
  []
 
@@ -1670,7 +1670,7 @@ File: ../assets/photos/2022-drilling-metal-rail.jpg Graphic file (type bmp)
 File: ../assets/photos/2025-rear-electronics-bay.jpg Graphic file (type bmp)
 <../assets/photos/2025-rear-electronics-bay.jpg>
 
-Underfull \hbox (badness 1442) in paragraph at lines 219--219
+Underfull \hbox (badness 1442) in paragraph at lines 220--220
 []\TU/Futura(0)/b/n/29 Assembly order is part of the de- 
  []
 
@@ -1681,7 +1681,7 @@ Chapter 7.
 File: ../assets/photos/2025-labeled-cables.jpg Graphic file (type bmp)
 <../assets/photos/2025-labeled-cables.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--242
+Underfull \hbox (badness 10000) in paragraph at lines 243--243
 [][]
  []
 
@@ -1702,12 +1702,12 @@ File: ../assets/photos/2022-tracked-base-front.jpg Graphic file (type bmp)
 ]
 Chapter 8.
 
-Underfull \hbox (badness 10000) in paragraph at lines 269--269
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
 []|\TU/AvenirNext(0)/m/n/10.95 Full drive hardware on rated stands,
  []
 
 
-Underfull \hbox (badness 1303) in paragraph at lines 269--269
+Underfull \hbox (badness 1303) in paragraph at lines 270--270
 []|\TU/AvenirNext(0)/m/n/10.95 Tracking, stopping distance, thermal and
  []
 
@@ -1748,13 +1748,13 @@ d.
 (rerunfilecheck)             Checksum: 3FD4BA99FEB5CB6022FCCE4F44A60DEB;2168.
  ) 
 Here is how much of TeX's memory you used:
- 35060 strings out of 468168
- 764250 string characters out of 5423555
- 1262309 words of memory out of 5000000
- 63151 multiletter control sequences out of 15000+600000
+ 35063 strings out of 468168
+ 764301 string characters out of 5423555
+ 1268080 words of memory out of 5000000
+ 63154 multiletter control sequences out of 15000+600000
  632078 words of font info for 126 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,12n,131p,1021b,945s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motio
-n-workshop.xdv (32 pages, 506760 bytes).
+n-workshop.xdv (32 pages, 517272 bytes).

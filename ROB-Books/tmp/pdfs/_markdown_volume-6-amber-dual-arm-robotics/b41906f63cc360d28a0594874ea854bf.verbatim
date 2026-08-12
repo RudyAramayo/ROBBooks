@@ -1,0 +1,8 @@
+from amber_api import Amber_Robot
+
+left = Amber_Robot("LEFT_CORE_ADDRESS", 26001, joint_count=7)
+right = Amber_Robot("RIGHT_CORE_ADDRESS", 26002, joint_count=7)
+
+for name, arm in (("left", left), ("right", right)):
+    joint_position, cartesian_pose = arm.get_status()
+    print(name, joint_position, cartesian_pose)

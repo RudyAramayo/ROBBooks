@@ -1,0 +1,272 @@
+\markdownRendererDocumentBegin
+\markdownRendererSectionBegin
+\markdownRendererHeadingOne{The arm system we actually have}\markdownRendererInterblockSeparator
+{}ROB's manipulation system is not one abstract “robot arm.” It is two AMBER B1 arms, each with seven revolute joints and a gripper actuator. The inspected Ubuntu snapshot names the deployed sides \markdownRendererCodeSpan{L-10} and \markdownRendererCodeSpan{R-11}. Their current launch files separate the sides at every important boundary:\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{7}{3}{ddd}{{Concern}{Left arm}{Right arm}}{{Ubuntu directory}{\markdownRendererCodeSpan{amber/L-10}}{\markdownRendererCodeSpan{amber/R-11}}}{{CAN interface}{\markdownRendererCodeSpan{can10}}{\markdownRendererCodeSpan{can11}}}{{LCM prefix}{\markdownRendererCodeSpan{Left\markdownRendererUnderscore{}}}{\markdownRendererCodeSpan{Right\markdownRendererUnderscore{}}}}{{UDP port}{\markdownRendererCodeSpan{26001}}{\markdownRendererCodeSpan{26002}}}{{end-effector link}{\markdownRendererCodeSpan{Lseven\markdownRendererUnderscore{}Link}}{\markdownRendererCodeSpan{Rseven\markdownRendererUnderscore{}Link}}}{{gripper actuator number}{\markdownRendererCodeSpan{8}}{\markdownRendererCodeSpan{8}}}\markdownRendererInterblockSeparator
+{}The repository supports this architecture diagram:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/99923fb453be3526787049c00682445f.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}This distinction matters. The Python API does \markdownRendererStrongEmphasis{not} place CAN frames on the wire. It sends packed UDP datagrams to an AMBER core. The core owns the CAN-side exchange with the actuators. The saved LCM types provide a higher-rate publish/subscribe route into that same core. A future replacement core would need a separately verified actuator-level CAN specification; that specification is not present in the inspected source tree.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{An evidence ledger}\markdownRendererInterblockSeparator
+{}Use four labels throughout commissioning:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Observed:} directly readable in a source file, launch file, URDF, or captured configuration.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Derived:} calculated from observed values, such as converting radians to degrees.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Reported:} supplied by the builder but not independently demonstrated by the snapshot.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Unknown:} requires measurement, vendor documentation, or a controlled test.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}The two arms, seven-joint count, ports, prefixes, core settings, UDP structures, and URDF geometry are observed. The exact mounting transforms on ROB, current safe payload, braking behavior, CAN adapter bitrate interpretation, and the firmware actually running today still require confirmation.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Read the repository without copying a whole computer}\markdownRendererInterblockSeparator
+{}The arm evidence is distributed across three project locations:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/d3276e0785b71a8743233e0a4a787b62.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{AmberHomeFolder} is a captured home directory. It also contains histories, logs, cached packages, a virtual environment, device identifiers, and SSH material. Those files are useful forensic evidence but are not a golden image. Do not publish them, synchronize their credentials, or recursively copy them onto a replacement Ubuntu box. Build a clean host from a reviewed manifest and copy only the authorized runtime artifacts, URDFs, message definitions, and configuration.\markdownRendererParagraphSeparator
+{}The \markdownRendererCodeSpan{amber\markdownRendererUnderscore{}core\markdownRendererUnderscore{}L} and \markdownRendererCodeSpan{amber\markdownRendererUnderscore{}core\markdownRendererUnderscore{}R} programs are compiled executables. Because corresponding complete source and a reproducible build recipe are absent, record their architecture, cryptographic digest, owner, permissions, and provenance before use. Reproducing the environment is not the same as reproducing the binary.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Snapshot record}\markdownRendererInterblockSeparator
+{}For each deployment, record:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/ec704a8c25a946b2c6071a454dd55670.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Keep this manifest beside the deployment package, not inside an unfiltered home-folder archive.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{URDF is a geometric sentence}\markdownRendererInterblockSeparator
+{}A Unified Robot Description Format file is XML that describes a tree of \markdownRendererStrongEmphasis{links} connected by \markdownRendererStrongEmphasis{joints}. Links carry visual geometry, collision geometry, and optionally mass and inertia. Joints name a parent link, child link, origin transform, axis, type, and limits. Together they let visualization, forward kinematics, inverse kinematics, motion planning, and collision tools speak about the same mechanism.\markdownRendererParagraphSeparator
+{}A URDF answers “where would the next link be if this joint had a known angle?” It does not, by itself, answer:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem where the physical arm is mounted on ROB;\markdownRendererUlItemEnd 
+\markdownRendererUlItem whether an encoder zero agrees with the model zero;\markdownRendererUlItemEnd 
+\markdownRendererUlItem whether a limit is mechanically safe under load;\markdownRendererUlItemEnd 
+\markdownRendererUlItem whether collision meshes include cables, grippers, ROB's body, or a carried object;\markdownRendererUlItemEnd 
+\markdownRendererUlItem how quickly the real controller stops after communication loss;\markdownRendererUlItemEnd 
+\markdownRendererUlItem whether the physical robot matches the exported CAD revision.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}URDF coordinates use SI conventions: meters, radians, kilograms, and seconds-derived units. An \markdownRendererCodeSpan{origin} contains \markdownRendererCodeSpan{xyz} translation and roll-pitch-yaw rotation. A revolute joint's angle rotates its child about the declared axis. Composition order and frame ownership must remain explicit; changing signs until a picture “looks right” creates hidden calibration debt.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{The single B1 chain}\markdownRendererInterblockSeparator
+{}The independent \markdownRendererCodeSpan{Amber URDF/amber\markdownRendererUnderscore{}b1.urdf} defines \markdownRendererCodeSpan{base\markdownRendererUnderscore{}link}, seven numbered links, and joints \markdownRendererCodeSpan{joint1} through \markdownRendererCodeSpan{joint7}. Every joint axis is the local positive Z axis. These are model limits, not permission to drive to an endpoint:\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{8}{5}{ddddd}{{Joint}{origin xyz (m)}{origin rpy (rad)}{lower / upper (rad)}{modeled velocity}}{{1}{\markdownRendererCodeSpan{0 0 0.0825}}{\markdownRendererCodeSpan{0 0 0}}{-2.4435 / 2.4435}{3.1415}}{{2}{\markdownRendererCodeSpan{0 0 0.0853}}{\markdownRendererCodeSpan{-1.5708 0 0}}{-2.3213 / 2.3213}{3.1415}}{{3}{\markdownRendererCodeSpan{0 -0.1289 0}}{\markdownRendererCodeSpan{1.5708 0 0}}{-2.2863 / 2.2863}{3.1415}}{{4}{\markdownRendererCodeSpan{0 0 0.0853}}{\markdownRendererCodeSpan{1.5708 0 0}}{-2.2863 / 2.2863}{3.1415}}{{5}{\markdownRendererCodeSpan{0 0.1251 0}}{\markdownRendererCodeSpan{-1.5708 0 0}}{-2.2863 / 2.2863}{5.23}}{{6}{\markdownRendererCodeSpan{0 0 0.0891}}{\markdownRendererCodeSpan{-1.5708 0 0}}{-2.2863 / 2.2863}{5.23}}{{7}{\markdownRendererCodeSpan{0 -0.1591 0}}{\markdownRendererCodeSpan{1.5708 0 0}}{-3.05 / 3.05}{5.23}}\markdownRendererInterblockSeparator
+{}The V2 Python wrapper applies a generic software range of approximately ±2.0944 radians to all seven joints. That is not identical to the joint-specific URDF limits. Treat both as inputs to a reviewed safety envelope, never select whichever value permits more motion, and add a robot-specific conservative limit layer above the vendor client.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{The dual model has a warning in its own source}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{DualArm.urdf} contains both \markdownRendererCodeSpan{L...} and \markdownRendererCodeSpan{R...} chains attached to a shared \markdownRendererCodeSpan{base\markdownRendererUnderscore{}link}. Its leading comment says axes 2, 4, and 6 have opposite rotation directions at the driver layer and warns that left/right labels were defined from an observer-facing convention. The launch files likewise give the solver an alternating rotation-direction vector:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/ab5acdd5964bcc4fe3ef17df0a8977f2.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}This is not decorative metadata. A sign error can send a physical joint opposite the planned direction. Create one canonical mapping table with columns for physical side, software side, CAN interface, network port, LCM prefix, URDF chain, joint sign, encoder zero, and photographed hardware label. Verify one joint at a time with torque limited and the arm supported.\markdownRendererParagraphSeparator
+{}The current right launch file uses \markdownRendererCodeSpan{DualArm.urdf}, while an alternate right configuration uses \markdownRendererCodeSpan{DualArmR.urdf}. Reconcile that difference before commissioning. Do not assume the newest filename is correct merely because it is more specific.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Measure two arms into ROB's coordinate system}\markdownRendererInterblockSeparator
+{}The dual-arm CAD base is not automatically ROB's torso frame. Measure the rigid transform from a named ROB body frame to each arm's \markdownRendererCodeSpan{base\markdownRendererUnderscore{}link}. A useful frame tree is:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/f292067fa251e8098021e09b26da0e02.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Define axes before measuring: for example, X forward, Y left, Z up. Put a durable datum on the torso and each arm plate. Measure translation with calipers, a height gauge, a jig, or a surveyed target; measure rotation from machined surfaces or a calibrated fixture. Take repeated measurements and record uncertainty rather than adding false decimal places.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Mount-transform worksheet}\markdownRendererInterblockSeparator
+{}For each side record:\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{10}{3}{ddd}{{Field}{Left}{Right}}{{physical label / serial}{}{}}{{torso datum description}{}{}}{{translation x, y, z (m)}{}{}}{{roll, pitch, yaw (rad)}{}{}}{{method and instrument}{}{}}{{repeated-measurement spread}{}{}}{{tool-center-point offset}{}{}}{{cable/gripper collision additions}{}{}}{{reviewer and date}{}{}}\markdownRendererInterblockSeparator
+{}Validate the transform with several poses, not only a home pose. Compare predicted joint centers and tool pose against measured or vision-estimated landmarks. A transform that fits one image may conceal a scale, sign, time-alignment, or lens-calibration error.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{CAN: stable identity before traffic}\markdownRendererInterblockSeparator
+{}Linux may assign \markdownRendererCodeSpan{/dev/ttyACM0}, \markdownRendererCodeSpan{/dev/ttyACM1}, and later numbers according to discovery order. Moving a USB adapter to another hub can reorder them. The archived improved initialization script addresses this by reading each adapter's USB serial number, looking it up in \markdownRendererCodeSpan{SerialNumber.txt}, and binding the matching adapter to a stable SocketCAN name such as \markdownRendererCodeSpan{can10} or \markdownRendererCodeSpan{can11}.\markdownRendererParagraphSeparator
+{}The script then runs \markdownRendererCodeSpan{slcand} with \markdownRendererCodeSpan{-o -c -s8}, brings the interface up, and sets transmit queue length to 1000. Preserve the exact adapter option as an observed configuration value; verify its bitrate meaning against the installed adapter and \markdownRendererCodeSpan{slcand} version before connecting hardware.\markdownRendererParagraphSeparator
+{}Two archived \markdownRendererCodeSpan{SerialNumber.txt} copies disagree. Unique serials are local inventory, not book content. Read the labels or query the actual adapters, create one authoritative mapping, protect it as machine configuration, and remove obsolete copies.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Prefer a deterministic host binding}\markdownRendererInterblockSeparator
+{}A production setup should avoid parsing historical \markdownRendererCodeSpan{dmesg} text and writing temporary files in the working directory. Use udev rules or a small system service that reads \markdownRendererCodeSpan{/dev/serial/by-id}, validates that exactly one adapter maps to each logical side, refuses duplicates or unknown devices, creates the intended SocketCAN interface, and verifies it before starting a core.\markdownRendererParagraphSeparator
+{}Read-only checks include:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/ff751083778f07712f5f42b8c45c1513.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Do not transmit diagnostic frames from a generic CAN utility unless the actuator-level protocol and safe state are known. \markdownRendererCodeSpan{candump} can observe traffic, but captures may contain device identifiers or operational data and must be handled accordingly.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{CAN fault questions}\markdownRendererInterblockSeparator
+{}For each side test and record: adapter absent at boot, swapped adapters, duplicate serial mapping, bus disconnected, bus-off recovery, core crash, client timeout, stale command, Ubuntu restart, and E-stop. The safe response must be measured on the real system. A quiet bus is not proof that an energized arm will hold, brake, or become harmless.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Configure one core per side}\markdownRendererInterblockSeparator
+{}Both current launch files select \markdownRendererCodeSpan{CAN\markdownRendererUnderscore{}BUS}, seven degrees of freedom, a 200 Hz control frequency, gear ratios of 50, a gripper numbered 8, Drake solving, UDP, and ROS 2. Their maximum-velocity, acceleration, and jerk arrays are controller configuration units. The files do not prove those values are safe physical SI limits.\markdownRendererParagraphSeparator
+{}Important left settings are:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/b8663b218a8318e4c0e3b06689634eba.verbatim}{json}{json}\markdownRendererInterblockSeparator
+{}Important right settings are:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/281d75d1ffe0f61959869d966fdba0e5.verbatim}{json}{json}\markdownRendererInterblockSeparator
+{}Keep separate working directories if the executable resolves the URDF path relative to its current directory. Capture standard output and standard error under a supervised service. Give each core its own non-root account where possible, explicit working directory, read-only configuration, restart policy, resource limits, and dependency on its CAN interface. Do not automatically restart into an energized motion mode.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{The observed UDP protocol}\markdownRendererInterblockSeparator
+{}The V2 Python API uses packed \markdownRendererCodeSpan{ctypes.Structure} records sent in UDP datagrams. Every observed message begins with:\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{4}{3}{ddd}{{Field}{Type}{Meaning}}{{\markdownRendererCodeSpan{cmd\markdownRendererUnderscore{}no}}{unsigned 16-bit}{operation number}}{{\markdownRendererCodeSpan{length}}{unsigned 16-bit}{structure byte length}}{{\markdownRendererCodeSpan{counter}}{unsigned 32-bit}{request/reply correlation value}}\markdownRendererInterblockSeparator
+{}The structures set \markdownRendererCodeSpan{\markdownRendererUnderscore{}pack\markdownRendererUnderscore{} = 1}, so there is no padding. They do not declare explicit network byte order; current serialization therefore relies on the client's native representation. That is an implementation fact, not a good cross-platform protocol guarantee.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Command catalogue}\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{8}{4}{rddd}{{Command}{Purpose}{request after header}{observed reply payload}}{{1}{status}{none}{8 joint positions, 8 joint speeds, 6 Cartesian positions, 6 Cartesian speeds, arm angle}}{{4}{joint move}{8 floats plus duration float}{one-byte response}}{{6}{Cartesian move}{XYZ, RPY, arm angle, duration as floats}{one-byte response}}{{7}{calibration}{unsigned 32-bit actuator number}{one-byte response}}{{9}{gripper}{unsigned 16-bit action, unsigned 16-bit intensity, Boolean version}{one-byte response}}{{10}{set mode}{unsigned 16-bit mode}{one-byte response}}{{110}{get mode}{none}{seven unsigned 16-bit mode values}}\markdownRendererInterblockSeparator
+{}The high-level wrapper exposes seven joint targets even though the status and move packet allocate eight floats. Gripper control is separate and uses actuator number 8. Preserve this difference when writing another client.\markdownRendererParagraphSeparator
+{}Observed modes are inactive 0, active 1, position 2, speed 3, and current 4. The API documentation says transitions involving position or current pass through active mode and may briefly cut power, allowing an unsupported arm to drop. Support the mechanism before mode changes and verify actual behavior with the vendor and a controlled test.\markdownRendererParagraphSeparator
+{}The API uses meters and radians at its high-level interface. \markdownRendererCodeSpan{move\markdownRendererUnderscore{}j} accepts seven joint angles and a duration. \markdownRendererCodeSpan{move\markdownRendererUnderscore{}c} accepts XYZ plus roll-pitch-yaw and a duration. \markdownRendererCodeSpan{get\markdownRendererUnderscore{}status} returns the first seven joint positions and a six-element Cartesian pose. “Position returned” does not prove the physical pose is correctly zeroed after a controller boot.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Gripper sequence}\markdownRendererInterblockSeparator
+{}The V2 examples calibrate actuator 8 after each power cycle, then use action 0 for open and action 1 for close with an integer intensity. Calibration moves hardware: keep fingers, cables, and objects clear. The code alone does not establish a safe force or intensity for ROB's installed grippers.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Protocol hardening needed}\markdownRendererInterblockSeparator
+{}The current client waits up to three seconds and accepts the next datagram. It does not consistently validate source endpoint, command number, declared length, counter, exact received size, freshness, or authentication before decoding. UDP also offers no delivery, ordering, or uniqueness guarantee.\markdownRendererParagraphSeparator
+{}A production adapter should:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}bind each arm to an allowlisted endpoint and side identity;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}encode endianness explicitly or preserve a tested compatibility codec;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}validate datagram size before deserialization;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}match command and counter to an outstanding request;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}reject stale, duplicate, unsolicited, or non-finite values;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}enforce conservative joint, rate, workspace, and mode policy locally;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}use an authenticated protected network or authenticated gateway;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{8}stop issuing motion on timeout without claiming that a software stop replaces the E-stop;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{9}log decisions without logging credentials;\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{10}fuzz the decoder away from hardware.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}The older V1 examples commonly use port 25001, whereas the current two-core launch files use 26001 and 26002. Select ports from reviewed configuration, not from whichever example happens to run.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{LCM and ROS 2 interfaces}\markdownRendererInterblockSeparator
+{}The saved LCM configuration composes channels from a side prefix and suffix. Examples are \markdownRendererCodeSpan{Left\markdownRendererUnderscore{}PosCmd}, \markdownRendererCodeSpan{Left\markdownRendererUnderscore{}ArmStatus}, \markdownRendererCodeSpan{Right\markdownRendererUnderscore{}PosCmd}, and \markdownRendererCodeSpan{Right\markdownRendererUnderscore{}ArmStatus}. Other configured suffixes include position plans and tasks, inverse- and forward-kinematics tasks, solver responses, mode changes, and gripper control.\markdownRendererParagraphSeparator
+{}The raw definitions establish these payloads:\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{9}{2}{dd}{{LCM type}{fields}}{{\markdownRendererCodeSpan{posCmd\markdownRendererUnderscore{}t}}{seven double joint targets}}{{\markdownRendererCodeSpan{rosData\markdownRendererUnderscore{}t} / generated arm status}{seven positions, velocities, currents, and statuses}}{{\markdownRendererCodeSpan{cartesian\markdownRendererUnderscore{}t}}{six XYZ/RPY doubles and duration}}{{\markdownRendererCodeSpan{gripperCtrl\markdownRendererUnderscore{}t}}{8-bit action and 32-bit intensity}}{{\markdownRendererCodeSpan{simplePositionTask\markdownRendererUnderscore{}t}}{timestamp, actuator count, one point, duration}}{{\markdownRendererCodeSpan{positionTask\markdownRendererUnderscore{}t}}{timestamp, actuator count, point sequence, time sequence}}{{\markdownRendererCodeSpan{positionPlan\markdownRendererUnderscore{}t}}{frequency, timestamp, actuator count, point sequence}}{{\markdownRendererCodeSpan{solverRespond\markdownRendererUnderscore{}t}}{32-bit response}}\markdownRendererInterblockSeparator
+{}The archived examples use multicast at \markdownRendererCodeSpan{239.255.76.67:7667} with TTL 10 and add a multicast route. Multicast can reach more listeners than expected. Put it on a controlled robotics network, choose the intended interface explicitly, and firewall unrelated hosts. Generate language bindings from the checked-in \markdownRendererCodeSpan{.lcm} files so the schema hash remains consistent; do not hand-maintain parallel definitions.\markdownRendererParagraphSeparator
+{}The launch files also enable ROS 2 and historical install scripts include Humble, MoveIt, controllers, \markdownRendererCodeSpan{xacro}, and joint-state tools. The snapshot does not show a complete reviewed ROS 2 launch package for ROB. Treat ROS 2 capability as enabled configuration, not proof that names, quality-of-service policy, controller ownership, and safety behavior are production-ready.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Build a clean Ubuntu runtime}\markdownRendererInterblockSeparator
+{}Begin with a supported Ubuntu release compatible with the authorized AMBER core binary and required Drake/ROS packages. The historical scripts target ROS 2 Humble and install CMake, \markdownRendererCodeSpan{net-tools}, \markdownRendererCodeSpan{can-utils}, Python 3 compatibility, gflags, glog, Drake, MoveIt, and controller packages. They are evidence, not a safe unattended installer: one script pipes a remote GitHub script directly into a shell, and package repositories and keys can change.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Reproduction procedure}\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}Record the original host manifest and binary hashes.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}Install a fresh minimal Ubuntu system; patch it before connecting ROB hardware.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}Create a dedicated unprivileged runtime account. Keep SSH keys outside the deployment archive.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}Install reviewed, pinned packages from official repositories. Save package versions and repository fingerprints.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}Install \markdownRendererCodeSpan{can-utils}, the adapter's \markdownRendererCodeSpan{slcand} support, required C/C++ runtime libraries, and only the ROS/Drake components actually used.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}Copy authorized core binaries, launch JSON, URDF meshes, and LCM definitions into versioned application directories. Do not copy \markdownRendererCodeSpan{.ssh}, shell history, logs, caches, or the archived virtual environment.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}Create and verify the stable adapter-to-\markdownRendererCodeSpan{can10}/\markdownRendererCodeSpan{can11} mapping.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{8}Validate JSON syntax, URDF XML, mesh paths, file permissions, ports, prefixes, side labels, and hashes while arm power is isolated.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{9}Start each core under a service supervisor with its own working directory and logs.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{10}Run network status probes before requesting any control mode.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{11}Save the completed acceptance record and rollback package.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}Useful non-motion checks are:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/8128f382f1de2717c4e0cf14f819b2f5.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Run \markdownRendererCodeSpan{ldd} on the core executables and record every resolved library, but do not assume “not found” can be fixed by copying random libraries from the old host. Resolve dependencies from known packages or the authorized vendor distribution.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Service order}\markdownRendererInterblockSeparator
+{}The safe logical order is network policy, CAN discovery, CAN validation, left core, right core, read-only status clients, operator UI, then a separately authorized mode transition. Shutdown reverses authority first: stop new commands, return through the documented mode procedure, verify the result, stop clients and cores, then isolate energy according to the hardware procedure.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{A status-only Python lesson}\markdownRendererInterblockSeparator
+{}Use the repository's reviewed V2 package rather than reproducing packet layouts in multiple applications. The first test should only request state:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-6-amber-dual-arm-robotics/b41906f63cc360d28a0594874ea854bf.verbatim}{python}{python}\markdownRendererInterblockSeparator
+{}Run this on an isolated, authorized robotics network with motion disabled. Confirm seven finite values, plausible ranges, correct side identity, stable repeated readings, and behavior when one core is intentionally unavailable. Do not call \markdownRendererCodeSpan{set\markdownRendererUnderscore{}mode}, \markdownRendererCodeSpan{move\markdownRendererUnderscore{}j}, \markdownRendererCodeSpan{move\markdownRendererUnderscore{}c}, zero, calibration, or gripper functions during the discovery test.\markdownRendererParagraphSeparator
+{}The repository wrapper has details to audit before production. Its default wait tolerances differ between layers, and one Cartesian wait default is represented differently from the code that indexes it. Add tests for defaults, short replies, wrong counters, NaN, infinity, lost packets, reordering, and simultaneous left/right requests.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Commission from no motion to bounded motion}\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Gate 0: paper review}\markdownRendererInterblockSeparator
+{}Confirm ownership of the stop system, swept-volume boundary, side mapping, power isolation, support fixture, conservative limits, rollback, and observer roles. Resolve the right-URDF discrepancy and serial-map discrepancy.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Gate 1: power isolated}\markdownRendererInterblockSeparator
+{}Validate host, files, hashes, adapters, interfaces, ports, process permissions, URDF parsing, and network policy. Confirm the physical E-stop interrupts the intended energy path using the approved electrical test procedure.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Gate 2: status only}\markdownRendererInterblockSeparator
+{}Start one core and one read-only client. Verify source endpoint, side, joint count, finite values, update timing, disconnection behavior, and logs. Repeat independently for the second side. Then observe both without commanding either.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Gate 3: supported, torque-limited joint identification}\markdownRendererInterblockSeparator
+{}With the arm mechanically supported and the area clear, an authorized operator enables the minimum suitable mode and requests a tiny change to one joint. A second person watches the physical joint and stop. Record commanded sign, observed sign, encoder change, current, latency, and stop result. Return to the approved neutral state before advancing to the next joint.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Gate 4: model agreement}\markdownRendererInterblockSeparator
+{}Compare measured link landmarks with forward-kinematics predictions over several conservative poses. Validate left/right frames, joints 2/4/6 signs, tool transforms, and torso mounts. Do not run inverse kinematics until forward kinematics and feedback agree.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Gate 5: independent single-arm envelopes}\markdownRendererInterblockSeparator
+{}Test each arm alone inside a conservative workspace that excludes ROB, the other arm, cables, observers, and floor. Measure stopping and fault behavior. Add collision objects for the torso, head, shoulder structure, gripper, and cable volume.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Gate 6: dual-arm coordination}\markdownRendererInterblockSeparator
+{}Only after both single-arm cases pass should a planner own both arms in one collision model. Test mirrored commands, crossing workspaces, communication loss on one side, cancellation, and one-arm faults. “Two scripts happened to run” is not coordinated dual-arm control.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Diagnose by layer}\markdownRendererInterblockSeparator
+{}\markdownRendererTable{}{9}{3}{ddd}{{Symptom}{Inspect first}{Do not conclude yet}}{{no \markdownRendererCodeSpan{can10}/\markdownRendererCodeSpan{can11}}{adapter identity, udev/service, \markdownRendererCodeSpan{slcand}, link state}{arm electronics failed}}{{core will not start}{working directory, launch JSON, URDF/mesh path, libraries}{CAN is defective}}{{UDP timeout}{process/listener, address, port, firewall, route}{arm is powered off}}{{wrong arm responds}{endpoint, port, prefix, CAN mapping, physical label}{joint signs are correct}}{{model bends backward}{side convention, joints 2/4/6 mapping, zero, URDF selection}{hardware must be rewired}}{{status jumps at boot}{zeroing state, mode transition, packet validation}{visual pose is trustworthy}}{{LCM silence}{multicast interface, route, channel prefix, schema version}{UDP is also broken}}{{gripper does nothing}{actuator 8 identity, required calibration, mode, response validation}{higher intensity is safe}}\markdownRendererInterblockSeparator
+{}Collect one synchronized incident bundle: UTC time, host manifest, core hashes, launch hashes, interface statistics, process status, sanitized logs, request counter, response source, operator action, and physical observation. Never collect private keys or passwords into a diagnostic archive.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Connect the arms to Cerebro responsibly}\markdownRendererInterblockSeparator
+{}Cerebro should expose one typed arm service rather than launching miscellaneous Python scripts with implicit addresses. Its interface should name side, joint, units, duration, correlation identifier, desired mode, deadline, and operator authority. Returned state should include measured joint position, velocity, current/status when available, receive time, source, mode, and confidence in calibration.\markdownRendererParagraphSeparator
+{}Keep four layers separate:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}\markdownRendererStrongEmphasis{Transport adapter:} validates UDP/LCM and reports communication health.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}\markdownRendererStrongEmphasis{State estimator:} time-aligns joint feedback, camera observations, and ROB transforms.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}\markdownRendererStrongEmphasis{Safety policy:} enforces state, limits, workspace, collision, freshness, and authority.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}\markdownRendererStrongEmphasis{Behavior layer:} asks for a grasp, gesture, or pose without gaining raw packet access.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}Visual pose estimation can detect disagreement and help calibrate mounting or joint offsets, but it should not overwrite joint truth continuously without observability checks. Some poses hide joints; cameras occlude; symmetric links create ambiguous solutions; rolling shutter and latency distort motion. Fuse visual evidence with actuator feedback and keep uncertainty explicit.\markdownRendererParagraphSeparator
+{}For every command, the UI should show the selected physical arm, current mode, last feedback age, calibration revision, joint values, network/CAN health, and whether motion authority is present. A green connection indicator must never mean “safe to enter the workspace.”\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{What remains unknown}\markdownRendererInterblockSeparator
+{}The repository gives ROB a strong starting point, but honest documentation preserves these open items:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem authorized source and version history for the Ubuntu core binaries;\markdownRendererUlItemEnd 
+\markdownRendererUlItem exact actuator-level CAN identifiers, frame encodings, checksums, timing, and fault semantics;\markdownRendererUlItemEnd 
+\markdownRendererUlItem the adapter option's verified bitrate on the installed hardware;\markdownRendererUlItemEnd 
+\markdownRendererUlItem authoritative stable serial-to-side inventory;\markdownRendererUlItemEnd 
+\markdownRendererUlItem correct right-arm URDF selection;\markdownRendererUlItemEnd 
+\markdownRendererUlItem exact measured torso-to-arm and arm-to-tool transforms;\markdownRendererUlItemEnd 
+\markdownRendererUlItem encoder-zero behavior across power cycles;\markdownRendererUlItemEnd 
+\markdownRendererUlItem joint, current, temperature, payload, and gripper limits for ROB's installation;\markdownRendererUlItemEnd 
+\markdownRendererUlItem collision geometry including cables and body additions;\markdownRendererUlItemEnd 
+\markdownRendererUlItem core behavior on stale command, malformed packet, bus-off, client loss, and E-stop;\markdownRendererUlItemEnd 
+\markdownRendererUlItem authenticated network design and software-update provenance;\markdownRendererUlItemEnd 
+\markdownRendererUlItem complete reproducible source build for the AMBER core.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Unknown does not mean failure. It means the next experiment has a clear question.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Reproduction acceptance sheet}\markdownRendererInterblockSeparator
+{}Before labeling a replacement Ubuntu box ready, require signatures for:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem \markdownRendererUntickedBox{} clean operating-system install and patch record;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} pinned package and repository manifest;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} authorized binary provenance and matching hashes;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} no credentials, history, caches, or old logs copied from the snapshot;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} stable physical left/right adapter mapping;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} \markdownRendererCodeSpan{can10} and \markdownRendererCodeSpan{can11} independently verified;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} launch JSON and URDF syntax verified;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} right-arm URDF choice resolved;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} unique UDP ports and LCM prefixes verified;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} read-only status from each side tested alone and together;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} packet source, length, command, counter, freshness, and value validation tested;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} physical E-stop and fault behavior tested by the responsible engineer;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} conservative joint and workspace policy installed;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} mounting and tool transforms measured with uncertainty;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} forward kinematics checked against multiple physical poses;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} single-arm tests passed before dual-arm tests;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererUntickedBox{} sanitized logs, rollback package, and operator procedure archived.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingOne{Teach it as a systems lesson}\markdownRendererInterblockSeparator
+{}The most important AMBER lesson is not a magic command. It is traceability across representations. A child may see a hand wave. An engineer must be able to follow that event backward: tool pose, seven joint angles, a planned trajectory, a side-specific channel, a validated network message, one Ubuntu core, one stable CAN interface, actuator feedback, and a physical mechanism attached to a measured frame.\markdownRendererParagraphSeparator
+{}Build a paper exercise with two cardboard seven-link chains. Label every joint and give each arm a different color. Learners route a “move left wrist” card through behavior, safety policy, network, Ubuntu core, CAN, joint, and feedback stations. Insert fault cards: swapped adapter, stale packet, wrong sign, hidden camera marker, blocked arm, or missing status. The team wins by refusing unsafe ambiguity and locating the layer that owns the evidence—not by moving fastest.\markdownRendererParagraphSeparator
+{}That is how two complex arms become understandable: not by hiding the details, but by giving every detail a name, a source, a test, and a responsible human owner.
+\markdownRendererSectionEnd \markdownRendererDocumentEnd

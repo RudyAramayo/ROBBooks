@@ -1,0 +1,5 @@
+Hub_CAN_Name: can10
+LCM Prefix: Left_
+URDF_Path: ./urdf/dual_b1/DualArmL.urdf
+EEF_Name: Lseven_Link
+UDP_Port: 26001

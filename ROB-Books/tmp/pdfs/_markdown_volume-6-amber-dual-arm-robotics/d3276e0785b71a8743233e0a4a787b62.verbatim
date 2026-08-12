@@ -1,0 +1,14 @@
+AmberHomeFolder/
+  amber/
+    L-10/launch.json                 left runtime configuration
+    R-11/launch.json                 right runtime configuration
+    amber_core/urdf/                 single- and dual-arm models
+    amber_core/init/initCan.sh       adapter discovery and CAN binding
+    sin_wave/rawLcm/*.lcm            LCM message definitions
+    Install/                         historical dependency scripts
+
+Amber URDF/amber_b1.urdf             independent single-arm model
+
+Cerebro/Amber-PythonAPI/
+  Amber V2 API/amber_api/            UDP client implementation
+  Amber v1 API/                      older packet examples

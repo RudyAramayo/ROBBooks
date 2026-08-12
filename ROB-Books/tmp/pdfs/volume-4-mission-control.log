@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 10:59
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 19:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1513,7 +1513,7 @@ File: ../assets/photos/2022-fanless-computer-and-serial.jpg Graphic file (type
 bmp)
 <../assets/photos/2022-fanless-computer-and-serial.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 74--74
 [][]
  []
 
@@ -1521,7 +1521,7 @@ File: ../assets/generated/rob-software-control-room.png Graphic file (type bmp)
 
 <../assets/generated/rob-software-control-room.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 74--74
 [][]
  []
 
@@ -1534,11 +1534,11 @@ ang1.sty
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 87.
+nput line 88.
 LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 6.806pt on input line 87.
-LaTeX Font Info:    Font shape `TU/Menlo(0)/b/n' will be
 (Font)              scaled to size 6.806pt on input line 88.
+LaTeX Font Info:    Font shape `TU/Menlo(0)/b/n' will be
+(Font)              scaled to size 6.806pt on input line 89.
  [6]
 File: ../assets/photos/2025-rob-side-full-body.jpg Graphic file (type bmp)
 <../assets/photos/2025-rob-side-full-body.jpg>
@@ -1547,7 +1547,7 @@ File: ../assets/photos/2025-rob-side-full-body.jpg Graphic file (type bmp)
 ]
 Chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 124--124
+Underfull \hbox (badness 10000) in paragraph at lines 125--125
 []|\TU/AvenirNext(0)/m/n/10.95 SwiftUI control experience, simulator,
  []
 
@@ -1575,7 +1575,7 @@ File: ../assets/photos/2022-oakd-depth-camera.jpg Graphic file (type bmp)
 ]
 Chapter 5.
 LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 8.30002pt on input line 192.
+(Font)              scaled to size 8.30002pt on input line 193.
 [13
 
 
@@ -1589,14 +1589,14 @@ Chapter 6.
 File: ../assets/photos/2022-oakd-depth-camera.jpg Graphic file (type bmp)
 <../assets/photos/2022-oakd-depth-camera.jpg>
 
-Underfull \hbox (badness 1917) in paragraph at lines 216--216
+Underfull \hbox (badness 1917) in paragraph at lines 217--217
 [][] []\TU/AvenirNext(0)/m/it/8 An OAK-D stereo depth
  []
 
 File: ../assets/slides/rob-v3-page-74.jpg Graphic file (type bmp)
 <../assets/slides/rob-v3-page-74.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 216--216
+Underfull \hbox (badness 10000) in paragraph at lines 217--217
 [][]
  []
 
@@ -1615,12 +1615,12 @@ File: ../assets/photos/2025-detached-articulated-arm.jpg Graphic file (type bmp
 ]
 Chapter 7.
 
-Underfull \hbox (badness 10000) in paragraph at lines 272--272
+Underfull \hbox (badness 10000) in paragraph at lines 273--273
 []|\TU/AvenirNext(0)/m/n/10.95 CURRENT STA-
  []
 
 
-Underfull \hbox (badness 2229) in paragraph at lines 272--272
+Underfull \hbox (badness 2229) in paragraph at lines 273--273
 []|\TU/AvenirNext(0)/m/n/10.95 Preempts local coordinators, sends one neutral/b
 raked
  []
@@ -1640,12 +1640,12 @@ File: ../assets/photos/2025-rob-side-full-body.jpg Graphic file (type bmp)
 ]
 Chapter 8.
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--319
+Underfull \hbox (badness 10000) in paragraph at lines 320--320
 []|\TU/AvenirNextCondensed(0)/b/n/10.95 Controller snapshots
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 319--319
+Underfull \hbox (badness 10000) in paragraph at lines 320--320
 []|\TU/AvenirNextCondensed(0)/b/n/10.95 Malformed ROBCon-
  []
 
@@ -1653,7 +1653,7 @@ File: ../assets/generated/rob-software-control-room.png Graphic file (type bmp)
 
 <../assets/generated/rob-software-control-room.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 321--321
+Underfull \hbox (badness 10000) in paragraph at lines 322--322
 [][]
  []
 
@@ -1678,7 +1678,7 @@ Chapter 10.
 
 
 ]
-Underfull \hbox (badness 6047) in paragraph at lines 341--341
+Underfull \hbox (badness 6047) in paragraph at lines 342--342
 [][]\TU/AvenirNextCondensed(0)/b/n/10.95 PROCESS[] \TU/AvenirNext(0)/m/n/10.95 
 A running program with its own re-
  []
@@ -1697,13 +1697,13 @@ d.
 (rerunfilecheck)             Checksum: 8DCCD6BE105A1E08B63723840C584C17;2204.
  ) 
 Here is how much of TeX's memory you used:
- 35365 strings out of 468168
- 764613 string characters out of 5423555
- 1495120 words of memory out of 5000000
- 63457 multiletter control sequences out of 15000+600000
+ 35368 strings out of 468168
+ 764664 string characters out of 5423555
+ 1495891 words of memory out of 5000000
+ 63460 multiletter control sequences out of 15000+600000
  632142 words of font info for 134 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,12n,131p,1021b,1280s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-missi
-on-control.xdv (30 pages, 567164 bytes).
+on-control.xdv (30 pages, 577672 bytes).

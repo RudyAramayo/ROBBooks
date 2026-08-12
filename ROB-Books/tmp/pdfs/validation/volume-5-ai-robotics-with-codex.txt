@@ -58,10 +58,19 @@ ROB-Books/ROBOT_GAME_CURRICULUM.md.
    tired historical evidence. Source files cannot prove which binary is flashed today; record the board
    identity, firmware hash, build environment, and upload date before operation.
 
+   TWO AMBER B1 ARMS, ONE DOCUMENTED CONTROL CHAIN
+
+   ROB carries two seven-joint AMBER B1 arms. The repository snapshot separates their Ubuntu-side
+   cores as L-10 and R-11: network clients use UDP or LCM, each core binds a stable CAN interface, and
+   CAN carries commands and feedback between that core and its arm actuators. The AmberHomeFolder
+   tree is evidence from one Ubuntu machine, not a deployable image; never copy its credentials, logs,
+   virtual environment, or machine-specific identifiers. Volume 6 documents the inspected protocol,
+   URDF models, reproducible setup, verification gates, and unresolved configuration differences.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                3 / 24
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                3 / 31
 Contents
 1 Building R.O.B.                                                                                                    1
   1.1 AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro . . . . . .                     1
@@ -138,7 +147,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
      1.21 19. Verification is the product . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
               1.21.1 The evidence ladder . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                           5 / 24
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                           5 / 31
 AI, ROBOTICS, AND CODEX                                                                             VOLUME 5 - ADVANCED MAKERS
 
 
@@ -166,15 +175,44 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
               1.24.5 Acceptance evidence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
               1.24.6 Ready-to-use prompt . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
               1.24.7 Human sign-off . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
-     1.25 Epilogue: authorship after acceleration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
-     1.26 Sources and further reading . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
-              1.26.1 Repository sources . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
-              1.26.2 Official OpenAI documentation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+     1.25 23. Local intelligence on Apple silicon: Swift, MLX, and Llama . . . . . . . . . . . . . . . . . . 23
+              1.25.1 23.1 The actual Cerebro model stack . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+              1.25.2 23.2 Tokens, context, temperature, and hallucination . . . . . . . . . . . . . . . . . . . 24
+              1.25.3 23.3 Llama through MLX versus llama.cpp . . . . . . . . . . . . . . . . . . . . . . . . . 25
+              1.25.4 Lab: trace one local sentence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+     1.26 24. Giving a language model eyes with MLXVLM . . . . . . . . . . . . . . . . . . . . . . . . . 25
+              1.26.1 24.1 Sampling protects the camera and controls . . . . . . . . . . . . . . . . . . . . . . 26
+              1.26.2 24.2 Confidence is a gate, not decoration . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+              1.26.3 Lab: make the vision result fail safely     . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+     1.27 25. Implementing model-safe show logic . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+              1.27.1 25.1 How to add a safe model cue . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+              1.27.2 25.2 A show is a state machine . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+              1.27.3 Rehearsal checklist . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                          6 / 31
+AI, ROBOTICS, AND CODEX                                                                           VOLUME 5 - ADVANCED MAKERS
+
+
+
+     1.28 26. Vision Pro as ROB’s voice and spatial control desk . . . . . . . . . . . . . . . . . . . . . . . 28
+              1.28.1 26.1 Demonstrating the new controls . . . . . . . . . . . . . . . . . . . . . . . . . . . . 28
+              1.28.2 26.2 The rest of the spatial control path . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+              1.28.3 Build exercise: add a third text mode without adding authority . . . . . . . . . . . . . 29
+     1.29 Epilogue: authorship after acceleration . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+     1.30 Sources and further reading . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+              1.30.1 Repository sources . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+              1.30.2 Official OpenAI documentation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                          6 / 24
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                        7 / 31
+AI, ROBOTICS, AND CODEX                        VOLUME 5 - ADVANCED MAKERS
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                     8 / 31
     CHAPTER 1
 
 
@@ -182,7 +220,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
     AI, Robotics, and the Codex-Accelerated Evolution of
     ROBController and Cerebro
     A source-based field guide
-    First edition, August 10, 2026
+    Expanded local-model edition, August 11, 2026
 
 
 
@@ -281,7 +319,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
     body of mixed Objective-C++ and Swift.
     The following weeks read like a maker’s engineering diary:
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             2 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             2 / 31
     AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
 
 
@@ -335,7 +373,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           3 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           3 / 31
     AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
 
 
@@ -389,7 +427,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            4 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            4 / 31
     AI, ROBOTICS, AND CODEX                                                                  VOLUME 5 - ADVANCED MAKERS
 
 
@@ -453,7 +491,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
     The final sentence matters. Mature agents are capable of expanding a coherent feature beyond its safe
     scope. Tell Codex which adjacent capability is explicitly excluded.
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                               5 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                               5 / 31
     AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
 
 
@@ -503,7 +541,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           6 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           6 / 31
      AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
 
 
@@ -563,7 +601,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
      When asking Codex to extend a show format, request the validator and negative fixtures before the run-
      ner:
 
-     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           7 / 24
+     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           7 / 31
     AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
 
 
@@ -620,7 +658,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           8 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           8 / 31
     AI, ROBOTICS, AND CODEX                                                             VOLUME 5 - ADVANCED MAKERS
 
 
@@ -675,7 +713,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          9 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          9 / 31
     AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
 
 
@@ -740,7 +778,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
     • Does loss of input converge to neutral?
     • Is stop independent, prioritized, and idempotent?
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          10 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          10 / 31
 AI, ROBOTICS, AND CODEX                                                            VOLUME 5 - ADVANCED MAKERS
 
 
@@ -785,7 +823,7 @@ ecutor. Gesture cues fail closed without a calibrated catalog and feedback-capab
 records operator intent but does not by itself start physical action.
 These are the next safe milestones:
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                        11 / 24
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                        11 / 31
     AI, ROBOTICS, AND CODEX                                                                 VOLUME 5 - ADVANCED MAKERS
 
 
@@ -836,7 +874,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
     A strong outcome contract says:
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             12 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             12 / 31
     AI, ROBOTICS, AND CODEX                                                                VOLUME 5 - ADVANCED MAKERS
 
 
@@ -891,7 +929,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
     cellation behavior, and a reproducible trace. Hundreds of unrelated UI files can make the important rela-
     tionship harder to see. Ask the agent to search first, then load the narrow data path.
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            13 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            13 / 31
     AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
 
 
@@ -947,7 +985,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 lease” is a goal. Use nouns and verbs from the real system. Say which user, device, event, input, and
 output matter.
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           14 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           14 / 31
     AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
 
 
@@ -1007,7 +1045,7 @@ output matter.
     This is stronger than “make sure it works.” It tells both human and AI which claims the evidence must
     support.
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          15 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          15 / 31
     AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
 
 
@@ -1066,7 +1104,7 @@ output matter.
 
 
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           16 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           16 / 31
     AI, ROBOTICS, AND CODEX                                                            VOLUME 5 - ADVANCED MAKERS
 
 
@@ -1122,7 +1160,7 @@ output matter.
     2. Focused test: the changed transformation or failure case is executable.
 
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                        17 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                        17 / 31
     AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
 
 
@@ -1173,7 +1211,7 @@ output matter.
     • the only available test could move unguarded hardware;
     • credentials or permissions are missing;
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          18 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          18 / 31
     AI, ROBOTICS, AND CODEX                                                                  VOLUME 5 - ADVANCED MAKERS
 
 
@@ -1233,7 +1271,7 @@ output matter.
     An AI system can retrieve manuals, logs, code, and prior decisions. Retrieval quality determines which
     evidence reaches the model. Store documents with source, date, version, authority, and scope. Prefer a
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              19 / 24
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              19 / 31
 AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
 
 
@@ -1282,7 +1320,7 @@ Exercises:
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           20 / 24
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           20 / 31
 AI, ROBOTICS, AND CODEX                                                                  VOLUME 5 - ADVANCED MAKERS
 
 
@@ -1329,7 +1367,7 @@ You are ready for greater autonomy when you can reliably answer:
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              21 / 24
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              21 / 31
 AI, ROBOTICS, AND CODEX                                                               VOLUME 5 - ADVANCED MAKERS
 
 
@@ -1374,7 +1412,7 @@ Failure behavior
 • Does restart preserve an emergency stop or accidentally clear it?
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           22 / 24
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                           22 / 31
      AI, ROBOTICS, AND CODEX                                                                  VOLUME 5 - ADVANCED MAKERS
 
 
@@ -1418,22 +1456,363 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-     Epilogue: authorship after acceleration
-     The early repositories preserve the voice of one person working from several machines: informal, immedi-
-     ate, hardware-aware, and willing to checkpoint an uncertain experiment. The newer code does not erase
-     that voice. It gives it leverage.
-     The mature system is better not merely because it contains more code. It has contracts where there were
-     assumptions, bounded queues where there could be backlogs, explicit authority where there was trust,
-     tests where there was only memory, and documentation where knowledge once lived in the workshop.
-     That is the best use of Codex in robotics. Let AI search widely, trace deeply, draft quickly, compare both
-     sides of a protocol, and remember every edge case you name. Keep the human responsible for scope,
-     evidence, physical validation, and the decision to energize the machine.
+     23. Local intelligence on Apple silicon: Swift, MLX, and
+     Llama
+     Cerebro can now run a small language model directly on the Mac inside the robot. This is not one product
+     called “SwiftMLX.” The pieces have distinct jobs:
+
+     • Swift is the programming language used by Cerebro’s local-AI layer.
+     • MLX Swift is the Swift interface to Apple’s MLX array and machine-learning framework for Apple silicon.
+     • MLXLLM loads and runs text-generating large language models.
+     • Llama is a family of language-model architectures and weights. It is a model, not the runtime around
+       it.
+     • llama.cpp is a separate local runtime with an HTTP server. Cerebro can use it as an alternative provider.
+
+     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              23 / 31
+     AI, ROBOTICS, AND CODEX                                                                VOLUME 5 - ADVANCED MAKERS
+
+
+
+     • MLXVLM runs vision-language models. “VLM” means vision-language model; this repository does not
+       use a framework named VLX.
+
+     That vocabulary matters. A model is the learned set of weights. A runtime loads the weights and performs
+     inference. A tokenizer turns text into numeric tokens. A model container holds the loaded model and
+     tokenizer. Application code supplies a prompt, validates the result, and decides what the result is allowed
+     to influence.
+
+     23.1 The actual Cerebro model stack
+     ROBMLXRuntime.swift imports MLX, MLXLLM, MLXLMCommon, MLXVLM, and the tokenizer and Hugging Face load-
+     ers. Its current defaults are:
+1      static let defaultLLMModel =
+2           "mlx-community/Llama-3.2-1B-Instruct-4bit"
+3      static let defaultVLMModel =
+4           "mlx-community/Qwen2-VL-2B-Instruct-4bit"
+5      static let defaultEmbeddingModel = "TaylorAI/gte-tiny"
+
+
+
+     The suffix 4bit means the weights have been quantized to use fewer bits per value. Quantization reduces
+     memory and often makes local inference practical, at the cost of some numerical precision. A one-billion-
+     parameter model is not small in the everyday sense, but it is deliberately modest for an embedded stage
+     assistant.
+     The engine is a Swift actor:
+1      public actor ROBMLXEngine {
+2           private var llm: ModelContainer?
+3           private var vlm: ModelContainer?
+4
+5           public func generate(prompt: String) async throws -> String {
+6                 let container = try await loadLLM(modelID: Self.defaultLLMModel)
+7                 let input = try await container.prepare(
+8                      input: UserInput(prompt: prompt)
+9                 )
+10                let stream = try await container.generate(
+11                     input: input,
+12                     parameters: GenerateParameters(
+13                           maxTokens: 256,
+14                           temperature: 0.4
+15                     )
+16                )
+17                // Collect bounded text chunks and reject tool calls.
+18          }
+19     }
+
+
+
+     An actor serializes access to its mutable model state. That prevents two tasks from racing while a model
+     is loading or diagnostics are changing. async does not mean the robot waits helplessly: generation runs
+     independently from the deterministic motor-control path.
+
+     23.2 Tokens, context, temperature, and hallucination
+     A token is a model-sized piece of text, not necessarily a whole word. The prompt and response both
+     consume context. maxTokens places an upper bound on response growth. temperature changes sampling:
+     low values tend to be more repeatable; higher values create more variation but can also create more
+     mistakes.
+     The model does not retrieve truth from its weights like a database. It predicts likely next tokens. Fluent
+     output can therefore be wrong. ROB never treats local prose as a servo command. For the stage, the
+
+     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            24 / 31
+    AI, ROBOTICS, AND CODEX                                                                VOLUME 5 - ADVANCED MAKERS
+
+
+
+    model returns a tiny JSON plan, and deterministic code verifies its exact keys, enum values, length, and
+    prohibited control language.
+
+    23.3 Llama through MLX versus llama.cpp
+    Cerebro supports two local-provider paths:
+1     MLX Swift provider
+2         Cerebro process -> MLX model container -> validated plan
+3
+4     llama.cpp provider
+5         Cerebro process -> bounded localhost HTTP -> llama.cpp server
+6                              -> validated plan
+
+
+
+    MLX Swift keeps inference native and private inside Cerebro. The llama.cpp path is useful when a builder
+    already operates a compatible local server or wants a model format supported by that ecosystem. They
+    can run the same Llama family, but they are not interchangeable APIs. In both cases the output must pass
+    ROBLocalImprovisationPlanCodec; the provider does not gain hardware authority merely because it runs
+    locally.
+
+    Lab: trace one local sentence
+    1. Open Cerebro’s Stage Show window.
+    2. Select MLX Swift (private/offline) as the local provider.
+    3. Run the provider health check before the audience arrives. The first run may download model files
+       and will be much slower than a warm run.
+    4. Load MakerFaireOpening.robshow.json and choose Local improv.
+    5. At model_turn, follow the data from scene goal, to Llama tokens, to the decoded local improvisation
+       plan, and finally to ROB’s speech box.
+    6. Disconnect the network and repeat. An already downloaded model should remain local; the authored
+       fallback still protects a failed generation.
+
+    Record model-load time, generation time, tokens per second, peak memory, the validated output, and
+    whether fallback was used. Performance is part of the lesson, but predictable failure is the more important
+    result.
 
 
 
 
-     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              23 / 24
+    24. Giving a language model eyes with MLXVLM
+A text-only Llama model receives text. It cannot inspect a camera frame merely because the prompt says
+“look.” Cerebro’s MLXVLM path supplies both a prompt and a selected CIImage to a vision-language model:
+1     let input = try await container.prepare(
+2           input: UserInput(prompt: prompt, images: [.ciImage(image)])
+3     )
+
+
+
+    The current Qwen2-VL model is asked for a deliberately narrow stage observation: whether an audience
+    is present, an estimated person count, whether the presenter and demonstration object are visible, an
+    audience activity category, one short scene-change sentence, and confidence.
+
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            25 / 31
+    AI, ROBOTICS, AND CODEX                                                                   VOLUME 5 - ADVANCED MAKERS
+
+
+
+1     {
+2         "audience_present": true,
+3         "estimated_people": 4,
+4         "presenter_visible": true,
+5         "demonstration_object_visible": false,
+6         "audience_activity": "watching",
+7         "scene_change": "two people approached",
+8         "confidence": 0.71
+9     }
+
+
+
+    ROBMLXStageObservationCodec rejects extra keys, wrong types, counts outside zero through fifty, inconsis-
+    tent audience values, nonfinite confidence, and multiline scene changes. A valid observation is still an
+    uncertain fact. It is not an instruction.
+
+    24.1 Sampling protects the camera and controls
+    Analyzing every frame would waste memory and compute and could interfere with video delivery. Cere-
+    bro accepts at most one selected frame per bounded interval, with a minimum of three seconds, and runs
+    VLM work on the MLX actor. The camera capture callback returns immediately. This creates two clocks:
+1     fast clock: camera, safety state, input leases, deterministic control
+2     slow clock: sampled image -> VLM -> validated observation -> dialogue context
+
+
+
+    The slow clock may help ROB say, “I see the audience gathering.” It must not become a hidden motion
+    loop. Navigation should continue to use measured lidar, validated free-space geometry, explicit auton-
+    omy policy, and stop behavior.
+
+    24.2 Confidence is a gate, not decoration
+    Cerebro includes stage observations only when they are fresh and meet the configured confidence thresh-
+    old. If the fact is old or weak, the dialogue prompt says that no reliable camera fact is available. This avoids
+    turning an uncertain guess into a confident claim about a person.
+    Do not infer identity, emotion, disability, ethnicity, or other sensitive traits from a Maker Faire camera. The
+    stage schema asks only for coarse, performance-relevant facts and must never identify an individual child.
+
+    Lab: make the vision result fail safely
+    Test five frames: an empty stage, one presenter, a small audience, a partially covered camera, and a
+    deliberately ambiguous scene. For each frame:
+
+    1. Save only the validated observation and latency, not unnecessary audience imagery.
+    2. Compare the estimate with a human count.
+    3. Confirm malformed JSON is rejected.
+    4. Confirm a low-confidence observation does not enter the stage prompt.
+    5. Confirm disabling vision does not interrupt speech, stop handling, or manual robot control.
+
+
+
+
+    25. Implementing model-safe show logic
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                               26 / 31
+     AI, ROBOTICS, AND CODEX                                                                        VOLUME 5 - ADVANCED MAKERS
+
+
+
+
+     Stage-show files are data, not programs. They may contain dialogue, timing, named gestures, check-
+     points, and model scene goals. They may not contain raw joint values, servo positions, hosts, ports, or
+     shell commands.
+     New shows should use the provider-neutral model_turn cue:
+1      {
+2          "id": "live-joke",
+3          "kind": "model_turn",
+4          "duration_seconds": 15,
+5          "text": "Deliver one family-friendly robot joke. Do not request motion.",
+6          "fallback_text": "My local joke generator is taking a dramatic pause."
+7      }
+
+
+
+     Older gemini_turn cues remain valid for compatibility. Both enter the same coordinator. The name
+     model_turn better describes the actual policy:
+1      model_turn
+2          |
+3          +-- Speech only ----------> authored fallback
+4          |
+5          +-- Local improv ---------> MLX Swift or llama.cpp
+6          |                                        |
+7          |                                        +-- invalid/timeout -> authored fallback
+8          |
+9          +-- Adaptive -------------> bounded local plan
+10                                                  |
+11                                                  +-- time remains -> Gemini Live dialogue
+12                                                  +-- no time/failure -> local or authored line
+
+
+
+     The local model is constrained to a five-field dialogue plan: schema, version, beat, delivery, and
+     offline_line. It cannot return a gesture name or a tool call. Gesture cues remain separately authored
+     and resolved through a named, allowlisted action. This separation is the core implementation lesson: AI
+     can shape performance language without inheriting control of the machine.
+
+     25.1 How to add a safe model cue
+     1. Write a narrow scene goal describing the desired spoken result.
+     2. Explicitly forbid physical actions and unsupported factual claims.
+     3. Author a complete fallback sentence that works with no model and no network.
+     4. Give the cue a short deadline. A show should advance or fall back rather than wait indefinitely.
+     5. Validate the entire show before rehearsal.
+     6. Rehearse in Dry run, then Speech only, then Local improv.
+     7. Use Adaptive only after both the local provider and cloud path have passed preflight.
+
+     25.2 A show is a state machine
+     At any moment the coordinator awaits exactly one event: speech completion, local generation, Gemini,
+     a named gesture, a checkpoint, or a timer. Stop cancels pending model requests and timers. Each asyn-
+     chronous completion carries an identifier so a late response cannot complete a newer cue. This pattern
+     is useful far beyond theater: give every delayed operation an identity, deadline, cancel path, and deter-
+     ministic fallback.
+
+
+     ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    27 / 31
+    AI, ROBOTICS, AND CODEX                                                             VOLUME 5 - ADVANCED MAKERS
+
+
+
+    Rehearsal checklist
+    • The physical E-stop is reachable and independently tested.
+    • The stage is clear before any gesture cue.
+    • The model and VLM are downloaded before relying on offline operation.
+    • The local provider health check and generated-plan preflight pass.
+    • Every model_turn has acceptable authored fallback text.
+    • Camera confidence is visible to the operator.
+    • Dry-run logs show no unknown fields, late completions, or unbounded waits.
+    • Speech-only mode can complete the entire show without AI.
+
+
+
+
+    26. Vision Pro as ROB's voice and spatial control desk
+    ROBControllerVision now adds a Voice & Puppet Speech panel beside the camera and telemetry con-
+    trols. It supports two intentionally different meanings for the same recognized sentence.
+    Command sends the finalized phrase to Cerebro’s normal inputText: path. ROB interprets it just as if the
+    operator typed into Cerebro. Existing local handling—such as stop-oriented text—and the configured AI
+    path remain in one place.
+    ROB Says It sends the phrase to ROBSpeechBox verbatim. It does not ask a language model to interpret
+    the sentence. This is puppet speech: the human is performing ROB’s voice.
+1     Vision Pro microphone
+2       -> Speech framework partial transcript
+3       -> editable text field
+4       -> final transcript + selected mode
+5       -> authenticated ROBOperatorTextV1 message
+6              +-- command -------> Cerebro inputText:
+7              +-- puppetSpeech --> ROBSpeechBox sayIt:
+
+
+
+    The controller requests microphone and speech-recognition permission, displays partial recognition lo-
+    cally, and automatically sends the final phrase in the selected mode. The operator can edit or type text
+    and use Send as Input or ROB Says It manually. Cerebro verifies the version, sender, mode, length, and
+    control characters before dispatching on its main queue.
+
+    26.1 Demonstrating the new controls
+    1. Start Cerebro, then connect ROBControllerVision until its status is green.
+    2. In Voice & Puppet Speech, select ROB Says It.
+    3. Tap Dictate, say “Welcome to the robot workshop,” and pause. Confirm ROB says exactly that sen-
+       tence.
+    4. Select Command, dictate a harmless informational request, and compare it with the same phrase en-
+       tered through Cerebro’s text field.
+    5. Disconnect and verify the buttons cannot send across a nonexistent session.
+    6. Deny microphone permission and verify typed text still works.
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                         28 / 31
+AI, ROBOTICS, AND CODEX                                                                 VOLUME 5 - ADVANCED MAKERS
+
+
+
+The voice feature does not arm motion, grant motion authority, or bypass the physical emergency stop.
+Never present a spoken phrase as a replacement for a dead-man control.
+
+26.2 The rest of the spatial control path
+The Vision Pro interface also makes previously invisible robot state easier to teach:
+
+• the main camera is the large center view;
+• side panels keep connection, voice, telemetry, and controls visible without vertical scrolling;
+• head orientation can drive the robot camera/neck while the required dead-man control is active;
+• torso rotation follows the bounded head-turn control path when enabled;
+• controller triggers are reserved for the left and right grippers;
+• controller pose and head commands are reflected in the SceneKit view for debugging;
+• transport remains paired and authenticated, and stale motion converges to neutral.
+
+These features demonstrate an important design distinction. Spatial input is continuous and safety-leased.
+Voice input is discrete text. Puppet speech is performance output. They may share one headset and one
+network connection, but they should not share ambiguous authority.
+
+Build exercise: add a third text mode without adding authority
+Imagine a captionOnly mode that displays a sentence on ROB’s screen but does not speak or interpret it.
+Implement it on paper first:
+
+1. Add a new enum value to the shared command schema.
+2. Preserve a strict maximum length and reject control characters.
+3. Add an explicit Cerebro receiver branch.
+4. Route only to a caption view—never to inputText:, speech, or motion.
+5. Add encode/decode and legacy-payload tests.
+6. Build both applications and test an older peer’s behavior.
+
+This exercise teaches the safest way to grow a robot protocol: make meaning explicit, keep authority
+narrow, validate on both ends, and prove the fallback.
+
+
+
+
+Epilogue: authorship after acceleration
+The early repositories preserve the voice of one person working from several machines: informal, immedi-
+ate, hardware-aware, and willing to checkpoint an uncertain experiment. The newer code does not erase
+that voice. It gives it leverage.
+The mature system is better not merely because it contains more code. It has contracts where there were
+assumptions, bounded queues where there could be backlogs, explicit authority where there was trust,
+tests where there was only memory, and documentation where knowledge once lived in the workshop.
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             29 / 31
 AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
+
+
+
+That is the best use of Codex in robotics. Let AI search widely, trace deeply, draft quickly, compare both
+sides of a protocol, and remember every edge case you name. Keep the human responsible for scope,
+evidence, physical validation, and the decision to energize the machine.
+
 
 
 
@@ -1451,19 +1830,19 @@ Repository sources
 • Cerebro/docs/gemini-robotics-live.md
 • Cerebro/docs/gemini-robotics-stage-action-plan.md
 • Cerebro/docs/local-improvisation-provider.md
+• Cerebro/Cerebro/ROBMLXRuntime.swift
+• Cerebro/Cerebro/ROBMLXImprovisationProvider.swift
+• Cerebro/Cerebro/ROBMLXStageObservation.swift
+• Cerebro/Cerebro/ROBStageShowCoordinator.swift
+• Cerebro/Cerebro/ROBStageShowProtocol.swift
+• ROBControllerVision/ROBControllerVision/Platform/VisionSpeechInput.swift
+• ROBControllerVision/ROBControllerVision/Features/Control/OperatorSpeechPanel.swift
 
 Official OpenAI documentation
 • Prompting for ChatGPT and Codex1
 • Codex use cases2
 • OpenAI model guidance3
 • OpenAI API models4
-
-Consult the current official documentation when implementing; models, capabilities, availability, and SDK
-shapes can change after this edition.
-
-
-
-
     1
         https://learn.chatgpt.com/docs/prompting
     2
@@ -1474,5 +1853,17 @@ shapes can change after this edition.
         https://developers.openai.com/api/docs/models
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          24 / 24
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          30 / 31
+AI, ROBOTICS, AND CODEX                                                              VOLUME 5 - ADVANCED MAKERS
+
+
+
+Consult the current official documentation when implementing; models, capabilities, availability, and SDK
+shapes can change after this edition.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          31 / 31
 

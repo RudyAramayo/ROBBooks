@@ -1,0 +1,2 @@
+fast clock: camera, safety state, input leases, deterministic control
+slow clock: sampled image -> VLM -> validated observation -> dialogue context

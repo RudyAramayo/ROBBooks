@@ -3,7 +3,7 @@
 ## AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro
 
 **A source-based field guide**  
-First edition, August 10, 2026
+Expanded local-model edition, August 11, 2026
 
 ---
 
@@ -1307,6 +1307,366 @@ can affect people or equipment.
 
 ---
 
+## 23. Local intelligence on Apple silicon: Swift, MLX, and Llama
+
+Cerebro can now run a small language model directly on the Mac inside the
+robot. This is not one product called “SwiftMLX.” The pieces have distinct
+jobs:
+
+- **Swift** is the programming language used by Cerebro's local-AI layer.
+- **MLX Swift** is the Swift interface to Apple's MLX array and machine-learning
+  framework for Apple silicon.
+- **MLXLLM** loads and runs text-generating large language models.
+- **Llama** is a family of language-model architectures and weights. It is a
+  model, not the runtime around it.
+- **llama.cpp** is a separate local runtime with an HTTP server. Cerebro can
+  use it as an alternative provider.
+- **MLXVLM** runs vision-language models. “VLM” means vision-language model;
+  this repository does not use a framework named VLX.
+
+That vocabulary matters. A model is the learned set of weights. A runtime
+loads the weights and performs inference. A tokenizer turns text into numeric
+tokens. A model container holds the loaded model and tokenizer. Application
+code supplies a prompt, validates the result, and decides what the result is
+allowed to influence.
+
+### 23.1 The actual Cerebro model stack
+
+`ROBMLXRuntime.swift` imports `MLX`, `MLXLLM`, `MLXLMCommon`, `MLXVLM`, and the
+tokenizer and Hugging Face loaders. Its current defaults are:
+
+```swift
+static let defaultLLMModel =
+    "mlx-community/Llama-3.2-1B-Instruct-4bit"
+static let defaultVLMModel =
+    "mlx-community/Qwen2-VL-2B-Instruct-4bit"
+static let defaultEmbeddingModel = "TaylorAI/gte-tiny"
+```
+
+The suffix `4bit` means the weights have been quantized to use fewer bits per
+value. Quantization reduces memory and often makes local inference practical,
+at the cost of some numerical precision. A one-billion-parameter model is not
+small in the everyday sense, but it is deliberately modest for an embedded
+stage assistant.
+
+The engine is a Swift `actor`:
+
+```swift
+public actor ROBMLXEngine {
+    private var llm: ModelContainer?
+    private var vlm: ModelContainer?
+
+    public func generate(prompt: String) async throws -> String {
+        let container = try await loadLLM(modelID: Self.defaultLLMModel)
+        let input = try await container.prepare(
+            input: UserInput(prompt: prompt)
+        )
+        let stream = try await container.generate(
+            input: input,
+            parameters: GenerateParameters(
+                maxTokens: 256,
+                temperature: 0.4
+            )
+        )
+        // Collect bounded text chunks and reject tool calls.
+    }
+}
+```
+
+An actor serializes access to its mutable model state. That prevents two tasks
+from racing while a model is loading or diagnostics are changing. `async`
+does not mean the robot waits helplessly: generation runs independently from
+the deterministic motor-control path.
+
+### 23.2 Tokens, context, temperature, and hallucination
+
+A token is a model-sized piece of text, not necessarily a whole word. The
+prompt and response both consume context. `maxTokens` places an upper bound on
+response growth. `temperature` changes sampling: low values tend to be more
+repeatable; higher values create more variation but can also create more
+mistakes.
+
+The model does not retrieve truth from its weights like a database. It predicts
+likely next tokens. Fluent output can therefore be wrong. ROB never treats
+local prose as a servo command. For the stage, the model returns a tiny JSON
+plan, and deterministic code verifies its exact keys, enum values, length, and
+prohibited control language.
+
+### 23.3 Llama through MLX versus llama.cpp
+
+Cerebro supports two local-provider paths:
+
+```text
+MLX Swift provider
+  Cerebro process -> MLX model container -> validated plan
+
+llama.cpp provider
+  Cerebro process -> bounded localhost HTTP -> llama.cpp server
+                  -> validated plan
+```
+
+MLX Swift keeps inference native and private inside Cerebro. The llama.cpp
+path is useful when a builder already operates a compatible local server or
+wants a model format supported by that ecosystem. They can run the same Llama
+family, but they are not interchangeable APIs. In both cases the output must
+pass `ROBLocalImprovisationPlanCodec`; the provider does not gain hardware
+authority merely because it runs locally.
+
+### Lab: trace one local sentence
+
+1. Open Cerebro's Stage Show window.
+2. Select **MLX Swift (private/offline)** as the local provider.
+3. Run the provider health check before the audience arrives. The first run
+   may download model files and will be much slower than a warm run.
+4. Load `MakerFaireOpening.robshow.json` and choose **Local improv**.
+5. At `model_turn`, follow the data from scene goal, to Llama tokens, to the
+   decoded local improvisation plan, and finally to ROB's speech box.
+6. Disconnect the network and repeat. An already downloaded model should
+   remain local; the authored fallback still protects a failed generation.
+
+Record model-load time, generation time, tokens per second, peak memory, the
+validated output, and whether fallback was used. Performance is part of the
+lesson, but predictable failure is the more important result.
+
+---
+
+## 24. Giving a language model eyes with MLXVLM
+
+A text-only Llama model receives text. It cannot inspect a camera frame merely
+because the prompt says “look.” Cerebro's `MLXVLM` path supplies both a prompt
+and a selected `CIImage` to a vision-language model:
+
+```swift
+let input = try await container.prepare(
+    input: UserInput(prompt: prompt, images: [.ciImage(image)])
+)
+```
+
+The current Qwen2-VL model is asked for a deliberately narrow stage
+observation: whether an audience is present, an estimated person count,
+whether the presenter and demonstration object are visible, an audience
+activity category, one short scene-change sentence, and confidence.
+
+```text
+{
+  "audience_present": true,
+  "estimated_people": 4,
+  "presenter_visible": true,
+  "demonstration_object_visible": false,
+  "audience_activity": "watching",
+  "scene_change": "two people approached",
+  "confidence": 0.71
+}
+```
+
+`ROBMLXStageObservationCodec` rejects extra keys, wrong types, counts outside
+zero through fifty, inconsistent audience values, nonfinite confidence, and
+multiline scene changes. A valid observation is still an uncertain fact. It is
+not an instruction.
+
+### 24.1 Sampling protects the camera and controls
+
+Analyzing every frame would waste memory and compute and could interfere with
+video delivery. Cerebro accepts at most one selected frame per bounded interval,
+with a minimum of three seconds, and runs VLM work on the MLX actor. The camera
+capture callback returns immediately. This creates two clocks:
+
+```text
+fast clock: camera, safety state, input leases, deterministic control
+slow clock: sampled image -> VLM -> validated observation -> dialogue context
+```
+
+The slow clock may help ROB say, “I see the audience gathering.” It must not
+become a hidden motion loop. Navigation should continue to use measured lidar,
+validated free-space geometry, explicit autonomy policy, and stop behavior.
+
+### 24.2 Confidence is a gate, not decoration
+
+Cerebro includes stage observations only when they are fresh and meet the
+configured confidence threshold. If the fact is old or weak, the dialogue
+prompt says that no reliable camera fact is available. This avoids turning an
+uncertain guess into a confident claim about a person.
+
+Do not infer identity, emotion, disability, ethnicity, or other sensitive
+traits from a Maker Faire camera. The stage schema asks only for coarse,
+performance-relevant facts and must never identify an individual child.
+
+### Lab: make the vision result fail safely
+
+Test five frames: an empty stage, one presenter, a small audience, a partially
+covered camera, and a deliberately ambiguous scene. For each frame:
+
+1. Save only the validated observation and latency, not unnecessary audience
+   imagery.
+2. Compare the estimate with a human count.
+3. Confirm malformed JSON is rejected.
+4. Confirm a low-confidence observation does not enter the stage prompt.
+5. Confirm disabling vision does not interrupt speech, stop handling, or
+   manual robot control.
+
+---
+
+## 25. Implementing model-safe show logic
+
+Stage-show files are data, not programs. They may contain dialogue, timing,
+named gestures, checkpoints, and model scene goals. They may not contain raw
+joint values, servo positions, hosts, ports, or shell commands.
+
+New shows should use the provider-neutral `model_turn` cue:
+
+```text
+{
+  "id": "live-joke",
+  "kind": "model_turn",
+  "duration_seconds": 15,
+  "text": "Deliver one family-friendly robot joke. Do not request motion.",
+  "fallback_text": "My local joke generator is taking a dramatic pause."
+}
+```
+
+Older `gemini_turn` cues remain valid for compatibility. Both enter the same
+coordinator. The name `model_turn` better describes the actual policy:
+
+```text
+model_turn
+  |
+  +-- Speech only ----------> authored fallback
+  |
+  +-- Local improv ---------> MLX Swift or llama.cpp
+  |                              |
+  |                              +-- invalid/timeout -> authored fallback
+  |
+  +-- Adaptive -------------> bounded local plan
+                                 |
+                                 +-- time remains -> Gemini Live dialogue
+                                 +-- no time/failure -> local or authored line
+```
+
+The local model is constrained to a five-field dialogue plan: schema, version,
+beat, delivery, and `offline_line`. It cannot return a gesture name or a tool
+call. Gesture cues remain separately authored and resolved through a named,
+allowlisted action. This separation is the core implementation lesson: AI can
+shape performance language without inheriting control of the machine.
+
+### 25.1 How to add a safe model cue
+
+1. Write a narrow scene goal describing the desired spoken result.
+2. Explicitly forbid physical actions and unsupported factual claims.
+3. Author a complete fallback sentence that works with no model and no network.
+4. Give the cue a short deadline. A show should advance or fall back rather
+   than wait indefinitely.
+5. Validate the entire show before rehearsal.
+6. Rehearse in **Dry run**, then **Speech only**, then **Local improv**.
+7. Use **Adaptive** only after both the local provider and cloud path have
+   passed preflight.
+
+### 25.2 A show is a state machine
+
+At any moment the coordinator awaits exactly one event: speech completion,
+local generation, Gemini, a named gesture, a checkpoint, or a timer. Stop
+cancels pending model requests and timers. Each asynchronous completion carries
+an identifier so a late response cannot complete a newer cue. This pattern is
+useful far beyond theater: give every delayed operation an identity, deadline,
+cancel path, and deterministic fallback.
+
+### Rehearsal checklist
+
+- The physical E-stop is reachable and independently tested.
+- The stage is clear before any gesture cue.
+- The model and VLM are downloaded before relying on offline operation.
+- The local provider health check and generated-plan preflight pass.
+- Every `model_turn` has acceptable authored fallback text.
+- Camera confidence is visible to the operator.
+- Dry-run logs show no unknown fields, late completions, or unbounded waits.
+- Speech-only mode can complete the entire show without AI.
+
+---
+
+## 26. Vision Pro as ROB's voice and spatial control desk
+
+ROBControllerVision now adds a **Voice & Puppet Speech** panel beside the
+camera and telemetry controls. It supports two intentionally different
+meanings for the same recognized sentence.
+
+**Command** sends the finalized phrase to Cerebro's normal `inputText:` path.
+ROB interprets it just as if the operator typed into Cerebro. Existing local
+handling—such as stop-oriented text—and the configured AI path remain in one
+place.
+
+**ROB Says It** sends the phrase to `ROBSpeechBox` verbatim. It does not ask a
+language model to interpret the sentence. This is puppet speech: the human is
+performing ROB's voice.
+
+```text
+Vision Pro microphone
+  -> Speech framework partial transcript
+  -> editable text field
+  -> final transcript + selected mode
+  -> authenticated ROBOperatorTextV1 message
+       +-- command -------> Cerebro inputText:
+       +-- puppetSpeech --> ROBSpeechBox sayIt:
+```
+
+The controller requests microphone and speech-recognition permission, displays
+partial recognition locally, and automatically sends the final phrase in the
+selected mode. The operator can edit or type text and use **Send as Input** or
+**ROB Says It** manually. Cerebro verifies the version, sender, mode, length,
+and control characters before dispatching on its main queue.
+
+### 26.1 Demonstrating the new controls
+
+1. Start Cerebro, then connect ROBControllerVision until its status is green.
+2. In **Voice & Puppet Speech**, select **ROB Says It**.
+3. Tap **Dictate**, say “Welcome to the robot workshop,” and pause. Confirm ROB
+   says exactly that sentence.
+4. Select **Command**, dictate a harmless informational request, and compare it
+   with the same phrase entered through Cerebro's text field.
+5. Disconnect and verify the buttons cannot send across a nonexistent session.
+6. Deny microphone permission and verify typed text still works.
+
+The voice feature does not arm motion, grant motion authority, or bypass the
+physical emergency stop. Never present a spoken phrase as a replacement for a
+dead-man control.
+
+### 26.2 The rest of the spatial control path
+
+The Vision Pro interface also makes previously invisible robot state easier to
+teach:
+
+- the main camera is the large center view;
+- side panels keep connection, voice, telemetry, and controls visible without
+  vertical scrolling;
+- head orientation can drive the robot camera/neck while the required
+  dead-man control is active;
+- torso rotation follows the bounded head-turn control path when enabled;
+- controller triggers are reserved for the left and right grippers;
+- controller pose and head commands are reflected in the SceneKit view for
+  debugging;
+- transport remains paired and authenticated, and stale motion converges to
+  neutral.
+
+These features demonstrate an important design distinction. Spatial input is
+continuous and safety-leased. Voice input is discrete text. Puppet speech is
+performance output. They may share one headset and one network connection, but
+they should not share ambiguous authority.
+
+### Build exercise: add a third text mode without adding authority
+
+Imagine a `captionOnly` mode that displays a sentence on ROB's screen but does
+not speak or interpret it. Implement it on paper first:
+
+1. Add a new enum value to the shared command schema.
+2. Preserve a strict maximum length and reject control characters.
+3. Add an explicit Cerebro receiver branch.
+4. Route only to a caption view—never to `inputText:`, speech, or motion.
+5. Add encode/decode and legacy-payload tests.
+6. Build both applications and test an older peer's behavior.
+
+This exercise teaches the safest way to grow a robot protocol: make meaning
+explicit, keep authority narrow, validate on both ends, and prove the fallback.
+
+---
+
 ## Epilogue: authorship after acceleration
 
 The early repositories preserve the voice of one person working from several
@@ -1342,6 +1702,13 @@ and the decision to energize the machine.
 - `Cerebro/docs/gemini-robotics-live.md`
 - `Cerebro/docs/gemini-robotics-stage-action-plan.md`
 - `Cerebro/docs/local-improvisation-provider.md`
+- `Cerebro/Cerebro/ROBMLXRuntime.swift`
+- `Cerebro/Cerebro/ROBMLXImprovisationProvider.swift`
+- `Cerebro/Cerebro/ROBMLXStageObservation.swift`
+- `Cerebro/Cerebro/ROBStageShowCoordinator.swift`
+- `Cerebro/Cerebro/ROBStageShowProtocol.swift`
+- `ROBControllerVision/ROBControllerVision/Platform/VisionSpeechInput.swift`
+- `ROBControllerVision/ROBControllerVision/Features/Control/OperatorSpeechPanel.swift`
 
 ### Official OpenAI documentation
 

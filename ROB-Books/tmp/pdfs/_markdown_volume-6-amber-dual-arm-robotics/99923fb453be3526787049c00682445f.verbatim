@@ -1,0 +1,11 @@
+operator / Cerebro / test client
+              |
+       UDP or multicast LCM
+              |
+      Ubuntu AMBER core processes
+          /                 \
+ L-10 core :26001      R-11 core :26002
+       | can10                | can11
+       |                      |
+ seven left joints       seven right joints
+ + gripper #8            + gripper #8

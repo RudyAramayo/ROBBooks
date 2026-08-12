@@ -1,0 +1,19 @@
+public actor ROBMLXEngine {
+    private var llm: ModelContainer?
+    private var vlm: ModelContainer?
+
+    public func generate(prompt: String) async throws -> String {
+        let container = try await loadLLM(modelID: Self.defaultLLMModel)
+        let input = try await container.prepare(
+            input: UserInput(prompt: prompt)
+        )
+        let stream = try await container.generate(
+            input: input,
+            parameters: GenerateParameters(
+                maxTokens: 256,
+                temperature: 0.4
+            )
+        )
+        // Collect bounded text chunks and reject tool calls.
+    }
+}

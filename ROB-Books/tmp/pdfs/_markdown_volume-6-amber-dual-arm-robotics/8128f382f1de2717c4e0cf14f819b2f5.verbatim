@@ -1,0 +1,7 @@
+uname -a
+lsb_release -a
+ip -br link
+ss -lunp
+sha256sum amber_core_L amber_core_R
+xmllint --noout path/to/model.urdf
+python3 -m compileall path/to/reviewed/client

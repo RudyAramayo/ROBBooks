@@ -1,0 +1,12 @@
+model_turn
+  |
+  +-- Speech only ----------> authored fallback
+  |
+  +-- Local improv ---------> MLX Swift or llama.cpp
+  |                              |
+  |                              +-- invalid/timeout -> authored fallback
+  |
+  +-- Adaptive -------------> bounded local plan
+                                 |
+                                 +-- time remains -> Gemini Live dialogue
+                                 +-- no time/failure -> local or authored line

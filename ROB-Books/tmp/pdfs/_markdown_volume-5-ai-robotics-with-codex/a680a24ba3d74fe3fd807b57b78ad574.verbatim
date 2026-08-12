@@ -1,0 +1,6 @@
+MLX Swift provider
+  Cerebro process -> MLX model container -> validated plan
+
+llama.cpp provider
+  Cerebro process -> bounded localhost HTTP -> llama.cpp server
+                  -> validated plan

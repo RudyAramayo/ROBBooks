@@ -1,0 +1,5 @@
+rob_base
+  -> torso_yaw
+      -> left_arm_mount  -> left base_link -> Lseven_Link -> left_tool
+      -> right_arm_mount -> right base_link -> Rseven_Link -> right_tool
+      -> camera_mount    -> camera_optical

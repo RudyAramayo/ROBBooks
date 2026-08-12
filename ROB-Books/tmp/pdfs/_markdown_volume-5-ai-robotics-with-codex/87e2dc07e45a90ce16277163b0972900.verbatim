@@ -1,0 +1,3 @@
+let input = try await container.prepare(
+    input: UserInput(prompt: prompt, images: [.ciImage(image)])
+)

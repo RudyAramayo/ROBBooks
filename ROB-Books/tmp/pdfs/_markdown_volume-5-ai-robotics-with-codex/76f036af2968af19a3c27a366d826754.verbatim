@@ -1,0 +1,9 @@
+{
+  "audience_present": true,
+  "estimated_people": 4,
+  "presenter_visible": true,
+  "demonstration_object_visible": false,
+  "audience_activity": "watching",
+  "scene_change": "two people approached",
+  "confidence": 0.71
+}

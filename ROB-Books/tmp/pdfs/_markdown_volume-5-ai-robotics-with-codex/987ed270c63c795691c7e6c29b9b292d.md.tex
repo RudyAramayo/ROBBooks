@@ -1,0 +1,1298 @@
+\markdownRendererDocumentBegin
+\markdownRendererSectionBegin
+\markdownRendererHeadingOne{Building R.O.B.}\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingTwo{AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro}\markdownRendererInterblockSeparator
+{}\markdownRendererStrongEmphasis{A source-based field guide}\markdownRendererHardLineBreak
+{}Expanded local-model edition, August 11, 2026\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Preface: one builder, many keyboards}\markdownRendererInterblockSeparator
+{}R.O.B. did not begin as an “AI-written robot.” It began the normal way: one\markdownRendererSoftLineBreak
+{}person, several computers, physical hardware, partial ideas, experiments that\markdownRendererSoftLineBreak
+{}worked once, experiments that broke connectors, and commits made before a\markdownRendererSoftLineBreak
+{}fragile discovery disappeared.\markdownRendererParagraphSeparator
+{}The Git record uses three author-name spellings—\markdownRendererCodeSpan{Orbitus}, \markdownRendererCodeSpan{RudyAramayo}, and\markdownRendererSoftLineBreak
+{}\markdownRendererCodeSpan{Rudy Aramayo}—but the same \markdownRendererCodeSpan{orbitus@orbitusrobotics.com} email. That is\markdownRendererSoftLineBreak
+{}consistent with one builder committing from differently configured computers.\markdownRendererSoftLineBreak
+{}It is not evidence of three developers. Nor can Git prove which lines were\markdownRendererSoftLineBreak
+{}suggested by an AI. Commit metadata records the person who accepted and\markdownRendererSoftLineBreak
+{}committed a change, not every tool involved in producing it.\markdownRendererParagraphSeparator
+{}Still, the history has a visible hinge. Through September 2025, commits read\markdownRendererSoftLineBreak
+{}like a lab notebook: tune a servo, repair a port, checkpoint an animation,\markdownRendererSoftLineBreak
+{}avoid sending commands too quickly. Beginning August 1, 2026, the repositories\markdownRendererSoftLineBreak
+{}gain coordinated transport protocols, certificate pinning, Keychain-backed\markdownRendererSoftLineBreak
+{}pairing, formal message schemas, fixture tests, failure boundaries, and long\markdownRendererSoftLineBreak
+{}operator documents. ROBController's first large 2026 change adds roughly 5,345\markdownRendererSoftLineBreak
+{}lines and Cerebro's adds roughly 16,478. That is the point at which the work\markdownRendererSoftLineBreak
+{}\markdownRendererEmphasis{looks AI-accelerated}.\markdownRendererParagraphSeparator
+{}This book treats August 1, 2026 as the start of the Codex-accelerated era. That\markdownRendererSoftLineBreak
+{}is an interpretation based on scale and engineering form, not an authorship\markdownRendererSoftLineBreak
+{}claim. Rudy remains the author and operator: the person choosing the goal,\markdownRendererSoftLineBreak
+{}checking the diff, testing the hardware, and assuming responsibility for what\markdownRendererSoftLineBreak
+{}the robot does.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{1. The robot is a distributed system}\markdownRendererInterblockSeparator
+{}R.O.B. is best understood as two cooperating products.\markdownRendererParagraphSeparator
+{}\markdownRendererCodeSpan{ROBController} is the operator edge. It runs on Apple mobile devices, accepts\markdownRendererSoftLineBreak
+{}human intent, shows state, relays Watch commands, and acts as the approval\markdownRendererSoftLineBreak
+{}console. \markdownRendererCodeSpan{Cerebro} is the robot-side macOS application. It owns perception,\markdownRendererSoftLineBreak
+{}speech, AI sessions, serial hardware, Python helpers, arm scripts, autonomy,\markdownRendererSoftLineBreak
+{}stage shows, and the server side of the control link.\markdownRendererParagraphSeparator
+{}The important flow is:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/9b1b0c8be9856fc9d5bb1df5e95db737.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}This architecture implies a rule that should govern every future change:\markdownRendererInterblockSeparator
+{}\markdownRendererBlockQuoteBegin
+Generative AI may propose intent; deterministic software and an accountable\markdownRendererSoftLineBreak
+{}operator decide whether that intent can become physical motion.\markdownRendererBlockQuoteEnd \markdownRendererInterblockSeparator
+{}Robot code has consequences that ordinary application code does not. A UI bug\markdownRendererSoftLineBreak
+{}is inconvenient. A stale nonzero tread command, a wrong joint sign, or an\markdownRendererSoftLineBreak
+{}unbounded action queue can injure someone or damage hardware. The mature code\markdownRendererSoftLineBreak
+{}therefore does more than add intelligence. It constrains intelligence.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{2. Era one: handmade foundations, 2022–2023}\markdownRendererInterblockSeparator
+{}ROBController's 2022 root commit established the controller around AutoNet and\markdownRendererSoftLineBreak
+{}ROBONet after earlier ML-model experiments were removed. It mixed Objective-C,\markdownRendererSoftLineBreak
+{}Objective-C++, Swift, C, and C++, plus Apple's AurioTouch sample-derived audio\markdownRendererSoftLineBreak
+{}machinery. This was a practical choice: keep the old hardware-facing code and\markdownRendererSoftLineBreak
+{}add modern Apple code where it helped.\markdownRendererParagraphSeparator
+{}In September 2023, the controller gained a custom iPhone storyboard, text\markdownRendererSoftLineBreak
+{}commands, lidar visualization, speech-recognition work, system-volume tests,\markdownRendererSoftLineBreak
+{}TCP no-delay tuning, layout cleanup, and an early Watch app. These changes are\markdownRendererSoftLineBreak
+{}recognizably exploratory. UI, network behavior, and speech lifecycle were\markdownRendererSoftLineBreak
+{}being discovered together.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{What Codex should learn from this era}\markdownRendererInterblockSeparator
+{}Do not begin a legacy-robot task by rewriting the language mix. First ask Codex\markdownRendererSoftLineBreak
+{}to map ownership and data flow:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/a5d0a1954ecb9d79b987eff4cfcb16fa.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}The useful output is a map, not code. Once the map is reviewed, request the\markdownRendererSoftLineBreak
+{}smallest change that proves the model correct. This protects working legacy\markdownRendererSoftLineBreak
+{}behavior while Codex builds context.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{3. Era two: the solo workshop, August–September 2025}\markdownRendererInterblockSeparator
+{}Cerebro's fresh repository begins August 5, 2025, but its initial import is\markdownRendererSoftLineBreak
+{}already a substantial robot program. It includes a macOS storyboard, camera\markdownRendererSoftLineBreak
+{}management, speech, serial control, AutoNet, lidar, Kinect/RealSense-era\markdownRendererSoftLineBreak
+{}components, Leap Motion, RTSP video, task launchers, Core ML assets, and a large\markdownRendererSoftLineBreak
+{}body of mixed Objective-C++ and Swift.\markdownRendererParagraphSeparator
+{}The following weeks read like a maker's engineering diary:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem Gemini is connected, speech delays are adjusted, and OAK camera input begins.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Camera devices become discoverable at runtime.\markdownRendererUlItemEnd 
+\markdownRendererUlItem A new upper-neck servo is introduced and calibrated.\markdownRendererUlItemEnd 
+\markdownRendererUlItem RPLidar launch paths and wake-word handling are repaired.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Output language propagates from controller to robot voice.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Amber arm v1/v2 scripts are integrated, corrected, and exercised against real\markdownRendererSoftLineBreak
+{}L10 and R11 arms.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Keyframes and dual-arm sequences grow from manual experiments.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Vision person segmentation, 3D body pose, SceneKit skeletons, and whole-body\markdownRendererSoftLineBreak
+{}overlays are added.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Speech wordiness, “shut up,” camera toggling, and head tracking become\markdownRendererSoftLineBreak
+{}operator features.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}The commit messages are valuable technical evidence. One warns that arm values\markdownRendererSoftLineBreak
+{}are “very scary if the values go wrong.” Another records a damaged CAN\markdownRendererSoftLineBreak
+{}connector. Another checkpoints code before rebuilding a pose view on every\markdownRendererSoftLineBreak
+{}camera frame. These are not embarrassing details. They express the central\markdownRendererSoftLineBreak
+{}truth of robotics: hardware provides the final test, and the cost of a bad\markdownRendererSoftLineBreak
+{}assumption can be physical.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Turning workshop knowledge into specifications}\markdownRendererInterblockSeparator
+{}Before asking Codex to touch hardware code, translate lived knowledge into\markdownRendererSoftLineBreak
+{}invariants:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/e7fe232962210ca71aaed5f69d043e59.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}This prompt is good because it tells Codex what must remain true. It does not\markdownRendererSoftLineBreak
+{}dictate an implementation before the repository has been inspected.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{4. The acceleration hinge: August 1, 2026}\markdownRendererInterblockSeparator
+{}The paired August 1 commits transform both applications.\markdownRendererParagraphSeparator
+{}In ROBController, the large change introduces secure v2 transport, the Watch\markdownRendererSoftLineBreak
+{}companion path, action and Watch command protocols, approval/status surfaces,\markdownRendererSoftLineBreak
+{}autonomy controls, tests, and documentation.\markdownRendererParagraphSeparator
+{}In Cerebro, the corresponding change introduces the server side of the secure\markdownRendererSoftLineBreak
+{}control plane, Gemini Robotics Live integration, an autonomy coordinator,\markdownRendererSoftLineBreak
+{}camera H.264 transport for Vision Pro, a supervised Python runtime, system\markdownRendererSoftLineBreak
+{}dependency management, action/video protocols, extensive tests, and a major\markdownRendererSoftLineBreak
+{}documentation set.\markdownRendererParagraphSeparator
+{}This is the maturity jump. The old system primarily moved bytes and trusted its\markdownRendererSoftLineBreak
+{}environment. The new system names roles, versions messages, authenticates\markdownRendererSoftLineBreak
+{}peers, bounds queues, records operator intent, and fails closed.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Why this resembles AI-assisted engineering}\markdownRendererInterblockSeparator
+{}No single clue proves AI use. Together, these clues make acceleration a\markdownRendererSoftLineBreak
+{}reasonable inference:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}Change size increases by an order of magnitude.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}Both sides of a distributed protocol evolve together.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}Production code arrives with fixture and integration tests.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}Threat-model concerns—pinning, replay resistance, downgrade prevention,\markdownRendererSoftLineBreak
+{}revocation, role checks—are addressed systematically.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}Operator documentation explains contracts and incomplete capabilities.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}Later commits use structured conventional-commit language and detailed\markdownRendererSoftLineBreak
+{}implementation summaries.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}The right conclusion is not “AI replaced the programmer.” It is “the builder\markdownRendererSoftLineBreak
+{}acquired a fast engineering collaborator, and the repository began to preserve\markdownRendererSoftLineBreak
+{}more of the reasoning that previously lived only in the builder's head.”\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{5. Rebuilding the secure control plane with Codex}\markdownRendererInterblockSeparator
+{}The v2 control plane is the strongest example of how to use Codex on a\markdownRendererSoftLineBreak
+{}cross-repository change.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{5.1 Start with a contract}\markdownRendererInterblockSeparator
+{}Ask for a design before edits:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/42a2a132cf6418a4e7bb84f37f1ea31d.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Review the design for four separations:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Identity:} which Cerebro instance is this?\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Pairing:} has this device been enrolled?\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Authorization:} is it an operator or telemetry publisher?\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Freshness:} is this proof from the current connection rather than a replay?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Only then authorize implementation in checkpoints.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{5.2 Implement the shared wire format first}\markdownRendererInterblockSeparator
+{}Message formats should have explicit magic bytes, versions, lengths, limits,\markdownRendererSoftLineBreak
+{}and error behavior. Generate the same golden fixtures on client and server.\markdownRendererSoftLineBreak
+{}Codex is especially useful here because it can compare two implementations and\markdownRendererSoftLineBreak
+{}find drift.\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/71b6b7fb4eb612591270eab27165ee63.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{5.3 Add transport without weakening authentication}\markdownRendererInterblockSeparator
+{}QUIC/TLS encrypts a connection, but encryption alone does not tell a controller\markdownRendererSoftLineBreak
+{}that it reached \markdownRendererEmphasis{its} robot. ROBController pins Cerebro's certificate. Pairing\markdownRendererSoftLineBreak
+{}then proves possession of a separate per-device secret, while Cerebro resolves\markdownRendererSoftLineBreak
+{}the device role from its own registry.\markdownRendererParagraphSeparator
+{}The August 10 fixes demonstrate why network handshakes need state-machine tests.\markdownRendererSoftLineBreak
+{}iOS did not always expose Bonjour TXT metadata, and both peers could wait for\markdownRendererSoftLineBreak
+{}the other to speak. The repair adds a padded pairing hello before the server\markdownRendererSoftLineBreak
+{}sends its challenge, validates the controller ID, and preserves pinning and\markdownRendererSoftLineBreak
+{}reciprocal proof.\markdownRendererParagraphSeparator
+{}A productive debugging prompt is:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/b341702cab0dd8b01bd0831034672cb0.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Never “fix” a handshake by skipping verification or silently falling back to\markdownRendererSoftLineBreak
+{}plaintext. Availability bugs must not become authentication bugs.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{6. Operator authority, Watch control, and autonomy}\markdownRendererInterblockSeparator
+{}ROBController becomes more than a joystick in the mature system. It relays\markdownRendererSoftLineBreak
+{}Watch intent, advertises accepted action capabilities, approves proposed robot\markdownRendererSoftLineBreak
+{}actions, and starts a bounded autonomy session.\markdownRendererParagraphSeparator
+{}The autonomy model is intentionally a session, not indefinite permission. The\markdownRendererSoftLineBreak
+{}\markdownRendererCodeSpan{social\markdownRendererUnderscore{}roam} profile captures an activation pose, stays within a radius, uses\markdownRendererSoftLineBreak
+{}fresh lidar, moves slowly, and ends on manual control, explicit stop, or\markdownRendererSoftLineBreak
+{}Cerebro restart. Meanwhile \markdownRendererCodeSpan{ROBSerialBox} expires controller snapshots after\markdownRendererSoftLineBreak
+{}three missed 5 Hz updates, sends one neutral/braked frame, then stops USB\markdownRendererSoftLineBreak
+{}writes so the Arduino deadman can de-energize the treads.\markdownRendererParagraphSeparator
+{}This yields a useful authority hierarchy:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/1bc57dc08495a260464e1107fe71f2ef.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Ask Codex to encode this hierarchy in tests, not just comments:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/f5fc205995a3df5526dea0104870f6ae.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}The final sentence matters. Mature agents are capable of expanding a coherent\markdownRendererSoftLineBreak
+{}feature beyond its safe scope. Tell Codex which adjacent capability is\markdownRendererSoftLineBreak
+{}explicitly excluded.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{7. Vision, depth, and video as bounded pipelines}\markdownRendererInterblockSeparator
+{}Cerebro's camera path evolves from selecting webcams to a multi-provider\markdownRendererSoftLineBreak
+{}perception system.\markdownRendererParagraphSeparator
+{}The 2026 implementation runs DepthAI in a supervised Python helper and sends\markdownRendererSoftLineBreak
+{}synchronized RGB and aligned depth over a local user-only Unix socket. Keeping\markdownRendererSoftLineBreak
+{}the SDK outside Cerebro isolates USB disconnects, malformed packets, missing\markdownRendererSoftLineBreak
+{}packages, and Python crashes. AVFoundation remains an RGB fallback, but only\markdownRendererSoftLineBreak
+{}one provider may own the OAK device.\markdownRendererParagraphSeparator
+{}The separate Vision Pro service uses its own authenticated QUIC connection,\markdownRendererSoftLineBreak
+{}H.264 framing, bounded send state, and newest-frame policy. Slow video cannot\markdownRendererSoftLineBreak
+{}back up robot control. Dropped frames trigger keyframe recovery rather than an\markdownRendererSoftLineBreak
+{}unbounded queue.\markdownRendererParagraphSeparator
+{}The reusable design lesson is \markdownRendererStrongEmphasis{separate by failure domain}:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem control and video use different services and queues;\markdownRendererUlItemEnd 
+\markdownRendererUlItem Python SDK faults do not terminate Cerebro;\markdownRendererUlItemEnd 
+\markdownRendererUlItem camera ownership is exclusive;\markdownRendererUlItemEnd 
+\markdownRendererUlItem perception drops old work instead of accumulating latency;\markdownRendererUlItemEnd 
+\markdownRendererUlItem an unavailable optional device degrades one capability.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Codex prompt:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/1d261981f5c1c1516a0afc993d216b08.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{8. AI inside Cerebro: proposals, tools, and speech}\markdownRendererInterblockSeparator
+{}The repositories currently document Gemini Robotics Live as the runtime model\markdownRendererSoftLineBreak
+{}integration. OpenAI enters this story in two different ways:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}\markdownRendererStrongEmphasis{Codex develops and maintains the codebase.}\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}\markdownRendererStrongEmphasis{The OpenAI Responses API can power a future model-neutral robot brain.}\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}These roles should not be conflated. A coding agent may edit a protocol while\markdownRendererSoftLineBreak
+{}an application model later uses that protocol as a tool.\markdownRendererParagraphSeparator
+{}For an OpenAI-backed adapter, preserve Cerebro's deterministic boundaries. The\markdownRendererSoftLineBreak
+{}model receives observations and returns structured proposals. Cerebro validates\markdownRendererSoftLineBreak
+{}the schema, allow-list, session, deadline, and current authority. ROBController\markdownRendererSoftLineBreak
+{}approves where required. Only a deterministic executor may touch hardware.\markdownRendererParagraphSeparator
+{}Conceptual Swift-like pseudocode:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/b9443bf954d716505c6ade97b3d643b8.verbatim}{swift}{swift}\markdownRendererInterblockSeparator
+{}Use the Responses API for multi-turn reasoning and tool calling, and choose the\markdownRendererSoftLineBreak
+{}model through configuration rather than scattering a model name through UI and\markdownRendererSoftLineBreak
+{}network code. Keep credentials outside source control. Do not send secrets,\markdownRendererSoftLineBreak
+{}pairing material, faces, audio, or private surroundings unless the product's\markdownRendererSoftLineBreak
+{}data policy and operator consent explicitly allow it.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{A safe OpenAI integration task for Codex}\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/5d06a65321a82a24a3c526eb6f4efe61.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}The official OpenAI model guidance recommends the Responses API for reasoning,\markdownRendererSoftLineBreak
+{}tool use, and multi-turn workflows. Models and capabilities change; let Codex\markdownRendererSoftLineBreak
+{}consult current official documentation during implementation instead of\markdownRendererSoftLineBreak
+{}freezing this book's August 2026 model names into the architecture.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{9. Local improvisation and stage shows}\markdownRendererInterblockSeparator
+{}The August 3 Cerebro change adds a safe local-improvisation layer, a\markdownRendererSoftLineBreak
+{}connection-tolerant show coordinator, diagnostics, a llama.cpp provider, strict\markdownRendererSoftLineBreak
+{}show schemas, fixture tests, and a Maker Faire opening show.\markdownRendererParagraphSeparator
+{}This feature demonstrates layered trust:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem authored dialogue is the mandatory fallback;\markdownRendererUlItemEnd 
+\markdownRendererUlItem local generation may select only allow-listed beats and delivery;\markdownRendererUlItemEnd 
+\markdownRendererUlItem Gemini may add live context to a trusted brief;\markdownRendererUlItemEnd 
+\markdownRendererUlItem show files cannot contain raw joints, servo values, hosts, ports, or shell;\markdownRendererUlItemEnd 
+\markdownRendererUlItem uncalibrated gestures fail closed;\markdownRendererUlItemEnd 
+\markdownRendererUlItem expired stage contexts permanently reject non-stop tool calls;\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{stop\markdownRendererUnderscore{}motion} remains available through a priority stop lane.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Generative language becomes safe not because the model is guaranteed to behave,\markdownRendererSoftLineBreak
+{}but because untrusted output has a narrow grammar and a deterministic fallback.\markdownRendererParagraphSeparator
+{}When asking Codex to extend a show format, request the validator and negative\markdownRendererSoftLineBreak
+{}fixtures before the runner:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/be72149530d4e0ed010eebca8eb35a2b.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{10. Dependencies are part of robot safety}\markdownRendererInterblockSeparator
+{}Earlier Cerebro code contained machine-specific paths and assumed tools were\markdownRendererSoftLineBreak
+{}installed. The mature version treats dependencies as fallible inputs.\markdownRendererParagraphSeparator
+{}Python can be selected, auto-detected, or created in an app-managed virtual\markdownRendererSoftLineBreak
+{}environment. Package installation occurs only after an operator action.\markdownRendererSoftLineBreak
+{}\markdownRendererCodeSpan{sshpass}, \markdownRendererCodeSpan{ticcmd}, and RPLidar are resolved and validated before launch.\markdownRendererSoftLineBreak
+{}Missing optional tools disable their feature rather than crash Cerebro.\markdownRendererSoftLineBreak
+{}Privileged MacPorts installation is shown to the operator in Terminal; the app\markdownRendererSoftLineBreak
+{}does not capture an administrator password. The SSH password travels through an\markdownRendererSoftLineBreak
+{}anonymous pipe rather than the process argument list.\markdownRendererParagraphSeparator
+{}This is an excellent Codex refactoring pattern:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/ec817424852c9db7be104cf4c25dedb8.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Codex can search every launch site more reliably than a tired human, but the\markdownRendererSoftLineBreak
+{}operator must decide which dependency failures are tolerable.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{11. A repeatable Codex workflow for these repositories}\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Step 1: protect the worktree}\markdownRendererInterblockSeparator
+{}Start every session with:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/ca46e1dc9d5664b42718819cc94cfc9c.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}The current worktrees, for example, contain modified\markdownRendererSoftLineBreak
+{}\markdownRendererCodeSpan{UserInterfaceState.xcuserstate} files. They are user state, not permission to\markdownRendererSoftLineBreak
+{}discard anything.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Step 2: state outcome and invariants}\markdownRendererInterblockSeparator
+{}Prefer “When control packets stop, the base brakes once and becomes silent” to\markdownRendererSoftLineBreak
+{}“refactor ROBSerialBox.” The former is testable and safety-relevant.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Step 3: ask for read-only diagnosis}\markdownRendererInterblockSeparator
+{}For cross-language and cross-repository behavior, have Codex trace the entire\markdownRendererSoftLineBreak
+{}path before implementation. Ask it to cite evidence and say what it cannot\markdownRendererSoftLineBreak
+{}know without hardware.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Step 4: divide at stable boundaries}\markdownRendererInterblockSeparator
+{}Good checkpoints are codec, fixtures, client state machine, server state\markdownRendererSoftLineBreak
+{}machine, UI, and documentation. Avoid one request that changes wire format,\markdownRendererSoftLineBreak
+{}physical actuation, and user experience without intermediate review.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Step 5: make Codex edit and verify}\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/be1136643826c800700c93f9e23a8d7b.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Step 6: inspect the diff yourself}\markdownRendererInterblockSeparator
+{}Use \markdownRendererCodeSpan{git diff --check}, \markdownRendererCodeSpan{git diff --stat}, and \markdownRendererCodeSpan{git diff}. Pay special attention\markdownRendererSoftLineBreak
+{}to entitlements, Info.plist permissions, Xcode project membership, networking,\markdownRendererSoftLineBreak
+{}Keychain accessibility, dispatch queues, and motor values.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Step 7: validate in layers}\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}Pure codec/schema fixtures\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}Unit tests with mocked time and I/O\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}Client/server integration tests on loopback\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}Xcode build and static diagnostics\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}Simulator/UI checks where meaningful\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}Bench hardware with motors disabled or lifted\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}Low-speed supervised robot test with an accessible stop\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}Codex may complete layers one through five. It must never imply that they prove\markdownRendererSoftLineBreak
+{}layers six and seven.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Step 8: commit the reasoning}\markdownRendererInterblockSeparator
+{}A mature message explains behavior and risk:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/85be9f82cdadacb8bfc5c22e3f8cf7e0.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}The history then becomes usable context for the next human or AI session.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{12. Prompt recipes for the actual change families}\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Cross-repository protocol change}\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/4d14d31ded2aa8e39a2bfa9e2a4f5dec.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Concurrency bug}\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/43d6ea8b015234df236091984a74d028.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Camera crash}\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/4ef5bda13c9400dfccd2381a8a9610f0.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{New AI tool}\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/b51c399ded5a0db02464edc32e09f8a0.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Arm feature}\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/e5f390792eaa2cc878b8ce1a474dfb48.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Documentation from code}\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/be168b781a3cd7fe386ffa408a1b854d.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{13. Reviewing AI-generated robot code}\markdownRendererInterblockSeparator
+{}An AI-generated diff is a proposal. Review it in five passes.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Safety}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem Does loss of input converge to neutral?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Is stop independent, prioritized, and idempotent?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Are speeds, positions, payload sizes, and durations bounded?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Does restart return to a safe state?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Does an unavailable sensor prevent motion that depends on it?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Security}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem Are identity, enrollment, authorization, and freshness distinct?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Are secrets absent from source, logs, process arguments, and Bonjour?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Is there any fallback to plaintext or unauthenticated behavior?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Can revocation terminate a live session?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Can a telemetry role become a control role by editing its payload?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Concurrency}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem Which queue owns each mutable state variable?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Can both peers wait forever?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Can cancellation race with completion or a late tool call?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Can a slow camera/model consumer block control?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Compatibility}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem Are protocol versions explicit?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Are unknown fields tolerated only where intended?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Do both repositories share golden fixtures?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Is legacy behavior opt-in, observable, and removable?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Evidence}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem What tests ran?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What could not run in the environment?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Was hardware actually exercised?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Are documentation claims no stronger than the evidence?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{14. What remains intentionally unfinished}\markdownRendererInterblockSeparator
+{}Mature engineering is visible in the features a system refuses to fake.\markdownRendererSoftLineBreak
+{}Cerebro reports general picking and arm motion as unavailable because the\markdownRendererSoftLineBreak
+{}repository still lacks calibrated camera-to-arm transforms, complete neck\markdownRendererSoftLineBreak
+{}mapping, joint feedback, inverse kinematics, collision checking, and a verified\markdownRendererSoftLineBreak
+{}grasp executor. Gesture cues fail closed without a calibrated catalog and\markdownRendererSoftLineBreak
+{}feedback-capable executor. Approval records operator intent but does not by\markdownRendererSoftLineBreak
+{}itself start physical action.\markdownRendererParagraphSeparator
+{}These are the next safe milestones:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}Establish measured coordinate frames and calibration artifacts.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}Add feedback and freshness to joint state.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}Build offline IK with joint and velocity bounds.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}Add collision models and swept-volume checks.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}Simulate and dry-run named motions.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}Validate one arm on a bench at low speed.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}Introduce a deterministic executor with stop preemption.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{8}Only then expose a narrow, schema-constrained AI proposal tool.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}Codex can help at every milestone, but it cannot supply missing physical facts\markdownRendererSoftLineBreak
+{}from code. Calibration measurements, payload limits, wiring, clearances, and\markdownRendererSoftLineBreak
+{}the location of humans around the robot belong to the real world.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{15. The developer after code generation}\markdownRendererInterblockSeparator
+{}Programming is not disappearing so much as moving upward. A developer once\markdownRendererSoftLineBreak
+{}spent most of a day translating a known solution into syntax. An AI coding\markdownRendererSoftLineBreak
+{}agent can now perform much of that translation, search a repository, connect\markdownRendererSoftLineBreak
+{}call sites, write tests, run tools, and revise a patch. The scarce skill becomes\markdownRendererSoftLineBreak
+{}the ability to define the right system, communicate its invariants, recognize\markdownRendererSoftLineBreak
+{}false confidence, and decide whether the evidence is strong enough to ship.\markdownRendererParagraphSeparator
+{}This is a profound change. Source code remains real and must still execute, but\markdownRendererSoftLineBreak
+{}manually typing every line is no longer the center of the job. The new\markdownRendererSoftLineBreak
+{}developer operates at several levels at once:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Purpose:} What human outcome should improve?\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{System:} Which components, data, authorities, and failure boundaries exist?\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Contract:} What must inputs, outputs, timing, and errors mean?\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Evidence:} What observation would prove the behavior works?\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Operations:} How will the system be deployed, monitored, stopped, and repaired?\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Responsibility:} Who accepts the consequences when software affects people or machines?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}The syntax layer has not become worthless. Reading code is still one way to\markdownRendererSoftLineBreak
+{}audit the agent's interpretation, locate a security defect, or understand why\markdownRendererSoftLineBreak
+{}a test passes for the wrong reason. But fluency increasingly means being able\markdownRendererSoftLineBreak
+{}to move between intent, architecture, executable artifacts, and evidence. A\markdownRendererSoftLineBreak
+{}developer can be less concerned with remembering an API name and more\markdownRendererSoftLineBreak
+{}concerned with whether the API belongs in the design at all.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{From implementation task to outcome contract}\markdownRendererInterblockSeparator
+{}A weak request says:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/21aa13b6966d270d5e728a626dc378dc.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}A strong outcome contract says:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/4661268c6b664f245c2fe4229e72a844.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}The second request does not prescribe every class or function. It gives the AI\markdownRendererSoftLineBreak
+{}room to inspect and design while making the result falsifiable. It names the\markdownRendererSoftLineBreak
+{}world in which the code must be correct.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{The new literacy}\markdownRendererInterblockSeparator
+{}The developer of this wave needs four complementary literacies.\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}\markdownRendererStrongEmphasis{Domain literacy} identifies what matters in robotics, medicine, finance,\markdownRendererSoftLineBreak
+{}media, education, or another field.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}\markdownRendererStrongEmphasis{Systems literacy} traces state, timing, trust, feedback, and failure across\markdownRendererSoftLineBreak
+{}boundaries.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}\markdownRendererStrongEmphasis{AI communication literacy} supplies goals, context, constraints, and\markdownRendererSoftLineBreak
+{}acceptance evidence without burying the task in ceremony.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}\markdownRendererStrongEmphasis{Verification literacy} distinguishes plausible output from demonstrated\markdownRendererSoftLineBreak
+{}behavior.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}AI magnifies all four. It also magnifies their absence. A vague request can\markdownRendererSoftLineBreak
+{}produce a large, polished, internally consistent mistake faster than a person\markdownRendererSoftLineBreak
+{}could have typed it.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{16. How an AI development system actually works}\markdownRendererInterblockSeparator
+{}An AI coding system is more than a chat box. It is a loop that combines a model\markdownRendererSoftLineBreak
+{}with context, instructions, tools, an execution environment, and feedback.\markdownRendererSoftLineBreak
+{}Understanding those parts helps a developer diagnose failures without treating\markdownRendererSoftLineBreak
+{}the model as magic.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Model}\markdownRendererInterblockSeparator
+{}The model predicts and reasons over the information available in the current\markdownRendererSoftLineBreak
+{}interaction. It can synthesize patterns across languages and domains, but it\markdownRendererSoftLineBreak
+{}does not automatically know the current repository, physical robot, private\markdownRendererSoftLineBreak
+{}requirements, or latest external facts. Confidence in its prose is not a\markdownRendererSoftLineBreak
+{}measurement of truth.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Context}\markdownRendererInterblockSeparator
+{}Context includes the request, conversation, selected files, repository\markdownRendererSoftLineBreak
+{}instructions, tool results, images, logs, and sometimes retrieved documents.\markdownRendererSoftLineBreak
+{}Good context is not the largest possible pile of text. It is the smallest set\markdownRendererSoftLineBreak
+{}that changes the decision.\markdownRendererParagraphSeparator
+{}For a deadlock, the relevant context is usually both peers' state machines,\markdownRendererSoftLineBreak
+{}the first reads and writes, cancellation behavior, and a reproducible trace.\markdownRendererSoftLineBreak
+{}Hundreds of unrelated UI files can make the important relationship harder to\markdownRendererSoftLineBreak
+{}see. Ask the agent to search first, then load the narrow data path.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Instructions and precedence}\markdownRendererInterblockSeparator
+{}An agent may receive durable project instructions in addition to the current\markdownRendererSoftLineBreak
+{}request. These can define build commands, architectural rules, formatting,\markdownRendererSoftLineBreak
+{}security restrictions, or files that must not be changed. Treat these files as\markdownRendererSoftLineBreak
+{}part of the engineering system. Keep them concise, current, and testable.\markdownRendererParagraphSeparator
+{}Instructions should express durable policy:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/c4280b5df4b58707714d20fc0b3108cc.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Temporary details belong in the task, not the permanent policy file.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Tools}\markdownRendererInterblockSeparator
+{}Tools let the agent observe and change the world: search files, inspect Git,\markdownRendererSoftLineBreak
+{}apply patches, compile, run tests, browse official documentation, render a PDF,\markdownRendererSoftLineBreak
+{}or view an image. A model answer without tools is a proposal. A tool-using\markdownRendererSoftLineBreak
+{}agent can produce evidence, although that evidence still needs interpretation.\markdownRendererParagraphSeparator
+{}Tool authority should match the task. Reading and testing are lower risk than\markdownRendererSoftLineBreak
+{}publishing, deleting, deploying, spending money, messaging another person, or\markdownRendererSoftLineBreak
+{}energizing hardware. High-impact actions need explicit boundaries and often a\markdownRendererSoftLineBreak
+{}human approval step.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Execution environment}\markdownRendererInterblockSeparator
+{}Local and cloud agents do not necessarily see the same files, credentials,\markdownRendererSoftLineBreak
+{}devices, network, simulators, or operating-system APIs. State the important\markdownRendererSoftLineBreak
+{}environment facts and ask the agent to report what it could not reproduce.\markdownRendererSoftLineBreak
+{}“Build passed” may mean a simulator target compiled; it does not mean two real\markdownRendererSoftLineBreak
+{}controllers tracked correctly on Vision Pro.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Feedback loop}\markdownRendererInterblockSeparator
+{}The most productive unit of AI development is not one perfect prompt. It is a\markdownRendererSoftLineBreak
+{}controlled loop:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/31222354dab7b4bc11d01c20045b1249.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Each loop should reduce uncertainty. If an agent makes five speculative edits\markdownRendererSoftLineBreak
+{}without producing new evidence, stop and return to inspection.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{17. Communicating for reliable results}\markdownRendererInterblockSeparator
+{}Official OpenAI prompting guidance describes four useful ingredients for\markdownRendererSoftLineBreak
+{}important work: goal, context, output, and boundaries. It also recommends\markdownRendererSoftLineBreak
+{}starting with the result, adding only context that can change it, using\markdownRendererSoftLineBreak
+{}follow-up messages, and reviewing the final result yourself. These ideas map\markdownRendererSoftLineBreak
+{}especially well to software development.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Goal: define observable behavior}\markdownRendererInterblockSeparator
+{}“Improve networking” is a theme. “Reconnect after Wi-Fi interruption without\markdownRendererSoftLineBreak
+{}reviving an expired motion lease” is a goal. Use nouns and verbs from the real\markdownRendererSoftLineBreak
+{}system. Say which user, device, event, input, and output matter.\markdownRendererParagraphSeparator
+{}When the goal contains multiple interpretations, name a concrete scenario:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/a2cdfcb2dd36a8fd0e6310bd47a4fd80.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Context: provide decision-changing facts}\markdownRendererInterblockSeparator
+{}Context is not a biography of the project. Useful context includes:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem reproduction steps and exact error text;\markdownRendererUlItemEnd 
+\markdownRendererUlItem affected repositories and platforms;\markdownRendererUlItemEnd 
+\markdownRendererUlItem a known-good comparison implementation;\markdownRendererUlItemEnd 
+\markdownRendererUlItem protocol fixtures, schemas, or hardware limits;\markdownRendererUlItemEnd 
+\markdownRendererUlItem recent changes that might explain a regression;\markdownRendererUlItemEnd 
+\markdownRendererUlItem files that contain user work and must be preserved.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}If you believe two bugs share a cause, offer that as a hypothesis rather than a\markdownRendererSoftLineBreak
+{}command: “This resembles the QUICK simultaneous-read deadlock we fixed in\markdownRendererSoftLineBreak
+{}ROBController; compare the state machines and confirm before reusing the fix.”\markdownRendererSoftLineBreak
+{}That invites transfer without forcing a false analogy.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Output: say what done looks like}\markdownRendererInterblockSeparator
+{}Name the artifacts required at handoff: implementation, migration, tests,\markdownRendererSoftLineBreak
+{}documentation, screenshot, fixture, benchmark, or printable PDF. Specify the\markdownRendererSoftLineBreak
+{}audience and level when it affects the result. Ask for a concise final report\markdownRendererSoftLineBreak
+{}with changed files, test commands, limitations, and the next physical check.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Boundaries: protect what matters}\markdownRendererInterblockSeparator
+{}The best boundaries prevent expensive mistakes. They do not micromanage every\markdownRendererSoftLineBreak
+{}keystroke.\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/b62021c1680c09f91dc73d9989f667c2.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Boundaries can also define when the agent must ask. A request to draft release\markdownRendererSoftLineBreak
+{}notes does not authorize publishing them. A request to diagnose a robot motion\markdownRendererSoftLineBreak
+{}fault does not authorize sending a test command.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Acceptance evidence}\markdownRendererInterblockSeparator
+{}Acceptance criteria turn communication into an engineering contract:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/5cbd371aa2e73597c8a9259e0dc7be8c.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}This is stronger than “make sure it works.” It tells both human and AI which\markdownRendererSoftLineBreak
+{}claims the evidence must support.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Steering without restarting}\markdownRendererInterblockSeparator
+{}When the agent is already working, correct direction with the smallest useful\markdownRendererSoftLineBreak
+{}message. Examples:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/116511f19a1eb2bdca5704af3f21757a.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/8b531506f0edcb3bbc53378149e090e4.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/aafde5a090f51575e5eb532437f8fb38.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Good steering adds evidence or a constraint. It does not require restating the\markdownRendererSoftLineBreak
+{}whole project.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{18. Context engineering for large repositories}\markdownRendererInterblockSeparator
+{}AI performance depends on what it can see and how the repository exposes its\markdownRendererSoftLineBreak
+{}meaning. Context engineering is the practice of arranging code, tests,\markdownRendererSoftLineBreak
+{}documentation, and instructions so the agent can recover the right model of\markdownRendererSoftLineBreak
+{}the system.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Give the repository a map}\markdownRendererInterblockSeparator
+{}A short project map should name entry points and ownership:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/acd51289eff5aa520259ba3005ef1944.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}This does not replace search. It reduces the chance that the agent edits a\markdownRendererSoftLineBreak
+{}similarly named but inactive path.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Preserve executable knowledge}\markdownRendererInterblockSeparator
+{}Tests and fixtures are better context than prose alone because they can reject\markdownRendererSoftLineBreak
+{}a misunderstanding. For every important promise, ask whether it can become:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem a unit test for a pure transformation;\markdownRendererUlItemEnd 
+\markdownRendererUlItem a golden byte fixture for a protocol;\markdownRendererUlItemEnd 
+\markdownRendererUlItem an integration test across a fake transport;\markdownRendererUlItemEnd 
+\markdownRendererUlItem a state-machine test for cancellation and timeout;\markdownRendererUlItemEnd 
+\markdownRendererUlItem a simulator scenario for operator behavior;\markdownRendererUlItemEnd 
+\markdownRendererUlItem a physical checklist for facts software cannot prove.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}When a hardware discovery is made, first write it down, then encode the portion\markdownRendererSoftLineBreak
+{}that can be checked automatically. “The arm sign is reversed” should become a\markdownRendererSoftLineBreak
+{}calibration artifact or mapping test, not remain only in a chat transcript.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Separate durable truth from session history}\markdownRendererInterblockSeparator
+{}Conversation is useful working memory but a poor sole archive. After a task,\markdownRendererSoftLineBreak
+{}place durable knowledge where the next developer and agent will find it:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem protocol contracts beside the implementation;\markdownRendererUlItemEnd 
+\markdownRendererUlItem operational steps in a runbook;\markdownRendererUlItemEnd 
+\markdownRendererUlItem repository conventions in project instructions;\markdownRendererUlItemEnd 
+\markdownRendererUlItem architectural decisions in a short decision record;\markdownRendererUlItemEnd 
+\markdownRendererUlItem verified limits in machine-readable configuration;\markdownRendererUlItemEnd 
+\markdownRendererUlItem uncertain physical facts in a clearly labeled validation checklist.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Avoid copying an entire conversation into the repository. Preserve decisions,\markdownRendererSoftLineBreak
+{}evidence, and unresolved questions.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Ask for evidence-backed exploration}\markdownRendererInterblockSeparator
+{}For an unfamiliar system, use a staged request:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/ab590c1b801ac43b1901a00c3ff61f36.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Review that map before implementation. This is not bureaucracy; it is a cheap\markdownRendererSoftLineBreak
+{}way to discover that the visible UI and active data path are different.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Manage context decay}\markdownRendererInterblockSeparator
+{}Long tasks accumulate superseded hypotheses. Periodically restate the current\markdownRendererSoftLineBreak
+{}facts:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/05c2f09143b14bc47be21f6182ad9f85.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}This compact checkpoint helps the agent stop pursuing an earlier diagnosis.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{19. Verification is the product}\markdownRendererInterblockSeparator
+{}AI makes producing an implementation inexpensive. Therefore the value moves to\markdownRendererSoftLineBreak
+{}proof. A professional AI-assisted change should carry an evidence ladder whose\markdownRendererSoftLineBreak
+{}top rung matches the risk of the claim.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{The evidence ladder}\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}\markdownRendererStrongEmphasis{Static inspection:} types, call sites, schemas, and configuration agree.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}\markdownRendererStrongEmphasis{Focused test:} the changed transformation or failure case is executable.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}\markdownRendererStrongEmphasis{Regression suite:} neighboring promises still hold.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}\markdownRendererStrongEmphasis{Build:} the real target, SDK, and language mode compile.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}\markdownRendererStrongEmphasis{Integration:} both sides communicate under representative timing.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}\markdownRendererStrongEmphasis{Simulation:} user interaction and state transitions behave together.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}\markdownRendererStrongEmphasis{Bench test:} hardware is constrained, low energy, and supervised.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{8}\markdownRendererStrongEmphasis{Operational test:} the complete system runs with stop paths and observers.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}Do not skip from static inspection to a claim about physical behavior. Each\markdownRendererSoftLineBreak
+{}rung answers a different question.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Ask the agent to falsify its own patch}\markdownRendererInterblockSeparator
+{}After implementation, change roles. Ask:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/d6a2de363bf451dc4c937a78fcf9948e.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}An AI can generate both the patch and the critique, but independence is not\markdownRendererSoftLineBreak
+{}guaranteed. The critique still improves coverage by forcing a different search\markdownRendererSoftLineBreak
+{}objective. Human review, separate test design, and real measurements remain\markdownRendererSoftLineBreak
+{}valuable.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Evaluate repeated AI workflows}\markdownRendererInterblockSeparator
+{}When the same task occurs often—triaging controller logs, drafting protocol\markdownRendererSoftLineBreak
+{}tests, reviewing dependencies, or generating release notes—build a small eval\markdownRendererSoftLineBreak
+{}set. Include normal cases, difficult edge cases, and cases that should be\markdownRendererSoftLineBreak
+{}refused or escalated.\markdownRendererParagraphSeparator
+{}Record measurable outcomes:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem Did the agent identify the active implementation?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Did it preserve backward compatibility?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Did it distinguish compilation from hardware validation?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Did it avoid secrets and destructive actions?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Did the test fail before the fix and pass after it?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Did the final report accurately describe limitations?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Run the eval when instructions, tools, models, or repository architecture\markdownRendererSoftLineBreak
+{}change. A beautiful demonstration is one sample; an eval set measures a\markdownRendererSoftLineBreak
+{}pattern.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Stop conditions are part of verification}\markdownRendererInterblockSeparator
+{}Define when work must pause:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem the requested behavior depends on an unknown physical limit;\markdownRendererUlItemEnd 
+\markdownRendererUlItem the only available test could move unguarded hardware;\markdownRendererUlItemEnd 
+\markdownRendererUlItem credentials or permissions are missing;\markdownRendererUlItemEnd 
+\markdownRendererUlItem a generated migration could irreversibly alter user data;\markdownRendererUlItemEnd 
+\markdownRendererUlItem two authoritative specifications conflict;\markdownRendererUlItemEnd 
+\markdownRendererUlItem the diff overlaps unexplained user changes.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Stopping with a precise blocker is a successful safety behavior, not a failure\markdownRendererSoftLineBreak
+{}of intelligence.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{20. Designing AI-native software systems}\markdownRendererInterblockSeparator
+{}Using AI to write an ordinary application is only the first wave. An AI-native\markdownRendererSoftLineBreak
+{}system is designed around uncertain model output, typed tools, observable\markdownRendererSoftLineBreak
+{}state, evals, and deterministic boundaries.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Separate proposal from execution}\markdownRendererInterblockSeparator
+{}The model should propose a bounded intent:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/cde5e8c30040712873ea2c2f8bdf2051.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}A deterministic layer should decide whether that intent is allowed, translate\markdownRendererSoftLineBreak
+{}it into units, apply limits, acquire authority, monitor freshness, and stop.\markdownRendererSoftLineBreak
+{}The model should not manufacture raw motor bytes or bypass the controller\markdownRendererSoftLineBreak
+{}lease.\markdownRendererParagraphSeparator
+{}For an arm, a safer progression is:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/4859bb2dc945ed48f2b7f2190f495f04.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Each arrow is an inspectable contract.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Give tools narrow schemas}\markdownRendererInterblockSeparator
+{}A tool named \markdownRendererCodeSpan{run\markdownRendererUnderscore{}any\markdownRendererUnderscore{}shell\markdownRendererUnderscore{}command} offers enormous accidental authority. A\markdownRendererSoftLineBreak
+{}robot tool should expose the smallest operation that can be made safe. Its\markdownRendererSoftLineBreak
+{}schema should constrain units, ranges, identifiers, and optionality before\markdownRendererSoftLineBreak
+{}execution code sees the request.\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/1c9f064fb0a247bdccaf71e7d2c5293c.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}Even a valid schema does not prove the pose is currently collision-free. Tool\markdownRendererSoftLineBreak
+{}validation, world state, executor feedback, and operator policy remain separate\markdownRendererSoftLineBreak
+{}layers.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Treat retrieval as evidence selection}\markdownRendererInterblockSeparator
+{}An AI system can retrieve manuals, logs, code, and prior decisions. Retrieval\markdownRendererSoftLineBreak
+{}quality determines which evidence reaches the model. Store documents with\markdownRendererSoftLineBreak
+{}source, date, version, authority, and scope. Prefer a current verified wiring\markdownRendererSoftLineBreak
+{}map over an old brainstorming note, and make conflicts visible rather than\markdownRendererSoftLineBreak
+{}silently blending them.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Design for uncertainty}\markdownRendererInterblockSeparator
+{}Model output may be incomplete, inconsistent, or wrong. The system needs:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem structured outputs that reject invalid shapes;\markdownRendererUlItemEnd 
+\markdownRendererUlItem timeouts and cancellation;\markdownRendererUlItemEnd 
+\markdownRendererUlItem bounded retries and queue sizes;\markdownRendererUlItemEnd 
+\markdownRendererUlItem idempotent operations where possible;\markdownRendererUlItemEnd 
+\markdownRendererUlItem explicit unavailable and uncertain states;\markdownRendererUlItemEnd 
+\markdownRendererUlItem audit events for proposals, approvals, actions, and outcomes;\markdownRendererUlItemEnd 
+\markdownRendererUlItem human escalation for consequential ambiguity.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Do not convert “the model did not answer” into a default motion. In robotics,\markdownRendererSoftLineBreak
+{}absence of valid intent should converge to neutral.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Observe the whole loop}\markdownRendererInterblockSeparator
+{}Measure more than model latency. Track tool selection, validation failures,\markdownRendererSoftLineBreak
+{}approval delays, execution outcomes, cancellation, stale state, and recovery.\markdownRendererSoftLineBreak
+{}Keep sensitive data out of logs and define retention. An AI system that cannot\markdownRendererSoftLineBreak
+{}explain which source and tool produced an action will be difficult to debug and\markdownRendererSoftLineBreak
+{}unsafe to trust.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{21. A thirty-day AI developer practice}\markdownRendererInterblockSeparator
+{}The fastest way to learn this new form of development is to practice on real,\markdownRendererSoftLineBreak
+{}bounded work while increasing authority slowly.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Week 1: learn to specify}\markdownRendererInterblockSeparator
+{}Each day, take one vague task and write an outcome contract with goal, context,\markdownRendererSoftLineBreak
+{}output, boundaries, and acceptance evidence. Ask the AI to inspect before\markdownRendererSoftLineBreak
+{}editing. Compare its system map with the code.\markdownRendererParagraphSeparator
+{}Exercises:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}Trace one UI action to its side effect.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}Explain one protocol field and its validation.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}Find one timeout and list what state it protects.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}Turn one bug report into reproducible steps.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}Convert one workshop fact into a testable invariant.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Week 2: build evidence loops}\markdownRendererInterblockSeparator
+{}Choose low-risk bugs. Require a failing reproduction or fixture before the\markdownRendererSoftLineBreak
+{}patch. Ask the agent to run the smallest test, then the neighboring suite, then\markdownRendererSoftLineBreak
+{}the real build. Review every claim in the handoff against command output.\markdownRendererParagraphSeparator
+{}Keep a notebook with three columns: claim, evidence, remaining uncertainty.\markdownRendererSoftLineBreak
+{}This trains the distinction between “the code looks right” and “this behavior\markdownRendererSoftLineBreak
+{}was observed.”\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Week 3: direct cross-system changes}\markdownRendererInterblockSeparator
+{}Work across two components without expanding physical authority. Examples are\markdownRendererSoftLineBreak
+{}a versioned optional field, a status message, or a simulator-only control.\markdownRendererSoftLineBreak
+{}Require a shared fixture and independent validation at the receiver.\markdownRendererParagraphSeparator
+{}Practice steering when the first hypothesis is wrong. Give the agent the new\markdownRendererSoftLineBreak
+{}fact without rewriting its entire plan. Watch whether it updates the causal\markdownRendererSoftLineBreak
+{}model or merely patches around the symptom.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Week 4: design an AI-native capability}\markdownRendererInterblockSeparator
+{}Design—but do not energize—a narrow AI proposal tool. Define its schema,\markdownRendererSoftLineBreak
+{}authorization, freshness, deterministic checks, refusal cases, audit record,\markdownRendererSoftLineBreak
+{}and eval set. Threat-model prompt injection, stale retrieval, malformed tool\markdownRendererSoftLineBreak
+{}arguments, repeated calls, cancellation races, and operator confusion.\markdownRendererParagraphSeparator
+{}Finish with a review packet:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem system diagram;\markdownRendererUlItemEnd 
+\markdownRendererUlItem typed contract;\markdownRendererUlItemEnd 
+\markdownRendererUlItem ten normal eval cases;\markdownRendererUlItemEnd 
+\markdownRendererUlItem ten adversarial or failure cases;\markdownRendererUlItemEnd 
+\markdownRendererUlItem deterministic validator tests;\markdownRendererUlItemEnd 
+\markdownRendererUlItem simulator demonstration;\markdownRendererUlItemEnd 
+\markdownRendererUlItem physical validation plan owned by a qualified operator.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Graduation test}\markdownRendererInterblockSeparator
+{}You are ready for greater autonomy when you can reliably answer:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}What exact outcome is requested?\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}Which source is authoritative for each fact?\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}What authority does the AI have?\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}What deterministic boundary contains it?\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}What evidence supports each completion claim?\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}How does the system fail neutral?\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}Who can stop it, and how?\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}The future developer is not the person who types the most code. It is the\markdownRendererSoftLineBreak
+{}person who can turn human intent into a well-bounded system, use AI to explore\markdownRendererSoftLineBreak
+{}and construct it rapidly, and produce evidence strong enough for others to\markdownRendererSoftLineBreak
+{}trust.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{22. The AI change contract worksheet}\markdownRendererInterblockSeparator
+{}Complete this worksheet before a consequential AI-assisted change. Short,\markdownRendererSoftLineBreak
+{}specific answers are more valuable than polished language.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Outcome}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem Who experiences the problem?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What behavior should become observably different?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What example demonstrates success?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What is explicitly outside this change?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Sources and system map}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem Which repository, branch, target, and device are involved?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Which files or symbols are likely entry points?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What specification, fixture, measurement, or operator statement is authoritative?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Which facts are hypotheses that the agent must confirm?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What recent known-good implementation should be compared?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Invariants and authority}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem What existing behavior must remain byte-compatible or user-compatible?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Which values, rates, sizes, lifetimes, and coordinate systems are bounded?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Who owns mutable state?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What may the AI read, edit, execute, or propose?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Which actions require approval?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Which actions are forbidden in this task?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Failure behavior}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem What happens when input disappears, tracking is lost, or a peer disconnects?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What happens when a value is malformed, nonfinite, stale, duplicated, or unsupported?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Can cancellation race with completion?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Can one optional subsystem block control or stop handling?\markdownRendererUlItemEnd 
+\markdownRendererUlItem Does restart preserve an emergency stop or accidentally clear it?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Acceptance evidence}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem What test must fail before the fix?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What focused test proves the new contract?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What regression suites and builds must pass?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What integration or simulator scenario must be observed?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What remains a physical-device test?\markdownRendererUlItemEnd 
+\markdownRendererUlItem What limitation must appear in the final report?\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Ready-to-use prompt}\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/181df8f7843da464184be164cacf0150.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Human sign-off}\markdownRendererInterblockSeparator
+{}Before shipping or energizing hardware, the responsible developer should be\markdownRendererSoftLineBreak
+{}able to say: I understand the intended behavior; I reviewed the authority and\markdownRendererSoftLineBreak
+{}failure boundaries; the cited evidence supports the claims; unresolved\markdownRendererSoftLineBreak
+{}physical facts are labeled; and a tested independent stop exists where motion\markdownRendererSoftLineBreak
+{}can affect people or equipment.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{23. Local intelligence on Apple silicon: Swift, MLX, and Llama}\markdownRendererInterblockSeparator
+{}Cerebro can now run a small language model directly on the Mac inside the\markdownRendererSoftLineBreak
+{}robot. This is not one product called “SwiftMLX.” The pieces have distinct\markdownRendererSoftLineBreak
+{}jobs:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Swift} is the programming language used by Cerebro's local-AI layer.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{MLX Swift} is the Swift interface to Apple's MLX array and machine-learning\markdownRendererSoftLineBreak
+{}framework for Apple silicon.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{MLXLLM} loads and runs text-generating large language models.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{Llama} is a family of language-model architectures and weights. It is a\markdownRendererSoftLineBreak
+{}model, not the runtime around it.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{llama.cpp} is a separate local runtime with an HTTP server. Cerebro can\markdownRendererSoftLineBreak
+{}use it as an alternative provider.\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererStrongEmphasis{MLXVLM} runs vision-language models. “VLM” means vision-language model;\markdownRendererSoftLineBreak
+{}this repository does not use a framework named VLX.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}That vocabulary matters. A model is the learned set of weights. A runtime\markdownRendererSoftLineBreak
+{}loads the weights and performs inference. A tokenizer turns text into numeric\markdownRendererSoftLineBreak
+{}tokens. A model container holds the loaded model and tokenizer. Application\markdownRendererSoftLineBreak
+{}code supplies a prompt, validates the result, and decides what the result is\markdownRendererSoftLineBreak
+{}allowed to influence.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{23.1 The actual Cerebro model stack}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{ROBMLXRuntime.swift} imports \markdownRendererCodeSpan{MLX}, \markdownRendererCodeSpan{MLXLLM}, \markdownRendererCodeSpan{MLXLMCommon}, \markdownRendererCodeSpan{MLXVLM}, and the\markdownRendererSoftLineBreak
+{}tokenizer and Hugging Face loaders. Its current defaults are:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/596b3bc8d63f14187000f731af2486bf.verbatim}{swift}{swift}\markdownRendererInterblockSeparator
+{}The suffix \markdownRendererCodeSpan{4bit} means the weights have been quantized to use fewer bits per\markdownRendererSoftLineBreak
+{}value. Quantization reduces memory and often makes local inference practical,\markdownRendererSoftLineBreak
+{}at the cost of some numerical precision. A one-billion-parameter model is not\markdownRendererSoftLineBreak
+{}small in the everyday sense, but it is deliberately modest for an embedded\markdownRendererSoftLineBreak
+{}stage assistant.\markdownRendererParagraphSeparator
+{}The engine is a Swift \markdownRendererCodeSpan{actor}:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/7792b5519e579079b825477f53ea1833.verbatim}{swift}{swift}\markdownRendererInterblockSeparator
+{}An actor serializes access to its mutable model state. That prevents two tasks\markdownRendererSoftLineBreak
+{}from racing while a model is loading or diagnostics are changing. \markdownRendererCodeSpan{async}\markdownRendererSoftLineBreak
+{}does not mean the robot waits helplessly: generation runs independently from\markdownRendererSoftLineBreak
+{}the deterministic motor-control path.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{23.2 Tokens, context, temperature, and hallucination}\markdownRendererInterblockSeparator
+{}A token is a model-sized piece of text, not necessarily a whole word. The\markdownRendererSoftLineBreak
+{}prompt and response both consume context. \markdownRendererCodeSpan{maxTokens} places an upper bound on\markdownRendererSoftLineBreak
+{}response growth. \markdownRendererCodeSpan{temperature} changes sampling: low values tend to be more\markdownRendererSoftLineBreak
+{}repeatable; higher values create more variation but can also create more\markdownRendererSoftLineBreak
+{}mistakes.\markdownRendererParagraphSeparator
+{}The model does not retrieve truth from its weights like a database. It predicts\markdownRendererSoftLineBreak
+{}likely next tokens. Fluent output can therefore be wrong. ROB never treats\markdownRendererSoftLineBreak
+{}local prose as a servo command. For the stage, the model returns a tiny JSON\markdownRendererSoftLineBreak
+{}plan, and deterministic code verifies its exact keys, enum values, length, and\markdownRendererSoftLineBreak
+{}prohibited control language.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{23.3 Llama through MLX versus llama.cpp}\markdownRendererInterblockSeparator
+{}Cerebro supports two local-provider paths:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/a680a24ba3d74fe3fd807b57b78ad574.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}MLX Swift keeps inference native and private inside Cerebro. The llama.cpp\markdownRendererSoftLineBreak
+{}path is useful when a builder already operates a compatible local server or\markdownRendererSoftLineBreak
+{}wants a model format supported by that ecosystem. They can run the same Llama\markdownRendererSoftLineBreak
+{}family, but they are not interchangeable APIs. In both cases the output must\markdownRendererSoftLineBreak
+{}pass \markdownRendererCodeSpan{ROBLocalImprovisationPlanCodec}; the provider does not gain hardware\markdownRendererSoftLineBreak
+{}authority merely because it runs locally.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Lab: trace one local sentence}\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}Open Cerebro's Stage Show window.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}Select \markdownRendererStrongEmphasis{MLX Swift (private/offline)} as the local provider.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}Run the provider health check before the audience arrives. The first run\markdownRendererSoftLineBreak
+{}may download model files and will be much slower than a warm run.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}Load \markdownRendererCodeSpan{MakerFaireOpening.robshow.json} and choose \markdownRendererStrongEmphasis{Local improv}.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}At \markdownRendererCodeSpan{model\markdownRendererUnderscore{}turn}, follow the data from scene goal, to Llama tokens, to the\markdownRendererSoftLineBreak
+{}decoded \markdownRendererCodeSpan{ROBLocalImprovisationPlan}, to \markdownRendererCodeSpan{ROBSpeechBox}.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}Disconnect the network and repeat. An already downloaded model should\markdownRendererSoftLineBreak
+{}remain local; the authored fallback still protects a failed generation.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}Record model-load time, generation time, tokens per second, peak memory, the\markdownRendererSoftLineBreak
+{}validated output, and whether fallback was used. Performance is part of the\markdownRendererSoftLineBreak
+{}lesson, but predictable failure is the more important result.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{24. Giving a language model eyes with MLXVLM}\markdownRendererInterblockSeparator
+{}A text-only Llama model receives text. It cannot inspect a camera frame merely\markdownRendererSoftLineBreak
+{}because the prompt says “look.” Cerebro's \markdownRendererCodeSpan{MLXVLM} path supplies both a prompt\markdownRendererSoftLineBreak
+{}and a selected \markdownRendererCodeSpan{CIImage} to a vision-language model:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/87e2dc07e45a90ce16277163b0972900.verbatim}{swift}{swift}\markdownRendererInterblockSeparator
+{}The current Qwen2-VL model is asked for a deliberately narrow stage\markdownRendererSoftLineBreak
+{}observation: whether an audience is present, an estimated person count,\markdownRendererSoftLineBreak
+{}whether the presenter and demonstration object are visible, an audience\markdownRendererSoftLineBreak
+{}activity category, one short scene-change sentence, and confidence.\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/76f036af2968af19a3c27a366d826754.verbatim}{json}{json}\markdownRendererInterblockSeparator
+{}\markdownRendererCodeSpan{ROBMLXStageObservationCodec} rejects extra keys, wrong types, counts outside\markdownRendererSoftLineBreak
+{}zero through fifty, inconsistent audience values, nonfinite confidence, and\markdownRendererSoftLineBreak
+{}multiline scene changes. A valid observation is still an uncertain fact. It is\markdownRendererSoftLineBreak
+{}not an instruction.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{24.1 Sampling protects the camera and controls}\markdownRendererInterblockSeparator
+{}Analyzing every frame would waste memory and compute and could interfere with\markdownRendererSoftLineBreak
+{}video delivery. Cerebro accepts at most one selected frame per bounded interval,\markdownRendererSoftLineBreak
+{}with a minimum of three seconds, and runs VLM work on the MLX actor. The camera\markdownRendererSoftLineBreak
+{}capture callback returns immediately. This creates two clocks:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/ed85ca82cd7aa9fffb548f0895653e00.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}The slow clock may help ROB say, “I see the audience gathering.” It must not\markdownRendererSoftLineBreak
+{}become a hidden motion loop. Navigation should continue to use measured lidar,\markdownRendererSoftLineBreak
+{}validated free-space geometry, explicit autonomy policy, and stop behavior.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{24.2 Confidence is a gate, not decoration}\markdownRendererInterblockSeparator
+{}Cerebro includes stage observations only when they are fresh and meet the\markdownRendererSoftLineBreak
+{}configured confidence threshold. If the fact is old or weak, the dialogue\markdownRendererSoftLineBreak
+{}prompt says that no reliable camera fact is available. This avoids turning an\markdownRendererSoftLineBreak
+{}uncertain guess into a confident claim about a person.\markdownRendererParagraphSeparator
+{}Do not infer identity, emotion, disability, ethnicity, or other sensitive\markdownRendererSoftLineBreak
+{}traits from a Maker Faire camera. The stage schema asks only for coarse,\markdownRendererSoftLineBreak
+{}performance-relevant facts and must never identify an individual child.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Lab: make the vision result fail safely}\markdownRendererInterblockSeparator
+{}Test five frames: an empty stage, one presenter, a small audience, a partially\markdownRendererSoftLineBreak
+{}covered camera, and a deliberately ambiguous scene. For each frame:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}Save only the validated observation and latency, not unnecessary audience\markdownRendererSoftLineBreak
+{}imagery.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}Compare the estimate with a human count.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}Confirm malformed JSON is rejected.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}Confirm a low-confidence observation does not enter the stage prompt.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}Confirm disabling vision does not interrupt speech, stop handling, or\markdownRendererSoftLineBreak
+{}manual robot control.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{25. Implementing model-safe show logic}\markdownRendererInterblockSeparator
+{}Stage-show files are data, not programs. They may contain dialogue, timing,\markdownRendererSoftLineBreak
+{}named gestures, checkpoints, and model scene goals. They may not contain raw\markdownRendererSoftLineBreak
+{}joint values, servo positions, hosts, ports, or shell commands.\markdownRendererParagraphSeparator
+{}New shows should use the provider-neutral \markdownRendererCodeSpan{model\markdownRendererUnderscore{}turn} cue:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/163969e6263351aa5f20a4a33cfdb47a.verbatim}{json}{json}\markdownRendererInterblockSeparator
+{}Older \markdownRendererCodeSpan{gemini\markdownRendererUnderscore{}turn} cues remain valid for compatibility. Both enter the same\markdownRendererSoftLineBreak
+{}coordinator. The name \markdownRendererCodeSpan{model\markdownRendererUnderscore{}turn} better describes the actual policy:\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/5a0ac7e988d608b93865a85c1b70a8c9.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}The local model is constrained to a five-field dialogue plan: schema, version,\markdownRendererSoftLineBreak
+{}beat, delivery, and \markdownRendererCodeSpan{offline\markdownRendererUnderscore{}line}. It cannot return a gesture name or a tool\markdownRendererSoftLineBreak
+{}call. Gesture cues remain separately authored and resolved through a named,\markdownRendererSoftLineBreak
+{}allowlisted action. This separation is the core implementation lesson: AI can\markdownRendererSoftLineBreak
+{}shape performance language without inheriting control of the machine.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{25.1 How to add a safe model cue}\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}Write a narrow scene goal describing the desired spoken result.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}Explicitly forbid physical actions and unsupported factual claims.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}Author a complete fallback sentence that works with no model and no network.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}Give the cue a short deadline. A show should advance or fall back rather\markdownRendererSoftLineBreak
+{}than wait indefinitely.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}Validate the entire show before rehearsal.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}Rehearse in \markdownRendererStrongEmphasis{Dry run}, then \markdownRendererStrongEmphasis{Speech only}, then \markdownRendererStrongEmphasis{Local improv}.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{7}Use \markdownRendererStrongEmphasis{Adaptive} only after both the local provider and cloud path have\markdownRendererSoftLineBreak
+{}passed preflight.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{25.2 A show is a state machine}\markdownRendererInterblockSeparator
+{}At any moment the coordinator awaits exactly one event: speech completion,\markdownRendererSoftLineBreak
+{}local generation, Gemini, a named gesture, a checkpoint, or a timer. Stop\markdownRendererSoftLineBreak
+{}cancels pending model requests and timers. Each asynchronous completion carries\markdownRendererSoftLineBreak
+{}an identifier so a late response cannot complete a newer cue. This pattern is\markdownRendererSoftLineBreak
+{}useful far beyond theater: give every delayed operation an identity, deadline,\markdownRendererSoftLineBreak
+{}cancel path, and deterministic fallback.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Rehearsal checklist}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem The physical E-stop is reachable and independently tested.\markdownRendererUlItemEnd 
+\markdownRendererUlItem The stage is clear before any gesture cue.\markdownRendererUlItemEnd 
+\markdownRendererUlItem The model and VLM are downloaded before relying on offline operation.\markdownRendererUlItemEnd 
+\markdownRendererUlItem The local provider health check and generated-plan preflight pass.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Every \markdownRendererCodeSpan{model\markdownRendererUnderscore{}turn} has acceptable authored fallback text.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Camera confidence is visible to the operator.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Dry-run logs show no unknown fields, late completions, or unbounded waits.\markdownRendererUlItemEnd 
+\markdownRendererUlItem Speech-only mode can complete the entire show without AI.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{26. Vision Pro as ROB's voice and spatial control desk}\markdownRendererInterblockSeparator
+{}ROBControllerVision now adds a \markdownRendererStrongEmphasis{Voice \markdownRendererAmpersand{} Puppet Speech} panel beside the\markdownRendererSoftLineBreak
+{}camera and telemetry controls. It supports two intentionally different\markdownRendererSoftLineBreak
+{}meanings for the same recognized sentence.\markdownRendererParagraphSeparator
+{}\markdownRendererStrongEmphasis{Command} sends the finalized phrase to Cerebro's normal \markdownRendererCodeSpan{inputText:} path.\markdownRendererSoftLineBreak
+{}ROB interprets it just as if the operator typed into Cerebro. Existing local\markdownRendererSoftLineBreak
+{}handling—such as stop-oriented text—and the configured AI path remain in one\markdownRendererSoftLineBreak
+{}place.\markdownRendererParagraphSeparator
+{}\markdownRendererStrongEmphasis{ROB Says It} sends the phrase to \markdownRendererCodeSpan{ROBSpeechBox} verbatim. It does not ask a\markdownRendererSoftLineBreak
+{}language model to interpret the sentence. This is puppet speech: the human is\markdownRendererSoftLineBreak
+{}performing ROB's voice.\markdownRendererInterblockSeparator
+{}\markdownRendererInputFencedCode{/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-with-codex/b194a9162caec045518a7f47f9174ac7.verbatim}{text}{text}\markdownRendererInterblockSeparator
+{}The controller requests microphone and speech-recognition permission, displays\markdownRendererSoftLineBreak
+{}partial recognition locally, and automatically sends the final phrase in the\markdownRendererSoftLineBreak
+{}selected mode. The operator can edit or type text and use \markdownRendererStrongEmphasis{Send as Input} or\markdownRendererSoftLineBreak
+{}\markdownRendererStrongEmphasis{ROB Says It} manually. Cerebro verifies the version, sender, mode, length,\markdownRendererSoftLineBreak
+{}and control characters before dispatching on its main queue.\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{26.1 Demonstrating the new controls}\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}Start Cerebro, then connect ROBControllerVision until its status is green.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}In \markdownRendererStrongEmphasis{Voice \markdownRendererAmpersand{} Puppet Speech}, select \markdownRendererStrongEmphasis{ROB Says It}.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}Tap \markdownRendererStrongEmphasis{Dictate}, say “Welcome to the robot workshop,” and pause. Confirm ROB\markdownRendererSoftLineBreak
+{}says exactly that sentence.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}Select \markdownRendererStrongEmphasis{Command}, dictate a harmless informational request, and compare it\markdownRendererSoftLineBreak
+{}with the same phrase entered through Cerebro's text field.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}Disconnect and verify the buttons cannot send across a nonexistent session.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}Deny microphone permission and verify typed text still works.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}The voice feature does not arm motion, grant motion authority, or bypass the\markdownRendererSoftLineBreak
+{}physical emergency stop. Never present a spoken phrase as a replacement for a\markdownRendererSoftLineBreak
+{}dead-man control.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{26.2 The rest of the spatial control path}\markdownRendererInterblockSeparator
+{}The Vision Pro interface also makes previously invisible robot state easier to\markdownRendererSoftLineBreak
+{}teach:\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem the main camera is the large center view;\markdownRendererUlItemEnd 
+\markdownRendererUlItem side panels keep connection, voice, telemetry, and controls visible without\markdownRendererSoftLineBreak
+{}vertical scrolling;\markdownRendererUlItemEnd 
+\markdownRendererUlItem head orientation can drive the robot camera/neck while the required\markdownRendererSoftLineBreak
+{}dead-man control is active;\markdownRendererUlItemEnd 
+\markdownRendererUlItem torso rotation follows the bounded head-turn control path when enabled;\markdownRendererUlItemEnd 
+\markdownRendererUlItem controller triggers are reserved for the left and right grippers;\markdownRendererUlItemEnd 
+\markdownRendererUlItem controller pose and head commands are reflected in the SceneKit view for\markdownRendererSoftLineBreak
+{}debugging;\markdownRendererUlItemEnd 
+\markdownRendererUlItem transport remains paired and authenticated, and stale motion converges to\markdownRendererSoftLineBreak
+{}neutral.\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}These features demonstrate an important design distinction. Spatial input is\markdownRendererSoftLineBreak
+{}continuous and safety-leased. Voice input is discrete text. Puppet speech is\markdownRendererSoftLineBreak
+{}performance output. They may share one headset and one network connection, but\markdownRendererSoftLineBreak
+{}they should not share ambiguous authority.\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Build exercise: add a third text mode without adding authority}\markdownRendererInterblockSeparator
+{}Imagine a \markdownRendererCodeSpan{captionOnly} mode that displays a sentence on ROB's screen but does\markdownRendererSoftLineBreak
+{}not speak or interpret it. Implement it on paper first:\markdownRendererInterblockSeparator
+{}\markdownRendererOlBegin
+\markdownRendererOlItemWithNumber{1}Add a new enum value to the shared command schema.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{2}Preserve a strict maximum length and reject control characters.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{3}Add an explicit Cerebro receiver branch.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{4}Route only to a caption view—never to \markdownRendererCodeSpan{inputText:}, speech, or motion.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{5}Add encode/decode and legacy-payload tests.\markdownRendererOlItemEnd 
+\markdownRendererOlItemWithNumber{6}Build both applications and test an older peer's behavior.\markdownRendererOlItemEnd 
+\markdownRendererOlEnd \markdownRendererInterblockSeparator
+{}This exercise teaches the safest way to grow a robot protocol: make meaning\markdownRendererSoftLineBreak
+{}explicit, keep authority narrow, validate on both ends, and prove the fallback.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Epilogue: authorship after acceleration}\markdownRendererInterblockSeparator
+{}The early repositories preserve the voice of one person working from several\markdownRendererSoftLineBreak
+{}machines: informal, immediate, hardware-aware, and willing to checkpoint an\markdownRendererSoftLineBreak
+{}uncertain experiment. The newer code does not erase that voice. It gives it\markdownRendererSoftLineBreak
+{}leverage.\markdownRendererParagraphSeparator
+{}The mature system is better not merely because it contains more code. It has\markdownRendererSoftLineBreak
+{}contracts where there were assumptions, bounded queues where there could be\markdownRendererSoftLineBreak
+{}backlogs, explicit authority where there was trust, tests where there was only\markdownRendererSoftLineBreak
+{}memory, and documentation where knowledge once lived in the workshop.\markdownRendererParagraphSeparator
+{}That is the best use of Codex in robotics. Let AI search widely, trace deeply,\markdownRendererSoftLineBreak
+{}draft quickly, compare both sides of a protocol, and remember every edge case\markdownRendererSoftLineBreak
+{}you name. Keep the human responsible for scope, evidence, physical validation,\markdownRendererSoftLineBreak
+{}and the decision to energize the machine.\markdownRendererInterblockSeparator
+{}\markdownRendererThematicBreak{}\markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingTwo{Sources and further reading}\markdownRendererInterblockSeparator
+{}\markdownRendererSectionBegin
+\markdownRendererHeadingThree{Repository sources}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem \markdownRendererCodeSpan{ROBController} Git history through \markdownRendererCodeSpan{eb57375}, August 10, 2026\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro} Git history through \markdownRendererCodeSpan{d45f9c9}, August 10, 2026\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ROBController/docs/rob-control-v2-and-autonomy.md}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ROBController/docs/robot-action-console.md}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ROBController/docs/watch-controller.md}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro/docs/rob-control-v2.md}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro/docs/controller-activated-autonomy.md}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro/docs/depth-camera.md}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro/docs/vision-pro-video.md}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro/docs/gemini-robotics-live.md}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro/docs/gemini-robotics-stage-action-plan.md}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro/docs/local-improvisation-provider.md}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro/Cerebro/ROBMLXRuntime.swift}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro/Cerebro/ROBMLXImprovisationProvider.swift}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro/Cerebro/ROBMLXStageObservation.swift}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro/Cerebro/ROBStageShowCoordinator.swift}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{Cerebro/Cerebro/ROBStageShowProtocol.swift}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ROBControllerVision/ROBControllerVision/Platform/VisionSpeechInput.swift}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererCodeSpan{ROBControllerVision/ROBControllerVision/Features/Control/OperatorSpeechPanel.swift}\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}
+\markdownRendererSectionEnd \markdownRendererSectionBegin
+\markdownRendererHeadingThree{Official OpenAI documentation}\markdownRendererInterblockSeparator
+{}\markdownRendererUlBegin
+\markdownRendererUlItem \markdownRendererLink{Prompting for ChatGPT and Codex}{https://learn.chatgpt.com/docs/prompting}{https://learn.chatgpt.com/docs/prompting}{}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererLink{Codex use cases}{https://developers.openai.com/codex/use-cases}{https://developers.openai.com/codex/use-cases}{}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererLink{OpenAI model guidance}{https://developers.openai.com/api/docs/guides/latest-model}{https://developers.openai.com/api/docs/guides/latest-model}{}\markdownRendererUlItemEnd 
+\markdownRendererUlItem \markdownRendererLink{OpenAI API models}{https://developers.openai.com/api/docs/models}{https://developers.openai.com/api/docs/models}{}\markdownRendererUlItemEnd 
+\markdownRendererUlEnd \markdownRendererInterblockSeparator
+{}Consult the current official documentation when implementing; models,\markdownRendererSoftLineBreak
+{}capabilities, availability, and SDK shapes can change after this edition.
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd 
+\markdownRendererSectionEnd \markdownRendererDocumentEnd

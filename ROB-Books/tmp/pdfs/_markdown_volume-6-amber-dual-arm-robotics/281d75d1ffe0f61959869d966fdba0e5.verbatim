@@ -1,0 +1,5 @@
+Hub_CAN_Name: can11
+LCM Prefix: Right_
+URDF_Path: ./urdf/dual_b1/DualArm.urdf
+EEF_Name: Rseven_Link
+UDP_Port: 26002

@@ -30,7 +30,7 @@ and company names remain the property of their respective owners.
 
 First evidence-based draft: 2 August 2026. Build details marked Builder input needed are deliberate placeholders
 for the builder to complete.
-CIRCUITS AND SIGNALS                                                                              VOLUME 2 - AGES 10-14
+CIRCUITS AND SIGNALS                                                                               VOLUME 2 - AGES 10-14
 
 
 
@@ -41,6 +41,7 @@ The Building R.O.B. library
   VOLUME 4                Mission Control: Arduino, Mac, Networks, and Vision - ages 12-16
   VOLUME 5                AI, Robotics, and Codex: Directing, Verifying, and Owning AI-Built Systems - advanced
                           makers
+  VOLUME 6                Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu - advanced makers
   MANUAL                  Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
 
 
@@ -57,6 +58,15 @@ The Building R.O.B. library
    tired historical evidence. Source files cannot prove which binary is flashed today; record the board
    identity, firmware hash, build environment, and upload date before operation.
 
+   TWO AMBER B1 ARMS, ONE DOCUMENTED CONTROL CHAIN
+
+   ROB carries two seven-joint AMBER B1 arms. The repository snapshot separates their Ubuntu-side
+   cores as L-10 and R-11: network clients use UDP or LCM, each core binds a stable CAN interface, and
+   CAN carries commands and feedback between that core and its arm actuators. The AmberHomeFolder
+   tree is evidence from one Ubuntu machine, not a deployable image; never copy its credentials, logs,
+   virtual environment, or machine-specific identifiers. Volume 6 documents the inspected protocol,
+   URDF models, reproducible setup, verification gates, and unresolved configuration differences.
+
     ELECTRICAL LAB BOUNDARY
 
     For learner activities, use only an approved low-voltage classroom supply or the USB-powered Ar-
@@ -67,7 +77,7 @@ The Building R.O.B. library
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   3 / 25
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 25
 Contents
 1 Trace the energy path                    2
 

@@ -34,6 +34,7 @@ ROB combines large batteries, high-current brushless motors, chains, treads, fli
 \end{safetybox}
 
 \ROBArduinoStatus
+\ROBAmberStatus
 
 \section*{Source snapshot and publication cautions}
 
@@ -617,7 +618,11 @@ Record axis direction, handedness, units, timestamp, calibration method, uncerta
 
 \section{Servo and arm control}
 
-Cerebro uses Maestro servo channels plus optional Amber Python/SSH paths. A final arm-control chapter needs joint-by-joint calibration, not only button names. For each axis record commanded unit, zero reference, direction, soft and hard limits, feedback, maximum rate, acceleration, current/torque limit, collision envelope, and safe behavior after link loss.
+Cerebro uses Maestro servo channels plus AMBER Python paths. ROB's present AMBER evidence describes two seven-joint B1 arms and separate grippers. The Ubuntu-side directories \texttt{L-10} and \texttt{R-11} bind \texttt{can10}/\texttt{can11}, UDP ports 26001/26002, and LCM prefixes \texttt{Left\_}/\texttt{Right\_}. Network clients send UDP or LCM to one core per side; each core, not the client, interfaces with its actuators over CAN.
+
+The checked-in V2 protocol provides status, joint and Cartesian moves, calibration, gripper control, and mode control. Its packed UDP header contains a 16-bit command, 16-bit length, and 32-bit counter. The current client needs stronger validation of source, size, command, counter, freshness, finite values, and authentication before production use. Archived binaries do not include enough source to reconstruct their actuator-level CAN protocol.
+
+URDF models provide link geometry, joint origins, axes, and limits, but they do not prove ROB's physical mount transforms, encoder zero, payload, safe stopping, or cable collision volume. Measure torso-to-left-base, torso-to-right-base, and each tool transform; then verify forward kinematics over several supported poses before inverse kinematics. Volume 6 contains the protocol tables, joint model, Ubuntu reproduction procedure, and staged dual-arm commissioning gates.
 
 \section{Keyframe animation}
 
@@ -896,6 +901,10 @@ Presentation/ROB\_v3.pdf & 95-page historical build and design deck; slides date
 ROBArduino/ROBOT\_CEREBELLULAR\_BASE\_APP/...ino & Present Base-role reference: pin map, parser, treads, flipper, actuator, IR, IMU, heartbeat.\\
 ROBArduino/ROBOT\_CEREBELLULAR\_TORSO\_APP/...ino & Retired Torso-role history: Maestro head/arm targets, IMU, and disabled GPS/timeout behavior.\\
 ROBArduino/ROBOT\_CEREBELLULAR\_HEAD\_APP/...ino & Retired Head-role history: IMU/PIR experiment, disabled GPS path, incomplete copied parser.\\
+AmberHomeFolder/amber/L-10 and R-11 & Captured Ubuntu runtime evidence for the two AMBER cores; launch configuration binds left/right CAN interfaces, LCM prefixes, UDP ports, solvers, and URDFs. Treat the broader home snapshot as private forensic material, not a deployable image.\\
+AmberHomeFolder/amber/sin\_wave/rawLcm & Source definitions for joint targets, arm feedback, Cartesian tasks, plans, solver responses, and gripper control.\\
+Amber URDF/amber\_b1.urdf & Independent seven-joint single-arm geometry and model limits; requires measured ROB mounting and tool transforms.\\
+Cerebro/Amber-PythonAPI/Amber V2 API & Packed UDP reference client for status, motion, mode, calibration, and gripper commands; requires protocol hardening before production authority.\\
 ROBOT Build/Hengdrive*.pdf & Restricted files; contents excluded pending publication clearance.\\
 ROBOT Build/B-COMMAND*.pdf & Restricted file; contents excluded and associated installation unproven.\\
 ORobotics/media/gallery-originals & Private high-resolution construction and event photographs; strip metadata and review releases.\\

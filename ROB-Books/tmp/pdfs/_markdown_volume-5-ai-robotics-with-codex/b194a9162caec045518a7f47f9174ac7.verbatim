@@ -1,0 +1,7 @@
+Vision Pro microphone
+  -> Speech framework partial transcript
+  -> editable text field
+  -> final transcript + selected mode
+  -> authenticated ROBOperatorTextV1 message
+       +-- command -------> Cerebro inputText:
+       +-- puppetSpeech --> ROBSpeechBox sayIt:

@@ -1,0 +1,13 @@
+host name and Ubuntu release:
+machine architecture:
+kernel:
+AMBER core source/provenance:
+left core SHA-256:
+right core SHA-256:
+left launch SHA-256:
+right launch SHA-256:
+URDF SHA-256:
+Python API SHA-256:
+CAN adapter label -> stable interface:
+tested hardware revision:
+operator and date:

@@ -1,0 +1,52 @@
+\documentclass[11pt,openany]{book}
+\usepackage{robbook}
+\usepackage[
+  contentBlocks,
+  fencedCode,
+  pipeTables,
+  relativeReferences,
+  smartEllipses,
+  tableCaptions,
+  taskLists,
+  texMathDollars,
+  tightLists=false
+]{markdown}
+
+\SetROBAccent{ROBAmber}
+\SetROBVolume{VOLUME 6 - ADVANCED MAKERS}{DUAL-ARM ROBOTICS}
+\SetROBChapterPrefix{Chapter}
+\lstdefinelanguage{text}{}
+\lstdefinelanguage{json}{}
+
+\hypersetup{
+  pdftitle={Building R.O.B. Volume 6: Dual-Arm Robotics},
+  pdfauthor={Rodolfo Aramayo / Orbitus Robotics},
+  pdfsubject={AMBER B1 arms, URDF, CAN, UDP, LCM, and reproducible Ubuntu integration},
+  pdfkeywords={robotics, AMBER B1, URDF, CAN bus, Ubuntu, LCM, dual arm}
+}
+
+\begin{document}
+
+\ROBTitle{Building R.O.B. - Volume 6}{DUAL-ARM ROBOTICS}{AMBER B1, URDF, CAN, UDP, LCM, and Ubuntu}{An evidence-based integration and commissioning guide}{2025-detached-articulated-arm.jpg}
+
+\ROBFrontMatter{A model is not a safety certificate}{Understand every frame before commanding motion.}{%
+This volume documents the two AMBER B1 arms from the checked-in Ubuntu snapshot, Python API, launch configuration, and robot-description files. It distinguishes directly observed formats from assumptions, identifies contradictions that must be resolved on the real machine, and begins every commissioning path with power removed or motion disabled.
+
+The archived core executables are binaries, not complete source. This book can reproduce the observed runtime envelope, configuration, and client protocol; it cannot prove how the proprietary core implements every CAN transaction or rebuild those executables from source.
+}
+
+\begin{safetybox}[title={POWERED ARMS CREATE CRUSH, PINCH, AND IMPACT HAZARDS}]
+Use a qualified adult lead, a verified independent emergency stop, current and speed limits, physical clearance, controlled power, and a spotter. Perform discovery and status tests before enabling torque. Never stand inside either arm's swept volume, and never infer a safe limit from a URDF or example script.
+\end{safetybox}
+
+\ROBSeriesMap{Read Chapters 1--8 at a desk first. Build the manifest and run the read-only checks in Chapters 9--11 on the Ubuntu box. Only a responsible operator may authorize the staged motion tests.}
+\ROBArduinoStatus
+\ROBAmberStatus
+
+\tableofcontents
+\clearpage
+\mainmatter
+
+\markdownInput{volume-6-amber-dual-arm-robotics.md}
+
+\end{document}

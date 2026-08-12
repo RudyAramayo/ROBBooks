@@ -1,0 +1,7 @@
+{
+  "id": "live-joke",
+  "kind": "model_turn",
+  "duration_seconds": 15,
+  "text": "Deliver one family-friendly robot joke. Do not request motion.",
+  "fallback_text": "My local joke generator is taking a dramatic pause."
+}

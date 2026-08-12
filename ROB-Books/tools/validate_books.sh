@@ -21,6 +21,7 @@ books=(
   volume-3-motion-workshop
   volume-4-mission-control
   volume-5-ai-robotics-with-codex
+  volume-6-amber-dual-arm-robotics
   complete-builders-field-manual
 )
 
@@ -87,9 +88,9 @@ for book_name in "${books[@]}"; do
     fi
   done
 
-  if [[ "$book_name" == "volume-5-ai-robotics-with-codex" ]] \
-      && [[ "$source_dir/volume-5-ai-robotics-with-codex.md" -nt "$pdf_path" ]]; then
-    echo "ERROR: PDF is stale; Markdown manuscript is newer: $source_dir/volume-5-ai-robotics-with-codex.md"
+  markdown_path="$source_dir/$book_name.md"
+  if [[ -f "$markdown_path" && "$markdown_path" -nt "$pdf_path" ]]; then
+    echo "ERROR: PDF is stale; Markdown manuscript is newer: $markdown_path"
     failure=1
   fi
 

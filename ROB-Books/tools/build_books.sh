@@ -20,6 +20,7 @@ books=(
   volume-3-motion-workshop.tex
   volume-4-mission-control.tex
   volume-5-ai-robotics-with-codex.tex
+  volume-6-amber-dual-arm-robotics.tex
   complete-builders-field-manual.tex
 )
 
@@ -27,9 +28,10 @@ cd "$source_dir"
 
 for book_source in "${books[@]}"; do
   latex_options=(-g -xelatex -interaction=nonstopmode -halt-on-error -file-line-error)
-  # The Markdown package invokes its bundled local converter for Volume 5.
+  # The Markdown package invokes its bundled local converter for Volumes 5 and 6.
   # Keep shell escape disabled for the hand-authored TeX books.
-  if [[ "$book_source" == "volume-5-ai-robotics-with-codex.tex" ]]; then
+  if [[ "$book_source" == "volume-5-ai-robotics-with-codex.tex" \
+      || "$book_source" == "volume-6-amber-dual-arm-robotics.tex" ]]; then
     latex_options+=(-shell-escape)
   fi
   latexmk "${latex_options[@]}" \

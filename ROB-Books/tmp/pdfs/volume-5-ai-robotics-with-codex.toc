@@ -89,7 +89,24 @@
 \contentsline {subsection}{\numberline {1.24.5}Acceptance evidence}{23}{subsection.1.24.5}%
 \contentsline {subsection}{\numberline {1.24.6}Ready-to-use prompt}{23}{subsection.1.24.6}%
 \contentsline {subsection}{\numberline {1.24.7}Human sign-off}{23}{subsection.1.24.7}%
-\contentsline {section}{\numberline {1.25}Epilogue: authorship after acceleration}{23}{section.1.25}%
-\contentsline {section}{\numberline {1.26}Sources and further reading}{24}{section.1.26}%
-\contentsline {subsection}{\numberline {1.26.1}Repository sources}{24}{subsection.1.26.1}%
-\contentsline {subsection}{\numberline {1.26.2}Official OpenAI documentation}{24}{subsection.1.26.2}%
+\contentsline {section}{\numberline {1.25}23. Local intelligence on Apple silicon: Swift, MLX, and Llama}{23}{section.1.25}%
+\contentsline {subsection}{\numberline {1.25.1}23.1 The actual Cerebro model stack}{24}{subsection.1.25.1}%
+\contentsline {subsection}{\numberline {1.25.2}23.2 Tokens, context, temperature, and hallucination}{24}{subsection.1.25.2}%
+\contentsline {subsection}{\numberline {1.25.3}23.3 Llama through MLX versus llama.cpp}{25}{subsection.1.25.3}%
+\contentsline {subsection}{\numberline {1.25.4}Lab: trace one local sentence}{25}{subsection.1.25.4}%
+\contentsline {section}{\numberline {1.26}24. Giving a language model eyes with MLXVLM}{25}{section.1.26}%
+\contentsline {subsection}{\numberline {1.26.1}24.1 Sampling protects the camera and controls}{26}{subsection.1.26.1}%
+\contentsline {subsection}{\numberline {1.26.2}24.2 Confidence is a gate, not decoration}{26}{subsection.1.26.2}%
+\contentsline {subsection}{\numberline {1.26.3}Lab: make the vision result fail safely}{26}{subsection.1.26.3}%
+\contentsline {section}{\numberline {1.27}25. Implementing model-safe show logic}{27}{section.1.27}%
+\contentsline {subsection}{\numberline {1.27.1}25.1 How to add a safe model cue}{27}{subsection.1.27.1}%
+\contentsline {subsection}{\numberline {1.27.2}25.2 A show is a state machine}{27}{subsection.1.27.2}%
+\contentsline {subsection}{\numberline {1.27.3}Rehearsal checklist}{28}{subsection.1.27.3}%
+\contentsline {section}{\numberline {1.28}26. Vision Pro as ROB's voice and spatial control desk}{28}{section.1.28}%
+\contentsline {subsection}{\numberline {1.28.1}26.1 Demonstrating the new controls}{28}{subsection.1.28.1}%
+\contentsline {subsection}{\numberline {1.28.2}26.2 The rest of the spatial control path}{29}{subsection.1.28.2}%
+\contentsline {subsection}{\numberline {1.28.3}Build exercise: add a third text mode without adding authority}{29}{subsection.1.28.3}%
+\contentsline {section}{\numberline {1.29}Epilogue: authorship after acceleration}{29}{section.1.29}%
+\contentsline {section}{\numberline {1.30}Sources and further reading}{30}{section.1.30}%
+\contentsline {subsection}{\numberline {1.30.1}Repository sources}{30}{subsection.1.30.1}%
+\contentsline {subsection}{\numberline {1.30.2}Official OpenAI documentation}{30}{subsection.1.30.2}%

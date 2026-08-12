@@ -2,7 +2,7 @@
 
 This folder contains the editable sources, selected print-safe photographs, and PDF layout proofs for a picture-heavy ROB learning series. The set follows one real robot from early prototypes through mechanics, circuits, firmware, macOS software, controllers, sensing, autonomy, and public operation.
 
-## The six books
+## The seven books
 
 | Book | Audience | Pages | Main idea | PDF |
 |---|---|---:|---|---|
@@ -10,8 +10,9 @@ This folder contains the editable sources, selected print-safe photographs, and 
 | Volume 2 — *Circuits & Signals* | Ages 10–14 | 29 | Circuits, a supervised USB-to-5 V toy lab, digital/analog/PWM signals, Arduino pins, serial messages, sensors, and watchdogs | [`output/pdf/volume-2-circuits-and-signals.pdf`](output/pdf/volume-2-circuits-and-signals.pdf) |
 | Volume 3 — *Motion Workshop* | Ages 10–15 | 32 | Loads, differential drive, gearing, actuators, materials, fabrication, assembly, and testing | [`output/pdf/volume-3-motion-workshop.pdf`](output/pdf/volume-3-motion-workshop.pdf) |
 | Volume 4 — *Mission Control* | Ages 12–16 | 30 | Mac/Arduino responsibilities, state, secure controllers, camera/depth/lidar data, AI boundaries, and simulation | [`output/pdf/volume-4-mission-control.pdf`](output/pdf/volume-4-mission-control.pdf) |
-| Volume 5 — *AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro* | Advanced makers and software builders | 30 | Source-based software history and a practical guide to directing, testing, and owning AI-built systems while preserving robot safety and human responsibility | [`output/pdf/volume-5-ai-robotics-with-codex.pdf`](output/pdf/volume-5-ai-robotics-with-codex.pdf) |
-| *Complete Builder's Field Manual* | Advanced makers and mentors | 67 | Evidence-based full-build record, architecture, fabrication, power, firmware, software, verification, show operations, maintenance, and worksheets | [`output/pdf/complete-builders-field-manual.pdf`](output/pdf/complete-builders-field-manual.pdf) |
+| Volume 5 — *AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro* | Advanced makers and software builders | 39 | Source-based software history plus practical Swift/MLX, Llama, MLXVLM, model-safe stage-show, and Vision Pro lessons that preserve robot safety and human responsibility | [`output/pdf/volume-5-ai-robotics-with-codex.pdf`](output/pdf/volume-5-ai-robotics-with-codex.pdf) |
+| Volume 6 — *Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu* | Advanced makers and robot integrators | 26 | Two seven-joint AMBER arms, URDF and frame calibration, stable CAN identity, UDP/LCM protocols, clean Ubuntu reproduction, diagnostics, and staged commissioning | [`output/pdf/volume-6-amber-dual-arm-robotics.pdf`](output/pdf/volume-6-amber-dual-arm-robotics.pdf) |
+| *Complete Builder's Field Manual* | Advanced makers and mentors | 68 | Evidence-based full-build record, architecture, fabrication, power, firmware, software, verification, show operations, maintenance, and worksheets | [`output/pdf/complete-builders-field-manual.pdf`](output/pdf/complete-builders-field-manual.pdf) |
 
 Volume 5's factual commit-by-commit appendix is maintained separately as the
 [`Volume 5 Change Atlas`](source/volume-5-change-atlas.md). The manuscript was
@@ -46,6 +47,9 @@ Facts supported by the inspected archive are separated from proposals, historica
 - `../Cerebro/` — central macOS application and its current experimental branches.
 - `../ROBController/` — iPhone and Watch control paths.
 - `../ROBControllerVision/` — Vision Pro controller and simulator.
+- `../AmberHomeFolder/` — captured Ubuntu AMBER runtime evidence: separate left/right cores, launch configuration, CAN initialization, LCM schemas, URDFs, and historical install scripts. It is not a deployable image; credentials, histories, logs, caches, virtual environments, and machine identifiers are excluded from publication instructions.
+- `../Amber URDF/amber_b1.urdf` — independent seven-joint AMBER B1 robot description used to cross-check geometry and model limits.
+- `../Cerebro/Amber-PythonAPI/` — V1 examples and the V2 packed-UDP client used to document the observed network protocol.
 - `../M2M1-RPLIDAR-iOS-MacOS-Catalyst-/` — lidar telemetry implementation and fixtures.
 
 The exact inspection snapshot is recorded in [`SOURCE_SNAPSHOT.md`](SOURCE_SNAPSHOT.md). Restricted vendor PDFs were not reproduced or paraphrased for publication; only visible component identity is mentioned, with a request for authorized public documentation.
@@ -59,7 +63,7 @@ ROB-Books/
 ├── assets/slides/          selected presentation-page images
 ├── assets/generated/       original illustrative artwork, not engineering evidence
 ├── tools/                  asset, build, validation, preview, and learning tools
-├── output/pdf/             the six printable PDF layout proofs
+├── output/pdf/             the seven printable PDF layout proofs
 ├── output/previews/        contact sheets for quick visual review
 └── tmp/                    generated build files and excluded private-review images
 ```
