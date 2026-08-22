@@ -329,6 +329,10 @@ The H.264 sample-buffer factory creates a Core Media video-format description fr
 
 Never assume Annex B start codes and AVCC length-prefixed NAL units are interchangeable. Convert at one named boundary and test both malformed and valid fixtures.
 
+The first H.264 NAL byte contains a forbidden-zero bit, two reference-priority bits, and a five-bit type. The current profile cares especially about type 1 non-IDR slices, type 5 IDR slices, type 7 SPS, and type 8 PPS. SPS/PPS travel in the configuration message. An AVCC access unit is a repetition of `[big-endian length][NAL bytes]`, where the negotiated length field is 1, 2, or 4 bytes. A key-frame flag must agree with a type-5 NAL; after a sequence gap the receiver discards predictive type-1 data until fresh configuration and an IDR restore a known reference state.
+
+This application does not use RFC 6184 RTP packetization. There are no STAP-A aggregation packets or FU-A fragments in the current wire format. Complete bounded AVCC access units ride inside the 92-byte `RBVD` media header, which rides inside the 32-byte ordered `RVID` QUIC frame. Keep those three layers distinct when diagnosing ``bad H.264'': stream framing can fail before media framing, and media framing can succeed while the decoder rejects SPS/PPS or slices.
+
 # Decode without blocking control or the main actor
 
 > **SOURCE TRAIL — ANALYZING NOW:** the H.264 receiver in the video library and the pipeline coordinator in the application. Their exact filenames are in the source map.

@@ -196,6 +196,58 @@ Do not transmit diagnostic frames from a generic CAN utility unless the actuator
 
 For each side test and record: adapter absent at boot, swapped adapters, duplicate serial mapping, bus disconnected, bus-off recovery, core crash, client timeout, stale command, Ubuntu restart, and E-stop. The safe response must be measured on the real system. A quiet bus is not proof that an energized arm will hold, brake, or become harmless.
 
+# CAN from copper to Linux
+
+CAN is a shared differential bus, not a USB cable with different plugs. A USB--CAN adapter contains at least three conceptual layers: a USB/serial interface the host can address, a CAN controller that forms and checks frames, and a transceiver that drives the electrical pair. ROB's captured host uses an SLCAN-style serial adapter, so `slcand` translates that serial protocol into a Linux SocketCAN network interface.
+
+```text
+Ubuntu host              USB--CAN adapter                 physical arm bus
+-----------        ----------------------------      -------------------------
+USB host  <------> USB/serial <-> CAN controller <-> CAN transceiver
+                                                    | CANH ==================+
+                                                    | CANL ==================+ arm nodes
+                                                    | GND  ------------------+ reference
+                                                  [120 ohm]              [120 ohm]
+                                                 physical end            physical end
+```
+
+Repeat this as two independent buses: the reviewed host names the left side `can10` and the right side `can11`. Connector pin numbers are deliberately absent because the installed adapter's connector, isolation, termination switch, and pinout have not been verified. Never guess CANH, CANL, or GND from wire color.
+
+The two signal wires carry one differential value. In a recessive state neither node forces a dominant differential. In a dominant state the transceiver separates CANH and CANL. Receivers compare the pair, which helps reject noise coupled similarly into both conductors. The reference ground keeps transceiver common-mode voltage inside its allowed range; it is not a third copy of the data.
+
+High-speed CAN normally uses 120-ohm termination at the two physical ends of a linear trunk. With all power removed and after the hardware procedure approves resistance measurement, two 120-ohm end resistors appear in parallel as roughly 60 ohms across CANH and CANL. A very different reading can indicate missing termination, extra termination, an attached circuit, or a fault; it is a clue, not a complete diagnosis. Keep stubs short and do not build a star simply because several connectors are convenient.
+
+## What one CAN frame teaches
+
+A classical CAN data frame contains arbitration, control, data, error-detection, acknowledgement, and framing fields. The identifier both labels the message and participates in arbitration. A lower numerical identifier can win arbitration because dominant bits overwrite recessive bits without corrupting the winner. That is deterministic access to a busy bus, not authentication or permission.
+
+The controller computes a CRC, receivers acknowledge a valid frame, and nodes maintain transmit/receive error counters. A sufficiently faulty node can progress through error-active, error-passive, and bus-off states. Those mechanisms detect communication faults; they do not tell an AMBER joint whether a requested angle is mechanically safe. Application policy still needs side identity, mode, limits, freshness, units, trajectory validation, and an independent stop.
+
+Do not confuse these names:
+
+- **USB — host transport:** connects Ubuntu to the adapter.
+- **SLCAN — adapter serial protocol:** a text/binary convention consumed by `slcand`; the exact adapter dialect must match.
+- **SocketCAN — Linux software interface:** exposes `can10` and `can11` through the networking API.
+- **CANH/CANL — electrical physical layer:** the twisted differential pair at the arm harness.
+- **CAN identifier/data — link-layer frame:** the actuator-protocol details remain proprietary or unverified in this snapshot.
+- **AMBER UDP/LCM — higher-level host interfaces:** commands and feedback handled by the vendor core and ROB gateway.
+
+## Read the deterministic initializer line by line
+
+The reviewed `rob_amber_init_can.py` is intentionally non-motion code. Its key decisions are worth learning:
+
+- **`EXPECTED_INTERFACES = {"can10", "can11"}`:** refuses extra or missing logical sides.
+- **Open the mapping with `O_NOFOLLOW`:** rejects a substituted symbolic link.
+- **Require root ownership and no group/world write bit:** prevents an ordinary account from silently swapping arm identities.
+- **Walk `/sys/class/tty/.../serial`:** binds by USB serial rather than discovery order.
+- **Require exactly one device per reviewed serial:** fails closed on absence or duplicates.
+- **Reject a pre-existing interface:** avoids attaching a second process to stale state.
+- **Run `slcand -o -c -s8 device interface`:** creates the observed SLCAN interface; the adapter-specific meaning of `-s8` must be verified.
+- **Run `ip link set ... up`:** enables the SocketCAN interface only after identity succeeds.
+- **Set `txqueuelen 1000`:** records the host queue choice; it does not authorize a thousand motion commands.
+
+The process suppresses child output and applies timeouts, so an operator should diagnose through its own clear success/error lines plus service logs. It never opens a CAN socket or sends a CAN, UDP, LCM, mode, trajectory, or motion request. Keep that narrow contract.
+
 # Configure one core per side
 
 > **SOURCE TRAIL — ANALYZING NOW:** return to the two `launch.json` files. The executables beside them are captured binaries, not readable source; the book documents their configured boundary without claiming to analyze their internal CAN implementation.
@@ -298,7 +350,124 @@ The raw definitions establish these payloads:
 
 The archived examples use multicast at `239.255.76.67:7667` with TTL 10 and add a multicast route. Multicast can reach more listeners than expected. Put it on a controlled robotics network, choose the intended interface explicitly, and firewall unrelated hosts. Generate language bindings from the checked-in `.lcm` files so the schema hash remains consistent; do not hand-maintain parallel definitions.
 
+The hardened gateway service uses `LCM_DEFAULT_URL=udpm://239.255.76.67:7667?ttl=0`, which is more restrictive than the historical TTL-10 examples. A TTL of zero confines multicast packets to the local host. Preserve that distinction in diagrams: the local gateway subscribes to core status without granting a campus or home network permission to receive or inject arm traffic. Verify the actual LCM provider and interface with packet capture on an isolated bench before relying on the boundary.
+
 The launch files also enable ROS 2 and historical install scripts include Humble, MoveIt, controllers, `xacro`, and joint-state tools. The snapshot does not show a complete reviewed ROS 2 launch package for ROB. Treat ROS 2 capability as enabled configuration, not proof that names, quality-of-service policy, controller ownership, and safety behavior are production-ready.
+
+# LCM workshop: schema, generated code, and the Python bridge
+
+LCM separates a human-readable schema from generated language bindings. Start with the `.lcm` file, not the generated Python. For example, an arm-status schema declares four fixed seven-element arrays: joint position, velocity, current, and status. The generated `armStatus_t.py` knows the binary layout and embeds a type fingerprint. If one participant edits generated code by hand while another regenerates from the schema, the system can drift in a way that looks like network failure.
+
+A reproducible generation exercise, performed away from powered arms, is:
+
+```text
+mkdir -p build/lcm-python
+lcm-gen -p --ppath build/lcm-python amber/sin_wave/rawLcm/armStatus_t.lcm
+python3 -m compileall build/lcm-python
+```
+
+The exact source filename must come from the checked-in tree. Archive the generator version, input hash, generated output hash, and import-path test. A schema change is a protocol release: update every producer and consumer together, add compatibility or reject the old hash explicitly, and retain a rollback artifact.
+
+The gateway's `LCMStatusBridge` is short enough to understand line by line:
+
+```python
+self._lcm = lcm.LCM()
+self._lcm.subscribe(arm.status_channel, self._handler(name))
+...
+message = self._arm_status_type.decode(data)
+state.positions = list(message.jointPosition)
+state.monotonic_ns = time.monotonic_ns()
+state.sequence += 1
+...
+self._lcm.handle_timeout(100)
+```
+
+1. `lcm.LCM()` reads the reviewed provider URL from the service environment.
+2. `subscribe(...)` connects one side-specific channel, such as `Left_ArmStatus`, to a closure that remembers the side.
+3. `decode(data)` validates the generated LCM type fingerprint and reconstructs typed arrays. It does not validate physical plausibility.
+4. Copying arrays detaches gateway state from the generated message object.
+5. `time.monotonic_ns()` records local receipt time so wall-clock changes cannot make stale feedback look fresh.
+6. `sequence += 1` creates a gateway-local observation counter; it is not an actuator sequence from the CAN bus.
+7. `handle_timeout(100)` lets the thread check its stop event at least every 100 ms instead of blocking forever.
+
+A lock protects the shared `ArmState` while the LCM thread writes and the asyncio telemetry task reads. `snapshot()` returns copies, not the mutable lists. That is the small but crucial bridge between a callback-oriented native library and an asynchronous TCP server.
+
+## Follow one status sample end to end
+
+```text
+joint electronics -> CANH/CANL -> AMBER core -> Left_ArmStatus LCM
+  -> generated armStatus_t.decode -> locked ArmState copy
+  -> gateway telemetry JSON -> authenticated Cerebro client -> operator display
+```
+
+At each arrow write what can be proven. The gateway knows when the LCM message arrived, not when the joint sensor sampled. It knows the configured channel side, not that the adapters were physically installed on the correct arms. It can reject stale gateway state, not prove encoder zero or calibration. Good telemetry carries those uncertainties instead of turning arrival into truth.
+
+# Understand the Ubuntu services
+
+The checked-in `rob-amber-gateway.service` is a systemd unit for the hardened Python bridge. Read it in four blocks.
+
+- **`After=network-online.target rc-local.service`:** start ordering waits for networking and the root-owned CAN initializer.
+- **`Requisite=rc-local.service`:** a failed required initializer prevents the gateway from pretending it is usable.
+- **`User=amber`, `Group=amber`:** network translation runs without root privileges.
+- **`WorkingDirectory=/home/amber/rob_gateway`:** relative paths have one declared base.
+- **`LCM_DEFAULT_URL=...ttl=0`:** status multicast remains local to the host.
+- **`--listen-host 127.0.0.1`:** the gateway accepts Cerebro only through a local or forwarded boundary in this configuration.
+- **`Restart=on-failure`, `RestartSec=2`:** crashes retry after a delay; a restart does not grant motion authority.
+- **`NoNewPrivileges=true`:** the process cannot gain new privilege through execution.
+- **`PrivateTmp=true`:** temporary files are isolated from other services.
+- **`ProtectSystem=strict`:** the normal filesystem is read-only to this unit.
+- **`ProtectHome=read-only`:** home content is not writable.
+- **`ReadOnlyPaths=/home/amber/sin_wave`:** LCM schemas and generated types are treated as runtime inputs.
+
+Use read-only service commands first:
+
+```text
+systemctl cat rob-amber-gateway.service
+systemctl status --no-pager rob-amber-gateway.service
+journalctl -u rob-amber-gateway.service --since today --no-pager
+systemctl show rob-amber-gateway.service -p User -p Group -p MainPID -p ActiveState
+```
+
+`status` tells whether the process is running, not whether CAN identities, arm calibration, feedback freshness, and physical stop are correct. Sanitize logs before sharing them: authentication tokens must never be printed, and operational poses may still be sensitive.
+
+# The hardened Cerebro-to-AMBER gateway
+
+The new Python gateway narrows the older collection of scripts into one explicit boundary:
+
+```text
+Cerebro
+  -> authenticated, ordered newline-delimited TCP
+  -> one exclusive ClientSession
+  -> bounded per-arm asyncio command queue
+  -> packed local UDP request to port 26001 or 26002
+  -> vendor AMBER core
+
+AMBER core -> side-specific LCM status -> LCMStatusBridge -> 20 Hz telemetry -> Cerebro
+```
+
+The gateway begins each client with a random challenge, expects protocol name `rob-amber-gateway/1` and a token checked with constant-time `hmac.compare_digest`, and permits only one authenticated controller session. A token is still a credential: load it from protected configuration, rotate it, never place it in a screenshot, and prefer an authenticated protected tunnel when the connection leaves loopback.
+
+Motion-like operations require increasing unsigned 32-bit command IDs and a fresh heartbeat. Heartbeat authority expires after 2.5 seconds. Per-arm queues are capped at 32 entries, UDP exchanges are serialized by side, and replies must match command number and counter. A `priority_hold` purges queued work before it is inserted. Leased trajectories accept only a bounded 700--1500 ms lease and are held when that lease expires. These are strong software controls, not a replacement for a hardware stop or vendor drive limits.
+
+The packed `ctypes.LittleEndianStructure` definitions explain the vendor UDP boundary. For a joint command, the code writes a 16-bit command number, 16-bit structure length, 32-bit counter, eight 32-bit floats, and one duration float. The public gateway accepts seven joints and deliberately sets the eighth float to zero because gripper control is a separate operation. `ctypes.sizeof(...)` becomes the declared length, and a response is rejected when it is short or its counter differs.
+
+The concurrency lesson is as important as the bytes. Blocking UDP work runs through `asyncio.to_thread`, but each arm owns an `asyncio.Lock`. Shutdown waits for worker completion rather than cancelling a wrapper while its underlying thread may still complete a real UDP request. Session generations and motion-authority generations make late work stale after controller replacement or heartbeat expiry.
+
+## A safe code-reading lab
+
+With arm power isolated, trace one `mode_query` request on paper:
+
+1. TCP parser rejects oversized or malformed JSON.
+2. message allowlist accepts `mode_query`.
+3. command ID and arm side are validated.
+4. the request enters only that side's bounded queue.
+5. its worker acquires the side operation lock.
+6. the UDP codec sends command 110 to the configured side port.
+7. response command/counter/size are checked.
+8. the gateway returns a correlated acknowledgement.
+9. independent LCM telemetry continues to report measured state.
+
+Now inject paper faults: repeated command ID, wrong side, queue full, stale heartbeat, short UDP reply, mismatched counter, LCM older than 250 ms, and disconnect during a blocking exchange. The correct answer is often rejection or loss of authority, not a retry that could duplicate motion.
 
 # Build a clean Ubuntu runtime
 

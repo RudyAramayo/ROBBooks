@@ -51,6 +51,10 @@ A formula is a model. Component tolerances, temperature, supply variation, and t
 
 \ROBPhotoTwo{2024-batteries-and-power-leads.jpg}{Large batteries and red power leads occupy precious space in the base. The visible arrangement does not prove the complete topology.}{2024-power-cable-pass-through.jpg}{A cable crossing a panel needs smooth edges, insulation, strain relief, and room for service.}
 
+The builder reports four 20 Ah LiFePO$_4$ packs, a common negative return bus, and positive leads routed through the front on/off switch to the 12 V bus. A boost stage supplies a 24 V domain, another stage supplies the 48 V arm domain, and a 24-to-12 V converter supplies upper-body 12 V loads. The onboard NOCO charger is recalled as a 2 A-class fallback; that current is too small to assume it can both run every sensor and replenish the full bank.
+
+\ROBPowerArchitectureDiagram
+
 \section*{Ground is a reference, not magic dirt}
 
 In a low-voltage robot, \textbf{ground} usually names the common reference node used by circuits and signals. Two devices exchanging a voltage signal often need compatible reference levels. Power grounds, noisy motors, sensitive sensors, shields, and chassis connections require a deliberate grounding plan in a large robot.
@@ -122,7 +126,9 @@ Earlier ROB software divided work among sketches named \textbf{Base}, \textbf{To
 
 The two Torso files in \texttt{ROBArduino} have the same SHA-256 hash, so they are byte-for-byte duplicates rather than different firmware versions. A filename can look like a revision even when its contents are identical---another reason engineers use hashes and release records.
 
-The checked-in firmware names these connections. Pin numbers are facts about the file, not a verified public wiring harness. ROBController's historical serial log calls the board an Arduino Mega. The exact Arduino-compatible board model, revision, core, and installed library versions are not recorded here.
+The checked-in firmware names these connections. Pin numbers are facts about the file, not a verified public wiring harness. The builder identifies the board as an Arduino Mega 2560. Arduino's current documentation specifies \textbf{54 digital I/O pins}, not 55, with 15 PWM outputs, 16 analog inputs, and four hardware serial ports. The board revision, core, installed libraries, and flashed firmware hash still need to be recorded.
+
+\ROBArduinoWiringDiagram
 
 \begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.40in} >{\centering\arraybackslash}p{0.68in} >{\centering\arraybackslash}p{0.68in} >{\centering\arraybackslash}p{0.83in} X}
 \toprule
@@ -155,9 +161,33 @@ Without changing that firmware, Cerebro can also recognize its existing front an
 The source contains TODOs for three motor speed-sensor inputs, ramped motion, and voltage measurement. The comments disagree about left/right encoder assignment, and proposed D20 conflicts with the likely Mega I2C SDA pin used by the active IMU. A TODO is evidence of intent, not evidence that the feature works.
 \end{fieldnotebox}
 
+\section*{A reviewed interrupt-first Mega proposal}
+
+The original wiring spent D2 and D3 on right-motor outputs even though the Mega's six external-interrupt pins are D2, D3, D18, D19, D20, and D21. Long I$^2$C wiring also made the MPU9250 unreliable in ROB's electrically noisy body. The table below is a \textbf{proposed harness revision}, not the installed wiring:
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.45in} p{1.05in} X}
+\toprule
+ROLE & PROPOSED PIN & REASON\\
+\midrule
+Right / left / flipper tach & D18 / D19 / D2 & Three dedicated interrupt inputs; use \texttt{digitalPinToInterrupt(pin)} and keep each ISR tiny.\\
+Right speed / brake / direction & D8 / D24 / D25 & Moves the right outputs away from D2/D3; D8 retains PWM.\\
+Left speed / brake / direction & D4 / D5 / D27 & Keeps the current left outputs.\\
+Flipper speed / brake / direction & D6 / D7 / D29 & Keeps the current flipper outputs.\\
+LACT serial TX / RX & D16 / D17 & Uses hardware \texttt{Serial2} instead of timing-sensitive \texttt{SoftwareSerial}.\\
+Short local I$^2$C only & D20 / D21 & Reserved for SDA/SCL; do not share D20 with a tach.\\
+IR array & A5 through A0 & Preserve all six inputs, but publish filtered telemetry instead of giving one noisy sample motion authority.\\
+\bottomrule
+\end{tabularx}
+
+Each interrupt should only capture an edge count and timestamp into \texttt{volatile} state. The ordinary loop can atomically copy those counters, compute speed over a known interval, reject implausible jumps, publish age and quality, and compare commanded with measured motion. Never print, allocate memory, or run motor policy inside the ISR.
+
+\begin{advancedbox}[title={SUCCESSOR CONTROLLER CANDIDATE}]
+The Arduino GIGA R1 WiFi is a credible research successor because its official specification lists 76 GPIO, 13 PWM pins, four UARTs, dual Cortex-M7/M4 cores, and a CAN controller that requires an external transceiver. It uses 3.3 V logic and is therefore \emph{not} a drop-in Mega replacement. Its base board has no integrated IMU; the separate GIGA Display Shield adds a BMI270 over I$^2$C, which does not solve a long noisy harness by itself. Begin a migration with D2/D3/D18 as tach candidates, D4/D5/D6 as PWM candidates, D16/D17 for the LACT UART, and D93/D94 only behind an approved CAN transceiver. Compile an \texttt{attachInterrupt} smoke test, measure every logic level and startup state, and prove latency under load before moving one live actuator.
+\end{advancedbox}
+
 \ROBPhotoTwo{2022-chassis-wiring-overhead.jpg}{An overhead chassis view shows why a pin table alone is not enough: routing, connectors, power separation, and service access matter.}{2025-labeled-cables.jpg}{Blue tape labels show an important maintenance habit. A durable harness plan should replace temporary labels before public operation.}
 
-\ROBPlaceholder{Add an author-verified connector-to-pin table, wire colors, connector types, harness branches, cable gauges, strain relief, labels, and photographs taken after final wiring.}
+\ROBPlaceholder{Add an author-verified connector-to-pin table, wire colors, connector types, harness branches, cable gauges, strain relief, labels, tach pulse electrical levels and edge type, and photographs taken after final wiring. Record whether the Mega proposal or a tested successor map is adopted.}
 
 \ROBPhoto[0.32\textheight]{2021-wiring-closeup.jpg}{A close view of an earlier wiring revision shows why every connector needs a name, destination, expected signal, safe state, and service plan.}
 

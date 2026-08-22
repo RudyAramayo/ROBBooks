@@ -170,6 +170,18 @@ The versioned `CDP1` packet contains bounded metadata, RGB888 bytes, and little-
 
 The out-of-process boundary is a reliability feature. USB disconnects, SDK exceptions, malformed packets, and native-library faults disable/restart the camera provider without taking robot control down. Retries use bounded backoff. AVFoundation remains an RGB-only fallback, while legacy OAK UVC fallback is explicit opt-in so two providers never fight for the same device.
 
+The builder identifies two present Luxonis roles: an OAK-D Pro Wide in the body and an autofocus OAK-D Pro at the head. Do not infer the exact sensor option from the enclosure. At discovery, save `productName`, `boardName`, board revision, camera sensor names, USB speed, calibration hash, focus capability, and firmware/API version. The RVC2 OAK-D Pro W family uses global-shutter monochrome stereo sensors and offers a wide color-camera option; its active-stereo projector and flood illumination add power and thermal load. A camera that enumerates successfully can still be on a USB 2 link, underpowered, thermally constrained, out of calibration, or owned by the wrong provider.
+
+## Separate host inference from OAK inference
+
+ROB has three distinct model execution paths:
+
+1. **DepthAI device graph:** camera, stereo depth, synchronization, and an optional compiled Myriad X `.blob` execute in the OAK pipeline. Only bounded results and RGB-D frames cross the USB process boundary.
+2. **Apple Vision/Core ML:** `ROBDynamicDetectorRegistry` runs built-in Vision requests or registered Core ML models on the Mac. It compiles an `.mlmodel` to `.mlmodelc` when needed, creates `MLModel`, wraps it in `VNCoreMLModel`, and executes `VNCoreMLRequest` at a configured admission rate.
+3. **MLX language/vision models:** actor-owned local LLM, VLM, and embedding containers run on Apple silicon for delayed reasoning and stage context, never the motor loop.
+
+The same word *model* appears in all three paths, but their files, devices, input tensors, output schemas, latency, memory, and failure scopes differ. Record those facts in every model manifest.
+
 ## Understand alignment
 
 Depth alignment means pixel `(x,y)` in the depth plane refers to the same camera ray as pixel `(x,y)` in RGB after calibration and resampling. It does not mean every depth is valid. Reflective, transparent, too-near, too-far, or texture-poor surfaces can return zero or noisy values.
@@ -236,6 +248,88 @@ The repository integrates an MLX vision-language model through `VLMModelFactory`
 
 Sampling protects three budgets at once: GPU/Metal memory, thermal headroom, and perception latency. Record active and peak MLX Metal memory, generated tokens per second, model load state, sampled-frame count, and last error. Clear temporary caches only at safe lifecycle boundaries; do not unload/reload a model between cues.
 
+# Read the MLX execution path line by line
+
+The important code is small enough to narrate without treating the framework as magic:
+
+```swift
+public actor ROBMLXEngine { ... }
+GPU.set(cacheLimit: 128 * 1024 * 1024)
+GPU.set(memoryLimit: 6 * 1024 * 1024 * 1024)
+let container = try await loadLLM(modelID: modelID)
+let input = try await container.prepare(input: UserInput(prompt: prompt))
+let stream = try await container.generate(input: input, parameters: ...)
+for await event in stream { ... }
+```
+
+1. `actor` makes the engine the single owner of mutable model state. It does not make every referenced framework type automatically thread-safe.
+2. Cache and memory limits bound MLX's use of unified memory so vision, UI, encoding, and control retain headroom. They are caps, not reservations or proof against system memory pressure.
+3. `loadLLM` returns the already loaded container when the model ID matches, otherwise it records loading/download diagnostics and builds a container through `LLMModelFactory`.
+4. `prepare` tokenizes the prompt and constructs the model input. Prompt text is data; length, provenance, and privacy must be controlled before this line.
+5. `GenerateParameters` bounds output tokens and temperature. Low temperature reduces randomness but does not create truth.
+6. `generate` returns an asynchronous event stream. `.chunk` appends text, `.info` records throughput, and `.toolCall` is rejected in the local improvisation path.
+7. `Task.checkCancellation()` prevents an abandoned stage cue from consuming unlimited time, while request correlation prevents its late text from controlling a replacement cue.
+8. The returned string is still untrusted. A separate strict codec must decode an allow-listed schema before a behavior layer can even consider it.
+
+The VLM path adds an image but keeps the same boundary. `offerVisionFrame` checks a global enable, one-in-flight flag per source, and a minimum interval. It returns immediately; the actor later prepares `UserInput(prompt:images:)`. The prompt demands one minified JSON object, the codec extracts only that object, validates types and bounds, strips person identity, attaches confidence and time, and publishes delayed context. `currentStageContext` refuses old or low-confidence observations and explicitly labels accepted facts as uncertain, non-executable context.
+
+# Teach ROB to recognize a new object without teaching it to trust itself
+
+> **SOURCE TRAIL — ANALYZING NOW:** `ROBDatasetManager` in `ROBSceneSnapshot.swift`, `TrainProjectModel.py`, the model-manifest loader and `YoloSpatialDetectionNetwork` branch in `Webcam_color.py`, and `ROBDynamicDetectorRegistry.swift`.
+
+The repository already sketches a learning-and-compilation chain:
+
+```text
+human chooses project and class
+  -> bounded JPEG + normalized YOLO label
+  -> dataset folders + classes.txt + data.yaml
+  -> YOLOv8n fine-tuning on Apple MPS
+  -> best.pt
+  -> ONNX export, opset 12, input 640x400
+  -> blobconverter, six SHAVEs
+  -> yolov8_<project>_6shave.blob + JSON manifest
+  -> DepthAI helper restart
+  -> YoloSpatialDetectionNetwork on OAK-D Pro
+```
+
+The dataset manager first validates a project name, normalizes the class label, rejects non-finite or out-of-bounds boxes, JPEG-encodes the selected image, writes image and YOLO label atomically, and updates class metadata. A label line is `class_index center_x center_y width height`, all normalized to the unit square. This is annotation, not learning yet.
+
+`TrainProjectModel.py` then performs these decisions:
+
+- **`safe_project_name`:** prevents path syntax in a project identifier.
+- **`require_within`:** rejects dataset paths that escape the selected root after resolution.
+- **`validated_class_names`:** requires contiguous unique class IDs and exact `nc` agreement.
+- **`validate_dataset`:** requires distinct train/validation image directories, labels, and matching `classes.txt`.
+- **`YOLO("yolov8n.pt")`:** starts from pretrained weights; record their exact hash and license.
+- **`model.train(... epochs=50, imgsz=640, device="mps")`:** fine-tunes on the Mac; fix random seeds and save the environment and hyperparameters for reproducibility.
+- **Export `best.pt` to ONNX:** creates an interchange graph; validate its outputs against the PyTorch model.
+- **`blobconverter.from_onnx(... shaves=6)`:** compiles for Myriad X; compilation success is not accuracy evidence.
+- **Write the JSON manifest:** binds labels, parser type, input geometry, class count, and thresholds to the blob.
+- **Replace the final blob and manifest:** currently makes the artifact discoverable; production needs a signed staged release and rollback.
+
+There is an honest integration gap: the dataset manager currently writes both `train` and `val` paths to `./images/train`, while the trainer correctly rejects identical training and validation directories. This prevents the automatic chain from being a trustworthy one-button learner. Fix the data lifecycle first: capture separate train, validation, and locked test sets by collection session or scene, so nearly identical video frames cannot leak across splits.
+
+The DepthAI helper resolves `yolov8_<project>_6shave.blob`, loads the adjacent manifest, checks that the manifest stem matches the filename, and configures a `YoloSpatialDetectionNetwork`. Camera settings can request a restart to hot-swap the model. That restart is a deployment boundary and should happen only while the affected perception feature is unavailable and motion policy no longer depends on its results.
+
+`ROBDynamicDetectorRegistry.registerCoreMLModel` is a separate Mac-side path. If the URL is not already `.mlmodelc`, `MLModel.compileModel` compiles it; `MLModel(contentsOf:)` loads it; `VNCoreMLModel(for:)` adapts it to Vision; a lock publishes it to future requests. The current method does not yet enforce signer, manifest, input geometry, output schema, class allowlist, benchmark, duplicate identity, or rollback. Treat it as a development hook until those checks exist.
+
+## A safe future learning architecture
+
+ROB should never train on an observation and immediately let the new model steer or move an arm. Use a promotion pipeline:
+
+1. **Consent and purpose:** collect only authorized images for one named task; retain provenance and deletion controls.
+2. **Annotation review:** a human checks boxes/classes and removes sensitive or ambiguous samples.
+3. **Split by event:** keep train, validation, and locked test scenes disjoint; add hard negatives and the surfaces/lighting ROB will meet.
+4. **Reproducible training:** pin code, base weights, dependencies, seed, hardware, hyperparameters, and dataset hashes.
+5. **Cross-runtime comparison:** compare PyTorch, ONNX, compiled OAK blob, and/or Core ML outputs on the same golden images.
+6. **Acceptance gates:** require per-class precision/recall, confusion matrix, calibration, latency, memory, thermal, and adversarial/edge-case results against declared thresholds.
+7. **Signed candidate:** package model, manifest, metrics, training record, limitations, and signer; never overwrite the last known-good artifact in place.
+8. **Shadow mode:** run the candidate beside the approved model without granting control authority; log disagreements with bounded, privacy-reviewed samples.
+9. **Human promotion:** a named reviewer promotes one version during a disarmed maintenance state.
+10. **Rollback and expiry:** health monitoring can disable the candidate immediately; the operator can restore the prior signed release; model validity expires when camera calibration, geometry, or mission changes.
+
+The dynamic intelligence is the system that can create, test, explain, select, and revoke a model. The model itself remains one fallible component.
+
 # Add bounded semantic memory
 
 `remember` embeds short text. `retrieve` embeds a query, calculates cosine similarity, sorts matches, and returns a limited result set. The current store holds at most 200 entries and is process-local.
@@ -299,6 +393,84 @@ Cerebro advertises `_robvideo._udp` with ALPN `robvideo/1`, separately from `_ro
 The initial profile is H.264 AVCC, at most 960 by 540, 20 fps, and 1.5 Mbps, with B-frames disabled and key frames at least every second. One raw frame may wait; one encoder output may wait; one send may be in flight. Congestion drops work instead of accumulating latency. Receiver recovery can request a key frame and codec configuration.
 
 Volume 7 explains the other half: Vision Pro discovery, pinned identity, subscription, defensive framing, H.264 sample-buffer creation, `AVSampleBufferDisplayLayer`, controller input, head pose, speech-to-text, and dead-man authority. Read the two books side by side whenever changing the wire contract.
+
+# H.264 without hand-waving: pictures, access units, and NAL units
+
+H.264 is a video coding format; it is not by itself a network protocol. The encoder turns images into coded syntax. The Network Abstraction Layer divides that syntax into **NAL units** suitable for storage or transport. One displayed picture is commonly represented by an **access unit**, which can contain several NAL units.
+
+For H.264/AVC, the first byte of each NAL unit is:
+
+```text
+bit 7        bits 6..5          bits 4..0
+forbidden_0  nal_ref_idc        nal_unit_type
+```
+
+The current validator requires the forbidden bit to be zero and masks the low five bits to find the type. Useful types in ROB's profile include:
+
+- **Type 1 — non-IDR coded slice:** predictive picture data that may depend on earlier reference pictures.
+- **Type 5 — IDR coded slice:** a random-access recovery picture; the current key-frame flag must agree with the presence of type 5.
+- **Type 6 — SEI:** supplemental information; not treated as the required video-coding payload.
+- **Type 7 — SPS:** the sequence parameter set, carrying coded geometry, profile/level, and sequence-wide decoding facts.
+- **Type 8 — PPS:** the picture parameter set, carrying picture-level decoding configuration referenced by slices.
+- **Type 9 — access-unit delimiter:** an optional delimiter; ROB does not depend on it for framing.
+
+SPS and PPS are configuration, not ordinary image pixels. Cerebro extracts them from `CMFormatDescription` on a key frame and sends them in a separate codec-configuration message. The receiver uses at least one SPS and one PPS to create `CMVideoFormatDescription`, then validates coded and presentation dimensions against the negotiated stream before allocating ongoing decode state.
+
+## Annex B and AVCC are two wrappers around NAL units
+
+An Annex B byte stream finds NAL units with `00 00 01` or `00 00 00 01` start codes. An AVCC sample prefixes each NAL unit with a 1-, 2-, or 4-byte big-endian length. VideoToolbox gives ROB length-prefixed AVCC samples, and the exact prefix width comes from the format description.
+
+```text
+AVCC access unit with 4-byte lengths
+
+00 00 02 8A  [650-byte NAL unit]
+00 00 00 31  [49-byte NAL unit]
+```
+
+The prefix is not part of the NAL unit. The first byte after each prefix is the NAL header. `validateLengthPrefixedAccessUnit` walks exactly this structure: read the configured prefix width, build a big-endian length, reject zero/truncation/overrun, inspect the NAL type, advance by exactly that length, and require at least one type 1--5 unit. A key-frame sample must contain type 5; a non-key sample must not claim it.
+
+Do not scan an AVCC payload for Annex B start-code patterns. Compressed payload bytes can coincidentally contain them, and the representation already has authoritative lengths. Convert formats only at one named, tested boundary.
+
+## Read the encoder from input pixel to encoded bytes
+
+`ROBCameraH264Encoder` performs this sequence:
+
+1. Validate width, height, total pixels, frame rate, and bitrate against hard caps.
+2. Create a VideoToolbox H.264 compression session whose destination pixels are NV12 video-range (`420YpCbCr8BiPlanarVideoRange`).
+3. Request real-time operation, disable frame reordering, prefer Constrained Baseline, set expected frame rate/average bitrate, and request a key frame at least once per negotiated second.
+4. Create one reusable pixel-transfer session in letterbox mode.
+5. Admit samples at the requested rate using monotonic uptime. Do not encode every callback simply because the camera produced it.
+6. Allocate from the compression session's pixel-buffer pool with a threshold of six. When the pool is exhausted, drop the frame and request a future recovery key frame.
+7. Scale/letterbox the source into the destination buffer and call `VTCompressionSessionEncodeFrame` with a monotonic presentation time.
+8. In the callback, claim completion exactly once because VideoToolbox can report a synchronous drop through more than one path.
+9. Copy the bounded `CMBlockBuffer` bytes into owned `Data`; callback-owned memory must not escape by reference.
+10. Read the not-sync attachment to determine whether VideoToolbox marked the sample as a key frame.
+11. Extract the NAL length width from `CMFormatDescription`, validate every AVCC NAL, and on a key frame copy the parameter sets.
+12. Emit sequence, wall-clock capture time, presentation time, duration, key-frame flag, optional parameter sets, prefix width, and payload.
+
+Disabling B-frame reordering means decode order follows presentation order for this low-latency profile. It costs some compression efficiency but removes a reorder queue and simplifies recovery. Constrained Baseline is requested with documented fallback for unsupported properties, so runtime diagnostics should record the format actually returned.
+
+## ROB's transport is custom reliable QUIC, not RTP
+
+RFC 6184 describes carrying H.264 NAL units over RTP using single-NAL packets, aggregation packets such as STAP-A, and fragmentation units such as FU-A. ROB's current path does none of those. It places complete AVCC access units inside the inner `RBVD` binary message, then places that message inside an outer ordered `RVID` frame on a reliable QUIC stream.
+
+```text
+QUIC/TLS byte stream
+  RVID 32-byte connection frame
+    RBVD 92-byte media header
+      AVCC access unit
+        [length][NAL][length][NAL]...
+```
+
+The outer `RVID` layer identifies message kind and bounds the next payload before allocation. The inner `RBVD` layer binds media to a session UUID and subscription UUID and carries codec, sequence, capture time, presentation time, duration, timescale, configuration generation, NAL-length width, key-frame flag, and payload length. The current caps are 64 KiB for configuration and 2 MiB for one access unit.
+
+Reliable ordering preserves every byte, but a lost network packet can delay later video through head-of-line blocking. ROB limits the damage with a separate video connection, newest-only admission before encode, one queued output, one send in flight, deadlines, and stream teardown when a peer stops reading. Control uses a different QUIC connection, so a delayed video access unit does not sit in front of a stop message, although both still compete for Wi-Fi airtime.
+
+## Why a missing access unit triggers IDR recovery
+
+Non-IDR slices may reference decoded pictures that the receiver no longer has. After a sequence gap, decoder error, renderer flush, or configuration-generation change, displaying more dependent frames can create corruption. The receiver enters `needsKeyFrame`, drops predictive units, rate-limits feedback, and waits for new configuration plus a valid type-5 IDR access unit. The server's encoder sets a thread-safe force-next-key-frame flag. Recovery is a state machine, not merely “send another picture.”
+
+Test NAL handling with generated fixtures: zero length, truncated prefix, oversized NAL, forbidden bit set, no VCL type, key flag without type 5, type 5 without key flag, SPS without PPS, dimension-changing SPS, configuration change without flush, sequence gap, and repeated key-frame requests. Run them without a camera or network before testing live media.
 
 # Excavate the Kinect and OpenNI past
 

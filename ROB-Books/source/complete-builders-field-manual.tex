@@ -1,8 +1,23 @@
 \documentclass[10pt,openany]{book}
 \usepackage{robbook}
+\usepackage[
+  contentBlocks,
+  fencedCode,
+  pipeTables,
+  relativeReferences,
+  smartEllipses,
+  tableCaptions,
+  taskLists,
+  texMathDollars,
+  tightLists=false
+]{markdown}
 \SetROBAccent{ROBRed}
 \SetROBVolume{COMPLETE FIELD MANUAL - ADVANCED}{BUILDING R.O.B.}
 \SetROBChapterPrefix{Chapter}
+\lstdefinelanguage{text}{}
+\lstdefinelanguage{swift}{}
+\lstdefinelanguage{objc}{}
+\lstdefinelanguage{json}{}
 
 \begin{document}
 \ROBTitle{Building R.O.B. - Complete Field Manual}{BUILDING R.O.B.}{The complete maker's field manual: fabrication, circuits, firmware, Mac software, perception, control, and operations}{Advanced evidence draft with builder placeholders}{2025-rob-side-full-body.jpg}
@@ -39,9 +54,9 @@ ROB combines large batteries, high-current brushless motors, chains, treads, fli
 
 \section*{Source snapshot and publication cautions}
 
-The initial evidence pass began on 2 August 2026; the consolidated Cerebro, Vision Pro, local-model, stage-show, AMBER, and advanced video pass reflects the working trees inspected through 11 August 2026. Active changes still require an explicit tag or commit before publication. Original gallery photographs were converted with orientation applied and metadata stripped. Attendee photographs, especially images containing children, require release review or careful exclusion.
+The initial evidence pass began on 2 August 2026; this expanded hardware, AMBER, model-training, and advanced-video edition reflects the working trees and builder interview inspected through 21 August 2026. Active changes still require an explicit tag or commit before publication. Original gallery photographs were converted with orientation applied and metadata stripped. Attendee photographs, especially images containing children, require release review or careful exclusion.
 
-The archived B-COMMAND document prohibits reproduction without permission, and the HengDrive outline is marked proprietary and confidential. This manual does not reproduce or paraphrase their specifications. It mentions the motor-family label visible in a builder-owned photograph only to identify the open evidence gap. Obtain permission and a current authorized public datasheet before publication.
+The archived B-COMMAND drawings prohibit reproduction without permission, and the HengDrive drawings are marked proprietary/confidential. This manual does not reproduce the drawings or internal artwork. It records selected interface facts and ratings needed to identify and operate the builder-owned parts, distinguishes installed hardware from recollection, and flags every conflict. Obtain written publication permission or public replacement datasheets before distributing those sections beyond the builder's private record.
 
 \tableofcontents
 \clearpage
@@ -54,6 +69,25 @@ The archived B-COMMAND document prohibits reproduction without permission, and t
 \chapter{Design history and current scope}
 
 ROB is not one frozen machine. The archive shows a succession of working prototypes, public demonstrations, repair decisions, new sensors, drivetrain modifications, camera changes, arm work, and software migrations. A useful build manual must preserve that timeline because the answer to ``How is it built?'' depends on the date and subsystem.
+
+\section{The one hard constraint}
+
+The project began with the purchase of the SuperDroid Robots LT2 tracked platform. That tread system was the one interface the builder chose not to redesign. Everything else---body width, battery placement, drivetrain packaging, flipper geometry, service openings, cable paths, and eventually the upper robot---had to negotiate with it.
+
+The first design instrument was cardboard. The builder mocked the LT2 envelope at full scale, moved imagined components until they fit, and used successful faces as templates for maple plywood. A third-wheel/flipper idea drew inspiration from Johnny 5 in \textit{Short Circuit}: a perpendicular wheel might lift part of the contact patch and reduce the sideways scrub required for a heavy tracked robot to turn. This is not merely a charming origin story. It is the repeatable method behind ROB:
+
+\begin{enumerate}
+  \item freeze the purchased interface and record its revision;
+  \item make a cheap full-size representation;
+  \item write one question on each prototype;
+  \item test packaging, reach, sweep, balance, access, and cable bend before strength;
+  \item transfer only proven geometry into plywood or metal;
+  \item preserve failed versions and the decision they changed.
+\end{enumerate}
+
+\begin{advancedbox}
+A cardboard prototype proves geometry only within its scale and stiffness. It cannot certify structural strength, fastener retention, tread tension, electrical insulation, thermal behavior, payload, stopping distance, or public safety. Record both what each mockup proved and what it could not prove.
+\end{advancedbox}
 
 \section{Evidence-based chronology}
 
@@ -164,6 +198,8 @@ Document safety as a control hierarchy, not a list of features. For every hazard
 
 The base is the foundation for every later system. Presentation pages 3-9 show left and right wooden side templates, motor openings, wheel mounts, a battery opening, and the desire to reproduce the form in black powder-coated aluminum. Pages 10-20 document the tread tensioner, wheels, sprockets, and shaft collars. Later gallery photographs show extensive metal and wiring revisions.
 
+The purchased SuperDroid Robots LT2 system is the governing mechanical interface. The vendor's current support material describes the LT2 as a mid-sized, chain-driven skid-steer platform and explains that flipper arms can lift the nose, stabilize the platform, help it climb, and right it after a rollover. Current catalog dimensions and options may not match ROB's purchased revision; retain the invoice, serial/revision evidence, and as-received measurements with the CAD.
+
 \section{Start from interfaces}
 
 Before drawing the final plate, freeze or explicitly version these interfaces:
@@ -200,6 +236,27 @@ Presentation pages 21-26 say the flippers moved from the front wheels to the rea
 \ROBPhoto[0.54\textheight]{rob-v3-page-23.jpg}{The annotated upside-down prototype on presentation page 23 captures the third-wheel idea and identifies a design revision. It is not a final drawing.}
 
 \Planned\quad Treat the third wheel as a separate design project until the builder supplies the geometry, load path, stability analysis, actuator selection, ground clearance, deployed/retracted sensing, failure response, and test evidence.
+
+The builder's intended stair technique was an undulating sequence: a high-torque flipper lifts part of ROB, the treads advance, and the body changes support state before the next step. Added arms, cameras, computers, inverter, batteries, and structure increased normal force and tread scrub. The present robot can be difficult to pivot on concrete and may need small forward/back steering arcs. Reproduce neither stair climbing nor a zero-radius turn until the test plan includes support polygon, tip margin, flipper current/temperature, tread traction, tread-to-step engagement, cable clearance, observer exclusion, and an independent stop.
+
+\section{Drivetrain experiment ledger}
+
+The builder recalls an early combination operating the motors from 12 V at roughly 80 rpm and 30 W, then trials involving 16-, 32-, 40-, and 45-tooth sprockets. The builder-owned HengDrive curves instead describe 24 V B5685-family variants and 60 W operating points. These are not necessarily contradictions: they may refer to different windings, gearbox stages, controller settings, supply voltage, or measurements. They are kept side by side until the installed units are identified.
+
+For every revision, record both sprockets and which one drives. If $N_d$ is driver teeth and $N_o$ is output teeth, the ideal output-speed multiplier is $N_d/N_o$ and the ideal torque multiplier is $N_o/N_d$ before losses. A larger isolated tooth count does not tell which outcome occurred.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{0.75in} p{0.8in} p{0.8in} p{0.7in} X}
+\toprule
+REV & DRIVER & DRIVEN & BUS & MEASURE AND RECORD\\
+\midrule
+Historical & 16? & unknown & 12 V? & No-load shaft/tread speed, current, controller setting, surface, mass, and temperature.\\
+Trial & 32? & unknown & 12/24 V? & Identify whether speed increased by ratio, voltage, or both.\\
+Trial & 40? & unknown & 12/24 V? & Measure turning current and flipper lift margin.\\
+Trial & 45? & unknown & 12/24 V? & Record chain line, wrap, tension, guard clearance, and failure reason.\\
+\bottomrule
+\end{tabularx}
+
+The later 12-to-24 V boost produced an immediate observed improvement in speed and available effort. Voltage strongly affects a DC motor's available speed; torque is primarily current-dependent. Do not publish ``doubling voltage doubled torque'' as a general law. Measure bus voltage at the controller, phase/input current as appropriate, converter droop, controller current limit, output speed, force, and temperature under the same load.
 
 \section{Provisional assembly sequence to verify}
 
@@ -241,15 +298,23 @@ Presentation pages 56-60 show the connection under load and call for mechanical 
 
 \section{Body rotation and cable continuity}
 
-Presentation page 67 proposes a 36 mm motor and a body bearing with rotation constrained from $-\pi$ to $+\pi$ instead of using a slip ring. A nearby restricted B-COMMAND file exists, but its contents are excluded and the firmware and photographs do not prove that the associated component is installed.
+Presentation page 67 preserves an earlier limited-rotation body-bearing concept. The builder now reports a custom B-COMMAND rotary interface installed inside the stepper plate so 24 V power and USB 3 data can cross the rotating boundary. The initial mechanical order placed the mating terminal geometry on the wrong sides. The builder removed the incompatible plastic top piece and bonded the slip ring into the plate. Treat that as an as-built repair requiring adhesive identification, bond-area inspection, axial/radial retention, runout, strain relief, thermal review, and a service/replacement plan---not as a vendor-approved mounting method.
 
-\Planned\quad A rotating body requires a controlled cable-wrap budget or an approved rotary interface, home/index sensing, hard and soft limits, collision envelopes, and a recovery plan after position loss.
+The installed builder-owned drawing is identified as \texttt{RX-USB001-022-02000C03}. Selected interface facts are: one USB 3.0 path; two 14 AWG PTFE-insulated red/black power conductors; 10 A per power conductor at 24 V; gold-to-gold contacts; IP40; $-20$ to $+60\,^{\circ}\mathrm{C}$; and a mechanical speed rating of \textbf{0--30 rpm}. The builder corrected an earlier recollection of revolutions per second. The drawing gives a typical five-million-revolution life under stated room conditions, but actual life depends on speed, temperature, current, vibration, alignment, and installation.
+
+A second custom drawing, \texttt{RX-ETH001-QS1-02000C04}, describes the intended head interface: USB 3.0, Gigabit Ethernet, and two 5 A/12 V power conductors. Its drawing shows AWG 22 power leads, while the builder recalls AWG 18. Inspect the physical unit and obtain an amended manufacturer record before assigning ampacity or installing it. This second unit is \Planned\ unless the head installation is photographed and continuity-tested.
+
+\begin{safetybox}
+The drawing's 0--30 rpm rating is a component maximum, not permission to command the torso at 30 rpm. Human proximity, arm sweep, cable motion, stepper torque, balance, stopping distance, controller voltage, and structure require a far lower verified operating envelope. The builder believes the Pololu stepper controller may tolerate higher supply voltage, but the exact Tic model, motor rating, configuration, and present 12 V supply must be identified before considering 24 or 48 V.
+\end{safetybox}
 
 \ROBPhotoTwo{2025-rear-electronics-bay.jpg}{The rear bay shows how upper-body motion can pull on a dense harness.}{2025-labeled-cables.jpg}{Temporary labels aid teardown, but permanent routing must account for repeated flex and abrasion.}
 
 \section{Head and neck}
 
-The archive spans an earlier spherical multicamera head, an Insta360 Pro II concept, OAK-D sensors, a later spherical head, and a 2025 geared neck mechanism. The presentation calls the earlier hobby-servo arrangement inadequate and asks for tilt plus full rotation.
+The archive spans an earlier spherical multicamera head, an Insta360 Pro II concept, OAK-D sensors, a later spherical head, and a 2025 geared neck mechanism. The builder identifies the present panoramic camera as an Insta360 Pro II and the real-time head depth camera as an autofocus OAK-D Pro.
+
+Pan, lower-neck tilt, and upper-neck tilt use Hitec HSB-9380TH servos commanded by the 24-channel Pololu Maestro. Hitec's public specification identifies a 6.0--7.4 V digital brushless servo, a 25-tooth output spline, 34 kg-cm maximum torque at 7.4 V, 0.14 s/60 degrees at 7.4 V, and approximately 2.1 A stall current. The builder recalls a 12-tooth servo gear driving a 92-tooth neck gear. That may describe an attached pinion rather than the servo spline, but it must be measured. A 12:92 external ratio would ideally slow the neck and multiply torque by $92/12\approx7.67$ before losses; it would also multiply backlash and reflected structure loads in ways the servo rating alone cannot certify.
 
 \ROBPhotoTwo{2022-oakd-depth-camera.jpg}{The OAK-D stereo camera is a distinct sensing module, not the whole head design.}{2025-neck-gear-train.jpg}{The 2025 neck gear train exposes stacked gears and support plates that need calibrated limits and guarded pinch points.}
 
@@ -263,7 +328,7 @@ The deck proposes two Amber seven-degree-of-freedom arms with force/current-sens
 \Unverified\quad Joint feedback, zeroing, limits, load rating, collision envelope, emergency behavior, and physical outcome were not measured in this review.\par
 \Planned\quad General object pickup remains unavailable because camera-to-arm transforms, inverse kinematics, collision checking, and a verified grasp executor are incomplete.
 
-\ROBPlaceholder{Supply upper-body drawings; body bearing and motor; torso/third-wheel actuator roles; head sensor inventory; neck axes, ratios, limits, and home sensors; arm model/firmware, joint definitions, zeroing, payload, reach, current limits, gripper behavior, collision envelope, cable routing, and transport restraints.}
+\ROBPlaceholder{Supply upper-body drawings; stepper motor and exact Pololu Tic model/configuration; slip-ring serials and installation photographs; adhesive/retention design; runout and rotation limits; torso/third-wheel actuator roles; head sensor inventory; neck pinion and 92-tooth gear measurements, axes, backlash, limits, and home sensors; arm model/firmware, joint definitions, zeroing, payload, reach, current limits, gripper behavior, collision envelope, cable routing, and transport restraints.}
 
 \ROBChapterPhoto{Chapter 5}{From template to finished part}{2022-drilling-metal-rail.jpg}
 
@@ -324,7 +389,11 @@ Use captive or accessible fasteners where covers need regular removal. Separate 
 
 \section{What the archive says}
 
-The 2021-2022 presentation describes four 20 Ah LiFePO4 batteries for a stated total of 80 Ah and shows a 12 V distribution bus, an onboard charger concept, a 120 VAC inverter, and a 12-to-24 V 240 W converter. Later photos show a different visible battery arrangement, including two large packs. The current topology is not proven.
+The builder reports four 20 Ah LiFePO$_4$ batteries and refers to the bank as 80 Ah. That arithmetic describes a compatible parallel capacity, but a safe parallel topology is not established until pack voltage, chemistry, BMS behavior, state-of-charge matching, branch protection, conductor resistance, and manufacturer permission are verified. Later photographs show only part of the physical arrangement and cannot prove the hidden connections.
+
+The current narrative says all battery negative leads meet at a negative bus. Positive leads travel to the front on/off switch and then to a positive 12 V bus bar. A large converter boosts the base supply to 24 V for the motors and upper-body feed. Behind the belly are separate 12 V and 24 V buses. A 24-to-12 V DC converter supplies selected body loads and the 12 V input path for the fanless sine-wave inverter. A 24-to-48 V boost stage supplies the AMBER B1 arms through the two cutoff switches behind the arms. These statements are builder-reported and must be reconciled against an as-built single-line drawing and continuity test.
+
+\ROBPowerArchitectureDiagram
 
 \ROBPhotoTwo{rob-v3-page-41.jpg}{Historical 2021--2022 presentation concept: page 41 sketches four batteries and packaging around the treads; it is not evidence of the current power topology.}{2024-batteries-and-power-leads.jpg}{The 2024 photograph shows the physical packs and leads visible in that revision.}
 
@@ -347,12 +416,30 @@ The final manual needs an electrical single-line diagram from every energy sourc
 
 \ROBPhotoTwo{2024-power-cable-pass-through.jpg}{A pass-through needs abrasion protection and restraint.}{2024-voltage-gauge.jpg}{A 13.1 V display is a diagnostic clue, not proof of state of charge or system health.}
 
+\section{Loads named in the builder record}
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.1in} p{1.7in} X}
+\toprule
+DOMAIN & REPORTED LOADS & REQUIRED VERIFICATION\\
+\midrule
+Base 12 V & tread/flipper controllers before 24 V revision, linear-actuator controller, Arduino/base hub, onboard charger connection & Present motor feed, branch fuses, current limits, charger interlock, return topology.\\
+Base/body 24 V & HengDrive motors after boost, rotary power path, torso bus, stepper candidate, Maestro/peripherals as configured & Converter make/model, 240 W recollection, continuous/surge current, cooling, slip-ring current sharing, voltage drop.\\
+Body 12 V & backpack router, camera charging, AMBER Ubuntu computer path as recalled, Mac/inverter-related loads & Exact converter and each device input voltage; do not call a DC converter an inverter.\\
+120 VAC output & fanless pure-sine inverter, recalled 150 W continuous / 300 W peak, used for AC-powered compute/accessories & Model, grounding/isolation, receptacle protection, inrush, shutdown, enclosure, shore-power separation.\\
+Arm 48 V & two AMBER B1 arms through rear cutoff switches & Converter rating, wiring, branch protection, connector, cutoff contact rating and whether it interrupts both commanded and fault energy states.\\
+\bottomrule
+\end{tabularx}
+
+The onboard NOCO Genius charger is recalled as a 2 A-class unit. It is a fallback charging path, not evidence that ROB can operate indefinitely while plugged in. At 2 A, even an ideal 80 Ah bank requires on the order of 40 hours to replace 80 Ah before taper, losses, cell balancing, and concurrent loads. Record the exact charger model and approved battery topology. Interlock motion and hazardous charging/service states according to the electrical design.
+
 \section{Motor electrical evidence}
 
-The motor label visible in build photographs identifies a HengDrive B5685G family, but the archived vendor sheets carry restrictive or confidential notices. This public draft therefore does not reproduce or paraphrase their specifications. Obtain written permission or current public datasheets, then identify each installed winding, gearbox, controller, wire function, current limit, branch protection, and measured operating envelope.
+The motor label visible in build photographs identifies a HengDrive B5685G family. Builder-owned outline drawings identify a rated 24 V family with an 8--26.4 V operating range and five leads: red power positive, black power negative, green speed output, yellow direction, and blue PWM speed command. They show gearbox options including 1:22.6 and 1:276. Separate 24 V performance curves describe 60 W operating points at different motor speeds. File naming around ratio and speed is ambiguous enough that this manual does not assign either curve to an installed tread or flipper motor.
+
+The required identification test is non-destructive and staged: photograph every label and connector, record winding/gearbox/serial markings, trace each five-wire harness without energizing, compare controller configuration, then measure bounded no-load output speed at the shaft and tread. Only after current limiting, direction, brake, tach level, and stop are known should a loaded test record output speed, input current, converter voltage sag, temperature, and force.
 
 \begin{advancedbox}
-A presentation slide proposes a 240 W converter. At 24 V, 240 W corresponds to 10 A before losses, but the installed topology and authorized motor ratings are not established. This does not approve or reject the circuit; it demonstrates why a measured current and power budget is mandatory.
+A builder-recalled 240 W converter corresponds to 10 A output at 24 V before losses. The 12 V input would require more than 20 A at full output after conversion loss. This does not approve or reject the circuit; it explains why both input and output conductors, fuses, connectors, cooling, battery sag, and simultaneous motor demand require measurement.
 \end{advancedbox}
 
 \section{Emergency stop and safe energy state}
@@ -361,7 +448,7 @@ A physical E-stop should be independent of the UI and ordinary network. Its desi
 
 \ROBPhoto{2025-emergency-stop-bench-layout.jpg}{A yellow emergency-stop button and control boxes appear in a 2025 bench layout. The photograph does not reveal contacts, safety category, or final wiring.}
 
-\ROBPlaceholder{Provide the authoritative as-built schematic and calculations: present battery packs and topology, BMS, chargers, fuses/breakers, disconnect, E-stop circuit and contact ratings, converters, branch currents, wire gauges, connectors, grounding/bonding, inverter/shore-power safety, runtime, thermal measurements, and fault tests.}
+\ROBPlaceholder{Provide the authoritative as-built schematic and calculations: pack make/model/serial and topology, BMS compatibility, per-pack and main protection, NOCO charger model, disconnect and E-stop circuit/contact ratings, converter and inverter models, branch currents, wire gauges, connectors, grounding/bonding, shore-power isolation, runtime, inrush, thermal measurements, voltage-drop map, and open/short/reversed-polarity fault tests.}
 
 \ROBChapterPhoto{Chapter 7}{Arduino base controller}{2024-dense-internal-routing.jpg}
 
@@ -386,7 +473,9 @@ Current diagrams, startup procedures, and hardware counts must show one Base Ard
 
 \section{Confirmed pin and communication map}
 
-The firmware targets an Arduino-compatible controller, and historical controller logs call it an Arduino Mega. The exact board model and revision, core, and library versions remain to be supplied.
+The builder identifies the installed controller as an Arduino Mega 2560. Arduino's official specification gives 54 digital I/O pins, 15 PWM outputs, 16 analog inputs, and four hardware UARTs; the remembered ``55 digital I/O'' count is corrected here. The exact board revision, core, library versions, flashed binary/hash, and upload date remain to be supplied.
+
+\ROBArduinoWiringDiagram
 
 \begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.38in} >{\centering\arraybackslash}p{0.7in} >{\centering\arraybackslash}p{0.7in} >{\centering\arraybackslash}p{0.78in} X}
 \toprule
@@ -480,7 +569,35 @@ A modern base controller should contain:
   \item unit, parser-fuzz, timing, and hardware-in-the-loop tests.
 \end{itemize}
 
-\ROBPlaceholder{Confirm board model and core; installed libraries; every connector and logic voltage; brake circuit; motor/flipper polarity; allowed command ranges; measured deadman deadline; brake/coast behavior; encoder status; IR models/positions/calibration; IMU orientation; actuator controller, end stops, current limits, and safe state.}
+\section{Interrupt-first rewire proposal}
+
+The motor controllers expose speed feedback, but the installed code never attaches interrupts. The original map spends external-interrupt-capable D2 and D3 on right-motor outputs, proposes D20 for one tach while I$^2$C uses D20/D21, and uses \texttt{SoftwareSerial} despite spare hardware UARTs. The following is a design proposal, not authorization to move wires:
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.48in} p{1.12in} X}
+\toprule
+FUNCTION & PROPOSED MEGA PIN & MIGRATION NOTE\\
+\midrule
+Right / left / flipper tach & D18 / D19 / D2 & All external interrupts; verify voltage, pull-up, edge, pulses/revolution, noise, and maximum rate.\\
+Right speed / brake / direction & D8 / D24 / D25 & D8 retains PWM; D24 is ordinary digital output. Prove the controller's active-low speed behavior.\\
+Left speed / brake / direction & D4 / D5 / D27 & Preserve current assignments.\\
+Flipper speed / brake / direction & D6 / D7 / D29 & Preserve current assignments and add independent end/position protection.\\
+LACT controller & Serial2 D16 TX / D17 RX & Replace \texttt{SoftwareSerial}; connect only the required direction(s) with verified 5 V/3.3 V compatibility.\\
+IMU I$^2$C & D20 SDA / D21 SCL & Short, local, twisted/ground-referenced routing only; do not reuse D20 as tach.\\
+IR & A5 through A0 & Structured telemetry with age/quality; no single terrain-sensitive sample receives stop authority.\\
+\bottomrule
+\end{tabularx}
+
+Each ISR should read no sensor bus, allocate no memory, print no serial text, and make no motion decision. It should increment an edge counter and capture a timestamp in \texttt{volatile} state. The main loop atomically snapshots those fields and computes speed over elapsed monotonic time. Telemetry should publish pulses, window length, derived speed, age, saturation/overflow, and plausibility. Closed-loop tread control should begin in observation-only mode, compare commanded with measured speed, and retain operator authority during mismatch tuning.
+
+\section{Successor controller study}
+
+The Arduino GIGA R1 WiFi is the leading Arduino-branded research candidate, not a drop-in replacement. Official documentation lists 76 GPIO, 13 PWM pins, four UARTs, a dual-core STM32H747, and an FDCAN controller on D93/D94 that still requires an external transceiver. Its I/O logic is 3.3 V with a 20 mA per-pin maximum and a 140 mA aggregate I/O limit. Every existing 5 V signal must therefore be measured and level-adapted as required.
+
+An initial bench allocation can reserve D2/D3/D18 for three tach inputs, D4/D5/D6 for three PWM outputs, separate ordinary GPIO for brakes/directions, D16/D17 for the actuator UART, and D93/D94 for future isolated CAN. This allocation must pass a board-core-specific \texttt{attachInterrupt(digitalPinToInterrupt(pin), ...)} compile/run test, edge-rate test, timer/PWM interaction test, and safe-reset test before a harness is designed.
+
+The GIGA base board does not include an IMU. The GIGA Display Shield adds a BMI270 over I$^2$C, but a display shield is a poor reason to keep a long noisy sensor bus. Better successors place the IMU near the controller/center-of-motion with short SPI or I$^2$C wiring, isolate it from motor returns, timestamp locally, and send typed orientation/quality telemetry. The existing OAK-D Pro W also contains an IMU, but its frame, latency, USB lifecycle, and mounting role differ from a base safety/control sensor.
+
+\ROBPlaceholder{Confirm Mega revision and core; installed libraries and firmware hash; every connector and logic voltage; brake circuit; motor/flipper polarity; allowed command ranges; measured deadman deadline; brake/coast behavior; tach electrical interface/pulses per revolution; IR models/positions/calibration; IMU orientation and failed long-wire installation; actuator controller, end stops, current limits, and safe state. Approve or reject the proposed Mega/GIGA maps through a signed design review.}
 
 \part{Software and perception}
 
@@ -509,6 +626,18 @@ KeyframeAnimationManager.swift & JSON-persisted animation values for arms, head/
 AutoNet shared/transport files & ROBControl v2 framing, pairing, roles, session identity, and authorization.\\
 \bottomrule
 \end{tabularx}
+
+\section{Present belly compute, USB, and Ethernet record}
+
+The builder reports three Mac mini generations: Intel, M1, and the present M4. The M4 runs Cerebro. A separate AMBER Robotics Ubuntu computer owns the vendor kinematic/core environment and the two arm CAN paths. A backpack router joins the home Orbi Wi-Fi network, and a Netgear switch expands wired connectivity for the Mac mini, AMBER box, and Insta360 Pro II.
+
+The M4 presently uses two USB-C hubs plus a USB-A fan-out. Named USB loads include the Pololu stepper controller, 24-channel Maestro, Hecate USB/Bluetooth speakers, keyboard dongle, depth cameras, and the rotary/base chain that reaches the Arduino and the RPLidar USB--Ethernet adapter. The builder reports hub power shutdowns. A connector extension can solve reach or gender, but it cannot solve current, inrush, voltage drop, or signal integrity.
+
+\ROBUSBNETDiagram
+
+Create two inventories from the running M4: a physical port photograph with both cable ends labeled, and a machine-readable USB tree captured at idle, camera startup, video streaming, arm service start, and full sensor load. For each hub record its upstream link speed, power supply rating, per-port limit, negotiated device speed, measured bus voltage, and shutdown log. Replace passive or bus-powered stages with approved externally powered hubs only after grounding, backfeed, isolation, and shutdown behavior are reviewed.
+
+Other named body loads are a conference microphone, a digitally controlled bicycle lamp whose button interface has not been successfully automated, and a fanless pure-sine inverter recalled as 150 W continuous/300 W peak. The lamp remains manual until its button protocol is measured and an isolated, reversible interface is designed; never probe it from a high-current robot bus by trial and error.
 
 \section{Base heartbeat ownership}
 
@@ -711,6 +840,8 @@ Volume 7 explains the Swift/visionOS client composition and user-facing display.
 
 \Experimental\quad The current camera design runs a pinned DepthAI helper and sends timestamp-synchronized RGB plus depth through a private local Unix socket. RGB enters the existing sample-buffer, Vision, Gemini, and video path. Depth is little-endian UInt16 millimeters aligned to RGB; zero is invalid. AVFoundation remains an RGB-only fallback.
 
+The builder identifies an OAK-D Pro Wide in the body and an autofocus OAK-D Pro at the head. Record the identity reported by DepthAI---product, board, revision, sensor names, calibration, USB speed, focus capability, and firmware---because OAK variants differ in color shutter/focus/FOV while sharing similar enclosures. Luxonis documents the RVC2 Pro Wide family with global-shutter monochrome stereo, active IR projection/flood illumination, USB 2/3, and an onboard IMU. Active illumination and full inference can raise peak power; use a reviewed powered path rather than depending on a marginal hub.
+
 The helper owns the OAK device exclusively. Old frames are dropped when perception is busy. Missing hardware, malformed IPC, SDK failure, or helper exit becomes camera state and bounded retry rather than a control-process crash.
 
 The helper uses DepthAI Camera, Depth, and Sync nodes, requests 640 by 400 undistorted RGB, aligns RAW16 millimeter depth to RGB, and emits a versioned \texttt{CDP1} packet over a private Unix socket. Cerebro validates dimensions, pixel formats, byte counts, and maximum allocation before constructing a CoreVideo buffer. The process boundary contains SDK and USB failure; a future native or XPC helper should preserve the same \texttt{CameraFrameSet} provider contract.
@@ -731,13 +862,15 @@ Before removal, check Xcode target membership, runtime selectors, duplicated mod
 
 \Experimental\quad The companion app reads pose, location, laser points, and occupancy maps from Slamware. It publishes scans about every 0.2 seconds and maps about every 5 seconds through typed, sequenced, bounded telemetry. Before scan publication, the current code keeps only valid points closer than \(1\,\mathrm{m}\) and within approximately \(\pm0.50\) radians of the front or back; this scan is not a full 360-degree view. The occupancy map is a separate payload. The publisher role cannot drive the robot.
 
+The RPLidar was a later mechanical stage supported by three 3/8-inch threaded rods. The builder reports Ethernet descending to a base USB hub through a USB--Ethernet adapter; the Arduino uses the same hub for its USB serial path. Confirm the exact RPLidar model because SLAMTEC variants differ between native USB/serial and Ethernet interfaces. Measure the lidar-to-base transform, mast deflection, vibration, rod preload/locking, laser plane clearance, and cable strain through the full flipper, waist, arm, and transport envelopes.
+
 Cerebro checks authenticated publisher identity, monotonic sequence, capture time, kind, and bounds. Stale data is rejected. Current social-roam autonomy consumes fresh scans, not occupancy maps.
 
 \section{IR and IMU}
 
-\Experimental\quad Front/back Sharp IR warnings remain active, but automatic movement-inhibit flag assignments are disabled. The floor/grass reflection history makes these sensors an ideal research topic, not a certified stop device.\par
+\Experimental\quad Six Sharp IR sensors are installed. Front/back warnings remain active, but automatic movement-inhibit flag assignments are disabled and full numeric telemetry is not emitted by the current firmware. Grass repeatedly produced false positives and stopped useful travel during earlier experiments. A future Cerebro policy can consume all six values only after the firmware publishes structured samples with age and quality; filter/debounce them, cross-check lidar and commanded direction, distinguish warning from safety authority, and fail to ``unknown'' on silence.\par
 
-\Implemented\quad The MPU9250 reports inertial data and derived orientation. It is not a motion-inhibit input.
+\Experimental\quad The MPU9250 code reports inertial data and derived orientation, but the builder reports that the physical long I$^2$C wires were too noisy inside ROB's high-EMF environment to be useful. It is not a motion-inhibit input. Shorter local wiring, careful return routing, shielding/ground strategy, lower bus speed where appropriate, or a local SPI/CAN sensor node should be tested before restoring the signal.
 
 \section{Coordinate-frame discipline}
 
@@ -768,7 +901,15 @@ Record axis direction, handedness, units, timestamp, calibration method, uncerta
 
 Cerebro uses Maestro servo channels plus AMBER Python paths. ROB's present AMBER evidence describes two seven-joint B1 arms and separate grippers. The Ubuntu-side directories \texttt{L-10} and \texttt{R-11} bind \texttt{can10}/\texttt{can11}, UDP ports 26001/26002, and LCM prefixes \texttt{Left\_}/\texttt{Right\_}. Network clients send UDP or LCM to one core per side; each core, not the client, interfaces with its actuators over CAN.
 
+\ROBCANPhysicalDiagram
+
+The adapter connector must expose or be mapped to CANH, CANL, and the appropriate reference ground. High-speed CAN uses a twisted pair with 120 $\Omega$ termination at the two physical ends; two correct end terminators normally appear as roughly 60 $\Omega$ across CANH--CANL with power removed. Verify whether each USB adapter or arm controller has switchable/internal termination before adding any resistor. ROB has two independent buses, so perform the measurement and side-identity audit separately for \texttt{can10} and \texttt{can11}.
+
+The rear switches behind the arms are reported to interrupt the 48 V arm supply. Document whether each switch removes one arm or a shared converter path, its DC contact rating, arc suppression, connector/fuse order, behavior under regenerative or held loads, and how the operator proves isolation. A switch label does not establish an emergency-stop category.
+
 The checked-in V2 protocol provides status, joint and Cartesian moves, calibration, gripper control, and mode control. Its packed UDP header contains a 16-bit command, 16-bit length, and 32-bit counter. The current client needs stronger validation of source, size, command, counter, freshness, finite values, and authentication before production use. Archived binaries do not include enough source to reconstruct their actuator-level CAN protocol.
+
+The hardened Ubuntu gateway now provides that stronger host boundary: a root-owned initializer maps reviewed USB serials to \texttt{can10}/\texttt{can11}; a systemd service runs unprivileged; LCM status is decoded into locked snapshots; one authenticated controller session owns bounded per-arm queues; heartbeat and leased commands expire; UDP replies are matched by command and counter; and priority hold purges queued work. Volume 6's appended compendium walks through every layer and the service file line by line.
 
 URDF models provide link geometry, joint origins, axes, and limits, but they do not prove ROB's physical mount transforms, encoder zero, payload, safe stopping, or cable collision volume. Measure torso-to-left-base, torso-to-right-base, and each tool transform; then verify forward kinematics over several supported poses before inverse kinematics. Volume 6 contains the protocol tables, joint model, Ubuntu reproduction procedure, and staged dual-arm commissioning gates.
 
@@ -964,6 +1105,26 @@ Arm action rejected & Treat rejection as correct until capability, calibration, 
 
 \ROBPlaceholder{Add maintenance intervals, lubrication policy, tread and chain wear limits, fastener torques, battery retirement criteria, cable replacement rules, calibration intervals, spare-parts inventory, fault codes, backup/restore procedure, and configuration-release form.}
 
+\part{Advanced engineering compendium}
+\setlength{\emergencystretch}{4em}
+\sloppy
+
+\begin{advancedbox}[title={WHY THE COMPLETE MANUAL INCLUDES THE FULL ADVANCED VOLUMES}]
+The hardware chapters above establish ROB's physical plant, evidence status, and operating boundaries. The following four manuscripts preserve the complete software and arm tutorials beside that record: AI-assisted engineering practice, AMBER/Ubuntu/CAN/LCM, the Vision Pro controller, and Cerebro's mixed-language perception/model/video architecture. They are included as real instructional content, not page-count filler. When a repeated concept appears, read the subsystem volume for code-level detail and the earlier field-manual chapter for the whole-robot safety boundary.
+\end{advancedbox}
+
+\part{AI-assisted robotics engineering}
+\markdownInput{volume-5-ai-robotics-with-codex.md}
+
+\part{AMBER B1, Ubuntu, CAN, and LCM}
+\markdownInput{volume-6-amber-dual-arm-robotics.md}
+
+\part{Vision Pro control and media client}
+\markdownInput{volume-7-engineering-robcontrollervision.md}
+
+\part{Cerebro perception, models, and H.264}
+\markdownInput{volume-8-engineering-cerebro.md}
+
 \appendix
 
 \input{adult-learning-and-commissioning.tex}
@@ -1061,8 +1222,8 @@ AmberHomeFolder/amber/L-10 and R-11 & Captured Ubuntu runtime evidence for the t
 AmberHomeFolder/amber/sin\_wave/rawLcm & Source definitions for joint targets, arm feedback, Cartesian tasks, plans, solver responses, and gripper control.\\
 Amber URDF/amber\_b1.urdf & Independent seven-joint single-arm geometry and model limits; requires measured ROB mounting and tool transforms.\\
 Cerebro/Amber-PythonAPI/Amber V2 API & Packed UDP reference client for status, motion, mode, calibration, and gripper commands; requires protocol hardening before production authority.\\
-ROBOT Build/Hengdrive*.pdf & Restricted files; contents excluded pending publication clearance.\\
-ROBOT Build/B-COMMAND*.pdf & Restricted file; contents excluded and associated installation unproven.\\
+ROB hardware spec datasheets/Hengdrive*.pdf & Controlled builder-owned B5685G outline/performance records; selected interface facts summarized, full drawings excluded pending publication permission.\\
+ROB hardware spec datasheets/B-COMMAND*.pdf & Controlled custom rotary-interface drawings for the installed USB3/24 V torso unit and the intended USB3/Ethernet/12 V head unit; selected facts summarized, drawings excluded.\\
 ORobotics/media/gallery-originals & Private high-resolution construction and event photographs; strip metadata and review releases.\\
 ORobotics/data/gallery\_metadata.json & Visual descriptions useful for search and draft captions, not authoritative part identification.\\
 Cerebro/Cerebro/ROBSerialBox.m & Physical serial adapter, base heartbeat, servo/arm helpers.\\
@@ -1097,6 +1258,32 @@ M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar & Slamware acquisition and typed lidar 
 \bottomrule
 \end{tabularx}
 
+\chapter{Primary technical references}
+
+Repository paths document ROB's implementation. The following manufacturer and standards sources document the component or protocol boundary. Capture a dated PDF/hash for any reference used to release hardware; web pages can change.
+
+\begin{tabularx}{\textwidth}{>{\robcondensed\bfseries}p{1.3in} X}
+\toprule
+TOPIC & PRIMARY REFERENCE\\
+\midrule
+LT2 platform & SuperDroid Robots, LT2 support and current configurable platform: \url{https://www.superdroidrobots.com/wiki-a/index_php/LT2_and_LT2-F_Robot_Support} and \url{https://www.superdroidrobots.com/store/product=1513}. Current catalog options do not identify ROB's purchased revision.\\
+Arduino Mega & Arduino Mega 2560 Rev3 hardware page, pinout, datasheet, and schematic: \url{https://docs.arduino.cc/hardware/mega-2560}.\\
+Arduino GIGA & Arduino GIGA R1 WiFi hardware page, pinout, datasheet, and schematic: \url{https://docs.arduino.cc/hardware/giga-r1-wifi}.\\
+Motor serial & Pololu Simple Motor Controller User's Guide, compact protocol and safe-start commands: \url{https://www.pololu.com/docs/0J44/all}.\\
+Stepper control & Pololu Tic Stepper Motor Controller User's Guide: \url{https://www.pololu.com/docs/0J71/all}. Identify ROB's exact Tic before applying ratings.\\
+Neck servo & Hitec HSB-9380TH product/specification page: \url{https://hitecrcd.com/hsb-9380th-ultra-torque-brushless-titanium-gear-servo/}.\\
+OAK cameras & Luxonis OAK-D Pro W hardware page and device-information example: \url{https://docs.luxonis.com/hardware/products/OAK-D\%20Pro\%20W} and \url{https://docs.luxonis.com/software-v3/depthai/examples/misc/device_information/}.\\
+RPLidar & SLAMTEC product-specific datasheet and SDK selected after the installed model is identified; do not merge A1 and S2E interface claims.\\
+LCM & Official LCM introduction and Python tutorial: \url{https://lcm-proj.github.io/lcm/content/tutorial.html} and \url{https://lcm-proj.github.io/lcm/content/tutorial-python.html}.\\
+SocketCAN & Linux kernel SocketCAN documentation: \url{https://docs.kernel.org/networking/can.html}.\\
+CAN physical layer & Texas Instruments, \textit{Controller Area Network Physical Layer Requirements}, SLLA270; termination and grounding must also follow installed transceiver/vendor guidance.\\
+H.264 transport & IETF RFC 6184, \textit{RTP Payload Format for H.264 Video}: \url{https://www.rfc-editor.org/rfc/rfc6184}. ROB uses AVCC over custom reliable QUIC, not RTP; RFC 6184 is used to teach NAL concepts and future RTP packetization distinctions.\\
+Apple H.264 decode & Apple Core Media, \texttt{CMVideoFormatDescriptionCreateFromH264ParameterSets}: \url{https://developer.apple.com/documentation/coremedia/cmvideoformatdescriptioncreatefromh264parametersets}.\\
+\bottomrule
+\end{tabularx}
+
+The B-COMMAND and HengDrive drawings in the builder's hardware folder remain controlled vendor records. Their model numbers and selected interface facts are recorded in the relevant chapters; obtain written permission before reproducing the drawings or a substantial table of their contents.
+
 \chapter{Photo and artwork credits}
 
 All construction photographs in this edition originate from the private Orbitus Robotics gallery archive and are credited to Rodolfo Aramayo / Orbitus Robotics unless the builder supplies a different credit. The frontispiece and software-control illustrations are original generated artwork derived from ROB reference photographs and created for this book set. They contain no official franchise logo, character, or copied page design and are labeled as illustrations rather than engineering evidence.
@@ -1110,6 +1297,6 @@ Before public printing, complete image releases, confirm third-party product-ima
 Work through the Builder input ledger with the machine physically available. Replace placeholders with measured values, drawings, test reports, verified captions, and contributor stories. Then tag the source snapshot, rebuild all nine PDFs, and perform a page-by-page technical and print proof before the Maker Faire print run.
 \end{missionbox}
 
-\ROBSource{This field manual was synthesized from the local ROB presentation, private photo originals and metadata, Arduino firmware and hardware references, and current Cerebro, ROBController, ROBControllerVision, AMBER, and RPLidar repositories. The software consolidation and advanced video pass was completed on 2026-08-11.}
+\ROBSource{This field manual was synthesized from the local ROB presentation, builder interview of 2026-08-21, private photo originals and metadata, builder-owned hardware records, official manufacturer/standards references, Arduino firmware, and current Cerebro, ROBController, ROBControllerVision, AMBER, and RPLidar repositories. The expanded hardware, AMBER, model-training, and H.264 pass was completed on 2026-08-21.}
 
 \end{document}

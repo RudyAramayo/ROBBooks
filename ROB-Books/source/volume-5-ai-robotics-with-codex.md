@@ -1514,6 +1514,29 @@ covered camera, and a deliberately ambiguous scene. For each frame:
 5. Confirm disabling vision does not interrupt speech, stop handling, or
    manual robot control.
 
+### 24.3 Learning is a release pipeline, not a reflex
+
+Cerebro also contains the beginnings of a teachable object-detector workflow:
+`ROBDatasetManager` saves reviewed images and normalized YOLO boxes;
+`TrainProjectModel.py` fine-tunes YOLOv8n, exports ONNX, and compiles a Myriad X
+blob; the DepthAI helper can load a project-specific blob and manifest. That is
+an exciting path toward a robot that can learn new workshop objects, but it
+must not become ``see once, train once, trust forever.''
+
+The current dataset manager writes training and validation metadata to the
+same image directory, while the trainer correctly refuses identical train and
+validation directories. Preserve that refusal. Split data by collection event,
+keep a locked test set, compare PyTorch/ONNX/OAK outputs, require declared
+accuracy and latency thresholds, package a signed model manifest, run the
+candidate in shadow mode, and require a named human to promote or roll it back
+while the affected autonomy is disarmed.
+
+AI assistance can help create annotation tools, tests, manifests, evaluation
+reports, and deployment code. It cannot supply missing ground truth. The most
+valuable model-generation prompt asks the coding agent to make the candidate
+falsifiable: name the dataset hashes, likely leakage, per-class failures,
+runtime differences, acceptance thresholds, and rollback evidence.
+
 ---
 
 ## 25. Implementing model-safe show logic

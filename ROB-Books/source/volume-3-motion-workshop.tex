@@ -63,6 +63,10 @@ Hold a ruler at one end. Place one coin 2 cm from your hand, then move it to 20 
 
 ROB steers by commanding the left and right treads differently. This is \textbf{differential drive}. It is mechanically simple because there is no steering linkage, but turning a long tread on high-friction ground can demand a great deal of torque. Parts of the tread must slide sideways as the robot rotates.
 
+The purchased SuperDroid Robots LT2 tread system was ROB's one non-negotiable starting interface. The builder first mocked its envelope in cardboard, then planned maple-plywood parts around it and a flipper/third-wheel variation inspired by Johnny 5. That is systems engineering in a wonderfully practical form: freeze the one part you cannot change, represent it cheaply, and iterate everything that touches it.
+
+The original LT2 is designed as a skid-steer tracked platform. SuperDroid's own support material warns through its payload discussion that added weight and high-traction treads make the sideways skid required for turning more difficult. ROB added arms, cameras, computers, an inverter, batteries, and structure far above the base. On concrete, the builder now often turns with small forward/back arcs like a car instead of demanding a stationary pivot. This is not merely a software inconvenience; it is the floor, tread contact patch, normal force, center of mass, gear ratio, motor current limit, and structure negotiating at once.
+
 That explains an idea in the 2021-2022 presentation: a small wheel, mounted perpendicular to the treads and deployed by a linear actuator, could lift part of the robot so it pivots with less scrub. The slides call this the ThirdWheel concept. The archive does not establish the final geometry or whether the concept was completed.
 
 \ROBPhoto[0.55\textheight]{rob-v3-page-23.jpg}{Historical presentation page 23: the upside-down prototype is annotated with front/back orientation and a proposed third-wheel load path. This is a concept record, not a dimensioned fabrication drawing.}
@@ -85,7 +89,9 @@ The builder reports that grass also confused the IR sensors. Ground changes both
 
 \chapter{Motors, gearing, and sprockets}
 
-The motor label visible in ROB's build photographs identifies a HengDrive B5685G family. The archive also contains vendor material carrying restrictive or confidential notices. This public edition neither reproduces nor paraphrases those sheets. Obtain written permission or a current public datasheet, then confirm the installed winding, controller, gearbox, and measured output before publishing specifications.
+The motor label visible in ROB's build photographs identifies a HengDrive B5685G family. Builder-owned outline drawings describe a 24 V motor/controller family with five external functions: power positive, power negative, speed feedback, direction, and PWM speed command. The drawings list several winding/gearbox options, while the builder recalls an early 12 V, roughly 80 rpm and 30 W arrangement. Those records do not yet identify which option is installed on each axis. Preserve the disagreement until a label, winding resistance, no-load test, and authorized manufacturer record resolve it.
+
+The builder tried 16-, 32-, 40-, and 45-tooth sprockets while searching for a useful balance. A tooth count has no meaning by itself: the log must say whether it was the driver or driven sprocket and name its mate. Larger speed at the tread can reduce available output torque, while a reduction chosen for strong flipper lift can be painfully slow. ROB needed both: enough travel speed for a public robot and enough flipper torque to raise part of the heavy droid so the tracks could undulate over stairs.
 
 \section*{Gear ratio}
 
@@ -103,7 +109,15 @@ Real gear trains lose energy through friction, deformation, bearing drag, and im
 Draw a 12-tooth driver and a 36-tooth driven gear. Predict output turns for three input turns. Reverse which gear drives and predict again. Label which setup favors speed and which favors torque.
 \end{buildbox}
 
-\ROBPlaceholder{Confirm the manufacturer, exact motor winding, controller, and gearbox installed on each tread and the flipper. Supply authorized public documentation plus measured output-shaft and tread speed before print.}
+\section*{What the 24 V boost changed}
+
+The builder later installed a large 12-to-24 V boost converter and moved the motor supply to a 24 V bus. ROB immediately felt faster and stronger. The careful lesson is not ``double voltage always doubles torque.'' For a given motor, back-EMF and voltage strongly affect available speed, while torque follows current; the controller, converter, winding, gearing, battery sag, temperature, and load limit the result. The archived HengDrive family drawing is rated for 24 V, but the exact installed motor/controller option and converter margin must be verified before this observation becomes a specification.
+
+\begin{missionbox}[title={BUILD A GEAR-RATIO TEST MATRIX}]
+Make rows for 16, 32, 40, and 45 teeth. Add columns for driver teeth, driven teeth, calculated ratio, unloaded tread speed, current during a gentle turn, flipper lift success, motor temperature, and notes about surface. Leave a cell blank when it was not measured. The best ratio is the one that satisfies the declared mission with margin, not the one with the most dramatic single number.
+\end{missionbox}
+
+\ROBPlaceholder{Confirm the exact B5685G winding, integrated controller, gearbox, five-wire polarity/logic levels, and installed sprocket pair on each tread and the flipper. Obtain publication permission for the archived manufacturer drawings and add measured 12 V/24 V no-load speed, loaded current, thermal rise, turning current on each surface, and flipper lift margin.}
 
 \ROBPhoto[0.52\textheight]{2022-drive-assembly-rear.jpg}{A rear view of the 2022 drive assembly exposes brackets, shafts, chain paths, and wiring. The photograph helps locate interfaces but cannot supply ratings or alignment tolerances.}
 

@@ -50,9 +50,19 @@ This architecture separates concerns:
 An \textbf{interface} is a promise between components. It should say valid inputs, outputs, timing, errors, and ownership. Internal code can change while the promise stays stable. That is how large systems remain understandable.
 \end{conceptbox}
 
-\ROBPhoto[0.53\textheight]{rob-v3-page-72.jpg}{Historical presentation page 72 sketches a Mac mini M1, two Raspberry Pi 4 controllers, an inverter, and a 12-to-24 V converter. It records an architecture idea; the present hardware arrangement needs builder confirmation.}
+\ROBPhoto[0.53\textheight]{rob-v3-page-72.jpg}{Historical presentation page 72 sketches a Mac mini M1, two Raspberry Pi 4 controllers, an inverter, and a 12-to-24 V converter. It records an earlier architecture; the current builder record now identifies the M4 Mac mini and AMBER Ubuntu box as the principal computers.}
 
-\ROBPlaceholder{Confirm the current onboard computer inventory, operating systems, power converters, physical ports, USB device assignments, network topology, and which Raspberry Pi roles remain active.}
+\begin{fieldnotebox}[title={THREE MAC MINI ERAS}]
+ROB first carried an Intel Mac mini, then an M1, and now an M4 Mac mini running Cerebro. Nearby are an AMBER Robotics Ubuntu computer for the arm kinematics/CAN infrastructure, a 24-channel Pololu Maestro for the neck servos, Hecate USB/Bluetooth speakers, depth cameras, a conference microphone, and service peripherals. A fanless sine-wave inverter is recalled as 150 W continuous and 300 W peak. The part labels and measured power draw still need a photographed audit.
+\end{fieldnotebox}
+
+\ROBUSBNETDiagram
+
+Two USB-C hubs currently expand the M4 Mac mini, with another USB-A fan-out serving the stepper controller, Maestro, speakers, and keyboard dongle. The builder reports hub over-current shutdowns. An extension or receptacle adapter can change connector reach, but it cannot create more power. The engineering response is to inventory every device's idle, startup, and peak draw; use an approved externally powered hub with adequate per-port and total current; keep USB 3 signal integrity through the rotary link; and test camera plus controller load while watching the Mac's USB diagnostics.
+
+The network has a separate shape. A backpack router joins the home Orbi Wi-Fi network, while a Netgear switch adds wired ports for the Mac mini, AMBER Ubuntu box, and Insta360 Pro II. Ethernet, USB, and power may share a physical enclosure but they solve different problems. Label each cable at both ends and record which component supplies power.
+
+\ROBPlaceholder{Photograph and label every current Mac mini port, hub make/model and power supply, USB tree, rotary USB link, Ethernet switch port, router uplink, camera, Arduino, Maestro, Tic, audio device, keyboard receiver, AMBER host, and spare connection. Add measured bus current and a reproducible \texttt{system\_profiler SPUSBDataType} snapshot.}
 
 \ROBChapterPhoto{Mission 2}{Cerebro coordinates the body}{rob-software-control-room.png}
 
@@ -215,7 +225,7 @@ This is a \textbf{quality-of-service} decision expressed through architecture. U
 \chapter{How ROB sees space}
 \ROBSourceNow{Cerebro/Cerebro/CameraManager.swift}{This file owns a bounded camera/depth delivery path. Lidar acquisition lives separately under \texttt{M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar}; the chapter names the source when it changes sensor.}
 
-ROB's camera path can produce aligned color and depth. A color pixel describes brightness and color channels. A depth pixel describes estimated distance, currently carried as an unsigned 16-bit number of millimeters; zero means invalid. Alignment lets software ask, ``What distance belongs to this color pixel?''
+ROB's camera path can produce aligned color and depth. A color pixel describes brightness and color channels. A depth pixel describes estimated distance, currently carried as an unsigned 16-bit number of millimeters; zero means invalid. Alignment lets software ask, ``What distance belongs to this color pixel?'' The builder identifies an OAK-D Pro Wide in the body and an OAK-D Pro autofocus camera at the head, while the Insta360 Pro II supplies 360-degree imagery. Luxonis model options differ in field of view, color focus, shutter type, and power demand, so Cerebro should record the product name and board revision returned by the device rather than infer it from appearance.
 
 A supervised Python DepthAI helper owns the OAK-D device and sends synchronized data to Cerebro through a user-only local Unix socket. RGB enters the camera/Vision path. Depth travels beside it in a frame set. If the helper or device fails, Cerebro reports camera state and retries with bounded backoff instead of terminating robot control.
 
@@ -230,6 +240,8 @@ x = r\cos\theta, \qquad y = r\sin\theta.
 \]
 
 The companion app publishes typed, bounded scans and separate occupancy maps. Its current scan path first keeps only valid points closer than \(1\,\mathrm{m}\) and within about \(\pm0.50\) radians of the robot's front or back. The published scan is therefore not a full 360-degree view. Current local autonomy uses these fresh filtered samples, not the map, to choose cautious social-roam behavior. A stale sensor feed stops motion and leaves the autonomy session active in a waiting-for-lidar state.
+
+The lidar was a later physical stage, braced with three 3/8-inch threaded rods. The builder reports its Ethernet descending to a USB hub through a USB--Ethernet adapter beside the Arduino's USB connection. That mechanical stage needs a measured sensor-to-base transform, vibration check, cable strain relief, and proof that the rods do not intrude into camera or arm envelopes.
 
 \begin{buildbox}[title={DRAW A TINY LIDAR MAP}]
 Plot these polar points on graph paper: $(4,0^\circ)$, $(4,90^\circ)$, $(4,180^\circ)$, and $(4,270^\circ)$. Convert each to $(x,y)$. Add noisy points and decide how many samples you need before calling a region occupied.

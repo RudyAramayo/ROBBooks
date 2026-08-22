@@ -211,6 +211,7 @@
     VOLUME 5 & \textit{AI, Robotics, and Codex: Directing, Verifying, and Owning AI-Built Systems} - advanced makers\\[4pt]
     VOLUME 6 & \textit{Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu} - advanced makers\\[4pt]
     VOLUME 7 & \textit{Engineering ROBControllerVision: Swift, Spatial Input, Video, and Speech} - Swift developers\\[4pt]
+    VOLUME 8 & \textit{Engineering Cerebro: Perception, Models, H.264, and Robot Coordination} - software engineers\\[4pt]
     MANUAL & \textit{Building R.O.B.: The Complete Maker's Field Manual} - advanced builders\\
   \end{tabularx}
   \vspace{8pt}
@@ -338,6 +339,127 @@
     \node[hardstop,right=10mm of hard] (isolate) {independent contactor / controller stop path};
     \draw[->,very thick,ROBRed] (hard) -- node[above,font=\robcondensed\tiny,text=ROBRed]{independent of software} (isolate);
   \end{tikzpicture}
+  \end{center}
+}
+
+% Original publication diagrams.  These show documented interfaces and
+% verification gates; they are not conductor-sizing or fabrication drawings.
+\newcommand{\ROBPowerArchitectureDiagram}{%
+  \begin{center}
+  \resizebox{0.99\textwidth}{!}{%
+  \begin{tikzpicture}[node distance=7mm and 7mm,every node/.style={font=\robcondensed\scriptsize,align=center}]
+    \tikzstyle{pwr}=[draw=ROBRed!85!black,fill=ROBRed!7,rounded corners=1mm,minimum width=1.33in,minimum height=0.56in]
+    \tikzstyle{bus}=[draw=ROBAmber!85!black,fill=ROBAmber!10,rounded corners=1mm,minimum width=1.15in,minimum height=0.56in]
+    \tikzstyle{load}=[draw=ROBSteel,fill=ROBGray!22,rounded corners=1mm,minimum width=1.45in,minimum height=0.56in]
+    \node[pwr] (packs) {4 $\times$ LiFePO$_4$ packs\\20 Ah each; 80 Ah reported$^{*}$};
+    \node[pwr,right=of packs] (protect) {per-pack protection$^{*}$\\positive disconnect / switch};
+    \node[bus,right=of protect] (bus12) {BASE 12 V BUS$^{*}$\\negative return bus};
+    \node[pwr,below=of protect] (charge) {shore AC $\rightarrow$ onboard\\2 A-class charger$^{*}$};
+    \node[load,below=of bus12] (base) {treads, flipper, LACT,\\base electronics};
+    \node[bus,right=of bus12] (boost24) {12 $\rightarrow$ 24 V boost$^{*}$\\builder recalls $\sim$240 W};
+    \node[bus,right=of boost24] (bus24) {TORSO 24 V BUS$^{*}$\\through rotary power path};
+    \node[load,above right=5mm and 7mm of bus24] (body24) {stepper / Maestro /\\24 V peripherals$^{*}$};
+    \node[bus,below right=5mm and 7mm of bus24] (down12) {24 $\rightarrow$ 12 V DC$^{*}$\\converter};
+    \node[load,right=of down12] (body12) {Mac power path, inverter,\\router, cameras, compute$^{*}$};
+    \node[bus,above=of down12] (boost48) {24 $\rightarrow$ 48 V boost$^{*}$\\arm supply};
+    \node[load,right=of boost48] (arms) {left/right cutoff switches\\AMBER B1 arms};
+    \draw[->,very thick,ROBRed] (packs)--(protect);
+    \draw[->,very thick,ROBRed] (protect)--(bus12);
+    \draw[<->,thick,ROBAmber!90!black] (charge)--(protect);
+    \draw[->,thick,ROBAmber!90!black] (bus12)--(base);
+    \draw[->,very thick,ROBAmber!90!black] (bus12)--(boost24);
+    \draw[->,very thick,ROBAmber!90!black] (boost24)--(bus24);
+    \draw[->,thick,ROBAmber!90!black] (bus24)--(body24);
+    \draw[->,thick,ROBAmber!90!black] (bus24)--(down12);
+    \draw[->,thick,ROBAmber!90!black] (down12)--(body12);
+    \draw[->,thick,ROBRed] (bus24)--(boost48);
+    \draw[->,thick,ROBRed] (boost48)--(arms);
+  \end{tikzpicture}}
+  \par\scriptsize\itshape\color{ROBSteel}$^{*}$Builder-reported architecture. Verify topology, polarity, BMS compatibility, protection, conductor ampacity, converter limits, charger interlocks, and measured loads on the physical robot before energizing.
+  \end{center}
+}
+
+\newcommand{\ROBUSBNETDiagram}{%
+  \begin{center}
+  \resizebox{0.98\textwidth}{!}{%
+  \begin{tikzpicture}[node distance=6mm and 8mm,every node/.style={font=\robcondensed\scriptsize,align=center}]
+    \tikzstyle{host}=[draw=ROBPurple,fill=ROBPurple!8,rounded corners=1mm,minimum width=1.35in,minimum height=0.58in]
+    \tikzstyle{hub}=[draw=ROBCyan!80!black,fill=ROBCyan!7,rounded corners=1mm,minimum width=1.38in,minimum height=0.58in]
+    \tikzstyle{dev}=[draw=ROBSteel,fill=ROBGray!22,rounded corners=1mm,minimum width=1.35in,minimum height=0.48in]
+    \node[host] (mac) {Mac mini M4\\Cerebro};
+    \node[hub,right=of mac] (hub1) {powered USB-C / USB 3 hub\\power budget required};
+    \node[hub,above right=4mm and 8mm of hub1] (ring) {B-COMMAND rotary link\\USB 3 + 24 V power};
+    \node[hub,right=of ring] (basehub) {base USB hub\\+ USB--Ethernet};
+    \node[dev,above right=3mm and 7mm of basehub] (mega) {Arduino Mega\\USB serial};
+    \node[dev,below right=3mm and 7mm of basehub] (lidar) {RPLidar Ethernet\\model / host verify};
+    \node[hub,below right=4mm and 8mm of hub1] (hub2) {USB-A fan-out hub\\externally power if approved};
+    \node[dev,right=of hub2] (controls) {Pololu stepper controller\\Maestro 24-channel servo};
+    \node[dev,below=of controls] (access) {speakers + keyboard dongle\\other service peripherals};
+    \node[hub,below=15mm of mac] (router) {backpack Wi-Fi router\\home Orbi participant};
+    \node[hub,right=of router] (switch) {Netgear Ethernet switch};
+    \node[dev,right=of switch] (ethloads) {Mac mini / AMBER Ubuntu box\\Insta360 Pro II};
+    \draw[->,very thick,ROBCyan!80!black] (mac)--node[above]{USB-C}(hub1);
+    \draw[->,thick,ROBCyan!80!black] (hub1)--(ring);
+    \draw[->,thick,ROBCyan!80!black] (ring)--(basehub);
+    \draw[->,thick,ROBCyan!80!black] (basehub)--(mega);
+    \draw[->,thick,ROBCyan!80!black] (basehub)--(lidar);
+    \draw[->,thick,ROBCyan!80!black] (hub1)--(hub2);
+    \draw[->,thick,ROBCyan!80!black] (hub2)--(controls);
+    \draw[->,thick,ROBCyan!80!black] (hub2)--(access);
+    \draw[<->,very thick,ROBGreen!80!black] (router)--(switch);
+    \draw[<->,very thick,ROBGreen!80!black] (switch)--(ethloads);
+    \draw[<->,thick,ROBGreen!80!black] (mac)--(router);
+  \end{tikzpicture}}
+  \par\scriptsize\itshape\color{ROBSteel}Current builder narrative, not a photographed port audit. Every hub must have a measured upstream/downstream power budget; repeated USB power shutdown is a fault to resolve, not a nuisance to bypass with an unreviewed cable.
+  \end{center}
+}
+
+\newcommand{\ROBArduinoWiringDiagram}{%
+  \begin{center}
+  \resizebox{0.97\textwidth}{!}{%
+  \begin{tikzpicture}[node distance=5mm and 7mm,every node/.style={font=\robcondensed\scriptsize,align=center}]
+    \tikzstyle{mega}=[draw=ROBAmber!90!black,fill=ROBAmber!9,rounded corners=1mm,minimum width=1.55in,minimum height=0.72in]
+    \tikzstyle{sig}=[draw=ROBSteel,fill=ROBGray!20,rounded corners=1mm,minimum width=1.62in,minimum height=0.52in]
+    \node[mega] (board) {Arduino Mega 2560\\Base firmware};
+    \node[sig,left=of board] (usb) {Mac / Cerebro\\USB serial 250,000 baud};
+    \node[sig,above right=3mm and 8mm of board] (drive) {BLDC control outputs\\R: D2/D3/D25; L: D4/D5/D27};
+    \node[sig,right=of board] (flip) {flipper outputs\\D6/D7/D29};
+    \node[sig,below right=3mm and 8mm of board] (lact) {Pololu LACT controller\\D22 RX / D23 TX, 19,200};
+    \node[sig,below left=3mm and 8mm of board] (ir) {six Sharp IR inputs\\A5,A4,A3,A2,A1,A0};
+    \node[sig,above left=3mm and 8mm of board] (imu) {MPU9250 over I$^2$C\\D20 SDA / D21 SCL on Mega};
+    \node[sig,below=11mm of board] (tach) {speed feedback TODO\\D18 / D19 / D20 comments conflict};
+    \draw[<->,very thick,ROBCyan!85!black] (usb)--(board);
+    \draw[->,thick,ROBAmber!90!black] (board)--(drive);
+    \draw[->,thick,ROBAmber!90!black] (board)--(flip);
+    \draw[<->,thick,ROBAmber!90!black] (board)--(lact);
+    \draw[<-,thick,ROBGreen!80!black] (board)--(ir);
+    \draw[<-,thick,ROBGreen!80!black] (board)--(imu);
+    \draw[<-,dashed,very thick,ROBRed] (board)--(tach);
+  \end{tikzpicture}}
+  \par\scriptsize\itshape\color{ROBSteel}As-written firmware map. Dashed feedback is not implemented. A pin number is not a connector drawing; verify the harness, logic levels, grounds, polarity, and safe boot state at the robot.
+  \end{center}
+}
+
+\newcommand{\ROBCANPhysicalDiagram}{%
+  \begin{center}
+  \resizebox{0.98\textwidth}{!}{%
+  \begin{tikzpicture}[node distance=7mm and 8mm,every node/.style={font=\robcondensed\scriptsize,align=center}]
+    \tikzstyle{dev}=[draw=ROBSteel,fill=ROBGray!21,rounded corners=1mm,minimum width=1.35in,minimum height=0.58in]
+    \tikzstyle{wire}=[draw=ROBCyan!80!black,fill=ROBCyan!6,rounded corners=1mm,minimum width=1.45in,minimum height=0.58in]
+    \node[dev] (host) {Ubuntu host\\SocketCAN};
+    \node[dev,right=of host] (usb) {USB serial / SLCAN\\adapter};
+    \node[wire,right=of usb] (xcvr) {CAN transceiver\\TXD/RXD $\leftrightarrow$ differential};
+    \node[wire,right=of xcvr] (pair) {twisted pair\\CANH + CANL\\reference GND};
+    \node[dev,right=of pair] (nodes) {AMBER arm nodes\\actuator electronics};
+    \draw[<->,very thick,ROBPurple] (host)--node[above]{USB}(usb);
+    \draw[<->,very thick,ROBCyan!80!black] (usb)--(xcvr);
+    \draw[<->,very thick,ROBCyan!80!black] (xcvr)--(pair);
+    \draw[<->,very thick,ROBCyan!80!black] (pair)--(nodes);
+    \draw[ROBRed,very thick] ([yshift=5mm]xcvr.east)--++(0,6mm) node[above,font=\robcondensed\tiny]{120 $\Omega$ at physical end$^{*}$};
+    \draw[ROBRed,very thick] ([yshift=5mm]nodes.west)--++(0,6mm) node[above,font=\robcondensed\tiny]{120 $\Omega$ at physical end$^{*}$};
+    \node[below=8mm of pair,font=\robcondensed\tiny,align=center,text=ROBSteel] {CANH and CANL carry one differential signal. GND is a reference path, not a third data wire.\\Connector pin numbers, isolation, shield bonding, and built-in termination must be verified on the installed adapter.};
+  \end{tikzpicture}}
+  \par\scriptsize\itshape\color{ROBSteel}$^{*}$Conceptual high-speed CAN bus. Two 120 $\Omega$ end terminations usually measure about 60 $\Omega$ across CANH--CANL with all power removed. ROB uses two separate buses: \texttt{can10} left and \texttt{can11} right.
   \end{center}
 }
 

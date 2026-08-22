@@ -37,7 +37,8 @@ for book_source in "${books[@]}"; do
       || "$book_source" == "volume-6-amber-dual-arm-robotics.tex" ]]; then
     latex_options+=(-shell-escape)
   elif [[ "$book_source" == "volume-7-engineering-robcontrollervision.tex" \
-      || "$book_source" == "volume-8-engineering-cerebro.tex" ]]; then
+      || "$book_source" == "volume-8-engineering-cerebro.tex" \
+      || "$book_source" == "complete-builders-field-manual.tex" ]]; then
     latex_options+=(-shell-escape)
   fi
   latexmk "${latex_options[@]}" \
