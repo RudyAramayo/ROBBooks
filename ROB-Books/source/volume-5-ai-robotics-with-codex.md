@@ -3,7 +3,7 @@
 ## AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro
 
 **A source-based field guide**  
-Expanded local-model edition, August 11, 2026
+Expanded repository-integration edition, August 23, 2026
 
 ---
 
@@ -307,27 +307,32 @@ explicitly excluded.
 
 ## 7. Vision, depth, and video as bounded pipelines
 
-> **SOURCE TRAIL — ANALYZING NOW:** `CameraManager.swift` owns camera delivery and `ROBVideoServer.swift` owns video serving in Cerebro. Vision Pro receiver and presentation code live in ROBControllerVision's `Features/Video` directory.
+> **SOURCE TRAIL — ANALYZING NOW:** `CameraManager.swift` owns separate face/belly RGB-D delivery, the `ROBInsta360` services own the panoramic path, and `ROBVideoServer.swift` owns three-feed video serving. Vision Pro receivers and flat/immersive presentation live in ROBControllerVision's video feature and platform directories.
 
 Cerebro's camera path evolves from selecting webcams to a multi-provider
 perception system.
 
-The 2026 implementation runs DepthAI in a supervised Python helper and sends
-synchronized RGB and aligned depth over a local user-only Unix socket. Keeping
-the SDK outside Cerebro isolates USB disconnects, malformed packets, missing
-packages, and Python crashes. AVFoundation remains an RGB fallback, but only
-one provider may own the OAK device.
+The 2026 implementation runs each OAK role in a supervised Python helper and
+sends synchronized RGB and aligned depth over a private Unix socket. Face and
+belly cameras have distinct MXIDs, sockets, lifecycle state, and on-device
+pipelines. Keeping the SDK outside Cerebro isolates USB disconnects, malformed
+packets, missing packages, and Python crashes. AVFoundation remains an RGB
+fallback, but only one provider may own a physical OAK device. A third
+headless service controls and decodes Insta360 Pro II panoramic video on demand.
 
-The separate Vision Pro service uses its own authenticated QUIC connection,
-H.264 framing, bounded send state, and newest-frame policy. Slow video cannot
-back up robot control. Dropped frames trigger keyframe recovery rather than an
-unbounded queue.
+The separate Vision Pro service exposes independent `front`, `belly`, and
+`insta360` H.264 pipelines on its own authenticated QUIC connection. Each feed
+has bounded send state and newest-frame admission. Slow video cannot back up
+robot control. Dropped frames trigger keyframe recovery rather than an
+unbounded queue, and the panoramic feed can move from a flat panel to an
+inward-facing mixed-immersive sphere without preserving motion authority.
 
 The reusable design lesson is **separate by failure domain**:
 
 - control and video use different services and queues;
 - Python SDK faults do not terminate Cerebro;
 - camera ownership is exclusive;
+- camera role, calibration, rate budget, and demand are explicit;
 - perception drops old work instead of accumulating latency;
 - an unavailable optional device degrades one capability.
 
@@ -382,6 +387,16 @@ network code. Keep credentials outside source control. Do not send secrets,
 pairing material, faces, audio, or private surroundings unless the product's
 data policy and operator consent explicitly allow it.
 
+The current Cerebro implementation makes that privacy boundary concrete in two
+new subsystems. The face recognizer keeps consented embeddings and samples
+encrypted on the Mac and contributes only expiring untrusted scene context;
+WebFace4M and VGGFace2 profiles remain model-specific. The Messages bridge is
+disabled by default, exact-sender allowlisted, one-to-one only, at-most-once,
+and stripped of motor, file, Music, device, camera, and microphone tools. Its
+optional encrypted transcript memory is sender/account scoped; when Gemini is
+used, selected text excerpts leave the Mac and that disclosure must be explicit.
+Neither “administrator” face identity nor conversational memory is authorization.
+
 ### A safe OpenAI integration task for Codex
 
 ```text
@@ -430,6 +445,44 @@ raw motor values, file paths, hosts, ports, or arbitrary tool names. Update the
 schema, parser, negative fixtures, dry-run renderer, and docs before enabling
 runtime behavior. Preserve authored fallback and stop preemption.
 ```
+
+---
+
+## Interlude: the August 14–23 integration sprint
+
+The ten days after the original local-model edition changed the unit of work.
+Instead of one isolated feature at a time, the repositories began moving in
+cross-system slices whose contracts had to agree across the Mac, iPhone/iPad,
+Vision Pro, lidar publisher, camera helpers, and AMBER runtime.
+
+The material changes include:
+
+- an always-on, singleton Cerebro process with wake recovery and crash-limited supervision;
+- separate face, belly, and headless Insta360 camera roles, selectable detectors, per-camera budgets, and a system-status dashboard;
+- three authenticated H.264 feeds and a physically aligned mixed-immersive panorama;
+- explicit Request/Release Control arbitration between phone and Vision clients;
+- independent left/right `rob-arm-control/2` authority and simultaneous bounded PSVR Sense joint jogging;
+- destination navigation, sidewalk segmentation, stale-sensor gates, and manually confirmed traversability learning;
+- compact `RLS1` lidar frames, authenticated same-Mac IPC with QUIC fallback, pose-aligned maps, `.robomap` persistence, and map/base-layer calibration;
+- explicit synchronized recording for RGB, lossless depth, stereo, lidar, calibration, pose, odometry, authority, labels, and separate camera movies;
+- a disabled-by-default, allowlisted one-to-one Messages AI bridge with bounded images, local current-information tools, optional encrypted transcript memory, and exact-confirmation local administrator scripts; and
+- a disabled-by-default consented face gallery with local encrypted enrollment and selectable AdaFace WebFace4M/VGGFace2 encoders.
+
+The strongest architectural result is not any individual model. It is the
+repeated separation of **identity**, **memory**, **observation**, **operator
+ownership**, and **physical authority**. A face label can personalize a
+greeting but cannot approve a command. A Messages sender can enter a narrow
+allowlisted conversation or exact administrator-command path but cannot inherit
+robot tools. A recorded autonomous command can document a run but cannot label
+its own ground truth. A panoramic window can survive a scene transition while
+drive is independently braked.
+
+This is also a lesson in evidence. The Volume 5 Change Atlas now records the
+commit families across all affected repositories. The August 23 snapshot notes
+that ROBControllerVision's latest three panorama-orientation commits were clean
+but still ahead of its public remote. “Implemented locally” and “reproducible
+from the public branch” are different claims, and a good AI collaborator should
+surface that distinction before publication.
 
 ---
 
@@ -583,6 +636,40 @@ No motion yet. Inventory joint names, signs, units, calibrated ranges, feedback,
 URDF assumptions, transforms, collision checks, and emergency stop path. Mark
 every missing fact. Build a dry-run command preview and fixtures. Require a
 separate explicit request before enabling hardware output.
+```
+
+### Face-identity feature
+
+```text
+Treat face recognition as consented local context, never authorization. Preserve
+explicit enrollment confirmation, complete deletion, encrypted model-tagged
+profiles, open-set and temporal gates, and no upload. Compare only embeddings
+from the same encoder. Add false-accept/false-reject, lookalike, lighting,
+occlusion, replay, model-switch, corrupt-gallery, and key-loss tests. Document
+liveness limitations and keep motion, shell, secrets, and approvals out of scope.
+```
+
+### Private Messages feature
+
+```text
+Keep the bridge disabled by default, exact-sender allowlisted, one-to-one,
+at-most-once, rate-limited, and isolated per chat. Fail closed on groups,
+outgoing/reaction/stale/partial items, unexpected accounts, and unsupported
+attachments. Give the responder no robot, file, Music, device, camera, or
+microphone tools. Encrypt optional memory and bound cloud disclosure. Route
+exact administrator commands before AI, require same-chat one-shot confirmation,
+use reviewed fixed scripts through stdin, and never interpolate message text.
+```
+
+### Training-data recorder
+
+```text
+Recording must begin only after explicit operator intent and remain visibly
+active. Bind RGB, depth, stereo, lidar, calibration, pose, odometry, authority,
+labels, and encoded footage to one recoverable session with validated geometry
+and timestamps. Record autonomous commands as events but never let them create
+their own labels. Add low-space, crash recovery, corrupt frame, camera restart,
+consent, export, retention, and delete tests before using data for training.
 ```
 
 ### Documentation from code
@@ -1617,7 +1704,7 @@ cancel path, and deterministic fallback.
 
 ## 26. Vision Pro as ROB's voice and spatial control desk
 
-> **SOURCE TRAIL — ANALYZING NOW:** `OperatorSpeechPanel.swift`, `ControlPanel.swift`, and `VideoPanel.swift` implement operator-facing features. Transport lives separately in the ROBControllerVision package named `ROBControlCore`. The code map prints each full path.
+> **SOURCE TRAIL — ANALYZING NOW:** `OperatorSpeechPanel.swift`, `ControlPanel.swift`, `ArmControlPanel.swift`, and `VideoPanel.swift` implement operator-facing features. Transport and the `rob-arm-control/2` domain live separately in the ROBControllerVision package named `ROBControlCore`. The code map prints each full path.
 
 ROBControllerVision now adds a **Voice & Puppet Speech** panel beside the
 camera and telemetry controls. It supports two intentionally different
@@ -1668,22 +1755,26 @@ dead-man control.
 The Vision Pro interface also makes previously invisible robot state easier to
 teach:
 
-- the main camera is the large center view;
+- the front camera is the large center view, while belly and Insta360 feeds have independent authenticated pipelines;
+- the panorama can open in a flat window or on a heading-adjustable inward-facing mixed-immersive sphere;
 - side panels keep connection, voice, telemetry, and controls visible without
   vertical scrolling;
+- Request/Release Control shows the authoritative owner and brakes before a new operator takes over;
 - head orientation can drive the robot camera/neck while the required
   dead-man control is active;
 - torso rotation follows the bounded head-turn control path when enabled;
-- controller triggers are reserved for the left and right grippers;
+- separate left/right AMBER authorities support measured on-screen joint lanes and simultaneous PSVR Sense jogging only while both grips are held;
+- controller triggers remain reserved for the left and right grippers;
 - controller pose and head commands are reflected in the SceneKit view for
-  debugging;
+  debugging, but pose is not converted into arm IK;
 - transport remains paired and authenticated, and stale motion converges to
   neutral.
 
-These features demonstrate an important design distinction. Spatial input is
-continuous and safety-leased. Voice input is discrete text. Puppet speech is
-performance output. They may share one headset and one network connection, but
-they should not share ambiguous authority.
+These features demonstrate an important design distinction. Spatial drive and
+joint input are continuous, leased, and separately authorized. Voice input is
+discrete text. Puppet speech is performance output. Flat and immersive media
+are observation. They may share one headset and paired identity, but they
+should not share ambiguous authority.
 
 ### Build exercise: add a third text mode without adding authority
 
@@ -1725,8 +1816,13 @@ and the decision to energize the machine.
 
 ### Repository sources
 
-- `ROBController` Git history through `eb57375`, August 10, 2026
-- `Cerebro` Git history through `d45f9c9`, August 10, 2026
+- `ROBController` Git history through `50a2229`, August 22, 2026
+- `Cerebro` Git history through `e76d515`, August 23, 2026
+- `ROBControllerVision` local Git history through `63b9d9e`, August 22, 2026 (three commits ahead of its remote at inspection)
+- `M2M1-RPLIDAR-iOS-MacOS-Catalyst-` Git history through `d6ad455`, August 22, 2026
+- `Amber-HomeFolder` Git history through `722378a`, August 16, 2026
+- `ROBTrainingGames` Git history through `92a7738`, August 14, 2026
+- `ORobotics` Git history through `b1cc1a2`, August 15, 2026
 - `ROBController/docs/rob-control-v2-and-autonomy.md`
 - `ROBController/docs/robot-action-console.md`
 - `ROBController/docs/watch-controller.md`
@@ -1734,16 +1830,27 @@ and the decision to energize the machine.
 - `Cerebro/docs/controller-activated-autonomy.md`
 - `Cerebro/docs/depth-camera.md`
 - `Cerebro/docs/vision-pro-video.md`
+- `Cerebro/docs/recording-and-training.md`
+- `Cerebro/docs/messages-ai-bridge.md`
+- `Cerebro/docs/face-identity.md`
 - `Cerebro/docs/gemini-robotics-live.md`
 - `Cerebro/docs/gemini-robotics-stage-action-plan.md`
 - `Cerebro/docs/local-improvisation-provider.md`
 - `Cerebro/Cerebro/ROBMLXRuntime.swift`
 - `Cerebro/Cerebro/ROBMLXImprovisationProvider.swift`
 - `Cerebro/Cerebro/ROBMLXStageObservation.swift`
+- `Cerebro/Cerebro/ROBRecordingCoordinator.swift`
+- `Cerebro/Cerebro/ROBMessagesBridge.swift`
+- `Cerebro/Cerebro/ROBMessagesTranscriptStore.swift`
+- `Cerebro/Cerebro/ROBFaceIdentityGallery.swift`
+- `Cerebro/Cerebro/ROBFaceEmbeddingModel.swift`
 - `Cerebro/Cerebro/ROBStageShowCoordinator.swift`
 - `Cerebro/Cerebro/ROBStageShowProtocol.swift`
 - `ROBControllerVision/ROBControllerVision/Platform/VisionSpeechInput.swift`
 - `ROBControllerVision/ROBControllerVision/Features/Control/OperatorSpeechPanel.swift`
+- `ROBControllerVision/ROBControllerVision/Features/Control/ArmControlPanel.swift`
+- `ROBControllerVision/.../Control/ArmControlProtocol.swift` (the full path is in the source map)
+- `M2M1-RPLIDAR-iOS-MacOS-Catalyst-/README.md`
 
 ### Official OpenAI documentation
 

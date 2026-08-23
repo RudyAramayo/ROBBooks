@@ -7,6 +7,7 @@ This map tells book readers exactly where to begin in the public source. The pri
 - [github.com/RudyAramayo/Cerebro](https://github.com/RudyAramayo/Cerebro)
 - [github.com/RudyAramayo/ROBController](https://github.com/RudyAramayo/ROBController)
 - [github.com/RudyAramayo/ROBControllerVision](https://github.com/RudyAramayo/ROBControllerVision)
+- [github.com/RudyAramayo/M2M1-RPLIDAR-iOS-MacOS-Catalyst-](https://github.com/RudyAramayo/M2M1-RPLIDAR-iOS-MacOS-Catalyst-)
 - [github.com/RudyAramayo/Amber-HomeFolder](https://github.com/RudyAramayo/Amber-HomeFolder)
 - [github.com/RudyAramayo/ROBTrainingGames](https://github.com/RudyAramayo/ROBTrainingGames)
 
@@ -18,6 +19,7 @@ To follow along locally, clone only the public repositories needed for the chapt
 git clone https://github.com/RudyAramayo/ROBArduino.git
 git clone https://github.com/RudyAramayo/Cerebro.git
 git clone https://github.com/RudyAramayo/ROBControllerVision.git
+git clone https://github.com/RudyAramayo/M2M1-RPLIDAR-iOS-MacOS-Catalyst-.git
 sed -n '1,220p' ROBArduino/ROBOT_CEREBELLULAR_BASE_APP/ROBOT_CEREBELLULAR_BASE_APP.ino
 rg -n "ROBControl" Cerebro ROBController ROBControllerVision
 ```
@@ -48,11 +50,21 @@ Repository: `Cerebro`
 |---|---|
 | main coordination | `Cerebro/Cerebro/ROBMainViewController.mm` |
 | Arduino serial output and helpers | `Cerebro/Cerebro/ROBSerialBox.m` |
-| camera and bounded frame delivery | `Cerebro/Cerebro/CameraManager.swift` |
+| face/belly RGB-D camera roles and bounded delivery | `Cerebro/Cerebro/CameraManager.swift` |
+| headless panoramic capture and perception | `Cerebro/Cerebro/ROBInsta360CameraService.swift`, `ROBInsta360PerceptionService.swift` |
 | controller protocol and server-side authentication | `Cerebro/Cerebro/AutoNet/AutoNetShared/AutoNetDataTransferProtocol.swift` |
 | autonomy state machine | `Cerebro/Cerebro/ROBAutonomyCoordinator.swift` |
+| traversability learning boundary | `Cerebro/Cerebro/ROBTraversabilityRuntime.swift` |
 | optional AI path | `Cerebro/Cerebro/ROBAI.swift` |
 | typed model action schema | `Cerebro/Cerebro/GeminiRoboticsProtocol.swift` |
+| private Messages bridge | `Cerebro/Cerebro/ROBMessagesBridge.swift`, `ROBMessagesAIResponder.swift` |
+| encrypted transcript memory | `Cerebro/Cerebro/ROBMessagesTranscriptStore.swift` |
+| local face gallery and recognition | `Cerebro/Cerebro/ROBFaceIdentityGallery.swift`, `ROBFaceRecognitionService.swift` |
+| selectable face embedding backends | `Cerebro/Cerebro/ROBFaceEmbeddingModel.swift`, `Cerebro/Scripts/install_adaface_models.py` |
+| synchronized dataset recording | `Cerebro/Cerebro/ROBRecordingCoordinator.swift` |
+| current-information tools | `Cerebro/Cerebro/ROBNewsSearchService.swift`, `ROBWeatherSearchService.swift` |
+| three-feed authenticated video | `Cerebro/Cerebro/ROBVideoServer.swift` |
+| cached subsystem dashboard | `Cerebro/Cerebro/ROBSystemStatusCoordinator.swift` |
 | animation persistence | `Cerebro/Cerebro/KeyframeAnimationManager.swift` |
 | AMBER high-level client | `Cerebro/Amber-PythonAPI/Amber V2 API/amber_api/amber_robot.py` |
 | AMBER wire structures | `Cerebro/Amber-PythonAPI/Amber V2 API/amber_api/basic_cmd/` |
@@ -66,6 +78,7 @@ Repository: `ROBController`
 | Topic | Start with this file |
 |---|---|
 | iPhone/iPad control UI | `ROBController/Consciousness/ConsciousViewController.mm` |
+| map layers, destination selection, lidar alignment | `ROBController/Consciousness/RPLidarMapController.swift` |
 | network client | `ROBController/Consciousness/AutoNetClient/AutoNetClient.swift` |
 | client wire contract | `ROBController/Consciousness/AutoNetClient/AutoNetDataTransferProtocol.swift` |
 | Watch relay | `ROBController/Consciousness/AutoNetClient/ROBWatchRelay.swift` |
@@ -83,8 +96,11 @@ Repository: `ROBControllerVision`
 |---|---|
 | spatial cockpit layout | `ROBControllerVision/ROBControllerVision/App/ContentView.swift` |
 | control surfaces | `ROBControllerVision/ROBControllerVision/Features/Control/ControlPanel.swift` |
+| independent dual-arm controls | `ROBControllerVision/ROBControllerVision/Features/Control/ArmControlPanel.swift` |
 | speech control | `ROBControllerVision/ROBControllerVision/Features/Control/OperatorSpeechPanel.swift` |
 | camera presentation | `ROBControllerVision/ROBControllerVision/Features/Video/VideoPanel.swift` |
+| arm authority and bounded joint mapping | `ROBControllerVision/Packages/ROBControlCore/Sources/ROBControlCore/Control/ArmControlProtocol.swift`, `DualArmJointJogMapper.swift` |
+| live video session/immersive coordination | `ROBControllerVision/ROBControllerVision/Platform/Video/VideoPipelineCoordinator.swift` |
 | telemetry | `ROBControllerVision/ROBControllerVision/Features/Telemetry/TelemetryPanel.swift` |
 | pairing | `ROBControllerVision/ROBControllerVision/Features/Connection/CerebroPairingSheet.swift` |
 | reusable wire protocol | `ROBControllerVision/Packages/ROBControlCore/Sources/ROBCerebroTransport/Control/ROBControlWire.swift` |
@@ -92,9 +108,22 @@ Repository: `ROBControllerVision`
 
 Volume 5 analyzes the spatial control and speech features. Volume 4 introduces the role of this repository.
 
-Volume 7 is the implementation-level ROBControllerVision book. Its recommended reading order begins with `Package.swift`, domain protocols and `RobotSession`, continues through `RobotViewModel`, controller/head/speech inputs, then follows the control and video transports down to H.264 validation and AVFoundation presentation. Every chapter prints the file being analyzed.
+Volume 7 is the implementation-level ROBControllerVision book. Its recommended reading order begins with `Package.swift`, domain protocols and `RobotSession`, continues through explicit controller ownership, controller/head/speech input, independent dual-arm leases, and then follows the three video transports into flat windows and the immersive 360 sphere. Every chapter prints the file being analyzed.
 
-Volume 8 is the implementation-level Cerebro companion. It begins with the mixed Objective-C/Swift application boundary, dissects `ROBSerialBox.h/.m`, then follows AVFoundation and DepthAI RGB-D frames through Vision, SceneKit, `SceneSnapshot`, MLX LLM/VLM inference, Gemini Live, the stage-show coordinator, saber choreography, and the robot side of the Volume 7 control/video protocols. It also identifies the Kinect/OpenNI/PCL files as historical artifacts from the repository's initial import rather than presenting them as the current camera path.
+Volume 8 is the implementation-level Cerebro companion. It begins with the mixed Objective-C/Swift application boundary, dissects `ROBSerialBox.h/.m`, then follows the face/belly RGB-D and Insta360 paths through Vision, SceneKit, `SceneSnapshot`, MLX/Gemini inference, consent-based face identity, the private Messages bridge, synchronized recording, stage shows, bounded autonomy, and the robot side of the three-feed Volume 7 media contract. It also identifies the Kinect/OpenNI/PCL files as historical artifacts rather than the current camera path.
+
+## Lidar, maps, and local transport
+
+Repository: `M2M1-RPLIDAR-iOS-MacOS-Catalyst-`
+
+| Topic | Start with this file |
+|---|---|
+| current integration and deployment status | `M2M1-RPLIDAR-iOS-MacOS-Catalyst-/README.md` |
+| map/scan acquisition and publication | `M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar/RPLidarViewController.swift` |
+| map coordinate transform | `M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar/RPLidarMapTransform.swift` |
+| OSM alignment UI | `M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar/ROBOpenStreetMapView.swift` |
+
+The current publisher sends bounded valid scan points in the compact `RLS1` frame, not the former sub-meter front/back slice. Same-Mac Cerebro delivery prefers authenticated App Group Unix-domain IPC and retains the paired QUIC publisher as a fallback. The map is local evidence and navigation context, not permission to drive.
 
 ## AMBER arm sources and captured Ubuntu runtime
 

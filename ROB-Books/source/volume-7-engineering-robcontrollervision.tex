@@ -23,16 +23,16 @@
 \hypersetup{
   pdftitle={Building R.O.B. Volume 7: Engineering ROBControllerVision},
   pdfauthor={Rodolfo Aramayo / Orbitus Robotics},
-  pdfsubject={An implementation-level Swift and visionOS guide to spatial robot control, secure transport, video, controller input, and speech},
-  pdfkeywords={Swift, visionOS, Vision Pro, GameController, ARKit, Network framework, QUIC, H.264, AVFoundation, Speech}
+  pdfsubject={An implementation-level Swift and visionOS guide to explicit robot-control ownership, independent dual-arm jogging, three authenticated video feeds, immersive 360 presentation, and speech},
+  pdfkeywords={Swift, visionOS, Vision Pro, GameController, PSVR Sense, AMBER arms, ARKit, Network framework, QUIC, H.264, Insta360, RealityKit, Speech}
 }
 
 \begin{document}
 
-\ROBTitle{Building R.O.B. - Volume 7}{ENGINEERING ROBControllerVision}{Swift 6, spatial input, secure transport, H.264 video, and speech}{An implementation-level guide for Swift developers}{rob-system-cutaway-lesson.png}
+\ROBTitle{Building R.O.B. - Volume 7}{ENGINEERING ROBControllerVision}{Swift 6, control ownership, dual arms, three camera feeds, and immersive 360}{An implementation-level guide for Swift developers}{rob-system-cutaway-lesson.png}
 
 \ROBFrontMatter{Write the controller as a safety-critical distributed client}{A beautiful spatial interface still needs strict state, time, identity, and ownership boundaries.}{%
-This volume reads the current ROBControllerVision source as a serious Swift codebase. It explains why types live in the application or package, how actor isolation and structured concurrency protect lifecycle state, how controller and head pose become leased demands, how authenticated control and video remain separate, how H.264 reaches an AVSampleBufferDisplayLayer, and how explicit microphone capture becomes bounded text rather than raw audio streaming.
+This volume reads the current ROBControllerVision source as a serious Swift codebase. It explains why types live in the application or package, how actor isolation and structured concurrency protect lifecycle state, how explicit controller ownership and leased input stop stale motion, how two AMBER arms receive independent dead-man-gated joint authorities, how three authenticated H.264 feeds reach flat and immersive presentation, and how explicit microphone capture becomes bounded text rather than raw audio streaming.
 
 Paths are relative to the public \url{https://github.com/RudyAramayo/ROBControllerVision} repository, with robot-side counterparts in \url{https://github.com/RudyAramayo/Cerebro}. Every chapter names the exact source files being analyzed. Code changes after this edition must be checked against the repository, tests, SDK documentation, and physical robot behavior.
 }

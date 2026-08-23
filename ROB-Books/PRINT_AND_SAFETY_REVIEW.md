@@ -25,6 +25,10 @@ Do not distribute the books as final construction instructions until every requi
 - [ ] Every prepared photograph is visually checked at full resolution for faces, shipping labels, addresses, account UI, credentials, network identifiers, location data, reflections, screens, and legible private notes.
 - [ ] Camera metadata remains stripped, and no excluded/private-review image appears in source, assets, preview sheets, PDFs, print packages, or promotion.
 - [ ] Cloud audio/video behavior, local speech behavior, location collection, retention, signage, consent, visible indicators, and immediate disable paths are described accurately.
+- [ ] Face enrollment is opt-in, deletion is complete and testable, encrypted gallery/key behavior is reviewed, thresholds are calibrated on ROB, liveness limitations are public, and recognized identity is never described or wired as physical or administrative authorization.
+- [ ] The Messages bridge remains disabled by default; exact sender allowlists, one-to-one fail-closed behavior, attachment limits, local/cloud routing, news/weather sources, rate limits, permissions, and transcript-memory retention/export/clear behavior receive a privacy review.
+- [ ] Message-triggered administrator scripts use locally configured exact commands, same-chat confirmation, fixed interpreters, stdin-only script input, bounded runtime, and a local critical warning. No published page exposes real handles, secrets, or machine-specific scripts.
+- [ ] Recording sessions require an explicit operator start, display active capture, preserve camera/calibration/authority provenance, exclude autonomous self-labeling, and have documented consent, capacity, retention, deletion, recovery, and model-training review.
 - [ ] Restricted/confidential vendor pages and specifications are omitted unless written publication permission or an authorized public source is obtained.
 - [ ] A suitable trademark/legal reviewer confirms title, attribution, disclaimers, and original retro-space visual treatment for the intended distribution.
 

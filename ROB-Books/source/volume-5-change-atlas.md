@@ -63,6 +63,63 @@ Git authorship field.
 | 2026-08-02 | `63c676c` | Rudy Aramayo | Fixed rapid camera-toggle crash and requested final robot-Mac hardware confirmation. |
 | 2026-08-03 | `46ca05c` | Rudy Aramayo | Safe local improvisation, llama.cpp provider, stage-show coordinator/UI, diagnostics, schemas, fixtures, and extensive docs; about 7,069 insertions. |
 | 2026-08-10 | `d45f9c9` | Rudy Aramayo | Prevented QUIC pairing deadlock by waiting for and validating a padded client hello before issuing the challenge. |
+| 2026-08-14 | `25fd718` | Rudy Aramayo | Added early singleton locking, wake health refresh, a crash-limited LaunchAgent supervisor, debug/production handoff, and Keychain-backed Gemini credentials. |
+| 2026-08-14 | `5c7e5f0`–`e1be0bf` | Rudy Aramayo | Added supervised headless Insta360 Pro II control/preview/perception, MLX VLM preparation, and selectable Vision/Core ML detectors. |
+| 2026-08-14 | `283340f`–`7491688` | Rudy Aramayo | Added persisted per-camera processing ceilings, demand-driven panoramic decoding, provider-aware realtime AI, optimized pose analysis, and a geometric training-sword tracker. |
+| 2026-08-14 | `08963bc`–`097dbe0` | Rudy Aramayo | Restored hand/finger analysis and corrected projected 3D skeleton alignment. |
+| 2026-08-14 | `daa98a9`–`dd2171a` | Rudy Aramayo | Added the ROB AI chat composer, modernized settings and exact speech completion, and expanded paced stage-show content. |
+| 2026-08-15–16 | `e5a725f`–`9a1b1a3` | Rudy Aramayo | Added multilingual voice routing, deterministic no-silent-failure conversational fallback, and repaired wrapped speech-bubble layout. |
+| 2026-08-16 | `b18803c` | Rudy Aramayo | Added a fixed-publisher, read-only news tool; later repository state expands the publisher list. |
+| 2026-08-18–20 | `ae4057d`–`89679b0` | Rudy Aramayo | Added startup panoramic perception and a cached system-status dashboard; separated face/belly OAK roles; added sidewalk/chess/depth overlays; fixed retained image buffers; made main RGB-D resolution selectable. |
+| 2026-08-19 | `06c5f56` | Rudy Aramayo | Added on-device sidewalk segmentation and bounded background autonomy context while retaining tread authority behind explicit operator sessions; also capped MLX memory. |
+| 2026-08-20–21 | `d49a7c8`, `d3efab0`, `cbd64fb`, `8a3f9e0` | Rudy Aramayo | Added explicit recoverable synchronized training capture for cameras, depth, lidar, pose, authority, and labels, plus the recording-control UI and layout tests. |
+| 2026-08-21–22 | `c0877e6`–`7b76a67` | Rudy Aramayo | Built and hardened the disabled-by-default one-to-one Messages AI bridge: sender allowlists, isolated sessions, bounded images, local current information, encrypted optional memory, and exact-confirmation administrator scripts. |
+| 2026-08-22 | `c3c8dcd`–`54403ea` | Rudy Aramayo | Added three independent authenticated video feeds, explicit controller ownership, live-session video binding, compact lidar telemetry, and same-Mac authenticated IPC with network fallback. |
+| 2026-08-22 | `104a8de`, `1308a37` | Rudy Aramayo | Made local tread controls momentary/ramped and hardened `ticcmd` process termination. |
+| 2026-08-22 | `f5528c2` | Rudy Aramayo | Added consent-based local face enrollment, an encrypted gallery, open-set/temporal recognition gates, and the explicit rule that identity never grants authority. |
+| 2026-08-23 | `e76d515` | Rudy Aramayo | Added selectable AdaFace IR18 WebFace4M and VGGFace2 Core ML encoders, model-tagged profiles, a validated installer, and comparison-safe model switching. |
+
+## August 2026 companion-repository expansion
+
+### ROBController
+
+| Date | Commit | Change |
+|---|---:|---|
+| 2026-08-21 | `6e7980c` | Added operator-authorized destination navigation with Nominatim search and compatibility with bounded social roam. |
+| 2026-08-22 | `c5bf774` | Hardened speech-service teardown against crashes. |
+| 2026-08-22 | `51e2e0d`, `fb939ea` | Redesigned phone and iPad consoles around Map, Controls, Auto, and Settings with adaptive controls and lidar/map context. |
+| 2026-08-22 | `f45e336` | Added push-to-talk chirps and audio-session/tap hardening while preserving joystick priority. |
+| 2026-08-22 | `a6500b5`, `50a2229` | Refreshed three-camera affordances and added selectable OSM, OpenTopoMap, and Apple satellite layers with persisted overlay scale/north rotation. |
+
+### ROBControllerVision
+
+| Date | Commit | Change |
+|---|---:|---|
+| 2026-08-15–16 | `f3b5833`, `e6721df` | Progressed from arm telemetry/preview to independent left/right `rob-arm-control/2` leases and simultaneous dead-man-gated PSVR Sense joint jogging. |
+| 2026-08-22 | `bed352f`, `98c9462` | Worked around visionOS 26.5 speech UI behavior and hardened dictation permission/audio teardown. |
+| 2026-08-22 | `a754472` | Added explicit Request/Release Control and authoritative owner display across phone and Vision clients. |
+| 2026-08-22 | `2474618`–`29d944f` | Bound video to the live control session, required the client to open the QUIC stream, and introduced multi-scene/360 launch support. |
+| 2026-08-22 | `cef8af4`–`137d147` | Implemented the mixed immersive Insta360 path, inward-facing panorama sphere, texture replacement, diagnostics, and session survival across immersive transitions while braking inactive scenes. |
+| 2026-08-22 | `63b9d9e` | Added the verified -90-degree startup heading, step/slider rotation, and Face Robot Front reset. This local commit is part of the three-commit lead over `origin/main` at inspection. |
+
+### RPLidar and maps
+
+| Date | Commit | Change |
+|---|---:|---|
+| 2026-08-20 | `4b07ef8` | Hardened the app against crash paths. |
+| 2026-08-21 | `7082103` | Aligned occupancy-map updates with scan-captured pose and explicit world/raster orientation. |
+| 2026-08-22 | `f819ed6`–`8ac5635` | Added `.robomap` save/load/reset, recovery fallbacks, and blank-screen repairs. |
+| 2026-08-22 | `b8b9040` | Added persisted lidar overlay scale and north rotation; north remains manual without a trusted heading source. |
+| 2026-08-22 | `4e831a3`, `2459684` | Added compact bounded `RLS1` scan frames and authenticated App Group local IPC with paired QUIC fallback. |
+| 2026-08-22 | `e02fe1e`, `d6ad455` | Added an active-route badge and refreshed breakpoint landmarks. |
+
+### AMBER, training games, and website
+
+| Repository/date | Commit range | Change |
+|---|---:|---|
+| Amber, 2026-08-11–16 | `64a0e6e`–`722378a` | Added the persistent Cerebro-to-AMBER gateway, allowlisted 36-file synchronization, the corrected right-arm URDF selection, and a recovery helper; the gateway remains non-authoritative for motion. |
+| ROBTrainingGames, 2026-08-11–14 | `6128366`–`92a7738` | Added iOS/visionOS training games and ROB Voice, expanded the tank campaign, improved keyboard control and crash handling, and repaired lock/key progression with new spatial puzzles. |
+| ORobotics, 2026-08-10–15 | `8953be3`–`b1cc1a2` | Added the interactive USB 5 V lab and Three.js ROB training campaign, then expanded mobile/fullscreen controls, levels, puzzles, and native-game website coverage. |
 
 ## Reading the author labels correctly
 
@@ -72,4 +129,3 @@ computers with different Git `user.name` values. The history contains no
 `Co-authored-by: Codex` or equivalent attribution. The change in engineering
 style supports discussion of AI acceleration, but it cannot identify which
 individual lines were generated, rewritten, reviewed, or merely inspired by AI.
-

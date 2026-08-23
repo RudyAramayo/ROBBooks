@@ -75,6 +75,11 @@ The manuscripts use visible placeholders instead of inventing missing facts. Ans
 - Arm and neck models, joint definitions, zeroing, limits, payload, reach, current limits, feedback, collision model, and gripper behavior.
 - Approved keyframes, calibration file, cancellation behavior, and pose-by-pose clearance checks.
 - Local speech settings versus optional external/cloud audio or video; consent, indicator, retention, and disable procedure.
+- Face-identity release record: enrolled people and consent, administrator enrollment policy, retention/deletion, false-accept/false-reject targets, on-robot threshold calibration, replay and presentation-attack tests, lighting/pose/occlusion limits, liveness/depth plan, and proof that identity never grants control authority.
+- AdaFace release choice and profile migration: selected WebFace4M or VGGFace2 encoder, installer/checkpoint hashes, Core ML validation record, model-specific enrollment inventory, comparison protocol, and rollback/delete/re-enroll procedure.
+- Messages bridge release record: exact enabled accounts and allowlisted senders, Full Disk Access and Automation grants, one-to-one/group rejection tests, attachment and rate limits, cloud/local model routing, fixed news/weather sources, transcript-memory default and retention, plaintext export/clear procedure, and incident response.
+- Administrator-message policy: locally configured administrator handles, exact command names, 90-second same-chat confirmation tests, reviewed shutdown/reboot scripts, local critical warning, output retention, and proof that message content cannot be interpolated into a shell.
+- Recording and training-data governance: session owner and purpose, explicit start/stop indication, storage estimate and free-space floor, recovery tests, dataset retention/deletion/export, bystander consent, calibration/version binding, train/validation separation, and review of every derived label. Preserve the rule that autonomous commands never label themselves.
 - Autonomy speed, radius, obstacle criteria, containment evidence, abort rules, and actual on-robot test results.
 - For every AI-exposed action: implemented executor, bounds, approval policy, timeout, cancellation, telemetry, failure response, and fixture/on-robot evidence. Keep unavailable actions explicitly unavailable.
 

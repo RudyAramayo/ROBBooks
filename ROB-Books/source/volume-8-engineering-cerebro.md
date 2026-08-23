@@ -1,6 +1,6 @@
 # Read Cerebro as a living robot system
 
-Cerebro is the macOS application at the center of ROB. It is not one algorithm. It is a boundary between cameras, serial devices, robot controllers, speech, local models, cloud models, two AMBER arms, a stage-show engine, and a human operator. The public source is <https://github.com/RudyAramayo/Cerebro>. Clone it, then use this repository root:
+Cerebro is the macOS application at the center of ROB. It is not one algorithm. It is a boundary between three camera roles, serial devices, robot controllers, speech, local models, cloud models, private Messages, consent-based face identity, explicit dataset recording, two AMBER arms, a stage-show engine, and a human operator. The public source is <https://github.com/RudyAramayo/Cerebro>. Clone it, then use this repository root:
 
 ```text
 Cerebro/
@@ -19,8 +19,11 @@ Cerebro grew across generations of Apple and robotics technology. Its compositio
 - **Application shell:** `AppDelegate.m` and `ROBMainWindowController.m` own lifecycle, windows, service startup, and dependency checks.
 - **Operator coordination:** `ROBMainViewController.mm` joins camera, speech, transport, shows, and robot state.
 - **Physical I/O:** `ROBSerialBox.h/.m` reaches Base, Maestro, Tic, AMBER, and historical serial roles.
-- **Camera and perception:** `CameraManager.swift` and `CameraViewController.swift` separate provider lifecycle from Vision/SceneKit presentation.
+- **Camera and perception:** `CameraManager.swift`, `CameraViewController.swift`, and the `ROBInsta360` services separate face, belly, and panoramic provider lifecycles from Vision/SceneKit presentation.
 - **Local and cloud intelligence:** `ROBMLXRuntime.swift`, `ROBAI.swift`, and `GeminiRoboticsProtocol.swift` keep provider concerns separate.
+- **Private conversation:** the `ROBMessages` types isolate one-to-one text/image turns, current-information tools, optional encrypted memory, and local administrator commands from room conversation and motor tools.
+- **Local identity:** the `ROBFace` types own consented enrollment, encrypted model-tagged profiles, embedding inference, and untrusted recognition context.
+- **Training capture:** `ROBRecordingCoordinator.swift` owns explicit synchronized datasets and refuses autonomous self-labeling.
 - **Typed world state:** `ROBSceneSnapshot.swift` describes people, objects, free space, poses, and confidence.
 - **Performance:** the `ROBStageShow` files and `ROBSaberChoreography.swift` validate cues and gesture names.
 - **Spatial remote:** the sibling `ROBControllerVision/` repository owns Vision Pro input, video decoding, and operator UI.
@@ -45,7 +48,9 @@ Install the Xcode Metal component if MLX compilation requests it. Configure Dept
 
 # Enter through AppDelegate, then find ownership
 
-`AppDelegate` is where process-lifetime services belong: secure control/video listeners, camera helper supervision, optional dependency discovery, and coordinated shutdown. `ROBMainViewController` connects those services to windows and UI state. `ROBSerialBox` owns hardware channels. `CameraViewController` owns presentation and perception work, while `CameraManager` owns camera-provider mechanics.
+`AppDelegate` is where process-lifetime services belong: the singleton/supervisor handshake, secure control/video listeners, headless camera helper supervision, Messages and face services, optional dependency discovery, wake recovery, and coordinated shutdown. `ROBMainViewController` connects those services to windows and UI state. `ROBSerialBox` owns hardware channels. `CameraViewController` owns presentation and perception work, while `CameraManager` owns camera-provider mechanics.
+
+The production LaunchAgent uses a crash-limited supervisor, while Xcode development performs an intentional production/debug handoff. The process acquires its singleton lock before AppKit construction so two copies cannot compete for cameras, serial ports, Messages high-water state, or network listeners. Wake is a new health boundary: refresh camera, model, connection, and helper state rather than assuming resources survived sleep.
 
 The essential ownership questions are:
 
@@ -164,13 +169,15 @@ Camera lifecycle is demand-driven. Local preview, Gemini sampling, MLX vision, a
 
 > **SOURCE TRAIL — ANALYZING NOW:** `docs/depth-camera.md`, `Cerebro/Webcam_color.py`, `CameraManager.swift`, `ROBPythonRuntime.m`, and `Tests/DepthCameraIPCFixtureTests.py`.
 
-The primary OAK path uses DepthAI 3.8.0 in a supervised Python helper. The helper alone owns the device, builds Camera + Depth + Sync nodes, requests 640 by 400 undistorted RGB, aligns depth to RGB, and sends paired frames through a private Unix-domain socket.
+The primary OAK path uses DepthAI 3.8.0 in a supervised Python helper. The helper alone owns one device, builds Camera + Depth + Sync nodes, requests the selected main-camera profile (1280 by 720 by default, with 640 by 400 available), aligns depth to RGB, and sends paired frames through a private Unix-domain socket. The face and belly roles have distinct MXIDs, socket names, lifecycle state, and on-device graphs; they must never compete for one socket or physical OAK.
 
 The versioned `CDP1` packet contains bounded metadata, RGB888 bytes, and little-endian unsigned 16-bit depth in millimeters. Zero depth is invalid. Cerebro validates magic, version, dimensions, lengths, pixel formats, and maximum allocation before creating CoreVideo objects.
 
 The out-of-process boundary is a reliability feature. USB disconnects, SDK exceptions, malformed packets, and native-library faults disable/restart the camera provider without taking robot control down. Retries use bounded backoff. AVFoundation remains an RGB-only fallback, while legacy OAK UVC fallback is explicit opt-in so two providers never fight for the same device.
 
-The builder identifies two present Luxonis roles: an OAK-D Pro Wide in the body and an autofocus OAK-D Pro at the head. Do not infer the exact sensor option from the enclosure. At discovery, save `productName`, `boardName`, board revision, camera sensor names, USB speed, calibration hash, focus capability, and firmware/API version. The RVC2 OAK-D Pro W family uses global-shutter monochrome stereo sensors and offers a wide color-camera option; its active-stereo projector and flood illumination add power and thermal load. A camera that enumerates successfully can still be on a USB 2 link, underpowered, thermally constrained, out of calibration, or owned by the wrong provider.
+The builder identifies two present Luxonis roles: an OAK-D Pro Wide in the body/belly and an autofocus OAK-D Pro at the head/face. Do not infer the exact sensor option from the enclosure. At discovery, save the intended role, MXID, `productName`, `boardName`, board revision, camera sensor names, USB speed, calibration hash, focus capability, and firmware/API version. The RVC2 OAK-D Pro W family uses global-shutter monochrome stereo sensors and offers a wide color-camera option; its active-stereo projector and flood illumination add power and thermal load. A camera that enumerates successfully can still be on a USB 2 link, underpowered, thermally constrained, out of calibration, or assigned to the wrong role.
+
+The Insta360 Pro II is a third, independent role. `ROBInsta360CameraService` establishes the camera control session, maintains heartbeat, supervises RTMP/ffmpeg preview, and reports bounded retry state. `ROBInsta360PerceptionService` can analyze the panorama as six sectors without requiring the diagnostics window to remain open. Decode remains demand-driven: headless perception, recording, flat preview, and immersive streaming declare their needs so closing an unused window can actually release work.
 
 ## Separate host inference from OAK inference
 
@@ -222,6 +229,8 @@ Vision observations are normalized and carry confidence. SceneKit nodes should b
 | Pixel buffers | pool where encoding requires conversion |
 | ML models | one actor-owned container per selected model |
 | Semantic memory | maximum 200 in-process entries |
+| Messages memory | per-chat bounded excerpts; encrypted fields and exact-match indexes |
+| Face gallery | model-tagged encrypted embeddings and samples; explicit deletion |
 | Logs | rate-limit repeated camera/model/device failures |
 
 Use Instruments Allocations and Memory Graph while toggling camera sources repeatedly. A stable single-frame memory profile is insufficient; test 30 minutes of capture, disconnect/reconnect, window close/reopen, model load, and remote video subscription.
@@ -330,11 +339,40 @@ ROB should never train on an observation and immediately let the new model steer
 
 The dynamic intelligence is the system that can create, test, explain, select, and revoke a model. The model itself remains one fallible component.
 
+# Record training evidence without letting autonomy label itself
+
+> **SOURCE TRAIL — ANALYZING NOW:** the recording coordinator, recording window, operational note, and both recording test suites. The source map gives each exact path.
+
+Recording is explicit, recoverable, and separate from ordinary camera preview. One synchronized session may include face/belly RGB keyframes, aligned lossless depth, stereo frames, calibration, exact `.rscan` lidar, local pose and odometry, tread/authority state, and traversability labels. Separate face, belly, and Insta360 `.mov` files preserve high-resolution footage without pretending their encoded dimensions equal the sensor's requested or observed dimensions.
+
+The coordinator appends durable session records so a crash does not silently turn a partial dataset into a complete one. It stores requested, observed, and encoded geometry separately and associates every sample with source, timing, calibration, and authority context. Capacity checks, retention, bystander consent, deletion, and export remain release-policy work rather than properties inferred from file existence.
+
+Autonomous commands may be recorded as events, but they never create ground-truth labels. Belly-camera traversability can become a candidate label only after manual traversal and odometry confirmation. This breaks the dangerous loop in which a planner declares its own action safe and then trains on that declaration.
+
+# Recognize a consented face without converting identity into authority
+
+> **SOURCE TRAIL — ANALYZING NOW:** the face gallery, recognition service, embedding model, identity window, AdaFace installer, identity note, and face fixtures. The source map gives each exact path.
+
+The face system is disabled by default and remains local. Enrollment requires a paired, non-revoked operator plus confirmation at ROB. The operator collects 24 varied samples rather than one flattering photograph. Vision supplies face rectangles, landmarks, and quality gates; the embedding service normalizes an aligned crop; open-set distance/margin gates and temporal consensus decide whether a name may enter scene context.
+
+The gallery uses opaque UUID directories. Profile metadata, embeddings, and retained JPEG samples are AES-GCM encrypted with a device-only Keychain key, and deletion removes the complete profile. Recognition context expires after 15 seconds and is serialized as untrusted sensor data. Even a profile named “administrator” provides personalization only: it cannot grant controller ownership, approve a model action, reveal secrets, run a script, or move any mechanism. Prompt-based VLM person labels are likewise not credentials.
+
+## Use the selected AdaFace encoder consistently
+
+Two IR18 Core ML backends are installed through the repository script:
+
+- **AdaFace R18 WebFace4M** is the recommended default and broader enrollment comparison base. Its checkpoint SHA-256 begins `7a789f6696e5`; the exact full digest is recorded in `SOURCE_SNAPSHOT.md` and the local model manifest.
+- **AdaFace R18 VGGFace2** is the optional comparison backend. Its checkpoint SHA-256 begins `2360a615b119`; the exact full digest is recorded in the same two places.
+
+Both consume a square 112 by 112 BGR crop transformed by `pixel * (2/255) - 1` and return a 512-value L2-normalized embedding. The installer converts FP16 Core ML packages, validates agreement against PyTorch, compiles `.mlmodelc`, and records hashes without committing checkpoints or weights to Git. The inspected conversions reached cosine agreement above 0.99999, and both compiled runtimes produced unit-normalized 512-value outputs.
+
+The encoder ID is part of every enrolled profile. Never compare a WebFace4M embedding with a VGGFace2 embedding. Switching models means switch back to the profile's encoder or delete and re-enroll. The current default maximum cosine distance of 0.35 and required best/runner-up margin of 0.06 are starting points, not universal biometric guarantees. Measure false accepts, false rejects, lookalikes, lighting, pose, occlusion, printed/screens replay, and time-separated sessions on ROB. Liveness/depth defenses remain future work.
+
 # Add bounded semantic memory
 
 `remember` embeds short text. `retrieve` embeds a query, calculates cosine similarity, sorts matches, and returns a limited result set. The current store holds at most 200 entries and is process-local.
 
-This is retrieval, not truth. Each memory needs provenance and a future persistent design would require encryption, deletion, retention, model-version tracking, and re-embedding policy. Never store raw camera images or secrets merely because embeddings feel abstract.
+This is retrieval, not truth. It is still process-local and distinct from two newer persistent stores: the encrypted face gallery and the optional encrypted per-sender Messages transcript store. Those stores have narrower purposes and deletion controls; neither should be merged into general semantic memory. Never store raw camera images or secrets merely because embeddings feel abstract.
 
 # Constrain local model output
 
@@ -364,6 +402,20 @@ The secure WebSocket setup, realtime messages, transcription fragments, tool cal
 
 Use `GEMINI_EPHEMERAL_TOKEN` where an issuing service exists; a development `GEMINI_API_KEY` is supported. Never place either in source, a show JSON file, a screenshot, or a book. Camera and microphone remain off unless the operator explicitly enables them.
 
+# Add private Messages without importing the robot-control surface
+
+> **SOURCE TRAIL — ANALYZING NOW:** the Messages bridge, responder, vision policy, current-information service, transcript store, operational note, and fixtures. The source map gives each exact path.
+
+The bridge is disabled by default and reads the local Messages `chat.db` only after the operator grants Full Disk Access. It uses query-only database access and needs Automation permission only to send a reply. Exact canonical sender allowlists, a persisted high-water mark, and at-most-once processing prevent a restart from replaying old conversations. Outgoing items, groups, reactions, partial/stale messages, unexpected account mappings, and over-rate traffic fail closed; the global limit is five accepted messages per minute.
+
+Each allowed one-to-one chat receives an isolated AI session. The profile has no room microphone, camera, motor/action, Music, arbitrary file, or device tools. It may use Google Search on the Gemini path plus fixed-publisher read-only news and Open-Meteo weather with an explicit location. It does not expose the Mac's current location or fetch caller-supplied URLs.
+
+One JPEG, PNG, HEIC, or HEIF attachment may be accepted up to 10 MB and 24 megapixels, then normalized to a metadata-free image no larger than 2048 pixels. Gemini may receive that normalized image when explicitly configured. Otherwise Swift MLX receives pixels and Apple Foundation Models receives only bounded textual visual analysis, never pixels. A generic answer is rejected when the reply claims image grounding it did not actually receive.
+
+Optional transcript memory defaults off. It stores encrypted fields in SQLite, exact-match HMAC indexes, and a 256-bit device-only Keychain key under owner-only permissions. Retrieval is bounded to recent/relevant entries from the same canonical sender and account and is labeled private, untrusted context. Gemini use sends selected text excerpts off the Mac, never stored image pixels. A local browser provides search, plaintext export, and clear-all controls; those operations need an explicit retention and consent policy.
+
+Exact one-to-one messages from locally configured administrator handles may enter a deterministic command path before AI. The default `Shutdown` and `Reboot` actions ask the same sender in the same chat for exact `YES` confirmation within 90 seconds; confirmation is one-shot. Scripts use a fixed `/bin/zsh -f -s`, receive reviewed script text through stdin, run for at most 30 seconds, and never interpolate message text. These commands still affect the local Mac, so show a critical local warning and treat script configuration as privileged maintenance. Face recognition never satisfies this command policy.
+
 # Treat model tools as proposals
 
 The optional `robot_action` path validates a versioned proposal, routes it to the operator approval surface, correlates result messages, and returns only terminal outcomes to Gemini. Approval currently records operator intent; it does not prove physical execution exists.
@@ -384,15 +436,23 @@ measured result or explicit unavailable
 
 Never connect model tokens directly to `write`, `ticcmd`, a servo target, shell command, or AMBER packet.
 
+# Keep destination autonomy and learned traversability behind operator authority
+
+Destination requests originate in the controller, resolve through bounded geocoding, and enter a local Valhalla-backed planning path. The current pilot limits travel to 50 m and rejects stale pose, map, lidar, depth, or authority state. Separately, the Myriad X sidewalk segmentation graph produces a bounded centerline/confidence observation at about 5 Hz. That observation can support a deterministic proportional steering policy only inside an explicitly authorized autonomy session.
+
+`ROBTraversabilityRuntime` learns belly-camera ground context only from manually traversed and odometry-confirmed samples. Autonomous commands remain useful log evidence but never certify their own route. Manual takeover, explicit stop, session replacement/expiry, stale required sensing, or loss of controller authority ends or stops the motion path. A recognized person, a Messages sender, a VLM label, or a model's confident destination prose cannot open this gate.
+
 # Stream camera video to Vision Pro separately
 
 > **SOURCE TRAIL — ANALYZING NOW:** `ROBVideoServer.swift`, `ROBVideoProtocol.swift`, `ROBCameraH264Encoder.swift`, `docs/vision-pro-video.md`, and Volume 7.
 
 Cerebro advertises `_robvideo._udp` with ALPN `robvideo/1`, separately from `_robctl._udp` control. Both use TLS 1.3 and the paired certificate/secret relationship, but video uses its own authentication transcript and requires a matching live operator control session.
 
-The initial profile is H.264 AVCC, at most 960 by 540, 20 fps, and 1.5 Mbps, with B-frames disabled and key frames at least every second. One raw frame may wait; one encoder output may wait; one send may be in flight. Congestion drops work instead of accumulating latency. Receiver recovery can request a key frame and codec configuration.
+The service exposes three independent feed identifiers and pipelines: `front`, `belly`, and `insta360`. Front and belly negotiate at most 960 by 540; the panoramic feed uses 960 by 480. Each is capped at 20 fps and 1.5 Mbps, uses H.264 AVCC with B-frames disabled, and requests key frames at least every second. One physical provider connection and one bounded encoder/send state exist per active feed; subscribing to one does not authorize or start the others.
 
-Volume 7 explains the other half: Vision Pro discovery, pinned identity, subscription, defensive framing, H.264 sample-buffer creation, `AVSampleBufferDisplayLayer`, controller input, head pose, speech-to-text, and dead-man authority. Read the two books side by side whenever changing the wire contract.
+For each pipeline, one raw frame may wait, one encoder output may wait, and one send may be in flight. Congestion drops work instead of accumulating latency. Receiver recovery can request a key frame and codec configuration. A client opens the QUIC stream after authentication, and the server binds every subscription to the exact authenticated live control session. Loss of that session closes its media without taking the control listener down.
+
+Volume 7 explains the other half: Vision Pro discovery, pinned identity, independent subscriptions, defensive framing, H.264 sample-buffer creation, flat front/belly/panorama windows, the inward-facing immersive sphere, controller ownership, dual-arm input, head pose, speech-to-text, and dead-man authority. Read the two books side by side whenever changing the wire contract.
 
 # H.264 without hand-waving: pictures, access units, and NAL units
 
@@ -594,15 +654,18 @@ Read in this order and make notes beside the code:
 1. `README.md` and `docs/` for declared behavior and operational boundaries.
 2. `AppDelegate.m` and `ROBMainViewController.mm` for process composition.
 3. `ROBSerialBox.h/.m` for hardware history, current Base discovery, Maestro/Tic, and arm seams.
-4. `CameraManager.swift` and `Webcam_color.py` for provider ownership and RGB-D framing.
+4. `CameraManager.swift`, `Webcam_color.py`, and the `ROBInsta360` services for three-role provider ownership and RGB-D/panoramic framing.
 5. `CameraViewController.swift`, pose detector, and skeleton renderer for perception/display cost.
 6. `ROBSceneSnapshot.swift` for typed world state and confidence.
-7. `ROBMLXRuntime.swift`, MLX provider, and local-improvisation protocol for private inference.
-8. `GeminiRoboticsProtocol.swift` before `ROBAI.swift`; learn the wire types before the session actor.
-9. `ROBStageShowProtocol.swift` before its coordinator; learn allowed data before lifecycle.
-10. `ROBSaberChoreography.swift`, AMBER kinematics, and visual calibration together.
-11. `ROBVideoProtocol.swift`, encoder, and server, followed by Volume 7's receiver chapters.
-12. Every matching fixture test before making a change.
+7. `ROBRecordingCoordinator.swift` and its operational note before using any captured data.
+8. `ROBFaceEmbeddingModel.swift`, gallery, recognition service, installer, and consent/threshold note together.
+9. `ROBMLXRuntime.swift`, MLX provider, and local-improvisation protocol for private inference.
+10. `ROBMessagesBridge.swift`, responder, transcript store, current-information services, and administrator-command policy as one isolated boundary.
+11. `GeminiRoboticsProtocol.swift` before `ROBAI.swift`; learn the wire types before the session actor.
+12. `ROBStageShowProtocol.swift` before its coordinator; learn allowed data before lifecycle.
+13. `ROBSaberChoreography.swift`, AMBER kinematics, and visual calibration together.
+14. `ROBVideoProtocol.swift`, encoder, and server, followed by Volume 7's three-feed receiver chapters.
+15. Every matching fixture test before making a change.
 
 # Production review checklist
 
@@ -611,15 +674,19 @@ Read in this order and make notes beside the code:
 - [ ] Stale controller input produces one neutral frame and then drops heartbeat.
 - [ ] Commanded, measured, and visually estimated poses remain distinct.
 - [ ] Camera ownership cannot race between DepthAI and UVC providers.
+- [ ] Face, belly, and Insta360 roles retain distinct device identity, sockets, demand, diagnostics, and calibration.
 - [ ] Every IPC and network length is validated before allocation.
 - [ ] Slow perception, inference, encoding, and network consumers retain newest-only bounded work.
 - [ ] Vision and model work never blocks controller or main-thread responsiveness.
 - [ ] SceneKit nodes, contexts, pixel buffers, and model containers remain bounded over long runs.
 - [ ] Local and cloud model output crosses strict typed codecs.
 - [ ] No language model has direct motor, shell, serial, or arm authority.
+- [ ] Recording is explicit/recoverable, shows capacity and provenance, and never accepts autonomous self-labeling.
+- [ ] Face enrollment/deletion is consented; profiles remain model-tagged/encrypted; thresholds, replays, and false accepts/rejects are tested; recognition grants no authority.
+- [ ] Messages is disabled by default, exact-allowlisted, one-to-one and at-most-once; attachments, tools, memory, cloud disclosure, exports, and administrator scripts pass their fail-closed fixtures.
 - [ ] Stage cues have deadlines, cancellation correlation, and authored fallback.
 - [ ] Camera and microphone streaming show explicit effective operator state.
-- [ ] Vision Pro control and video protocol versions match Volume 7's client.
+- [ ] Vision Pro control, arm, and three-feed video protocol versions match Volume 7's client.
 - [ ] Historical Kinect artifacts are documented before removal or reuse.
 - [ ] Tests pass before any powered-hardware commissioning.
 

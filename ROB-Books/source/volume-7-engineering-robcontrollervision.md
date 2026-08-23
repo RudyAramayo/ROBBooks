@@ -1,6 +1,6 @@
 # Read this book with the repository open
 
-ROBControllerVision is a native SwiftUI visionOS controller with a reusable Swift package. It connects to the real Cerebro application through authenticated Network.framework transports or to a deterministic simulator. The public source is <https://github.com/RudyAramayo/ROBControllerVision>. Clone it, then use this repository root:
+ROBControllerVision is a native SwiftUI visionOS controller with a reusable Swift package. It connects to the real Cerebro application through authenticated Network.framework transports or to a deterministic simulator. Its current surface combines explicit drive ownership, independent dual-arm authority, three live camera feeds, and an immersive Insta360 view. The public source is <https://github.com/RudyAramayo/ROBControllerVision>. Clone it, then use this repository root:
 
 ```text
 ROBControllerVision/
@@ -11,6 +11,8 @@ The application is under `ROBControllerVision/ROBControllerVision`. Reusable dom
 > **SOURCE TRAIL — ANALYZING NOW:** `ROBControllerVision/README.md`, `docs/architecture.md`, `docs/protocol-v2.md`, and `docs/real-video-integration.md` describe the intended system. Source and tests decide what the current build actually does.
 
 This book uses **observed** for behavior directly supported by the inspected source, **design requirement** for an invariant the code intends to preserve, and **proposed** for an extension not yet implemented.
+
+The August 23 inspection used local commit `63b9d9e`. That branch was clean but three commits ahead of `origin/main`; the latest panorama-heading/orientation behavior is therefore local source evidence, not yet reproducible from the public remote until those commits are pushed.
 
 # Start with the build graph
 
@@ -46,9 +48,9 @@ Change the placeholder bundle identifier and select a development team only when
 
 > **SOURCE TRAIL — ANALYZING NOW:** `App/ROBControllerVisionApp.swift`, `App/ContentView.swift`, and `App/RobotViewModel.swift`.
 
-The app entry creates long-lived application state. `ContentView` receives a bindable model and composes three fixed cockpit regions in an `HStack`: controls on the left, a large camera surface in the center, and connection, speech, telemetry, and safety information on the right.
+The app entry creates one long-lived application model shared by a main cockpit `WindowGroup`, a separate Insta360 window, and a mixed `ImmersiveSpace`. `ContentView` receives the bindable model and composes three cockpit regions in an `HStack`: controls on the left, camera surfaces in the center, and connection, speech, telemetry, and safety information on the right.
 
-The layout intentionally has no vertical `ScrollView`. The window is 1760 by 920 points; the center camera is 920 points wide and each side wing is 360 by 820. Side panels receive an eight-degree Y-axis `rotation3DEffect`, a 42-point Z offset, perspective 0.22, and a shadow. This produces depth without placing safety controls in a fully immersive scene.
+The main layout intentionally has no vertical `ScrollView`. The window is 1760 by 920 points; the center camera region is 920 points wide and each side wing is 360 by 820. Side panels receive an eight-degree Y-axis `rotation3DEffect`, a 42-point Z offset, perspective 0.22, and a shadow. This produces depth while keeping the fastest control and safety surfaces in ordinary windows. The panoramic sphere is a separate mixed immersive presentation, not a second control owner.
 
 The central SwiftUI pattern is:
 
@@ -66,7 +68,8 @@ struct ContentView: View {
                 receivesControllerEvents = true
                 model.start()
             }
-            .onDisappear { model.stop() }
+            // App/scene lifetime is coordinated above this view so an
+            // immersive transition does not destroy the live media session.
     }
 }
 ```
@@ -110,7 +113,7 @@ The controller owns several independent tasks: session updates, connect/disconne
 
 `start()` is idempotent: it returns if the updates task already exists. It starts physical input providers, obtains the session's asynchronous update stream, and iterates with cancellation checks. `stop()` cancels every owned task, invalidates motion, stops video and speech, stops hardware input, and asynchronously disconnects the session.
 
-The scene phase is a safety input. When inactive, the view model clears the uninstalled pairing draft, cancels video actions, ends virtual motion, stops decoding, tells the session that the scene is inactive, and attempts to unsubscribe. Returning active does not silently arm motion.
+The scene phase is a safety input. An ordinary inactive transition brakes motion but may preserve negotiated video while the mixed immersive scene becomes active. Backgrounding performs the stronger teardown. Returning active does not silently arm motion. This split matters because visionOS can mark the presenting window inactive while the immersive space is still in use; window disappearance must not be mistaken for process termination.
 
 Use a lifecycle generation or action UUID when cancellation alone is insufficient. A cancelled operation may still unwind later. The completion method checks identity before clearing the current task slot:
 
@@ -250,6 +253,22 @@ The position and quaternion describe a pose in the framework's tracking frame. T
 
 Keep raw pose, calibrated target, planned joint state, commanded joint state, and measured joint state as separate types. A single seven-float array cannot express their different truth claims.
 
+# Jog two AMBER arms without pretending controller pose is inverse kinematics
+
+> **SOURCE TRAIL — ANALYZING NOW:** the arm protocol, dual-arm jog mapper, robot session, arm-control panel, and matching tests. The source map gives each exact path.
+
+The current `rob-arm-control/2` path gives each arm its own measured feedback, authority UUID, lease, selected joint, draft, in-flight target, disposition, and hold state. Drive and direct arm control remain mutually exclusive, but left and right arm authorities are independent: either arm can be granted alone, and both can operate concurrently after separate preflight.
+
+The Vision app never activates AMBER hardware or changes actuator modes. Before one arm may move, the transport must advertise physical arm execution, measured telemetry must be no more than 250 ms old, all seven joints must report position mode, the measured baseline must satisfy B1 bounds, and Cerebro must grant that exact paired controller and live session a time-limited authority. Targets carry identity, session, arm, increasing sequence, authority, issue time, short lease, dead-man state, seven bounded joint positions, and duration.
+
+On-screen lanes allow one selected joint per arm to move by at most 0.08 radian per segment and an average requested rate no faster than 0.20 radian per second. Only one target per arm may be in flight. Releasing a lane requests a measured-position hold for that arm without silently moving the other.
+
+With two paired PSVR Sense controllers and both authorities active, the left and right vertical thumbsticks jog the matching selected joints simultaneously. The mapper applies a 0.15 dead zone, copies the other six joints from fresh measured state, and preserves the same increment/rate/lease gates. Both grips form one paired dead-man: releasing either grip cancels both loops and asks both arms to hold while retaining their independent authorities. A fresh two-grip hold is required to resume.
+
+Controller disconnect, more than 250 ms of input silence, stale telemetry, mode/preflight loss, target timeout/send failure, scene loss, stop, drive disarm, or software E-stop takes the stronger priority path: request both arms hold and clear local arm latches. Cerebro and the AMBER gateway still own per-arm identity, watchdog, measured completion, lease expiry, and hold-on-failure. The simulator advertises no physical arm execution, and hardware-in-the-loop validation remains required.
+
+This is bounded measured joint jogging, not controller-pose IK. The tracked pose described in the previous chapter remains diagnostic. Cartesian teleoperation would require calibrated transforms, inverse kinematics, workspace/collision constraints, rate and force policy, singularity handling, and verified feedback that this path does not implement.
+
 # Design press-and-hold spatial controls
 
 > **SOURCE TRAIL — ANALYZING NOW:** `ControlPanel.swift` and the `beginVirtualMotion` method in `RobotViewModel.swift`.
@@ -259,6 +278,14 @@ The UI alternative to a gamepad uses press-and-hold controls. Beginning a hold c
 Do not implement motion as a one-shot button tap followed by a timer on the robot. The client should continuously renew a short lease, and the receiver should independently stop when renewal ceases.
 
 SwiftUI gestures can end through release, cancellation, focus change, view removal, scene inactivity, or application termination. Route every observable end into the same invalidation method. Still assume the client can disappear without calling it; the robot-side watchdog is mandatory.
+
+# Make controller ownership visible and transferable
+
+The most recent authenticated operator to choose **Request Control** becomes the authoritative drive owner. Cerebro first stops the previous owner's motion, then broadcasts the new owner. **Release Control** brakes ROB and returns drive ownership to Cerebro. This is explicit arbitration, not a race between whichever client packet arrived last.
+
+Each iPhone/iPad and Vision Pro needs its own pairing credential. Authentication establishes identity; the ownership state establishes which authenticated operator may currently send drive demands. A camera subscription, arm authority, face recognition result, or AI approval cannot substitute for drive ownership. Disconnection, revocation, release, or takeover invalidates the prior owner's active motion path.
+
+The UI must display the authoritative server-reported owner rather than inferring ownership from a local button toggle. Test simultaneous requests, takeover during nonzero demand, old-client replay, disconnect, reconnect, and revocation. The expected transition includes a brake before the new owner can renew motion.
 
 # Pair identity, not merely an address
 
@@ -278,7 +305,7 @@ Certificate rotation must be intentional. An unexpected pin change should fail c
 
 Control uses `_robctl._udp` with application protocol `robctl/2`. Video uses `_robvideo._udp` with `robvideo/1`. Both are QUIC/TLS services, but they have distinct discovery, authentication exchanges, clients, framing, and lifecycle.
 
-The authenticated control connection creates the live session UUID. Video proof and subscription carry that exact UUID. Disconnecting or replacing control, revoking credentials, suspending the scene, or unsubscribing tears down video. Video discovery or decode failure must not disconnect authenticated motion control.
+The authenticated control connection creates the live session UUID. Video proof and subscription carry that exact UUID, and the client opens the ordered QUIC media stream only after authentication. Disconnecting or replacing control, revoking credentials, backgrounding, or unsubscribing tears down associated video. An immersive scene transition may preserve media while independently braking drive. Video discovery or decode failure must not disconnect authenticated motion control.
 
 This separation prevents megabytes of media and decoder backpressure from delaying a stop command. It also keeps optional camera availability from becoming a prerequisite for control.
 
@@ -286,11 +313,11 @@ This separation prevents megabytes of media and decoder backpressure from delayi
 
 > **SOURCE TRAIL — ANALYZING NOW:** `Video/VideoProtocol.swift`, `ROBVideoWireTypes.swift`, and `RobotViewModel.videoRequest`.
 
-After authentication, Cerebro sends bounded camera capabilities. The client requests a camera ID, preferred codecs, dimensions, frame rate, bitrate, and delivery mode. The current production request is H.264, at most 960 by 540, 20 frames per second, and 1.5 Mbit/s. Production selects `reliableStream`; the synthetic simulator uses its in-memory datagram-shaped path.
+After authentication, Cerebro sends bounded camera capabilities. The client may independently request `front`, `belly`, and `insta360` camera IDs with preferred codecs, dimensions, frame rate, bitrate, and delivery mode. Front and belly request H.264 at most 960 by 540; Insta360 requests 960 by 480. Every feed is capped at 20 frames per second and 1.5 Mbit/s. Production selects `reliableStream`; the synthetic simulator uses its in-memory datagram-shaped path.
 
 The wire mapper rejects empty or oversized identifiers, duplicate cameras, zero dimensions, limits above hard caps, missing H.264, missing reliable-stream support, unknown JSON keys, and unsupported delivery combinations.
 
-Only an accepted response creates a `VideoStreamDescriptor`. The descriptor carries session, subscription, codec, geometry, rate, bitrate, and delivery facts used to validate subsequent media.
+Only an accepted response creates a `VideoStreamDescriptor`. The descriptor carries session, subscription, camera identity, codec, geometry, rate, bitrate, and delivery facts used to validate subsequent media. Each camera owns a distinct pipeline coordinator and lifecycle task, so three accepted subscriptions can decode concurrently without one feed replacing another.
 
 Subscription code uses a unique ID and a continuation. The session rejects duplicate IDs, times out the request, handles cancellation, and remembers abandoned IDs so a late response cannot create an unwanted stream.
 
@@ -345,7 +372,7 @@ When the renderer fails or requires a flush, the receiver drops the access unit,
 
 `VideoPipelineCoordinator` remains `@MainActor` because it owns display state. A lifecycle generation and pipeline UUID prevent an old open/close operation from taking over a replacement pipeline. It closes an unowned channel on every failed handoff, avoiding media-channel leaks.
 
-# Present AVFoundation media inside SwiftUI
+# Present three AVFoundation feeds inside SwiftUI
 
 > **SOURCE TRAIL — ANALYZING NOW:** `SampleBufferVideoView.swift` and `VideoPanel.swift`.
 
@@ -353,9 +380,17 @@ When the renderer fails or requires a flush, the receiver drops the access unit,
 
 `dismantleUIView` detaches the display layer. This matters when SwiftUI reconstructs or removes the representable. A display layer must not remain attached to two superlayers.
 
-`VideoPanel` treats availability, subscription, pipeline state, and statistics as different concepts. A connected control session may have no camera. A camera may exist with no subscription. A subscription may be accepted while decoding is starting or failed.
+`VideoPanel` treats availability, subscription, pipeline state, and statistics as different concepts for each camera. A connected control session may have no cameras. One camera may exist while another is absent. A subscription may be accepted while only its decoder is starting or failed. The front panel remains the largest fast-control view; belly and panoramic feeds have independent enable controls.
 
 Keep the camera large and visually primary, but do not overlay controls that can hide connection or safety state.
+
+## Put the panorama inside a mixed-immersive sphere
+
+`insta360` can remain in a flat two-to-one window or feed `Insta360ImmersiveView`. The immersive renderer creates a large sphere, culls its outward-facing triangles so the interior is visible, converts decoded pixel buffers into replaceable RealityKit textures, and maps the live panorama onto that interior. A blue diagnostic surface appears when valid texture data is unavailable; a black sphere is not accepted as “probably loading.”
+
+The current hardware alignment starts at -90 degrees. Left/right step controls, a continuous heading slider, and **Face Robot Front** let the operator correct/reset view heading without changing robot pose. Orientation signs must be verified on the physical headset because a plausible simulator panorama can still be mirrored or rotated.
+
+The immersive space uses `.mixed` because the full compositor path produced a black live texture on the tested Vision Pro. Main fast-control windows remain visible. During a window-to-immersive transition the app preserves the authenticated session, subscription, and decode pipeline but invalidates motion. Only backgrounding performs full media teardown. This is a deliberate separation between “keep seeing” and “keep driving.”
 
 # Understand audio: capture locally, transmit text
 
@@ -409,7 +444,7 @@ The plist declares:
 - speech recognition for conversion to reviewable text;
 - accessory tracking for spatial-controller pose;
 - spatial and extended game-controller profiles;
-- one window scene.
+- the main cockpit window, an Insta360 window, and a mixed Insta360 immersive space.
 
 Usage descriptions should say what data is used for and when. They are user communication, not mere App Store obstacles. Adding raw audio transmission would make the present wording incomplete.
 
@@ -438,6 +473,8 @@ The package includes:
 - legacy payload compatibility tests;
 - control wire, pairing, pinning, and authentication tests;
 - video wire compatibility tests.
+- independent arm-authority, target, hold, stale-feedback, and dual-jog mapping tests;
+- multi-camera subscription and immersive-launch smoke hooks.
 
 Write pure tests for value normalization and state machines first. Use actors and asynchronous streams in integration tests. Give every async expectation a deadline. Explicitly cancel tasks and close streams so a passing test does not leak work into the next test.
 
@@ -456,7 +493,7 @@ dns-sd -B _robctl._udp local.
 dns-sd -B _robvideo._udp local.
 ```
 
-Then observe one layer at a time: controller connection and timestamp, app focus, dead-man sample, session decision, control handshake, command acknowledgement, video authentication, subscription, codec configuration, access-unit sequence, render statistics.
+Then observe one layer at a time: controller connection and timestamp, authoritative owner, app focus, dead-man sample, session decision, per-arm authority/feedback, control handshake, command acknowledgement, video authentication, camera ID/subscription, codec configuration, access-unit sequence, flat/immersive render statistics, and heading.
 
 Rate-limit repetitive logs. The earlier “bad file descriptor” style flood can make the debugger unusable and hide the first failure. Log state transitions and counters, not every poll. Use unified logging categories with privacy annotations in a future hardening pass.
 
@@ -515,11 +552,19 @@ None of these techniques is automatically correct. Their value comes from matchi
 - [ ] controller disconnect and missing callbacks stop motion;
 - [ ] both VR grips implement the intended dead-man gesture;
 - [ ] index triggers affect only the matching gripper request;
+- [ ] Request/Release Control displays the server-authoritative owner and brakes before takeover;
+- [ ] drive and direct arm control remain mutually exclusive;
+- [ ] each arm requires its own fresh telemetry, position-mode preflight, authority UUID, lease, measured baseline, bounded target, and hold result;
+- [ ] paired arm jogging enforces both grips, 0.15 dead zone, 0.08-radian segments, 0.20-radian/second rate, one in-flight target per arm, and priority hold on every stale/fault path;
+- [ ] tracked controller pose remains diagnostic and cannot enter the joint-target protocol;
 - [ ] head baseline resets on every hold and tracking loss neutralizes output;
 - [ ] torso rotation begins only outside the neck range;
 - [ ] video failure never delays or disconnects control;
 - [ ] video messages are session/stream/sequence bounded;
+- [ ] front, belly, and Insta360 subscriptions use distinct authenticated pipelines and the intended 960-by-540 or 960-by-480 ceilings;
 - [ ] decoder pressure drops or recovers media rather than blocking;
+- [ ] immersive transitions brake motion while preserving only the intended live media; backgrounding tears it down;
+- [ ] the -90-degree panoramic start, step/slider controls, and Face Robot Front reset are verified on the physical headset;
 - [ ] microphone and speech permissions are understandable;
 - [ ] documentation states that microphone audio is local and only text is transmitted;
 - [ ] command and puppet-speech routes remain distinct;
@@ -535,27 +580,28 @@ Use this order for a new Swift contributor:
 2. `Packages/ROBControlCore/Package.swift`
 3. `Control/ControlProtocol.swift`
 4. `Control/DeadManController.swift`
-5. `Connection/RobotSession.swift`
-6. `Simulation/SimulatedRobotEndpoint.swift`
-7. `App/RobotViewModel.swift`
-8. `App/ContentView.swift`
-9. `Platform/GameController/GameControllerInput.swift`
-10. `Platform/HeadOrientationInput.swift`
-11. `Platform/VisionSpeechInput.swift`
-12. `ROBCerebroTransport/CerebroRobotTransport.swift`
-13. control discovery, wire, client, and pairing files
-14. `Video/VideoProtocol.swift` and `EncodedVideoProtocol.swift`
-15. video discovery, authentication, framer, wire types, and client
-16. `H264VideoReceiver.swift` and `H264SampleBufferFactory.swift`
-17. `VideoPipelineCoordinator.swift`
-18. `SampleBufferVideoView.swift` and `VideoPanel.swift`
-19. feature panels
-20. every corresponding test before making a change
+5. `Control/ArmControlProtocol.swift` and `DualArmJointJogMapper.swift`
+6. `Connection/RobotSession.swift`
+7. `Simulation/SimulatedRobotEndpoint.swift`
+8. `App/RobotViewModel.swift`
+9. `App/ROBControllerVisionApp.swift` and `App/ContentView.swift`
+10. `Platform/GameController/GameControllerInput.swift`
+11. `Platform/HeadOrientationInput.swift`
+12. `Platform/VisionSpeechInput.swift`
+13. `Features/Control/ControlPanel.swift` and `ArmControlPanel.swift`
+14. `ROBCerebroTransport/CerebroRobotTransport.swift`
+15. control discovery, ownership, wire, client, and pairing files
+16. `Video/VideoProtocol.swift` and `EncodedVideoProtocol.swift`
+17. video discovery, authentication, framer, wire types, and client
+18. `H264VideoReceiver.swift` and `H264SampleBufferFactory.swift`
+19. the front, belly, and Insta360 `VideoPipelineCoordinator` ownership in `RobotViewModel`
+20. `SampleBufferVideoView.swift`, `VideoPanel.swift`, and the immersive renderer
+21. every corresponding test before making a change
 
 When a shortened path is ambiguous, use the [public source-code map](https://github.com/RudyAramayo/ROBBooks/blob/main/ROB-Books/OPEN-SOURCE-CODE-MAP.md) or search inside the cloned repository:
 
 ```text
-rg --files ROBControllerVision | rg 'DeadManController|VisionSpeechInput|ROBVideoFramer'
+rg --files ROBControllerVision | rg 'DeadManController|ArmControl|VisionSpeechInput|ROBVideoFramer|VideoPanel'
 ```
 
 # Closing principle

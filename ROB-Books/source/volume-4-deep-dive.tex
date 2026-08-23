@@ -12,6 +12,14 @@ Discovery answers ``What services are nearby?'' Authentication answers ``Can thi
 Make four paper gates labeled Find, Prove, Permit, and Validate. Give each student a message card with a service name, device identity, role, sequence, age, and value. A card advances only when each gate's rule passes. Try a real identity with the wrong role, an old sequence, and an out-of-range value. Explain why one successful gate cannot answer the others.
 \end{missionbox}
 
+\section*{A face label is not a control credential}
+
+A camera may compare a consented face embedding with an encrypted local gallery and produce ``likely this enrolled person.'' That is a probabilistic observation. A controller credential proves possession of a device secret in a fresh authenticated session. Authorization then decides what that authenticated device may do. These are different evidence types.
+
+\begin{missionbox}[title={SORT THE EVIDENCE}]
+Make cards labeled Face Match, Pairing Proof, Current Control Owner, Fresh Lease, Human Approval, and Physical Stop. For each pretend task---say hello, view a camera, drive forward, approve a gesture, or stop all motion---place every card that matters. Face Match may help choose a greeting, but never place it in the chain that grants motion, shell access, secrets, or approval. Add an Unknown Face card and show that the safe control result does not change.
+\end{missionbox}
+
 \section*{Freshness is a continuously expiring claim}
 
 Suppose a command was valid when issued. Network delay, a paused app, or a lost controller can make it dangerous later. A monotonic clock measures elapsed time without being confused by wall-clock corrections. A lease says how long intent remains usable. Sequence numbers reject duplicates and reordering. A watchdog chooses a defined response when renewal stops.
@@ -49,4 +57,3 @@ Draw a grid with a start, goal, obstacles, and unknown squares. One student reve
 \begin{advancedbox}[title={AI PROPOSES; VERIFIED SOFTWARE DISPOSES}]
 Natural-language models can help interpret or propose, but physical actions need typed schemas, bounded parameters, current state, policy, human authority where required, deterministic execution, cancellation, telemetry, and honest unavailable results. Fluency is not evidence of calibration, reachability, collision clearance, or completion.
 \end{advancedbox}
-

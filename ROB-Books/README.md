@@ -6,15 +6,15 @@ This folder contains the editable sources, selected print-safe photographs, and 
 
 | Book | Audience | Pages | Main idea | PDF |
 |---|---|---:|---|---|
-| Volume 1 — *Meet ROB* | Ages 8–12 | 36 | Systems thinking, structure, energy, sensors, iteration, and engineering logs | [`output/pdf/volume-1-meet-rob.pdf`](output/pdf/volume-1-meet-rob.pdf) |
-| Volume 2 — *Circuits & Signals* | Ages 10–14 | 33 | Circuits, a supervised USB-to-5 V toy lab, digital/analog/PWM signals, Arduino pins, serial messages, sensors, and watchdogs | [`output/pdf/volume-2-circuits-and-signals.pdf`](output/pdf/volume-2-circuits-and-signals.pdf) |
-| Volume 3 — *Motion Workshop* | Ages 10–15 | 34 | Loads, differential drive, gearing, actuators, materials, fabrication, assembly, and testing | [`output/pdf/volume-3-motion-workshop.pdf`](output/pdf/volume-3-motion-workshop.pdf) |
-| Volume 4 — *Mission Control* | Ages 12–16 | 33 | Mac/Arduino responsibilities, state, secure controllers, camera/depth/lidar data, AI boundaries, and simulation | [`output/pdf/volume-4-mission-control.pdf`](output/pdf/volume-4-mission-control.pdf) |
-| Volume 5 — *AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro* | Advanced makers and software builders | 39 | Source-based software history plus practical Swift/MLX, Llama, MLXVLM, model-safe stage-show, and Vision Pro lessons that preserve robot safety and human responsibility | [`output/pdf/volume-5-ai-robotics-with-codex.pdf`](output/pdf/volume-5-ai-robotics-with-codex.pdf) |
-| Volume 6 — *Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu* | Advanced makers and robot integrators | 27 | Two seven-joint AMBER arms, URDF and frame calibration, stable CAN identity, UDP/LCM protocols, clean Ubuntu reproduction, diagnostics, and staged commissioning | [`output/pdf/volume-6-amber-dual-arm-robotics.pdf`](output/pdf/volume-6-amber-dual-arm-robotics.pdf) |
-| Volume 7 — *Engineering ROBControllerVision* | Swift and visionOS developers | 36 | Swift 6 architecture, Observation, actors, spatial UI, controller/dead-man input, head pose, secure QUIC, H.264 video, local dictation, typed text transport, testing, and production review | [`output/pdf/volume-7-engineering-robcontrollervision.pdf`](output/pdf/volume-7-engineering-robcontrollervision.pdf) |
-| Volume 8 — *Engineering Cerebro* | Swift and Objective-C developers | 37 | Mixed-language architecture, ROBSerialBox, serial safety, AVFoundation, Luxonis RGB-D, Vision/SceneKit, MLX LLM/VLM, Gemini Live, bounded rendering, Kinect history, battle training, comedy shows, and the Vision Pro server contract | [`output/pdf/volume-8-engineering-cerebro.pdf`](output/pdf/volume-8-engineering-cerebro.pdf) |
-| *Complete Builder's Field Manual* | Advanced makers and developers | 79 | Unified evidence-based build record plus ROBSerialBox, RGB-D perception, MLX/VLM, Gemini, stage shows, Vision Pro control, advanced H.264 encoding/decoding, secure media transport, verification, operations, and maintenance | [`output/pdf/complete-builders-field-manual.pdf`](output/pdf/complete-builders-field-manual.pdf) |
+| Volume 1 — *Meet ROB* | Ages 8–12 | 37 | Systems thinking, structure, energy, sensors, iteration, and engineering logs | [`output/pdf/volume-1-meet-rob.pdf`](output/pdf/volume-1-meet-rob.pdf) |
+| Volume 2 — *Circuits & Signals* | Ages 10–14 | 35 | Circuits, a supervised USB-to-5 V toy lab, digital/analog/PWM signals, Arduino pins, serial messages, sensors, and watchdogs | [`output/pdf/volume-2-circuits-and-signals.pdf`](output/pdf/volume-2-circuits-and-signals.pdf) |
+| Volume 3 — *Motion Workshop* | Ages 10–15 | 36 | Loads, differential drive, gearing, actuators, materials, fabrication, assembly, and testing | [`output/pdf/volume-3-motion-workshop.pdf`](output/pdf/volume-3-motion-workshop.pdf) |
+| Volume 4 — *Mission Control* | Ages 12–16 | 39 | Mac/Arduino responsibilities, controller ownership, three camera feeds, depth/lidar maps, consent-based face context, private messaging, AI boundaries, and simulation | [`output/pdf/volume-4-mission-control.pdf`](output/pdf/volume-4-mission-control.pdf) |
+| Volume 5 — *AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro* | Advanced makers and software builders | 41 | Source-based software history plus practical Swift/MLX, recording, face identity, Messages, multi-camera perception, model-safe shows, and Vision Pro lessons | [`output/pdf/volume-5-ai-robotics-with-codex.pdf`](output/pdf/volume-5-ai-robotics-with-codex.pdf) |
+| Volume 6 — *Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu* | Advanced makers and robot integrators | 34 | Two seven-joint AMBER arms, URDF and frame calibration, stable CAN identity, UDP/LCM protocols, clean Ubuntu reproduction, diagnostics, and staged commissioning | [`output/pdf/volume-6-amber-dual-arm-robotics.pdf`](output/pdf/volume-6-amber-dual-arm-robotics.pdf) |
+| Volume 7 — *Engineering ROBControllerVision* | Swift and visionOS developers | 38 | Swift 6 architecture, explicit control ownership, PSVR Sense dual-arm jogging, three authenticated video feeds, immersive 360 presentation, speech, testing, and production review | [`output/pdf/volume-7-engineering-robcontrollervision.pdf`](output/pdf/volume-7-engineering-robcontrollervision.pdf) |
+| Volume 8 — *Engineering Cerebro* | Swift and Objective-C developers | 48 | Mixed-language coordination, RGB-D and panoramic perception, MLX/Gemini, encrypted face identity, private Messages, synchronized training capture, three-feed H.264, and bounded autonomy | [`output/pdf/volume-8-engineering-cerebro.pdf`](output/pdf/volume-8-engineering-cerebro.pdf) |
+| *Complete Builder's Field Manual* | Advanced makers and developers | 231 | Unified evidence-based build record plus current control, mapping, three-camera perception, face and messaging privacy, recording, arm interaction, AI boundaries, verification, operations, and maintenance | [`output/pdf/complete-builders-field-manual.pdf`](output/pdf/complete-builders-field-manual.pdf) |
 
 ## Standalone picture story
 
@@ -22,8 +22,8 @@ This folder contains the editable sources, selected print-safe photographs, and 
 
 Volume 5's factual commit-by-commit appendix is maintained separately as the
 [`Volume 5 Change Atlas`](source/volume-5-change-atlas.md). The manuscript was
-reconstructed from the local ROBController and Cerebro Git histories on
-August 10, 2026. Statements about the Codex-accelerated era are explicitly
+reconstructed from the local ROB repositories through August 23, 2026.
+Statements about the Codex-accelerated era are explicitly
 presented as interpretation rather than Git authorship evidence. Product
 guidance should be checked against the current
 [official OpenAI documentation](https://learn.chatgpt.com/docs/) before publication.
@@ -73,7 +73,7 @@ ROB-Books/
 ├── assets/slides/          selected presentation-page images
 ├── assets/generated/       original illustrative artwork, not engineering evidence
 ├── tools/                  asset, build, validation, preview, and learning tools
-├── output/pdf/             the nine printable PDF layout proofs
+├── output/pdf/             the ten printable PDF layout proofs
 ├── output/previews/        contact sheets for quick visual review
 └── tmp/                    generated build files and excluded private-review images
 ```

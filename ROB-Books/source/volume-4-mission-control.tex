@@ -4,12 +4,12 @@
 \SetROBVolume{VOLUME 4 - AGES 12-16}{MISSION CONTROL}
 
 \begin{document}
-\ROBTitle{Building R.O.B. - Volume 4}{MISSION CONTROL}{Arduino, Mac, networks, cameras, and responsible AI}{A computer-science field guide for makers ages 12-16}{2026-rob-lightsabers-overhead.jpg}
+\ROBTitle{Building R.O.B. - Volume 4}{MISSION CONTROL}{Control ownership, maps, cameras, private messages, and responsible AI}{A computer-science field guide for makers ages 12-16}{2026-rob-lightsabers-overhead.jpg}
 
 \ROBFrontMatter{Programs cooperate by making promises}{Follow one command from a human hand to a moving tread, then follow sensor data back.}{%
 ROB's software spans Arduino C++, Objective-C and Objective-C++, Swift, Python helpers, Apple platforms, cameras, lidar, speech, and optional cloud AI. You do not need to master all of those at once. You need to understand the boundary each part owns.
 
-This book describes the source snapshot inspected on 2 August 2026. Some Cerebro Gemini and autonomy files have uncommitted work, so experimental features are labeled. The labs stay in simulation unless a qualified adult provides an isolated test rig.
+This book describes the clean repository snapshots inspected through 23 August 2026. ROBControllerVision's latest three panorama-orientation commits were still ahead of its public remote, and hardware-dependent features remain labeled as experimental or unverified. The labs stay in simulation unless a qualified adult provides an isolated test rig.
 }
 
 \ROBSeriesMap{Use the diagrams to predict where data travels, where it is validated, and which component owns the final safety decision. Then run the paper or simulator mission. Never test new network or AI code first on powered treads.}
@@ -76,6 +76,7 @@ Cerebro is the macOS controller and operator interface. Its current source conta
   \item the present Base Arduino serial connection, plus legacy Cerebro paths named for retired Torso and Head Arduinos and servo hardware;
   \item authenticated sessions from controllers and a role-limited lidar publisher;
   \item camera capture, RGB-D helper supervision, Vision processing, and video service;
+  \item consent-based local face identity, a private Messages bridge, and explicit training-data recording;
   \item local speech recognition and speech synthesis;
   \item bounded autonomy coordination and optional Gemini integration;
   \item arm scripts and reusable keyframe animation data.
@@ -131,13 +132,17 @@ ROB has several ways to express operator intent, but only one component should o
 \toprule
 DEVICE & ROLE & IMPORTANT BOUNDARY\\
 \midrule
-iPhone / iPad & Joysticks, speed, flipper, actuator, autonomy and AI-action UI. & Holds its own paired controller identity and sends the established controller payload.\\
+iPhone / iPad & Map, joysticks, push-to-talk, flipper, actuator, autonomy and AI-action UI. & Holds its own paired controller identity and can explicitly request or release drive ownership.\\
 Apple Watch & Voice and joystick intent relayed through the phone. & Does not browse for ROB or store robot credentials; stale watch motion stops at the relay.\\
-Vision Pro & SwiftUI control experience, simulator, normalized commands, and optional live video. & Uses a short input lease and a separate authenticated video connection.\\
+Vision Pro & SwiftUI cockpit, simulator, normalized commands, dual-arm panel, three video feeds, and immersive 360 view. & Uses short drive/arm leases and separate authenticated video pipelines.\\
 \bottomrule
 \end{tabularx}
 
 Normalized motion usually means values between -1 and +1. That keeps a user interface independent of physical top speed. The robot later converts the normalized request into its configured limits.
+
+The latest operator to press \textbf{Request Control} becomes the drive owner only after Cerebro stops the previous owner's motion. \textbf{Release Control} stops ROB and returns ownership to Cerebro. Each phone/tablet and Vision Pro needs a different paired credential, and the UI displays Cerebro's authoritative owner rather than guessing from a local button.
+
+Vision Pro arm control is a separate domain. Each AMBER arm needs fresh measured seven-joint feedback, position mode, its own time-limited authority, bounded targets, and a hold result. Two PSVR Sense controllers can jog the matching selected joints together only while both grips are held. This is measured joint jogging, not ``move the arm wherever the controller points,'' and it still requires restrained hardware testing.
 
 One readable differential-drive mix is:
 
@@ -199,7 +204,7 @@ Give three students cards: Operator, Lidar, and Guest. Write allowed message typ
 
 \chapter{Control and camera data take separate roads}
 
-Live video is much larger than a joystick command. If both share one congested queue, a delayed camera frame could sit in front of a stop message. Cerebro therefore advertises a separate authenticated \texttt{\_robvideo.\_udp} service using \texttt{robvideo/1}. The initial profile sends H.264 video on its own QUIC connection.
+Live video is much larger than a joystick command. If both share one congested queue, a delayed camera frame could sit in front of a stop message. Cerebro therefore advertises a separate authenticated \texttt{\_robvideo.\_udp} service using \texttt{robvideo/1}. Independent \texttt{front}, \texttt{belly}, and \texttt{insta360} H.264 feeds each have their own bounded pipeline on the media connection.
 
 \begin{center}
 \begin{tikzpicture}[node distance=8mm and 15mm,every node/.style={font=\robcondensed\small,align=center,draw=ROBSteel,rounded corners=1mm,minimum height=0.5in}]
@@ -214,7 +219,7 @@ Live video is much larger than a joystick command. If both share one congested q
 \end{tikzpicture}
 \end{center}
 
-The video connection still depends on the exact live control session and the same authenticated controller. If control disconnects, the associated video session closes. If video fails, control can remain available.
+The video connection still depends on the exact live control session and the same authenticated controller. The client opens the media stream after authentication and subscribes to each camera separately. If control disconnects, the associated video sessions close. If one video feed fails, control and the other feeds can remain available. On Vision Pro the panorama can appear in a flat window or on an inward-facing mixed-immersive sphere; entering that view brakes motion even when video is intentionally preserved.
 
 \begin{conceptbox}
 This is a \textbf{quality-of-service} decision expressed through architecture. Urgent control is small and bounded. Media may drop old frames when the sender falls behind. The freshest useful image is usually better than a growing pile of late images.
@@ -225,9 +230,9 @@ This is a \textbf{quality-of-service} decision expressed through architecture. U
 \chapter{How ROB sees space}
 \ROBSourceNow{Cerebro/Cerebro/CameraManager.swift}{This file owns a bounded camera/depth delivery path. Lidar acquisition lives separately under \texttt{M2M1-RPLIDAR-iOS-MacOS-Catalyst-/RPLidar}; the chapter names the source when it changes sensor.}
 
-ROB's camera path can produce aligned color and depth. A color pixel describes brightness and color channels. A depth pixel describes estimated distance, currently carried as an unsigned 16-bit number of millimeters; zero means invalid. Alignment lets software ask, ``What distance belongs to this color pixel?'' The builder identifies an OAK-D Pro Wide in the body and an OAK-D Pro autofocus camera at the head, while the Insta360 Pro II supplies 360-degree imagery. Luxonis model options differ in field of view, color focus, shutter type, and power demand, so Cerebro should record the product name and board revision returned by the device rather than infer it from appearance.
+ROB's camera path can produce aligned color and depth. A color pixel describes brightness and color channels. A depth pixel describes estimated distance, currently carried as an unsigned 16-bit number of millimeters; zero means invalid. Alignment lets software ask, ``What distance belongs to this color pixel?'' The builder identifies an OAK-D Pro Wide in the body/belly and an OAK-D Pro autofocus camera at the head/face, while the Insta360 Pro II supplies 360-degree imagery. Each role has its own device identity, socket, helper state, rate budget, and calibration. Luxonis model options differ in field of view, color focus, shutter type, and power demand, so Cerebro should record the product name and board revision returned by the device rather than infer it from appearance.
 
-A supervised Python DepthAI helper owns the OAK-D device and sends synchronized data to Cerebro through a user-only local Unix socket. RGB enters the camera/Vision path. Depth travels beside it in a frame set. If the helper or device fails, Cerebro reports camera state and retries with bounded backoff instead of terminating robot control.
+One supervised Python DepthAI helper owns each selected OAK-D and sends synchronized data to Cerebro through a private local Unix socket. RGB enters the camera/Vision path. Depth travels beside it in a frame set. If a helper or device fails, Cerebro reports that camera's state and retries with bounded backoff instead of terminating robot control. A separate headless Insta360 service maintains camera control, heartbeat, RTMP/ffmpeg preview, demand-driven decode, and six-sector perception.
 
 \ROBPhotoTwo{2022-oakd-depth-camera.jpg}{An OAK-D stereo depth camera has multiple optical elements because depth requires geometric information beyond one ordinary image.}{rob-v3-page-74.jpg}{Historical presentation page 74 combines the Insta360 head concept with an OAK-D Lite crown camera. Confirm the current head configuration before final captions.}
 
@@ -239,7 +244,9 @@ RPLidar reports distances at angles around the robot. A point $(r,\theta)$ can b
 x = r\cos\theta, \qquad y = r\sin\theta.
 \]
 
-The companion app publishes typed, bounded scans and separate occupancy maps. Its current scan path first keeps only valid points closer than \(1\,\mathrm{m}\) and within about \(\pm0.50\) radians of the robot's front or back. The published scan is therefore not a full 360-degree view. Current local autonomy uses these fresh filtered samples, not the map, to choose cautious social-roam behavior. A stale sensor feed stops motion and leaves the autonomy session active in a waiting-for-lidar state.
+The companion app publishes all valid points that fit its bounded range/count contract, not the former sub-meter front/back slice. Compact \texttt{RLS1} frames carry a fixed header plus four bytes per point; a 720-point scan is about 2.95 KB. Same-Mac delivery prefers authenticated App Group Unix-domain IPC and automatically falls back to the paired QUIC publisher route.
+
+Occupancy maps are a separate product. The app aligns updates using the pose captured with the scan, can save/load/reset \texttt{.robomap} data, and overlays the result on selectable base maps with adjustable scale and north rotation. Rotation is a human calibration unless a trusted heading source exists. A map, route, or destination is context, not permission to drive; stale required sensing still stops the active autonomy path.
 
 The lidar was a later physical stage, braced with three 3/8-inch threaded rods. The builder reports its Ethernet descending to a USB hub through a USB--Ethernet adapter beside the Arduino's USB connection. That mechanical stage needs a measured sensor-to-base transform, vibration check, cable strain relief, and proof that the rods do not intrude into camera or arm envelopes.
 
@@ -259,6 +266,24 @@ Coordinate frames must be named: sensor frame, robot frame, map frame, camera fr
 
 Cerebro can recognize speech locally and speak responses through its existing voice path. An optional, explicitly enabled Gemini integration can receive microphone audio and sampled camera frames. That changes the privacy boundary because data may leave the robot for a cloud service.
 
+\section*{A face label is not a key}
+
+Cerebro's separate face-identity feature is disabled by default. A paired operator and a person standing with ROB can confirm enrollment and collect 24 varied examples. Vision checks face position, landmarks, and quality; a selected AdaFace model converts an aligned 112-by-112 crop into a 512-number embedding. The encrypted local gallery stores opaque profile IDs, model-tagged embeddings, and samples with a device-only key. It can delete a whole profile.
+
+WebFace4M is the recommended default encoder; VGGFace2 is available for careful comparison. Their embeddings must never be mixed, and the current distance/margin settings still need false-accept, false-reject, replay, lighting, pose, and occlusion tests on ROB. Recognition expires quickly and enters the scene only as uncertain context. A face called ``administrator'' can personalize a greeting, but it cannot grant control, approve an AI action, run a command, or reveal a secret.
+
+\section*{Messages without robot tools}
+
+The optional Messages bridge is also disabled by default. It accepts only exact allowlisted senders in one-to-one chats, remembers a high-water mark so old messages are not replayed, fails closed on groups/reactions/stale or unexpected items, and limits accepted traffic. Every chat receives an isolated AI conversation with no motor, Music, arbitrary-file, device, camera, or microphone tools.
+
+One bounded image may be normalized without metadata. Optional transcript memory is encrypted, scoped to the same sender/account, bounded, searchable/exportable, and clearable; sending selected excerpts to Gemini is a separate cloud disclosure. Fixed news publishers and Open-Meteo weather provide limited current information without exposing the Mac's location or caller-supplied URLs.
+
+Exact commands from locally configured administrator handles can ask the Mac to shut down or reboot, but only after exact \texttt{YES} from the same sender/chat within 90 seconds. That deterministic path runs before AI, never inserts message text into a shell, and deserves a critical local warning. Do not print real handles or scripts in this book.
+
+\section*{Record evidence only when a human starts it}
+
+An explicit recording session can synchronize face/belly RGB, lossless aligned depth, stereo, calibration, exact lidar, pose, odometry, tread/authority, traversability labels, and separate camera movies. The session is append-only and recoverable; ordinary preview does not silently start it. Requested, observed, and encoded dimensions stay distinct. Autonomous commands may be logged, but they never create their own labels. Consent, free space, retention, deletion, and dataset review remain human responsibilities.
+
 The safer action pattern below is a \emph{target architecture}. It shows the structure every physical action should eventually follow; it is not evidence that every current tool has an executor.
 
 \begin{center}
@@ -276,6 +301,8 @@ The safer action pattern below is a \emph{target architecture}. It shows the str
 \end{center}
 
 The language model does not receive a tool for arbitrary raw serial bytes. The current schema names five proposals: \texttt{look\_at}, \texttt{play\_gesture}, \texttt{request\_pick}, \texttt{navigate\_relative}, and \texttt{stop\_motion}. Only \texttt{stop\_motion} has an immediate local executor, and its result is deliberately partial: Cerebro can software-stop the base, but arm hold remains unverified. The other four actions do not yet have deterministic executors. Outside autonomy they may reach a controller approval console, but approval records a human decision and does not actuate hardware; during active autonomy they fail as unavailable.
+
+Controller-authorized destination navigation is a separate deterministic feature, not an executor for a model's \texttt{navigate\_relative} proposal. It uses bounded geocoding/planning, a 50 m pilot limit, and fresh pose/map/lidar/depth/authority gates. The OAK sidewalk model may contribute centerline context, and learned traversability comes only from manually traversed, odometry-confirmed ground. Manual takeover or stale required sensing stops the motion path.
 
 \begin{tabularx}{\textwidth}{>{\ttfamily\scriptsize}p{1.35in} p{1.25in} X}
 \toprule
@@ -295,6 +322,8 @@ In the inspected snapshot, general picking remains unavailable. The source expli
 
 \begin{safetybox}[title={PUBLIC CAMERA AND MICROPHONE NOTICE}]
 A Maker Faire demonstration should clearly announce when cameras, microphones, recording, or cloud AI are active; provide a visible activity indicator and rapid disable control; avoid collecting unnecessary location or identity data; and obtain appropriate consent, especially around children. The entire Gemini integration defaults off. Once it is enabled, however, the current configuration defaults microphone-audio and camera-frame streaming on unless each is separately disabled; the robot-action tool remains separately off by default. Verify every switch rather than relying on one ``AI enabled'' label.
+
+Face identity, Messages, transcript memory, and recording each have their own enable, consent, retention, and deletion boundary. Turning on one must not silently turn on another.
 \end{safetybox}
 
 \begin{buildbox}[title={HUMAN-IN-CHARGE ROLE PLAY}]
@@ -330,8 +359,13 @@ Controller snapshots stop & Cerebro neutralizes once and lets the USB heartbeat 
 Malformed ROBControl frame & Transport rejects it before application dispatch.\\
 Malformed legacy controller payload & The application decoder must reject it; authenticated transport alone does not make payload contents valid.\\
 Video sender falls behind & Old video frames drop; control queue remains independent.\\
+Controller takeover & Cerebro stops the old owner before accepting fresh motion from the new owner.\\
+Either arm grip releases & Both PSVR joint-jog loops request hold; neither reuses the old stick sample.\\
 Depth helper exits & Camera reports unavailable and retries; robot control remains alive.\\
 Lidar becomes stale & Autonomy stops and waits rather than inventing space.\\
+Wrong face/model or replay image & Recognition remains unknown; no authority changes.\\
+Group or non-allowlisted Message & The bridge produces no AI turn or robot action.\\
+Recorder runs out of space & Capture stops/reports a recoverable partial session; no label is invented.\\
 Unsupported AI action & A clear unavailable result returns; no motion is faked.\\
 \bottomrule
 \end{tabularx}
@@ -354,7 +388,9 @@ Choose one simulated command. Create columns for sequence number, issue time, le
 \ROBFact{Authentication}{Proof of identity.}\par
 \ROBFact{Authorization}{Rules about allowed actions.}\par
 \ROBFact{Backpressure}{What a system does when data arrives too quickly.}\par
+\ROBFact{Consent}{A person's informed, changeable agreement to a clearly stated use.}\par
 \ROBFact{Coordinate frame}{A named origin and axes for measurements.}\par
+\ROBFact{Embedding}{A model-produced number vector used for comparison; it is not a password.}\par
 \ROBFact{Lease}{Permission that expires unless renewed.}\par
 \ROBFact{Process}{A running program with its own resources.}\par
 \ROBFact{Protocol}{An agreement about messages and behavior.}\par
@@ -363,10 +399,10 @@ Choose one simulated command. Create columns for sequence number, issue time, le
 \end{multicols}
 
 \begin{missionbox}[title={FINAL CHECK}]
-Can you trace a joystick command to the Arduino? Can you explain why discovery does not prove trust? Can you explain why video uses a separate connection? Can you place an AI proposal behind a validator and human policy? You are ready for the complete field manual.
+Can you trace a joystick command to the Arduino? Can you explain why discovery does not prove trust, why a recognized face is not authorization, and why video uses a separate connection? Can you place Messages, recording, and an AI proposal behind their own consent and policy gates? You are ready for the complete field manual.
 \end{missionbox}
 
 \vfill
-\ROBSource{Current 2026-08-02 source snapshot: Cerebro, ROBController, ROBControllerVision, and M2M1-RPLIDAR; their active docs; ROB base firmware; private gallery originals. Experimental and uncommitted Cerebro work is labeled as such.}
+\ROBSource{Current 2026-08-23 source snapshot: Cerebro, ROBController, local ROBControllerVision (three commits ahead of its remote), M2M1-RPLIDAR, Amber-HomeFolder, ROBTrainingGames, ORobotics, active docs, ROB base firmware, and private gallery originals. Hardware-dependent and local-only evidence is labeled.}
 
 \end{document}
