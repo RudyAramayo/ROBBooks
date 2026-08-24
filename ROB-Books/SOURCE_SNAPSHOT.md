@@ -25,6 +25,25 @@ The books are a synthesis of a changing workshop archive. These identifiers make
 | `Cerebro/Amber-PythonAPI/Amber V2 API/amber_api/amber_robot.py` | SHA-256 `3fc574ca827d8054b33a9545337fa07d4d7f000be4de5ed60a8a77a0202f24ce` | High-level UDP wrapper inspected with its packed command structures. |
 | `ROB_v3.pdf` | SHA-256 `67dbe60571e22f705f3838848bce0011bda8e00e1c357734ee07dadcdf1f346b` | 95 pages; 1920 × 1080 pt slide pages. |
 
+## Recovered Cerebro workshop history
+
+The current `Cerebro` row above describes the actively developed public
+repository. The following read-only archive folders establish the earlier
+history. They are stored under the workshop's `Documents/Dev/R.O.B.` archive;
+private absolute user paths are intentionally omitted from publication.
+
+| Archive | Identifier at inspection | Historical meaning and preservation note |
+|---|---|---|
+| `Cerebro v1` | no Git metadata; key file fingerprints in `CEREBRO_ARCHIVE_HISTORY.md` | Pre-Git Cocoa serial-command archive. Upstream example headers are dated 2009; ROB-specific headers and project state are dated 2017-2018. Do not turn the upstream date into a Cerebro origin claim. |
+| `Cerebro v2` | master `c27829851b9252310a7ee14337ec7c773ca52813`; 11 commits; root `0141a6461303302e53941c398ebeda4f60c1a1c7` | First surviving Git history, 2018-01-01 through 2018-05-17. The working copy has uncommitted source/project changes, so manuscript claims use committed objects. |
+| `Cerebro v3` | master `00fbf6bdc4ec9c62df9173253bfe3b7e4ab1c2db`; 46 master commits, 50 across all refs | Preserves `libfreenect`, `nite2`, `rob2`, and `t265` experiment branches plus master through 2022-04-09. The working copy has iCloud-placeholder and local state; preserve it without cleanup. |
+| `Cerebro v4` | master `1a3c7799bdb4b60d0d4917f5de4ad0a95d88e96e`; 50 master commits, 54 across all refs | Shares the 2018 root and old experiment branches, but master diverges from the later v3 master after their common 2019-11-09 T265/perception checkpoint `b676ced`. It continues through 2025-07-02 and was clean at inspection. |
+| `Cerebro v5` archive | branch `AramayoHouse_changes` at `46ca05c8af17f32350f45a5143733474e8f8a813`; 34 commits; root `4c4f1d454253e39798c23aed4522716068aadd98` | Independent fresh repository beginning 2025-08-05. The working copy has only Xcode user-interface/breakpoint changes at inspection. The active public repository has continued beyond this archived state. |
+
+The full interpretation, v1 SHA-256 fingerprints, commit milestones, branch
+relationship, third-party attribution boundary, and preservation rules are in
+[`CEREBRO_ARCHIVE_HISTORY.md`](CEREBRO_ARCHIVE_HISTORY.md).
+
 ## Material change since the August 10 snapshot
 
 - Cerebro added an always-on supervisor, headless Insta360 Pro II capture, separate face and belly OAK roles, selectable Core ML/Vision detectors, MLX model preparation, per-camera processing budgets, a system-status dashboard, safer local tread/neck controls, and three independent live-video feeds.

@@ -71,6 +71,10 @@ The network has a separate shape. A backpack router joins the home Orbi Wi-Fi ne
 
 Cerebro is the macOS controller and operator interface. Its current source contains several distinct responsibilities:
 
+\begin{fieldnotebox}[title={CEREBRO EXISTED BEFORE THE V5 GIT RESET}]
+The current public repository begins with a fresh v5 import from August 2025, but five preserved workshop folders recover the earlier story. A pre-Git v1 archive contains ROB-specific Mac serial-control work dated 2017-2018. The first surviving Git history starts on 1 January 2018, then grows through speech, separate Base/Head/Torso links, depth-camera and hand-tracking experiments, controller arbitration, servos, human tracking, network video, Apple-silicon migration, and early LLM work. The v5 commit created a new Git history around an existing application; it did not create Cerebro in one day. The source evidence and fingerprints are recorded in \texttt{ROB-Books/CEREBRO\_ARCHIVE\_HISTORY.md}.
+\end{fieldnotebox}
+
 \begin{itemize}
   \item windows and controls for a human operator;
   \item the present Base Arduino serial connection, plus legacy Cerebro paths named for retired Torso and Head Arduinos and servo hardware;
@@ -403,6 +407,6 @@ Can you trace a joystick command to the Arduino? Can you explain why discovery d
 \end{missionbox}
 
 \vfill
-\ROBSource{Current 2026-08-23 source snapshot: Cerebro, ROBController, local ROBControllerVision (three commits ahead of its remote), M2M1-RPLIDAR, Amber-HomeFolder, ROBTrainingGames, ORobotics, active docs, ROB base firmware, and private gallery originals. Hardware-dependent and local-only evidence is labeled.}
+\ROBSource{Current 2026-08-23 source snapshot: Cerebro, archived Cerebro v1-v5 history, ROBController, local ROBControllerVision (three commits ahead of its remote), M2M1-RPLIDAR, Amber-HomeFolder, ROBTrainingGames, ORobotics, active docs, ROB base firmware, and private gallery originals. Hardware-dependent and local-only evidence is labeled.}
 
 \end{document}

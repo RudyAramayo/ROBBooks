@@ -5,6 +5,43 @@ labels, and subjects come from Git. The thematic summaries condense the changed
 files and commit messages. “Codex-accelerated era” is a narrative period, not a
 Git authorship field.
 
+The Cerebro table below begins at the independent v5 Git root. It is not the
+application's origin. The recovered local archive establishes a pre-Git
+serial-control seed dated 2017-2018; the first surviving Git root,
+`0141a646`, on 1 January 2018; v2 speech, serial, depth, and Leap work; v3
+control/perception branches through 2022; and a related v4 branch through July
+2025. See `CEREBRO_ARCHIVE_HISTORY.md` for the evidence ledger and branch
+boundary. The atlas keeps the fresh v5 history separate so its commit hashes
+remain factual and reproducible.
+
+### Cerebro before the v5 reset
+
+| Date | Evidence | Recorded author | Change |
+|---|---:|---|---|
+| 2017-09-18 | v1 `KeyboardInputView.m` header | Rob Makina | Earliest dated ROB-specific source header found in the pre-Git folder; keyboard input was being added to the Cocoa serial example. |
+| 2018-01-01 | v1 `SerialDebug.m` header | Rob Makina | Cerebro-named serial-debug class in the pre-Git folder. |
+| 2018-01-01 | `0141a64` | Rob Makina | First surviving Cerebro Git root. |
+| 2018-01-02 | `6824552` | Rob Makina | Completed the SpeechBox addition. |
+| 2018-01-02 | `1ddd815` | Rob Makina | Added working Base/Head/Torso serial roles and began binding controls and windows. |
+| 2018-01-02 | `1aef23a` | Rob Makina | Added multipeer and SceneKit controller work. |
+| 2018-01-12 | `a6c8d88` | Rob Makina | Recorded PCL data appearing in Cerebro during the OpenNI/NiTE experiment sequence. |
+| 2018-01-12 | `a4c203e` | Rob Makina | Recorded the perception integration as a failure, preserving the unsuccessful outcome. |
+| 2018-05-17 | `c278298` | Rob Makina | Integrated the Leap Motion controller. |
+| 2019-05-10 | `892cd08` | Rob Makina | Required a master controller ID to prevent conflicting input and required autonomy permission. |
+| 2019-05-11 | `79ba649` | Rob Makina | Added the Maestro servo loop and documented noisy TTL commands near the power supply. |
+| 2019-09-08 | `e5996b0` | Rodolfo Aramayo | Added initial human tracking with torso control moving the camera head. |
+| 2019-11-09 | `b676ced` | `you@example.com` | Common v3/v4 checkpoint with T265 data, camera saliency, human detection, and distance-following work. |
+| 2022-04-09 | `00fbf6b` | Orbitus | v3 master cleanup: installed AutoNet, split RPLidar into another repository, and bound the iPad controller. |
+| 2023-07-27 | `08e067c` | Orbitus | v4 M1 checkpoint. |
+| 2023-09-24 | `137ebf4` | Orbitus | Recorded a demo using Google LLM responses. |
+| 2025-07-02 | `cc87f3e` | Orbitus | Added singleton checking and continuous-speech work and explicitly recorded creation of the next v5 release. |
+| 2025-07-02 | `1a3c779` | Orbitus | Recorded Foundation Models AI working alongside an unresolved XPC crash. |
+
+The v3 and v4 master branches share `b676ced`, then diverge: v3 reaches the
+2022 AutoNet/RPLidar checkpoint while v4 reaches the 2023-2025 migration work.
+That branch relationship should be preserved rather than rewritten as one
+perfectly linear release sequence.
+
 ## ROBController
 
 | Date | Commit | Recorded author | Change |

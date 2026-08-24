@@ -14,12 +14,16 @@ person, several computers, physical hardware, partial ideas, experiments that
 worked once, experiments that broke connectors, and commits made before a
 fragile discovery disappeared.
 
-The Git record uses three author-name spellings—`Orbitus`, `RudyAramayo`, and
-`Rudy Aramayo`—but the same `orbitus@orbitusrobotics.com` email. That is
-consistent with one builder committing from differently configured computers.
-It is not evidence of three developers. Nor can Git prove which lines were
-suggested by an AI. Commit metadata records the person who accepted and
-committed a change, not every tool involved in producing it.
+The fresh v5 and current Git record uses three author-name spellings—`Orbitus`,
+`RudyAramayo`, and `Rudy Aramayo`—but the same
+`orbitus@orbitusrobotics.com` email. The older archive also records
+`Rob Makina`, `Rodolfo Aramayo`, and one placeholder `you@example.com`
+identity.
+Those labels are consistent with a long-lived solo project moving among
+differently configured computers; they are not by themselves a complete
+contributor biography. Nor can Git prove which lines were suggested by an AI.
+Commit metadata records the person who accepted and committed a change, not
+every tool involved in producing it.
 
 Still, the history has a visible hinge. Through September 2025, commits read
 like a lab notebook: tune a servo, repair a port, checkpoint an animation,
@@ -74,13 +78,77 @@ therefore does more than add intelligence. It constrains intelligence.
 
 ---
 
-## 2. Era one: handmade foundations, 2022–2023
+## 2. Handmade foundations: Cerebro 2017–2025 and controller 2022–2023
 
-ROBController's 2022 root commit established the controller around AutoNet and
-ROBONet after earlier ML-model experiments were removed. It mixed Objective-C,
-Objective-C++, Swift, C, and C++, plus Apple's AurioTouch sample-derived audio
-machinery. This was a practical choice: keep the old hardware-facing code and
-add modern Apple code where it helped.
+> **SOURCE TRAIL — HISTORICAL ARCHIVE:** `CEREBRO_ARCHIVE_HISTORY.md` records the preserved `Cerebro v1` through `Cerebro v5` folders, the pre-Git file fingerprints, and the old Git coordinates. The archive folders are evidence sources, not public clone instructions.
+
+The present public Cerebro history is not the beginning of Cerebro. It is the
+history of a fresh repository created around an existing robot application.
+The five preserved archive folders restore the missing prologue.
+
+- **v1, ROB additions dated 2017-2018:** a Cocoa Arduino serial example became
+  a Mac command station for ROB's seven-field motor frame.
+- **v2, 2018:** speech, Base/Head/Torso serial roles, SceneKit, multipeer
+  control, depth/user-tracking attempts, a named consciousness bridge, and
+  Leap Motion entered the first surviving Git history.
+- **v3, 2018-2022:** controller arbitration, autonomy permission, servos,
+  multilingual speech, RealSense/ReSpeaker processes, human/head tracking,
+  RTSP, T265, AutoNet, and the RPLidar split accumulated across the historical
+  branches.
+- **v4, 2018-2025 lineage:** the older history reached Apple silicon, Google
+  LLM responses, singleton-process work, continuous speech, and Foundation
+  Models experiments.
+- **v5, fresh root in 2025:** the already substantial program entered a new
+  repository and continued toward the current system.
+
+The v1 folder must be read carefully. Its Cocoa shell preserves Gabe Ghearing's
+2009 “Arduino Serial Example” attribution. That is upstream code ancestry, not
+a claim that ROB or Cerebro began in 2009. ROB-specific headers credit Rob
+Makina in September 2017 and January 2018, the Xcode product is named Cerebro,
+and the adapted source opens a fixed USB device at 250000 baud. It exposes
+forward, reverse, turn, flipper, and linear-actuator actions using the same
+seven signed fields that survive in ROB's historical 42-byte frame. Keyboard
+and peer-network classes show the first attempt to let more than one interface
+reach that physical command path.
+
+The v2 Git repository begins with `0141a646` on 1 January 2018. Within a day,
+its commits add speech, separate Base/Head/Torso serial paths, bound Mac
+controls, SceneKit, and multipeer communication. January commits bring in
+OpenNI, PCL, and NiTE experiments; one celebrates point-cloud data appearing
+in Cerebro and another plainly records a failed integration. May adds further
+libfreenect work and Leap Motion. The main controller already composes speech,
+serial hardware, keyboard control, a 3D view, peer communication, perception,
+chat, and a class named `ROBConsciousness`. The name documents intent, not a
+claim that the early consciousness bridge was complete.
+
+The v3 archive continues the 2018 root. A May 2019 commit requires a master
+controller identity to prevent conflicting input and permission before
+autonomous mode. Later commits record Maestro servo noise, volume and mood,
+multilingual speech, wireless joining, head tracking, ReSpeaker and RealSense
+task processes, human tracking, RTSP, T265, headless-performance work, and
+repaired speech/chat behavior. Its master ends in April 2022 with AutoNet, iPad
+controller binding, and the decision to split RPLidar into another repository.
+
+The v4 archive preserves a related branch of the same 2018 history through
+July 2025. It records an M1 checkpoint, memory-safe text output, USB networking,
+a Google-LLM demo, a singleton-process check, continuous-speech experiments,
+and Foundation Models work. One July 2025 commit explicitly says the builder
+is creating the next v5 release. The independent v5 root on 5 August therefore
+marks a migration, not an inception.
+
+This recovered history changes how the modern code should be read. Cerebro's
+roots are the practical needs of a physical machine: format a frame, control
+three embedded roles, hear a person, speak back, arbitrate controllers, and
+experiment with imperfect sensors without losing the ability to drive. The
+newer protocols and AI systems refine boundaries that the workshop had already
+been discovering for years.
+
+The controller has its own surviving foundation. ROBController's 2022 root
+commit established the controller around AutoNet and ROBONet after earlier
+ML-model experiments were removed. It mixed Objective-C, Objective-C++, Swift,
+C, and C++, plus Apple's AurioTouch sample-derived audio machinery. This was a
+practical choice: keep the old hardware-facing code and add modern Apple code
+where it helped.
 
 In September 2023, the controller gained a custom iPhone storyboard, text
 commands, lidar visualization, speech-recognition work, system-volume tests,
@@ -106,13 +174,15 @@ behavior while Codex builds context.
 
 ---
 
-## 3. Era two: the solo workshop, August–September 2025
+## 3. Era two: the v5 migration and solo workshop, August–September 2025
 
-Cerebro's fresh repository begins August 5, 2025, but its initial import is
-already a substantial robot program. It includes a macOS storyboard, camera
-management, speech, serial control, AutoNet, lidar, Kinect/RealSense-era
-components, Leap Motion, RTSP video, task launchers, Core ML assets, and a large
-body of mixed Objective-C++ and Swift.
+Cerebro's fresh repository begins August 5, 2025, with the parentless commit
+`4c4f1d4`: “initial commit with v5 changes and a fresh repo.” Its initial tree
+is already a substantial robot program because it imports the earlier workshop,
+not because that program appeared in one day. It includes a macOS storyboard,
+camera management, speech, serial control, AutoNet, lidar,
+Kinect/RealSense-era components, Leap Motion, RTSP video, task launchers, Core
+ML assets, and a large body of mixed Objective-C++ and Swift.
 
 The following weeks read like a maker's engineering diary:
 
@@ -1816,6 +1886,8 @@ and the decision to energize the machine.
 
 ### Repository sources
 
+- `CEREBRO_ARCHIVE_HISTORY.md`, including the v1 file fingerprints and v2-v5 Git coordinates
+- archived `Cerebro v1` through `Cerebro v5` source folders inspected on August 23, 2026
 - `ROBController` Git history through `50a2229`, August 22, 2026
 - `Cerebro` Git history through `e76d515`, August 23, 2026
 - `ROBControllerVision` local Git history through `63b9d9e`, August 22, 2026 (three commits ahead of its remote at inspection)

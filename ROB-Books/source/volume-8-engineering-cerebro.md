@@ -1,6 +1,6 @@
 # Read Cerebro as a living robot system
 
-Cerebro is the macOS application at the center of ROB. It is not one algorithm. It is a boundary between three camera roles, serial devices, robot controllers, speech, local models, cloud models, private Messages, consent-based face identity, explicit dataset recording, two AMBER arms, a stage-show engine, and a human operator. The public source is <https://github.com/RudyAramayo/Cerebro>. Clone it, then use this repository root:
+Cerebro is the macOS application at the center of ROB. It is not one algorithm. It is a boundary between three camera roles, serial devices, robot controllers, speech, local models, cloud models, private Messages, consent-based face identity, explicit dataset recording, two AMBER arms, a stage-show engine, and a human operator. The public source is <https://github.com/RudyAramayo/Cerebro>. Its Git root is the 2025 v5 migration, not Cerebro's beginning; the recovered 2017-2025 lineage is documented below. Clone the public source, then use this repository root:
 
 ```text
 Cerebro/
@@ -11,6 +11,110 @@ Keep Xcode and the repository open while reading. Paths beginning `Cerebro/` are
 > **SOURCE TRAIL — ANALYZING NOW:** `README.md`, `Cerebro.xcodeproj/project.pbxproj`, `Cerebro/AppDelegate.m`, and `Cerebro/ROBMainViewController.mm` establish the application boundary and composition graph.
 
 This book uses **observed** for behavior supported by the inspected source, **historical artifact** for retained code that is not the preferred current path, and **proposed** for an improvement. Never infer that a compiled control button proves a physical mechanism is safe or calibrated.
+
+# Recover Cerebro's pre-v5 lineage
+
+> **SOURCE TRAIL — HISTORICAL ARCHIVE:** `CEREBRO_ARCHIVE_HISTORY.md`; the preserved `Cerebro v1` through `Cerebro v5` folders; v2 root `0141a646`; v3 master `00fbf6b`; v4 master `1a3c779`; and the independent v5 root `4c4f1d4`.
+
+The current public repository starts on 5 August 2025, but Cerebro's surviving
+history reaches back to ROB-specific source dated 2017-2018 and a Git root from
+1 January 2018. The v5 root commit describes itself as an initial commit with
+v5 changes in a fresh repository. Treat it as an import boundary.
+
+- **v1:** pre-Git ROB additions dated 2017-2018 reveal the Mac serial command
+  station and ROB's seven-field motor frame.
+- **v2:** eleven commits in 2018 add speech, three serial roles, UI
+  composition, multipeer, SceneKit, depth/user tracking, and Leap Motion.
+- **v3:** the 2018 root and fifty commits across archived branches through 2022
+  preserve authority experiments, servos, multilingual speech, process-based
+  sensors, human tracking, RTSP, T265, and AutoNet.
+- **v4:** the 2018 root and fifty-four commits across archived branches through
+  2025 preserve Apple-silicon migration, Google LLM responses, process
+  singleton work, continuous speech, and Foundation Models.
+- **v5:** an independent 2025 Git root migrates the existing application into
+  the history developed today.
+
+## v1: the serial nervous system
+
+The oldest folder retains a Cocoa project derived from Gabe Ghearing's 2009
+“Arduino Serial Example.” That attribution belongs to the starting example;
+it is not Cerebro's birth date. ROB-specific headers credit Rob Makina on 18
+September 2017 and 1 January 2018, and the project product is named Cerebro.
+
+The adapted program opens a hard-coded USB modem path at 250000 baud. Its
+buttons issue forward, reverse, turns, flipper motion, and signed linear-
+actuator motion. `BotCommands` records the same seven signed fields later
+formalized as ROB's historical 42-byte text frame. A keyboard view and
+multipeer manager show the command station beginning to accept more than one
+kind of operator input.
+
+This makes serial framing, not AI, the first surviving Cerebro concern. The
+application began by translating human intent into the exact bytes expected by
+a physical machine.
+
+## v2: voice, multiple bodies, and experimental senses
+
+The first surviving Git repository begins with `0141a646`, committed by Rob
+Makina on 1 January 2018. On 2 January, the history completes a SpeechBox, adds
+working Base, Head, and Torso serial paths, binds controls and windows, and
+adds multipeer and SceneKit controllers.
+
+Its main controller composes serial, speech, keyboard, SceneKit, multipeer,
+NiTE, Leap Motion, chat, and a class named `ROBConsciousness`. Names indicate
+the intended architecture; they do not prove that the early consciousness
+bridge or 3D view was a complete intelligence or calibrated digital twin.
+
+January commits record OpenNI, PCL, point-cloud, and NiTE user-tracking work.
+One celebrates data appearing in Cerebro; another calls the integration a
+failure. May commits add libfreenect/NiTE work and Leap Motion. Preserving both
+outcomes matters because later Kinect files are not mysterious debris: they
+are the residue of a documented effort to give the command station spatial and
+human input.
+
+## v3: arbitration becomes a requirement
+
+The v3 archive retains the 2018 root and separate NiTE2, libfreenect, ROB2,
+and T265 experiment branches. In May 2019, commit `892cd08` requires a master
+controller identity so devices do not issue conflicting input, and it requires
+permission for autonomous mode. The modern ownership and authorization layers
+are a rigorous descendant of that earlier workshop problem.
+
+The surrounding history adds Maestro servo control, mood and voice volume,
+multilingual speech, wireless joining, head tracking, ReSpeaker and RealSense
+task processes, VTK/NiTE work, visual recognition, human tracking coupled to
+torso camera movement, RTSP, T265 tracking, headless-performance changes, and
+speech/chat repair. The master branch reaches April 2022, when Cerebro adopts
+AutoNet, binds the iPad consciousness controller, and separates RPLidar into
+another repository.
+
+## v4 and v5: migration is not invention
+
+The v4 folder shares the 2018 root but follows a branch that diverged from the
+later v3 master after their 9 November 2019 T265/perception checkpoint. Its
+master records an M1 checkpoint, safer text output, USB network work, Google
+LLM responses, singleton-process checking, continuous speech, and Apple
+Foundation Models experiments. A 2 July 2025 commit explicitly says the
+builder is creating the next v5 release.
+
+The v5 root, `4c4f1d4`, has no parent. Its imported tree already contains
+storyboards, serial and speech systems, camera management, AutoNet, lidar,
+Kinect/RealSense artifacts, Leap Motion, RTSP, task launchers, and Core ML
+assets. The source did not appear all at once; only its new Git container did.
+
+## Preserve evidence while modernizing
+
+Do not flatten the five archives into one invented linear history. The v3 and
+v4 master branches diverge, v1 has no Git metadata, and some working folders
+contain uncommitted or iCloud-placeholder state. Use committed objects where
+available, preserve original `.git` directories and third-party notices, and
+record hashes before moving files.
+
+The old author labels—Rob Makina, Rodolfo Aramayo, Orbitus, and one placeholder
+email—also should not be used to invent contributors. They are historical Git
+coordinates. The source archive establishes what the program contained and
+when the commits occurred; a first-person oral history remains the right place
+to explain names, motivations, and the lived relationship between software and
+the physical ROB.
 
 # Map the mixed-language architecture
 
@@ -534,9 +638,9 @@ Test NAL handling with generated fixtures: zero length, truncated prefix, oversi
 
 # Excavate the Kinect and OpenNI past
 
-> **SOURCE TRAIL — ANALYZING NOW:** the `ROBNiTEManager` and `TaskControllers` directories: `ROBNiTEManager.mm`, `FreenectPCL.mm`, `k2g.h`, `viewer.*`, shaders, duplicated `* 2.*` artifacts, and initial commit `4c4f1d4` from 2025-08-05.
+> **SOURCE TRAIL — ANALYZING NOW:** archived v2 commits `3dc82fd` through `23d8fbd` from 2018-01-12, archived v3's 2019 perception branches, and the current `ROBNiTEManager` and `TaskControllers` directories: `ROBNiTEManager.mm`, `FreenectPCL.mm`, `k2g.h`, `viewer.*`, shaders, and duplicated `* 2.*` artifacts.
 
-The repository contains an older depth-vision stack built around Kinect/OpenNI/NiTE-style naming, libfreenect/PCL bridges, C++ point clouds, GL viewers, skeletal tracking, shaders, and serialized task-controller processes. These files arrived in the current Git history with the initial import; that history does not establish when the original experiments were written.
+The repository contains an older depth-vision stack built around Kinect/OpenNI/NiTE-style naming, libfreenect/PCL bridges, C++ point clouds, GL viewers, skeletal tracking, shaders, and serialized task-controller processes. The old archive now dates the first surviving OpenNI/PCL/NiTE commit sequence to 12 January 2018, with further libfreenect work in May 2018 and continuing VTK, NiTE, RealSense, human-tracking, and T265 experiments in 2019. The files arrived in the current Git history with the 2025 v5 import, but they were not created by that import.
 
 The artifacts teach important lessons:
 
@@ -631,6 +735,12 @@ Watch for these characteristic failures:
 Define production budgets for memory, frame age, UI frame time, model latency, camera restart time, and stop latency. A green light without those measurements is only a connection indication.
 
 # Refactor without erasing history
+
+The recovered archives make “without erasing history” literal. Preserve the
+v1 file fingerprints and the v2-v4 Git stores before removing copied SDKs,
+normalizing filenames, or consolidating targets. A clean modern repository and
+a faithful historical record are compatible only when migration boundaries
+are documented instead of mistaken for creation dates.
 
 The highest-value seam is to split `ROBSerialBox` by device and responsibility:
 

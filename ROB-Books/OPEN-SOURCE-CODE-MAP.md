@@ -46,6 +46,25 @@ Volume 2 analyzes these most closely. Volumes 1, 3, 4, and the field manual use 
 
 Repository: `Cerebro`
 
+### Historical archive boundary
+
+The public repository is Cerebro's current source, but its parentless v5 root
+from 5 August 2025 is not the application's origin. Preserved local `Cerebro
+v1` through `Cerebro v5` workshop folders recover ROB-specific serial-control
+work dated 2017-2018 and Git histories beginning 1 January 2018. They document
+the progression from a Mac serial command station through speech, three
+Arduino roles, Kinect/OpenNI/PCL and Leap experiments, controller arbitration,
+servos, RealSense/ReSpeaker, human tracking, RTSP/T265, AutoNet, Apple-silicon
+migration, and early LLM work.
+
+Those archives are local historical evidence, not public clone targets. Their
+source is readable for research, but no archive-wide publication license was
+established and third-party examples/SDKs retain their own notices. The exact
+hashes, branch relationships, and evidence cautions are in
+[`CEREBRO_ARCHIVE_HISTORY.md`](CEREBRO_ARCHIVE_HISTORY.md). Reader-facing
+history appears in Volumes 4, 5, and 8 and in the Complete Builder's Field
+Manual.
+
 | Topic | Start with this file |
 |---|---|
 | main coordination | `Cerebro/Cerebro/ROBMainViewController.mm` |
@@ -69,7 +88,7 @@ Repository: `Cerebro`
 | AMBER high-level client | `Cerebro/Amber-PythonAPI/Amber V2 API/amber_api/amber_robot.py` |
 | AMBER wire structures | `Cerebro/Amber-PythonAPI/Amber V2 API/amber_api/basic_cmd/` |
 
-Volumes 4 and 5 analyze Cerebro's software architecture. Volume 6 analyzes the AMBER API and its boundary with the Ubuntu core.
+Volumes 4 and 5 analyze Cerebro's software architecture and recovered history. Volume 6 analyzes the AMBER API and its boundary with the Ubuntu core. Volume 8 gives the implementation-level history and current reading route.
 
 ## iPhone and Watch controller
 
@@ -110,7 +129,7 @@ Volume 5 analyzes the spatial control and speech features. Volume 4 introduces t
 
 Volume 7 is the implementation-level ROBControllerVision book. Its recommended reading order begins with `Package.swift`, domain protocols and `RobotSession`, continues through explicit controller ownership, controller/head/speech input, independent dual-arm leases, and then follows the three video transports into flat windows and the immersive 360 sphere. Every chapter prints the file being analyzed.
 
-Volume 8 is the implementation-level Cerebro companion. It begins with the mixed Objective-C/Swift application boundary, dissects `ROBSerialBox.h/.m`, then follows the face/belly RGB-D and Insta360 paths through Vision, SceneKit, `SceneSnapshot`, MLX/Gemini inference, consent-based face identity, the private Messages bridge, synchronized recording, stage shows, bounded autonomy, and the robot side of the three-feed Volume 7 media contract. It also identifies the Kinect/OpenNI/PCL files as historical artifacts rather than the current camera path.
+Volume 8 is the implementation-level Cerebro companion. It first reconstructs the pre-v5 lineage, then follows the mixed Objective-C/Swift application boundary, dissects `ROBSerialBox.h/.m`, and traces the face/belly RGB-D and Insta360 paths through Vision, SceneKit, `SceneSnapshot`, MLX/Gemini inference, consent-based face identity, the private Messages bridge, synchronized recording, stage shows, bounded autonomy, and the robot side of the three-feed Volume 7 media contract. It dates the Kinect/OpenNI/PCL experiments from the recovered 2018-2019 Git history rather than from their 2025 import into the current repository.
 
 ## Lidar, maps, and local transport
 

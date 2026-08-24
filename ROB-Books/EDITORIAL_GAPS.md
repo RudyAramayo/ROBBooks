@@ -4,7 +4,8 @@ The manuscripts use visible placeholders instead of inventing missing facts. Ans
 
 ## 1. Identity and build story
 
-- What does “R.O.B.” mean, and when did the project begin?
+- The archive now establishes ROB-specific Cerebro source in 2017-2018 and the first surviving Cerebro Git root on 1 January 2018. What does “R.O.B.” mean, when did the physical project begin, and how did the first serial-control software relate to that beginning?
+- The v1-v5 source record is documented. Add the builder's first-person account of why the Mac controller was named Cerebro, what “Rob Makina” meant in the early headers, and why the v5 code moved into a fresh repository in August 2025.
 - What did you want ROB to do at the start? What is the current mission?
 - Which people, shops, clubs, schools, vendors, or events contributed?
 - What were the most important failed attempts, repairs, and design changes?

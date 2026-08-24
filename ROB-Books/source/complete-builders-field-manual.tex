@@ -48,7 +48,7 @@
 \ROBTitle{Building R.O.B. - Complete Field Manual}{BUILDING R.O.B.}{The complete maker's field manual: fabrication, circuits, firmware, perception, identity, control, and operations}{Advanced evidence draft with builder placeholders}{2025-rob-side-full-body.jpg}
 
 \ROBFrontMatter{An honest build record}{Complete in scope, intentionally incomplete where the archive cannot prove the detail.}{%
-This manual connects ROB's 95-page design presentation, private construction-photo archive, Arduino base firmware, motor references, and current Mac, iPhone, Watch, Vision Pro, lidar/map, three-camera, serial, MLX/VLM, Gemini, face-identity, Messages, recording, stage-show, arm, autonomy, H.264, and secure-control source trees.
+This manual connects ROB's 95-page design presentation, private construction-photo archive, Arduino base firmware, motor references, Cerebro v1-v5 software archive, and current Mac, iPhone, Watch, Vision Pro, lidar/map, three-camera, serial, MLX/VLM, Gemini, face-identity, Messages, recording, stage-show, arm, autonomy, H.264, and secure-control source trees.
 
 It is a first evidence-based edition, not a stamped mechanical design, production wiring schematic, safety certification, or permission to energize the machine. Use the status labels on every subsystem. Replace each Builder input needed box with measured, reviewed information as the book iterates.
 
@@ -130,6 +130,16 @@ PERIOD & VISIBLE OR DOCUMENTED STATE & EDITORIAL INTERPRETATION\\
 \end{tabularx}
 
 \ROBPhotoTwo{2019-rob-front-corner.jpg}{The 2019 machine already joins a tracked base, arms, sensors, and operator-facing character.}{2025-rob-side-full-body.jpg}{A 2025 side view shows the newer spherical camera head, speaker face, neck mechanism, articulated arm, and tracked base.}
+
+\section{Cerebro's recovered software roots}
+
+The current public Cerebro repository begins on 5 August 2025 with a commit that calls itself an initial v5 change in a fresh repository. The preserved v1-v5 workshop folders show that this is a migration boundary rather than Cerebro's beginning.
+
+The pre-Git v1 folder retains an upstream Cocoa Arduino serial example dated 2009. That date belongs to the starting example, not ROB. ROB-specific headers and project state date the adaptation to 2017-2018: the Mac application is named Cerebro, opens a 250000-baud USB serial path, and issues forward, reverse, turn, flipper, and linear-actuator commands in ROB's seven-field text frame. Keyboard and multipeer scaffolding show the command station beginning to accept additional operator inputs.
+
+The first surviving Cerebro Git history starts with \texttt{0141a646} on 1 January 2018. During 2018, v2 adds speech, separate Base/Head/Torso serial paths, bound Cocoa windows, SceneKit and multipeer controllers, OpenNI/PCL/NiTE point-cloud and user-tracking experiments, a named consciousness bridge, and Leap Motion. The later v3 archive records controller arbitration and autonomy permission, Maestro servos, multilingual speech, ReSpeaker and RealSense task processes, human/head tracking, RTSP, T265, performance work, AutoNet, and the 2022 RPLidar repository split. A related v4 branch carries the old 2018 root through Apple-silicon, USB/network, Google-LLM, singleton-process, continuous-speech, and Foundation Models work in July 2025.
+
+The v5 root \texttt{4c4f1d4} has no parent, but its imported tree already contains the accumulated robot program. Preserve the old Git stores and file fingerprints separately: v3 and v4 are related branches rather than one invented straight line, and third-party examples and SDKs retain their own attribution and licensing. The detailed archive record is \texttt{ROB-Books/CEREBRO\_ARCHIVE\_HISTORY.md}.
 
 \section{Design principles that recur}
 
@@ -897,7 +907,7 @@ Profile repeated source toggles and 30-minute runs, not one still frame. Look fo
 
 \section{Kinect, OpenNI, NiTE, and PCL archaeology}
 
-\Legacy\quad The \texttt{ROBNiTEManager}, \texttt{TaskControllers}, \texttt{FreenectPCL}, \texttt{k2g}, viewer, shader, serialization, and duplicated ``2'' files preserve an older Kinect/OpenNI/NiTE/PCL depth stack. They entered the present Git history in the 2025 initial import, which does not establish their original creation date. They are useful evidence for coordinate and visualization experiments, not the recommended OAK setup.
+\Legacy\quad The \texttt{ROBNiTEManager}, \texttt{TaskControllers}, \texttt{FreenectPCL}, \texttt{k2g}, viewer, shader, serialization, and duplicated ``2'' files preserve an older Kinect/OpenNI/NiTE/PCL depth stack. Archived v2 commits date the first surviving OpenNI/PCL/NiTE sequence to 12 January 2018, with further libfreenect work in May 2018 and continuing perception experiments in the v3 history during 2019. The files entered the fresh v5 Git history in the 2025 import, but were not created by it. They are useful evidence for coordinate and visualization experiments, not the recommended OAK setup.
 
 Before removal, check Xcode target membership, runtime selectors, duplicated model provenance, and any coordinate knowledge that should move into tests or documentation. The modern DepthAI helper improves failure containment by placing the camera SDK and USB ownership outside the control process.
 
@@ -1207,7 +1217,7 @@ The hardware chapters above establish ROB's physical plant, evidence status, and
 This appendix is the iteration queue. Replace each line with a dated, reviewed answer and evidence reference.
 
 \begin{enumerate}
-  \item Project origin, name meaning, design requirements, contributors, shops, and dated revision history.
+  \item Complete the first-person project origin: name meaning, motivation, contributors, shops, and the relationship between the now-documented 2017-2025 Cerebro source history and ROB's physical revisions.
   \item Final overall dimensions, ready-to-run mass, center of mass, load cases, operating surfaces, slopes, speed, and environmental limits.
   \item As-built CAD/templates, plate materials and thicknesses, fasteners, shafts, bearings, sprockets, chains, tension procedure, guards, and coatings.
   \item Actual milling, drilling, bending, welding, deburring, finishing, workholding, tooling, feeds/speeds, inspection, PPE, and vendor sequence.
@@ -1288,6 +1298,7 @@ Fields are five ASCII characters and separated by six commas. Total historical f
 RELATIVE PATH & PUBLICATION USE\\
 \midrule
 Presentation/ROB\_v3.pdf & 95-page historical build and design deck; slides dated 2021 with 2022 modifications.\\
+Cerebro v1-v5 workshop archive & Historical Mac-software evidence: the pre-Git serial-command seed, the 2018 Git root, perception/control branches through 2022, Apple-silicon and LLM work through July 2025, and the fresh v5 repository boundary. Fingerprints and cautions are recorded in \texttt{ROB-Books/CEREBRO\_ARCHIVE\_HISTORY.md}.\\
 ROBArduino/ROBOT\_CEREBELLULAR\_BASE\_APP/...ino & Present Base-role reference: pin map, parser, treads, flipper, actuator, IR, IMU, heartbeat.\\
 ROBArduino/ROBOT\_CEREBELLULAR\_TORSO\_APP/...ino & Retired Torso-role history: Maestro head/arm targets, IMU, and disabled GPS/timeout behavior.\\
 ROBArduino/ROBOT\_CEREBELLULAR\_HEAD\_APP/...ino & Retired Head-role history: IMU/PIR experiment, disabled GPS path, incomplete copied parser.\\
@@ -1376,6 +1387,6 @@ Before public printing, complete image releases, confirm third-party product-ima
 Work through the Builder input ledger with the machine physically available. Replace placeholders with measured values, drawings, test reports, verified captions, and contributor stories. Then tag the source snapshot, rebuild all ten PDFs, and perform a page-by-page technical and print proof before the Maker Faire print run.
 \end{missionbox}
 
-\ROBSource{This field manual was synthesized from the local ROB presentation, builder interview of 2026-08-21, private photo originals and metadata, builder-owned hardware records, official manufacturer/standards references, Arduino firmware, and Cerebro, ROBController, local ROBControllerVision, RPLidar, Amber-HomeFolder, ROBTrainingGames, and ORobotics repositories inspected through 2026-08-23. The current pass adds control ownership, dual-arm Vision control, three-feed/immersive media, lidar maps/IPC, recording, private Messages, and consent-based AdaFace identity.}
+\ROBSource{This field manual was synthesized from the local ROB presentation, builder interview of 2026-08-21, private photo originals and metadata, builder-owned hardware records, official manufacturer/standards references, Arduino firmware, archived Cerebro v1-v5 source, and the current Cerebro, ROBController, local ROBControllerVision, RPLidar, Amber-HomeFolder, ROBTrainingGames, and ORobotics repositories inspected through 2026-08-23. The current pass restores Cerebro's 2017-2025 lineage and documents the 2025 v5 Git reset as a migration boundary.}
 
 \end{document}
