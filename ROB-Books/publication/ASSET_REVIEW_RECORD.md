@@ -5,7 +5,7 @@
 **Review method:** Codex-assisted publication preflight with original-resolution image inspection, original-detail contact sheets, individual source-resolution checks for text/screen/product-label risks, OCR screening of all real photographs and retained slides, metadata inspection, color-space and pixel-dimension checks, and SHA-256 byte binding.
 
 **Scope:** 46 real photographs, 8 historical slide renders, 15 generated book illustrations, 6 derived cover JPEGs, 1 generated campaign hero, and 1 brand logo: 77 files total.
-**RIGHTS STATUS: PENDING AUTHOR CONFIRMATION** for photographer exceptions, product/component-photo ownership, publishing identity, copyright ownership, and territories in Q03–Q05 of `AUTHOR_INTERVIEW_RECORD.md`. The closed allowlist contains no event, venue, or bystander photograph, so venue-photo permission is not applicable to this edition.
+**RIGHTS STATUS: AUTHOR CONFIRMED.** Rodolfo Aramayo confirms that he took every selected real photograph with his iPhone, ROB and the visible components are his property, and every selected product/component photograph is his own photograph of an owned component. The closed allowlist contains no event, venue, bystander, or identifiable-person photograph, so venue and model-release questions are not applicable to this edition. OrbitusRobotics LLC is the confirmed publisher and copyright owner, and worldwide sales territory is approved.
 
 This record is a publication asset and privacy preflight, not an electrical, mechanical, legal, accessibility, press, or professional safety approval. A changed byte invalidates the named review until the asset is inspected again and `reviewed-assets.sha256` is deliberately updated.
 
@@ -105,7 +105,7 @@ These assets were checked at source resolution. The six cover JPEGs are derivati
 
 | Reviewed asset | Visual/editorial result |
 |---|---|
-| `assets/orbitus-horizontal-logo.png` | PASS — high-resolution transparent brand mark; publisher ownership confirmation pending. |
+| `assets/orbitus-horizontal-logo.png` | PASS — high-resolution transparent brand mark supplied by the confirmed publisher/copyright owner. |
 | `assets/posters/book-covers/complete-builders-field-manual.jpg` | PASS — sRGB raster derivative of a reviewed book cover; printer-specific cover/spine/bleed output is still pending. |
 | `assets/posters/book-covers/rob-and-the-lost-yellow-ball.jpg` | PASS — sRGB raster derivative of a reviewed book cover; printer-specific cover/spine/bleed output is still pending. |
 | `assets/posters/book-covers/volume-1-meet-rob.jpg` | PASS — sRGB raster derivative of a reviewed book cover; printer-specific cover/spine/bleed output is still pending. |

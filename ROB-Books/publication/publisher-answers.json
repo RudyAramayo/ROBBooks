@@ -3,9 +3,9 @@
   "publication_posture": "Historical engineering reference and educational field manual. It explains ROB's hand-built evolution and gives readers methods for studying or recreating its ideas, but it is not dimensionally complete CAD, a stamped design, a certified construction plan, or proof that the current machine is safe to reproduce. Missing as-built CAD is identified as future documentation work.",
   "identity": {
     "rob_name_meaning": "ROB is a friendly name derived from the word robot; it is not an acronym.",
-    "physical_project_start_date": null,
-    "physical_project_start_place": null,
-    "origin_context": "The physical project began after Rodolfo Aramayo left Verizon Labs, where he had worked as a systems software engineer on mobile VR/AR research technologies. The surviving 2017-2018 Cerebro serial-control work belongs to ROB's initial hardware prototype.",
+    "physical_project_start_date": "Approximately 2016 for the new treaded prototype; exact month not stated.",
+    "physical_project_start_place": "College Station, Texas, United States",
+    "origin_context": "The physical project began after Rodolfo Aramayo left Verizon Labs, where he had worked as a systems software engineer on mobile VR/AR research technologies. He recalls building ROB in College Station, Texas, and dates the new treaded prototype to approximately 2016. The surviving 2017-2018 Cerebro serial-control work belongs to ROB's initial hardware prototype.",
     "initial_inspiration": "The author wanted to bring the friendly, expressive idea of the movie robot Johnny 5 into an era of mobile devices and 3D depth cameras. This is personal historical inspiration, not a claim of affiliation or a license to copy the character or film design.",
     "original_mission": "Build an expressive mobile robot around modern mobile interfaces, depth sensing, speech, and experimental conversational software. The early software included a local CakeChat neural-dialogue experiment that predates ChatGPT; CakeChat is not described as a technical ancestor of ChatGPT.",
     "current_mission": "ROB is the author's career-scale personal engineering platform: the most elaborate project of his career and a continuing way to stretch his mobile, spatial-computing, robotics, perception, and AI-development skills while teaching others from the evidence.",
@@ -19,22 +19,22 @@
     "major_failures_repairs_and_revisions": "The first prototype used a car battery, Power Wheels motors and wheels, scrap wood, an older Intel laptop, and an old robotic arm. ROB then moved to a SuperDroid Robots LT2 tracked base with a third-wheel/flipper idea intended to help turning and stair experiments. Early roughly 30 W brushless motors were underpowered at 12 V; gearing changes recovered torque but not the desired speed, and a 12-to-24 V boost stage made the robot stronger and faster while it remained slow and high-torque. Later revisions added RPLIDAR, a stepper-driven torso, and a Maestro-controlled hobby-servo arm and plastic gripper system with recordable actions. Heavy AMBER B1 arms introduced a long integration period because the original single-arm controller environment did not provide the desired coordinated dual-arm operation. The author later purchased a dedicated dual-arm B1 setup for approximately $22,500. Recent AI-assisted work expanded secure controllers, Vision Pro H.264 camera viewing, depth-camera integration, machine vision, Gemini and Apple-model experiments, voice/video input, and the modern ROBController and Cerebro feature set. These are historical recollections; dimensions, ratings, and safety claims remain governed by measured evidence."
   },
   "rights": {
-    "construction_photo_owner": "Rodolfo Aramayo confirms that he/OrbitusRobotics owns the construction-photo collection used for the books and that he photographed most images. Any exception must be identified in the per-image rights ledger before release.",
-    "other_photographers_and_credits": null,
+    "construction_photo_owner": "Rodolfo Aramayo confirms that he took every selected real photograph in the current book allowlist with his iPhone and that the construction-photo collection is owned by him/OrbitusRobotics.",
+    "other_photographers_and_credits": "None in the current closed publication allowlist; Rodolfo Aramayo took every selected real photograph.",
     "identifiable_adult_releases": "The author confirms that identifiable adults selected for commercial book or website publication permit that use. The current publication allowlist nevertheless excludes event/bystander images and requires a per-image check.",
     "identifiable_minor_guardian_releases": "The author confirms that guardians of identifiable minors selected for commercial book or website publication permit that use. The current publication allowlist nevertheless excludes event/bystander images and requires a per-image check.",
     "venue_publication_permissions": "Not applicable to the current edition: the closed 77-file publication allowlist contains no event, venue, or bystander photograph.",
-    "third_party_image_permissions": null
+    "third_party_image_permissions": "No separately licensed third-party photograph is selected. Rodolfo Aramayo confirms that ROB and the visible components are his property and that every selected product/component image is his own photograph of an owned component."
   },
   "publishing": {
     "author_name": "Rodolfo Aramayo",
     "publisher_imprint": "OrbitusRobotics LLC",
-    "copyright_owner": null,
+    "copyright_owner": "OrbitusRobotics LLC",
     "copyright_year": 2026,
     "book_content_license": "All rights reserved; repository source-code licenses remain separate and repository-specific.",
     "public_contact": "https://www.orbitusrobotics.com/contact/",
     "approved_age_bands": "Approved: story ages 5-6; Volume 1 ages 8-12; Volume 2 ages 10-14; Volume 3 ages 10-15; Volume 4 ages 12-16; Volumes 5-8 and the complete manual for advanced makers, developers, integrators, and mentors.",
-    "sales_territories": null
+    "sales_territories": "Worldwide"
   },
   "reviewers": {
     "electrical": "No external electrical reviewer retained. This edition must not claim electrical approval or publish an as-built construction schematic; electrical material is historical or conceptual and directs readers to qualified review for any physical design.",

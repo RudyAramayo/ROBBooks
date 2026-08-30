@@ -4,19 +4,19 @@ The 2026 edition is a historical engineering reference and educational field man
 
 This scope resolves the former demand to invent missing dimensions, schematics, ratings, test reports, and shop procedures. Those records belong to a later measured redesign. Unknowns in the current manuscripts are stated as evidence limits rather than blank promises.
 
-## Publication blockers requiring the author
+## Author facts resolved on August 29, 2026
 
 The full wording and response history live in [`publication/AUTHOR_INTERVIEW_RECORD.md`](publication/AUTHOR_INTERVIEW_RECORD.md).
 
-- Q01: approximate or exact month/year and city/state where the first physical ROB build began.
-- Q03: identification of any selected real book photograph not taken by Rodolfo Aramayo, or explicit confirmation that there are no exceptions in the allowlist.
-- Q04: explicit confirmation of author, publisher/imprint, copyright owner, year, content/license split, and worldwide sales territory.
-- Q05: confirmation that visible product/component photographs are the author's photographs of owned components, with any exception named for exclusion. The closed allowlist contains no event, venue, or bystander photograph, so venue-photo permission is not applicable to this edition.
+1. Q01: ROB was built in College Station, Texas; the new treaded prototype dates to approximately 2016, with no exact month asserted.
+2. Q03: Rodolfo Aramayo took every selected real photograph in the current allowlist with his iPhone; there are no photographer exceptions.
+3. Q04: Rodolfo Aramayo is the author; OrbitusRobotics LLC is publisher/imprint and copyright owner; copyright year is 2026; book text/art is all rights reserved; source licenses remain repository-specific; sales territory is worldwide.
+4. Q05: ROB and the visible components belong to the author, and every selected product/component photograph is his own photograph of an owned component. The allowlist contains no event, venue, bystander, or identifiable-person photograph.
 
 ## Editorial decisions already recorded
 
 1. ROB is a friendly name derived from “robot,” not an acronym.
-2. The physical project began after the author left Verizon Labs; the surviving 2017–2018 Cerebro serial-control work belongs to the initial prototype.
+2. The physical project began after the author left Verizon Labs in College Station, Texas; he dates the new treaded prototype to approximately 2016, and the surviving 2017–2018 Cerebro serial-control work belongs to the initial prototype.
 3. Johnny 5 is disclosed only as personal inspiration. The books use no franchise art, logos, copied design, or affiliation claim.
 4. CakeChat is described as an early pre-ChatGPT neural-dialogue experiment visible in the source, not an ancestor of ChatGPT.
 5. Cerebro, Rob Makina, and the August 2025 v5 repository reset are explained from the author's account without turning wordplay or version-control cleanup into technical claims.
@@ -26,7 +26,7 @@ The full wording and response history live in [`publication/AUTHOR_INTERVIEW_REC
 9. No electrical, mechanical, educator, accessibility, privacy, or legal reviewer has been retained. The books make no claim of those approvals.
 10. Reader age bands are approved: story 5–6; Volume 1 8–12; Volume 2 10–14; Volume 3 10–15; Volume 4 12–16; Volumes 5–8 and the complete manual for advanced readers.
 11. Controlled HengDrive and B-COMMAND drawings are retained only in the private archive. The public edition does not reproduce or paraphrase their specifications.
-12. Construction-photo ownership and adult/minor commercial permission are recorded in principle. The exact allowlist excludes event, venue, and bystander photographs; photographer exceptions and product/component-photo ownership remain release gates.
+12. Rodolfo Aramayo took every selected real photograph with his iPhone. ROB and the visible components are his property, and each selected product/component photograph is his own. The exact allowlist excludes event, venue, bystander, and identifiable-person photographs.
 
 ## Future measured technical edition
 
@@ -46,4 +46,4 @@ Publication of a historical book does not release the physical robot for a publi
 
 ## Completion path
 
-After Q01 and Q03–Q05 are answered, update the manuscripts and rights ledger, rebuild all ten PDFs and EPUBs, run the automated validation suite, visually review every page and store asset, complete an Apple Books device/accessibility review, obtain printer-specific proofs, record final publisher acceptance, and populate the Apple Books IDs and URLs after submission.
+The author answers have been reconciled into the manuscripts, metadata, and rights ledger. Rebuild all ten PDFs and EPUBs, run the automated validation suite, visually review every changed page and store asset, complete an Apple Books device/accessibility review, obtain printer-specific proofs, record final publisher acceptance, and populate the Apple Books IDs and URLs after submission.

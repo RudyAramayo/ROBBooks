@@ -363,7 +363,8 @@ def prepare_latex(path: Path) -> tuple[str, dict[str, Path]]:
         3,
         lambda a, _: (
             f"\\chapter*{{{a[0]}}}\n\\emph{{{a[1]}}}\\par\n{a[2]}\n"
-            "Copyright \\copyright\\ 2026 Rodolfo Aramayo / Orbitus Robotics. Photographs are from "
+            "Copyright \\copyright\\ 2026 OrbitusRobotics LLC. All rights reserved. Rodolfo Aramayo "
+            "is the author and photographer. Photographs are from "
             "the private ROB build archive unless otherwise noted. Generated covers, frontispieces, "
             "story scenes, and conceptual teaching plates are original project illustrations derived "
             "from or inspired by ROB reference photographs. They are illustrations, not documentary "

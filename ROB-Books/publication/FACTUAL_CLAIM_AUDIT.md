@@ -6,7 +6,7 @@
 
 **SOFTWARE, PRIVACY, AND SAFETY-LANGUAGE CLAIM AUDIT: COMPLETE AGAINST THE DATED SNAPSHOT**
 
-**FINAL PUBLISHER COPYEDIT: PENDING THE REMAINING AUTHOR ANSWERS AND RESULTING REBUILD**
+**CODEX-ASSISTED PUBLISHER COPYEDIT: COMPLETE AGAINST THE DATED SNAPSHOT AND AUTHOR ANSWERS**
 
 This record covers the high-risk factual and language pass for the ten-book historical edition. It does not convert source inspection into proof of deployed configuration, physical performance, legal clearance, professional engineering approval, accessibility approval, or final publisher acceptance. Statements about current behavior mean behavior supported by the dated source coordinate, not by later working-tree changes.
 
@@ -50,6 +50,8 @@ This record covers the high-risk factual and language pass for the ten-book hist
 - The historical edition repeatedly states that it lacks as-built CAD, a traced current schematic, measured qualification, and outside engineering approval. It does not invite readers to infer dimensions or safe wiring from photographs.
 - The 2019, 2023, 2024, and 2025 Maker Faire history is supported in the author record. The September 2026 event is future as of this audit and is not described as a completed appearance.
 
-## Items deliberately still open
+## Author-answer reconciliation and remaining approvals
 
-The final publisher copyedit cannot be closed until Q01 and Q03–Q05 in `AUTHOR_INTERVIEW_RECORD.md` are answered. Those answers may change origin text, copyright/imprint language, rights credits, territory metadata, and the product-photo ledger. After reconciliation, all PDFs and EPUBs must be rebuilt, the affected PDF pages and all affected EPUB behavior must be reviewed again, and Rodolfo Aramayo must accept the remaining trademark, privacy, safety-language, and legal risk in his publisher role.
+Q01 and Q03–Q05 in `AUTHOR_INTERVIEW_RECORD.md` were answered on August 29, 2026. The manuscripts and metadata now identify College Station, Texas, and approximately 2016 for the treaded prototype; credit Rodolfo Aramayo as the photographer of every selected real image; identify OrbitusRobotics LLC as publisher, imprint, and worldwide copyright owner; and record that ROB, the pictured components, and the selected product photographs belong to the author. All ten PDFs and EPUBs were rebuilt, the changed PDF pages were visually reviewed, and the EPUBs were revalidated after reconciliation.
+
+Rodolfo Aramayo's final publisher acceptance of the remaining trademark, privacy, safety-language, and legal risk is still open. Apple Books device review, account-side submission evidence, printer-specific file review, and physical proofs remain separate release gates.

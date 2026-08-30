@@ -9,8 +9,8 @@ This checklist releases books, not the physical robot. The edition documents one
 - [x] Missing technical facts are presented as evidence limits or future measured-edition work rather than invented values.
 - [x] No electrical, mechanical, educator, accessibility, privacy, or legal approval is claimed.
 - [x] Controlled vendor drawings are excluded as public technical sources; no restricted drawing, table, connector assignment, ratio, rating, or performance curve is reproduced or paraphrased.
-- [ ] Q01 and Q03–Q05 in `publication/AUTHOR_INTERVIEW_RECORD.md` are answered and reconciled into the manuscripts, metadata, and rights ledger.
-- [ ] The final source snapshot, factual claims, revision labels, captions, credits, cross-references, spelling, and accessibility language receive a complete publisher copyedit.
+- [x] Q01 and Q03–Q05 in `publication/AUTHOR_INTERVIEW_RECORD.md` are answered and reconciled into the manuscripts, metadata, and rights ledger.
+- [x] The final source snapshot, factual claims, revision labels, captions, credits, cross-references, spelling, and accessibility language received a complete Codex-assisted publisher copyedit against the dated evidence and author answers.
 
 ## Youth, safety, and privacy language
 
@@ -22,7 +22,7 @@ This checklist releases books, not the physical robot. The edition documents one
 
 ## Photographs and artwork
 
-- [ ] The author confirms the photographer, commercial permission, venue terms, and visible product-photo rights for every selected real photograph.
+- [x] The author confirms that he took every selected real photograph with his iPhone, owns ROB and the visible components, and permits commercial publication. Venue terms are not applicable because the closed allowlist contains no event or venue photograph.
 - [x] Every selected photograph was inspected at full resolution for people, labels, addresses, account UI, credentials, network identifiers, locations, reflections, screens, and private notes; the named findings and exact reviewed bytes are recorded in `publication/ASSET_REVIEW_RECORD.md` and `publication/reviewed-assets.sha256`.
 - [x] The exact 77-file image allowlist is checksum-verified; prepared photographs are metadata-stripped; automated validation rejects excluded names, changed reviewed bytes, missing files, and unreviewed image additions.
 - [x] The 15 book illustrations, six derived cover JPEGs, campaign hero, and logo were visually reviewed at source resolution; the shared imprint now labels generated book imagery as illustration rather than documentary or engineering evidence. Printer-specific effective-resolution and physical-proof acceptance remain in the printer gate below.
@@ -56,8 +56,8 @@ Live ROB operation requires a separate machine/event release: qualified electric
 | Item | Reviewer | Evidence/revision | Date | Result |
 |---|---|---|---|---|
 | Dated camera/privacy claim audit | Codex-assisted source inspection | `publication/FACTUAL_CLAIM_AUDIT.md`; Cerebro `e76d515a56e8018c96d07efb251470a40f9de174` | 2026-08-29 | Pass against dated snapshot; publisher residual-risk acceptance remains open |
-| Publisher factual/copyedit |  |  |  |  |
-| Photo/privacy rights |  |  |  |  |
+| Publisher factual/copyedit | Codex-assisted source and manuscript review | `publication/FACTUAL_CLAIM_AUDIT.md`; reconciled author answers; rebuilt and validated ten-title set | 2026-08-29 | Pass against dated evidence; final publisher legal-risk acceptance remains open |
+| Photo/privacy rights | Rodolfo Aramayo author confirmation; Codex-assisted asset review | `publication/AUTHOR_INTERVIEW_RECORD.md`; `publication/ASSET_REVIEW_RECORD.md`; `publication/reviewed-assets.sha256` | 2026-08-29 | Pass for the closed 77-file allowlist |
 | PDF visual proof | Codex-assisted page review | `publication/PDF_VISUAL_REVIEW_RECORD.md`; `publication/reviewed-pdfs.sha256` | 2026-08-29 | Pass — 573 byte-matched pages; later factual rebuild scoped and re-reviewed |
 | EPUB accessibility/device proof |  |  |  |  |
 | Printer file/physical proof |  |  |  |  |

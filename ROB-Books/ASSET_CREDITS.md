@@ -97,7 +97,7 @@ The shared style uses the local system fonts Avenir Next, Avenir Next Condensed,
 
 [`publication/ASSET_REVIEW_RECORD.md`](publication/ASSET_REVIEW_RECORD.md) names the 77 reviewed image files and records the full-resolution visual, OCR/privacy, resolution, color-space, and metadata preflight performed on 2026-08-29. [`publication/reviewed-assets.sha256`](publication/reviewed-assets.sha256) binds that review to the exact bytes. `python3 tools/audit_publication_assets.py --ocr` fails if a reviewed file changes, disappears, or is joined by an unreviewed image.
 
-- Confirm the builder/photographer credit line and copyright year.
+- Confirmed 2026-08-29: Rodolfo Aramayo took every selected real photograph; OrbitusRobotics LLC owns the 2026 book copyright.
 - Obtain releases for any future identifiable person, especially a minor.
 - Obtain written permission for any third-party product photo, logo, diagram, or restricted document.
 - Repeat the named full-resolution inspection after any new crop, replacement, or checksum change.

@@ -13,7 +13,7 @@ The changing prominence of humanoid robots is relevant context rather than a rea
 ### Identity and origin
 
 - ROB is a friendly name taken from “robot,” not an acronym.
-- The project began after the author left Verizon Labs, where he worked as a systems software engineer on mobile VR/AR research technologies.
+- The project began after the author left Verizon Labs, where he worked as a systems software engineer on mobile VR/AR research technologies. He recalls building ROB in College Station, Texas, and dates the new treaded prototype to approximately 2016; no exact month is asserted.
 - The 2017–2018 Cerebro serial controller belongs to ROB's initial physical prototype.
 - Johnny 5 was personal inspiration for a friendly expressive robot in the era of mobile devices and 3D depth cameras. The books use no protected character art, logo, prop, or copied design.
 - Cerebro is a playful model of a cognitive processing center or brain; it does not claim consciousness.
@@ -61,17 +61,19 @@ Primary records: [R.O.B. 2019](https://makerfaire.com/maker/entry/r-o-b-70608/),
 
 ### Rights, reviewers, and audiences
 
-The author confirms ownership by Rodolfo Aramayo/OrbitusRobotics of the construction-photo collection and says he photographed most images. He confirms commercial book/website permission from identifiable adults and guardians of identifiable minors selected for publication. Current print assets intentionally exclude event, venue, and bystander images even with that general confirmation, and a per-image exception ledger remains necessary because “most” does not establish who photographed every image. Venue-publication permission is therefore not applicable to this edition's closed image allowlist. The remaining third-party-image question concerns product and component photographs only.
+The author confirms that he took every selected real photograph in the current book allowlist with his iPhone. He confirms that ROB and the visible components are his property and that the selected product/component photographs are his photographs of those owned components. There are no photographer exceptions or separately licensed product photographs in the closed allowlist. The selected assets contain no event, venue, bystander, or identifiable-person photograph, so venue and model-release questions are not applicable to this edition.
+
+The author explicitly confirms Rodolfo Aramayo as author; OrbitusRobotics LLC as publisher/imprint and copyright owner; copyright year 2026; all-rights-reserved status for book text and artwork; repository-specific licensing for source code; and worldwide sales territory.
 
 No external electrical, mechanical, educator/youth-safety, accessibility, privacy, or legal reviewer has been retained. The edition therefore cannot claim those approvals. Engineering construction claims that would require them are removed or reframed as history, evidence limits, conceptual lessons, and future documentation work. Automated validation supports but does not impersonate human approval.
 
 The author approves the existing age bands: story 5–6; Volume 1 8–12; Volume 2 10–14; Volume 3 10–15; Volume 4 12–16; Volumes 5–8 and the complete manual for advanced readers.
 
-## Remaining author questions
+## Resolved author questions
 
-- [ ] **Q01 — Start date and place.** What month/year and city/state did you begin building the first physical ROB after Verizon Labs? An approximate month is acceptable if labeled approximate.
-- [ ] **Q03 — Photo exceptions.** Which publication photographs, if any, were taken by someone other than you? If none of the selected book assets are exceptions, please say: “All selected real photographs in the current book asset allowlist were taken by me.”
-- [ ] **Q04 — Publishing identity and territory.** Please explicitly confirm or correct: author Rodolfo Aramayo; publisher and copyright owner OrbitusRobotics LLC; copyright year 2026; all-rights-reserved book text/art; repository-specific source-code licenses; worldwide sales territory.
-- [ ] **Q05 — Product-photo rights.** Are all visible product and component photographs in the current book allowlist photographs you took of components you own? If not, name the affected image so it can be excluded or separately licensed. No event, venue, or bystander photograph is selected for this edition, so venue-photo permission is not applicable to the closed allowlist.
+- [x] **Q01 — Start date and place.** “ROB was built in College Station, TX and the new treaded prototype was built around 2016ish.” Editorial treatment: College Station, Texas; approximately 2016 for the treaded prototype; exact month not asserted.
+- [x] **Q03 — Photo exceptions.** “I took all the photos with my iPhone.” Editorial treatment: no photographer exception exists in the selected real-photo allowlist.
+- [x] **Q04 — Publishing identity and territory.** “I confirm all the data about the copywrite.” This response was given to the complete stated list and records Rodolfo Aramayo as author; OrbitusRobotics LLC as publisher/imprint and copyright owner; 2026 copyright; all-rights-reserved book text/art; repository-specific source-code licenses; and worldwide sales territory.
+- [x] **Q05 — Product-photo rights.** “Yes the robot is my own and the components are mine and the photos were taken by me.” Editorial treatment: all visible product/component photographs in the allowlist are the author's own photographs of components he owns; there are no exceptions.
 
 The event-history question is resolved for the 2019, 2023, 2024, and 2025 editions by official Maker Faire records. The upcoming September 2026 fair is not treated as a completed appearance. Later final approvals—accessibility/device reading, printer proof, and final publisher sign-off—cannot be answered until those artifacts exist and are tracked in the main release gate rather than this interview.

@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import shutil
 import subprocess
 import sys
@@ -34,6 +35,7 @@ SUPPORTED = {
     "complete-builders-field-manual": ("manual", "source/complete-builders-field-manual.tex"),
 }
 IDENTIFIER_NAMESPACE = uuid.UUID("52f9dc75-d997-48bc-80a0-8f06baee89ca")
+MAX_INTERIOR_IMAGE_PIXELS = 4_000_000
 EPUB_IMAGE_DISCLOSURE = (
     "> **Image note:** Photographs are from the private ROB build archive unless otherwise noted. "
     "Generated covers, frontispieces, story scenes, and conceptual teaching plates are original "
@@ -87,8 +89,19 @@ def epub_text(epub: Path) -> str:
         )
 
 
-def normalize_epub_tables(epub: Path) -> None:
-    """Promote visually marked headers to semantic table headers."""
+def image_properties(path: Path) -> tuple[int, int, str]:
+    result = subprocess.run(
+        ["magick", "identify", "-quiet", "-format", "%w\t%h\t%[colorspace]", str(path)],
+        check=True,
+        capture_output=True,
+        text=True,
+    )
+    width, height, color_space = result.stdout.split("\t")
+    return int(width), int(height), color_space
+
+
+def normalize_epub(epub: Path) -> None:
+    """Add table semantics and constrain in-book rasters for Apple Books."""
     namespace = "http://www.w3.org/1999/xhtml"
     ET.register_namespace("", namespace)
     ET.register_namespace("epub", "http://www.idpf.org/2007/ops")
@@ -96,6 +109,33 @@ def normalize_epub_tables(epub: Path) -> None:
         root_dir = Path(temporary)
         with zipfile.ZipFile(epub) as archive:
             archive.extractall(root_dir)
+        for image in sorted(root_dir.rglob("*")):
+            if not image.is_file() or image.suffix.lower() not in {".jpg", ".jpeg", ".png"}:
+                continue
+            width, height, _ = image_properties(image)
+            pixels = width * height
+            if pixels <= MAX_INTERIOR_IMAGE_PIXELS:
+                continue
+            scale = math.sqrt(MAX_INTERIOR_IMAGE_PIXELS / pixels)
+            target_width = max(1, math.floor(width * scale))
+            target_height = max(1, math.floor(height * scale))
+            while target_width * target_height > MAX_INTERIOR_IMAGE_PIXELS:
+                target_height -= 1
+            replacement_image = image.with_name(f"{image.stem}.normalized{image.suffix}")
+            resize_args = [
+                "magick",
+                str(image),
+                "-resize",
+                f"{target_width}x{target_height}>",
+                "-colorspace",
+                "sRGB",
+                "-strip",
+            ]
+            if image.suffix.lower() in {".jpg", ".jpeg"}:
+                resize_args.extend(["-quality", "92"])
+            resize_args.append(str(replacement_image))
+            subprocess.run(resize_args, check=True)
+            replacement_image.replace(image)
         for xhtml in root_dir.rglob("*.xhtml"):
             tree = ET.parse(xhtml)
             root = tree.getroot()
@@ -143,6 +183,29 @@ def normalize_epub_tables(epub: Path) -> None:
                     continue
                 archive.write(item, item.relative_to(root_dir).as_posix(), compress_type=zipfile.ZIP_DEFLATED)
         replacement.replace(epub)
+
+
+def embedded_image_errors(epub: Path) -> list[str]:
+    errors: list[str] = []
+    with zipfile.ZipFile(epub) as archive:
+        for name in archive.namelist():
+            if Path(name).suffix.lower() not in {".jpg", ".jpeg", ".png"}:
+                continue
+            result = subprocess.run(
+                ["magick", "identify", "-quiet", "-format", "%w\t%h\t%[colorspace]", "-"],
+                input=archive.read(name),
+                capture_output=True,
+                check=True,
+            )
+            width_text, height_text, color_space = result.stdout.decode("utf-8").split("\t")
+            width, height = int(width_text), int(height_text)
+            if width * height > MAX_INTERIOR_IMAGE_PIXELS:
+                errors.append(
+                    f"{name}: {width}x{height} exceeds the {MAX_INTERIOR_IMAGE_PIXELS:,}-pixel Apple interior-image ceiling"
+                )
+            if color_space.casefold() != "srgb":
+                errors.append(f"{name}: color space is {color_space}, expected sRGB")
+    return errors
 
 
 def semantic_content_errors(epub: Path, slug: str) -> list[str]:
@@ -202,14 +265,15 @@ def build(book: dict[str, object], source: Path, from_format: str) -> Path:
         "--metadata",
         f"identifier={stable_id}",
         "--metadata",
-        "rights=Copyright © 2026 Rodolfo Aramayo / Orbitus Robotics. All rights reserved.",
+        "rights=Copyright © 2026 OrbitusRobotics LLC. All rights reserved.",
         "-o",
         str(destination),
     ]
     subprocess.run(args, check=True, cwd=PROJECT)
-    normalize_epub_tables(destination)
+    normalize_epub(destination)
     command(shutil.which("epubcheck") or "epubcheck", str(destination))
     errors = accessible_xhtml(destination)
+    errors.extend(embedded_image_errors(destination))
     errors.extend(semantic_content_errors(destination, str(book["slug"])))
     if errors:
         raise RuntimeError("\n".join(errors))

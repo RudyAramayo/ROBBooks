@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "series": {
     "title": "Building R.O.B.",
     "author": "Rodolfo Aramayo",
@@ -9,7 +9,17 @@
     "individual_volume_total_usd": 55.92,
     "collection_price_usd": 24.99,
     "collection_savings_percent": 55,
-    "pricing_note": "The collection is the Complete Builder's Field Manual. It is not an Apple series-wide bundle discount."
+    "pricing_note": "The collection is the Complete Builder's Field Manual. It is not an Apple series-wide bundle discount.",
+    "copyright_owner": "OrbitusRobotics LLC",
+    "sales_territories": "Worldwide",
+    "territory_selection": "All countries and regions",
+    "original_publication_date": "2026-08-29",
+    "release_date_strategy": "Release as soon as Apple Books review is complete",
+    "release_type": "Digital Only",
+    "sample_strategy": "Apple-generated sample",
+    "isbn_strategy": "Pending publisher choice before initial upload; ISBN is optional but cannot be added after initial submission.",
+    "drm_strategy": "Pending publisher choice before Rights and Pricing is finalized.",
+    "volume_content_service_enabled": true
   },
   "existing_apple_title": {
     "title": "Dark Vapor4",
@@ -27,11 +37,46 @@
       "pdf": "output/pdf/rob-and-the-lost-yellow-ball.pdf",
       "cover": "output/apple-books/covers/rob-and-the-lost-yellow-ball.jpg",
       "epub": "output/apple-books/epub/rob-and-the-lost-yellow-ball.epub",
-      "description": "A gentle picture story about sensing, stopping, planning, checking, counting, kindness, and feedback.",
-      "category_recommendation": "Children's nonfiction / science and technology",
+      "description": "ROB finds a yellow ball beside a puddle and must stop, observe, plan, and check before helping. This warm illustrated story introduces young readers to sensing, feedback, counting, careful problem-solving, and kindness without presenting imaginary robot actions as real-world engineering evidence.",
+      "category_recommendation": "JUVENILE FICTION / Robots; JUVENILE FICTION / Social Themes / Friendship",
       "isbn": "",
       "apple_books_id": "",
-      "apple_books_url": ""
+      "apple_books_url": "",
+      "subject_categories": [
+        {
+          "code": "JUV056000",
+          "label": "JUVENILE FICTION / Robots"
+        },
+        {
+          "code": "JUV039060",
+          "label": "JUVENILE FICTION / Social Themes / Friendship"
+        }
+      ],
+      "interest_age_min": 5,
+      "interest_age_max": 6,
+      "contains_explicit_content": false,
+      "series_name": null,
+      "series_number": null,
+      "series_display_text": null,
+      "vendor_id": "0ef3f5ab-e49d-5f6c-a22e-ad2c70a07f4b",
+      "original_publication_date": "2026-08-29",
+      "release_date": "as soon as approved",
+      "release_type": "Digital Only",
+      "sales_territories": "Worldwide",
+      "cleared_for_sale": true,
+      "sample_strategy": "Apple-generated sample",
+      "accessibility_features": [
+        "alternativeText",
+        "readingOrder",
+        "structuralNavigation",
+        "tableOfContents"
+      ],
+      "accessibility_hazards": [
+        "none"
+      ],
+      "submission_status": "not_submitted",
+      "apply_drm": null,
+      "volume_content_service_enabled": true
     },
     {
       "slug": "volume-1-meet-rob",
@@ -44,11 +89,46 @@
       "pdf": "output/pdf/volume-1-meet-rob.pdf",
       "cover": "output/apple-books/covers/volume-1-meet-rob.jpg",
       "epub": "output/apple-books/epub/volume-1-meet-rob.epub",
-      "description": "Meet a real robot through systems thinking, structure, energy, sensors, iteration, and engineering logs.",
-      "category_recommendation": "Young adult nonfiction / technology / robotics",
+      "description": "Meet ROB through the evidence of a real, hand-built robot project. Young makers learn systems thinking, structure, energy, sensors, iteration, feedback, and engineering logs while the book clearly separates historical photographs, illustrations, measured facts, and future design work.",
+      "category_recommendation": "JUVENILE NONFICTION / Technology / Robotics; JUVENILE NONFICTION / Technology / How Things Work-Are Made",
       "isbn": "",
       "apple_books_id": "",
-      "apple_books_url": ""
+      "apple_books_url": "",
+      "subject_categories": [
+        {
+          "code": "JNF061020",
+          "label": "JUVENILE NONFICTION / Technology / Robotics"
+        },
+        {
+          "code": "JNF051120",
+          "label": "JUVENILE NONFICTION / Technology / How Things Work-Are Made"
+        }
+      ],
+      "interest_age_min": 8,
+      "interest_age_max": 12,
+      "contains_explicit_content": false,
+      "series_name": "Building R.O.B.",
+      "series_number": 1,
+      "series_display_text": "Volume",
+      "vendor_id": "aaffc931-e02b-53a3-812d-0ef80c58abdb",
+      "original_publication_date": "2026-08-29",
+      "release_date": "as soon as approved",
+      "release_type": "Digital Only",
+      "sales_territories": "Worldwide",
+      "cleared_for_sale": true,
+      "sample_strategy": "Apple-generated sample",
+      "accessibility_features": [
+        "alternativeText",
+        "readingOrder",
+        "structuralNavigation",
+        "tableOfContents"
+      ],
+      "accessibility_hazards": [
+        "none"
+      ],
+      "submission_status": "not_submitted",
+      "apply_drm": null,
+      "volume_content_service_enabled": true
     },
     {
       "slug": "volume-2-circuits-and-signals",
@@ -61,11 +141,46 @@
       "pdf": "output/pdf/volume-2-circuits-and-signals.pdf",
       "cover": "output/apple-books/covers/volume-2-circuits-and-signals.jpg",
       "epub": "output/apple-books/epub/volume-2-circuits-and-signals.epub",
-      "description": "Follow low-voltage circuits, digital and analog signals, PWM, Arduino pins, serial messages, sensors, and watchdogs.",
-      "category_recommendation": "Young adult nonfiction / technology / electronics",
+      "description": "Follow energy and information through low-voltage educational circuits, digital and analog signals, PWM, Arduino pins, serial messages, sensors, and watchdogs. Hands-on activities stay bounded and supervised while readers learn to distinguish a command, a measurement, and a safety claim.",
+      "category_recommendation": "YOUNG ADULT NONFICTION / Technology / Electricity & Electronics; YOUNG ADULT NONFICTION / Technology / Robotics",
       "isbn": "",
       "apple_books_id": "",
-      "apple_books_url": ""
+      "apple_books_url": "",
+      "subject_categories": [
+        {
+          "code": "YAN055030",
+          "label": "YOUNG ADULT NONFICTION / Technology / Electricity & Electronics"
+        },
+        {
+          "code": "YAN055060",
+          "label": "YOUNG ADULT NONFICTION / Technology / Robotics"
+        }
+      ],
+      "interest_age_min": 10,
+      "interest_age_max": 14,
+      "contains_explicit_content": false,
+      "series_name": "Building R.O.B.",
+      "series_number": 2,
+      "series_display_text": "Volume",
+      "vendor_id": "6827d07c-737e-5752-afaa-e807bac2b73b",
+      "original_publication_date": "2026-08-29",
+      "release_date": "as soon as approved",
+      "release_type": "Digital Only",
+      "sales_territories": "Worldwide",
+      "cleared_for_sale": true,
+      "sample_strategy": "Apple-generated sample",
+      "accessibility_features": [
+        "alternativeText",
+        "readingOrder",
+        "structuralNavigation",
+        "tableOfContents"
+      ],
+      "accessibility_hazards": [
+        "none"
+      ],
+      "submission_status": "not_submitted",
+      "apply_drm": null,
+      "volume_content_service_enabled": true
     },
     {
       "slug": "volume-3-motion-workshop",
@@ -78,11 +193,46 @@
       "pdf": "output/pdf/volume-3-motion-workshop.pdf",
       "cover": "output/apple-books/covers/volume-3-motion-workshop.jpg",
       "epub": "output/apple-books/epub/volume-3-motion-workshop.epub",
-      "description": "Explore loads, differential drive, gearing, actuators, materials, fabrication, assembly, and test ladders.",
-      "category_recommendation": "Young adult nonfiction / technology / engineering",
+      "description": "Explore the mechanical reasoning behind a tracked robot: loads, differential drive, gearing, actuators, materials, fabrication, assembly, service access, and test ladders. ROB's revisions and failures become lessons in asking what a prototype proves before committing to stronger material.",
+      "category_recommendation": "YOUNG ADULT NONFICTION / Technology / Machinery & Tools; YOUNG ADULT NONFICTION / Technology / Robotics",
       "isbn": "",
       "apple_books_id": "",
-      "apple_books_url": ""
+      "apple_books_url": "",
+      "subject_categories": [
+        {
+          "code": "YAN055050",
+          "label": "YOUNG ADULT NONFICTION / Technology / Machinery & Tools"
+        },
+        {
+          "code": "YAN055060",
+          "label": "YOUNG ADULT NONFICTION / Technology / Robotics"
+        }
+      ],
+      "interest_age_min": 10,
+      "interest_age_max": 15,
+      "contains_explicit_content": false,
+      "series_name": "Building R.O.B.",
+      "series_number": 3,
+      "series_display_text": "Volume",
+      "vendor_id": "9c8af395-77e4-5895-b86b-59028603a3cd",
+      "original_publication_date": "2026-08-29",
+      "release_date": "as soon as approved",
+      "release_type": "Digital Only",
+      "sales_territories": "Worldwide",
+      "cleared_for_sale": true,
+      "sample_strategy": "Apple-generated sample",
+      "accessibility_features": [
+        "alternativeText",
+        "readingOrder",
+        "structuralNavigation",
+        "tableOfContents"
+      ],
+      "accessibility_hazards": [
+        "none"
+      ],
+      "submission_status": "not_submitted",
+      "apply_drm": null,
+      "volume_content_service_enabled": true
     },
     {
       "slug": "volume-4-mission-control",
@@ -95,11 +245,46 @@
       "pdf": "output/pdf/volume-4-mission-control.pdf",
       "cover": "output/apple-books/covers/volume-4-mission-control.jpg",
       "epub": "output/apple-books/epub/volume-4-mission-control.epub",
-      "description": "Learn how computers, controllers, cameras, maps, privacy, AI boundaries, and simulations coordinate a robot.",
-      "category_recommendation": "Young adult nonfiction / technology / computers",
+      "description": "Learn how computers, microcontrollers, cameras, maps, networks, privacy choices, AI boundaries, and simulations coordinate a robot. Mission Control teaches explicit authority, fresh data, bounded commands, and the difference between an impressive demonstration and verified behavior.",
+      "category_recommendation": "YOUNG ADULT NONFICTION / Technology / Robotics; YOUNG ADULT NONFICTION / Computers / Software",
       "isbn": "",
       "apple_books_id": "",
-      "apple_books_url": ""
+      "apple_books_url": "",
+      "subject_categories": [
+        {
+          "code": "YAN055060",
+          "label": "YOUNG ADULT NONFICTION / Technology / Robotics"
+        },
+        {
+          "code": "YAN013040",
+          "label": "YOUNG ADULT NONFICTION / Computers / Software"
+        }
+      ],
+      "interest_age_min": 12,
+      "interest_age_max": 16,
+      "contains_explicit_content": false,
+      "series_name": "Building R.O.B.",
+      "series_number": 4,
+      "series_display_text": "Volume",
+      "vendor_id": "3fd86b5a-d5ee-5fe1-a628-94ea968acdea",
+      "original_publication_date": "2026-08-29",
+      "release_date": "as soon as approved",
+      "release_type": "Digital Only",
+      "sales_territories": "Worldwide",
+      "cleared_for_sale": true,
+      "sample_strategy": "Apple-generated sample",
+      "accessibility_features": [
+        "alternativeText",
+        "readingOrder",
+        "structuralNavigation",
+        "tableOfContents"
+      ],
+      "accessibility_hazards": [
+        "none"
+      ],
+      "submission_status": "not_submitted",
+      "apply_drm": null,
+      "volume_content_service_enabled": true
     },
     {
       "slug": "volume-5-ai-robotics-with-codex",
@@ -112,11 +297,46 @@
       "pdf": "output/pdf/volume-5-ai-robotics-with-codex.pdf",
       "cover": "output/apple-books/covers/volume-5-ai-robotics-with-codex.jpg",
       "epub": "output/apple-books/epub/volume-5-ai-robotics-with-codex.epub",
-      "description": "A source-based software history plus practical lessons in Swift, MLX, perception, recording, identity, shows, and spatial interfaces.",
-      "category_recommendation": "Computers / programming / artificial intelligence",
+      "description": "Trace ROBController and Cerebro from early serial-control software to an AI-accelerated engineering era. This source-based guide studies Swift, MLX, perception, recording, identity, stage shows, spatial interfaces, verification, and the boundaries that keep generative systems outside direct motor authority.",
+      "category_recommendation": "COMPUTERS / Artificial Intelligence / General; COMPUTERS / Software Development & Engineering / General",
       "isbn": "",
       "apple_books_id": "",
-      "apple_books_url": ""
+      "apple_books_url": "",
+      "subject_categories": [
+        {
+          "code": "COM004000",
+          "label": "COMPUTERS / Artificial Intelligence / General"
+        },
+        {
+          "code": "COM051230",
+          "label": "COMPUTERS / Software Development & Engineering / General"
+        }
+      ],
+      "interest_age_min": null,
+      "interest_age_max": null,
+      "contains_explicit_content": false,
+      "series_name": "Building R.O.B.",
+      "series_number": 5,
+      "series_display_text": "Volume",
+      "vendor_id": "3183db78-228b-5df2-bc63-f2e5d4ff8c49",
+      "original_publication_date": "2026-08-29",
+      "release_date": "as soon as approved",
+      "release_type": "Digital Only",
+      "sales_territories": "Worldwide",
+      "cleared_for_sale": true,
+      "sample_strategy": "Apple-generated sample",
+      "accessibility_features": [
+        "alternativeText",
+        "readingOrder",
+        "structuralNavigation",
+        "tableOfContents"
+      ],
+      "accessibility_hazards": [
+        "none"
+      ],
+      "submission_status": "not_submitted",
+      "apply_drm": null,
+      "volume_content_service_enabled": true
     },
     {
       "slug": "volume-6-amber-dual-arm-robotics",
@@ -129,11 +349,46 @@
       "pdf": "output/pdf/volume-6-amber-dual-arm-robotics.pdf",
       "cover": "output/apple-books/covers/volume-6-amber-dual-arm-robotics.jpg",
       "epub": "output/apple-books/epub/volume-6-amber-dual-arm-robotics.epub",
-      "description": "Integrate two seven-joint AMBER arms through URDF, frame calibration, CAN identity, UDP/LCM, Ubuntu, diagnostics, and staged commissioning.",
-      "category_recommendation": "Technology and engineering / robotics",
+      "description": "Study the integration of two seven-joint AMBER B1 arms through URDF, coordinate frames, CAN identity, UDP and LCM, Ubuntu reproduction, diagnostics, and staged commissioning. The field guide emphasizes measured transforms, independent feedback, conservative tests, and fail-closed authority.",
+      "category_recommendation": "TECHNOLOGY & ENGINEERING / Robotics; TECHNOLOGY & ENGINEERING / Systems Engineering",
       "isbn": "",
       "apple_books_id": "",
-      "apple_books_url": ""
+      "apple_books_url": "",
+      "subject_categories": [
+        {
+          "code": "TEC037000",
+          "label": "TECHNOLOGY & ENGINEERING / Robotics"
+        },
+        {
+          "code": "TEC073000",
+          "label": "TECHNOLOGY & ENGINEERING / Systems Engineering"
+        }
+      ],
+      "interest_age_min": null,
+      "interest_age_max": null,
+      "contains_explicit_content": false,
+      "series_name": "Building R.O.B.",
+      "series_number": 6,
+      "series_display_text": "Volume",
+      "vendor_id": "e29b1978-9972-5f0d-96ba-fd84ea53716a",
+      "original_publication_date": "2026-08-29",
+      "release_date": "as soon as approved",
+      "release_type": "Digital Only",
+      "sales_territories": "Worldwide",
+      "cleared_for_sale": true,
+      "sample_strategy": "Apple-generated sample",
+      "accessibility_features": [
+        "alternativeText",
+        "readingOrder",
+        "structuralNavigation",
+        "tableOfContents"
+      ],
+      "accessibility_hazards": [
+        "none"
+      ],
+      "submission_status": "not_submitted",
+      "apply_drm": null,
+      "volume_content_service_enabled": true
     },
     {
       "slug": "volume-7-engineering-robcontrollervision",
@@ -146,11 +401,46 @@
       "pdf": "output/pdf/volume-7-engineering-robcontrollervision.pdf",
       "cover": "output/apple-books/covers/volume-7-engineering-robcontrollervision.jpg",
       "epub": "output/apple-books/epub/volume-7-engineering-robcontrollervision.epub",
-      "description": "Study Swift 6 architecture, explicit control ownership, spatial controllers, authenticated video, immersive 360 presentation, speech, and testing.",
-      "category_recommendation": "Computers / programming / Apple platforms",
+      "description": "Build a mental model of ROBControllerVision's Swift 6 architecture: authenticated sessions, explicit control ownership, spatial input, independent arm leases, three bounded H.264 feeds, immersive 360 presentation, speech, and testing. The focus is a responsive visionOS controller whose media path cannot outrank motion safety.",
+      "category_recommendation": "COMPUTERS / Programming / Mobile Devices; COMPUTERS / Virtual & Augmented Reality",
       "isbn": "",
       "apple_books_id": "",
-      "apple_books_url": ""
+      "apple_books_url": "",
+      "subject_categories": [
+        {
+          "code": "COM051460",
+          "label": "COMPUTERS / Programming / Mobile Devices"
+        },
+        {
+          "code": "COM057000",
+          "label": "COMPUTERS / Virtual & Augmented Reality"
+        }
+      ],
+      "interest_age_min": null,
+      "interest_age_max": null,
+      "contains_explicit_content": false,
+      "series_name": "Building R.O.B.",
+      "series_number": 7,
+      "series_display_text": "Volume",
+      "vendor_id": "d08790c7-7646-56b7-914a-498d30a77128",
+      "original_publication_date": "2026-08-29",
+      "release_date": "as soon as approved",
+      "release_type": "Digital Only",
+      "sales_territories": "Worldwide",
+      "cleared_for_sale": true,
+      "sample_strategy": "Apple-generated sample",
+      "accessibility_features": [
+        "alternativeText",
+        "readingOrder",
+        "structuralNavigation",
+        "tableOfContents"
+      ],
+      "accessibility_hazards": [
+        "none"
+      ],
+      "submission_status": "not_submitted",
+      "apply_drm": null,
+      "volume_content_service_enabled": true
     },
     {
       "slug": "volume-8-engineering-cerebro",
@@ -163,11 +453,46 @@
       "pdf": "output/pdf/volume-8-engineering-cerebro.pdf",
       "cover": "output/apple-books/covers/volume-8-engineering-cerebro.jpg",
       "epub": "output/apple-books/epub/volume-8-engineering-cerebro.epub",
-      "description": "Examine RGB-D and panoramic perception, local and cloud AI, encrypted face context, private messaging, training capture, video, and bounded autonomy.",
-      "category_recommendation": "Computers / programming / robotics",
+      "description": "Examine Cerebro as a living robot-side system spanning RGB-D and panoramic perception, local and cloud AI, encrypted face context, private messaging, training capture, H.264 video, control arbitration, and bounded autonomy. The architecture keeps observations, model suggestions, authorization, and deterministic execution distinct.",
+      "category_recommendation": "COMPUTERS / Software Development & Engineering / General; COMPUTERS / Artificial Intelligence / Computer Vision & Pattern Recognition",
       "isbn": "",
       "apple_books_id": "",
-      "apple_books_url": ""
+      "apple_books_url": "",
+      "subject_categories": [
+        {
+          "code": "COM051230",
+          "label": "COMPUTERS / Software Development & Engineering / General"
+        },
+        {
+          "code": "COM016000",
+          "label": "COMPUTERS / Artificial Intelligence / Computer Vision & Pattern Recognition"
+        }
+      ],
+      "interest_age_min": null,
+      "interest_age_max": null,
+      "contains_explicit_content": false,
+      "series_name": "Building R.O.B.",
+      "series_number": 8,
+      "series_display_text": "Volume",
+      "vendor_id": "2d2c834f-9340-50f7-8a38-5b06c8379705",
+      "original_publication_date": "2026-08-29",
+      "release_date": "as soon as approved",
+      "release_type": "Digital Only",
+      "sales_territories": "Worldwide",
+      "cleared_for_sale": true,
+      "sample_strategy": "Apple-generated sample",
+      "accessibility_features": [
+        "alternativeText",
+        "readingOrder",
+        "structuralNavigation",
+        "tableOfContents"
+      ],
+      "accessibility_hazards": [
+        "none"
+      ],
+      "submission_status": "not_submitted",
+      "apply_drm": null,
+      "volume_content_service_enabled": true
     },
     {
       "slug": "complete-builders-field-manual",
@@ -180,11 +505,46 @@
       "pdf": "output/pdf/complete-builders-field-manual.pdf",
       "cover": "output/apple-books/covers/complete-builders-field-manual.jpg",
       "epub": "output/apple-books/epub/complete-builders-field-manual.epub",
-      "description": "The unified historical engineering series: ROB's hand-built evolution, mechanics, circuits, software, perception, privacy, arms, AI boundaries, verification, operations, and future measured-edition ledger.",
-      "category_recommendation": "Technology and engineering / robotics",
+      "description": "The complete historical engineering collection follows ROB from a hand-built College Station prototype through tracked mechanics, circuits, software, perception, privacy, dual arms, AI boundaries, verification, and operations. It teaches readers how to reason from surviving evidence while preserving missing CAD and measurements for a future measured edition.",
+      "category_recommendation": "TECHNOLOGY & ENGINEERING / Robotics; TECHNOLOGY & ENGINEERING / Systems Engineering",
       "isbn": "",
       "apple_books_id": "",
-      "apple_books_url": ""
+      "apple_books_url": "",
+      "subject_categories": [
+        {
+          "code": "TEC037000",
+          "label": "TECHNOLOGY & ENGINEERING / Robotics"
+        },
+        {
+          "code": "TEC073000",
+          "label": "TECHNOLOGY & ENGINEERING / Systems Engineering"
+        }
+      ],
+      "interest_age_min": null,
+      "interest_age_max": null,
+      "contains_explicit_content": false,
+      "series_name": null,
+      "series_number": null,
+      "series_display_text": null,
+      "vendor_id": "454776a4-d151-539c-9ae4-7e7ccb9a3eda",
+      "original_publication_date": "2026-08-29",
+      "release_date": "as soon as approved",
+      "release_type": "Digital Only",
+      "sales_territories": "Worldwide",
+      "cleared_for_sale": true,
+      "sample_strategy": "Apple-generated sample",
+      "accessibility_features": [
+        "alternativeText",
+        "readingOrder",
+        "structuralNavigation",
+        "tableOfContents"
+      ],
+      "accessibility_hazards": [
+        "none"
+      ],
+      "submission_status": "not_submitted",
+      "apply_drm": null,
+      "volume_content_service_enabled": true
     }
   ]
 }
