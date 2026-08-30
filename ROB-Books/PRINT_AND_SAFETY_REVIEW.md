@@ -30,7 +30,7 @@ This checklist releases books, not the physical robot. The edition documents one
 ## PDF and EPUB preflight
 
 - [x] All ten PDFs build from the current sources and pass `bash tools/validate_books.sh`; rerun after the final author-answer reconciliation.
-- [ ] Every rendered PDF page receives a readable visual review for clipping, overflow, blank pages, missing images, caption placement, contrast, and navigation.
+- [x] Every rendered PDF page receives a readable visual review for clipping, overflow, blank pages, missing images, caption placement, contrast, and navigation; the byte-bound result is recorded in publication/PDF_VISUAL_REVIEW_RECORD.md.
 - [x] All ten EPUBs rebuild from the current sources and pass EPUBCheck plus the structural content/accessibility audit; rerun after the final author-answer reconciliation.
 - [ ] A human checks EPUB reading order, headings, lists, tables, links, alt text, cover announcement, contrast, text resizing, VoiceOver, and Apple Books behavior on representative iPhone, iPad, and Mac devices.
 

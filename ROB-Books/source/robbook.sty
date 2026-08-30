@@ -174,7 +174,7 @@
     \fill[ROBInk,opacity=0.80] ([yshift=1.34in]current page.south west) rectangle (current page.south east);
     \draw[ROBAccent,line width=3pt] ([xshift=0.52in,yshift=-0.48in]current page.north west) -- ([xshift=-0.52in,yshift=-0.48in]current page.north east);
     \draw[ROBAccent,line width=1.4pt] ([xshift=0.52in,yshift=1.27in]current page.south west) -- ([xshift=-0.52in,yshift=1.27in]current page.south east);
-    \node[anchor=north west,text width=7.25in,align=left] at ([xshift=0.56in,yshift=-0.67in]current page.north west) {\robcondensed\fontsize{12}{14}\selectfont\color{ROBAccent}\MakeUppercase{#1}\\[8pt]\robdisplay\bfseries\fontsize{33}{34}\selectfont\color{white}#2\\[7pt]\robcondensed\fontsize{16}{19}\selectfont\color{ROBCream}#3};
+    \node[anchor=north west,text width=7.25in,align=left] at ([xshift=0.56in,yshift=-0.67in]current page.north west) {\robcondensed\fontsize{12}{14}\selectfont\color{ROBAccent}\MakeUppercase{#1}\\[8pt]{\robdisplay\bfseries\fontsize{33}{34}\selectfont\color{white}\RaggedRight\hyphenpenalty=10000\exhyphenpenalty=10000\spaceskip=0.32em plus 0.08em minus 0.03em #2\par}\vspace{7pt}\robcondensed\fontsize{16}{19}\selectfont\color{ROBCream}#3};
     \node[anchor=south west,text width=7.1in,align=left] at ([xshift=0.56in,yshift=0.52in]current page.south west) {\robcondensed\fontsize{10.5}{12}\selectfont\color{ROBAccent}\MakeUppercase{#4}\\[4pt]\robcondensed\fontsize{9}{11}\selectfont\color{ROBCream}Rodolfo Aramayo / Orbitus Robotics\quad -\quad First Maker Faire Edition};
   \end{tikzpicture}
   \null
@@ -266,7 +266,7 @@
     \node[inner sep=0] at (current page.center) {\adjustbox{min size={\paperwidth}{\paperheight}}{\includegraphics[width=\paperwidth]{#3}}};
     \fill[ROBInk,opacity=0.84] (current page.south west) rectangle ([yshift=2.45in]current page.south east);
     \draw[ROBAccent,line width=2.4pt] ([xshift=0.5in,yshift=2.39in]current page.south west) -- ([xshift=-0.5in,yshift=2.39in]current page.south east);
-    \node[anchor=south west,text width=7.25in,align=left] at ([xshift=0.56in,yshift=0.62in]current page.south west) {\robcondensed\fontsize{11}{13}\selectfont\color{ROBAccent}\MakeUppercase{#1}\\[6pt]\robdisplay\bfseries\fontsize{29}{31}\selectfont\color{white}#2};
+    \node[anchor=south west,text width=7.25in,align=left] at ([xshift=0.56in,yshift=0.62in]current page.south west) {\robcondensed\fontsize{11}{13}\selectfont\color{ROBAccent}\MakeUppercase{#1}\\[6pt]{\robdisplay\bfseries\fontsize{29}{31}\selectfont\color{white}\RaggedRight\hyphenpenalty=10000\exhyphenpenalty=10000\spaceskip=0.32em plus 0.08em minus 0.03em #2\par}};
   \end{tikzpicture}
   \null
   \clearpage
