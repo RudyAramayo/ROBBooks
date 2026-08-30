@@ -30,6 +30,10 @@ if ! bash "$project_root/tools/audit_image_reuse.sh"; then
   failure=1
 fi
 
+if ! python3 "$project_root/tools/audit_publication_assets.py" --ocr; then
+  failure=1
+fi
+
 books=(
   volume-1-meet-rob
   volume-2-circuits-and-signals

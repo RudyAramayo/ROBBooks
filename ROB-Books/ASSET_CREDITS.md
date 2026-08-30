@@ -41,7 +41,7 @@ Do not copy these files into a print package. If the builder wants their subject
 
 ## Original generated illustrations
 
-Fourteen bitmap illustrations were generated with OpenAI's image-generation tooling. The first two were created on 2026-08-02; four educational plates were created on 2026-08-10; and eight additional system, dual-arm, Cerebro, and standalone story illustrations were created on 2026-08-11. They are captioned as conceptual storytelling, not engineering evidence.
+Fifteen bitmap book illustrations were generated with OpenAI's image-generation tooling. The first two were created on 2026-08-02; four educational plates were created on 2026-08-10; and eight additional system, dual-arm, Cerebro, standalone story, and supervised 5 V classroom illustrations were added during the August 2026 editorial build. They are disclosed collectively in every book's imprint and captioned where they carry a technical teaching role. They are conceptual storytelling or teaching art, not engineering evidence.
 
 ### `assets/generated/rob-used-future-frontispiece.png`
 
@@ -66,6 +66,10 @@ The images are reinterpretations for atmosphere. Real photographs, measured draw
 
 All four use a scientific-educational prompt derived from the established visual direction and reference ROB's real appearance. Shared constraints required painterly gouache with crisp technical linework, a warm cream retro workshop, charcoal/amber/cyan/violet/green safety palette, no brands or franchise elements, no credentials or as-built wiring claims, and explicit symbolic rather than evidentiary pathways. The Mission Control plate received a targeted edit to remove a generated person and readable labels, replacing them with an unoccupied console and nonverbal icons. Built-in image generation was used; final project assets are the files listed above.
 
+### `assets/generated/usb-5v-toy-power-lab.png`
+
+This supervised classroom illustration shows an adult mentor preparing and verifying a disconnected, current-limited 5 V USB learning lead. It is paired with text that keeps cutting, insulation, continuity checks, and energizing under adult control. The scene is a conceptual safety lesson, not an as-built wiring diagram or permission for a child to modify a powered cable.
+
 ### 2026-08-11 system plates
 
 - `rob-system-cutaway-lesson.png` — conceptual cutaway of a tracked two-arm robot with cyan information paths and amber energy paths; used as Volume 7's Swift-controller cover rather than as-built evidence.
@@ -81,14 +85,20 @@ This Volume 8 plate was generated with the built-in image-generation tool as a c
 
 Five illustrations were generated with the built-in image-generation tool for *ROB and the Lost Yellow Ball*: the morning workshop cover, the puddle problem, the careful bridge-and-ball solution, the puppy reunion, and the goodnight scene. The cover established a simple child-friendly ROB with a charcoal rectangular body, two cyan eyes, a central camera, gentle grippers, and tank treads. Each subsequent prompt used that file as a character/style reference and requested a new scene in warm hand-painted gouache with large rounded forms, soft paper texture, no text or logos, no people, no exposed dangerous wiring, and no frightening or franchise imagery. These scenes are imaginary storytelling, not evidence of ROB's exact construction or safe autonomous capability.
 
+## Brand and campaign derivatives
+
+`assets/orbitus-horizontal-logo.png` is the Orbitus Robotics brand mark used by the campaign-poster builder. The six JPEG files under `assets/posters/book-covers/` are raster derivatives of reviewed book cover pages. `assets/posters/rob-learning-classroom-hero.png` is generated promotional artwork with fictional students; it is not a photograph of a real class, event, student, or ROB deployment. The final posters must preserve that distinction in their surrounding campaign context.
+
 ## Visual identity
 
 The shared style uses the local system fonts Avenir Next, Avenir Next Condensed, Futura, and Menlo with an original charcoal/cream/amber/cyan/red technical palette. The intended mood is a weathered, optimistic retro-space field manual. It does not reproduce protected franchise logos, characters, exact title treatments, props, or story elements.
 
-## Final release tasks
+## Review record and remaining release tasks
+
+[`publication/ASSET_REVIEW_RECORD.md`](publication/ASSET_REVIEW_RECORD.md) names the 77 reviewed image files and records the full-resolution visual, OCR/privacy, resolution, color-space, and metadata preflight performed on 2026-08-29. [`publication/reviewed-assets.sha256`](publication/reviewed-assets.sha256) binds that review to the exact bytes. `python3 tools/audit_publication_assets.py --ocr` fails if a reviewed file changes, disappears, or is joined by an unreviewed image.
 
 - Confirm the builder/photographer credit line and copyright year.
 - Obtain releases for any future identifiable person, especially a minor.
 - Obtain written permission for any third-party product photo, logo, diagram, or restricted document.
-- Visually inspect every image at full resolution after any new crop or replacement.
+- Repeat the named full-resolution inspection after any new crop, replacement, or checksum change.
 - Ask the printer to check effective resolution, crop, paper response, black detail, and color proof.

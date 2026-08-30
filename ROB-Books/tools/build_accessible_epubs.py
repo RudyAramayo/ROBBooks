@@ -34,6 +34,13 @@ SUPPORTED = {
     "complete-builders-field-manual": ("manual", "source/complete-builders-field-manual.tex"),
 }
 IDENTIFIER_NAMESPACE = uuid.UUID("52f9dc75-d997-48bc-80a0-8f06baee89ca")
+EPUB_IMAGE_DISCLOSURE = (
+    "> **Image note:** Photographs are from the private ROB build archive unless otherwise noted. "
+    "Generated covers, frontispieces, story scenes, and conceptual teaching plates are original "
+    "project illustrations derived from or inspired by ROB reference photographs. They are "
+    "illustrations, not documentary photographs, technical drawings, or evidence of the as-built "
+    "configuration.\n\n"
+)
 
 
 def command(*args: str) -> None:
@@ -154,7 +161,11 @@ def semantic_content_errors(epub: Path, slug: str) -> list[str]:
     }
     text = epub_text(epub)
     folded = text.casefold()
-    return [f"missing semantic content: {phrase}" for phrase in required.get(slug, []) if phrase.casefold() not in folded]
+    required_phrases = [
+        "not documentary photographs, technical drawings, or evidence of the as-built configuration",
+        *required.get(slug, []),
+    ]
+    return [f"missing semantic content: {phrase}" for phrase in required_phrases if phrase.casefold() not in folded]
 
 
 def build(book: dict[str, object], source: Path, from_format: str) -> Path:
@@ -234,7 +245,9 @@ def main() -> int:
                 prepared.write_text(prepare_manual_markdown(source), encoding="utf-8")
                 build(by_slug[slug], prepared, "gfm")
             else:
-                build(by_slug[slug], source, "gfm")
+                prepared = temporary_path / f"{slug}.md"
+                prepared.write_text(EPUB_IMAGE_DISCLOSURE + source.read_text(encoding="utf-8"), encoding="utf-8")
+                build(by_slug[slug], prepared, "gfm")
     return 0
 
 

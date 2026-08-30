@@ -364,8 +364,11 @@ def prepare_latex(path: Path) -> tuple[str, dict[str, Path]]:
         lambda a, _: (
             f"\\chapter*{{{a[0]}}}\n\\emph{{{a[1]}}}\\par\n{a[2]}\n"
             "Copyright \\copyright\\ 2026 Rodolfo Aramayo / Orbitus Robotics. Photographs are from "
-            "the private ROB build archive unless otherwise noted. Source-code licenses remain "
-            "separate and repository-specific.\n"
+            "the private ROB build archive unless otherwise noted. Generated covers, frontispieces, "
+            "story scenes, and conceptual teaching plates are original project illustrations derived "
+            "from or inspired by ROB reference photographs. They are illustrations, not documentary "
+            "photographs, technical drawings, or evidence of the as-built configuration. Source-code "
+            "licenses remain separate and repository-specific.\n"
         ),
     )
     text = replace_command(

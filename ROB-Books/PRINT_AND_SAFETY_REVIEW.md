@@ -23,9 +23,9 @@ This checklist releases books, not the physical robot. The edition documents one
 ## Photographs and artwork
 
 - [ ] The author confirms the photographer, commercial permission, venue terms, and visible product-photo rights for every selected real photograph.
-- [ ] Every selected photograph is inspected at full resolution for people, labels, addresses, account UI, credentials, network identifiers, locations, reflections, screens, and private notes.
-- [ ] The asset allowlist is regenerated and verified; metadata is stripped; excluded/private-review images are absent from source, previews, PDFs, EPUBs, print packages, and promotion.
-- [ ] Generated illustrations and covers are confirmed original to this project, accurately labeled as illustrations, and acceptable at final output resolution.
+- [x] Every selected photograph was inspected at full resolution for people, labels, addresses, account UI, credentials, network identifiers, locations, reflections, screens, and private notes; the named findings and exact reviewed bytes are recorded in `publication/ASSET_REVIEW_RECORD.md` and `publication/reviewed-assets.sha256`.
+- [x] The exact 77-file image allowlist is checksum-verified; prepared photographs are metadata-stripped; automated validation rejects excluded names, changed reviewed bytes, missing files, and unreviewed image additions.
+- [x] The 15 book illustrations, six derived cover JPEGs, campaign hero, and logo were visually reviewed at source resolution; the shared imprint now labels generated book imagery as illustration rather than documentary or engineering evidence. Printer-specific effective-resolution and physical-proof acceptance remain in the printer gate below.
 
 ## PDF and EPUB preflight
 

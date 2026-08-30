@@ -82,7 +82,7 @@ The exact inspection snapshot is recorded in [`SOURCE_SNAPSHOT.md`](SOURCE_SNAPS
 
 Readers can move from every book lesson to the implementation through [`OPEN-SOURCE-CODE-MAP.md`](OPEN-SOURCE-CODE-MAP.md). Each volume now prints the workspace-root convention and “SOURCE TRAIL — ANALYZING NOW” boxes at code-backed chapters. The map also distinguishes explicitly licensed open source, locally readable source without a discovered license grant, captured configuration, and binary-only AMBER components.
 
-[`IMAGE_USAGE_POLICY.md`](IMAGE_USAGE_POLICY.md) gives every numbered volume its own visual territory and documents the single intentional cross-volume photograph. `tools/audit_image_reuse.sh` enforces that allowlist during validation and reports the complete field manual's deliberate evidence-photo overlap separately.
+[`IMAGE_USAGE_POLICY.md`](IMAGE_USAGE_POLICY.md) gives every numbered volume its own visual territory and documents the single intentional cross-volume photograph. `tools/audit_image_reuse.sh` enforces that allowlist during validation and reports the complete field manual's deliberate evidence-photo overlap separately. [`publication/ASSET_REVIEW_RECORD.md`](publication/ASSET_REVIEW_RECORD.md) names the full-resolution visual and privacy review for all 77 current image assets; its SHA-256 manifest prevents a changed or newly added image from silently inheriting that review.
 
 ## Project map
 
@@ -137,7 +137,7 @@ bash tools/validate_books.sh
 bash tools/render_previews.sh
 ```
 
-`prepare_assets.sh` rebuilds a conservative publication allowlist and strips image metadata. It fails if either publishable asset directory contains any unlisted entry, without deleting that entry automatically. `validate_books.sh` checks PDF freshness against each manuscript, the shared style, and referenced assets; rejects retired image names from publishable sources and outputs; and checks page geometry, text extraction, serious LaTeX warnings, and prepared-photo metadata. Validation does not replace engineering, privacy, legal, color, or press-preflight review.
+`prepare_assets.sh` rebuilds a conservative publication allowlist and strips image metadata. It fails if either publishable asset directory contains any unlisted entry, without deleting that entry automatically. `validate_books.sh` checks PDF freshness against each manuscript, the shared style, and referenced assets; rejects retired image names from publishable sources and outputs; verifies the reviewed asset checksums, dimensions, color space, metadata, ledger coverage, and OCR privacy patterns; and checks page geometry, text extraction, and serious LaTeX warnings. Validation does not replace engineering, privacy, legal, color, or press-preflight review.
 
 ## Safe companion lab
 
