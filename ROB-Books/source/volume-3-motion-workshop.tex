@@ -52,7 +52,9 @@ A simple bending moment is $M = Fd$, where $F$ is force and $d$ is the perpendic
 Hold a ruler at one end. Place one coin 2 cm from your hand, then move it to 20 cm. The coin's weight did not change, but your wrist feels a larger moment. Draw the pivot, force arrow, and distance. Do not use ROB's powered arm for this experiment.
 \end{buildbox}
 
-\ROBPlaceholder{Add verified ready-to-run mass, center-of-mass measurements in key poses, arm payload and reach, flipper loads, maximum slope, transport loads, and the design load cases used for each mount.}
+\begin{fieldnotebox}[title={EIGHT YEARS OF USE IS NOT A LOAD CASE}]
+ROB has been revised and operated over roughly eight years, but the archive contains no verified ready-to-run mass, pose-dependent center of mass, arm payload, flipper load, slope limit, or transport load case. Those values cannot be inferred from survival or photographs. The force diagrams in this volume teach how a future measured redesign should reason; they do not rate ROB or a copy.
+\end{fieldnotebox}
 
 \ROBPhoto[0.52\textheight]{2022-rob-front-arms-raised.jpg}{Raising both arms changes the load carried by their mounts and may change the robot's center of mass. A dramatic pose is also a mechanical test condition.}
 
@@ -89,7 +91,7 @@ The builder reports that grass also confused the IR sensors. Ground changes both
 
 \chapter{Motors, gearing, and sprockets}
 
-The motor label visible in ROB's build photographs identifies a HengDrive B5685G family. Builder-owned outline drawings describe a 24 V motor/controller family with five external functions: power positive, power negative, speed feedback, direction, and PWM speed command. The drawings list several winding/gearbox options, while the builder recalls an early 12 V, roughly 80 rpm and 30 W arrangement. Those records do not yet identify which option is installed on each axis. Preserve the disagreement until a label, winding resistance, no-load test, and authorized manufacturer record resolve it.
+The motor label visible in ROB's build photographs identifies a HengDrive B5685G family. The builder recalls an early 12 V, roughly 80 rpm and 30 W arrangement, but the public evidence does not establish the installed winding, gearbox, controller interface, or present rating on each axis. Preserve those values as recollection until label photographs, non-destructive measurements, bounded tests, and an authorized public manufacturer record resolve the configuration.
 
 The builder tried 16-, 32-, 40-, and 45-tooth sprockets while searching for a useful balance. A tooth count has no meaning by itself: the log must say whether it was the driver or driven sprocket and name its mate. Larger speed at the tread can reduce available output torque, while a reduction chosen for strong flipper lift can be painfully slow. ROB needed both: enough travel speed for a public robot and enough flipper torque to raise part of the heavy droid so the tracks could undulate over stairs.
 
@@ -111,13 +113,15 @@ Draw a 12-tooth driver and a 36-tooth driven gear. Predict output turns for thre
 
 \section*{What the 24 V boost changed}
 
-The builder later installed a large 12-to-24 V boost converter and moved the motor supply to a 24 V bus. ROB immediately felt faster and stronger. The careful lesson is not ``double voltage always doubles torque.'' For a given motor, back-EMF and voltage strongly affect available speed, while torque follows current; the controller, converter, winding, gearing, battery sag, temperature, and load limit the result. The archived HengDrive family drawing is rated for 24 V, but the exact installed motor/controller option and converter margin must be verified before this observation becomes a specification.
+The builder later installed a large 12-to-24 V boost converter and recalls moving the motor supply toward a 24 V bus. ROB immediately felt faster and stronger. The careful lesson is not ``double voltage always doubles torque.'' For a given motor, back-EMF and voltage strongly affect available speed, while torque follows current; the controller, converter, winding, gearing, battery sag, temperature, and load limit the result. The exact installed motor/controller option, commanded voltage, measured bus voltage, and converter margin are not established, so this observation remains history rather than an electrical specification.
 
 \begin{missionbox}[title={BUILD A GEAR-RATIO TEST MATRIX}]
 Make rows for 16, 32, 40, and 45 teeth. Add columns for driver teeth, driven teeth, calculated ratio, unloaded tread speed, current during a gentle turn, flipper lift success, motor temperature, and notes about surface. Leave a cell blank when it was not measured. The best ratio is the one that satisfies the declared mission with margin, not the one with the most dramatic single number.
 \end{missionbox}
 
-\ROBPlaceholder{Confirm the exact B5685G winding, integrated controller, gearbox, five-wire polarity/logic levels, and installed sprocket pair on each tread and the flipper. Obtain publication permission for the archived manufacturer drawings and add measured 12 V/24 V no-load speed, loaded current, thermal rise, turning current on each surface, and flipper lift margin.}
+\begin{fieldnotebox}[title={THE UNDERPOWERED-MOTOR LESSON}]
+The visible label identifies a HengDrive B5685G-family motor, while the author recalls an early roughly 30 W, 12 V choice that was too slow and underpowered for the growing robot. Sprocket changes recovered torque but did not deliver the intended speed; a later 12-to-24 V boost stage made ROB stronger and faster while it remained slow and high-torque. In hindsight the author would begin a redesign around at least roughly 120 W per drive motor and about four times the speed, but that is a design goal, not a drop-in specification. Exact winding, gearbox, controller logic, installed sprockets, current, temperature, and lift margin remain unmeasured. Private manufacturer drawings are excluded from the public edition.
+\end{fieldnotebox}
 
 \ROBPhoto[0.52\textheight]{2022-drive-assembly-rear.jpg}{A rear view of the 2022 drive assembly exposes brackets, shafts, chain paths, and wiring. The photograph helps locate interfaces but cannot supply ratings or alignment tolerances.}
 
@@ -167,7 +171,9 @@ Linear actuators and flippers create powerful pinch and crush zones, even when t
 
 \ROBPhoto[0.54\textheight]{rob-v3-page-54.jpg}{Historical presentation page 54 labels a simple actuator moving the torso. Treat the layout as a design note until the builder confirms the installed mechanism.}
 
-\ROBPlaceholder{Identify every installed actuator and controller: model, voltage, stroke, force, speed, duty cycle, current limit, mounting hardware, limit switches, feedback, and whether it serves torso tilt, the third wheel, or another revision.}
+\begin{fieldnotebox}[title={ACTUATOR ERAS, NOT A PARTS SCHEDULE}]
+Photographs show multiple central, torso, third-wheel/flipper, hobby-servo, stepper, and AMBER-arm eras. They do not provide a dated model/voltage/stroke/force/duty-cycle inventory or prove which actuator remains installed. The historical record preserves the evolving roles; a reproduction requires a fresh label survey, limit/feedback inspection, load analysis, and safe-state test.
+\end{fieldnotebox}
 
 \ROBChapterPhoto{Mission 5}{Prototype materials answer questions}{2022-medium-duty-bracket-package.jpg}
 
@@ -198,7 +204,9 @@ A drilled hole has a diameter, location, perpendicularity, edge condition, and p
 Draw a plate with two holes 50 mm apart. Ask three classmates to mark the second center using a ruler. Compare marks. A tolerance is the acceptable variation, not a promise of perfect measurement. Discuss which features really need tight tolerance.
 \end{buildbox}
 
-\ROBPlaceholder{Add final CAD or dimensioned templates, material grades and thicknesses, fastener sizes and grades, bearing and shaft specifications, fits, tolerances, surface treatment, and which wooden parts remain in the current robot.}
+\begin{fieldnotebox}[title={WHY THERE IS NO DOWNLOADABLE ROB CAD}]
+ROB was shaped by hand from cardboard, scrap wood, maple-plywood templates, fitted brackets, and later metal revisions. The final CAD, controlled templates, material/fastener schedule, fits, tolerances, and complete list of surviving wood parts do not exist. Reconstructing them from a measured scan is an explicit next project. Readers should reproduce the prototype-and-evidence method, not copy unmeasured geometry.
+\end{fieldnotebox}
 
 \ROBPhoto[0.45\textheight]{2022-bracket-assembly-front.jpg}{The assembled bracket is a chance to compare the planned hole pattern with the physical result. A final drawing should make that comparison repeatable.}
 
@@ -227,10 +235,12 @@ Presentation pages 83-85 ask how to mill and weld a final aluminum body and whet
 \ROBPhotoTwo{2024-caliper-tread-measurement.jpg}{A digital measuring tool can help capture an interface, but the reading needs a documented datum.}{2024-open-tracked-base.jpg}{The open base lets a reviewer check access, spacing, and interference before covers conceal the system.}
 
 \begin{safetybox}[title={MILLING AND WELDING ARE NOT CHILD ACTIVITIES}]
-Machine selection, feeds and speeds, tool choice, workholding, chip control, coolant, guarding, ventilation, welding process, electrical protection, hot-work control, and post-weld inspection must be written by qualified adults for the actual shop. This volume intentionally leaves them as author-reviewed placeholders.
+Machine selection, feeds and speeds, tool choice, workholding, chip control, coolant, guarding, ventilation, welding process, electrical protection, hot-work control, and post-weld inspection must be written by qualified adults for the actual shop. This volume does not supply those shop-specific procedures.
 \end{safetybox}
 
-\ROBPlaceholder{Builder: provide the real milling, drilling, bending, welding, coating, deburring, and assembly sequence; machine and cutter details; workholding; feeds and speeds; PPE; inspection results; rejected attempts; and shop/vendor roles.}
+\begin{fieldnotebox}[title={FABRICATION MEMORY IS NOT A SHOP TRAVELER}]
+Rodolfo Aramayo identifies himself as the sole builder. The photo sequence records drilling, fitting, bracket and rail work, machining revisions, coating, wiring, and assembly, but it does not preserve machine parameters, workholding, welding procedures, PPE decisions, or inspection results. This volume therefore teaches how to plan and document fabrication without presenting an invented operation sequence.
+\end{fieldnotebox}
 
 \ROBPhoto[0.40\textheight]{2022-drilling-metal-rail.jpg}{This archive image records a drilling moment, not a complete machine procedure. The approved process still needs secure workholding, PPE, tooling, speed, chip control, and inspection documented by a qualified adult.}
 
@@ -290,7 +300,9 @@ LEVEL & TEST & PASS EVIDENCE\\
 Measure more than success. Record maximum current, voltage sag, motor and controller temperature, chain behavior, tread slip, command latency, stop latency, stopping distance, noise, fastener movement, and unexpected contact. A video plus synchronized data log can reveal events the operator missed.
 \end{advancedbox}
 
-\ROBPlaceholder{Add ROB's actual test reports: tread-lift setup, sign checks, measured speed and stopping distance, current and temperature limits, hard-floor and grass results, slope limits, flipper and actuator load tests, fastener inspection interval, and known failed parts.}
+\begin{safetybox}[title={NO QUANTIFIED PERFORMANCE OR SAFETY RATING}]
+The author reports a slow, high-torque robot, difficult skid turns, outdoor/grass lessons, gearing changes, voltage conversion, and ambitious stair/flipper experiments. The archive contains no complete measured speed, stopping-distance, current, temperature, slope, lift, fastener, or failed-part report. Eight years of operation does not establish a safe limit. The seven-rung test ladder is a method for future evidence, not a claim that ROB passed it.
+\end{safetybox}
 
 \input{volume-3-deep-dive.tex}
 

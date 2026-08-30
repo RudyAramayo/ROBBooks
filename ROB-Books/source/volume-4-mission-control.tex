@@ -62,7 +62,9 @@ Two USB-C hubs currently expand the M4 Mac mini, with another USB-A fan-out serv
 
 The network has a separate shape. A backpack router joins the home Orbi Wi-Fi network, while a Netgear switch adds wired ports for the Mac mini, AMBER Ubuntu box, and Insta360 Pro II. Ethernet, USB, and power may share a physical enclosure but they solve different problems. Label each cable at both ends and record which component supplies power.
 
-\ROBPlaceholder{Photograph and label every current Mac mini port, hub make/model and power supply, USB tree, rotary USB link, Ethernet switch port, router uplink, camera, Arduino, Maestro, Tic, audio device, keyboard receiver, AMBER host, and spare connection. Add measured bus current and a reproducible \texttt{system\_profiler SPUSBDataType} snapshot.}
+\begin{fieldnotebox}[title={CURRENT COMPONENTS, UNTRACED TOPOLOGY}]
+The author identifies the M4 Mac mini, two USB-C hubs, a USB-A fan-out, Mega 2560, Maestro, Tic, AMBER Ubuntu computer, NETGEAR/Orbi networking, Insta360 Pro II, and separate depth-camera roles. The present port-by-port tree, hub models, power supplies, bus currents, service peripherals, and redacted \texttt{system\_profiler} snapshot have not been recorded. This diagram teaches ownership and troubleshooting; it is not a cable-installation plan.
+\end{fieldnotebox}
 
 \ROBChapterPhoto{Mission 2}{Cerebro coordinates the body}{rob-software-control-room.png}
 
@@ -380,7 +382,9 @@ Unsupported AI action & A clear unavailable result returns; no motion is faked.\
 Choose one simulated command. Create columns for sequence number, issue time, lease, left value, right value, and expected state. Add stale, duplicate, NaN, and out-of-range cases. A good test includes messages that must be rejected.
 \end{buildbox}
 
-\ROBPlaceholder{Before publication, add a tagged source snapshot, screenshots with all secrets and location data removed, a verified component version table, actual on-robot latency measurements, failure-injection results, and a diagram of current rather than proposed compute hardware.}
+\begin{fieldnotebox}[title={PUBLICATION SOFTWARE BOUNDARY}]
+The dated repository hashes in \texttt{SOURCE\_SNAPSHOT.md} identify the evidence inspected for this edition. Sensitive screenshots are excluded rather than cosmetically blurred. The source and fixtures support architecture lessons, but exact deployed versions, on-robot latency, failure-injection results, and a traced current compute diagram remain installation records. This volume makes no claim that a reader's build or the current show robot has completed that qualification.
+\end{fieldnotebox}
 
 \input{volume-4-deep-dive.tex}
 

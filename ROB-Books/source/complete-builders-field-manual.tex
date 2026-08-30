@@ -45,12 +45,12 @@
 \makeatother
 
 \begin{document}
-\ROBTitle{Building R.O.B. - Complete Field Manual}{BUILDING R.O.B.}{The complete maker's field manual: fabrication, circuits, firmware, perception, identity, control, and operations}{Advanced evidence draft with builder placeholders}{2025-rob-side-full-body.jpg}
+\ROBTitle{Building R.O.B. - Complete Field Manual}{BUILDING R.O.B.}{A historical engineering field manual: fabrication, circuits, firmware, perception, identity, control, and operations}{The evidence, methods, failures, and future documentation of one hand-built robot}{2025-rob-side-full-body.jpg}
 
 \ROBFrontMatter{An honest build record}{Complete in scope, intentionally incomplete where the archive cannot prove the detail.}{%
-This manual connects ROB's 95-page design presentation, private construction-photo archive, Arduino base firmware, motor references, Cerebro v1-v5 software archive, and current Mac, iPhone, Watch, Vision Pro, lidar/map, three-camera, serial, MLX/VLM, Gemini, face-identity, Messages, recording, stage-show, arm, autonomy, H.264, and secure-control source trees.
+This manual connects ROB's 95-page design presentation, private construction-photo archive, Arduino base firmware, Cerebro v1-v5 software archive, and current Mac, iPhone, Watch, Vision Pro, lidar/map, three-camera, serial, MLX/VLM, Gemini, face-identity, Messages, recording, stage-show, arm, autonomy, H.264, and secure-control source trees.
 
-It is a first evidence-based edition, not a stamped mechanical design, production wiring schematic, safety certification, or permission to energize the machine. Use the status labels on every subsystem. Replace each Builder input needed box with measured, reviewed information as the book iterates.
+It is an evidence-based historical reference and educational field manual, not a stamped mechanical design, production wiring schematic, safety certification, dimensionally complete construction plan, or permission to energize the machine. ROB was built and revised largely by hand, beginning with wood prototypes; as-built CAD does not exist. The book preserves what the archive and author can establish, labels what was not recorded, and treats a future measured CAD reconstruction as a new engineering project rather than silently inventing dimensions.
 
 \begin{center}
 \includegraphics[height=0.27\textheight]{rob-used-future-frontispiece.png}\\[-1pt]
@@ -66,7 +66,7 @@ It is a first evidence-based edition, not a stamped mechanical design, productio
 \Experimental & Present behind a gate, dependent on external hardware, or still under active development.\\[5pt]
 \Legacy & Retained compatibility or historical behavior, not the preferred new design.\\[5pt]
 \Planned & Described in a slide, TODO, protocol, or interface without proof of completed execution.\\[5pt]
-\Unverified & The builder must measure, reconcile, or supply the missing record.\\
+\Unverified & The available evidence does not establish the value, configuration, or physical result.\\
 \end{tabularx}
 
 \begin{safetybox}[title={NON-NEGOTIABLE SAFETY BOUNDARY}]
@@ -79,9 +79,9 @@ ROB combines large batteries, high-current brushless motors, chains, treads, fli
 
 \section*{Source snapshot and publication cautions}
 
-The initial evidence pass began on 2 August 2026; this expanded hardware, AMBER, model-training, identity/privacy, mapping, and three-feed-video edition reflects the repositories inspected through 23 August 2026 and the builder interview of 21 August. ROBControllerVision's latest three panorama-orientation commits were still ahead of its public remote. Cross-repository publication still requires an intentional tagged/tested release. Original gallery photographs were converted with orientation applied and metadata stripped. Attendee photographs, especially images containing children, require release review or careful exclusion.
+The initial evidence pass began on 2 August 2026; this expanded hardware, AMBER, model-training, identity/privacy, mapping, and three-feed-video edition reflects the repositories inspected through 23 August 2026, the builder interview of 21 August, and follow-up author answers received 29 August. ROBControllerVision's latest three panorama-orientation commits were still ahead of its public remote. Cross-repository publication still requires an intentional tagged/tested release. Original gallery photographs were converted with orientation applied and metadata stripped. Attendee photographs, especially images containing children, require release review or careful exclusion.
 
-The archived B-COMMAND drawings prohibit reproduction without permission, and the HengDrive drawings are marked proprietary/confidential. This manual does not reproduce the drawings or internal artwork. It records selected interface facts and ratings needed to identify and operate the builder-owned parts, distinguishes installed hardware from recollection, and flags every conflict. Obtain written publication permission or public replacement datasheets before distributing those sections beyond the builder's private record.
+The archived B-COMMAND drawings prohibit reproduction without permission, and the HengDrive drawings are marked proprietary/confidential. The public edition neither reproduces those records nor derives a construction specification from them. It keeps only author recollection, facts visible on builder-owned hardware, and authorized public-source information. A future technical edition may use the private records only after written permission or an authorized public replacement datasheet is obtained.
 
 \tableofcontents
 \clearpage
@@ -179,7 +179,20 @@ Gemini actions & \Experimental & The multimodal session defaults off, while audi
 \bottomrule
 \end{tabularx}
 
-\ROBPlaceholder{Builder narrative: add the project's origin, meaning of R.O.B., design goals, major failures, people and shops who contributed, dates of each hardware revision, and which public demonstrations changed the design.}
+\clearpage
+\begin{fieldnotebox}[title={THE BUILDER'S ACCOUNT}]
+ROB is a friendly name derived from ``robot,'' not an acronym. Rodolfo Aramayo began the project after leaving Verizon Labs, where he had worked as a systems software engineer on mobile VR/AR research technologies. The exact start month and city remain to be added, but the surviving 2017--2018 Cerebro serial-control work belongs to the first physical prototype.
+
+The ambition was to bring the friendly, expressive idea of Johnny 5 into an era of mobile interfaces and 3D depth cameras. That film character is historical inspiration only; ROB's design, artwork, name, and implementation are independent. Early Cerebro code also called a local CakeChat neural-dialogue service. The source proves an early pre-ChatGPT conversational experiment, not that CakeChat was a technical ancestor of ChatGPT.
+
+Aramayo identifies himself as ROB's sole builder, author, and principal software developer. Apple, Arashi Vision/Insta360, HengDrive, B-COMMAND, NETGEAR, AMBER Robotics, SuperDroid Robots, Arduino, and SLAMTEC/SLAMWARE supplied platforms or components; they are not presented as co-builders, sponsors, or endorsers.
+
+The first era combined a car battery, Power Wheels hardware, scrap wood, an older Intel laptop, and an old robot arm. The LT2 tracked era added a third-wheel/flipper experiment, then exposed an underpowered roughly 30 W motor choice. Gear changes and a later 12-to-24 V boost stage improved torque and speed without making ROB fast. Later eras added lidar, a stepper torso, Maestro-controlled hobby servos, and then heavy AMBER B1 arms. Years of difficulty coordinating the first arm arrangement eventually led to a dedicated dual-arm system purchased for approximately \$22{,}500. The current era uses AI-assisted development to expand secure mobile and Vision Pro control, three-camera H.264 viewing, depth processing, machine vision, speech, and bounded model integrations.
+
+Official Maker Faire records identify R.O.B. as a Bay Area exhibit in 2019 at the San Mateo County Event Center in San Mateo, and again in 2023, 2024, and 2025 at Mare Island in Vallejo. The fairs ran May 17--19, 2019; October 13--15 and 20--22, 2023; October 18--20, 2024; and September 26--28, 2025. The September 2026 fair is still in the future as of this August record, so no 2026 appearance is claimed.
+\end{fieldnotebox}
+
+\ROBPhoto[0.36\textheight]{2019-rob-side-profile.jpg}{A 2019 side view records the tracked base, compact body, early head, exposed mechanisms, and hobby-servo arm era. It is one revision in ROB's evolution rather than a final reproducible configuration.}
 
 \ROBChapterPhoto{Chapter 2}{System boundaries and ownership}{2024-open-tracked-base.jpg}
 
@@ -226,7 +239,9 @@ Manual control, deterministic autonomy, and AI-assisted behavior can all use the
 Document safety as a control hierarchy, not a list of features. For every hazard, name the prevention, detection, mitigation, independent stop, diagnostic coverage, proof test, and residual risk. Ordinary cameras, IR sensors, and software timers may support risk reduction but are not automatically safety-rated.
 \end{advancedbox}
 
-\ROBPlaceholder{Create an author-approved current block diagram showing installed batteries, disconnect and protection, DC buses, converters, Mac mini, any Raspberry Pi units, the Arduino-compatible base controller with exact model, motor controllers, Maestro, Amber arm controllers, cameras, lidar host, router, and every external port. Mark planned and removed hardware separately.}
+\begin{fieldnotebox}[title={RECORD LIMIT: NOT AN AS-BUILT BLOCK DIAGRAM}]
+The source and photographs support the functional ownership diagram in this chapter, but no dated, author-approved as-built drawing of every present power, data, and external port was preserved. Historical Raspberry Pi concepts, retired Arduino roles, and earlier arm electronics must not be blended into the current M4 Mac mini, Mega 2560, Maestro, Tic, AMBER Ubuntu, depth-camera, panoramic-camera, lidar, and network account. Every diagram in this edition is therefore architectural teaching material. Reproduction requires a new physical inventory and traced schematic.
+\end{fieldnotebox}
 
 \part{Mechanical build}
 
@@ -279,7 +294,7 @@ The builder's intended stair technique was an undulating sequence: a high-torque
 
 \section{Drivetrain experiment ledger}
 
-The builder recalls an early combination operating the motors from 12 V at roughly 80 rpm and 30 W, then trials involving 16-, 32-, 40-, and 45-tooth sprockets. The builder-owned HengDrive curves instead describe 24 V B5685-family variants and 60 W operating points. These are not necessarily contradictions: they may refer to different windings, gearbox stages, controller settings, supply voltage, or measurements. They are kept side by side until the installed units are identified.
+The builder recalls an early combination operating the motors from 12 V at roughly 80 rpm and 30 W, then trials involving 16-, 32-, 40-, and 45-tooth sprockets. The photographs and public records do not establish which winding, gearbox stage, controller setting, supply condition, or motor variant was installed during each trial. The recollections remain historical clues until the installed units and revision dates are identified.
 
 For every revision, record both sprockets and which one drives. If $N_d$ is driver teeth and $N_o$ is output teeth, the ideal output-speed multiplier is $N_d/N_o$ and the ideal torque multiplier is $N_o/N_d$ before losses. A larger isolated tooth count does not tell which outcome occurred.
 
@@ -312,7 +327,9 @@ The later 12-to-24 V boost produced an immediate observed improvement in speed a
   \item install guards and covers before floor testing.
 \end{enumerate}
 
-\ROBPlaceholder{Supply final chassis length, width, plate thicknesses and alloys, tread model, wheel and sprocket data, shafts, bearings, collars, chain, tension procedure, flipper dimensions, fastener schedule, torque values, guard drawings, total mass, center of mass, and as-built CAD.}
+\begin{fieldnotebox}[title={RECORD LIMIT: HAND-BUILT GEOMETRY}]
+ROB was fitted and revised by hand from wood prototypes and later metal work. No final as-built CAD, controlled dimension set, fastener/torque schedule, guard drawing, weighed mass, or measured center of mass survives. The LT2 tread system identifies the purchased starting interface, but photographs cannot establish its revision or the geometry built around it. A future reproduction must begin with a measured survey or scan of the present robot and becomes a new design requiring its own load, stability, guarding, and transport analysis.
+\end{fieldnotebox}
 
 \ROBChapterPhoto{Chapter 4}{Torso, body, head, and arms}{2025-rob-side-full-body.jpg}
 
@@ -336,14 +353,12 @@ Presentation pages 56-60 show the connection under load and call for mechanical 
 
 \section{Body rotation and cable continuity}
 
-Presentation page 67 preserves an earlier limited-rotation body-bearing concept. The builder now reports a custom B-COMMAND rotary interface installed inside the stepper plate so 24 V power and USB 3 data can cross the rotating boundary. The initial mechanical order placed the mating terminal geometry on the wrong sides. The builder removed the incompatible plastic top piece and bonded the slip ring into the plate. Treat that as an as-built repair requiring adhesive identification, bond-area inspection, axial/radial retention, runout, strain relief, thermal review, and a service/replacement plan---not as a vendor-approved mounting method.
+Presentation page 67 preserves an earlier limited-rotation body-bearing concept. The builder reports a custom B-COMMAND rotary interface installed inside the stepper plate so power and data can cross the rotating boundary. He also reports removing an incompatible plastic piece and bonding the rotary interface into the plate. Treat that as an as-built repair requiring adhesive identification, bond-area inspection, axial/radial retention, runout, strain relief, thermal review, and a service/replacement plan---not as a vendor-approved mounting method.
 
-The installed builder-owned drawing is identified as \texttt{RX-USB001-022-02000C03}. Selected interface facts are: one USB 3.0 path; two 14 AWG PTFE-insulated red/black power conductors; 10 A per power conductor at 24 V; gold-to-gold contacts; IP40; $-20$ to $+60\,^{\circ}\mathrm{C}$; and a mechanical speed rating of \textbf{0--30 rpm}. The builder corrected an earlier recollection of revolutions per second. The drawing gives a typical five-million-revolution life under stated room conditions, but actual life depends on speed, temperature, current, vibration, alignment, and installation.
-
-A second custom drawing, \texttt{RX-ETH001-QS1-02000C04}, describes the intended head interface: USB 3.0, Gigabit Ethernet, and two 5 A/12 V power conductors. Its drawing shows AWG 22 power leads, while the builder recalls AWG 18. Inspect the physical unit and obtain an amended manufacturer record before assigning ampacity or installing it. This second unit is \Planned\ unless the head installation is photographed and continuity-tested.
+The visible installation and the builder's account establish the rotary link's role, but not its public electrical or mechanical rating. Controlled drawings in the private archive are excluded from this edition. Record photographs of every label and lead, identify the exact installed unit, and obtain an authorized public manufacturer record before assigning conductor ampacity, voltage, ingress, temperature, service-life, speed, or data-interface limits. A second custom head rotary-link idea remains \Planned\ unless the installed hardware is photographed, identified, and continuity-tested.
 
 \begin{safetybox}
-The drawing's 0--30 rpm rating is a component maximum, not permission to command the torso at 30 rpm. Human proximity, arm sweep, cable motion, stepper torque, balance, stopping distance, controller voltage, and structure require a far lower verified operating envelope. The builder believes the Pololu stepper controller may tolerate higher supply voltage, but the exact Tic model, motor rating, configuration, and present 12 V supply must be identified before considering 24 or 48 V.
+No component rating would by itself authorize a torso speed. Human proximity, arm sweep, cable motion, stepper torque, balance, stopping distance, controller voltage, and structure require a separately verified operating envelope. The exact Tic model, motor rating, configuration, present supply, and rotary-link limits must be identified before changing voltage or speed.
 \end{safetybox}
 
 \ROBPhotoTwo{2025-rear-electronics-bay.jpg}{The rear bay shows how upper-body motion can pull on a dense harness.}{2025-labeled-cables.jpg}{Temporary labels aid teardown, but permanent routing must account for repeated flex and abrasion.}
@@ -366,7 +381,9 @@ The deck proposes two Amber seven-degree-of-freedom arms with force/current-sens
 \Unverified\quad Joint feedback, zeroing, limits, load rating, collision envelope, emergency behavior, and physical outcome were not measured in this review.\par
 \Planned\quad General object pickup remains unavailable because camera-to-arm transforms, inverse kinematics, collision checking, and a verified grasp executor are incomplete.
 
-\ROBPlaceholder{Supply upper-body drawings; stepper motor and exact Pololu Tic model/configuration; slip-ring serials and installation photographs; adhesive/retention design; runout and rotation limits; torso/third-wheel actuator roles; head sensor inventory; neck pinion and 92-tooth gear measurements, axes, backlash, limits, and home sensors; arm model/firmware, joint definitions, zeroing, payload, reach, current limits, gripper behavior, collision envelope, cable routing, and transport restraints.}
+\begin{fieldnotebox}[title={RECORD LIMIT: UPPER BODY AND ARMS}]
+The photographs and software establish successive neck, camera, hobby-servo, stepper-torso, and AMBER B1 eras, but they do not establish a reproducible upper-body drawing or safe calibration. Private B-COMMAND records are excluded; the repaired rotary-interface mounting is documented only as history. Exact Tic configuration, retention, runout, backlash, hard limits, joint zeroes, payload, collision envelope, cable sweep, and transport restraints must be measured on the current robot before any motion setting is reused. The author reports that the dedicated dual-arm system finally enabled coordinated development after the earlier arrangement proved impractical; that experience does not substitute for the vendor limits or a current calibration file.
+\end{fieldnotebox}
 
 \ROBChapterPhoto{Chapter 5}{From template to finished part}{2022-drilling-metal-rail.jpg}
 
@@ -417,7 +434,9 @@ The builder or qualified shop must write the actual machine, cutter, feeds and s
 
 Use captive or accessible fasteners where covers need regular removal. Separate abrasive motion and sharp edges from harnesses. Provide inspection windows for chain line, tension, battery restraints, and protective devices. Ensure a heavy component can be supported before its final fastener is removed. Include lifting points and a stand plan in the CAD, not as an afterthought.
 
-\ROBPlaceholder{Insert the builder-approved machining and assembly travelers, final CAD/template files, CNC or manual process, weld procedure, coating system, adhesives, inspection tools, rejected-part lessons, outside vendors, costs, and photographs paired with each actual operation.}
+\begin{fieldnotebox}[title={HISTORICAL FABRICATION RECORD}]
+The surviving record is a sequence of hand fitting, wood templates, drilling, bracket work, machining revisions, coating, and assembly photographs rather than a controlled shop traveler. The author was the sole builder and has not supplied machine parameters, weld procedures, adhesive records, inspection results, or a complete cost ledger. This chapter teaches how a future team should create those records; it does not reverse-engineer feeds, speeds, tolerances, or acceptance criteria from photographs.
+\end{fieldnotebox}
 
 \part{Power, electronics, and firmware}
 
@@ -472,7 +491,7 @@ The onboard NOCO Genius charger is recalled as a 2 A-class unit. It is a fallbac
 
 \section{Motor electrical evidence}
 
-The motor label visible in build photographs identifies a HengDrive B5685G family. Builder-owned outline drawings identify a rated 24 V family with an 8--26.4 V operating range and five leads: red power positive, black power negative, green speed output, yellow direction, and blue PWM speed command. They show gearbox options including 1:22.6 and 1:276. Separate 24 V performance curves describe 60 W operating points at different motor speeds. File naming around ratio and speed is ambiguous enough that this manual does not assign either curve to an installed tread or flipper motor.
+The motor label visible in build photographs identifies a HengDrive B5685G family. The public evidence does not identify the installed winding, gearbox, controller interface, voltage range, or performance curve. Controlled vendor records in the builder's archive are excluded as technical sources for this public edition; no connector assignment, ratio, rating, or curve is inferred from them. An authorized public manufacturer record and a non-destructive identification test are required before any of those values becomes a specification.
 
 The required identification test is non-destructive and staged: photograph every label and connector, record winding/gearbox/serial markings, trace each five-wire harness without energizing, compare controller configuration, then measure bounded no-load output speed at the shaft and tread. Only after current limiting, direction, brake, tach level, and stop are known should a loaded test record output speed, input current, converter voltage sag, temperature, and force.
 
@@ -486,7 +505,9 @@ A physical E-stop should be independent of the UI and ordinary network. Its desi
 
 \ROBPhoto{2025-emergency-stop-bench-layout.jpg}{A yellow emergency-stop button and control boxes appear in a 2025 bench layout. The photograph does not reveal contacts, safety category, or final wiring.}
 
-\ROBPlaceholder{Provide the authoritative as-built schematic and calculations: pack make/model/serial and topology, BMS compatibility, per-pack and main protection, NOCO charger model, disconnect and E-stop circuit/contact ratings, converter and inverter models, branch currents, wire gauges, connectors, grounding/bonding, shore-power isolation, runtime, inrush, thermal measurements, voltage-drop map, and open/short/reversed-polarity fault tests.}
+\begin{safetybox}[title={NO PUBLIC AS-BUILT POWER SCHEMATIC}]
+No authoritative current schematic, protection study, conductor schedule, BMS compatibility record, E-stop validation, or fault-test report was supplied. The photographed battery, bus, converter, charger, and emergency-stop components are historical evidence only. This edition deliberately withholds a construction power tree: copying a visible layout or remembered topology could create fire, shock, uncontrolled-motion, or battery hazards. A future energized build requires a traced as-built schematic and qualified electrical review independent of this book.
+\end{safetybox}
 
 \ROBChapterPhoto{Chapter 7}{Arduino base controller}{2024-dense-internal-routing.jpg}
 
@@ -635,7 +656,9 @@ An initial bench allocation can reserve D2/D3/D18 for three tach inputs, D4/D5/D
 
 The GIGA base board does not include an IMU. The GIGA Display Shield adds a BMI270 over I$^2$C, but a display shield is a poor reason to keep a long noisy sensor bus. Better successors place the IMU near the controller/center-of-motion with short SPI or I$^2$C wiring, isolate it from motor returns, timestamp locally, and send typed orientation/quality telemetry. The existing OAK-D Pro W also contains an IMU, but its frame, latency, USB lifecycle, and mounting role differ from a base safety/control sensor.
 
-\ROBPlaceholder{Confirm Mega revision and core; installed libraries and firmware hash; every connector and logic voltage; brake circuit; motor/flipper polarity; allowed command ranges; measured deadman deadline; brake/coast behavior; tach electrical interface/pulses per revolution; IR models/positions/calibration; IMU orientation and failed long-wire installation; actuator controller, end stops, current limits, and safe state. Approve or reject the proposed Mega/GIGA maps through a signed design review.}
+\begin{fieldnotebox}[title={SOURCE RECORD, NOT A VERIFIED HARNESS}]
+The builder identifies an Arduino Mega 2560 and the repository preserves its historical Base sketch, but board revision, flashed hash, libraries, connector voltages, polarity, brake wiring, watchdog timing, tach interface, IR calibration, IMU installation, and actuator safe state were not measured for publication. The proposed Mega/GIGA maps remain educational comparisons. No signed hardware review exists, so pin names and frame fields in this chapter must not be treated as permission to connect or move the present robot.
+\end{fieldnotebox}
 
 \part{Software and perception}
 
@@ -716,7 +739,9 @@ The local \texttt{ROBMLXEngine} actor owns selected model containers, loading, d
 
 Local improvisation must decode as one exact versioned JSON plan with allow-listed beat and delivery values. Gemini remains an optional cloud path with separately effective connection, microphone, camera, and action-tool switches. Both providers produce bounded proposals; deterministic policy, operator authority, and physical executors remain separate.
 
-\ROBPlaceholder{Tag the publication source; provide target macOS and hardware; identify enabled optional dependencies and versions; capture redacted current UI screenshots; document app startup/shutdown, serial-device names, selected Python runtime, and recovery after each subsystem fails.}
+\begin{fieldnotebox}[title={SOFTWARE SNAPSHOT BOUNDARY}]
+This edition is tied to the dated repository and archive hashes in \texttt{SOURCE\_SNAPSHOT.md}; it is not a supported deployment matrix. The author identifies an M4 Mac mini as the present Cerebro host, but enabled options, device names, Python environment, UI state, and recovery behavior change with the installation. Screenshots containing private logs or identifiers are excluded. Reproduction starts from a tagged clean release and its own redacted commissioning record rather than from machine-specific paths printed here.
+\end{fieldnotebox}
 
 \ROBChapterPhoto{Chapter 9}{Controllers and secure transport}{2024-open-tracked-base.jpg}
 
@@ -772,7 +797,9 @@ Current timing points include a 250 ms Vision lease, about 450 ms Watch relay wa
 
 The current active iPhone path requests Always location authorization and includes live latitude and longitude in each controller snapshot. This is current privacy debt, not merely a historical format detail: remove the fields, minimize their precision and retention, or document a necessary purpose and consent policy before public use. Pairing codes, device secrets, private keys, IP addresses, SSH credentials, API keys, private logs, and location must be excluded from screenshots and sample data. A public certificate or fingerprint may be redacted as operational metadata, but it is not a secret. Each cloud-enabled camera or microphone path needs explicit public notice and consent handling.
 
-\ROBPlaceholder{Document exact controller release versions, supported OS/device matrix, pairing and revocation workflow, operator training, latency and packet-loss results, Wi-Fi/router configuration without secrets, public-location data policy, and current Vision Pro hardware validation.}
+\begin{fieldnotebox}[title={CONTROLLER EVIDENCE LIMIT}]
+The inspected code establishes protocol intent and test fixtures, not a finished device/OS support matrix or measured on-robot latency qualification. The author reports working iPhone/iPad and Vision Pro development, including three H.264 camera feeds, while exact releases, revocation drills, packet-loss measurements, operator training, public location policy, and hardware test dates remain installation records. The book teaches the boundaries but makes no compatibility or safety guarantee for a reader's controller.
+\end{fieldnotebox}
 
 \ROBChapterPhoto{Chapter 10}{Advanced H.264 video transport}{2022-oakd-depth-camera.jpg}
 
@@ -945,7 +972,9 @@ Record axis direction, handedness, units, timestamp, calibration method, uncerta
 
 \ROBPhotoTwo{rob-v3-page-55.jpg}{Presentation page 55 proposes an RPLidar stage above the base.}{2024-open-tracked-base.jpg}{The open base shows how sensors, wiring, compute, and mechanisms become a serviceability problem.}
 
-\ROBPlaceholder{Confirm current camera models, lenses, mounting transforms, USB/Ethernet topology, DepthAI version, exposure and lighting behavior, lidar model/host/address, installed map workflow, IR positions and shrouds, calibration targets, timestamp synchronization, frame conventions, and measured accuracy.}
+\begin{fieldnotebox}[title={PERCEPTION INVENTORY VERSUS CALIBRATION}]
+The author identifies an autofocus OAK-D Pro at the face, an OAK-D Pro Wide at the belly, an Insta360 Pro II panorama role, and an RPLIDAR/SLAMWARE mapping path. Source establishes separate provider lifecycles and data framing. It does not establish current lenses, serials, transforms, exposure limits, network addresses, calibration targets, timestamp error, coordinate uncertainty, or measured accuracy. Those values are intentionally absent because a plausible camera transform can still be dangerously wrong.
+\end{fieldnotebox}
 
 \ROBChapterPhoto{Chapter 12}{Arms, animation, speech, autonomy, and AI}{2025-detached-articulated-arm.jpg}
 
@@ -1038,7 +1067,9 @@ Language-model confidence is not evidence of physical safety. Treat model output
 
 \ROBPhotoTwo{2025-detached-articulated-arm.jpg}{The detached arm makes reach, joint order, cabling, and manipulation limits concrete.}{2022-oakd-depth-camera.jpg}{The depth camera is one input to a manipulation experiment; a successful image alone is not a grasp-validation test.}
 
-\ROBPlaceholder{Provide arm/neck calibration files, verified keyframes, joint feedback and limits, safe animation cancel behavior, speech privacy settings, autonomy speed/radius/obstacle requirements, Gemini model/release configuration, consent signage, action approval policy, and validation for every enabled tool.}
+\begin{fieldnotebox}[title={BEHAVIOR RECORD LIMIT}]
+The archive contains keyframes, tracking, speech, autonomy, and model integrations, but no publication calibration bundle or complete pose-by-pose clearance report was approved. Servo values, joint targets, autonomy thresholds, and model/tool settings are installation-specific and are not printed as a reusable configuration. Current source behavior and defaults may be studied; physical execution still requires local limits, a tested cancel/stop path, consent signage, and an operator-owned release record.
+\end{fieldnotebox}
 
 \part{Integration, operation, and maintenance}
 
@@ -1104,7 +1135,9 @@ For each layer, measure detection time, command time, electrical response, mecha
 Use rated stands, restraints, remote observation, current limiting, a spotter, and an independent stop before intentionally injecting failures. Some failures should be tested only in simulation or on surrogate hardware.
 \end{safetybox}
 
-\ROBPlaceholder{Insert the actual hazard analysis, operating envelope, requirements matrix, unit and fixture reports, current/thermal data, watchdog timing, E-stop test, stopping distances on hard floor and grass, slope tests, flipper/actuator load tests, arm collision tests, and sign-off authority.}
+\begin{safetybox}[title={NO SAFETY CERTIFICATION}]
+No complete hazard analysis, requirements matrix, measured stopping-distance set, thermal/current report, slope/flipper/arm qualification, or qualified engineering sign-off was supplied. Eight years of experiments and demonstrations are valuable historical evidence but are not a certification. Publication of this history does not approve ROB for public operation or approve a copy for construction. Any live event must create and sign its own current risk assessment before motion.
+\end{safetybox}
 
 \ROBChapterPhoto{Chapter 14}{Maker Faire operations}{2025-rob-side-full-body.jpg}
 
@@ -1150,7 +1183,9 @@ Use explicit visible states: Transport Safe, Display Only, Demo Armed, Moving, S
 
 Keep an accessible viewing route. Do not require visitors to step over cables. Mark pinch and tread boundaries clearly. Avoid publishing or enrolling faces without consent. When camera, microphone, face recognition, Messages, transcript memory, recording, or cloud processing is active, use plain-language signage and a visible indicator; provide a quick disable/delete path and a non-recorded, non-enrolled way to participate. A recognized identity is personalization only and never event admission, controller ownership, or action authority.
 
-\ROBPlaceholder{Insert venue-specific barrier dimensions, maximum public-demo speed, operator and spotter names, E-stop placement, battery/charging policy, transport vehicle and lift plan, insurance or venue requirements, photo/video release plan, privacy signage, scripted demonstrations, and abort criteria.}
+\begin{safetybox}[title={EVENT PLAN IS VENUE-SPECIFIC}]
+The book records Maker Faire history, not a reusable show permit. Barrier dimensions, permitted speed, staff, E-stop placement, charging, lifting, transport, insurance, consent signage, demonstration script, weather response, and abort criteria must be completed for the actual venue and current robot. Until that signed event packet exists, ROB should remain static or operate only in a separately approved controlled test area.
+\end{safetybox}
 
 \ROBChapterPhoto{Chapter 15}{Maintenance and change control}{2025-rear-electronics-bay.jpg}
 
@@ -1186,7 +1221,9 @@ Arm action rejected & Treat rejection as correct until capability, calibration, 
 \bottomrule
 \end{tabularx}
 
-\ROBPlaceholder{Add maintenance intervals, lubrication policy, tread and chain wear limits, fastener torques, battery retirement criteria, cable replacement rules, calibration intervals, spare-parts inventory, fault codes, backup/restore procedure, and configuration-release form.}
+\begin{fieldnotebox}[title={NO APPROVED MAINTENANCE SCHEDULE}]
+The archive documents repairs and revisions but not a complete approved maintenance program. It supplies no authoritative wear limits, torque schedule, battery retirement criteria, calibration interval, spares list, or released restore image. A future operating edition must derive those items from component documentation, measurements, failure history, and current inspection. This historical edition does not convert age or continued operation into a maintenance interval.
+\end{fieldnotebox}
 
 \part{Advanced engineering compendium}
 \setlength{\emergencystretch}{4em}
@@ -1212,9 +1249,9 @@ The hardware chapters above establish ROB's physical plant, evidence status, and
 
 \input{adult-learning-and-commissioning.tex}
 
-\chapter{Builder input ledger}
+\chapter{Future measured-edition ledger}
 
-This appendix is the iteration queue. Replace each line with a dated, reviewed answer and evidence reference.
+This appendix is the development queue for a future dimensionally complete technical edition. The present historical edition does not need to invent these values. Each future entry should be supported by a dated measurement, drawing, test record, authorized public reference, or reviewed first-person account.
 
 \begin{enumerate}
   \item Complete the first-person project origin: name meaning, motivation, contributors, shops, and the relationship between the now-documented 2017-2025 Cerebro source history and ROB's physical revisions.
@@ -1306,8 +1343,8 @@ AmberHomeFolder/amber/L-10 and R-11 & Captured Ubuntu runtime evidence for the t
 AmberHomeFolder/amber/sin\_wave/rawLcm & Source definitions for joint targets, arm feedback, Cartesian tasks, plans, solver responses, and gripper control.\\
 Amber URDF/amber\_b1.urdf & Independent seven-joint single-arm geometry and model limits; requires measured ROB mounting and tool transforms.\\
 Cerebro/Amber-PythonAPI/Amber V2 API & Packed UDP reference client for status, motion, mode, calibration, and gripper commands; requires protocol hardening before production authority.\\
-ROB hardware spec datasheets/Hengdrive*.pdf & Controlled builder-owned B5685G outline/performance records; selected interface facts summarized, full drawings excluded pending publication permission.\\
-ROB hardware spec datasheets/B-COMMAND*.pdf & Controlled custom rotary-interface drawings for the installed USB3/24 V torso unit and the intended USB3/Ethernet/12 V head unit; selected facts summarized, drawings excluded.\\
+ROB hardware spec datasheets/Hengdrive*.pdf & Controlled vendor records retained in the private archive. They are excluded as technical sources for this public edition; no drawing, connector assignment, ratio, rating, or performance table is reproduced or paraphrased.\\
+ROB hardware spec datasheets/B-COMMAND*.pdf & Controlled vendor records retained in the private archive. The public edition identifies the installed component only from the builder's account and visible hardware; it does not reproduce or paraphrase controlled drawings or terminal geometry.\\
 ORobotics/media/gallery-originals & Private high-resolution construction and event photographs; strip metadata and review releases.\\
 ORobotics/data/gallery\_metadata.json & Visual descriptions useful for search and draft captions, not authoritative part identification.\\
 Cerebro/Cerebro/ROBSerialBox.m & Physical serial adapter, base heartbeat, servo/arm helpers.\\
@@ -1372,7 +1409,7 @@ Apple H.264 decode & Apple Core Media, \texttt{CMVideoFormatDescriptionCreateFro
 \bottomrule
 \end{tabularx}
 
-The B-COMMAND and HengDrive drawings in the builder's hardware folder remain controlled vendor records. Their model numbers and selected interface facts are recorded in the relevant chapters; obtain written permission before reproducing the drawings or a substantial table of their contents.
+The B-COMMAND and HengDrive drawings in the builder's hardware folder remain controlled vendor records and are not publication sources for this edition. Obtain written permission or an authorized public document before reproducing or paraphrasing their drawings, tables, terminal details, ratings, or performance claims.
 
 \chapter{Photo and artwork credits}
 
@@ -1384,9 +1421,9 @@ Before public printing, complete image releases, confirm third-party product-ima
 
 \vfill
 \begin{missionbox}[title={NEXT ITERATION}]
-Work through the Builder input ledger with the machine physically available. Replace placeholders with measured values, drawings, test reports, verified captions, and contributor stories. Then tag the source snapshot, rebuild all ten PDFs, and perform a page-by-page technical and print proof before the Maker Faire print run.
+Use the future measured-edition ledger with the machine physically available to create as-built CAD, measured values, drawings, test reports, and revision-specific captions. Keep that later engineering project separate from release of this historical edition. Before the Maker Faire print run, tag the publication snapshot, rebuild all ten books, and complete page-by-page accessibility, rights, print, and factual proofs.
 \end{missionbox}
 
-\ROBSource{This field manual was synthesized from the local ROB presentation, builder interview of 2026-08-21, private photo originals and metadata, builder-owned hardware records, official manufacturer/standards references, Arduino firmware, archived Cerebro v1-v5 source, and the current Cerebro, ROBController, local ROBControllerVision, RPLidar, Amber-HomeFolder, ROBTrainingGames, and ORobotics repositories inspected through 2026-08-23. The current pass restores Cerebro's 2017-2025 lineage and documents the 2025 v5 Git reset as a migration boundary.}
+\ROBSource{This field manual was synthesized from the local ROB presentation, the builder interview of 2026-08-21 and follow-up answers of 2026-08-29, private photo originals and metadata, official manufacturer/standards references, Arduino firmware, archived Cerebro v1-v5 source, and the current Cerebro, ROBController, local ROBControllerVision, RPLidar, Amber-HomeFolder, ROBTrainingGames, and ORobotics repositories inspected through 2026-08-23. Controlled vendor drawings were excluded as public technical sources. The current pass restores Cerebro's 2017-2025 lineage and documents the 2025 v5 Git reset as a migration boundary.}
 
 \end{document}

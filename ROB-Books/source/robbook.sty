@@ -140,12 +140,6 @@
   boxrule=0.8pt,arc=1mm,left=8pt,right=8pt,top=7pt,bottom=7pt,
   fonttitle=\robdisplay\bfseries,title={FROM ROB'S BUILD LOG},#1
 }
-\newtcolorbox{placeholderbox}[1][]{
-  enhanced,breakable,colback=ROBGray!22,colframe=ROBSteel,
-  borderline west={3pt}{0pt}{ROBAccent},boxrule=0.45pt,arc=0mm,
-  left=9pt,right=8pt,top=7pt,bottom=7pt,
-  fonttitle=\robcondensed\bfseries,title={BUILDER INPUT NEEDED},#1
-}
 \newtcolorbox{conceptbox}[1][]{
   enhanced,breakable,colback=ROBCyan!5,colframe=ROBSteel!70,
   boxrule=0.55pt,arc=1mm,left=8pt,right=8pt,top=7pt,bottom=7pt,
@@ -197,7 +191,7 @@
   {\small\color{ROBSteel}
   Copyright \copyright\ 2026 Rodolfo Aramayo / Orbitus Robotics. Photographs are from the private ROB build archive unless otherwise noted. The generated frontispiece is original artwork derived from a ROB reference photograph. This independent educational project is not affiliated with or endorsed by any film studio or franchise owner. Product and company names remain the property of their respective owners.\par
   \vspace{6pt}
-  First evidence-based draft: 2 August 2026. Build details marked \textbf{Builder input needed} are deliberate placeholders for the builder to complete.}
+  First evidence-based draft: 2 August 2026. This historical engineering edition distinguishes documented facts, builder recollection, experiments, plans, and facts not established by the available evidence.}
   \clearpage
 }
 
@@ -280,14 +274,13 @@
 
 \newcommand{\ROBFact}[2]{\textcolor{ROBAccent}{\robcondensed\bfseries\MakeUppercase{#1}}\quad #2}
 \newcommand{\ROBSource}[1]{{\scriptsize\color{ROBSteel}\raggedright\sloppy\textit{Source trail: #1}\par}}
-\newcommand{\ROBPlaceholder}[1]{\begin{placeholderbox}#1\end{placeholderbox}}
 \newcommand{\ROBStatus}[2]{\tcbox[on line,colback=#1!10,colframe=#1,boxrule=0.6pt,arc=0.8mm,left=3pt,right=3pt,top=1pt,bottom=1pt]{\robcondensed\bfseries\scriptsize\MakeUppercase{#2}}}
 \newcommand{\Implemented}{\ROBStatus{ROBGreen}{Implemented}}
 \newcommand{\Commanded}{\ROBStatus{ROBCyan}{Commanded}}
 \newcommand{\Experimental}{\ROBStatus{ROBAmber}{Experimental / optional}}
 \newcommand{\Legacy}{\ROBStatus{ROBSteel}{Legacy}}
 \newcommand{\Planned}{\ROBStatus{ROBPurple}{Planned}}
-\newcommand{\Unverified}{\ROBStatus{ROBRed}{Builder verification needed}}
+\newcommand{\Unverified}{\ROBStatus{ROBRed}{Not established}}
 
 \newcommand{\ROBSimpleSystemDiagram}{%
   \begin{center}
@@ -388,7 +381,7 @@
     \tikzstyle{dev}=[draw=ROBSteel,fill=ROBGray!22,rounded corners=1mm,minimum width=1.35in,minimum height=0.48in]
     \node[host] (mac) {Mac mini M4\\Cerebro};
     \node[hub,right=of mac] (hub1) {powered USB-C / USB 3 hub\\power budget required};
-    \node[hub,above right=4mm and 8mm of hub1] (ring) {B-COMMAND rotary link\\USB 3 + 24 V power};
+    \node[hub,above right=4mm and 8mm of hub1] (ring) {B-COMMAND rotary link\\power + data path};
     \node[hub,right=of ring] (basehub) {base USB hub\\+ USB--Ethernet};
     \node[dev,above right=3mm and 7mm of basehub] (mega) {Arduino Mega\\USB serial};
     \node[dev,below right=3mm and 7mm of basehub] (lidar) {RPLidar Ethernet\\model / host verify};

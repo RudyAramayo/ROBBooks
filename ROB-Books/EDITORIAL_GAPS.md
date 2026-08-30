@@ -1,101 +1,49 @@
-# Building R.O.B. — editorial gaps for the builder
+# Building R.O.B. — publication and future-edition ledger
 
-The manuscripts use visible placeholders instead of inventing missing facts. Answer these questions with measurements, drawings, dated photographs, test records, or a short first-person story. When two revisions differ, keep both and label the date; do not silently merge them into one imagined robot.
+The 2026 edition is a historical engineering reference and educational field manual. It explains how Rodolfo Aramayo built and revised ROB, teaches the reasoning that can be supported by the archive, and labels firsthand recollection as recollection. It is not a dimensionally complete construction plan, an as-built CAD package, a stamped design, or a certification that a reader can safely reproduce the current machine.
 
-## 1. Identity and build story
+This scope resolves the former demand to invent missing dimensions, schematics, ratings, test reports, and shop procedures. Those records belong to a later measured redesign. Unknowns in the current manuscripts are stated as evidence limits rather than blank promises.
 
-- The archive now establishes ROB-specific Cerebro source in 2017-2018 and the first surviving Cerebro Git root on 1 January 2018. What does “R.O.B.” mean, when did the physical project begin, and how did the first serial-control software relate to that beginning?
-- The v1-v5 source record is documented. Add the builder's first-person account of why the Mac controller was named Cerebro, what “Rob Makina” meant in the early headers, and why the v5 code moved into a fresh repository in August 2025.
-- What did you want ROB to do at the start? What is the current mission?
-- Which people, shops, clubs, schools, vendors, or events contributed?
-- What were the most important failed attempts, repairs, and design changes?
-- Which photographs show distinct hardware revisions rather than one continuous build?
-- What changed after each public demonstration, including Maker Faire appearances?
+## Publication blockers requiring the author
 
-## 2. Current physical envelope
+The full wording and response history live in [`publication/AUTHOR_INTERVIEW_RECORD.md`](publication/AUTHOR_INTERVIEW_RECORD.md).
 
-- Ready-to-run height, width, length, mass, center of mass, ground clearance, and transport dimensions.
-- Current chassis and body materials, plate thicknesses, coatings, and remaining wooden parts.
-- Safe lifting points, number of people or lift equipment required, and transport restraints.
-- Full motion envelope for treads, flippers, torso/body, head/neck, linear actuators, arms, and grippers.
-- Pinch, crush, entanglement, hot-surface, sharp-edge, and tip-over zones in every pose.
+- Q01: approximate or exact month/year and city/state where the first physical ROB build began.
+- Q03: identification of any selected real book photograph not taken by Rodolfo Aramayo, or explicit confirmation that there are no exceptions in the allowlist.
+- Q04: explicit confirmation of author, publisher/imprint, copyright owner, year, content/license split, and worldwide sales territory.
+- Q05: confirmation that venue terms permit the selected commercial photographs and that visible product photographs are the author's photographs of owned components, with any exception named for exclusion.
 
-## 3. Chassis, treads, and drivetrain
+## Editorial decisions already recorded
 
-- Dimensioned as-built drawings or CAD for the base, tread frames, shafts, mounts, openings, and guards.
-- Tread, wheel, sprocket, shaft, bearing, collar, chain, motor, gearbox, and controller part identities.
-- Tread-tension and chain-alignment procedure, acceptable ranges, wear limits, and inspection interval.
-- Final flipper geometry, intended job, limits, loads, and relationship to the third-wheel proposal.
-- Verified speed, slope, stopping distance, traction, turning, thermal, and current results on hard floor and grass.
-- The exact installed role of each central/torso/third-wheel actuator in each revision.
+1. ROB is a friendly name derived from “robot,” not an acronym.
+2. The physical project began after the author left Verizon Labs; the surviving 2017–2018 Cerebro serial-control work belongs to the initial prototype.
+3. Johnny 5 is disclosed only as personal inspiration. The books use no franchise art, logos, copied design, or affiliation claim.
+4. CakeChat is described as an early pre-ChatGPT neural-dialogue experiment visible in the source, not an ancestor of ChatGPT.
+5. Cerebro, Rob Makina, and the August 2025 v5 repository reset are explained from the author's account without turning wordplay or version-control cleanup into technical claims.
+6. Rodolfo Aramayo is credited as sole builder, author, and principal developer. Manufacturers are component suppliers, not coauthors, sponsors, endorsers, or integration reviewers.
+7. Hardware revisions, failures, and the approximately $22,500 dual-arm purchase are labeled as the author's recollection unless independent evidence is cited.
+8. Official Maker Faire records support R.O.B. exhibits in 2019, 2023, 2024, and 2025. The 2019 fair was at the San Mateo County Event Center; the later three were at Mare Island in Vallejo. The September 2026 fair is still in the future as of this record and is not claimed as a completed appearance.
+9. No electrical, mechanical, educator, accessibility, privacy, or legal reviewer has been retained. The books make no claim of those approvals.
+10. Reader age bands are approved: story 5–6; Volume 1 8–12; Volume 2 10–14; Volume 3 10–15; Volume 4 12–16; Volumes 5–8 and the complete manual for advanced readers.
+11. Controlled HengDrive and B-COMMAND drawings are retained only in the private archive. The public edition does not reproduce or paraphrase their specifications.
+12. Construction-photo ownership and adult/minor commercial permission are recorded in principle, while the exact allowlist and venue/product-photo confirmation remain release gates.
 
-## 4. Fabrication record
+## Future measured technical edition
 
-- Final templates, CAD, material grades, thicknesses, fasteners, fits, tolerances, and torque values.
-- Actual order of milling, drilling, cutting, bending, welding, deburring, coating, and assembly.
-- Machine, cutter, workholding, feeds and speeds, coolant/chip control, PPE, inspection tools, and acceptance checks for every operation.
-- Which parts were made in-house or by an outside shop, and which are commercial components?
-- Rejected parts and lessons: what failed inspection, interfered, cracked, loosened, overheated, or had to be remade?
-- Costs, lead times, substitutes, service-access decisions, and reusable fixtures.
+These are valuable next projects, not blockers for the historical edition:
 
-## 5. Electrical and energy system
+1. Scan or measure the hand-built chassis and produce revision-controlled as-built CAD, dimensions, mass properties, motion envelopes, lifting points, and transport restraints.
+2. Identify every drivetrain revision and installed motor, controller, gearbox, sprocket, shaft, bearing, chain, guard, and tension method through labels, measurements, and authorized public sources.
+3. Create shop-specific fabrication travelers with materials, tolerances, fasteners, workholding, tooling, inspection, guarding, ventilation, and qualified review.
+4. Trace the present electrical system into an authoritative schematic, protection study, conductor schedule, battery/BMS/charger record, grounding plan, E-stop design, and fault-test report.
+5. Record the installed low-level firmware, pin/harness map, truth tables, watchdog behavior, end stops, feedback, current limits, sensor calibration, and loss-of-communication states.
+6. Measure camera, lidar, neck, torso, arm, and base coordinate frames; joint limits; collision envelopes; payloads; latency; stopping behavior; and stale-sensor responses.
+7. Produce dated verification results for restrained, low-risk stages before any floor, slope, flipper, arm, autonomous, or public-operation trial.
 
-- Authoritative single-line schematic for the current robot, with revision and date.
-- Battery chemistry, model, quantity, series/parallel topology, BMS, chargers, isolation, enclosure, and retirement criteria.
-- Main disconnect and emergency-stop circuit, contactor/relay details, fault state, reset behavior, and test procedure.
-- Fuse/breaker values and interrupt ratings; branch currents; converters; inverter or shore-power details.
-- Wire gauge, insulation, color/label convention, connectors, strain relief, grounding/bonding, and cable routing for every branch.
-- Measured startup, steady, peak, regenerative, stalled, and fault currents plus runtime and temperature data.
-- Logic-voltage compatibility and isolation between Arduino, motor controllers, actuator controller, sensors, USB, and computers.
+## Live ROB operation remains separate
 
-## 6. Arduino base and low-level motion
+Publication of a historical book does not release the physical robot for a public event. Any live Maker Faire appearance needs its own qualified engineering review, event-specific hazard analysis, barrier and staffing plan, privacy signage and consent process, charging/fire plan, tested stop behavior, and venue acceptance. Those operational records must be maintained with the machine and event plan rather than implied by the ISBN edition.
 
-- Exact Arduino-compatible board and core, installed library versions, firmware revision, and build instructions.
-- Connector-to-pin table, including active polarity, voltage, destination, cable label, and expected safe state.
-- Verified tread/flipper direction, brake truth table, PWM convention, allowed command bounds, slew limits, and boot state.
-- Corrected framing/parser design, valid-message watchdog behavior, timeout state, and independent physical stop behavior.
-- Actuator controller model, its compact serial protocol, end stops, feedback, current limits, travel, load, duty cycle, and safe-start reset behavior.
-- Encoder hardware and final pins; resolve the conflicting historical D18/D19 notes and the proposed D20/I²C conflict.
-- IR sensor models, positions, shrouds, calibration, grass/terrain test results, and date/reason each channel was enabled or disabled.
-- IMU model, mounting orientation, offsets, calibration storage, sample rate, and use in actual control.
+## Completion path
 
-## 7. macOS, controllers, and networking
-
-- Tagged release or commit for Cerebro, ROBController, ROBControllerVision, and lidar software used at publication.
-- Mac model, macOS version, ports, powered hubs, USB device names, selected Python runtime, packages, and startup order.
-- Current network diagram: router/access point, discovery, services, ports, trust boundaries, video path, and no secrets.
-- Pairing, enrollment, certificate replacement, revocation, role changes, controller handoff, and recovery after reinstall.
-- Measured command rate, latency, packet loss, freshness/lease behavior, reconnect behavior, and stop result for every controller.
-- Supported iPhone, Watch, and Vision Pro hardware/OS matrix and verified current feature set.
-- Remove, minimize, or justify live controller location data; define log retention, redaction, and public-show privacy policy.
-
-## 8. Perception, arms, speech, autonomy, and AI
-
-- Exact camera, OAK-D, lidar, IR, and IMU models; mounts; coordinate transforms; timestamp behavior; calibration; accuracy; lighting limits.
-- Current lidar host, transport, model, filtering, map format, and behavior when scans become stale.
-- Arm and neck models, joint definitions, zeroing, limits, payload, reach, current limits, feedback, collision model, and gripper behavior.
-- Approved keyframes, calibration file, cancellation behavior, and pose-by-pose clearance checks.
-- Local speech settings versus optional external/cloud audio or video; consent, indicator, retention, and disable procedure.
-- Face-identity release record: enrolled people and consent, administrator enrollment policy, retention/deletion, false-accept/false-reject targets, on-robot threshold calibration, replay and presentation-attack tests, lighting/pose/occlusion limits, liveness/depth plan, and proof that identity never grants control authority.
-- AdaFace release choice and profile migration: selected WebFace4M or VGGFace2 encoder, installer/checkpoint hashes, Core ML validation record, model-specific enrollment inventory, comparison protocol, and rollback/delete/re-enroll procedure.
-- Messages bridge release record: exact enabled accounts and allowlisted senders, Full Disk Access and Automation grants, one-to-one/group rejection tests, attachment and rate limits, cloud/local model routing, fixed news/weather sources, transcript-memory default and retention, plaintext export/clear procedure, and incident response.
-- Administrator-message policy: locally configured administrator handles, exact command names, 90-second same-chat confirmation tests, reviewed shutdown/reboot scripts, local critical warning, output retention, and proof that message content cannot be interpolated into a shell.
-- Recording and training-data governance: session owner and purpose, explicit start/stop indication, storage estimate and free-space floor, recovery tests, dataset retention/deletion/export, bystander consent, calibration/version binding, train/validation separation, and review of every derived label. Preserve the rule that autonomous commands never label themselves.
-- Autonomy speed, radius, obstacle criteria, containment evidence, abort rules, and actual on-robot test results.
-- For every AI-exposed action: implemented executor, bounds, approval policy, timeout, cancellation, telemetry, failure response, and fixture/on-robot evidence. Keep unavailable actions explicitly unavailable.
-
-## 9. Verification and public operation
-
-- Hazard analysis, risk controls, owners, acceptance criteria, sign-off authority, and re-test triggers.
-- Test ladder results from lifted treads through controlled floor tests, slopes, grass, flippers, actuators, arms, and multi-controller failures.
-- Failure injection for malformed/stale commands, serial silence/noise, lost network, helper crashes, stale sensors, bad calibration, low battery, and E-stop activation.
-- Measured end-to-end stopping time and distance for each mode, surface, load, speed, and battery condition.
-- Maker Faire barrier dimensions, speed limit, scripted missions, camera/microphone signage, operator/spotter roles, charging plan, fire response, and abort criteria.
-- Maintenance intervals, wear limits, lubrication, torque checks, spares, battery retirement, backup/restore, and configuration-release record.
-
-## 10. Publication and credits
-
-- Confirm photographer ownership, identifiable-person releases, venue requirements, and permission for third-party product imagery.
-- Obtain authorized public datasheets or written permission before publishing restricted vendor facts or pages.
-- Supply preferred acknowledgments, sponsor names/logos with permission, contact information, license, ISBN/imprint decisions, and age/safety review.
-- Approve the final photo captions and clearly identify every historical concept, removed component, and current configuration.
+After Q01 and Q03–Q05 are answered, update the manuscripts and rights ledger, rebuild all ten PDFs and EPUBs, run the automated validation suite, visually review every page and store asset, complete an Apple Books device/accessibility review, obtain printer-specific proofs, record final publisher acceptance, and populate the Apple Books IDs and URLs after submission.

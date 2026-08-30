@@ -1,62 +1,64 @@
-# Building R.O.B. — print, privacy, and safety release gate
+# Building R.O.B. — historical-edition publication release gate
 
-Do not distribute the books as final construction instructions until every required item below has an accountable reviewer, evidence, and date. The current PDFs are editorial/layout proofs.
+This checklist releases books, not the physical robot. The edition documents one maker's hand-built history and teaches from the surviving evidence. It does not provide certified construction plans or authorize energized construction, testing, movement, or public operation.
 
-## Engineering release
+## Scope and evidence
 
-- [ ] Every `ROBPlaceholder` is answered, deliberately retained as an open question, or removed with a recorded reason.
-- [ ] A qualified electrical reviewer approves the as-built schematic, battery/BMS/charger system, branch protection, conductor/connector ratings, grounding/bonding, disconnect, E-stop, and fault behavior.
-- [ ] A qualified mechanical reviewer approves materials, joints, fasteners/torques, welds, guards, lifting, center of mass, tip stability, motion limits, stopping distance, and public barrier.
-- [ ] Arduino polarity, brake truth table, boot outputs, parser bounds, watchdog, actuator reset, end stops, and every loss-of-communication state are measured on a de-energized or safely restrained test setup first.
-- [ ] Software roles, controller authority, timing, pairing/revocation, version identifiers, sensor-stale behavior, privacy settings, and AI action status match the tagged release used for the show.
-- [ ] Failure-injection, emergency-stop, stopping-time/distance, thermal/current, slope, grass, flipper, actuator, arm, and recovery tests have written results and sign-off.
-- [ ] The operator, spotter, safety lead, charging lead, and show-state/abort procedure are named for the event.
+- [x] The publisher selected a historical engineering reference and educational field-manual posture.
+- [x] The manuscripts state that as-built CAD, complete schematics, measurements, and qualified engineering approvals do not exist for this edition.
+- [x] Missing technical facts are presented as evidence limits or future measured-edition work rather than invented values.
+- [x] No electrical, mechanical, educator, accessibility, privacy, or legal approval is claimed.
+- [x] Controlled vendor drawings are excluded as public technical sources; no restricted drawing, table, connector assignment, ratio, rating, or performance curve is reproduced or paraphrased.
+- [ ] Q01 and Q03–Q05 in `publication/AUTHOR_INTERVIEW_RECORD.md` are answered and reconciled into the manuscripts, metadata, and rights ledger.
+- [ ] The final source snapshot, factual claims, revision labels, captions, credits, cross-references, spelling, and accessibility language receive a complete publisher copyedit.
 
-## Youth and workshop safety review
+## Youth, safety, and privacy language
 
-- [ ] An educator and the responsible adult review age ranges, vocabulary, activities, supervision language, and accessibility.
-- [ ] Youth activities remain paper, simulation, or appropriately current-limited low-voltage kits; no activity silently implies access to ROB's traction batteries, mains/inverter circuits, motor wiring, actuators, machine tools, or live drivetrain.
-- [ ] Fabrication photographs do not imply that visible practice is complete safety guidance. Captions distinguish what is visible from required but undocumented workholding, guarding, and PPE.
-- [ ] The full-size robot is immobilized and made electrically safe before close public inspection; boundaries cover treads, arms, flippers, pinch points, cables, and camera/microphone participation.
+- [x] Youth activities are limited to paper, simulation, observation, or explicitly supervised low-energy educational work.
+- [x] The books do not invite youth access to ROB's traction batteries, inverter/mains circuits, drivetrain, chains, machine tools, actuators, live controllers, or unrestricted network commands.
+- [x] Fabrication and hardware photographs are described as historical evidence rather than complete safety instruction.
+- [ ] Every statement about cameras, microphones, face identity, Messages, recording, cloud services, retention, consent, authorization, and emergency behavior is checked against the dated publication snapshot.
+- [ ] Final publisher review accepts the residual trademark, privacy, safety-language, and legal risk without implying review by an outside professional.
 
-## Privacy, permissions, and rights
+## Photographs and artwork
 
-- [ ] Photograph ownership, model releases, venue terms, minor/guardian releases, and third-party product-image permissions are documented.
-- [ ] Every prepared photograph is visually checked at full resolution for faces, shipping labels, addresses, account UI, credentials, network identifiers, location data, reflections, screens, and legible private notes.
-- [ ] Camera metadata remains stripped, and no excluded/private-review image appears in source, assets, preview sheets, PDFs, print packages, or promotion.
-- [ ] Cloud audio/video behavior, local speech behavior, location collection, retention, signage, consent, visible indicators, and immediate disable paths are described accurately.
-- [ ] Face enrollment is opt-in, deletion is complete and testable, encrypted gallery/key behavior is reviewed, thresholds are calibrated on ROB, liveness limitations are public, and recognized identity is never described or wired as physical or administrative authorization.
-- [ ] The Messages bridge remains disabled by default; exact sender allowlists, one-to-one fail-closed behavior, attachment limits, local/cloud routing, news/weather sources, rate limits, permissions, and transcript-memory retention/export/clear behavior receive a privacy review.
-- [ ] Message-triggered administrator scripts use locally configured exact commands, same-chat confirmation, fixed interpreters, stdin-only script input, bounded runtime, and a local critical warning. No published page exposes real handles, secrets, or machine-specific scripts.
-- [ ] Recording sessions require an explicit operator start, display active capture, preserve camera/calibration/authority provenance, exclude autonomous self-labeling, and have documented consent, capacity, retention, deletion, recovery, and model-training review.
-- [ ] Restricted/confidential vendor pages and specifications are omitted unless written publication permission or an authorized public source is obtained.
-- [ ] A suitable trademark/legal reviewer confirms title, attribution, disclaimers, and original retro-space visual treatment for the intended distribution.
+- [ ] The author confirms the photographer, commercial permission, venue terms, and visible product-photo rights for every selected real photograph.
+- [ ] Every selected photograph is inspected at full resolution for people, labels, addresses, account UI, credentials, network identifiers, locations, reflections, screens, and private notes.
+- [ ] The asset allowlist is regenerated and verified; metadata is stripped; excluded/private-review images are absent from source, previews, PDFs, EPUBs, print packages, and promotion.
+- [ ] Generated illustrations and covers are confirmed original to this project, accurately labeled as illustrations, and acceptable at final output resolution.
 
-## Editorial and technical preflight
+## PDF and EPUB preflight
 
-- [ ] All claims are checked against the dated source snapshot; current, historical, planned, experimental, unavailable, and commanded-but-unmeasured states are not blended.
-- [ ] Measurements include units, method, revision, and uncertainty where relevant.
-- [ ] Code samples are re-run in a clean environment and remain safe/offline unless explicitly marked for a restrained test rig.
-- [ ] Table of contents, page numbers, cross-references, captions, credits, placeholders, spelling, and accessibility language receive a human copyedit.
-- [ ] Every PDF passes `bash tools/validate_books.sh` and every rendered page receives a visual review at readable zoom—not only a contact-sheet glance.
+- [x] All ten PDFs build from the current sources and pass `bash tools/validate_books.sh`; rerun after the final author-answer reconciliation.
+- [ ] Every rendered PDF page receives a readable visual review for clipping, overflow, blank pages, missing images, caption placement, contrast, and navigation.
+- [x] All ten EPUBs rebuild from the current sources and pass EPUBCheck plus the structural content/accessibility audit; rerun after the final author-answer reconciliation.
+- [ ] A human checks EPUB reading order, headings, lists, tables, links, alt text, cover announcement, contrast, text resizing, VoiceOver, and Apple Books behavior on representative iPhone, iPad, and Mac devices.
 
-## Printer proof
+## Printer and distribution proof
 
-- [ ] Printer confirms final trim size, binding, safe margins/gutter, desired bleed, raster resolution, color space/profile, total ink limits, transparency handling, embedded fonts, cover/spine specification, and paper stock.
-- [ ] The current PDFs use US Letter pages and RGB imagery. If the printer requires bleed, crop marks, CMYK conversion, imposed spreads, a separate cover, or a spine, generate a printer-specific export instead of scaling these files at the press.
-- [ ] Full-page chapter photographs and the darkest pages are checked in a physical proof for crop, shadow detail, skin/metal color, banding, and text contrast.
-- [ ] Generated illustrations are not enlarged beyond acceptable effective resolution and remain captioned as illustrations.
-- [ ] A complete bound proof is reviewed under the lighting expected at Maker Faire before the production run is approved.
+- [ ] The selected printer confirms trim, binding, safe margins/gutter, bleed, raster resolution, color space/profile, ink limits, transparency, embedded fonts, cover/spine specification, paper, and barcode requirements.
+- [ ] Printer-specific interiors and covers pass the vendor's file review without press-side scaling or silent substitution.
+- [ ] Full-page photographs, darkest pages, small captions, tables, and generated illustrations are checked in a physical proof.
+- [ ] A complete bound proof is approved under representative event lighting before the production quantity is ordered.
+
+## Apple Books and final approval
+
+- [ ] Final title/subtitle, descriptions, categories, age/grade ranges, pricing, samples, territories, tax/banking status, ISBN strategy, and series metadata are approved.
+- [ ] Apple Books submissions pass account-side validation and device review; each resulting book ID and URL is recorded in `publication/apple-books-catalog.json`.
+- [ ] Rodolfo Aramayo records final publisher approval after rights, digital, and physical proofs are complete.
+
+## Explicitly outside this book-release gate
+
+Live ROB operation requires a separate machine/event release: qualified electrical and mechanical review, current schematics, guarding, E-stop and failure testing, measured stopping behavior, battery/charging controls, public barriers, trained operators and spotters, privacy signage, fire response, insurance, and venue approval. Printing these books does not satisfy or waive those duties.
 
 ## Release record
 
 | Item | Reviewer | Evidence/revision | Date | Result |
 |---|---|---|---|---|
-| Electrical |  |  |  |  |
-| Mechanical |  |  |  |  |
-| Firmware/software |  |  |  |  |
-| Youth safety |  |  |  |  |
-| Privacy/releases |  |  |  |  |
-| Trademark/legal |  |  |  |  |
-| Print proof |  |  |  |  |
-| Final publisher approval |  |  |  |  |
+| Publisher factual/copyedit |  |  |  |  |
+| Photo/privacy rights |  |  |  |  |
+| PDF visual proof |  |  |  |  |
+| EPUB accessibility/device proof |  |  |  |  |
+| Printer file/physical proof |  |  |  |  |
+| Apple Books account review |  |  |  |  |
+| Final publisher approval | Rodolfo Aramayo |  |  |  |

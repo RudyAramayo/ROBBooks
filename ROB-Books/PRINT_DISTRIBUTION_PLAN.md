@@ -41,14 +41,14 @@ Print interiors must have an even page count. The quotes add one blank page to e
 |---|---:|---:|---:|---:|---:|---:|
 | *ROB and the Lost Yellow Ball* | 23 | 24 | $2.83 | **$3.68** | Not eligible at 24 pages | Not eligible at 24 pages |
 | Volume 1 | 37 | 38 | **$3.66** | $5.00 | $4.57 | $10.32 |
-| Volume 2 | 35 | 36 | **$3.54** | $4.82 | $4.45 | $9.89 |
+| Volume 2 | 36 | 36 | **$3.54** | $4.82 | $4.45 | $9.89 |
 | Volume 3 | 36 | 36 | **$3.54** | $4.82 | $4.45 | $9.89 |
 | Volume 4 | 40 | 40 | **$3.78** | $5.19 | $4.70 | $10.75 |
 | Volume 5 | 43 | 44 | **$4.02** | $5.57 | $4.95 | $11.61 |
 | Volume 6 | 34 | 34 | **$3.43** | $4.63 | $4.32 | $9.46 |
 | Volume 7 | 38 | 38 | **$3.66** | $5.00 | $4.57 | $10.32 |
 | Volume 8 | 50 | 50 | **$4.38** | $6.14 | $5.34 | $12.90 |
-| *Complete Builder's Field Manual* | 235 | 236 | **$15.40** | $23.74 | $17.15 | $52.85 |
+| *Complete Builder's Field Manual* | 236 | 236 | **$15.40** | $23.74 | $17.15 | $52.85 |
 
 Bold figures are the balanced event-run choices. The picture book is image-heavy and should use premium color. Standard color may work for the technical books because diagrams and text dominate many pages, but it is only acceptable after a physical proof confirms that photographs, dark pages, cyan/amber lines, and small labels reproduce cleanly.
 

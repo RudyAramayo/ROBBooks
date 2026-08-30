@@ -161,6 +161,12 @@ else
 fi
 
 echo "===== source placeholder count ====="
-rg -c "ROBPlaceholder" "$project_root/source"/*.tex
+if placeholder_matches="$(rg -n "ROBPlaceholder" "$project_root/source"/*.tex 2>/dev/null)"; then
+  printf '%s\n' "$placeholder_matches"
+  echo "ERROR: unresolved manuscript placeholders remain"
+  failure=1
+else
+  echo "0"
+fi
 
 exit "$failure"

@@ -1,27 +1,28 @@
 {
-  "schema_version": 1,
-  "publication_posture": null,
+  "schema_version": 2,
+  "publication_posture": "Historical engineering reference and educational field manual. It explains ROB's hand-built evolution and gives readers methods for studying or recreating its ideas, but it is not dimensionally complete CAD, a stamped design, a certified construction plan, or proof that the current machine is safe to reproduce. Missing as-built CAD is identified as future documentation work.",
   "identity": {
-    "rob_name_meaning": null,
+    "rob_name_meaning": "ROB is a friendly name derived from the word robot; it is not an acronym.",
     "physical_project_start_date": null,
     "physical_project_start_place": null,
-    "initial_inspiration": null,
-    "original_mission": null,
-    "current_mission": null,
-    "cerebro_name_story": null,
-    "rob_makina_name_story": null,
-    "cerebro_v5_migration_reason": null
+    "origin_context": "The physical project began after Rodolfo Aramayo left Verizon Labs, where he had worked as a systems software engineer on mobile VR/AR research technologies. The surviving 2017-2018 Cerebro serial-control work belongs to ROB's initial hardware prototype.",
+    "initial_inspiration": "The author wanted to bring the friendly, expressive idea of the movie robot Johnny 5 into an era of mobile devices and 3D depth cameras. This is personal historical inspiration, not a claim of affiliation or a license to copy the character or film design.",
+    "original_mission": "Build an expressive mobile robot around modern mobile interfaces, depth sensing, speech, and experimental conversational software. The early software included a local CakeChat neural-dialogue experiment that predates ChatGPT; CakeChat is not described as a technical ancestor of ChatGPT.",
+    "current_mission": "ROB is the author's career-scale personal engineering platform: the most elaborate project of his career and a continuing way to stretch his mobile, spatial-computing, robotics, perception, and AI-development skills while teaching others from the evidence.",
+    "cerebro_name_story": "Cerebro is a playful reference to cognition and the brain: the macOS application acts as ROB's coordinating processing center without claiming human consciousness.",
+    "rob_makina_name_story": "Rob Makina was the author's wordplay for robot machine, using a Latin-sounding construction in early source headers; it was a project persona, not a separate contributor.",
+    "cerebro_v5_migration_reason": "The August 2025 v5 repository was a pragmatic clean-history migration. The author considered the older repository cluttered by long history and artifacts, so he started a new repository from the then-current application. The reset was a version-control choice, not Cerebro's beginning."
   },
   "history": {
-    "contributors_and_roles": null,
-    "public_demonstrations": null,
-    "major_failures_repairs_and_revisions": null
+    "contributors_and_roles": "Rodolfo Aramayo identifies himself as the sole builder, author, and principal software developer. Product suppliers and manufacturers are credited for components, not as co-builders or endorsers: Apple (Mac mini), Arashi Vision/Insta360 (Insta360 Pro II), HengDrive (motors), B-COMMAND (custom rotary/slip-ring interfaces), NETGEAR (Orbi networking), AMBER Robotics (B1 arms and controller environment), SuperDroid Robots (LT2 tread system), Arduino (Mega 2560 controller platform), and SLAMTEC/SLAMWARE (RPLIDAR mapping stack), plus other suppliers identified in the component record.",
+    "public_demonstrations": "Official Maker Faire records identify R.O.B. as an exhibit at Maker Faire Bay Area 2019 (May 17-19, San Mateo County Event Center, San Mateo, California), as a Bay Area project in 2023 (the event ran October 13-15 and 20-22 at Mare Island Naval Shipyard, Vallejo), at Maker Faire Bay Area 2024 (October 18-20 at Mare Island), and at Maker Faire Bay Area 2025 (September 26-28 at Mare Island). The 2026 fair is scheduled for September 25-27, after this August 29 publication record; no 2026 R.O.B. appearance is claimed without a later accepted-project or post-event record.",
+    "major_failures_repairs_and_revisions": "The first prototype used a car battery, Power Wheels motors and wheels, scrap wood, an older Intel laptop, and an old robotic arm. ROB then moved to a SuperDroid Robots LT2 tracked base with a third-wheel/flipper idea intended to help turning and stair experiments. Early roughly 30 W brushless motors were underpowered at 12 V; gearing changes recovered torque but not the desired speed, and a 12-to-24 V boost stage made the robot stronger and faster while it remained slow and high-torque. Later revisions added RPLIDAR, a stepper-driven torso, and a Maestro-controlled hobby-servo arm and plastic gripper system with recordable actions. Heavy AMBER B1 arms introduced a long integration period because the original single-arm controller environment did not provide the desired coordinated dual-arm operation. The author later purchased a dedicated dual-arm B1 setup for approximately $22,500. Recent AI-assisted work expanded secure controllers, Vision Pro H.264 camera viewing, depth-camera integration, machine vision, Gemini and Apple-model experiments, voice/video input, and the modern ROBController and Cerebro feature set. These are historical recollections; dimensions, ratings, and safety claims remain governed by measured evidence."
   },
   "rights": {
-    "construction_photo_owner": null,
+    "construction_photo_owner": "Rodolfo Aramayo confirms that he/OrbitusRobotics owns the construction-photo collection used for the books and that he photographed most images. Any exception must be identified in the per-image rights ledger before release.",
     "other_photographers_and_credits": null,
-    "identifiable_adult_releases": null,
-    "identifiable_minor_guardian_releases": null,
+    "identifiable_adult_releases": "The author confirms that identifiable adults selected for commercial book or website publication permit that use. The current publication allowlist nevertheless excludes event/bystander images and requires a per-image check.",
+    "identifiable_minor_guardian_releases": "The author confirms that guardians of identifiable minors selected for commercial book or website publication permit that use. The current publication allowlist nevertheless excludes event/bystander images and requires a per-image check.",
     "venue_publication_permissions": null,
     "third_party_image_permissions": null
   },
@@ -32,17 +33,17 @@
     "copyright_year": 2026,
     "book_content_license": "All rights reserved; repository source-code licenses remain separate and repository-specific.",
     "public_contact": "https://www.orbitusrobotics.com/contact/",
-    "approved_age_bands": null,
+    "approved_age_bands": "Approved: story ages 5-6; Volume 1 ages 8-12; Volume 2 ages 10-14; Volume 3 ages 10-15; Volume 4 ages 12-16; Volumes 5-8 and the complete manual for advanced makers, developers, integrators, and mentors.",
     "sales_territories": null
   },
   "reviewers": {
-    "electrical": null,
-    "mechanical": null,
-    "educator_youth_safety": null,
-    "accessibility": null,
-    "privacy_and_releases": null,
-    "trademark_legal": null,
-    "print_proof": null,
-    "final_publisher": null
+    "electrical": "No external electrical reviewer retained. This edition must not claim electrical approval or publish an as-built construction schematic; electrical material is historical or conceptual and directs readers to qualified review for any physical design.",
+    "mechanical": "No external mechanical reviewer retained. This edition must not claim mechanical approval or provide dimensionally complete build instructions; mechanical material is historical or conceptual and identifies missing CAD as future work.",
+    "educator_youth_safety": "No external educator or youth-safety reviewer retained. Youth activities remain paper, simulation, or bounded low-voltage exercises with explicit responsible-adult controls; final publisher self-review is still required.",
+    "accessibility": "No external accessibility reviewer retained. The EPUB pipeline includes automated structural accessibility checks; a final human reading-order, alt-text, contrast, zoom, and Apple Books device review is still required.",
+    "privacy_and_releases": "No external privacy reviewer retained. The publication asset allowlist excludes event/bystander images and sensitive screenshots; final publisher review of consent and per-image rights is still required.",
+    "trademark_legal": "No external trademark/legal reviewer retained. The books avoid franchise art and endorsement claims, describe Johnny 5 only as the author's historical inspiration, and require final publisher acceptance of residual legal risk.",
+    "print_proof": "Not yet assigned; must be recorded after printer-specific proofs exist.",
+    "final_publisher": "Rodolfo Aramayo, pending final post-proof approval."
   }
 }

@@ -59,7 +59,9 @@ The builder reports four 20 Ah LiFePO$_4$ packs, a common negative return bus, a
 
 In a low-voltage robot, \textbf{ground} usually names the common reference node used by circuits and signals. Two devices exchanging a voltage signal often need compatible reference levels. Power grounds, noisy motors, sensitive sensors, shields, and chassis connections require a deliberate grounding plan in a large robot.
 
-\ROBPlaceholder{Publish the final power tree only after the builder verifies battery topology, BMS, charger, fuses or breakers, main disconnect, emergency-stop contacts, converter ratings, wire gauges, connectors, chassis bonding, and grounding strategy.}
+\begin{safetybox}[title={WHY THIS BOOK HAS NO AS-BUILT POWER TREE}]
+The archive does not contain a verified current schematic, BMS/protection study, conductor schedule, disconnect/E-stop validation, or grounding record. A photograph cannot prove hidden wiring or fault behavior. The diagrams in this volume teach energy and information paths; they are not ROB's construction wiring. Any real robot power system requires a new schematic and qualified adult electrical review.
+\end{safetybox}
 
 \begin{buildbox}[title={DRAW BEFORE YOU WIRE}]
 Draw a safe LED circuit with a source, switch, resistor, LED, and return path. Use arrows to show conventional current. Circle the point where the Arduino output signal enters. Ask a mentor to check the drawing before building it.
@@ -187,7 +189,9 @@ The Arduino GIGA R1 WiFi is a credible research successor because its official s
 
 \ROBPhotoTwo{2022-chassis-wiring-overhead.jpg}{An overhead chassis view shows why a pin table alone is not enough: routing, connectors, power separation, and service access matter.}{2025-labeled-cables.jpg}{Blue tape labels show an important maintenance habit. A durable harness plan should replace temporary labels before public operation.}
 
-\ROBPlaceholder{Add an author-verified connector-to-pin table, wire colors, connector types, harness branches, cable gauges, strain relief, labels, tach pulse electrical levels and edge type, and photographs taken after final wiring. Record whether the Mega proposal or a tested successor map is adopted.}
+\begin{fieldnotebox}[title={FIRMWARE PINS ARE NOT A HARNESS DRAWING}]
+The source preserves pin names used by a historical Arduino Mega 2560 Base sketch. The present connectors, conductor colors and gauges, logic levels, tach edges, strain relief, and branch labels have not been traced for publication, and no successor board map has been adopted in this edition. Treat the table as a code-reading exercise only. Do not connect hardware from it.
+\end{fieldnotebox}
 
 \ROBPhoto[0.32\textheight]{2021-wiring-closeup.jpg}{A close view of an earlier wiring revision shows why every connector needs a name, destination, expected signal, safe state, and service plan.}
 
@@ -374,7 +378,9 @@ The actuator accepts special values 3201 and -3201 to clear safe start. & Should
 Before modernizing the firmware, build a byte-for-byte protocol fixture and a hardware-in-the-loop test stand with the drive load isolated. Characterize the existing behavior first. A refactor that looks cleaner can still reverse a tread or release a brake.
 \end{advancedbox}
 
-\ROBPlaceholder{Add the Arduino board model, firmware library versions, verified motor polarity, safe-start controller model, final command ranges, measured heartbeat deadline, bench-test procedure, IR calibration data, and the exact reason and date for the grass-related policy change.}
+\begin{fieldnotebox}[title={WHAT THE RECORD CAN AND CANNOT ESTABLISH}]
+The builder identifies the controller platform as an Arduino Mega 2560, and the repository preserves the Base sketch. It does not establish the flashed hash, installed libraries, physical motor polarity, controller safe-start configuration, measured heartbeat deadline, or calibrated IR performance of the present robot. Grass and outdoor operation exposed traction and sensing limits, but no dated test report survives. Readers may analyze the defensive software pattern; only a restrained local test can establish physical behavior.
+\end{fieldnotebox}
 
 \input{volume-2-deep-dive.tex}
 
