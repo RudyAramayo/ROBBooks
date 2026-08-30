@@ -5,7 +5,7 @@
 **Review method:** Codex-assisted publication preflight with original-resolution image inspection, original-detail contact sheets, individual source-resolution checks for text/screen/product-label risks, OCR screening of all real photographs and retained slides, metadata inspection, color-space and pixel-dimension checks, and SHA-256 byte binding.
 
 **Scope:** 46 real photographs, 8 historical slide renders, 15 generated book illustrations, 6 derived cover JPEGs, 1 generated campaign hero, and 1 brand logo: 77 files total.
-**RIGHTS STATUS: PENDING AUTHOR CONFIRMATION** for the photographer exceptions, venue/product-photo terms, publishing identity, copyright ownership, and territories in Q03–Q05 of `AUTHOR_INTERVIEW_RECORD.md`.
+**RIGHTS STATUS: PENDING AUTHOR CONFIRMATION** for photographer exceptions, product/component-photo ownership, publishing identity, copyright ownership, and territories in Q03–Q05 of `AUTHOR_INTERVIEW_RECORD.md`. The closed allowlist contains no event, venue, or bystander photograph, so venue-photo permission is not applicable to this edition.
 
 This record is a publication asset and privacy preflight, not an electrical, mechanical, legal, accessibility, press, or professional safety approval. A changed byte invalidates the named review until the asset is inspected again and `reviewed-assets.sha256` is deliberately updated.
 

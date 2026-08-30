@@ -346,9 +346,11 @@ actions, and starts a bounded autonomy session.
 The autonomy model is intentionally a session, not indefinite permission. The
 `social_roam` profile captures an activation pose, stays within a radius, uses
 fresh lidar, moves slowly, and ends on manual control, explicit stop, or
-Cerebro restart. Meanwhile `ROBSerialBox` expires controller snapshots after
-three missed 5 Hz updates, sends one neutral/braked frame, then stops USB
-writes so the Arduino deadman can de-energize the treads.
+Cerebro restart. Meanwhile `ROBSerialBox` treats a controller snapshot as
+stale when its local receipt age exceeds 0.6 seconds. That interval is roughly
+three expected 5 Hz publications, but the implementation is time based rather
+than a fixed missed-message count. It sends one neutral/braked frame, then
+stops USB writes so the Arduino deadman can de-energize the treads.
 
 This yields a useful authority hierarchy:
 

@@ -13,16 +13,16 @@ This is a screen-rendering and editorial layout review. It is not a human access
 
 | PDF | Pages | SHA-256 |
 |---|---:|---|
-| complete-builders-field-manual.pdf | 236 | 50033ccb1ffb518f57b227b6c9b20566750f805fcb3a99710ad89d274d1589be |
-| rob-and-the-lost-yellow-ball.pdf | 23 | 1f3229280052cf8ca5577318190a7a9159c8822f39e727cd75accc938df01517 |
-| volume-1-meet-rob.pdf | 37 | c000662720bc4f9fc205293e31132718fa34536fb4afc65bc99462aa46f401a8 |
-| volume-2-circuits-and-signals.pdf | 36 | f855566efffc37b1071b3c43cc34d231eff1294a5c74cfe207962b1dc3ee94a9 |
-| volume-3-motion-workshop.pdf | 36 | 969c64d5e5a71486eebc40634def59e5ea3a8b322afeaa4c66531e6ee296723e |
-| volume-4-mission-control.pdf | 40 | e7c9916458471893625f26ea6d604452adf471e6fa75ff99287749cb2dd515a6 |
-| volume-5-ai-robotics-with-codex.pdf | 43 | 9e026dcd59ca50f0e66ba104e601558e05a190f2a311e5f38aee643da33512fd |
-| volume-6-amber-dual-arm-robotics.pdf | 34 | 415b4a2255e56b151cb9791808a6b893eb41977a4ff64361db42466364041efa |
-| volume-7-engineering-robcontrollervision.pdf | 38 | 53d7d69004ceff66c3328afc0cfae814bdf7b504dbcc4eeeca7234d8b81eeefc |
-| volume-8-engineering-cerebro.pdf | 50 | ee0c264916928f9ee7d8775afc43eb2323061e78566f0a81a8cd21660450ae98 |
+| complete-builders-field-manual.pdf | 236 | 41711c2b4dea8adf579252b7a632d3f74d7af5213f41a9c9854ea0b560f65e51 |
+| rob-and-the-lost-yellow-ball.pdf | 23 | 5c1bc81fa2914500f48af12c956e0a43ac0034d0ab81a2ab12afde4b3452e44b |
+| volume-1-meet-rob.pdf | 37 | 2ebd65e3747d8e81b7a093a6e2e71ed35de886fb8d13cf1ba6bd0438c5694260 |
+| volume-2-circuits-and-signals.pdf | 36 | 1f0292be95eebb72d0029eb93b97e3f7c6ba24565d547d7ac65ce98d518e7273 |
+| volume-3-motion-workshop.pdf | 36 | 8fae0be4083b553e21426980e3aa61fb857a934c5bfd796316a527f04df641a7 |
+| volume-4-mission-control.pdf | 40 | 20deadec70559c54d7f65e46a5608da43ef666b95d12362f4ff6e97f331e516c |
+| volume-5-ai-robotics-with-codex.pdf | 43 | cd859d7754f8bf813ec96dbb461ee92f853ce5271c9404d472d4f17795569bfa |
+| volume-6-amber-dual-arm-robotics.pdf | 34 | f1e82b277597633e55b43ba8dc6c3680593e459d183d50ef1133586c35e10797 |
+| volume-7-engineering-robcontrollervision.pdf | 38 | 64dda584b14727ae91a0b9938a15661b6edf1daba38a6009e2454335686465ce |
+| volume-8-engineering-cerebro.pdf | 50 | 44c1182f9acd89adf4d1dbefba8499f2118723f4744bd79544230c83cae585c7 |
 
 All ten are unencrypted US Letter PDFs with extractable text. Their physical page total is 573.
 
@@ -34,6 +34,15 @@ All ten are unencrypted US Letter PDFs with extractable text. Their physical pag
 - All 32 corrected mission/deep-lab openers in Volumes 1–4 and all ten rebuilt covers received a second 144 dpi visual pass. Titles fit their bands, preserve complete words, retain contrast, and do not clip.
 - Sparse part-title pages, chapter-closing pages, and continuation pages were checked against adjacent pages and accepted as intentional design.
 - The complete manual footer ends at “/ 220” because its internal main-matter pagination excludes front matter; the physical PDF contains 236 pages. This was reviewed as intentional, not a missing-page condition.
+
+## Factual-correction rebuild review
+
+The ten PDFs were rebuilt after the 0.6-second controller-freshness correction and the resolved Volume 4 camera caption. Rebuilding changed container bytes in all ten files. Extracted text and same-renderer page images established the visual scope before renewing this record:
+
+- the story and Volumes 1, 2, 3, 6, and 7 retained byte-identical extracted text and pixel-identical 72 dpi page renders across every page;
+- 120 dpi old/new render comparison isolated visual changes to Volume 4 page 25, Volume 5 pages 14–16, Volume 8 page 16, and complete-manual pages 95–99 and 191;
+- all eleven changed pages were inspected at their 120 dpi render size. The corrected caption fits its two-image layout, timeout language remains complete and readable, page transitions remain continuous, and no clipping, collision, overflow, unintended blank, missing image, or broken heading was found;
+- page counts, trim geometry, encryption state, and the 573-page set total did not change.
 
 No unresolved visual-layout defect remains in the byte-matched PDFs listed above.
 

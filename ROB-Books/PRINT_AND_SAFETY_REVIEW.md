@@ -17,7 +17,7 @@ This checklist releases books, not the physical robot. The edition documents one
 - [x] Youth activities are limited to paper, simulation, observation, or explicitly supervised low-energy educational work.
 - [x] The books do not invite youth access to ROB's traction batteries, inverter/mains circuits, drivetrain, chains, machine tools, actuators, live controllers, or unrestricted network commands.
 - [x] Fabrication and hardware photographs are described as historical evidence rather than complete safety instruction.
-- [ ] Every statement about cameras, microphones, face identity, Messages, recording, cloud services, retention, consent, authorization, and emergency behavior is checked against the dated publication snapshot.
+- [x] Every statement about cameras, microphones, face identity, Messages, recording, cloud services, retention, consent, authorization, and emergency behavior was checked against the dated publication snapshot; evidence, corrections, and limits are recorded in `publication/FACTUAL_CLAIM_AUDIT.md`.
 - [ ] Final publisher review accepts the residual trademark, privacy, safety-language, and legal risk without implying review by an outside professional.
 
 ## Photographs and artwork
@@ -55,9 +55,10 @@ Live ROB operation requires a separate machine/event release: qualified electric
 
 | Item | Reviewer | Evidence/revision | Date | Result |
 |---|---|---|---|---|
+| Dated camera/privacy claim audit | Codex-assisted source inspection | `publication/FACTUAL_CLAIM_AUDIT.md`; Cerebro `e76d515a56e8018c96d07efb251470a40f9de174` | 2026-08-29 | Pass against dated snapshot; publisher residual-risk acceptance remains open |
 | Publisher factual/copyedit |  |  |  |  |
 | Photo/privacy rights |  |  |  |  |
-| PDF visual proof |  |  |  |  |
+| PDF visual proof | Codex-assisted page review | `publication/PDF_VISUAL_REVIEW_RECORD.md`; `publication/reviewed-pdfs.sha256` | 2026-08-29 | Pass — 573 byte-matched pages; later factual rebuild scoped and re-reviewed |
 | EPUB accessibility/device proof |  |  |  |  |
 | Printer file/physical proof |  |  |  |  |
 | Apple Books account review |  |  |  |  |

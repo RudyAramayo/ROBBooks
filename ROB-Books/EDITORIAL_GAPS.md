@@ -11,7 +11,7 @@ The full wording and response history live in [`publication/AUTHOR_INTERVIEW_REC
 - Q01: approximate or exact month/year and city/state where the first physical ROB build began.
 - Q03: identification of any selected real book photograph not taken by Rodolfo Aramayo, or explicit confirmation that there are no exceptions in the allowlist.
 - Q04: explicit confirmation of author, publisher/imprint, copyright owner, year, content/license split, and worldwide sales territory.
-- Q05: confirmation that venue terms permit the selected commercial photographs and that visible product photographs are the author's photographs of owned components, with any exception named for exclusion.
+- Q05: confirmation that visible product/component photographs are the author's photographs of owned components, with any exception named for exclusion. The closed allowlist contains no event, venue, or bystander photograph, so venue-photo permission is not applicable to this edition.
 
 ## Editorial decisions already recorded
 
@@ -26,7 +26,7 @@ The full wording and response history live in [`publication/AUTHOR_INTERVIEW_REC
 9. No electrical, mechanical, educator, accessibility, privacy, or legal reviewer has been retained. The books make no claim of those approvals.
 10. Reader age bands are approved: story 5–6; Volume 1 8–12; Volume 2 10–14; Volume 3 10–15; Volume 4 12–16; Volumes 5–8 and the complete manual for advanced readers.
 11. Controlled HengDrive and B-COMMAND drawings are retained only in the private archive. The public edition does not reproduce or paraphrase their specifications.
-12. Construction-photo ownership and adult/minor commercial permission are recorded in principle, while the exact allowlist and venue/product-photo confirmation remain release gates.
+12. Construction-photo ownership and adult/minor commercial permission are recorded in principle. The exact allowlist excludes event, venue, and bystander photographs; photographer exceptions and product/component-photo ownership remain release gates.
 
 ## Future measured technical edition
 

@@ -214,7 +214,7 @@ Do not create a universal “pick the first USB port” helper. Build a device r
 
 # Translate controller intent without extending stale motion
 
-`controllerPassthrough` turns controller state into the legacy Base frame and actuator targets. `renderController` runs at 10 Hz while snapshots are expected at 5 Hz. Cerebro expires controller snapshots after three missed updates, writes one neutral/braked frame, and then stops Base USB writes so the Arduino's own heartbeat deadman can expire.
+`controllerPassthrough` turns controller state into the legacy Base frame and actuator targets. `renderController` runs at about 10 Hz while snapshots are expected at 5 Hz. Cerebro uses a time-based freshness gate: a snapshot expires when its local receipt age exceeds 0.6 seconds. That is roughly three expected publication intervals, not a fixed count of missed messages. Cerebro then writes one neutral/braked frame and stops Base USB writes so the Arduino's own heartbeat deadman can expire.
 
 This is a two-layer timeout:
 
