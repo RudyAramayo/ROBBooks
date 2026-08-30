@@ -80,8 +80,17 @@ ROB-Books/
 ├── tools/                  asset, build, validation, preview, and learning tools
 ├── output/pdf/             the ten printable PDF layout proofs
 ├── output/previews/        contact sheets for quick visual review
+├── output/posters/         three 36×60-inch campaign PDFs
+├── output/apple-books/     store cover assets and future validated EPUBs
+├── publication/            machine-readable store catalog and planned prices
 └── tmp/                    generated build files and excluded private-review images
 ```
+
+## Learning campaign and publication preparation
+
+Three finished-size 36×60-inch campaign posters live in [`output/posters/`](output/posters/). Install `requirements-posters.txt`, rebuild them with `python3 tools/build_campaign_posters.py`, and verify finished geometry plus the rendered QR destinations with `python3 tools/validate_campaign_posters.py`. Their QR codes point to stable learning, game, and book routes on orbitusrobotics.com.
+
+[`APPLE_BOOKS_PUBLICATION_PLAN.md`](APPLE_BOOKS_PUBLICATION_PLAN.md) records planned Apple Books pricing, accessible EPUB requirements, metadata, and the account-side release sequence. [`PRINT_DISTRIBUTION_PLAN.md`](PRINT_DISTRIBUTION_PLAN.md) covers local proofs, Lulu, and IngramSpark. Both routes remain behind the existing editorial, safety, privacy, rights, and printer release gate.
 
 [`ASSET_CREDITS.md`](ASSET_CREDITS.md) records image provenance, exclusions, and the illustration prompts. The preparation script is the authoritative mapping between gallery originals and public book filenames.
 
