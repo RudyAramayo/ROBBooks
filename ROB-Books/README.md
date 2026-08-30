@@ -39,9 +39,24 @@ R.O.B. portraits with one green and one blue lightsaber. Each volume uses a
 different front, portrait, side, or overhead view; the advanced field manual
 keeps its more technical workshop cover.
 
-The matching static web lesson lives in the ORobotics Hugo project at `/robot-lab/`. It is a four-mission, browser-only diagnostic game covering feedback, PWM, differential drive, and command freshness. It never connects to ROB or stores learner data.
+The matching Circuit Quest lesson lives in the ORobotics Hugo project at
+`/robot-lab/`. It is a 90-build, browser-only learning lab that grows from
+closed DC loops and Ohm's law through AC, RLC behavior, Arduino programming,
+timer and op-amp circuits, and a sectional virtual ROB build. Builds 81–90 are
+the Book Bridge: base-flipper recovery, speaker and custom-techno signal paths,
+far-field conference-microphone reasoning, and a bounded integrated show. The
+first 80 builds remain the Maker Faire passport curriculum; the Book Bridge is
+additional advanced practice. The simulation never connects to physical ROB,
+and microphone lessons model signal levels without recording microphone audio.
 
-The companion ROB Training campaign now spans the Three.js website game and the native iOS/visionOS project in `../ROBTrainingGames/`. The shared level, component, scoring, and safety vocabulary is maintained in [`ROBOT_GAME_CURRICULUM.md`](ROBOT_GAME_CURRICULUM.md).
+The companion ROB Training campaign now spans the Three.js website game and the
+native iOS/visionOS project in `../ROBTrainingGames/`. A completed sectional
+droid profile carries color and unlocked systems into training. The simulated
+ROB includes a tread-base lift flipper, visible stereo speakers for the game's
+procedural techno, and a conference microphone with explicit listening and
+privacy boundaries. The shared mission, component, scoring, and safety
+vocabulary is maintained in
+[`ROBOT_GAME_CURRICULUM.md`](ROBOT_GAME_CURRICULUM.md).
 
 ## Edition status
 
