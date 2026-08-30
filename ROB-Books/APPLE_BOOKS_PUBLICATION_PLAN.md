@@ -26,6 +26,16 @@ python3 tools/prepare_apple_books_assets.py
 
 The cover command renders each approved first page as a 2550×3300-pixel RGB JPEG. The validator checks catalog totals, PDF page counts, cover size and color space, and reports EPUBs that are still pending.
 
+Build all ten reflowable EPUB 3 editions with:
+
+```bash
+python3 tools/build_accessible_epubs.py
+```
+
+The builder uses Pandoc, applies the accessible publication stylesheet, assigns stable identifiers, runs EPUBCheck 5.3.0, and audits language declarations, image alternatives, table headers, and required deep-lab/compendium content. A semantic conversion layer preserves Volumes 1–4 and the complete manual's custom photographs, captions, callouts, diagrams, included deep labs, and embedded Markdown volumes. The picture story has its own source-native accessible Markdown edition. A superficially valid EPUB that silently drops custom material is not accepted by the build.
+
+Apple Books can automatically create samples for these non-interactive, reflowable editions. The full EPUB navigation must therefore identify body matter correctly, and the automatically generated sample must be inspected in the publishing portal before release. A custom preview EPUB is optional for this set; it becomes mandatory only if an edition gains read-aloud behavior or other features for which Apple's current asset guide requires one.
+
 Do not make an EPUB by turning every PDF page into an image. Apple requires searchable, accessible content and rejects interior images that contain embedded body text. The source needs a deliberate EPUB 3 conversion that keeps headings, paragraphs, lists, tables, links, alternative text, and reading order live. Page-dependent workshop diagrams may remain images when they have appropriate descriptions.
 
 Each final EPUB must:

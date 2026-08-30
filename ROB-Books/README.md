@@ -96,7 +96,7 @@ ROB-Books/
 ├── output/pdf/             the ten printable PDF layout proofs
 ├── output/previews/        contact sheets for quick visual review
 ├── output/posters/         three 36×60-inch campaign PDFs
-├── output/apple-books/     store cover assets and future validated EPUBs
+├── output/apple-books/     store covers and ten validated reflowable EPUB 3 editions
 ├── publication/            machine-readable store catalog and planned prices
 └── tmp/                    generated build files and excluded private-review images
 ```
@@ -106,6 +106,10 @@ ROB-Books/
 Three finished-size 36×60-inch campaign posters live in [`output/posters/`](output/posters/). Install `requirements-posters.txt`, rebuild them with `python3 tools/build_campaign_posters.py`, and verify finished geometry plus the rendered QR destinations with `python3 tools/validate_campaign_posters.py`. Their QR codes point to stable learning, game, and book routes on orbitusrobotics.com.
 
 [`APPLE_BOOKS_PUBLICATION_PLAN.md`](APPLE_BOOKS_PUBLICATION_PLAN.md) records planned Apple Books pricing, accessible EPUB requirements, metadata, and the account-side release sequence. [`PRINT_DISTRIBUTION_PLAN.md`](PRINT_DISTRIBUTION_PLAN.md) covers local proofs, Lulu, and IngramSpark. Both routes remain behind the existing editorial, safety, privacy, rights, and printer release gate.
+
+Run `python3 tools/audit_publication_readiness.py` for the complete machine-detectable blocker ledger. Publisher answers are recorded in `publication/publisher-answers.json`; empty values are intentional until the author supplies them. `python3 tools/audit_publication_readiness.py --release` must remain failing until all manuscript placeholders, review gates, EPUBs, publisher answers, and final store records are resolved.
+
+Build the ten EPUB editions with `python3 tools/build_accessible_epubs.py`. The build converts the print-specific LaTeX semantics without dropping chapter photographs, captions, callouts, diagrams, or included deep labs; it also assembles the complete manual's embedded advanced Markdown volumes. Every output must pass EPUBCheck and the structural accessibility/content audit.
 
 [`ASSET_CREDITS.md`](ASSET_CREDITS.md) records image provenance, exclusions, and the illustration prompts. The preparation script is the authoritative mapping between gallery originals and public book filenames.
 

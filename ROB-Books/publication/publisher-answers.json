@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "publication_posture": null,
+  "identity": {
+    "rob_name_meaning": null,
+    "physical_project_start_date": null,
+    "physical_project_start_place": null,
+    "initial_inspiration": null,
+    "original_mission": null,
+    "current_mission": null,
+    "cerebro_name_story": null,
+    "rob_makina_name_story": null,
+    "cerebro_v5_migration_reason": null
+  },
+  "history": {
+    "contributors_and_roles": null,
+    "public_demonstrations": null,
+    "major_failures_repairs_and_revisions": null
+  },
+  "rights": {
+    "construction_photo_owner": null,
+    "other_photographers_and_credits": null,
+    "identifiable_adult_releases": null,
+    "identifiable_minor_guardian_releases": null,
+    "venue_publication_permissions": null,
+    "third_party_image_permissions": null
+  },
+  "publishing": {
+    "author_name": "Rodolfo Aramayo",
+    "publisher_imprint": "OrbitusRobotics LLC",
+    "copyright_owner": null,
+    "copyright_year": 2026,
+    "book_content_license": "All rights reserved; repository source-code licenses remain separate and repository-specific.",
+    "public_contact": "https://www.orbitusrobotics.com/contact/",
+    "approved_age_bands": null,
+    "sales_territories": null
+  },
+  "reviewers": {
+    "electrical": null,
+    "mechanical": null,
+    "educator_youth_safety": null,
+    "accessibility": null,
+    "privacy_and_releases": null,
+    "trademark_legal": null,
+    "print_proof": null,
+    "final_publisher": null
+  }
+}
