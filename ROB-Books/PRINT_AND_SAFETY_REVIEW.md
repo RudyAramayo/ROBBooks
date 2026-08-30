@@ -59,7 +59,7 @@ Live ROB operation requires a separate machine/event release: qualified electric
 | Publisher factual/copyedit | Codex-assisted source and manuscript review | `publication/FACTUAL_CLAIM_AUDIT.md`; reconciled author answers; rebuilt and validated ten-title set | 2026-08-29 | Pass against dated evidence; final publisher legal-risk acceptance remains open |
 | Photo/privacy rights | Rodolfo Aramayo author confirmation; Codex-assisted asset review | `publication/AUTHOR_INTERVIEW_RECORD.md`; `publication/ASSET_REVIEW_RECORD.md`; `publication/reviewed-assets.sha256` | 2026-08-29 | Pass for the closed 77-file allowlist |
 | PDF visual proof | Codex-assisted page review | `publication/PDF_VISUAL_REVIEW_RECORD.md`; `publication/reviewed-pdfs.sha256` | 2026-08-29 | Pass — 573 byte-matched pages; later factual rebuild scoped and re-reviewed |
-| EPUB accessibility/device proof |  |  |  |  |
+| EPUB accessibility/device proof | Codex-assisted automated and browser visual review | `publication/EPUB_ACCESSIBILITY_REVIEW_RECORD.md`; `publication/reviewed-epubs.sha256` | 2026-08-29 | Automated and browser visual preflight pass; Apple Books and VoiceOver device review remains open |
 | Printer file/physical proof |  |  |  |  |
 | Apple Books account review |  |  |  |  |
 | Final publisher approval | Rodolfo Aramayo |  |  |  |

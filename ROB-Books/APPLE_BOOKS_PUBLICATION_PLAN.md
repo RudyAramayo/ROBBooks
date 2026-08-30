@@ -49,6 +49,8 @@ Each final EPUB must:
 
 `python3 tools/prepare_apple_books_assets.py --release` is intentionally strict. It fails until every EPUB, Apple Books ID, and Apple Books URL is present. Human sign-off in the release gate remains mandatory even after the script passes.
 
+Before device review, run EPUBCheck and DAISY Ace against every final package. After installing the official `@daisy/ace` CLI, use `python3 tools/audit_daisy_ace.py`; pass `--ace /path/to/ace` when it is not on `PATH`. The byte-bound automated and browser-rendering evidence belongs in `publication/EPUB_ACCESSIBILITY_REVIEW_RECORD.md` and `publication/reviewed-epubs.sha256`. A zero-violation Ace report is useful evidence, but it does not replace the Apple Books, VoiceOver, and manual accessibility checks.
+
 ## Account-side release
 
 After publisher approval:

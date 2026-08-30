@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import re
 import shutil
 import subprocess
 import sys
@@ -67,6 +68,18 @@ def accessible_xhtml(epub: Path) -> list[str]:
             for table in root.findall(".//x:table", namespace):
                 if not table.findall(".//x:th", namespace):
                     errors.append(f"{name}: data table has no header cells")
+            previous_heading_level: int | None = None
+            for element in root.iter():
+                match = re.fullmatch(rf"\{{{re.escape(namespace['x'])}\}}h([1-6])", element.tag)
+                if not match:
+                    continue
+                level = int(match.group(1))
+                if previous_heading_level is not None and level > previous_heading_level + 1:
+                    errors.append(f"{name}: heading level jumps from h{previous_heading_level} to h{level}")
+                previous_heading_level = level
+            for region in root.findall(".//x:div", namespace):
+                if "sourceCode" in set(region.get("class", "").split()) and region.get("tabindex") != "0":
+                    errors.append(f"{name}: code region is not keyboard focusable")
             if name.endswith("nav.xhtml"):
                 landmarks = root.find(".//x:nav[@epub:type='landmarks']", {
                     **namespace,
@@ -78,6 +91,21 @@ def accessible_xhtml(epub: Path) -> list[str]:
                 ) is None:
                     errors.append(f"{name}: bodymatter landmark is missing")
     return errors
+
+
+def accessibility_metadata_errors(epub: Path, expected_summary: str) -> list[str]:
+    with zipfile.ZipFile(epub) as archive:
+        opf_names = [name for name in archive.namelist() if name.lower().endswith(".opf")]
+        if len(opf_names) != 1:
+            return [f"expected one OPF package document, found {len(opf_names)}"]
+        root = ET.fromstring(archive.read(opf_names[0]))
+        namespace = {"opf": "http://www.idpf.org/2007/opf"}
+        summaries = root.findall(".//opf:meta[@property='schema:accessibilitySummary']", namespace)
+        if len(summaries) != 1:
+            return [f"expected one schema:accessibilitySummary, found {len(summaries)}"]
+        if " ".join((summaries[0].text or "").split()) != " ".join(expected_summary.split()):
+            return ["schema:accessibilitySummary differs from the catalog"]
+    return []
 
 
 def epub_text(epub: Path) -> str:
@@ -100,11 +128,13 @@ def image_properties(path: Path) -> tuple[int, int, str]:
     return int(width), int(height), color_space
 
 
-def normalize_epub(epub: Path) -> None:
-    """Add table semantics and constrain in-book rasters for Apple Books."""
+def normalize_epub(epub: Path, accessibility_summary: str) -> None:
+    """Improve EPUB semantics and constrain in-book rasters for Apple Books."""
     namespace = "http://www.w3.org/1999/xhtml"
+    opf_namespace = "http://www.idpf.org/2007/opf"
     ET.register_namespace("", namespace)
     ET.register_namespace("epub", "http://www.idpf.org/2007/ops")
+    ET.register_namespace("opf", opf_namespace)
     with tempfile.TemporaryDirectory(prefix="rob-epub-table-fix-") as temporary:
         root_dir = Path(temporary)
         with zipfile.ZipFile(epub) as archive:
@@ -155,8 +185,40 @@ def normalize_epub(epub: Path) -> None:
                         row_cells[0].tag = f"{{{namespace}}}th"
                         row_cells[0].set("scope", "row")
                         changed = True
+            previous_heading_level: int | None = None
+            for element in root.iter():
+                match = re.fullmatch(rf"\{{{re.escape(namespace)}\}}h([1-6])", element.tag)
+                if not match:
+                    continue
+                level = int(match.group(1))
+                if previous_heading_level is not None and level > previous_heading_level + 1:
+                    level = previous_heading_level + 1
+                    element.tag = f"{{{namespace}}}h{level}"
+                    changed = True
+                previous_heading_level = level
+            for region in root.findall(f".//{{{namespace}}}div"):
+                classes = set(region.get("class", "").split())
+                if "sourceCode" in classes:
+                    region.set("tabindex", "0")
+                    region.set("aria-label", "Code example")
+                    changed = True
             if changed:
                 tree.write(xhtml, encoding="utf-8", xml_declaration=True)
+        package = root_dir / "EPUB" / "content.opf"
+        package_tree = ET.parse(package)
+        package_root = package_tree.getroot()
+        metadata = package_root.find(f"{{{opf_namespace}}}metadata")
+        if metadata is None:
+            raise RuntimeError("EPUB package metadata element is missing")
+        summary_nodes = metadata.findall(f"{{{opf_namespace}}}meta[@property='schema:accessibilitySummary']")
+        if summary_nodes:
+            summary_nodes[0].text = accessibility_summary
+            for duplicate in summary_nodes[1:]:
+                metadata.remove(duplicate)
+        else:
+            summary = ET.SubElement(metadata, f"{{{opf_namespace}}}meta", {"property": "schema:accessibilitySummary"})
+            summary.text = accessibility_summary
+        package_tree.write(package, encoding="utf-8", xml_declaration=True)
         nav = root_dir / "EPUB" / "nav.xhtml"
         tree = ET.parse(nav)
         root = tree.getroot()
@@ -270,9 +332,10 @@ def build(book: dict[str, object], source: Path, from_format: str) -> Path:
         str(destination),
     ]
     subprocess.run(args, check=True, cwd=PROJECT)
-    normalize_epub(destination)
+    normalize_epub(destination, str(book["accessibility_summary"]))
     command(shutil.which("epubcheck") or "epubcheck", str(destination))
     errors = accessible_xhtml(destination)
+    errors.extend(accessibility_metadata_errors(destination, str(book["accessibility_summary"])))
     errors.extend(embedded_image_errors(destination))
     errors.extend(semantic_content_errors(destination, str(book["slug"])))
     if errors:

@@ -76,7 +76,8 @@
       ],
       "submission_status": "not_submitted",
       "apply_drm": null,
-      "volume_content_service_enabled": true
+      "volume_content_service_enabled": true,
+      "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
     },
     {
       "slug": "volume-1-meet-rob",
@@ -128,7 +129,8 @@
       ],
       "submission_status": "not_submitted",
       "apply_drm": null,
-      "volume_content_service_enabled": true
+      "volume_content_service_enabled": true,
+      "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
     },
     {
       "slug": "volume-2-circuits-and-signals",
@@ -180,7 +182,8 @@
       ],
       "submission_status": "not_submitted",
       "apply_drm": null,
-      "volume_content_service_enabled": true
+      "volume_content_service_enabled": true,
+      "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
     },
     {
       "slug": "volume-3-motion-workshop",
@@ -232,7 +235,8 @@
       ],
       "submission_status": "not_submitted",
       "apply_drm": null,
-      "volume_content_service_enabled": true
+      "volume_content_service_enabled": true,
+      "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
     },
     {
       "slug": "volume-4-mission-control",
@@ -284,7 +288,8 @@
       ],
       "submission_status": "not_submitted",
       "apply_drm": null,
-      "volume_content_service_enabled": true
+      "volume_content_service_enabled": true,
+      "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
     },
     {
       "slug": "volume-5-ai-robotics-with-codex",
@@ -336,7 +341,8 @@
       ],
       "submission_status": "not_submitted",
       "apply_drm": null,
-      "volume_content_service_enabled": true
+      "volume_content_service_enabled": true,
+      "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
     },
     {
       "slug": "volume-6-amber-dual-arm-robotics",
@@ -388,7 +394,8 @@
       ],
       "submission_status": "not_submitted",
       "apply_drm": null,
-      "volume_content_service_enabled": true
+      "volume_content_service_enabled": true,
+      "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
     },
     {
       "slug": "volume-7-engineering-robcontrollervision",
@@ -440,7 +447,8 @@
       ],
       "submission_status": "not_submitted",
       "apply_drm": null,
-      "volume_content_service_enabled": true
+      "volume_content_service_enabled": true,
+      "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
     },
     {
       "slug": "volume-8-engineering-cerebro",
@@ -492,7 +500,8 @@
       ],
       "submission_status": "not_submitted",
       "apply_drm": null,
-      "volume_content_service_enabled": true
+      "volume_content_service_enabled": true,
+      "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
     },
     {
       "slug": "complete-builders-field-manual",
@@ -544,7 +553,8 @@
       ],
       "submission_status": "not_submitted",
       "apply_drm": null,
-      "volume_content_service_enabled": true
+      "volume_content_service_enabled": true,
+      "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
     }
   ]
 }

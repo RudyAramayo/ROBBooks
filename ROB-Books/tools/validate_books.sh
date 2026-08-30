@@ -38,6 +38,10 @@ if ! python3 "$project_root/tools/audit_pdf_review.py"; then
   failure=1
 fi
 
+if ! python3 "$project_root/tools/audit_epub_review.py"; then
+  failure=1
+fi
+
 books=(
   volume-1-meet-rob
   volume-2-circuits-and-signals

@@ -57,7 +57,7 @@ def load_catalog() -> dict:
     return json.loads(CATALOG.read_text(encoding="utf-8"))
 
 
-def epub_metadata_and_image_errors(path: Path, expected_vendor_id: str) -> list[str]:
+def epub_metadata_and_image_errors(path: Path, expected_vendor_id: str, expected_accessibility_summary: str) -> list[str]:
     errors: list[str] = []
     with zipfile.ZipFile(path) as archive:
         opf_names = [name for name in archive.namelist() if name.lower().endswith(".opf")]
@@ -78,6 +78,11 @@ def epub_metadata_and_image_errors(path: Path, expected_vendor_id: str) -> list[
         missing_features = REQUIRED_ACCESSIBILITY_FEATURES - features
         if missing_features:
             errors.append(f"EPUB is missing accessibility features: {', '.join(sorted(missing_features))}")
+        summaries = root.findall(".//opf:meta[@property='schema:accessibilitySummary']", namespaces)
+        if len(summaries) != 1:
+            errors.append(f"EPUB should contain one accessibility summary, found {len(summaries)}")
+        elif " ".join((summaries[0].text or "").split()) != " ".join(expected_accessibility_summary.split()):
+            errors.append("EPUB accessibility summary differs from the catalog")
         for name in archive.namelist():
             if Path(name).suffix.lower() not in {".jpg", ".jpeg", ".png"}:
                 continue
@@ -160,6 +165,8 @@ def validate(catalog: dict, release: bool) -> int:
                 errors.append(f"{label}: missing {field}")
         if len(str(book.get("description", "")).strip()) < 50:
             errors.append(f"{label}: description is shorter than Apple's 50-character minimum")
+        if len(str(book.get("accessibility_summary", "")).strip()) < 50:
+            errors.append(f"{label}: accessibility summary is missing or too short")
         categories = book.get("subject_categories", [])
         if len(categories) < 2:
             errors.append(f"{label}: Apple requires a main and secondary subject category")
@@ -215,7 +222,7 @@ def validate(catalog: dict, release: bool) -> int:
             (errors if release else warnings).append(message)
         else:
             try:
-                for problem in epub_metadata_and_image_errors(epub, vendor_id):
+                for problem in epub_metadata_and_image_errors(epub, vendor_id, str(book.get("accessibility_summary", ""))):
                     errors.append(f"{label}: {problem}")
             except (subprocess.CalledProcessError, ValueError, zipfile.BadZipFile, ET.ParseError) as error:
                 errors.append(f"{label}: could not inspect EPUB: {error}")

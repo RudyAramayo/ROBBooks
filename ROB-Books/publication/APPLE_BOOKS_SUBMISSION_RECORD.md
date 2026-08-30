@@ -55,7 +55,7 @@ Each title has a detailed UTF-8 store description, two current BISAC subjects, t
 
 ## File evidence
 
-- All ten EPUB 3 files pass EPUBCheck 5.3.0 and the repository's structural accessibility audit.
+- All ten EPUB 3 files pass EPUBCheck 5.3.0, the repository's structural accessibility audit, and DAISY Ace 1.4.5 with zero automated violations. The byte-bound evidence and browser visual review are recorded in `EPUB_ACCESSIBILITY_REVIEW_RECORD.md`; Apple Books and VoiceOver device review remains open.
 - Every embedded JPEG/PNG is sRGB and at or below 4,000,000 pixels. External store covers remain 2,550 × 3,300 sRGB JPEGs so their shortest edge exceeds Apple's 1,400-pixel minimum.
 - The 89 interior images resized to satisfy the four-million-pixel guidance were compared with source images resampled to the same dimensions. The ten lowest-ranked pairs received a side-by-side visual check at original contact-sheet detail; no visible crop, rotation, color, sharpness, or compression defect was found.
 - Every EPUB is below Apple's 2 GB maximum; the largest is the complete manual at well under 100 MB.
