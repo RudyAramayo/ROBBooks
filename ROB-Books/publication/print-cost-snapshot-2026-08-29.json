@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "quoted_on": "2026-08-29",
+  "currency": "USD",
+  "status": "planning_estimate_not_an_order",
+  "assumptions": {
+    "trim_inches": "8.5 x 11",
+    "cover_finish": "matte",
+    "production_country": "US",
+    "shipping_reference": "San Francisco, CA 94103",
+    "prices_exclude_shipping_and_tax": true,
+    "odd_pdf_page_counts_rounded_to_even": true,
+    "warning": "Final editorial page counts, delivery address, vendor pricing, proof results, and mixed-cart freight can change these estimates."
+  },
+  "sources": {
+    "lulu_calculator": "https://www.lulu.com/pricing",
+    "lulu_graphql": "https://api.lulu.com/graphql/",
+    "lulu_color_guidance": "https://help.lulu.com/en/support/solutions/articles/64000255474-printing-faq",
+    "lulu_discounts": "https://help.lulu.com/en/support/solutions/articles/64000255458-how-do-i-set-the-retail-price-for-my-print-book-",
+    "lulu_distribution": "https://help.lulu.com/en/support/solutions/articles/64000255456-global-distribution-the-basics",
+    "ingram_calculator": "https://myaccount.ingramspark.com/Portal/Tools/ShippingCalculator",
+    "ingram_print_options": "https://www.ingramspark.com/plan-your-book/print/trim-sizes",
+    "ingram_discounts": "https://www.ingramspark.com/print-discounts",
+    "ingram_distribution_timing": "https://www.ingramspark.com/faqs",
+    "ingram_rate_card": "https://www.ingramspark.com/hubfs/2025%20Rate%20Card_Spark.pdf"
+  },
+  "configurations": {
+    "ingram_standard_70_paperback": {
+      "book_type_id": 4412,
+      "description": "Standard color, 70 lb white, perfect-bound paperback, matte"
+    },
+    "ingram_premium_70_paperback": {
+      "book_type_id": 483,
+      "description": "Premium color, 70 lb white, perfect-bound paperback, matte"
+    },
+    "lulu_standard_80_paperback": {
+      "pod_package_id": "0850X1100.FC.STD.PB.080CW444.MXX",
+      "description": "Standard color, 80# coated white, paperback, matte"
+    },
+    "lulu_premium_80_paperback": {
+      "pod_package_id": "0850X1100.FC.PRE.PB.080CW444.MXX",
+      "description": "Premium color, 80# coated white, paperback, matte"
+    }
+  },
+  "books": [
+    {
+      "slug": "rob-and-the-lost-yellow-ball",
+      "pdf_pages": 23,
+      "quote_pages": 24,
+      "ingram_standard_70_paperback": 2.83,
+      "ingram_premium_70_paperback": 3.68,
+      "lulu_standard_80_paperback": null,
+      "lulu_premium_80_paperback": null,
+      "lulu_premium_80_saddle_stitch": 9.53,
+      "lulu_premium_80_saddle_stitch_pod_package_id": "0850X1100.FC.PRE.SS.080CW444.MXX"
+    },
+    {
+      "slug": "volume-1-meet-rob",
+      "pdf_pages": 37,
+      "quote_pages": 38,
+      "ingram_standard_70_paperback": 3.66,
+      "ingram_premium_70_paperback": 5.0,
+      "lulu_standard_80_paperback": 4.57,
+      "lulu_premium_80_paperback": 10.32
+    },
+    {
+      "slug": "volume-2-circuits-and-signals",
+      "pdf_pages": 35,
+      "quote_pages": 36,
+      "ingram_standard_70_paperback": 3.54,
+      "ingram_premium_70_paperback": 4.82,
+      "lulu_standard_80_paperback": 4.45,
+      "lulu_premium_80_paperback": 9.89
+    },
+    {
+      "slug": "volume-3-motion-workshop",
+      "pdf_pages": 36,
+      "quote_pages": 36,
+      "ingram_standard_70_paperback": 3.54,
+      "ingram_premium_70_paperback": 4.82,
+      "lulu_standard_80_paperback": 4.45,
+      "lulu_premium_80_paperback": 9.89
+    },
+    {
+      "slug": "volume-4-mission-control",
+      "pdf_pages": 40,
+      "quote_pages": 40,
+      "ingram_standard_70_paperback": 3.78,
+      "ingram_premium_70_paperback": 5.19,
+      "lulu_standard_80_paperback": 4.7,
+      "lulu_premium_80_paperback": 10.75
+    },
+    {
+      "slug": "volume-5-ai-robotics-with-codex",
+      "pdf_pages": 43,
+      "quote_pages": 44,
+      "ingram_standard_70_paperback": 4.02,
+      "ingram_premium_70_paperback": 5.57,
+      "lulu_standard_80_paperback": 4.95,
+      "lulu_premium_80_paperback": 11.61
+    },
+    {
+      "slug": "volume-6-amber-dual-arm-robotics",
+      "pdf_pages": 34,
+      "quote_pages": 34,
+      "ingram_standard_70_paperback": 3.43,
+      "ingram_premium_70_paperback": 4.63,
+      "lulu_standard_80_paperback": 4.32,
+      "lulu_premium_80_paperback": 9.46
+    },
+    {
+      "slug": "volume-7-engineering-robcontrollervision",
+      "pdf_pages": 38,
+      "quote_pages": 38,
+      "ingram_standard_70_paperback": 3.66,
+      "ingram_premium_70_paperback": 5.0,
+      "lulu_standard_80_paperback": 4.57,
+      "lulu_premium_80_paperback": 10.32
+    },
+    {
+      "slug": "volume-8-engineering-cerebro",
+      "pdf_pages": 50,
+      "quote_pages": 50,
+      "ingram_standard_70_paperback": 4.38,
+      "ingram_premium_70_paperback": 6.14,
+      "lulu_standard_80_paperback": 5.34,
+      "lulu_premium_80_paperback": 12.9
+    },
+    {
+      "slug": "complete-builders-field-manual",
+      "pdf_pages": 235,
+      "quote_pages": 236,
+      "ingram_standard_70_paperback": 15.4,
+      "ingram_premium_70_paperback": 23.74,
+      "lulu_standard_80_paperback": 17.15,
+      "lulu_premium_80_paperback": 52.85
+    }
+  ],
+  "maker_faire_scenarios": [
+    {
+      "name": "conservative",
+      "total_copies": 40,
+      "mix": {"story": 14, "volume_1": 8, "volume_2": 4, "volume_3": 4, "volume_4": 4, "volume_5": 1, "volume_6": 1, "volume_7": 1, "volume_8": 1, "manual": 2},
+      "balanced_manufacturing": 170.53,
+      "all_premium_manufacturing": 219.66
+    },
+    {
+      "name": "recommended",
+      "total_copies": 60,
+      "mix": {"story": 20, "volume_1": 12, "volume_2": 7, "volume_3": 7, "volume_4": 7, "volume_5": 1, "volume_6": 1, "volume_7": 1, "volume_8": 1, "manual": 3},
+      "balanced_manufacturing": 255.23,
+      "all_premium_manufacturing": 329.97,
+      "balanced_delivered_estimate_california": {"low": 322.24, "high": 352.24}
+    },
+    {
+      "name": "aggressive",
+      "total_copies": 100,
+      "mix": {"story": 34, "volume_1": 20, "volume_2": 10, "volume_3": 10, "volume_4": 10, "volume_5": 3, "volume_6": 3, "volume_7": 3, "volume_8": 3, "manual": 4},
+      "balanced_manufacturing": 414.99,
+      "all_premium_manufacturing": 532.4
+    }
+  ]
+}
