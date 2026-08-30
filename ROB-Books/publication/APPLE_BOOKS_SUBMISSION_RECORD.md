@@ -2,7 +2,7 @@
 
 **Prepared:** 2026-08-29
 
-**Portal status:** Not submitted; the signed-in browser has not yet been attached to this Codex session.
+**Portal status:** All ten titles were imported on 2026-08-30. Apple IDs are assigned, Rights and Pricing is confirmed in all 51 available Apple Books stores, and every title is **Waiting for Review**. My Books currently reports **Not on Store**, so none of the titles is represented here as live.
 **Catalog:** `publication/apple-books-catalog.json`
 
 This record distinguishes file readiness from actions confirmed by Apple. It must not describe a title as uploaded, imported, in review, approved, cleared for sale, or live until the corresponding Apple Books page or catalog report supplies that evidence.
@@ -31,27 +31,35 @@ This record distinguishes file readiness from actions confirmed by Apple. It mus
 | Sample | Apple-generated |
 | Volume Content Service | Enabled |
 | Accessibility claims | Alternative text, reading order, structural navigation, table of contents; no known accessibility hazard |
-| ISBN | No ebook ISBNs; use the ten permanent UUID Vendor IDs embedded in the EPUBs |
+| ISBN | No ebook ISBNs; the ISBN field is blank on all ten Apple title records |
 | Apple DRM | Disabled for every title; distribute the educational ebooks DRM-free |
 
-On August 29, 2026, Rodolfo Aramayo directed the publisher to proceed without ebook ISBNs because none have been assigned and to disable DRM because the books are educational. No identifier is invented: Apple receives each book's existing permanent Vendor ID. Any later print edition requires a legitimate format-specific ISBN rather than a reused or fabricated number.
+On August 29, 2026, Rodolfo Aramayo directed the publisher to proceed without ebook ISBNs because none have been assigned and to disable DRM because the books are educational. No identifier was invented. The UUID values in the catalog remain the permanent identifiers embedded in the EPUB packages; iTunes Connect assigned separate numeric Vendor IDs during import, recorded below. Any later print edition requires a legitimate format-specific ISBN rather than a reused or fabricated number.
 
 ## Upload inventory
 
-| Title | Vendor ID | Price | EPUB/cover preflight | Apple status / ID |
-|---|---|---:|---|---|
-| ROB and the Lost Yellow Ball | `0ef3f5ab-e49d-5f6c-a22e-ad2c70a07f4b` | $2.99 | Ready | Not submitted |
-| Meet ROB | `aaffc931-e02b-53a3-812d-0ef80c58abdb` | $4.99 | Ready | Not submitted |
-| Circuits & Signals | `6827d07c-737e-5752-afaa-e807bac2b73b` | $4.99 | Ready | Not submitted |
-| Motion Workshop | `9c8af395-77e4-5895-b86b-59028603a3cd` | $4.99 | Ready | Not submitted |
-| Mission Control | `3fd86b5a-d5ee-5fe1-a628-94ea968acdea` | $4.99 | Ready | Not submitted |
-| AI, Robotics, and Codex | `3183db78-228b-5df2-bc63-f2e5d4ff8c49` | $8.99 | Ready | Not submitted |
-| Dual-Arm Robotics | `e29b1978-9972-5f0d-96ba-fd84ea53716a` | $8.99 | Ready | Not submitted |
-| Engineering ROBControllerVision | `d08790c7-7646-56b7-914a-498d30a77128` | $8.99 | Ready | Not submitted |
-| Engineering Cerebro | `2d2c834f-9340-50f7-8a38-5b06c8379705` | $8.99 | Ready | Not submitted |
-| Complete Builder's Field Manual | `454776a4-d151-539c-9ae4-7e7ccb9a3eda` | $24.99 | Ready | Not submitted |
+| Title | EPUB UUID | Apple Vendor ID | Price | EPUB/cover preflight | Apple status / ID |
+|---|---|---|---:|---|---|
+| ROB and the Lost Yellow Ball | `0ef3f5ab-e49d-5f6c-a22e-ad2c70a07f4b` | `10084085996` | $2.99 | Passed and imported | Waiting for Review · [6806729418](https://books.apple.com/us/book/rob-and-the-lost-yellow-ball/id6806729418?ls=1) |
+| Meet ROB | `aaffc931-e02b-53a3-812d-0ef80c58abdb` | `10084086331` | $4.99 | Passed and imported | Waiting for Review · [6806730228](https://books.apple.com/us/book/meet-rob/id6806730228?ls=1) |
+| Circuits & Signals | `6827d07c-737e-5752-afaa-e807bac2b73b` | `10084086223` | $4.99 | Passed and imported | Waiting for Review · [6806730681](https://books.apple.com/us/book/circuits-signals/id6806730681?ls=1) |
+| Motion Workshop | `9c8af395-77e4-5895-b86b-59028603a3cd` | `10084086370` | $4.99 | Passed and imported | Waiting for Review · [6806731300](https://books.apple.com/us/book/motion-workshop/id6806731300?ls=1) |
+| Mission Control | `3fd86b5a-d5ee-5fe1-a628-94ea968acdea` | `10084086371` | $4.99 | Passed and imported | Waiting for Review · [6806731600](https://books.apple.com/us/book/mission-control/id6806731600?ls=1) |
+| AI, Robotics, and Codex | `3183db78-228b-5df2-bc63-f2e5d4ff8c49` | `10084086394` | $8.99 | Passed and imported | Waiting for Review · [6806732016](https://books.apple.com/us/book/ai-robotics-and-codex/id6806732016?ls=1) |
+| Dual-Arm Robotics | `e29b1978-9972-5f0d-96ba-fd84ea53716a` | `10084086449` | $8.99 | Passed and imported | Waiting for Review · [6806732519](https://books.apple.com/us/book/dual-arm-robotics/id6806732519?ls=1) |
+| Engineering ROBControllerVision | `d08790c7-7646-56b7-914a-498d30a77128` | `10084086224` | $8.99 | Passed and imported | Waiting for Review · [6806732984](https://books.apple.com/us/book/engineering-robcontrollervision/id6806732984?ls=1) |
+| Engineering Cerebro | `2d2c834f-9340-50f7-8a38-5b06c8379705` | `10084086583` | $8.99 | Passed and imported | Waiting for Review · [6806807905](https://books.apple.com/us/book/engineering-cerebro/id6806807905?ls=1) |
+| Complete Builder's Field Manual | `454776a4-d151-539c-9ae4-7e7ccb9a3eda` | `10084086661` | $24.99 | Passed and imported | Waiting for Review · [6806809290](https://books.apple.com/us/book/complete-builders-field-manual/id6806809290?ls=1) |
 
-Each title has a detailed UTF-8 store description, two current BISAC subjects, the approved audience/interest-age values, series metadata where applicable, a stable Vendor ID that matches the EPUB identifier, and explicit submission-status fields in the catalog. The complete collection is intentionally not numbered as Volume 9, and the children's story is intentionally a companion rather than a numbered engineering volume.
+Each title has a detailed UTF-8 store description, two current BISAC subjects, the approved audience/interest-age values, series metadata where applicable, a stable EPUB UUID, an Apple-assigned numeric Vendor ID, and explicit submission-status fields in the catalog. The complete collection is intentionally not numbered as Volume 9, and the children's story is intentionally a companion rather than a numbered engineering volume.
+
+## Portal evidence recorded on 2026-08-30
+
+- Every EPUB and cover import returned Apple's **You're almost done!** confirmation before the title appeared in My Books.
+- Each My Books detail page shows a blank ISBN, the expected Apple ID and public URL, the original publication date of Aug 29, 2026, and **Waiting for Review**.
+- Rights and Pricing was confirmed separately for every title with a release date of Aug 30, 2026, Digital Only release type, the catalog USD price, and all 51 available countries or regions selected.
+- The saved Rights and Pricing table contains 51 rows for every title. All 51 rows are Cleared for Sale and VCS-Enabled, all 51 have a price tier and release date, and zero rows apply DRM.
+- The final My Books refresh reports **Not on 51 Stores** for all ten titles. This is retained as the current store state while Apple review is pending; it is not treated as approval or a live-store confirmation.
 
 ## File evidence
 

@@ -1,11 +1,15 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "series": {
     "title": "Building R.O.B.",
     "author": "Rodolfo Aramayo",
     "publisher": "OrbitusRobotics LLC",
     "language": "en-US",
-    "release_status": "prepublication_review",
+    "release_status": "waiting_for_review",
+    "submission_date": "2026-08-30",
+    "rights_and_pricing_status": "Confirmed for all 10 titles in all 51 available Apple Books stores",
+    "store_status": "Not on Store pending Apple review",
+    "storefront_count": 51,
     "individual_volume_total_usd": 55.92,
     "collection_price_usd": 24.99,
     "collection_savings_percent": 55,
@@ -17,7 +21,8 @@
     "release_date_strategy": "Release as soon as Apple Books review is complete",
     "release_type": "Digital Only",
     "sample_strategy": "Apple-generated sample",
-    "isbn_strategy": "No ebook ISBNs; submit with the ten permanent UUID Vendor IDs already embedded in the EPUBs.",
+    "isbn_strategy": "No ebook ISBNs; the ISBN field is blank on all ten Apple title records.",
+    "identifier_note": "The catalog vendor_id values are permanent UUID identifiers embedded in the EPUBs. iTunes Connect assigned separate numeric Vendor IDs, recorded as apple_vendor_id for each title.",
     "drm_strategy": "DRM disabled for every title; publish the educational ebooks DRM-free.",
     "volume_content_service_enabled": true
   },
@@ -40,8 +45,8 @@
       "description": "ROB finds a yellow ball beside a puddle and must stop, observe, plan, and check before helping. This warm illustrated story introduces young readers to sensing, feedback, counting, careful problem-solving, and kindness without presenting imaginary robot actions as real-world engineering evidence.",
       "category_recommendation": "JUVENILE FICTION / Robots; JUVENILE FICTION / Social Themes / Friendship",
       "isbn": "",
-      "apple_books_id": "",
-      "apple_books_url": "",
+      "apple_books_id": "6806729418",
+      "apple_books_url": "https://books.apple.com/us/book/rob-and-the-lost-yellow-ball/id6806729418?ls=1",
       "subject_categories": [
         {
           "code": "JUV056000",
@@ -59,10 +64,11 @@
       "series_number": null,
       "series_display_text": null,
       "vendor_id": "0ef3f5ab-e49d-5f6c-a22e-ad2c70a07f4b",
+      "apple_vendor_id": "10084085996",
       "original_publication_date": "2026-08-29",
-      "release_date": "as soon as approved",
+      "release_date": "2026-08-30",
       "release_type": "Digital Only",
-      "sales_territories": "Worldwide",
+      "sales_territories": "All 51 available Apple Books stores",
       "cleared_for_sale": true,
       "sample_strategy": "Apple-generated sample",
       "accessibility_features": [
@@ -74,7 +80,12 @@
       "accessibility_hazards": [
         "none"
       ],
-      "submission_status": "not_submitted",
+      "submission_status": "waiting_for_review",
+      "import_status": "confirmed",
+      "review_status": "waiting_for_review",
+      "store_status": "not_on_store",
+      "rights_and_pricing_status": "confirmed",
+      "storefront_count": 51,
       "apply_drm": false,
       "volume_content_service_enabled": true,
       "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
@@ -93,8 +104,8 @@
       "description": "Meet ROB through the evidence of a real, hand-built robot project. Young makers learn systems thinking, structure, energy, sensors, iteration, feedback, and engineering logs while the book clearly separates historical photographs, illustrations, measured facts, and future design work.",
       "category_recommendation": "JUVENILE NONFICTION / Technology / Robotics; JUVENILE NONFICTION / Technology / How Things Work-Are Made",
       "isbn": "",
-      "apple_books_id": "",
-      "apple_books_url": "",
+      "apple_books_id": "6806730228",
+      "apple_books_url": "https://books.apple.com/us/book/meet-rob/id6806730228?ls=1",
       "subject_categories": [
         {
           "code": "JNF061020",
@@ -112,10 +123,11 @@
       "series_number": 1,
       "series_display_text": "Volume",
       "vendor_id": "aaffc931-e02b-53a3-812d-0ef80c58abdb",
+      "apple_vendor_id": "10084086331",
       "original_publication_date": "2026-08-29",
-      "release_date": "as soon as approved",
+      "release_date": "2026-08-30",
       "release_type": "Digital Only",
-      "sales_territories": "Worldwide",
+      "sales_territories": "All 51 available Apple Books stores",
       "cleared_for_sale": true,
       "sample_strategy": "Apple-generated sample",
       "accessibility_features": [
@@ -127,7 +139,12 @@
       "accessibility_hazards": [
         "none"
       ],
-      "submission_status": "not_submitted",
+      "submission_status": "waiting_for_review",
+      "import_status": "confirmed",
+      "review_status": "waiting_for_review",
+      "store_status": "not_on_store",
+      "rights_and_pricing_status": "confirmed",
+      "storefront_count": 51,
       "apply_drm": false,
       "volume_content_service_enabled": true,
       "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
@@ -146,8 +163,8 @@
       "description": "Follow energy and information through low-voltage educational circuits, digital and analog signals, PWM, Arduino pins, serial messages, sensors, and watchdogs. Hands-on activities stay bounded and supervised while readers learn to distinguish a command, a measurement, and a safety claim.",
       "category_recommendation": "YOUNG ADULT NONFICTION / Technology / Electricity & Electronics; YOUNG ADULT NONFICTION / Technology / Robotics",
       "isbn": "",
-      "apple_books_id": "",
-      "apple_books_url": "",
+      "apple_books_id": "6806730681",
+      "apple_books_url": "https://books.apple.com/us/book/circuits-signals/id6806730681?ls=1",
       "subject_categories": [
         {
           "code": "YAN055030",
@@ -165,10 +182,11 @@
       "series_number": 2,
       "series_display_text": "Volume",
       "vendor_id": "6827d07c-737e-5752-afaa-e807bac2b73b",
+      "apple_vendor_id": "10084086223",
       "original_publication_date": "2026-08-29",
-      "release_date": "as soon as approved",
+      "release_date": "2026-08-30",
       "release_type": "Digital Only",
-      "sales_territories": "Worldwide",
+      "sales_territories": "All 51 available Apple Books stores",
       "cleared_for_sale": true,
       "sample_strategy": "Apple-generated sample",
       "accessibility_features": [
@@ -180,7 +198,12 @@
       "accessibility_hazards": [
         "none"
       ],
-      "submission_status": "not_submitted",
+      "submission_status": "waiting_for_review",
+      "import_status": "confirmed",
+      "review_status": "waiting_for_review",
+      "store_status": "not_on_store",
+      "rights_and_pricing_status": "confirmed",
+      "storefront_count": 51,
       "apply_drm": false,
       "volume_content_service_enabled": true,
       "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
@@ -199,8 +222,8 @@
       "description": "Explore the mechanical reasoning behind a tracked robot: loads, differential drive, gearing, actuators, materials, fabrication, assembly, service access, and test ladders. ROB's revisions and failures become lessons in asking what a prototype proves before committing to stronger material.",
       "category_recommendation": "YOUNG ADULT NONFICTION / Technology / Machinery & Tools; YOUNG ADULT NONFICTION / Technology / Robotics",
       "isbn": "",
-      "apple_books_id": "",
-      "apple_books_url": "",
+      "apple_books_id": "6806731300",
+      "apple_books_url": "https://books.apple.com/us/book/motion-workshop/id6806731300?ls=1",
       "subject_categories": [
         {
           "code": "YAN055050",
@@ -218,10 +241,11 @@
       "series_number": 3,
       "series_display_text": "Volume",
       "vendor_id": "9c8af395-77e4-5895-b86b-59028603a3cd",
+      "apple_vendor_id": "10084086370",
       "original_publication_date": "2026-08-29",
-      "release_date": "as soon as approved",
+      "release_date": "2026-08-30",
       "release_type": "Digital Only",
-      "sales_territories": "Worldwide",
+      "sales_territories": "All 51 available Apple Books stores",
       "cleared_for_sale": true,
       "sample_strategy": "Apple-generated sample",
       "accessibility_features": [
@@ -233,7 +257,12 @@
       "accessibility_hazards": [
         "none"
       ],
-      "submission_status": "not_submitted",
+      "submission_status": "waiting_for_review",
+      "import_status": "confirmed",
+      "review_status": "waiting_for_review",
+      "store_status": "not_on_store",
+      "rights_and_pricing_status": "confirmed",
+      "storefront_count": 51,
       "apply_drm": false,
       "volume_content_service_enabled": true,
       "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
@@ -252,8 +281,8 @@
       "description": "Learn how computers, microcontrollers, cameras, maps, networks, privacy choices, AI boundaries, and simulations coordinate a robot. Mission Control teaches explicit authority, fresh data, bounded commands, and the difference between an impressive demonstration and verified behavior.",
       "category_recommendation": "YOUNG ADULT NONFICTION / Technology / Robotics; YOUNG ADULT NONFICTION / Computers / Software",
       "isbn": "",
-      "apple_books_id": "",
-      "apple_books_url": "",
+      "apple_books_id": "6806731600",
+      "apple_books_url": "https://books.apple.com/us/book/mission-control/id6806731600?ls=1",
       "subject_categories": [
         {
           "code": "YAN055060",
@@ -271,10 +300,11 @@
       "series_number": 4,
       "series_display_text": "Volume",
       "vendor_id": "3fd86b5a-d5ee-5fe1-a628-94ea968acdea",
+      "apple_vendor_id": "10084086371",
       "original_publication_date": "2026-08-29",
-      "release_date": "as soon as approved",
+      "release_date": "2026-08-30",
       "release_type": "Digital Only",
-      "sales_territories": "Worldwide",
+      "sales_territories": "All 51 available Apple Books stores",
       "cleared_for_sale": true,
       "sample_strategy": "Apple-generated sample",
       "accessibility_features": [
@@ -286,7 +316,12 @@
       "accessibility_hazards": [
         "none"
       ],
-      "submission_status": "not_submitted",
+      "submission_status": "waiting_for_review",
+      "import_status": "confirmed",
+      "review_status": "waiting_for_review",
+      "store_status": "not_on_store",
+      "rights_and_pricing_status": "confirmed",
+      "storefront_count": 51,
       "apply_drm": false,
       "volume_content_service_enabled": true,
       "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
@@ -305,8 +340,8 @@
       "description": "Trace ROBController and Cerebro from early serial-control software to an AI-accelerated engineering era. This source-based guide studies Swift, MLX, perception, recording, identity, stage shows, spatial interfaces, verification, and the boundaries that keep generative systems outside direct motor authority.",
       "category_recommendation": "COMPUTERS / Artificial Intelligence / General; COMPUTERS / Software Development & Engineering / General",
       "isbn": "",
-      "apple_books_id": "",
-      "apple_books_url": "",
+      "apple_books_id": "6806732016",
+      "apple_books_url": "https://books.apple.com/us/book/ai-robotics-and-codex/id6806732016?ls=1",
       "subject_categories": [
         {
           "code": "COM004000",
@@ -324,10 +359,11 @@
       "series_number": 5,
       "series_display_text": "Volume",
       "vendor_id": "3183db78-228b-5df2-bc63-f2e5d4ff8c49",
+      "apple_vendor_id": "10084086394",
       "original_publication_date": "2026-08-29",
-      "release_date": "as soon as approved",
+      "release_date": "2026-08-30",
       "release_type": "Digital Only",
-      "sales_territories": "Worldwide",
+      "sales_territories": "All 51 available Apple Books stores",
       "cleared_for_sale": true,
       "sample_strategy": "Apple-generated sample",
       "accessibility_features": [
@@ -339,7 +375,12 @@
       "accessibility_hazards": [
         "none"
       ],
-      "submission_status": "not_submitted",
+      "submission_status": "waiting_for_review",
+      "import_status": "confirmed",
+      "review_status": "waiting_for_review",
+      "store_status": "not_on_store",
+      "rights_and_pricing_status": "confirmed",
+      "storefront_count": 51,
       "apply_drm": false,
       "volume_content_service_enabled": true,
       "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
@@ -358,8 +399,8 @@
       "description": "Study the integration of two seven-joint AMBER B1 arms through URDF, coordinate frames, CAN identity, UDP and LCM, Ubuntu reproduction, diagnostics, and staged commissioning. The field guide emphasizes measured transforms, independent feedback, conservative tests, and fail-closed authority.",
       "category_recommendation": "TECHNOLOGY & ENGINEERING / Robotics; TECHNOLOGY & ENGINEERING / Systems Engineering",
       "isbn": "",
-      "apple_books_id": "",
-      "apple_books_url": "",
+      "apple_books_id": "6806732519",
+      "apple_books_url": "https://books.apple.com/us/book/dual-arm-robotics/id6806732519?ls=1",
       "subject_categories": [
         {
           "code": "TEC037000",
@@ -377,10 +418,11 @@
       "series_number": 6,
       "series_display_text": "Volume",
       "vendor_id": "e29b1978-9972-5f0d-96ba-fd84ea53716a",
+      "apple_vendor_id": "10084086449",
       "original_publication_date": "2026-08-29",
-      "release_date": "as soon as approved",
+      "release_date": "2026-08-30",
       "release_type": "Digital Only",
-      "sales_territories": "Worldwide",
+      "sales_territories": "All 51 available Apple Books stores",
       "cleared_for_sale": true,
       "sample_strategy": "Apple-generated sample",
       "accessibility_features": [
@@ -392,7 +434,12 @@
       "accessibility_hazards": [
         "none"
       ],
-      "submission_status": "not_submitted",
+      "submission_status": "waiting_for_review",
+      "import_status": "confirmed",
+      "review_status": "waiting_for_review",
+      "store_status": "not_on_store",
+      "rights_and_pricing_status": "confirmed",
+      "storefront_count": 51,
       "apply_drm": false,
       "volume_content_service_enabled": true,
       "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
@@ -411,8 +458,8 @@
       "description": "Build a mental model of ROBControllerVision's Swift 6 architecture: authenticated sessions, explicit control ownership, spatial input, independent arm leases, three bounded H.264 feeds, immersive 360 presentation, speech, and testing. The focus is a responsive visionOS controller whose media path cannot outrank motion safety.",
       "category_recommendation": "COMPUTERS / Programming / Mobile Devices; COMPUTERS / Virtual & Augmented Reality",
       "isbn": "",
-      "apple_books_id": "",
-      "apple_books_url": "",
+      "apple_books_id": "6806732984",
+      "apple_books_url": "https://books.apple.com/us/book/engineering-robcontrollervision/id6806732984?ls=1",
       "subject_categories": [
         {
           "code": "COM051460",
@@ -430,10 +477,11 @@
       "series_number": 7,
       "series_display_text": "Volume",
       "vendor_id": "d08790c7-7646-56b7-914a-498d30a77128",
+      "apple_vendor_id": "10084086224",
       "original_publication_date": "2026-08-29",
-      "release_date": "as soon as approved",
+      "release_date": "2026-08-30",
       "release_type": "Digital Only",
-      "sales_territories": "Worldwide",
+      "sales_territories": "All 51 available Apple Books stores",
       "cleared_for_sale": true,
       "sample_strategy": "Apple-generated sample",
       "accessibility_features": [
@@ -445,7 +493,12 @@
       "accessibility_hazards": [
         "none"
       ],
-      "submission_status": "not_submitted",
+      "submission_status": "waiting_for_review",
+      "import_status": "confirmed",
+      "review_status": "waiting_for_review",
+      "store_status": "not_on_store",
+      "rights_and_pricing_status": "confirmed",
+      "storefront_count": 51,
       "apply_drm": false,
       "volume_content_service_enabled": true,
       "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
@@ -464,8 +517,8 @@
       "description": "Examine Cerebro as a living robot-side system spanning RGB-D and panoramic perception, local and cloud AI, encrypted face context, private messaging, training capture, H.264 video, control arbitration, and bounded autonomy. The architecture keeps observations, model suggestions, authorization, and deterministic execution distinct.",
       "category_recommendation": "COMPUTERS / Software Development & Engineering / General; COMPUTERS / Artificial Intelligence / Computer Vision & Pattern Recognition",
       "isbn": "",
-      "apple_books_id": "",
-      "apple_books_url": "",
+      "apple_books_id": "6806807905",
+      "apple_books_url": "https://books.apple.com/us/book/engineering-cerebro/id6806807905?ls=1",
       "subject_categories": [
         {
           "code": "COM051230",
@@ -483,10 +536,11 @@
       "series_number": 8,
       "series_display_text": "Volume",
       "vendor_id": "2d2c834f-9340-50f7-8a38-5b06c8379705",
+      "apple_vendor_id": "10084086583",
       "original_publication_date": "2026-08-29",
-      "release_date": "as soon as approved",
+      "release_date": "2026-08-30",
       "release_type": "Digital Only",
-      "sales_territories": "Worldwide",
+      "sales_territories": "All 51 available Apple Books stores",
       "cleared_for_sale": true,
       "sample_strategy": "Apple-generated sample",
       "accessibility_features": [
@@ -498,7 +552,12 @@
       "accessibility_hazards": [
         "none"
       ],
-      "submission_status": "not_submitted",
+      "submission_status": "waiting_for_review",
+      "import_status": "confirmed",
+      "review_status": "waiting_for_review",
+      "store_status": "not_on_store",
+      "rights_and_pricing_status": "confirmed",
+      "storefront_count": 51,
       "apply_drm": false,
       "volume_content_service_enabled": true,
       "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
@@ -517,8 +576,8 @@
       "description": "The complete historical engineering collection follows ROB from a hand-built College Station prototype through tracked mechanics, circuits, software, perception, privacy, dual arms, AI boundaries, verification, and operations. It teaches readers how to reason from surviving evidence while preserving missing CAD and measurements for a future measured edition.",
       "category_recommendation": "TECHNOLOGY & ENGINEERING / Robotics; TECHNOLOGY & ENGINEERING / Systems Engineering",
       "isbn": "",
-      "apple_books_id": "",
-      "apple_books_url": "",
+      "apple_books_id": "6806809290",
+      "apple_books_url": "https://books.apple.com/us/book/complete-builders-field-manual/id6806809290?ls=1",
       "subject_categories": [
         {
           "code": "TEC037000",
@@ -536,10 +595,11 @@
       "series_number": null,
       "series_display_text": null,
       "vendor_id": "454776a4-d151-539c-9ae4-7e7ccb9a3eda",
+      "apple_vendor_id": "10084086661",
       "original_publication_date": "2026-08-29",
-      "release_date": "as soon as approved",
+      "release_date": "2026-08-30",
       "release_type": "Digital Only",
-      "sales_territories": "Worldwide",
+      "sales_territories": "All 51 available Apple Books stores",
       "cleared_for_sale": true,
       "sample_strategy": "Apple-generated sample",
       "accessibility_features": [
@@ -551,7 +611,12 @@
       "accessibility_hazards": [
         "none"
       ],
-      "submission_status": "not_submitted",
+      "submission_status": "waiting_for_review",
+      "import_status": "confirmed",
+      "review_status": "waiting_for_review",
+      "store_status": "not_on_store",
+      "rights_and_pricing_status": "confirmed",
+      "storefront_count": 51,
       "apply_drm": false,
       "volume_content_service_enabled": true,
       "accessibility_summary": "This reflowable EPUB provides a table of contents, structural headings, a defined reading order, and alternative text for meaningful images. It contains no audio, video, flashing, or motion simulation."
