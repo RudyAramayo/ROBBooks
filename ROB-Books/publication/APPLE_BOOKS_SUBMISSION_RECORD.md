@@ -31,10 +31,10 @@ This record distinguishes file readiness from actions confirmed by Apple. It mus
 | Sample | Apple-generated |
 | Volume Content Service | Enabled |
 | Accessibility claims | Alternative text, reading order, structural navigation, table of contents; no known accessibility hazard |
-| ISBN | **Publisher choice pending before initial upload** |
-| Apple DRM | **Publisher choice pending before Rights and Pricing is finalized** |
+| ISBN | No ebook ISBNs; use the ten permanent UUID Vendor IDs embedded in the EPUBs |
+| Apple DRM | Disabled for every title; distribute the educational ebooks DRM-free |
 
-The ISBN decision is intentionally open because it is irreversible for an Apple Books record. The fastest Apple-only digital launch is to omit ebook ISBNs and retain the ten permanent UUID Vendor IDs already embedded in the EPUBs. Supplying ISBNs instead requires ten unique ebook ISBN-13 values before any initial upload; later print editions need their own format-specific ISBNs.
+On August 29, 2026, Rodolfo Aramayo directed the publisher to proceed without ebook ISBNs because none have been assigned and to disable DRM because the books are educational. No identifier is invented: Apple receives each book's existing permanent Vendor ID. Any later print edition requires a legitimate format-specific ISBN rather than a reused or fabricated number.
 
 ## Upload inventory
 
@@ -65,7 +65,7 @@ Each title has a detailed UTF-8 store description, two current BISAC subjects, t
 ## Portal completion procedure
 
 1. Confirm the Books agreement is active and that banking/tax tasks have no pending action.
-2. Resolve ISBN and DRM choices in this record and the JSON catalog.
+2. Use no ISBN and retain the catalog Vendor ID for each title. Select DRM disabled in Rights and Pricing.
 3. For each title, choose **Submit a New Book**, upload the catalog EPUB and cover, and leave the custom sample empty.
 4. Enter the exact catalog title, subtitle, primary author, description, subject categories, interest age, language, publisher, original publication date, and Vendor ID/ISBN fields. Confirm explicit content is No.
 5. Use **Upload Book to iTunes Connect** only after reviewing the summary. Record the returned import confirmation and do not claim an Apple ID until it appears in My Books or a catalog report.

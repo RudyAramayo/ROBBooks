@@ -43,7 +43,7 @@ This checklist releases books, not the physical robot. The edition documents one
 
 ## Apple Books and final approval
 
-- [ ] Final title/subtitle, descriptions, categories, age/grade ranges, pricing, samples, territories, tax/banking status, ISBN strategy, and series metadata are approved.
+- [ ] Final title/subtitle, descriptions, categories, age/grade ranges, pricing, samples, territories, tax/banking status, and series metadata are approved. The publisher has approved no ebook ISBNs and DRM-free distribution.
 - [ ] Apple Books submissions pass account-side validation and device review; each resulting book ID and URL is recorded in `publication/apple-books-catalog.json`.
 - [ ] Rodolfo Aramayo records final publisher approval after rights, digital, and physical proofs are complete.
 
