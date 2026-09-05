@@ -135,9 +135,13 @@ bash tools/prepare_assets.sh
 bash tools/build_books.sh
 bash tools/validate_books.sh
 bash tools/render_previews.sh
+python3 tools/build_ingramspark_interiors.py
+python3 tools/validate_ingramspark_interiors.py
 ```
 
 `prepare_assets.sh` rebuilds a conservative publication allowlist and strips image metadata. It fails if either publishable asset directory contains any unlisted entry, without deleting that entry automatically. `validate_books.sh` checks PDF freshness against each manuscript, the shared style, and referenced assets; rejects retired image names from publishable sources and outputs; verifies the reviewed asset checksums, dimensions, color space, metadata, ledger coverage, and OCR privacy patterns; and checks page geometry, text extraction, and serious LaTeX warnings. Validation does not replace engineering, privacy, legal, color, or press-preflight review.
+
+The IngramSpark builder creates separate CMYK PDF/X-1a interiors under `output/pdf/ingramspark/interiors/`. It preserves the reviewed 8.5 x 11-inch trim region, adds 0.125-inch bleed to the top, bottom, and alternating outside edge, makes page counts even, removes print-inapplicable annotations, and retains vector text wherever the source does not genuinely use transparency. The validator checks page counts and geometry, PDF/X identification, CMYK/gray images, embedded fonts, minimum effective image resolution, renderability, and sampled pixel-identical trim placement. These files still require IngramSpark's account-side file review and a physical proof.
 
 ## Safe companion lab
 
