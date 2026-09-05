@@ -4,18 +4,17 @@ Physical copies are practical, but the current US Letter RGB PDFs are layout pro
 
 ## Recommendation for Maker Faire
 
-Publish all ten books digitally in Apple Books and make every approved print edition available through print on demand. For the event itself, order **60 physical books** after proof approval. Apple Books and the poster QR codes can carry the full catalog, so the table inventory should emphasize approachable entry books and keep only display copies of specialist volumes.
+Publish all ten books digitally in Apple Books and make every approved print edition available through print on demand. For the event itself, order **50 physical books** after proof approval, balanced at five copies of every title. Apple Books and the poster QR codes can carry the full catalog while the even print mix tests demand without overcommitting cash to any one title.
 
 | Title group | Copies | Event role | Suggested direct price |
 |---|---:|---|---:|
-| *ROB and the Lost Yellow Ball* | 20 | Family entry point and read-aloud | $12 |
-| Volume 1 — *Meet ROB* | 12 | Main classroom introduction | $15 |
-| Volumes 2–4 | 7 each / 21 total | Circuits, mechanics, and software follow-ons | $15 each |
-| Volumes 5–8 | 1 each / 4 total | Display copies for advanced visitors; direct them to Apple Books or POD | $18 each |
-| *Complete Builder's Field Manual* | 3 | One display copy and two sale copies | $40 |
-| **Total** | **60** |  |  |
+| *ROB and the Lost Yellow Ball* | 5 | Family entry point and read-aloud | $12 |
+| Volumes 1–4 | 5 each / 20 total | Classroom introduction, circuits, mechanics, and software | $15 each |
+| Volumes 5–8 | 5 each / 20 total | Advanced software, AI, and robotics manuals | $18 each |
+| *Complete Builder's Field Manual* | 5 | Complete technical reference | $40 |
+| **Total** | **50** |  |  |
 
-If all 60 sell at those rounded event prices, gross receipts would be $927 before card fees, sales tax, booth cost, and unsold stock. Do not advertise or accept payment until the publication release gate is complete.
+If all 50 sell at those rounded event prices, gross receipts would be $920 before card fees, sales tax, booth cost, and unsold stock. Do not advertise or accept payment until the publication release gate is complete.
 
 ### Inventory decision range
 
@@ -24,12 +23,12 @@ These scenarios use IngramSpark premium color for the picture book and standard 
 | Scenario | Mix | Manufacturing estimate | Use it when |
 |---|---|---:|---|
 | Conservative | 40 books: 14 story, 8 V1, 4 each V2–V4, 1 each V5–V8, 2 manuals | $171 | One event day, paid books, uncertain traffic |
-| **Recommended** | **60 books using the mix above** | **$255** | First multi-day Maker Faire with all Apple Books live |
+| **Recommended** | **50 books: 5 copies of every title** | **$245** | Balanced first-event demand test with all Apple Books live |
 | Aggressive | 100 books: 34 story, 20 V1, 10 each V2–V4, 3 each V5–V8, 4 manuals | $415 | Preorders, a planned giveaway, or prior sell-through evidence |
 
-The same runs in premium color throughout are approximately $220, $330, and $532. For the recommended 60-book run, a planning allowance of $45–$75 for ground shipping plus approximately $22 California tax puts the balanced edition at about **$322–$352 delivered**. This freight range is an inference from the calculator's single-title 50- and 100-copy quotes to San Francisco ZIP 94103; obtain a final mixed-cart quote for the actual delivery address before ordering.
+The same runs in premium color throughout are approximately $220, $343, and $532. For the recommended 50-book run, a planning allowance of $45–$75 for ground shipping plus approximately $22 California tax puts the balanced edition at about **$312–$342 delivered**. This freight range is an inference from the calculator's single-title 50- and 100-copy quotes to San Francisco ZIP 94103; obtain a final mixed-cart quote for the actual delivery address before ordering.
 
-The 60-copy run is deliberately below either vendor's first quantity break. Discounts apply by quantity of the same title, not to 60 books spread across ten titles. IngramSpark starts at 2% for 100 copies of one title; Lulu starts at 5% for 100 copies of one item. A 100-copy mixed catalog order therefore should not be treated as discounted.
+The 50-copy run is deliberately below either vendor's first quantity break. Discounts apply by quantity of the same title, not to 50 books spread across ten titles. IngramSpark starts at 2% for 100 copies of one title; Lulu starts at 5% for 100 copies of one item. A 100-copy mixed catalog order therefore should not be treated as discounted.
 
 ## Quote assumptions
 
@@ -87,7 +86,7 @@ Relevant current vendor references: [Lulu pricing calculator](https://www.lulu.c
 
 ### Recommended platform split
 
-Use Apple Books for the digital editions, IngramSpark as the single distributor for the ordinary paperback editions, and Lulu only for direct specialty editions such as saddle stitch or coil. Do not send the same ISBN into retail distribution from both Lulu and IngramSpark. Buy publisher-owned ISBNs for the print catalog so OrbitusRobotics controls the imprint and can change printers later; assign a separate ISBN to each materially different print format, such as paperback and hardcover.
+Use Apple Books for the digital editions, IngramSpark as the single distributor for the ordinary paperback editions, and Lulu only for direct specialty editions such as saddle stitch or coil. Do not send the same ISBN into retail distribution from both Lulu and IngramSpark. On September 5, 2026, the publisher chose IngramSpark's complimentary print ISBNs to avoid ISBN purchase cost. Those ISBNs are owned by IngramSpark, use the retail imprint `Indy Pub`, are not transferable to another publisher, and require wholesale pricing in at least one market. This does not alter the existing Apple Books ebook records, which use their own permanent identifiers and have no ebook ISBNs assigned.
 
 This split avoids ten Lulu review fees, avoids overlapping distribution records, and preserves Lulu's more useful classroom bindings. It also means the Maker Faire inventory can be ordered from IngramSpark in one cart after the color proof decision.
 
@@ -105,7 +104,7 @@ Order this six-copy comparison set before committing to 60 copies:
 | Lulu premium 80# coil-bound Volume 1 | $15.11 | Whether a lay-flat classroom edition is worth offering |
 | **Manufacturing subtotal** | **$52.38** | Shipping and tax are additional and vendor-specific |
 
-After inspection, use one printer for the event run unless the Lulu saddle-stitched picture book clearly earns its higher cost. Splitting a 60-copy run between vendors adds freight, proof, color-matching, and schedule risk.
+After inspection, use one printer for the event run unless the Lulu saddle-stitched picture book clearly earns its higher cost. Splitting a 50-copy run between vendors adds freight, proof, color-matching, and schedule risk.
 
 ## Recommended proof sequence
 
@@ -114,7 +113,7 @@ After inspection, use one printer for the event run unless the Lulu saddle-stitc
 3. **Request printer templates.** Confirm binding, paper, bleed, gutter, safe area, color profile, black generation, transparency, font embedding, barcode space, and cover/spine dimensions.
 4. **Order the six proofs.** Keep the vendor and configuration labels with each copy and inspect them under ordinary classroom and event lighting.
 5. **Record the decision.** Select standard or premium per title, enter the final page count and actual mixed-cart freight, then re-run the calculators.
-6. **Order 60 with schedule margin.** Use economy production only when its dispatch date leaves room for replacement copies. Do not rely on rush printing as the event plan.
+6. **Order 50 with schedule margin.** Use economy production only when its dispatch date leaves room for replacement copies. Do not rely on rush printing as the event plan.
 
 ## Release record
 
