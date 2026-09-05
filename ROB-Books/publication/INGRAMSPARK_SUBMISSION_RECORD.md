@@ -2,7 +2,9 @@
 
 ## Current state
 
-On September 5, 2026, Rodolfo Aramayo approved complimentary IngramSpark print ISBNs for all ten titles. Each title was created as a **Print Book Only** record with files deferred and the intended **Print, distribute, and sell book** workflow. All ten records are saved as **Setup Incomplete**. Ten vendor-specific interior files have now been built and locally validated, but none has been uploaded. No cover file, retail price, or wholesale terms have been entered, no proof has been ordered, and distribution has not been enabled.
+On September 5, 2026, Rodolfo Aramayo approved complimentary IngramSpark print ISBNs and final title submission for all ten titles. Each title was created as a **Print Book Only** record with the intended **Print, distribute, and sell book** workflow. All ten page-count-specific cover templates were obtained from IngramSpark, and all ten interiors and complete wrap covers were built and locally validated.
+
+The storybook and Volumes 1-3 have been fully submitted and reached IngramSpark's **Congratulations** page after both metadata and content-file validation reported no errors. IngramSpark says their digital proofs should arrive in 3-5 days. Volume 4 has its metadata, print configuration, interior, and cover saved in the portal; its session expired before content validation could be started. Volumes 5-8 and the complete manual still require portal print setup and file upload. No digital proof has been approved, no physical proof or production run has been ordered, and distribution has not been enabled.
 
 The complimentary ISBN notice states that each ISBN is nontransferable, is owned by IngramSpark, uses the `Indy Pub` imprint, and requires participation in the wholesale program with retail pricing in at least one market. This is a print-format decision only. It does not replace or conflict with the existing Apple Books ebook identifiers, and no print ISBN has been reused for an ebook.
 
@@ -10,18 +12,18 @@ The complimentary ISBN notice states that each ISBN is nontransferable, is owned
 
 | # | Title | IngramSpark title ID | Complimentary print ISBN | Portal status |
 |---:|---|---|---|---|
-| 1 | *ROB and the Lost Yellow Ball* | `CSS9655730` | `979-8-2408-3421-9` | Setup Incomplete |
-| 2 | *Meet ROB* | `CSS9655778` | `979-8-1827-4639-7` | Setup Incomplete |
-| 3 | *Circuits & Signals* | `CSS9655786` | `979-8-1827-4640-3` | Setup Incomplete |
-| 4 | *Motion Workshop* | `CSS9655791` | `979-8-1827-4641-0` | Setup Incomplete |
-| 5 | *Mission Control* | `CSS9655796` | `979-8-1827-4642-7` | Setup Incomplete |
-| 6 | *AI, Robotics, and Codex* | `CSS9655797` | `979-8-1827-4643-4` | Setup Incomplete |
-| 7 | *Dual-Arm Robotics* | `CSS9655798` | `979-8-1827-4644-1` | Setup Incomplete |
-| 8 | *Engineering ROBControllerVision* | `CSS9655800` | `979-8-1827-4645-8` | Setup Incomplete |
-| 9 | *Engineering Cerebro* | `CSS9655802` | `979-8-1827-4646-5` | Setup Incomplete |
-| 10 | *Complete Builder's Field Manual* | `CSS9655803` | `979-8-1827-4647-2` | Setup Incomplete |
+| 1 | *ROB and the Lost Yellow Ball* | `CSS9655730` | `979-8-2408-3421-9` | Submitted; awaiting digital proof |
+| 2 | *Meet ROB* | `CSS9655778` | `979-8-1827-4639-7` | Submitted; awaiting digital proof |
+| 3 | *Circuits & Signals* | `CSS9655786` | `979-8-1827-4640-3` | Submitted; awaiting digital proof |
+| 4 | *Motion Workshop* | `CSS9655791` | `979-8-1827-4641-0` | Submitted; awaiting digital proof |
+| 5 | *Mission Control* | `CSS9655796` | `979-8-1827-4642-7` | Interior and cover uploaded; validation pending |
+| 6 | *AI, Robotics, and Codex* | `CSS9655797` | `979-8-1827-4643-4` | Setup incomplete; files ready |
+| 7 | *Dual-Arm Robotics* | `CSS9655798` | `979-8-1827-4644-1` | Setup incomplete; files ready |
+| 8 | *Engineering ROBControllerVision* | `CSS9655800` | `979-8-1827-4645-8` | Setup incomplete; files ready |
+| 9 | *Engineering Cerebro* | `CSS9655802` | `979-8-1827-4646-5` | Setup incomplete; files ready |
+| 10 | *Complete Builder's Field Manual* | `CSS9655803` | `979-8-1827-4647-2` | Setup incomplete; files ready |
 
-The title dashboard was refreshed after entry and showed all ten records with the status above.
+The submission status above is based on the final portal page reached for each record. Volume 4's files were both labeled uploaded on September 5 before the login session expired.
 
 ## Metadata entered
 
@@ -30,7 +32,14 @@ The title dashboard was refreshed after entry and showed all ten records with th
 - Full and short descriptions, keywords, and two BISAC subjects were entered for every title.
 - Volumes 1–8 use the `Building R.O.B.` series and their corresponding volume numbers. The complete manual has no print subtitle, avoiding the ebook-only phrase “The discounted complete digital collection.”
 - The portal's Young Adult audience restricts interest ages to 13–18. Consequently, *Circuits & Signals* uses 13–14 instead of the source 10–14 range, *Motion Workshop* uses 13–15 instead of 10–15, and *Mission Control* uses 13–16 instead of 12–16. The manuscript audience guidance remains unchanged.
-- The account imprint selector was empty. A prior attempt to create `Indy Pub` returned “Imprint Name is restricted,” consistent with it being IngramSpark's protected complimentary-ISBN imprint. No substitute custom imprint was created.
+- The portal accepted the existing `OrbitusRobotics LLC` imprint selector value for the submitted titles and Volume 4. Because complimentary ISBN documentation still describes `Indy Pub` as IngramSpark's ISBN-owning imprint, the digital proofs and final retail metadata must be checked to confirm how the public imprint is rendered.
+
+## Portal print terms
+
+- All configured titles use an 8.5 x 11-inch matte perfect-bound paperback. The story uses Premium Color on 70 lb white paper; Volumes 1-4 use Color 70. The remaining technical titles are planned for the same Color 70 configuration.
+- The publication date is September 25, 2026. The story's U.S. retail price is $12; Volumes 1-4 are $15. Volumes 5-8 are planned at $18 and the complete manual at $40.
+- Configured U.S. terms use a 40% wholesale discount and non-returnable status. IngramSpark's converted international prices use a 55% discount and non-returnable status. The required discount, non-return, and currency-conversion acknowledgements were accepted.
+- Text and number values were applied through the form's native input and change events because the portal's reactive controls discarded ordinary automated typing. Each saved page was verified after submission, and any international term temporarily lost during a portal refresh was reapplied before continuing.
 
 ## Production interiors
 
@@ -53,11 +62,16 @@ The validator passed all 576 print pages. All listed fonts are embedded; all ras
 
 IngramSpark recommends 300 ppi and states that color-interior images below 72 ppi may be rejected. Four photo-heavy volumes contain a small number of source images between 210 and 246 effective ppi; they exceed the rejection threshold and the project's stricter 200-ppi preflight floor, but must be examined in the physical proof. Requirements were checked against the current [IngramSpark File Creation Guide](https://www.ingramspark.com/hubfs/downloads/file-creation-guide.pdf) and [print file requirements](https://www.ingramspark.com/blog/file-requirements-for-print-books).
 
+## Production covers
+
+The official templates are archived under `publication/ingramspark/templates/`, one per ISBN and exact page count. The complete wrap covers are under `output/pdf/ingramspark/covers/`. Each retains IngramSpark's exact template geometry and supplied barcode, uses the reviewed 8.5 x 11-inch front artwork with edge-extended bleed, and adds a CMYK vector back cover with OrbitusRobotics LLC identification. The 236-page manual has spine text; the thinner books intentionally do not.
+
+All ten one-page covers are 21 x 12 inches, PDF/X-1a:2001, CMYK/gray only, with embedded fonts and 300 ppi raster components. Ghostscript and Poppler rendered every cover without errors, and contact-sheet plus individual visual review showed the trim, bleed, back copy, barcodes, and manual spine correctly placed. Exact output hashes are recorded in `publication/ingramspark-covers.sha256`.
+
 ## Remaining release gates
 
-1. Complete the editorial, safety, privacy, rights, and accessibility release gates.
-2. Obtain ISBN- and page-count-specific IngramSpark templates and build the ten complete wrap covers with the supplied barcodes.
-3. Confirm the planned 8.5 x 11-inch matte perfect-bound paperbacks, premium color for the story, and standard color on 70 lb white paper for the nine technical books in each portal record.
-4. Resolve the portal's blank imprint selector without attempting to register the protected `Indy Pub` name manually.
-5. Obtain explicit publisher approval for retail prices, wholesale discounts, return settings, market selections, and any final distribution submission.
-6. Upload and validate files, order physical proofs, record proof approval, and only then enable distribution or place the balanced 50-copy event order.
+1. Restore the IngramSpark login, verify Volume 4's saved uploads, and complete its automated validation and final title submission.
+2. Configure, upload, validate, and submit Volumes 5-8 and the complete manual using the approved terms above.
+3. Inspect each digital proof when IngramSpark supplies it, paying particular attention to the public imprint, spine, barcodes, bleed, and the 210-246 ppi source photographs.
+4. Confirm production timing and shipping before ordering. A balanced 50-copy event order means five copies of each title; no paid order may be placed until the portal shows the exact total and delivery estimate and Rodolfo confirms the purchase.
+5. Approve proofs and enable distribution only after review. The September 25 event date creates schedule pressure but does not waive proof or checkout verification.
