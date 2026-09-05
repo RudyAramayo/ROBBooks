@@ -4,7 +4,7 @@
 
 On September 5, 2026, Rodolfo Aramayo approved complimentary IngramSpark print ISBNs and final title submission for all ten titles. Each title was created as a **Print Book Only** record with the intended **Print, distribute, and sell book** workflow. All ten page-count-specific cover templates were obtained from IngramSpark, and all ten interiors and complete wrap covers were built and locally validated.
 
-All ten titles have now been fully submitted and reached IngramSpark's **Congratulations** page after both metadata and content-file validation reported no errors. The title dashboard shows every record in **Processing**, **In Processing**, or **Creating Title Record** status. IngramSpark says their digital proofs should arrive in 3-5 days. No digital proof has been approved, no physical proof or production run has been ordered, and distribution has not been enabled.
+All ten titles have now been fully submitted and reached IngramSpark's **Congratulations** page after both metadata and content-file validation reported no errors. The title dashboard shows every record in **Processing** or **In Processing** status. The eProof approval queue was checked after submission and was still empty. IngramSpark says their digital proofs should arrive in 3-5 days. No digital proof has been approved, no physical proof or production run has been ordered, and distribution has not been enabled.
 
 The complimentary ISBN notice states that each ISBN is nontransferable, is owned by IngramSpark, uses the `Indy Pub` imprint, and requires participation in the wholesale program with retail pricing in at least one market. This is a print-format decision only. It does not replace or conflict with the existing Apple Books ebook identifiers, and no print ISBN has been reused for an ebook.
 
@@ -20,8 +20,8 @@ The complimentary ISBN notice states that each ISBN is nontransferable, is owned
 | 6 | *AI, Robotics, and Codex* | `CSS9655797` | `979-8-1827-4643-4` | Processing; awaiting digital proof |
 | 7 | *Dual-Arm Robotics* | `CSS9655798` | `979-8-1827-4644-1` | In Processing; awaiting digital proof |
 | 8 | *Engineering ROBControllerVision* | `CSS9655800` | `979-8-1827-4645-8` | In Processing; awaiting digital proof |
-| 9 | *Engineering Cerebro* | `CSS9655802` | `979-8-1827-4646-5` | Creating Title Record; awaiting digital proof |
-| 10 | *Complete Builder's Field Manual* | `CSS9655803` | `979-8-1827-4647-2` | Creating Title Record; awaiting digital proof |
+| 9 | *Engineering Cerebro* | `CSS9655802` | `979-8-1827-4646-5` | Processing; awaiting digital proof |
+| 10 | *Complete Builder's Field Manual* | `CSS9655803` | `979-8-1827-4647-2` | Processing; awaiting digital proof |
 
 The status above was verified on the title dashboard immediately after the final submission. All ten records show a September 5, 2026 submit date and a September 25, 2026 publication date.
 
