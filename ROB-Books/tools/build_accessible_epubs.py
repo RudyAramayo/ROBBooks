@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import posixpath
 import re
 import shutil
 import subprocess
@@ -20,8 +21,12 @@ from prepare_semantic_latex import prepare_latex, prepare_manual_markdown
 
 
 PROJECT = Path(__file__).resolve().parents[1]
-CATALOG = PROJECT / "publication" / "apple-books-catalog.json"
+CATALOGS = (
+    PROJECT / "publication" / "apple-books-catalog.json",
+    PROJECT / "publication" / "preschool-apple-books-catalog.json",
+)
 CSS = PROJECT / "publication" / "epub.css"
+PICTURE_CSS = PROJECT / "publication" / "preschool-epub.css"
 OUTPUT = PROJECT / "output" / "apple-books" / "epub"
 SUPPORTED = {
     "rob-and-the-lost-yellow-ball": ("markdown", "source/epub/rob-and-the-lost-yellow-ball.md"),
@@ -34,6 +39,16 @@ SUPPORTED = {
     "volume-7-engineering-robcontrollervision": ("markdown", "source/volume-7-engineering-robcontrollervision.md"),
     "volume-8-engineering-cerebro": ("markdown", "source/volume-8-engineering-cerebro.md"),
     "complete-builders-field-manual": ("manual", "source/complete-builders-field-manual.tex"),
+    "good-morning-rob": ("picture", "source/preschool/good-morning-rob.md"),
+    "rob-counts-the-fireflies": ("picture", "source/preschool/rob-counts-the-fireflies.md"),
+    "robs-rainbow-lights": ("picture", "source/preschool/robs-rainbow-lights.md"),
+    "rob-hears-a-little-sound": ("picture", "source/preschool/rob-hears-a-little-sound.md"),
+    "rob-shares-the-shiny-star": ("picture", "source/preschool/rob-shares-the-shiny-star.md"),
+    "rob-waits-for-the-ducklings": ("picture", "source/preschool/rob-waits-for-the-ducklings.md"),
+    "rob-and-the-friendly-pumpkin": ("picture", "source/preschool/rob-and-the-friendly-pumpkin.md"),
+    "robs-costume-parade": ("picture", "source/preschool/robs-costume-parade.md"),
+    "rob-lights-the-little-tree": ("picture", "source/preschool/rob-lights-the-little-tree.md"),
+    "robs-quiet-christmas-eve": ("picture", "source/preschool/robs-quiet-christmas-eve.md"),
 }
 IDENTIFIER_NAMESPACE = uuid.UUID("52f9dc75-d997-48bc-80a0-8f06baee89ca")
 MAX_INTERIOR_IMAGE_PIXELS = 4_000_000
@@ -43,6 +58,11 @@ EPUB_IMAGE_DISCLOSURE = (
     "project illustrations derived from or inspired by ROB reference photographs. They are "
     "illustrations, not documentary photographs, technical drawings, or evidence of the as-built "
     "configuration.\n\n"
+)
+PICTURE_BOOK_IMAGE_DISCLOSURE = (
+    "> **Image note:** The cover and story scenes are original project illustrations inspired by ROB. "
+    "They are imaginary story art, not documentary photographs, technical drawings, or evidence of "
+    "the as-built configuration.\n\n"
 )
 
 
@@ -270,6 +290,33 @@ def embedded_image_errors(epub: Path) -> list[str]:
     return errors
 
 
+def picture_book_image_errors(epub: Path) -> list[str]:
+    """Require every preschool EPUB to retain its cover plus four story scenes."""
+    errors: list[str] = []
+    with zipfile.ZipFile(epub) as archive:
+        names = set(archive.namelist())
+        raster_names = {
+            name for name in names if Path(name).suffix.lower() in {".jpg", ".jpeg", ".png"}
+        }
+        story_sources: set[str] = set()
+        for name in names:
+            if not name.endswith(".xhtml") or name.endswith("cover.xhtml"):
+                continue
+            root = ET.fromstring(archive.read(name))
+            namespace = {"x": "http://www.w3.org/1999/xhtml"}
+            for image in root.findall(".//x:img", namespace):
+                source = image.get("src", "")
+                target = posixpath.normpath(posixpath.join(posixpath.dirname(name), source))
+                story_sources.add(target)
+                if target not in names:
+                    errors.append(f"{name}: referenced story image is missing: {source}")
+        if len(story_sources) != 4:
+            errors.append(f"expected four distinct story images, found {len(story_sources)}")
+        if len(raster_names) != 5:
+            errors.append(f"expected one cover and four story rasters, found {len(raster_names)}")
+    return errors
+
+
 def semantic_content_errors(epub: Path, slug: str) -> list[str]:
     required = {
         "volume-1-meet-rob": ["Deep Lab: See the loop, not just the parts", "Goal-directed feedback loop"],
@@ -294,12 +341,15 @@ def semantic_content_errors(epub: Path, slug: str) -> list[str]:
 
 
 def build(book: dict[str, object], source: Path, from_format: str) -> Path:
-    OUTPUT.mkdir(parents=True, exist_ok=True)
-    destination = OUTPUT / f"{book['slug']}.epub"
+    destination = PROJECT / str(book.get("epub", OUTPUT / f"{book['slug']}.epub"))
+    destination.parent.mkdir(parents=True, exist_ok=True)
     stable_id = f"urn:uuid:{uuid.uuid5(IDENTIFIER_NAMESPACE, str(book['slug']))}"
     title = str(book["title"])
     subtitle = str(book["subtitle"])
     cover = PROJECT / str(book["cover"])
+    css_args = [f"--css={CSS}"]
+    if SUPPORTED[str(book["slug"])][0] == "picture":
+        css_args.append(f"--css={PICTURE_CSS}")
     args = [
         shutil.which("pandoc") or "pandoc",
         str(source),
@@ -309,9 +359,9 @@ def build(book: dict[str, object], source: Path, from_format: str) -> Path:
         "--toc",
         "--toc-depth=3",
         "--split-level=2",
-        f"--css={CSS}",
+        *css_args,
         f"--epub-cover-image={cover}",
-        "--resource-path=source:assets/photos:assets/generated:assets/slides",
+        "--resource-path=source:source/preschool:assets/photos:assets/generated:assets/slides",
         "--metadata",
         f"title={title}",
         "--metadata",
@@ -323,7 +373,7 @@ def build(book: dict[str, object], source: Path, from_format: str) -> Path:
         "--metadata",
         "language=en-US",
         "--metadata",
-        "date=2026",
+        f"date={str(book.get('original_publication_date', '2026'))[:4]}",
         "--metadata",
         f"identifier={stable_id}",
         "--metadata",
@@ -337,6 +387,8 @@ def build(book: dict[str, object], source: Path, from_format: str) -> Path:
     errors = accessible_xhtml(destination)
     errors.extend(accessibility_metadata_errors(destination, str(book["accessibility_summary"])))
     errors.extend(embedded_image_errors(destination))
+    if SUPPORTED[str(book["slug"])][0] == "picture":
+        errors.extend(picture_book_image_errors(destination))
     errors.extend(semantic_content_errors(destination, str(book["slug"])))
     if errors:
         raise RuntimeError("\n".join(errors))
@@ -348,8 +400,8 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("slugs", nargs="*", help="advanced-edition slugs; defaults to all currently supported editions")
     args = parser.parse_args()
-    catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
-    by_slug = {book["slug"]: book for book in catalog["books"]}
+    catalogs = [json.loads(path.read_text(encoding="utf-8")) for path in CATALOGS]
+    by_slug = {book["slug"]: book for catalog in catalogs for book in catalog["books"]}
     selected = args.slugs or list(SUPPORTED)
     unknown = [slug for slug in selected if slug not in SUPPORTED]
     if unknown:
@@ -370,6 +422,13 @@ def main() -> int:
             elif source_type == "manual":
                 prepared = temporary_path / f"{slug}.md"
                 prepared.write_text(prepare_manual_markdown(source), encoding="utf-8")
+                build(by_slug[slug], prepared, "gfm")
+            elif source_type == "picture":
+                prepared = temporary_path / f"{slug}.md"
+                prepared.write_text(
+                    PICTURE_BOOK_IMAGE_DISCLOSURE + source.read_text(encoding="utf-8"),
+                    encoding="utf-8",
+                )
                 build(by_slug[slug], prepared, "gfm")
             else:
                 prepared = temporary_path / f"{slug}.md"

@@ -53,8 +53,8 @@ def image_properties(path: Path) -> tuple[int, int, str]:
     return int(width.group(1)), int(height.group(1)), space.group(1).strip()
 
 
-def load_catalog() -> dict:
-    return json.loads(CATALOG.read_text(encoding="utf-8"))
+def load_catalog(path: Path = CATALOG) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def epub_metadata_and_image_errors(path: Path, expected_vendor_id: str, expected_accessibility_summary: str) -> list[str]:
@@ -133,17 +133,20 @@ def validate(catalog: dict, release: bool) -> int:
     errors: list[str] = []
     warnings: list[str] = []
     books = catalog.get("books", [])
-    if len(books) != 10:
-        errors.append(f"catalog should contain 10 books, found {len(books)}")
+    expected_title_count = int(catalog.get("series", {}).get("expected_title_count", 10))
+    if len(books) != expected_title_count:
+        errors.append(f"catalog should contain {expected_title_count} books, found {len(books)}")
 
-    numbered_total = sum(float(book["price_usd"]) for book in books if 1 <= int(book["position"]) <= 8)
-    expected_total = float(catalog["series"]["individual_volume_total_usd"])
-    if abs(numbered_total - expected_total) > 0.001:
-        errors.append(f"numbered-volume prices total ${numbered_total:.2f}, expected ${expected_total:.2f}")
+    if "individual_volume_total_usd" in catalog["series"]:
+        numbered_total = sum(float(book["price_usd"]) for book in books if 1 <= int(book["position"]) <= 8)
+        expected_total = float(catalog["series"]["individual_volume_total_usd"])
+        if abs(numbered_total - expected_total) > 0.001:
+            errors.append(f"numbered-volume prices total ${numbered_total:.2f}, expected ${expected_total:.2f}")
 
-    collection = next((book for book in books if book["slug"] == "complete-builders-field-manual"), None)
-    if not collection or float(collection["price_usd"]) != float(catalog["series"]["collection_price_usd"]):
-        errors.append("collection price does not match the Complete Builder's Field Manual")
+    if "collection_price_usd" in catalog["series"]:
+        collection = next((book for book in books if book["slug"] == "complete-builders-field-manual"), None)
+        if not collection or float(collection["price_usd"]) != float(catalog["series"]["collection_price_usd"]):
+            errors.append("collection price does not match the Complete Builder's Field Manual")
 
     vendor_ids: set[str] = set()
     submission_record = SUBMISSION_RECORD.read_text(encoding="utf-8") if SUBMISSION_RECORD.exists() else ""
@@ -202,13 +205,15 @@ def validate(catalog: dict, release: bool) -> int:
             errors.append(f"{label}: Volume Content Service selection differs from the approved series default")
         if set(book.get("accessibility_features", [])) != REQUIRED_ACCESSIBILITY_FEATURES:
             errors.append(f"{label}: accessibility feature claims differ from the reviewed EPUB feature set")
-        pdf = PROJECT / book["pdf"]
+        pdf_value = str(book.get("pdf", "")).strip()
+        pdf = PROJECT / pdf_value if pdf_value else None
         cover = PROJECT / book["cover"]
         epub = PROJECT / book["epub"]
-        if not pdf.exists():
-            errors.append(f"{label}: missing PDF {book['pdf']}")
-        elif pdf_pages(pdf) != int(book["pages"]):
-            errors.append(f"{label}: PDF page count differs from catalog")
+        if pdf is not None:
+            if not pdf.exists():
+                errors.append(f"{label}: missing PDF {book['pdf']}")
+            elif pdf_pages(pdf) != int(book["pages"]):
+                errors.append(f"{label}: PDF page count differs from catalog")
         if not cover.exists():
             errors.append(f"{label}: missing cover {book['cover']}")
         else:
@@ -247,8 +252,9 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--prepare-covers", action="store_true", help="render 300 dpi RGB JPEG covers from the approved PDF first pages")
     parser.add_argument("--release", action="store_true", help="require final EPUBs and Apple Books identifiers")
+    parser.add_argument("--catalog", type=Path, default=CATALOG, help="catalog JSON to validate")
     args = parser.parse_args()
-    catalog = load_catalog()
+    catalog = load_catalog(args.catalog)
     if args.prepare_covers:
         prepare_covers(catalog)
     return validate(catalog, args.release)

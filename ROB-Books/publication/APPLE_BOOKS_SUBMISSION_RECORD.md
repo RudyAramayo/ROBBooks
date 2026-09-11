@@ -1,9 +1,9 @@
 # Building R.O.B. — Apple Books submission record
 
-**Prepared:** 2026-08-29
+**Prepared:** 2026-08-29 · **Updated:** 2026-09-10
 
-**Portal status:** All ten titles were imported on 2026-08-30. Apple IDs are assigned, Rights and Pricing is confirmed in all 51 available Apple Books stores, and every title is **Waiting for Review**. My Books currently reports **Not on Store**, so none of the titles is represented here as live.
-**Catalog:** `publication/apple-books-catalog.json`
+**Portal status:** The original ten ROB titles were imported on 2026-08-30 and are now live in the U.S. Apple Books catalog. Ten additional titles in **ROB's Little Helper Library** were prepared on 2026-09-10. Apple returned its **You're almost done!** upload confirmation for *Good Morning, ROB!* on 2026-09-10; the other nine titles have not been submitted. Apple IDs, account-side Rights and Pricing, and review status remain pending for all ten new editions.
+**Catalogs:** `publication/apple-books-catalog.json` and `publication/preschool-apple-books-catalog.json`
 
 This record distinguishes file readiness from actions confirmed by Apple. It must not describe a title as uploaded, imported, in review, approved, cleared for sale, or live until the corresponding Apple Books page or catalog report supplies that evidence.
 
@@ -36,22 +36,45 @@ This record distinguishes file readiness from actions confirmed by Apple. It mus
 
 On August 29, 2026, Rodolfo Aramayo directed the publisher to proceed without ebook ISBNs because none have been assigned and to disable DRM because the books are educational. No identifier was invented. The UUID values in the catalog remain the permanent identifiers embedded in the EPUB packages; iTunes Connect assigned separate numeric Vendor IDs during import, recorded below. Any later print edition requires a legitimate format-specific ISBN rather than a reused or fabricated number.
 
-## Upload inventory
+## Original ROB catalog inventory
 
 | Title | EPUB UUID | Apple Vendor ID | Price | EPUB/cover preflight | Apple status / ID |
 |---|---|---|---:|---|---|
-| ROB and the Lost Yellow Ball | `0ef3f5ab-e49d-5f6c-a22e-ad2c70a07f4b` | `10084085996` | $2.99 | Passed and imported | Waiting for Review · [6806729418](https://books.apple.com/us/book/rob-and-the-lost-yellow-ball/id6806729418?ls=1) |
-| Meet ROB | `aaffc931-e02b-53a3-812d-0ef80c58abdb` | `10084086331` | $4.99 | Passed and imported | Waiting for Review · [6806730228](https://books.apple.com/us/book/meet-rob/id6806730228?ls=1) |
-| Circuits & Signals | `6827d07c-737e-5752-afaa-e807bac2b73b` | `10084086223` | $4.99 | Passed and imported | Waiting for Review · [6806730681](https://books.apple.com/us/book/circuits-signals/id6806730681?ls=1) |
-| Motion Workshop | `9c8af395-77e4-5895-b86b-59028603a3cd` | `10084086370` | $4.99 | Passed and imported | Waiting for Review · [6806731300](https://books.apple.com/us/book/motion-workshop/id6806731300?ls=1) |
-| Mission Control | `3fd86b5a-d5ee-5fe1-a628-94ea968acdea` | `10084086371` | $4.99 | Passed and imported | Waiting for Review · [6806731600](https://books.apple.com/us/book/mission-control/id6806731600?ls=1) |
-| AI, Robotics, and Codex | `3183db78-228b-5df2-bc63-f2e5d4ff8c49` | `10084086394` | $8.99 | Passed and imported | Waiting for Review · [6806732016](https://books.apple.com/us/book/ai-robotics-and-codex/id6806732016?ls=1) |
-| Dual-Arm Robotics | `e29b1978-9972-5f0d-96ba-fd84ea53716a` | `10084086449` | $8.99 | Passed and imported | Waiting for Review · [6806732519](https://books.apple.com/us/book/dual-arm-robotics/id6806732519?ls=1) |
-| Engineering ROBControllerVision | `d08790c7-7646-56b7-914a-498d30a77128` | `10084086224` | $8.99 | Passed and imported | Waiting for Review · [6806732984](https://books.apple.com/us/book/engineering-robcontrollervision/id6806732984?ls=1) |
-| Engineering Cerebro | `2d2c834f-9340-50f7-8a38-5b06c8379705` | `10084086583` | $8.99 | Passed and imported | Waiting for Review · [6806807905](https://books.apple.com/us/book/engineering-cerebro/id6806807905?ls=1) |
-| Complete Builder's Field Manual | `454776a4-d151-539c-9ae4-7e7ccb9a3eda` | `10084086661` | $24.99 | Passed and imported | Waiting for Review · [6806809290](https://books.apple.com/us/book/complete-builders-field-manual/id6806809290?ls=1) |
+| ROB and the Lost Yellow Ball | `0ef3f5ab-e49d-5f6c-a22e-ad2c70a07f4b` | `10084085996` | $2.99 | Passed and imported | On Store · [6806729418](https://books.apple.com/us/book/rob-and-the-lost-yellow-ball/id6806729418?ls=1) |
+| Meet ROB | `aaffc931-e02b-53a3-812d-0ef80c58abdb` | `10084086331` | $4.99 | Passed and imported | On Store · [6806730228](https://books.apple.com/us/book/meet-rob/id6806730228?ls=1) |
+| Circuits & Signals | `6827d07c-737e-5752-afaa-e807bac2b73b` | `10084086223` | $4.99 | Passed and imported | On Store · [6806730681](https://books.apple.com/us/book/circuits-signals/id6806730681?ls=1) |
+| Motion Workshop | `9c8af395-77e4-5895-b86b-59028603a3cd` | `10084086370` | $4.99 | Passed and imported | On Store · [6806731300](https://books.apple.com/us/book/motion-workshop/id6806731300?ls=1) |
+| Mission Control | `3fd86b5a-d5ee-5fe1-a628-94ea968acdea` | `10084086371` | $4.99 | Passed and imported | On Store · [6806731600](https://books.apple.com/us/book/mission-control/id6806731600?ls=1) |
+| AI, Robotics, and Codex | `3183db78-228b-5df2-bc63-f2e5d4ff8c49` | `10084086394` | $8.99 | Passed and imported | On Store · [6806732016](https://books.apple.com/us/book/ai-robotics-and-codex/id6806732016?ls=1) |
+| Dual-Arm Robotics | `e29b1978-9972-5f0d-96ba-fd84ea53716a` | `10084086449` | $8.99 | Passed and imported | On Store · [6806732519](https://books.apple.com/us/book/dual-arm-robotics/id6806732519?ls=1) |
+| Engineering ROBControllerVision | `d08790c7-7646-56b7-914a-498d30a77128` | `10084086224` | $8.99 | Passed and imported | On Store · [6806732984](https://books.apple.com/us/book/engineering-robcontrollervision/id6806732984?ls=1) |
+| Engineering Cerebro | `2d2c834f-9340-50f7-8a38-5b06c8379705` | `10084086583` | $8.99 | Passed and imported | On Store · [6806807905](https://books.apple.com/us/book/engineering-cerebro/id6806807905?ls=1) |
+| Complete Builder's Field Manual | `454776a4-d151-539c-9ae4-7e7ccb9a3eda` | `10084086661` | $24.99 | Passed and imported | On Store · [6806809290](https://books.apple.com/us/book/complete-builders-field-manual/id6806809290?ls=1) |
 
 Each title has a detailed UTF-8 store description, two current BISAC subjects, the approved audience/interest-age values, series metadata where applicable, a stable EPUB UUID, an Apple-assigned numeric Vendor ID, and explicit submission-status fields in the catalog. The complete collection is intentionally not numbered as Volume 9, and the children's story is intentionally a companion rather than a numbered engineering volume.
+
+## ROB's Little Helper Library submission inventory
+
+These ten new editions are prepared at $2.99 each for ages 2–5. The two Halloween titles and two Christmas titles use holiday-specific BISAC subjects; all titles include a second subject appropriate to their story. No upload or Apple review claim is made until the portal supplies evidence.
+
+| Title | EPUB UUID / initial Vendor ID | Price | EPUB/cover preflight | Apple status / ID |
+|---|---|---:|---|---|
+| Good Morning, ROB! | `b0f45c69-0c21-5121-8a01-5584bd6353b1` | $2.99 | Portal-validated and uploaded | Upload confirmed · My Books import pending |
+| ROB Counts the Fireflies | `ff4bd173-4019-58da-a6c4-46e0a6a4b46b` | $2.99 | Prepared | Not submitted · pending |
+| ROB's Rainbow Lights | `c07db8ca-cdc4-5d41-923b-ba6e6f2e2411` | $2.99 | Prepared | Not submitted · pending |
+| ROB Hears a Little Sound | `5ceb6667-e969-59a9-ae2f-6d24046e8098` | $2.99 | Prepared | Not submitted · pending |
+| ROB Shares the Shiny Star | `99001f04-05f8-5f58-a3b7-5cb090759d54` | $2.99 | Prepared | Not submitted · pending |
+| ROB Waits for the Ducklings | `9a685d36-ba81-5eec-bd3a-9fc444fc5e71` | $2.99 | Prepared | Not submitted · pending |
+| ROB and the Friendly Pumpkin | `7022a6c0-da87-5adc-89a0-9c57f1298761` | $2.99 | Prepared | Not submitted · pending |
+| ROB's Costume Parade | `ff3639ef-f2b0-55df-9c35-328f08fd74e8` | $2.99 | Prepared | Not submitted · pending |
+| ROB Lights the Little Tree | `5f1c5b72-14c3-5577-a571-9adbc8809dc8` | $2.99 | Prepared | Not submitted · pending |
+| ROB's Quiet Christmas Eve | `aed789a8-f37f-5da2-9845-4e790c545b64` | $2.99 | Prepared | Not submitted · pending |
+
+The cover and all four interior illustrations for every new title were visually inspected at source resolution on 2026-09-10. Covers are 2,550 × 3,300 sRGB JPEG files. Every story image is sRGB, includes editorially written alternative text in the manuscript, and stays below Apple's four-million-pixel interior-image guidance.
+
+## Store verification recorded on 2026-09-10
+
+Apple's public U.S. Search API returned all ten original titles with the expected title, author, Apple Books URL, and U.S. price. Each linked product page returned HTTP 200. The original catalog records may now be reconciled from review-pending to live without relying only on the historical My Books snapshot below.
 
 ## Portal evidence recorded on 2026-08-30
 

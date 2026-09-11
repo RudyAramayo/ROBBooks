@@ -20,6 +20,36 @@ This folder contains the editable sources, selected print-safe photographs, and 
 
 *ROB and the Lost Yellow Ball* is a separate 23-page read-aloud picture book for ages 5–6; it is not a numbered technical-series volume. Its gentle story introduces sensing, stopping, planning, checking, counting, kindness, and feedback through large illustrations and simple diagrams. It contains no robot-building instructions. PDF: [`output/pdf/rob-and-the-lost-yellow-ball.pdf`](output/pdf/rob-and-the-lost-yellow-ball.pdf).
 
+## ROB's Little Helper Library
+
+The preschool collection adds ten standalone illustrated read-alouds for ages
+2–5. The set covers morning routines, counting, colors, listening, sharing,
+patience, two cozy Halloween stories, and two gentle Christmas stories. Source
+manuscripts and illustrations live in [`source/preschool/`](source/preschool/),
+with store metadata in
+[`publication/preschool-apple-books-catalog.json`](publication/preschool-apple-books-catalog.json).
+
+Build and validate this collection from the project root:
+
+```bash
+python3 tools/build_preschool_covers.py
+python3 tools/build_preschool_pdfs.py
+python3 tools/build_accessible_epubs.py \
+  good-morning-rob rob-counts-the-fireflies robs-rainbow-lights \
+  rob-hears-a-little-sound rob-shares-the-shiny-star \
+  rob-waits-for-the-ducklings rob-and-the-friendly-pumpkin \
+  robs-costume-parade rob-lights-the-little-tree \
+  robs-quiet-christmas-eve
+python3 tools/prepare_apple_books_assets.py \
+  --catalog publication/preschool-apple-books-catalog.json
+```
+
+The generated EPUBs and 2,550 × 3,300-pixel sRGB store covers live beneath
+`output/apple-books/`. Image-rich PDF reading editions live in
+`output/pdf/preschool/`. Automated checks complement—but do not replace—the
+Apple Books device, sample, rights, and pricing review recorded in the
+publication folder.
+
 Volume 5's factual commit-by-commit appendix is maintained separately as the
 [`Volume 5 Change Atlas`](source/volume-5-change-atlas.md). The manuscript was
 reconstructed from the local ROB repositories and the preserved Cerebro v1-v5
@@ -88,7 +118,7 @@ Readers can move from every book lesson to the implementation through [`OPEN-SOU
 
 ```text
 ROB-Books/
-├── source/                 editable XeLaTeX manuscripts, advanced-volume Markdown, and shared style
+├── source/                 editable XeLaTeX, advanced Markdown, and preschool manuscripts/art
 ├── assets/photos/          selected, resized, metadata-stripped build photos
 ├── assets/slides/          selected presentation-page images
 ├── assets/generated/       original illustrative artwork, not engineering evidence
@@ -96,7 +126,7 @@ ROB-Books/
 ├── output/pdf/             the ten printable PDF layout proofs
 ├── output/previews/        contact sheets for quick visual review
 ├── output/posters/         three 36×60-inch campaign PDFs
-├── output/apple-books/     store covers and ten validated reflowable EPUB 3 editions
+├── output/apple-books/     store covers and validated reflowable EPUB 3 editions
 ├── publication/            machine-readable store catalog and planned prices
 └── tmp/                    generated build files and excluded private-review images
 ```
