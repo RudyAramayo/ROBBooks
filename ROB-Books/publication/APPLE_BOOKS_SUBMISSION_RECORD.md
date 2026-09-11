@@ -1,8 +1,8 @@
 # Building R.O.B. — Apple Books submission record
 
-**Prepared:** 2026-08-29 · **Updated:** 2026-09-10
+**Prepared:** 2026-08-29 · **Updated:** 2026-09-11
 
-**Portal status:** The original ten ROB titles were imported on 2026-08-30 and are now live in the U.S. Apple Books catalog. Ten additional titles in **ROB's Little Helper Library** were prepared on 2026-09-10. Apple returned its **You're almost done!** upload confirmation for *Good Morning, ROB!* on 2026-09-10; the other nine titles have not been submitted. Apple IDs, account-side Rights and Pricing, and review status remain pending for all ten new editions.
+**Portal status:** The original ten ROB titles were imported on 2026-08-30 and are now live in the U.S. Apple Books catalog. All ten additional titles in **ROB's Little Helper Library** were uploaded, imported, assigned Apple IDs, and submitted with complete worldwide Rights and Pricing on 2026-09-11. Every new edition is currently **Waiting for Review**; public availability must not be claimed until Apple completes review and the product pages are verified live.
 **Catalogs:** `publication/apple-books-catalog.json` and `publication/preschool-apple-books-catalog.json`
 
 This record distinguishes file readiness from actions confirmed by Apple. It must not describe a title as uploaded, imported, in review, approved, cleared for sale, or live until the corresponding Apple Books page or catalog report supplies that evidence.
@@ -55,22 +55,29 @@ Each title has a detailed UTF-8 store description, two current BISAC subjects, t
 
 ## ROB's Little Helper Library submission inventory
 
-These ten new editions are prepared at $2.99 each for ages 2–5. The two Halloween titles and two Christmas titles use holiday-specific BISAC subjects; all titles include a second subject appropriate to their story. No upload or Apple review claim is made until the portal supplies evidence.
+These ten new editions were submitted at $2.99 each for ages 2–5. The two Halloween titles and two Christmas titles use holiday-specific BISAC subjects; all titles include a second subject appropriate to their story.
 
 | Title | EPUB UUID / initial Vendor ID | Price | EPUB/cover preflight | Apple status / ID |
 |---|---|---:|---|---|
-| Good Morning, ROB! | `b0f45c69-0c21-5121-8a01-5584bd6353b1` | $2.99 | Portal-validated and uploaded | Upload confirmed · My Books import pending |
-| ROB Counts the Fireflies | `ff4bd173-4019-58da-a6c4-46e0a6a4b46b` | $2.99 | Prepared | Not submitted · pending |
-| ROB's Rainbow Lights | `c07db8ca-cdc4-5d41-923b-ba6e6f2e2411` | $2.99 | Prepared | Not submitted · pending |
-| ROB Hears a Little Sound | `5ceb6667-e969-59a9-ae2f-6d24046e8098` | $2.99 | Prepared | Not submitted · pending |
-| ROB Shares the Shiny Star | `99001f04-05f8-5f58-a3b7-5cb090759d54` | $2.99 | Prepared | Not submitted · pending |
-| ROB Waits for the Ducklings | `9a685d36-ba81-5eec-bd3a-9fc444fc5e71` | $2.99 | Prepared | Not submitted · pending |
-| ROB and the Friendly Pumpkin | `7022a6c0-da87-5adc-89a0-9c57f1298761` | $2.99 | Prepared | Not submitted · pending |
-| ROB's Costume Parade | `ff3639ef-f2b0-55df-9c35-328f08fd74e8` | $2.99 | Prepared | Not submitted · pending |
-| ROB Lights the Little Tree | `5f1c5b72-14c3-5577-a571-9adbc8809dc8` | $2.99 | Prepared | Not submitted · pending |
-| ROB's Quiet Christmas Eve | `aed789a8-f37f-5da2-9845-4e790c545b64` | $2.99 | Prepared | Not submitted · pending |
+| Good Morning, ROB! | `b0f45c69-0c21-5121-8a01-5584bd6353b1` | $2.99 | Portal-validated and uploaded | Waiting for Review · [6810959426](https://books.apple.com/us/book/id6810959426) |
+| ROB Counts the Fireflies | `ff4bd173-4019-58da-a6c4-46e0a6a4b46b` | $2.99 | Portal-validated and uploaded | Waiting for Review · [6811118109](https://books.apple.com/us/book/id6811118109) |
+| ROB's Rainbow Lights | `c07db8ca-cdc4-5d41-923b-ba6e6f2e2411` | $2.99 | Portal-validated and uploaded | Waiting for Review · [6811120320](https://books.apple.com/us/book/id6811120320) |
+| ROB Hears a Little Sound | `5ceb6667-e969-59a9-ae2f-6d24046e8098` | $2.99 | Portal-validated and uploaded | Waiting for Review · [6811121042](https://books.apple.com/us/book/id6811121042) |
+| ROB Shares the Shiny Star | `99001f04-05f8-5f58-a3b7-5cb090759d54` | $2.99 | Portal-validated and uploaded | Waiting for Review · [6811121106](https://books.apple.com/us/book/id6811121106) |
+| ROB Waits for the Ducklings | `9a685d36-ba81-5eec-bd3a-9fc444fc5e71` | $2.99 | Portal-validated and uploaded | Waiting for Review · [6811124273](https://books.apple.com/us/book/id6811124273) |
+| ROB and the Friendly Pumpkin | `7022a6c0-da87-5adc-89a0-9c57f1298761` | $2.99 | Portal-validated and uploaded | Waiting for Review · [6811125927](https://books.apple.com/us/book/id6811125927) |
+| ROB's Costume Parade | `ff3639ef-f2b0-55df-9c35-328f08fd74e8` | $2.99 | Portal-validated and uploaded | Waiting for Review · [6811127353](https://books.apple.com/us/book/id6811127353) |
+| ROB Lights the Little Tree | `5f1c5b72-14c3-5577-a571-9adbc8809dc8` | $2.99 | Portal-validated and uploaded | Waiting for Review · [6811128266](https://books.apple.com/us/book/id6811128266) |
+| ROB's Quiet Christmas Eve | `aed789a8-f37f-5da2-9845-4e790c545b64` | $2.99 | Portal-validated and uploaded | Waiting for Review · [6811128916](https://books.apple.com/us/book/id6811128916) |
 
 The cover and all four interior illustrations for every new title were visually inspected at source resolution on 2026-09-10. Covers are 2,550 × 3,300 sRGB JPEG files. Every story image is sRGB, includes editorially written alternative text in the manuscript, and stays below Apple's four-million-pixel interior-image guidance.
+
+## ROB's Little Helper Library portal evidence recorded on 2026-09-11
+
+- All ten uploads returned Apple's **You're almost done!** confirmation and appeared in My Books with their EPUB, Apple-generated sample, and cover art.
+- Apple assigned a numeric Apple ID and direct Apple Books URL to every title; those identifiers are recorded in the inventory and preschool catalog.
+- Rights and Pricing was confirmed for all 51 available countries or regions with a release date of Sep 11, 2026, Digital Only release type, a U.S. base price of $2.99, Cleared for Sale enabled, Volume Content Service enabled, and DRM disabled.
+- Every title currently reports **Waiting for Review**. This is a completed submission, not an Apple approval or a verified live-store release.
 
 ## Store verification recorded on 2026-09-10
 
