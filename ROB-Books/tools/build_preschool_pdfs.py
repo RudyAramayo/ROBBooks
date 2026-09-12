@@ -30,6 +30,8 @@ AMBER = colors.HexColor("#F2A52B")
 CORAL = colors.HexColor("#E96F55")
 PALE_TEAL = colors.HexColor("#DFF4F1")
 PALE_AMBER = colors.HexColor("#FFF0C9")
+TITLE_PAGE_BYLINE = "Written by Rodolfo and Kierie Aramayo"
+READ_ALOUD_LABEL = "Ages 2-5  |  Read aloud together"
 
 IMAGE_RE = re.compile(r"!\[([^\]]+)\]\(([^)]+)\)")
 HEADING_RE = re.compile(r"^## (.+)$", re.MULTILINE)
@@ -164,13 +166,22 @@ def build_book(book: dict, authors: list[str]) -> Path:
     pdf.drawCentredString(PAGE_W / 2, PAGE_H - 100, "ROB'S LITTLE HELPER LIBRARY")
     draw_paragraph(pdf, title, MARGIN, PAGE_H - 158, PAGE_W - 2 * MARGIN, 130, size=31, leading=36, align=TA_CENTER)
     draw_paragraph(pdf, book["subtitle"], MARGIN + 30, PAGE_H - 278, PAGE_W - 2 * MARGIN - 60, 90, size=18, leading=24, align=TA_CENTER, color=CORAL)
+    # Keep the full author names in metadata, but share the surname in the
+    # visible credit. Measure both lines so the panel always includes padding.
+    credit_width = max(
+        stringWidth(TITLE_PAGE_BYLINE, "Helvetica-Bold", 17),
+        stringWidth(READ_ALOUD_LABEL, "Helvetica", 12),
+    )
+    panel_width = max(PAGE_W - 240, credit_width + 64)
+    if panel_width > PAGE_W - 2 * MARGIN:
+        raise ValueError("Title-page credit panel exceeds the page margins")
     pdf.setFillColor(PALE_TEAL)
-    pdf.roundRect(120, 210, PAGE_W - 240, 120, 28, fill=1, stroke=0)
+    pdf.roundRect((PAGE_W - panel_width) / 2, 210, panel_width, 120, 28, fill=1, stroke=0)
     pdf.setFillColor(INK)
     pdf.setFont("Helvetica-Bold", 17)
-    pdf.drawCentredString(PAGE_W / 2, 278, f"Written by {author_credit}")
+    pdf.drawCentredString(PAGE_W / 2, 278, TITLE_PAGE_BYLINE)
     pdf.setFont("Helvetica", 12)
-    pdf.drawCentredString(PAGE_W / 2, 246, "Ages 2-5  |  Read aloud together")
+    pdf.drawCentredString(PAGE_W / 2, 246, READ_ALOUD_LABEL)
     pdf.setFont("Helvetica", 9)
     pdf.drawCentredString(PAGE_W / 2, 96, "Copyright © 2026 OrbitusRobotics LLC. All rights reserved.")
     draw_footer(pdf, title, 2)
