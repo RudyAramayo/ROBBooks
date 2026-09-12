@@ -81,7 +81,7 @@ Apple's upload workflow returned **You're almost done! / Your updates have been 
 - *AI, Robotics, and Codex* (`10084086394`): replacement EPUB and unique cover submitted.
 - *ROB and the Lost Yellow Ball* (`10084085996`): replacement EPUB, revised cover/interior, and Kierie Aramayo as an additional Author contributor submitted.
 
-The *Good Morning, ROB!* replacement EPUB and cover passed the portal's file upload and validation stages, and Kierie Aramayo was entered as an additional Author contributor. The final iTunes Connect handoff then returned **Your book couldn't be uploaded** on two attempts. After reopening the publisher flow, the session returned **To publish to Apple Books, your Apple ID must be associated with a content provider** instead of loading the OrbitusRobotics LLC seller record. The update was therefore not recorded as submitted. The other nine Little Helper replacement editions were not sent. Their validated files remain ready for delivery after the authenticated content-provider session is restored.
+The first two *Good Morning, ROB!* handoff attempts returned **Your book couldn't be uploaded**, followed by a transient content-provider session error. A fresh authenticated publisher flow then loaded the OrbitusRobotics LLC seller record successfully. Apple revalidated the replacement EPUB, accepted the revised cover, and retained Kierie Aramayo as an additional Author contributor. The final retry returned **You're almost done! / Your updates have been submitted** for *Good Morning, ROB!* (`10084105637`). The other nine Little Helper replacement editions have not yet been sent; their validated files remain ready for delivery.
 
 ## ROB's Little Helper Library portal evidence recorded on 2026-09-11
 
