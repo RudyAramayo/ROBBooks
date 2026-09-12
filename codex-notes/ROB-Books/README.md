@@ -56,3 +56,9 @@ certified engineering plans or printer-specific press files.
 > distinction, placeholder, privacy exclusion, safety boundary, and existing
 > user file. Then continue the builder's newest editorial or publication task,
 > rebuild all affected PDFs, render every page, and run the validation suite.
+
+## 2026-09-12 coloring-book addition
+
+For the five children's books and five adult coloring books, read
+[2026-09-12 coloring books](2026-09-12-coloring-books-handoff.md) and the
+[coloring-book source guide](../../ROB-Books/source/coloring-v2/README.md).

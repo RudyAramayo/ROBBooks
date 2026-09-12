@@ -1,0 +1,5702 @@
+[
+  {
+    "file": "output/pdf/coloring-v2/children/good-morning-rob-coloring.pdf",
+    "title": "Good Morning, ROB!",
+    "audience": "children",
+    "coloring_pages": 30,
+    "total_pages": 34,
+    "pages": [
+      {
+        "coloring_page": 1,
+        "pdf_page": 3,
+        "title": "Wake-up stretch",
+        "image": "assets/coloring-v2/good-morning-rob/01.png",
+        "sha256": "3e397d41aa1f3de824cb59bd152f8a4e1135a4fba88e1500fb992570939b17ab",
+        "placement": {
+          "x": 80.43579766536965,
+          "y": 62.0,
+          "width": 451.1284046692607,
+          "height": 682.0,
+          "source_width": 1020,
+          "source_height": 1542,
+          "effective_dpi": 162.79178885630498
+        }
+      },
+      {
+        "coloring_page": 2,
+        "pdf_page": 4,
+        "title": "Sunbeam explorer",
+        "image": "assets/coloring-v2/good-morning-rob/02.png",
+        "sha256": "c0918e42bf682f40c10b861d4efee4f773c1c87ae5bbf2f10bad7e66d778909d",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 3,
+        "pdf_page": 5,
+        "title": "The curtain pull",
+        "image": "assets/coloring-v2/good-morning-rob/03.png",
+        "sha256": "b4b9164c9b1ac92bff3d9628b75897963a591e0e197bfe49f61d199f4d45991d",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 4,
+        "pdf_page": 6,
+        "title": "Pillow mountain",
+        "image": "assets/coloring-v2/good-morning-rob/04.png",
+        "sha256": "bcdf8bc4cde812afe11591d17612e51515d11f7cb1b8c81a34a14ec9afbf61a7",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 5,
+        "pdf_page": 7,
+        "title": "A tidy quilt",
+        "image": "assets/coloring-v2/good-morning-rob/05.png",
+        "sha256": "f1c4003d1587b8ed64388eaed44a5fa5df0d912d156ecededa12af6166c5c5d4",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 6,
+        "pdf_page": 8,
+        "title": "Morning shelf",
+        "image": "assets/coloring-v2/good-morning-rob/06.png",
+        "sha256": "a6e9247968b1a07f1800e6d05c434348b5408d2208f519d166ab90dd1c0aa8a2",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 7,
+        "pdf_page": 9,
+        "title": "Wash together",
+        "image": "assets/coloring-v2/good-morning-rob/07.png",
+        "sha256": "d74a5d101c6b4ba8a45a8ce4c3e319c32141d2aa42a99395c9ece3314c609688",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 8,
+        "pdf_page": 10,
+        "title": "Bubble shapes",
+        "image": "assets/coloring-v2/good-morning-rob/08.png",
+        "sha256": "bac7aeda9e2b4f6cea7d7c1055687bc29e18b6ea1913f8e7d76ea41bc8407a1c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 9,
+        "pdf_page": 11,
+        "title": "Puppy's splash",
+        "image": "assets/coloring-v2/good-morning-rob/09.png",
+        "sha256": "0e703e84454ceb3c0ddea729d73e45f9565588b84db3344370f58cc7cdb45fe5",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 10,
+        "pdf_page": 12,
+        "title": "Striped towels",
+        "image": "assets/coloring-v2/good-morning-rob/10.png",
+        "sha256": "3e3e64b01507324f7a0ca2970d15e8c32221b349c0fe3f9e58fff49abb5ff30c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 11,
+        "pdf_page": 13,
+        "title": "Soap boat",
+        "image": "assets/coloring-v2/good-morning-rob/11.png",
+        "sha256": "bd8907582270eb5c57e16725553c9fb17fac99c56f1213f1b362b84f67c41149",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 12,
+        "pdf_page": 14,
+        "title": "Shiny hands",
+        "image": "assets/coloring-v2/good-morning-rob/12.png",
+        "sha256": "c407d66d727b504111282bcfef70519582d449770332e5dc78ecca5c44f887fd",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 13,
+        "pdf_page": 15,
+        "title": "The block delivery",
+        "image": "assets/coloring-v2/good-morning-rob/13.png",
+        "sha256": "43d599c707312aff45a2540e9ad1091b9deba07179abd19e5277d667473efb6e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 14,
+        "pdf_page": 16,
+        "title": "A tower for Puppy",
+        "image": "assets/coloring-v2/good-morning-rob/14.png",
+        "sha256": "7e2b9920ee659f65db4be88686e2b4bb797cf1791db0dc2f3eff49ecd51d9fb5",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 15,
+        "pdf_page": 17,
+        "title": "Sorting shapes",
+        "image": "assets/coloring-v2/good-morning-rob/15.png",
+        "sha256": "0e2508b1c2b3f132287e77deb411545d3599c3785a8be07c2ec9562214498552",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 16,
+        "pdf_page": 18,
+        "title": "Under the table",
+        "image": "assets/coloring-v2/good-morning-rob/16.png",
+        "sha256": "caf5beae0d39d7cbbeb626f5bd1a745f2acc4ff64c5ad179f450f0aae99e966c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 17,
+        "pdf_page": 19,
+        "title": "Toy train home",
+        "image": "assets/coloring-v2/good-morning-rob/17.png",
+        "sha256": "d9208b13a3a56ac9cc291a62a2e5e12dd81230c451f7ccad2484a99ed87aa5bb",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 18,
+        "pdf_page": 20,
+        "title": "Basket buddies",
+        "image": "assets/coloring-v2/good-morning-rob/18.png",
+        "sha256": "fb801d9dfeec60640c76b010ca3c8176b27e49c25f8f049bb93ae8942dc58b97",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 19,
+        "pdf_page": 21,
+        "title": "The puzzle rug",
+        "image": "assets/coloring-v2/good-morning-rob/19.png",
+        "sha256": "74a2567feb55fa71b6528f3f4f516a8e70b11eac0dc0e1faaf89dac0f23889d8",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 20,
+        "pdf_page": 22,
+        "title": "A shelf for everything",
+        "image": "assets/coloring-v2/good-morning-rob/20.png",
+        "sha256": "6ef9e274de7b733de08e09c2a504a5d09cf2e01a4e399283d29457b7a767eb52",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 21,
+        "pdf_page": 23,
+        "title": "Garden doorway",
+        "image": "assets/coloring-v2/good-morning-rob/21.png",
+        "sha256": "5da2bcbc62767415745615f717b3aa33156d0bd02c80aa53e628977ad06616dc",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 22,
+        "pdf_page": 24,
+        "title": "Daisy welcome",
+        "image": "assets/coloring-v2/good-morning-rob/22.png",
+        "sha256": "0da33979002a02cf072fc1242d8e4f50b9924e619f7e7d4c1509c7edb8ce9fad",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 23,
+        "pdf_page": 25,
+        "title": "Tracks in the garden",
+        "image": "assets/coloring-v2/good-morning-rob/23.png",
+        "sha256": "ae0f1b8addb2eeb36a89831ba34e48dc840a2d0b6dc3e8834ab9e6cb4d0ff2df",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 24,
+        "pdf_page": 26,
+        "title": "A leaf umbrella",
+        "image": "assets/coloring-v2/good-morning-rob/24.png",
+        "sha256": "6affba43c7181e5bf533c74c6d5bb52c30a865f1c8a6a10902028252884bf06c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 25,
+        "pdf_page": 27,
+        "title": "Hello across the fence",
+        "image": "assets/coloring-v2/good-morning-rob/25.png",
+        "sha256": "53f191802ac0acb9c243fc01cb1be7d8f14f35a5d0754e63be82cc758c3c927d",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 26,
+        "pdf_page": 28,
+        "title": "Puppy's ball game",
+        "image": "assets/coloring-v2/good-morning-rob/26.png",
+        "sha256": "ea53b9c02fae0b80730929216463eed7cf00ed4907ef02678151115b1d4f84ce",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 27,
+        "pdf_page": 29,
+        "title": "The breakfast picnic",
+        "image": "assets/coloring-v2/good-morning-rob/27.png",
+        "sha256": "49b8a0b5a73a6961871f9e89ae2360f5703d7bdd9af7e6ffc45d7914cd6fef43",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 28,
+        "pdf_page": 30,
+        "title": "Butterfly landing",
+        "image": "assets/coloring-v2/good-morning-rob/28.png",
+        "sha256": "5490e7450458c16ac01aa275b179c4262afbd95b67d7645079c1a6738ea3f3c0",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 29,
+        "pdf_page": 31,
+        "title": "Morning window shapes",
+        "image": "assets/coloring-v2/good-morning-rob/29.png",
+        "sha256": "a0b039b9e0c072db958e23abadd35b5961f0cf1842ff3b37d7bbc75f75fefcf3",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 30,
+        "pdf_page": 32,
+        "title": "Off on an adventure",
+        "image": "assets/coloring-v2/good-morning-rob/30.png",
+        "sha256": "4391ac1cd3998ea9efd2f6c6c28b058439a88a11b34d5a0b7b99165d66ff4d52",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      }
+    ],
+    "sha256": "57f9a2f25eecf83677527171907dcb5287fe0bb6a15c073f847f79e95b876d1d"
+  },
+  {
+    "file": "output/pdf/coloring-v2/children/rob-counts-the-fireflies-coloring.pdf",
+    "title": "ROB Counts the Fireflies",
+    "audience": "children",
+    "coloring_pages": 30,
+    "total_pages": 34,
+    "pages": [
+      {
+        "coloring_page": 1,
+        "pdf_page": 3,
+        "title": "Twilight garden gate",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/01.png",
+        "sha256": "2b823ff2efd98b83cfe80283e661414ab677bbdb337db6c73ee07e20016234b6",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 2,
+        "pdf_page": 4,
+        "title": "First little glow",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/02.png",
+        "sha256": "116902a437a6c4a143e98e1a67613c9826edd99c54b7271321e6191455b520e6",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 3,
+        "pdf_page": 5,
+        "title": "Daisy lantern",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/03.png",
+        "sha256": "5d6681814924bacb3d6535d98ef2f7a62260ed93c5b5be6c4ca2c309e6764cb9",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 4,
+        "pdf_page": 6,
+        "title": "A pond reflection",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/04.png",
+        "sha256": "2c999aa6e29e34e1a6401d59b78d6c220fe0fd6cd4ae26e00f19993a83daac34",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 5,
+        "pdf_page": 7,
+        "title": "A perch for one",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/05.png",
+        "sha256": "24c91b7e4a49b94308a8e472185083e69bbc3b42f5e12a58fa9bb06c7a1f4f2f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 6,
+        "pdf_page": 8,
+        "title": "Watching gently",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/06.png",
+        "sha256": "4fa8fa3c4a93e74319d234b8c2ff96d17dd910dbb9dd840b10dff9de62f27f6b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 7,
+        "pdf_page": 9,
+        "title": "Two over the bridge",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/07.png",
+        "sha256": "bbdd88620dfa961709d64794d3bd218754cc05cf6184719f9039ec9f06b995a7",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 8,
+        "pdf_page": 10,
+        "title": "Two flower visitors",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/08.png",
+        "sha256": "fc84d606ca4d745bdfbe9a8b755d06c551bf76e90e394d30eb4854ebb88e56d7",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 9,
+        "pdf_page": 11,
+        "title": "Puppy's nose lights",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/09.png",
+        "sha256": "642f9ccf34b06bb5d833641eac3a0d427eb8ecd948d80b866d7da65a010a1c55",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 10,
+        "pdf_page": 12,
+        "title": "Two by the watering can",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/10.png",
+        "sha256": "2848b4fabb5ca46fe260918b1388f25ef3b6074773d82c49d6b664121c6417e7",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 11,
+        "pdf_page": 13,
+        "title": "A leafy doorway",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/11.png",
+        "sha256": "2fedb6795f65e515dd0d86267bab01430181312a4577a5deb159b2f385e5e430",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 12,
+        "pdf_page": 14,
+        "title": "A pair in the moonlight",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/12.png",
+        "sha256": "140c57405726251ef9d57c1a21d91a97671092916469817253023149cab0bcf3",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 13,
+        "pdf_page": 15,
+        "title": "Three garden lanterns",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/13.png",
+        "sha256": "99c334e0d66a7a7126c4c7c8daead5986a10dc63dd8f4c6ed844350712037d0b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 14,
+        "pdf_page": 16,
+        "title": "Three by the pickets",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/14.png",
+        "sha256": "46db83495eb7b55ecd52762fd4b75477f0d0090713d42bab34961b995934ecff",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 15,
+        "pdf_page": 17,
+        "title": "One two three",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/15.png",
+        "sha256": "9837a5f3931c9530eca830486bdffc6a35ef9774028d020625a9439ec2d2d1ca",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 16,
+        "pdf_page": 18,
+        "title": "The fern spiral",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/16.png",
+        "sha256": "98337ea73102450d9dcf330c5ec0b113837f94fc9f68cb3792c510c1f1b98ee3",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 17,
+        "pdf_page": 19,
+        "title": "Three above the bench",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/17.png",
+        "sha256": "4b64694970aca5b20d7c922f63cca0bef55626a45fb61b06d082f36ff66b8c89",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 18,
+        "pdf_page": 20,
+        "title": "Moonflower visitors",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/18.png",
+        "sha256": "f2510fdeff8467971b0b244526137d776ba68f1a5b0d8084d36b1bb70470cee5",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 19,
+        "pdf_page": 21,
+        "title": "Four by the pond",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/19.png",
+        "sha256": "4c0ba3515efce810d1b483db2d1f2e733d590f7513f0e3b93d204c82a1d015eb",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 20,
+        "pdf_page": 22,
+        "title": "Four around a lantern",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/20.png",
+        "sha256": "f82a26de00ca527b045c77d9d67c1d59326936b1a122ac6ecb4570ef9ea8970a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 21,
+        "pdf_page": 23,
+        "title": "Puppy counts four",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/21.png",
+        "sha256": "86821db91144ed79b805650f6b8abb137a819a570aa77a4fe463e4f220999fc1",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 22,
+        "pdf_page": 24,
+        "title": "Four on a garden arch",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/22.png",
+        "sha256": "2b7742a889848df57f6e05dcac7418f80a87dd7651ce1d69794e119e7ac62b83",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 23,
+        "pdf_page": 25,
+        "title": "One more joins",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/23.png",
+        "sha256": "45769bc7f56c0548f6d78b1d225c2438335208303e166378482e0acb8ef2146e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 24,
+        "pdf_page": 26,
+        "title": "Five flower lights",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/24.png",
+        "sha256": "d2fa449feb771075de373585d811d23f294947bf246dda5ac4fbfaa38e88bcd8",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 25,
+        "pdf_page": 27,
+        "title": "A circle of five",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/25.png",
+        "sha256": "306bad78d892966857b3dca1b3a8ff60d5dfc2d1c1a061df1bb8511af7cbca8d",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 26,
+        "pdf_page": 28,
+        "title": "Five over the stream",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/26.png",
+        "sha256": "9302a33e027ff9e4b2129613a13430d42d195a510b4f344ff1d9bb310e356494",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 27,
+        "pdf_page": 29,
+        "title": "A hand full of wonder",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/27.png",
+        "sha256": "61b3ad82dfbf958ab450ed03b47a62ec828ed516f352c707e8175f0a2bcfd127",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 28,
+        "pdf_page": 30,
+        "title": "Garden lights stay free",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/28.png",
+        "sha256": "6250c0621f5d90e7410312df9c273fd8fbb2657f49c20198815e1986a157a230",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 29,
+        "pdf_page": 31,
+        "title": "Goodnight from the window",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/29.png",
+        "sha256": "84f71867b91feec36bd39f834bcbfee2988275e8357a0009b0e5ff5f485d70fa",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 30,
+        "pdf_page": 32,
+        "title": "Home by starlight",
+        "image": "assets/coloring-v2/rob-counts-the-fireflies/30.png",
+        "sha256": "b100c2c976f8fc30a986f73b1edb6e28d6d794fe012fd86477f62b8c48258ca5",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      }
+    ],
+    "sha256": "b21c478f6d775ed6c00e17fe8edd3c2992cb50fb4e822e19cc98c3533373b1a7"
+  },
+  {
+    "file": "output/pdf/coloring-v2/children/robs-rainbow-lights-coloring.pdf",
+    "title": "ROB's Rainbow Lights",
+    "audience": "children",
+    "coloring_pages": 30,
+    "total_pages": 34,
+    "pages": [
+      {
+        "coloring_page": 1,
+        "pdf_page": 3,
+        "title": "Lantern discovery",
+        "image": "assets/coloring-v2/robs-rainbow-lights/01.png",
+        "sha256": "b287b337fb0ab431abb165e84d3c6f99dce89ac4de1344a13a9b2d86c9221d45",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 2,
+        "pdf_page": 4,
+        "title": "Round and red",
+        "image": "assets/coloring-v2/robs-rainbow-lights/02.png",
+        "sha256": "3900f6c7e178ee8807f90846c5da88b87fef67ef83f7adae760882eb0e17357e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 3,
+        "pdf_page": 5,
+        "title": "Berry basket",
+        "image": "assets/coloring-v2/robs-rainbow-lights/03.png",
+        "sha256": "85405072429319bfe8562f3be9e7525f47b7f6871b0f727bf217b6b0c507f37b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 4,
+        "pdf_page": 6,
+        "title": "The wagon ride",
+        "image": "assets/coloring-v2/robs-rainbow-lights/04.png",
+        "sha256": "190e8198c6a5ae868cc7657c6a64668b7248092160dd9e1bac3e2ddb8a702ed3",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 5,
+        "pdf_page": 7,
+        "title": "A paper lantern tree",
+        "image": "assets/coloring-v2/robs-rainbow-lights/05.png",
+        "sha256": "821634020332042b6fe14b956cfe91b2f9046043337ea9b6f40636dc6081aea0",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 6,
+        "pdf_page": 8,
+        "title": "Ladybug color hunt",
+        "image": "assets/coloring-v2/robs-rainbow-lights/06.png",
+        "sha256": "c56b84a9bc8da146a21bc313e6ea6b8d1b9fe44682c909e30817d9c8e89dd6fe",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 7,
+        "pdf_page": 9,
+        "title": "Sunflower surprise",
+        "image": "assets/coloring-v2/robs-rainbow-lights/07.png",
+        "sha256": "79e3dce63a75a6734a8e8194dec95e5f637fbb913add5637a8e4ad4124181013",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 8,
+        "pdf_page": 10,
+        "title": "Sunshine in a window",
+        "image": "assets/coloring-v2/robs-rainbow-lights/08.png",
+        "sha256": "d884efd4d10c624bfdf465c69899c1cb124d9995e0c0570fbc1c684ba3dd1c70",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 9,
+        "pdf_page": 11,
+        "title": "Yellow ribbon",
+        "image": "assets/coloring-v2/robs-rainbow-lights/09.png",
+        "sha256": "ba86bd6fde3c309fe2711ee61d5d937a2cd63fed91bd76f8f921d32850593dba",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 10,
+        "pdf_page": 12,
+        "title": "Sunny shapes",
+        "image": "assets/coloring-v2/robs-rainbow-lights/10.png",
+        "sha256": "7a6fdedd6f331a5c09f13b7f9b815dcb680db9b61d6da801f78a05f5318b4486",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 11,
+        "pdf_page": 13,
+        "title": "Petal close-up",
+        "image": "assets/coloring-v2/robs-rainbow-lights/11.png",
+        "sha256": "72bfcc135f48ea4e69d521d58a8591017803e61662ec5eb919342ad1a46e3372",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 12,
+        "pdf_page": 14,
+        "title": "Lemon picnic",
+        "image": "assets/coloring-v2/robs-rainbow-lights/12.png",
+        "sha256": "76137bc27207c87c2418dac35fe5c699ed665b5d5c85e1c5764a67e3724567d9",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 13,
+        "pdf_page": 15,
+        "title": "Three bright butterflies",
+        "image": "assets/coloring-v2/robs-rainbow-lights/13.png",
+        "sha256": "6cf5899e03ebdddfbf28373e8ce9a78695d41c1d11267af3c9185c98239e2233",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 14,
+        "pdf_page": 16,
+        "title": "Rainy umbrella",
+        "image": "assets/coloring-v2/robs-rainbow-lights/14.png",
+        "sha256": "fa2384e6ea0bb36300bcba475a8643908a1ed8183d1f27a7309b2876cb845ae4",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 15,
+        "pdf_page": 17,
+        "title": "Puddle mirror",
+        "image": "assets/coloring-v2/robs-rainbow-lights/15.png",
+        "sha256": "b9b30f11fd0db7a04db85d99f32d2da647ee7b80be865850c2ff96fba1724930",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 16,
+        "pdf_page": 18,
+        "title": "Blue lantern shelter",
+        "image": "assets/coloring-v2/robs-rainbow-lights/16.png",
+        "sha256": "1bed05de8ebd9a2ebcfacc8d71fc6beda9f4c12be1b3d93b326a43d4c67fa74e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 17,
+        "pdf_page": 19,
+        "title": "Raindrop mobile",
+        "image": "assets/coloring-v2/robs-rainbow-lights/17.png",
+        "sha256": "446c445d8404999e82caa1a8113ae5bd0e70b8506316142b511d11fb21bdfb0a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 18,
+        "pdf_page": 20,
+        "title": "Pond colors",
+        "image": "assets/coloring-v2/robs-rainbow-lights/18.png",
+        "sha256": "c67a38960f7e17df6bbe5fe71f51c0196a22fca2d0ca33d884153e6b3f2d0c59",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 19,
+        "pdf_page": 21,
+        "title": "ROB's blue eyes",
+        "image": "assets/coloring-v2/robs-rainbow-lights/19.png",
+        "sha256": "2b6f8c395675e7c2f17a2a53e5777eb66fca076d595b812f08ed48d7ef4dc8d4",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 20,
+        "pdf_page": 22,
+        "title": "Bluebell tunnel",
+        "image": "assets/coloring-v2/robs-rainbow-lights/20.png",
+        "sha256": "9dd6bf0c74c2928b4c3e089a487a6644e9684cacf6d4911ad62af15b55fb313f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 21,
+        "pdf_page": 23,
+        "title": "Sailboat after rain",
+        "image": "assets/coloring-v2/robs-rainbow-lights/21.png",
+        "sha256": "14e782c41a063c7a995b7270bca0638c7ce96337ea147ff55d0fb412b47f06d9",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 22,
+        "pdf_page": 24,
+        "title": "Three friends of color",
+        "image": "assets/coloring-v2/robs-rainbow-lights/22.png",
+        "sha256": "fd4493c92a9c4355f0ba8ac2c303c954540e3872d893d3ad5c64c3f072dcaa2c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 23,
+        "pdf_page": 25,
+        "title": "A lantern picnic",
+        "image": "assets/coloring-v2/robs-rainbow-lights/23.png",
+        "sha256": "6a06fc7821ed22d7da592bd008d205cc8173dbd80a5bc304e56553f6496b0298",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 24,
+        "pdf_page": 26,
+        "title": "Rainbow bridge",
+        "image": "assets/coloring-v2/robs-rainbow-lights/24.png",
+        "sha256": "76c65166a9a1e74902416f94bade808d899b33fbe6e24df1de7fa6af1f1af469",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 25,
+        "pdf_page": 27,
+        "title": "Rainbow close-up",
+        "image": "assets/coloring-v2/robs-rainbow-lights/25.png",
+        "sha256": "cfc72a383ed7f87a3b483ccd004f904009c318448568500c5d12034d3934108e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 26,
+        "pdf_page": 28,
+        "title": "Kite colors",
+        "image": "assets/coloring-v2/robs-rainbow-lights/26.png",
+        "sha256": "be2ad70029631e4b64e6e481dc030110dee7c19004867b44e1ad2896ebb9169c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 27,
+        "pdf_page": 29,
+        "title": "Lantern festival",
+        "image": "assets/coloring-v2/robs-rainbow-lights/27.png",
+        "sha256": "9407d2c7ea4f830699677b88120151f9a613d371035d5ac2ee2c095d07d1a2ed",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 28,
+        "pdf_page": 30,
+        "title": "Rainbow waterfall",
+        "image": "assets/coloring-v2/robs-rainbow-lights/28.png",
+        "sha256": "7b08d317ba5f766756202507c2fc618dc407f2d95fefb9718f10fc5c5c5c2dab",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 29,
+        "pdf_page": 31,
+        "title": "Colorful patchwork",
+        "image": "assets/coloring-v2/robs-rainbow-lights/29.png",
+        "sha256": "b969651f42793a3b57c1897443d779237bf59e34c19566a5018f80f98c34d1d9",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 30,
+        "pdf_page": 32,
+        "title": "Our beautiful day",
+        "image": "assets/coloring-v2/robs-rainbow-lights/30.png",
+        "sha256": "dffb62c2e5e494474ff74d6ce592b93aee5e0c30d5076ec621726bdfecc8c551",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      }
+    ],
+    "sha256": "d3f9c0d2822e4355062ff9183a30cc286e05c3e7d28a75125a50c0308b6613a6"
+  },
+  {
+    "file": "output/pdf/coloring-v2/children/rob-hears-a-little-sound-coloring.pdf",
+    "title": "ROB Hears a Little Sound",
+    "audience": "children",
+    "coloring_pages": 30,
+    "total_pages": 34,
+    "pages": [
+      {
+        "coloring_page": 1,
+        "pdf_page": 3,
+        "title": "A little tap",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/01.png",
+        "sha256": "4460a6a362fe526e76473f83035360cde207c476e7ec9ab04d2c5e94969cac5c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 2,
+        "pdf_page": 4,
+        "title": "Still as a statue",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/02.png",
+        "sha256": "0bb696113c8a6f4f71c5254262ca603375940c459b08365d0326e65cfbb4804d",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 3,
+        "pdf_page": 5,
+        "title": "Listening close",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/03.png",
+        "sha256": "01424e92bbb08d0f00ab40f0cf9495a4b2dd96fe96b3b4f872713a658958ed64",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 4,
+        "pdf_page": 6,
+        "title": "Raindrop window",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/04.png",
+        "sha256": "12497381c6c85007843819048ff8a9bb5865fac56c419c767422a9ca6e907cc4",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 5,
+        "pdf_page": 7,
+        "title": "Drip into the bucket",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/05.png",
+        "sha256": "02d7ab4882e253e947270263e21544eb68c6020f83ba8dccda529da203e441ea",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 6,
+        "pdf_page": 8,
+        "title": "Cloud orchestra",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/06.png",
+        "sha256": "e6b6727bd13331b6772c26eb1f0dde1882080d062a45467126bbe461a7ab43f0",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 7,
+        "pdf_page": 9,
+        "title": "The tapping branch",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/07.png",
+        "sha256": "f50886bb4aaba6b16cc6ba7de6dfaff0de7b029cc02e0e695d069d15dd92f5f2",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 8,
+        "pdf_page": 10,
+        "title": "A swish of leaves",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/08.png",
+        "sha256": "81f1b54a9e5769894eec8e0e80d67cf0e7358bbdc1bafed3933db8acee4b1ac6",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 9,
+        "pdf_page": 11,
+        "title": "Wind in the willow",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/09.png",
+        "sha256": "d0ec27e6f0fba62fc1e73ac5d1d95063d1856a21872480b0832ee4b17152b4cf",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 10,
+        "pdf_page": 12,
+        "title": "Porch listening bench",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/10.png",
+        "sha256": "4a433298bfe2134fd445fff9c75a862c66d1f015da450d325b452594e15540d4",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 11,
+        "pdf_page": 13,
+        "title": "Three sounds together",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/11.png",
+        "sha256": "63beae6f210d6a62d6fc916af4974fd7bdcce3cf3e01ffd67a014ace3f34e7cf",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 12,
+        "pdf_page": 14,
+        "title": "Puddle rings",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/12.png",
+        "sha256": "d0272a42f6c2c7ce13ba4901a95fff7622770d506face293eb250622ffaf349d",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 13,
+        "pdf_page": 15,
+        "title": "A chirp above",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/13.png",
+        "sha256": "13d46f3387b5e169a7e7f0220ddc1ba57febcf3502c676e824715382383d82ab",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 14,
+        "pdf_page": 16,
+        "title": "Little singer",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/14.png",
+        "sha256": "49dfeb6b77f3b2294689f253d1e6bfdfa01fa733821fc9eea48f129c414d7e76",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 15,
+        "pdf_page": 17,
+        "title": "Shelter from rain",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/15.png",
+        "sha256": "7d789c0adda0d2aeb0ba5f6caceb8b7bc779e48b471428cf21a2a51d70faa0cc",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 16,
+        "pdf_page": 18,
+        "title": "A dry little perch",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/16.png",
+        "sha256": "e89ee10ce837c43d3db9834aff14631801638e37463c0e1e1ce98ca7dff53fd5",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 17,
+        "pdf_page": 19,
+        "title": "Wing stretch",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/17.png",
+        "sha256": "f08f7b11f31d470896161d309fece3ae23517b0d72e972191ec7a07070e380cd",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 18,
+        "pdf_page": 20,
+        "title": "Feather shapes",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/18.png",
+        "sha256": "999e8ed72d58cde2300a1995475b630b2f43d620be1188abb7a6f6c8601fe167",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 19,
+        "pdf_page": 21,
+        "title": "The water dish",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/19.png",
+        "sha256": "75c0199ccd6d1942626e490112a8871b0ac17ef2e03aa5e4c6cede28b1e57337",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 20,
+        "pdf_page": 22,
+        "title": "A gentle pour",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/20.png",
+        "sha256": "558c28ebbc1dda23b379490fd870895f194b11d4e288053e7b03a2be3f256939",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 21,
+        "pdf_page": 23,
+        "title": "The first sip",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/21.png",
+        "sha256": "33c2cea0cea3a86ec6990dac724438e63b5cd9bd2f71ad53a6147232faff5935",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 22,
+        "pdf_page": 24,
+        "title": "Puppy waits",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/22.png",
+        "sha256": "3c03e0553c717518050e7c1c7d7cc1f38e4fd076e03ea74413a11cbb02a9e449",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 23,
+        "pdf_page": 25,
+        "title": "Three quiet friends",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/23.png",
+        "sha256": "dbd5267b3bff00787acf8a5bfee31ecd4befed224e750291daa1f8c5bc3e44d8",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 24,
+        "pdf_page": 26,
+        "title": "Under the awning",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/24.png",
+        "sha256": "b14b81bf227c0cdc47467449c9817d083921effde1ebd8952b1a482ada401277",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 25,
+        "pdf_page": 27,
+        "title": "Drip sip chirp",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/25.png",
+        "sha256": "afd840e2b6b788487300042a6447b7f0edded38fad3f842553511a6f8fe5a28b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 26,
+        "pdf_page": 28,
+        "title": "A song in the garden",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/26.png",
+        "sha256": "428d305d4882787d7450b5f8a669de5fdf191d0d8f883e76d332e897c61e5f5e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 27,
+        "pdf_page": 29,
+        "title": "After the rain",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/27.png",
+        "sha256": "4444b3a4b10f59b009f731698b71d21182349c08f879b15261bd3172e6add43e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 28,
+        "pdf_page": 30,
+        "title": "Peaceful porch",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/28.png",
+        "sha256": "cc47a00b258fdf6505fdef6ba24bd8b117767e62c8a81601d1ac3fe831d02fc8",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 29,
+        "pdf_page": 31,
+        "title": "Listen together",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/29.png",
+        "sha256": "10f63940f3520c0ceac1b8d55baef5acdd11c5a19c605a8564272f140febb923",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 30,
+        "pdf_page": 32,
+        "title": "A gentle goodbye",
+        "image": "assets/coloring-v2/rob-hears-a-little-sound/30.png",
+        "sha256": "78a31600549815f8eea4502838ffe38c6fdd04649fa87f96f6a8af6d835c751e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      }
+    ],
+    "sha256": "3ff896ae549ae48033675dd0bbed38c0bf06003c01f77bb4576b265c7830f92a"
+  },
+  {
+    "file": "output/pdf/coloring-v2/children/rob-shares-the-shiny-star-coloring.pdf",
+    "title": "ROB Shares the Shiny Star",
+    "audience": "children",
+    "coloring_pages": 30,
+    "total_pages": 34,
+    "pages": [
+      {
+        "coloring_page": 1,
+        "pdf_page": 3,
+        "title": "The treasure box",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/01.png",
+        "sha256": "c489d6ebf3fe200ee5100d104c58aaa6c3908d2b420e86d466538e4ab1948a8f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 2,
+        "pdf_page": 4,
+        "title": "A star inside",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/02.png",
+        "sha256": "833a73374debfecb7ce0d9e96f4b4900712074fe7253fed5bf2391708b647c79",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 3,
+        "pdf_page": 5,
+        "title": "A shiny discovery",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/03.png",
+        "sha256": "433fcdbf685d3e4e0a8b3dd3c042872c1196512bb16c9824f445744bd0889241",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 4,
+        "pdf_page": 6,
+        "title": "Five lovely points",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/04.png",
+        "sha256": "db29ea74ceb6c26831fa33df1072939b39a323f929b4ed99683727e12f090b1c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 5,
+        "pdf_page": 7,
+        "title": "Star reflection",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/05.png",
+        "sha256": "4f173e0bb8095183790c9aac67f1c0d299b33c44c6bd24dea3eaf7724be46419",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 6,
+        "pdf_page": 8,
+        "title": "A ribbon for the star",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/06.png",
+        "sha256": "ab42fa5db11eb20e84f958969fbdbc723220d3548e391dca9644f02380f6ef14",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 7,
+        "pdf_page": 9,
+        "title": "Puppy comes closer",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/07.png",
+        "sha256": "59307d76f33c44284c4d1d4f6c2501e620f6aca47775a85512e518b9da004d22",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 8,
+        "pdf_page": 10,
+        "title": "Hopeful little eyes",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/08.png",
+        "sha256": "ec4cd2242b636d932c9e3e8d4c57beeba5681c6505b724b62c04908104cefd1f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 9,
+        "pdf_page": 11,
+        "title": "Two friends want to see",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/09.png",
+        "sha256": "fbbb96d445cbb19d28c877d26b837011fb07854d1b7e1e0c635f31237019aa8b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 10,
+        "pdf_page": 12,
+        "title": "A thoughtful moment",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/10.png",
+        "sha256": "00d4389d52840341bcf925861048dba6100acd2077d4c84665db10be12bebff0",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 11,
+        "pdf_page": 13,
+        "title": "A place for two",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/11.png",
+        "sha256": "d7d0eccb0f69327f425b6342b4a393b28403e5b88001e2a309653b8ddc959eb3",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 12,
+        "pdf_page": 14,
+        "title": "Let's look together",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/12.png",
+        "sha256": "9c471336a53886979d1ef1b791759d6dfabef1a02f9d36b3611f139818baf126",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 13,
+        "pdf_page": 15,
+        "title": "Tail-wag happiness",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/13.png",
+        "sha256": "504a541432ec774672ca9f87cf368cf8564cbc30f2813c71aef2bb5da948a80a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 14,
+        "pdf_page": 16,
+        "title": "A shared blanket",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/14.png",
+        "sha256": "84bd9dbac901693de9a57a858411181eab0fb0e749cf66a1cdaf98447dfccc64",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 15,
+        "pdf_page": 17,
+        "title": "The star stand",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/15.png",
+        "sha256": "742d853b862f1ab5dcd9203512c76a501729b59c1c86d3a18eeb5742089814c2",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 16,
+        "pdf_page": 18,
+        "title": "Happy face close-up",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/16.png",
+        "sha256": "16b4dfdc25a57ddced3daf65ff1f4775ef3c68cd51c2267e4bcf1ba6042b2b36",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 17,
+        "pdf_page": 19,
+        "title": "Room on the bench",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/17.png",
+        "sha256": "9995eeb6a97badb77eb3a613515e6a5d09b3b1cf4b003f5208e2d9d3b53c63a5",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 18,
+        "pdf_page": 20,
+        "title": "A heart of kindness",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/18.png",
+        "sha256": "81b57b58e1799cf55d6853dc4a55f67a7f6a93b1f6fb64ab181a9d327107274d",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 19,
+        "pdf_page": 21,
+        "title": "Choosing a window",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/19.png",
+        "sha256": "b3b121985e8c21e44aff119c6e1f789e959b32c59c610bc2f1f13fd22dc0b92b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 20,
+        "pdf_page": 22,
+        "title": "A ribbon in the window",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/20.png",
+        "sha256": "f8283b26510eb47d0545d002d05fb49878f4b2b9d6bce0a903fff4ff3edf3ac6",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 21,
+        "pdf_page": 23,
+        "title": "Puppy on the window seat",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/21.png",
+        "sha256": "138fe1de6d7c475f2c03b9a11270100266fc7975f1bfde017abef20e2383f3a9",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 22,
+        "pdf_page": 24,
+        "title": "Sunbeam sparkles",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/22.png",
+        "sha256": "b406a1bf42703356812bbc450cd588e3aed93ad9a271fba38c8a5521825fba4a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 23,
+        "pdf_page": 25,
+        "title": "Window garden",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/23.png",
+        "sha256": "0c8a34e48bb6fc95b4aae8ac6ad8e5b847956a98d4f38133cad2605d3e3218ac",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 24,
+        "pdf_page": 26,
+        "title": "Two happy shadows",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/24.png",
+        "sha256": "28b37d98c4b39d787fc28727ca95d22a70291dcaa54676dda4d4eba0dc71284e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 25,
+        "pdf_page": 27,
+        "title": "A star-shaped picnic",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/25.png",
+        "sha256": "c25dca8ea72e0636ac18637d2a9d594b53d63fa5ac42fb18c01d1c202fbff946",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 26,
+        "pdf_page": 28,
+        "title": "A gift of a drawing",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/26.png",
+        "sha256": "8fe2a280c43f7c17e54ae4b5ee1ee1eecdf488c36fa15c6ccb96f1c3c89f5069",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 27,
+        "pdf_page": 29,
+        "title": "Sharing the view",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/27.png",
+        "sha256": "b9c3b62974f91ffe7d809240b766f87d90a50c23c1b92abb15f809d88ab362e5",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 28,
+        "pdf_page": 30,
+        "title": "Kindness quilt",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/28.png",
+        "sha256": "37059dfca6eeb53e2360ff22a34f8b362dc1bffaee2c6bbfff24f7e77d4604fe",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 29,
+        "pdf_page": 31,
+        "title": "Bright enough for two",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/29.png",
+        "sha256": "d4c1af3306c3d99e1ce2eb44d2a05cb049ac9c91cf310a219f44b7a83258159f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 30,
+        "pdf_page": 32,
+        "title": "Our friendship adventure",
+        "image": "assets/coloring-v2/rob-shares-the-shiny-star/30.png",
+        "sha256": "1ef5f118cab91638ba6176ab53e395c699372a500503967cd9d050294baa6b0b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      }
+    ],
+    "sha256": "ca72eecd252a854b7b938843bc42f1c5a6b1b90fc1c79a6e419319a5612fa937"
+  },
+  {
+    "file": "output/pdf/coloring-v2/adult/rob-halloween-coloring.pdf",
+    "title": "ROB's Clockwork Halloween",
+    "audience": "seasonal",
+    "coloring_pages": 40,
+    "total_pages": 44,
+    "pages": [
+      {
+        "coloring_page": 1,
+        "pdf_page": 3,
+        "title": "The pumpkin conservatory",
+        "image": "assets/coloring-v2/rob-halloween/01.png",
+        "sha256": "62ea1a186f7456372c04f5da776efc4a421b64036778378e3e184ea50a828209",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 2,
+        "pdf_page": 4,
+        "title": "Moonlit clocktower",
+        "image": "assets/coloring-v2/rob-halloween/02.png",
+        "sha256": "4610a452781f9860d3c6664d4311f2a92d9f9737b777ed5d88e7e4db0c7baa71",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 3,
+        "pdf_page": 5,
+        "title": "Mechanical skull bouquet",
+        "image": "assets/coloring-v2/rob-halloween/03.png",
+        "sha256": "39dcdc82092bdc75cb261b404aa522190255aa2df0f84c5bac0cee6180531359",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 4,
+        "pdf_page": 6,
+        "title": "The haunted carousel",
+        "image": "assets/coloring-v2/rob-halloween/04.png",
+        "sha256": "f84871678b5fd5c81eeebe655f8bf8dba5588dfc2dd2a5f19a33903a0d69b629",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 5,
+        "pdf_page": 7,
+        "title": "Witch's workbench",
+        "image": "assets/coloring-v2/rob-halloween/05.png",
+        "sha256": "9781c3077d6cdca6bad9333a282373777829d5fe3d926f4458bac68816d55b81",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 6,
+        "pdf_page": 8,
+        "title": "The raven gate",
+        "image": "assets/coloring-v2/rob-halloween/06.png",
+        "sha256": "605e9620f6a6c96bba1800f9bb7798c3cca3cfaf25d1170164cce02547a12894",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 7,
+        "pdf_page": 9,
+        "title": "Crescent harvest",
+        "image": "assets/coloring-v2/rob-halloween/07.png",
+        "sha256": "c4a7f9bec0fa4458cdf14f29ea417c42d48e5b08a07481d3014429c2b1947f28",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 8,
+        "pdf_page": 10,
+        "title": "Costume atelier",
+        "image": "assets/coloring-v2/rob-halloween/08.png",
+        "sha256": "3dd6d74e3853307e069f3987259fae4c3f0e7f28b12a5f6dc6b3efaf0099c243",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 9,
+        "pdf_page": 11,
+        "title": "Pumpkin gondola",
+        "image": "assets/coloring-v2/rob-halloween/09.png",
+        "sha256": "bcee37dff595a9422548683dac21b15968be3a51f710e9f194ef50afc19fd76a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 10,
+        "pdf_page": 12,
+        "title": "Owl clock portrait",
+        "image": "assets/coloring-v2/rob-halloween/10.png",
+        "sha256": "fdc158f780b23d1225eb5778b587ec6465f5d126176eb39f7448e0d3f7aac345",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 11,
+        "pdf_page": 13,
+        "title": "The mushroom lantern path",
+        "image": "assets/coloring-v2/rob-halloween/11.png",
+        "sha256": "1220afb1e58989ec6fcfd82ec44966437d4add0b02a8bd759ee18a56bccf016a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 12,
+        "pdf_page": 14,
+        "title": "Gothic tea for two",
+        "image": "assets/coloring-v2/rob-halloween/12.png",
+        "sha256": "09fcd90ad623437da6f81bf7c504c3531fe866e954a899d739d870e22a9c1552",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 13,
+        "pdf_page": 15,
+        "title": "Masked moon festival",
+        "image": "assets/coloring-v2/rob-halloween/13.png",
+        "sha256": "03419d85af4d475c0a672a89c54ba32eb3c35e48fa6b8cbce3afc12930944a79",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 14,
+        "pdf_page": 16,
+        "title": "Gear-and-leaf mandala",
+        "image": "assets/coloring-v2/rob-halloween/14.png",
+        "sha256": "bf5fb4df873056ea0c4707bbf7785a7ebea6a0e6a0a88081d701099003f48f03",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 15,
+        "pdf_page": 17,
+        "title": "The bat aviary",
+        "image": "assets/coloring-v2/rob-halloween/15.png",
+        "sha256": "6ce205bbbc88d53d5b61a6b353dc6724fa4f568183576234031184b5fcfa00e3",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 16,
+        "pdf_page": 18,
+        "title": "Fortune-teller cabinet",
+        "image": "assets/coloring-v2/rob-halloween/16.png",
+        "sha256": "cfe19b4bf00de401cb06da740ba8bf0281e6b0bb033bf1a3c3b39c6e79c08352",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 17,
+        "pdf_page": 19,
+        "title": "The pumpkin bakery",
+        "image": "assets/coloring-v2/rob-halloween/17.png",
+        "sha256": "06b76cce08494b76edea3470406881ae3411398ad57a03c65179c4d33fb03da9",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 18,
+        "pdf_page": 20,
+        "title": "Skeletal garden dragon",
+        "image": "assets/coloring-v2/rob-halloween/18.png",
+        "sha256": "6413ac2f4a18d83b41e28c9fdb1ab9458a7baffcb472388bf18b3a6fe8beeded",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 19,
+        "pdf_page": 21,
+        "title": "The cobweb observatory",
+        "image": "assets/coloring-v2/rob-halloween/19.png",
+        "sha256": "72645961be278472801bf781c7db9b3e2fee3cd8be8d6a3e8e58746cf8ed4a22",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 20,
+        "pdf_page": 22,
+        "title": "Moth and moon still life",
+        "image": "assets/coloring-v2/rob-halloween/20.png",
+        "sha256": "a89e25ec234f0fc52cb2788211b0470f7dc2a98f08ae715606aaddcbc4ac8694",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 21,
+        "pdf_page": 23,
+        "title": "The midnight train",
+        "image": "assets/coloring-v2/rob-halloween/21.png",
+        "sha256": "e2bbd21849f1a7723841e4482fbb7c691f65b2f8603908390f618aead940b296",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 22,
+        "pdf_page": 24,
+        "title": "Candlelit library",
+        "image": "assets/coloring-v2/rob-halloween/22.png",
+        "sha256": "b90a305dd5471e80e91ab9a9dfcbc8a25ab4baa2f98d87b321840505a61af80d",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 23,
+        "pdf_page": 25,
+        "title": "A field of lanterns",
+        "image": "assets/coloring-v2/rob-halloween/23.png",
+        "sha256": "1f805745aad37997f73933174c8c40d66151d1dedb06702c0469960a35c63bcb",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 24,
+        "pdf_page": 26,
+        "title": "The masquerade mirror",
+        "image": "assets/coloring-v2/rob-halloween/24.png",
+        "sha256": "54499aa5979ecafa386795dd700b21299c5c448da78f989d2118ea4073f57a28",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 25,
+        "pdf_page": 27,
+        "title": "Clockwork spider workshop",
+        "image": "assets/coloring-v2/rob-halloween/25.png",
+        "sha256": "dae9f83bd84cdbd84a22af4f88d360767497b7562d86eed64e427295ba329b35",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 26,
+        "pdf_page": 28,
+        "title": "The scarecrow repair",
+        "image": "assets/coloring-v2/rob-halloween/26.png",
+        "sha256": "c38af522d714c955f75ed553a2765e1ee2a12ea91dea26c2b58e5b8b71b14317",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 27,
+        "pdf_page": 29,
+        "title": "The haunted greenhouse roof",
+        "image": "assets/coloring-v2/rob-halloween/27.png",
+        "sha256": "d9fd160f2d4f9e64e69fd74f5ce923d79e8e2aca8dba307f0e2f86cedbc26d4b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 28,
+        "pdf_page": 30,
+        "title": "Crystal lantern close-up",
+        "image": "assets/coloring-v2/rob-halloween/28.png",
+        "sha256": "d7793f890c77b582b18ce1b05c6c2b5ae854ee52a7a9801beafe2f36ebf85e6e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 29,
+        "pdf_page": 31,
+        "title": "Gargoyle courtyard",
+        "image": "assets/coloring-v2/rob-halloween/29.png",
+        "sha256": "221693faf3a4bf71368b4c5c1be3ad8f1c4c4be5db7064849d28895b9442eac3",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 30,
+        "pdf_page": 32,
+        "title": "A pumpkin hot-air balloon",
+        "image": "assets/coloring-v2/rob-halloween/30.png",
+        "sha256": "00fe829a72f11d6d382b3ae3efb1aad3ffa797ddf40c70972b21b8a8879b6d3a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 31,
+        "pdf_page": 33,
+        "title": "The skeleton orchestra",
+        "image": "assets/coloring-v2/rob-halloween/31.png",
+        "sha256": "814230aaab4b3f2c4ff7250085f22bec00bbef0ab34cb29ad487873e68d3ba8a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 32,
+        "pdf_page": 34,
+        "title": "Raven-and-rose wreath",
+        "image": "assets/coloring-v2/rob-halloween/32.png",
+        "sha256": "24846b176039d67299a016f1302e04628aded46737a955111cd77d3631be9c4f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 33,
+        "pdf_page": 35,
+        "title": "The hidden staircase",
+        "image": "assets/coloring-v2/rob-halloween/33.png",
+        "sha256": "9b4c7815a50697eb53d4789391bebb903fae6ac73480b72137de769c1bb7b8e5",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 34,
+        "pdf_page": 36,
+        "title": "Halloween market stall",
+        "image": "assets/coloring-v2/rob-halloween/34.png",
+        "sha256": "13a4c551b7bdb8a026b7ec0838a7c98444ddf894b7f9aa5a51485ce33e140f78",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 35,
+        "pdf_page": 37,
+        "title": "Patchwork dragon kite",
+        "image": "assets/coloring-v2/rob-halloween/35.png",
+        "sha256": "0b574aaa7576e28e73812287e9e7a117cc2c71e8dc7ee0276f0d1b1d25b9e5f6",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 36,
+        "pdf_page": 38,
+        "title": "The moon clock",
+        "image": "assets/coloring-v2/rob-halloween/36.png",
+        "sha256": "2353e88ec1ab296bc7752bcf87c99576febacbd528f2c5d70245eedcfff12359",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 37,
+        "pdf_page": 39,
+        "title": "A balcony of bats",
+        "image": "assets/coloring-v2/rob-halloween/37.png",
+        "sha256": "db02019f262f24a73591cd493988c75deac76168f848b45f0be535bbfd2709f2",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 38,
+        "pdf_page": 40,
+        "title": "The lantern river",
+        "image": "assets/coloring-v2/rob-halloween/38.png",
+        "sha256": "69c776ebaf26aeea139d1ec597bd6b9cf6ff83223ea89ff2d0a8b53adce33700",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 39,
+        "pdf_page": 41,
+        "title": "Friends at the gate",
+        "image": "assets/coloring-v2/rob-halloween/39.png",
+        "sha256": "ac9a186aa1edc772a870e87b6ff84298aa1be4f16843b301a74352d2c684d662",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 40,
+        "pdf_page": 42,
+        "title": "Halloween dawn",
+        "image": "assets/coloring-v2/rob-halloween/40.png",
+        "sha256": "b9a0d1044ebed144da9f13c1ff20338428a63c1a5944fbe6745c41272a83e62d",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      }
+    ],
+    "sha256": "d59b176e1594e0573266ff3091f0082ae76c93d8b7da0fec43bb5e928e235878"
+  },
+  {
+    "file": "output/pdf/coloring-v2/adult/rob-thanksgiving-coloring.pdf",
+    "title": "ROB's Harvest and Thanksgiving",
+    "audience": "seasonal",
+    "coloring_pages": 40,
+    "total_pages": 44,
+    "pages": [
+      {
+        "coloring_page": 1,
+        "pdf_page": 3,
+        "title": "The harvest welcome",
+        "image": "assets/coloring-v2/rob-thanksgiving/01.png",
+        "sha256": "e75c7ebbfb307818a4515ecae1ffdc1abbeb4b50e63041c3690af29041a09f35",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 2,
+        "pdf_page": 4,
+        "title": "Cornucopia of gears",
+        "image": "assets/coloring-v2/rob-thanksgiving/02.png",
+        "sha256": "e2ac771a8ac34e5b1b0b329609fca93018dede75f40da64b733b31485065fb16",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 3,
+        "pdf_page": 5,
+        "title": "The orchard ladder",
+        "image": "assets/coloring-v2/rob-thanksgiving/03.png",
+        "sha256": "74b0ca5fa74bada8f1d338759a2eace5ea889e9fa183295010c9ba3bc4742ff4",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 4,
+        "pdf_page": 6,
+        "title": "A table for friends",
+        "image": "assets/coloring-v2/rob-thanksgiving/04.png",
+        "sha256": "ed4f7d0897523a39d11302a3b36b81270a1b32f9d99aa68d5377fb2073a17c35",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 5,
+        "pdf_page": 7,
+        "title": "Pumpkin pie kitchen",
+        "image": "assets/coloring-v2/rob-thanksgiving/05.png",
+        "sha256": "96429c3a596cd76efa282788fda0a10e57a891165fe084829ccf73ee5d6f8e25",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 6,
+        "pdf_page": 8,
+        "title": "The friendly turkey",
+        "image": "assets/coloring-v2/rob-thanksgiving/06.png",
+        "sha256": "f1a031ff5999cc7b28812f493ebaf58e52a16ee8484bbb054875711b8b077fff",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 7,
+        "pdf_page": 9,
+        "title": "Wheat and wildflowers",
+        "image": "assets/coloring-v2/rob-thanksgiving/07.png",
+        "sha256": "d0d78955700698d2a43c94113b1f013b362e56f18b2f1e1709681f5b6ac7ebb8",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 8,
+        "pdf_page": 10,
+        "title": "The cider press",
+        "image": "assets/coloring-v2/rob-thanksgiving/08.png",
+        "sha256": "f29aeadae9de4afc3d47947c5976806c03a73eb1b41ceb52c9cb76688d61a4c4",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 9,
+        "pdf_page": 11,
+        "title": "Gathering the gourds",
+        "image": "assets/coloring-v2/rob-thanksgiving/09.png",
+        "sha256": "980757c6ffc9620fc7085fe1e7b993d3731bd431f2697ce2900775f645afb9fc",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 10,
+        "pdf_page": 12,
+        "title": "The leaf sampler",
+        "image": "assets/coloring-v2/rob-thanksgiving/10.png",
+        "sha256": "c4d9bbcddcdabb30010f3403c6ddbeee9c46d95c2c2db2ffc47f273fe59bda94",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 11,
+        "pdf_page": 13,
+        "title": "The harvest bridge",
+        "image": "assets/coloring-v2/rob-thanksgiving/11.png",
+        "sha256": "7d195f4ea42a04ec4d2045e4dd1d7b858a92d2e59219dcdd703df783217a1ef7",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 12,
+        "pdf_page": 14,
+        "title": "Bread for the table",
+        "image": "assets/coloring-v2/rob-thanksgiving/12.png",
+        "sha256": "257e4e8285220984baad080fbc1dca4ca5011d242febdc196c67b59bb5339548",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 13,
+        "pdf_page": 15,
+        "title": "Thanksgiving mantel",
+        "image": "assets/coloring-v2/rob-thanksgiving/13.png",
+        "sha256": "86c0a6b895e72395b39cb06ba4a110e02e7ffe6b72101374cd18ad795d6b62c1",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 14,
+        "pdf_page": 16,
+        "title": "The patchwork picnic",
+        "image": "assets/coloring-v2/rob-thanksgiving/14.png",
+        "sha256": "0e9a7421f03acae6318fde731053ae481bcf9da243ac9af06b18300dabfaf17c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 15,
+        "pdf_page": 17,
+        "title": "Acorn clockwork mandala",
+        "image": "assets/coloring-v2/rob-thanksgiving/15.png",
+        "sha256": "3b25c36638da179645b75621505dea74520f8cacca79458958b83addb610a5c2",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 16,
+        "pdf_page": 18,
+        "title": "The soup pot",
+        "image": "assets/coloring-v2/rob-thanksgiving/16.png",
+        "sha256": "2a7fd67506c896b4508d47203349fd0e4ae740be1aa91ff6e39ccd54e19b164b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 17,
+        "pdf_page": 19,
+        "title": "The farmers' market",
+        "image": "assets/coloring-v2/rob-thanksgiving/17.png",
+        "sha256": "f5287a442a0c8b16852652f9ad91ce6797f954973fcd335702ce041585f9b343",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 18,
+        "pdf_page": 20,
+        "title": "A grateful garden",
+        "image": "assets/coloring-v2/rob-thanksgiving/18.png",
+        "sha256": "8c2ef1c017a6109f1401aa01aa756b01dadd502d25b88ea7c51a7ba968ccc274",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 19,
+        "pdf_page": 21,
+        "title": "The corn maze",
+        "image": "assets/coloring-v2/rob-thanksgiving/19.png",
+        "sha256": "d8dcaf6672c7dd645509f01119fc8acac129b55d4e5ddae91efe48d9aa650056",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 20,
+        "pdf_page": 22,
+        "title": "The pie collection",
+        "image": "assets/coloring-v2/rob-thanksgiving/20.png",
+        "sha256": "dd7ff9e5d36542cf846eb91bea745e5c64f7f2a560f165e30a3d665bc2854921",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 21,
+        "pdf_page": 23,
+        "title": "Thanksgiving porch",
+        "image": "assets/coloring-v2/rob-thanksgiving/21.png",
+        "sha256": "f571a894c3a8418be3cc45367766dec355e53b5c240f72dbd1522998a4b3ad1f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 22,
+        "pdf_page": 24,
+        "title": "A basket of pears",
+        "image": "assets/coloring-v2/rob-thanksgiving/22.png",
+        "sha256": "5bafd80d78f4e6069d05a9c746cf5ca327a302d76c42186ecd2ae67175bd52df",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 23,
+        "pdf_page": 25,
+        "title": "The harvest wagon",
+        "image": "assets/coloring-v2/rob-thanksgiving/23.png",
+        "sha256": "3611d88e96b25207c1c73df63dded0d12b1bd228b3e250c7a2c7e4be5ac59bac",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 24,
+        "pdf_page": 26,
+        "title": "Feather-and-flower portrait",
+        "image": "assets/coloring-v2/rob-thanksgiving/24.png",
+        "sha256": "fcb4c6f96a7a3da75acdb00f866890b8f6c60e9edf279552cdc14c7c82c867bc",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 25,
+        "pdf_page": 27,
+        "title": "The setting sun",
+        "image": "assets/coloring-v2/rob-thanksgiving/25.png",
+        "sha256": "1a764acb1b44c1c43aebf3d853af16c28fac918610c891aaf39d1b6719d3341b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 26,
+        "pdf_page": 28,
+        "title": "Napkin-fold workshop",
+        "image": "assets/coloring-v2/rob-thanksgiving/26.png",
+        "sha256": "40a95b058d30f96a5f8500a04948ca5134de55faed4562dce534d4508b307590",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 27,
+        "pdf_page": 29,
+        "title": "The woodland gathering",
+        "image": "assets/coloring-v2/rob-thanksgiving/27.png",
+        "sha256": "6f12167587cc3994ebe9bc421d5c838229c0dbc7551d7a933f3769affc5c468c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 28,
+        "pdf_page": 30,
+        "title": "Harvest window box",
+        "image": "assets/coloring-v2/rob-thanksgiving/28.png",
+        "sha256": "b6e73f0c6e5dc8890b044ef72bcc73aa2a7ea37506d1f9ef211ccbf3b8ea5542",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 29,
+        "pdf_page": 31,
+        "title": "The cranberry bowl",
+        "image": "assets/coloring-v2/rob-thanksgiving/29.png",
+        "sha256": "dbbc08e66657a87943405c2bf417e62cfe146d997f2d5bfc1337c50fd70142ab",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 30,
+        "pdf_page": 32,
+        "title": "Autumn greenhouse",
+        "image": "assets/coloring-v2/rob-thanksgiving/30.png",
+        "sha256": "cfadbdba4f0afffedddda0c36f1c382e368100a058da49d96d2ffcfbff427d9c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 31,
+        "pdf_page": 33,
+        "title": "The long-table toast",
+        "image": "assets/coloring-v2/rob-thanksgiving/31.png",
+        "sha256": "16d897857265f58639c3d3a80533362fab5cdeaccbb12ec872cd1cc8fae6b5bb",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 32,
+        "pdf_page": 34,
+        "title": "The leaf boat",
+        "image": "assets/coloring-v2/rob-thanksgiving/32.png",
+        "sha256": "ca259838cdc9c00cda73e8b707f434a284f62fbfaa0943e0169aeaeb83d72711",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 33,
+        "pdf_page": 35,
+        "title": "Patchwork harvest chair",
+        "image": "assets/coloring-v2/rob-thanksgiving/33.png",
+        "sha256": "544fc427ceca9a55368bf4a083f28bc718a00d2c4dcbd84684a44c82c3f44507",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 34,
+        "pdf_page": 36,
+        "title": "The sunflower harvest",
+        "image": "assets/coloring-v2/rob-thanksgiving/34.png",
+        "sha256": "8b4f71f911387089765f34521aacfc52d0db71fbf3094cb908e731ad430c4f9b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 35,
+        "pdf_page": 37,
+        "title": "The pumpkin stack",
+        "image": "assets/coloring-v2/rob-thanksgiving/35.png",
+        "sha256": "d62dfc17f046d6541a9f05bdfcc3f12f9d07ecf1085fc3ba1075f0b53b16de7d",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 36,
+        "pdf_page": 38,
+        "title": "A recipe shared",
+        "image": "assets/coloring-v2/rob-thanksgiving/36.png",
+        "sha256": "049ca0be6c6371781aec5816c0a351e33fc83cff7c602524cbe0e65aa3d239e2",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 37,
+        "pdf_page": 39,
+        "title": "The acorn lantern walk",
+        "image": "assets/coloring-v2/rob-thanksgiving/37.png",
+        "sha256": "1908a03d5dcae9a63fce07f6a9b400c512044e4c25cdbb9fd4d0f4ba0649d0f0",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 38,
+        "pdf_page": 40,
+        "title": "The thankful wreath",
+        "image": "assets/coloring-v2/rob-thanksgiving/38.png",
+        "sha256": "761d7987956c24ecd255cd8f65627a04b835e62f86b7ad6d539a4bf0d404c047",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 39,
+        "pdf_page": 41,
+        "title": "After the feast",
+        "image": "assets/coloring-v2/rob-thanksgiving/39.png",
+        "sha256": "3afb4f75a7279c05bf7d7e8669509ecad03fae3e199b8cb8d9d6e0a60068d8a9",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 40,
+        "pdf_page": 42,
+        "title": "Harvest moon home",
+        "image": "assets/coloring-v2/rob-thanksgiving/40.png",
+        "sha256": "d3b7986de6fa40f75d900e0bca1a4bafa1d80c3bbbc3c6ad3f031b1081fc9e2f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      }
+    ],
+    "sha256": "5faa95982e96f9f1dffdd5bd4bd430752001e064524e3e201e10154da7a37b00"
+  },
+  {
+    "file": "output/pdf/coloring-v2/adult/rob-christmas-coloring.pdf",
+    "title": "ROB's Christmas Workshop",
+    "audience": "seasonal",
+    "coloring_pages": 40,
+    "total_pages": 44,
+    "pages": [
+      {
+        "coloring_page": 1,
+        "pdf_page": 3,
+        "title": "The tree-light workshop",
+        "image": "assets/coloring-v2/rob-christmas/01.png",
+        "sha256": "4df74eb922405149b718f3a6e1d906f3f7c9c0e59420fdb536ed0613635aeb84",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 2,
+        "pdf_page": 4,
+        "title": "Ornament close-up",
+        "image": "assets/coloring-v2/rob-christmas/02.png",
+        "sha256": "ffc3372f4a5b7be67d8af9a266baa16bc6fbfec2697c1a2af95423253ee45144",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 3,
+        "pdf_page": 5,
+        "title": "The snowy village",
+        "image": "assets/coloring-v2/rob-christmas/03.png",
+        "sha256": "dc61ad74013f892cf6806d59bd35a9110d92e68e4f7bf247f72aeb8aaebff4c7",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 4,
+        "pdf_page": 6,
+        "title": "Gingerbread architecture",
+        "image": "assets/coloring-v2/rob-christmas/04.png",
+        "sha256": "8c0a8ab347d8c513cfc6ac1c479da43595a7b184a7bf8e32358c98a9f05a30ab",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 5,
+        "pdf_page": 7,
+        "title": "The toy train test",
+        "image": "assets/coloring-v2/rob-christmas/05.png",
+        "sha256": "f6f9469a3b8a0706c2e4849d213024d3f4c0e0658e4e3e77c38d02bf6ddd4a41",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 6,
+        "pdf_page": 8,
+        "title": "A wreath for the door",
+        "image": "assets/coloring-v2/rob-christmas/06.png",
+        "sha256": "11a8670f814b05cc99f682ba96aadc5c8065c550688a0d5a7be359f5662c904a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 7,
+        "pdf_page": 9,
+        "title": "The wrapping table",
+        "image": "assets/coloring-v2/rob-christmas/07.png",
+        "sha256": "3afe3ec508ad0625af4311d04c5ca06ffb9c1b036a1bc84737364af89e13a237",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 8,
+        "pdf_page": 10,
+        "title": "Clockwork reindeer",
+        "image": "assets/coloring-v2/rob-christmas/08.png",
+        "sha256": "9c7da08707a123e2bf36e8fb1b8f1d1cdc5663998b043b5f92839822c6357121",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 9,
+        "pdf_page": 11,
+        "title": "The Christmas market",
+        "image": "assets/coloring-v2/rob-christmas/09.png",
+        "sha256": "2a49c66e6c498d76ebdee39bc9476613da1c5411540281fdbe89f860d318db21",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 10,
+        "pdf_page": 12,
+        "title": "Snowflake mandala",
+        "image": "assets/coloring-v2/rob-christmas/10.png",
+        "sha256": "05b2e265cf0b63bab55b26454d89b3ae33ffb97de6cdb59fd60e44201d7763ac",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 11,
+        "pdf_page": 13,
+        "title": "The music-box ballet",
+        "image": "assets/coloring-v2/rob-christmas/11.png",
+        "sha256": "570204279ad4d81d760a69f87516b4ba620d934898307752639c25728a5baf1c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 12,
+        "pdf_page": 14,
+        "title": "A letter by the fire",
+        "image": "assets/coloring-v2/rob-christmas/12.png",
+        "sha256": "88151342d986a0cc55c0a7094f0c7f58272d54330c4eee64309de23788c33be1",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 13,
+        "pdf_page": 15,
+        "title": "Pinecone lanterns",
+        "image": "assets/coloring-v2/rob-christmas/13.png",
+        "sha256": "f5d6b6eb4c8f6939d64a8662f3fc9916e891dfeca220ebc21820b678df5511b9",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 14,
+        "pdf_page": 16,
+        "title": "The snowman team",
+        "image": "assets/coloring-v2/rob-christmas/14.png",
+        "sha256": "1fe7aa8f784a276f568194dca392d84f9dc7f953744bcdf63c8385456beb9552",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 15,
+        "pdf_page": 17,
+        "title": "The sleigh repair",
+        "image": "assets/coloring-v2/rob-christmas/15.png",
+        "sha256": "b7da8d38fbfa3e350176bb30678fff463e84cc6ce422d9babc83edb7b47842e5",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 16,
+        "pdf_page": 18,
+        "title": "A mitten garland",
+        "image": "assets/coloring-v2/rob-christmas/16.png",
+        "sha256": "1616658659520e0a1e213afe73d136cbaf619cb93d15dbe5fde9dd43c0298dc2",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 17,
+        "pdf_page": 19,
+        "title": "The cocoa still life",
+        "image": "assets/coloring-v2/rob-christmas/17.png",
+        "sha256": "45c77ade7b5951f9bf4611e390866ed63673375cbfc1866ba8dad582dbb76414",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 18,
+        "pdf_page": 20,
+        "title": "The star topper",
+        "image": "assets/coloring-v2/rob-christmas/18.png",
+        "sha256": "4776ab15cc90584d4d866428d9a24c42c3d7bf9b4ef29c868592b948217dc62e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 19,
+        "pdf_page": 21,
+        "title": "Christmas book nook",
+        "image": "assets/coloring-v2/rob-christmas/19.png",
+        "sha256": "657c2ed2b3c5f46995dc1fd22ef8cde0093dcff0fdbdb3748581af94f07e53c8",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 20,
+        "pdf_page": 22,
+        "title": "The bell tower",
+        "image": "assets/coloring-v2/rob-christmas/20.png",
+        "sha256": "ef49da3c59c6b03972151a532e83d195a79279689dd314b24e88c27a55a30ee0",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 21,
+        "pdf_page": 23,
+        "title": "A bauble universe",
+        "image": "assets/coloring-v2/rob-christmas/21.png",
+        "sha256": "c1b62e2c8df38899e616e6fae1c2b3417658338959ebffa4afbc3234d593d0c5",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 22,
+        "pdf_page": 24,
+        "title": "The winter bridge",
+        "image": "assets/coloring-v2/rob-christmas/22.png",
+        "sha256": "66acf77003b18694910ae0e2bf80498b772be9cfb35ef1998ad9a2cc510a7477",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 23,
+        "pdf_page": 25,
+        "title": "A cookie exchange",
+        "image": "assets/coloring-v2/rob-christmas/23.png",
+        "sha256": "cc7a0d09c2653cfc27d016344e01698cd700384d7569cf5626ea791407e5727c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 24,
+        "pdf_page": 26,
+        "title": "The nutcracker cabinet",
+        "image": "assets/coloring-v2/rob-christmas/24.png",
+        "sha256": "79b3b11c72da0534f2eab489bd1b2bb041eb4651758c1f85de3c3030953d940c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 25,
+        "pdf_page": 27,
+        "title": "The paper-star studio",
+        "image": "assets/coloring-v2/rob-christmas/25.png",
+        "sha256": "032635deb020791fc8278b9324e374312248c549273371dcc4334e4a37ca1754",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 26,
+        "pdf_page": 28,
+        "title": "Christmas morning",
+        "image": "assets/coloring-v2/rob-christmas/26.png",
+        "sha256": "61781200e771c9271721502f5059908498e9508bae55a904c8a371563a2504c2",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 27,
+        "pdf_page": 29,
+        "title": "The snow globe",
+        "image": "assets/coloring-v2/rob-christmas/27.png",
+        "sha256": "8a5e8b5009a67e44fbeeeb21fc0ec9bfa0e30f3790ec0ba6a28041522351c640",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 28,
+        "pdf_page": 30,
+        "title": "Skating on tracks",
+        "image": "assets/coloring-v2/rob-christmas/28.png",
+        "sha256": "a251121275824b99e103f92c674ed47611c0582e5d16c60b1d4dd9bc6b8826f8",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 29,
+        "pdf_page": 31,
+        "title": "The evergreen greenhouse",
+        "image": "assets/coloring-v2/rob-christmas/29.png",
+        "sha256": "7690f9f944d9535dd65374eb73a2624c21d4f6091beef72786c537a25b4bfd4a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 30,
+        "pdf_page": 32,
+        "title": "Ribbon-and-holly portrait",
+        "image": "assets/coloring-v2/rob-christmas/30.png",
+        "sha256": "592628eb45cd0a6212f7a0110cfd51de0ba70fe54beffedbd0de519afe55be30",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 31,
+        "pdf_page": 33,
+        "title": "The chimney rooftops",
+        "image": "assets/coloring-v2/rob-christmas/31.png",
+        "sha256": "793daa86905be5a8e6972ef8abf31eda4344bbb00ca92529b9bb4cc8564d1435",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 32,
+        "pdf_page": 34,
+        "title": "The train-station reunion",
+        "image": "assets/coloring-v2/rob-christmas/32.png",
+        "sha256": "740520d3905bd36948c053faa59744f145b5279fed2af17b8a305c9f4cd78bbf",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 33,
+        "pdf_page": 35,
+        "title": "A quilt of Christmas",
+        "image": "assets/coloring-v2/rob-christmas/33.png",
+        "sha256": "4955ea5c76e13ab9a2b50c07c9ddca0f2818898260b1c6e6823d0829fa3634e9",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 34,
+        "pdf_page": 36,
+        "title": "The gift sled",
+        "image": "assets/coloring-v2/rob-christmas/34.png",
+        "sha256": "176f7a1219d8374ea57e3c1ce985fa6814790e19b6383020bbce624adc39705c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 35,
+        "pdf_page": 37,
+        "title": "The candle arch",
+        "image": "assets/coloring-v2/rob-christmas/35.png",
+        "sha256": "6df9cbe6540caff8aec40a5f66bb93b87fe9eedda561de133ff58f4a4bd97870",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 36,
+        "pdf_page": 38,
+        "title": "Christmas concert",
+        "image": "assets/coloring-v2/rob-christmas/36.png",
+        "sha256": "6d194027758a8c70a84e181ea408cc3ac0f54ca03a4712eb78c5648b5874eec1",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 37,
+        "pdf_page": 39,
+        "title": "The carousel ornament",
+        "image": "assets/coloring-v2/rob-christmas/37.png",
+        "sha256": "ed1e13cadc65e53639e9fa1eabd48c780d891d1b19d5b7ce4ad529a72e4548ea",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 38,
+        "pdf_page": 40,
+        "title": "The winter observatory",
+        "image": "assets/coloring-v2/rob-christmas/38.png",
+        "sha256": "62d7f9665db84b9246189842d77b04b6194a8c46b51ee9a969262cf9e39d95db",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 39,
+        "pdf_page": 41,
+        "title": "Quiet Christmas Eve",
+        "image": "assets/coloring-v2/rob-christmas/39.png",
+        "sha256": "6b89262627aa2e781a42e277904ccee30780733b2424d2a1aa2fa89bbadf7020",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 40,
+        "pdf_page": 42,
+        "title": "A new dawn",
+        "image": "assets/coloring-v2/rob-christmas/40.png",
+        "sha256": "e9c52366a209e62ad856cde337cbfba175f2f8bd63a74f5d2319283fb306e243",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      }
+    ],
+    "sha256": "9d49663d4ab670ef24da5a310ca0200df9dcc92bfe3ed958636f4f267ad6169c"
+  },
+  {
+    "file": "output/pdf/coloring-v2/adult/rob-clockwork-gardens-coloring.pdf",
+    "title": "ROB's Clockwork Gardens",
+    "audience": "adult",
+    "coloring_pages": 40,
+    "total_pages": 44,
+    "pages": [
+      {
+        "coloring_page": 1,
+        "pdf_page": 3,
+        "title": "The orchid observatory",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/01.png",
+        "sha256": "3c9e408567cb6ba7ea946da41b2d6ffcd9e32b3a808396a10885b8da7233cbe2",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 2,
+        "pdf_page": 4,
+        "title": "Mechanical butterfly portrait",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/02.png",
+        "sha256": "8eea4896c9379beb3bb8e5445a048cca80f1083e3a0120d5e5a5b1f51970cefa",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 3,
+        "pdf_page": 5,
+        "title": "The lotus workshop",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/03.png",
+        "sha256": "7a4da57542cbb90e3cf1b71b46e699070dba8b0f097d8000af01d6b644236e20",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 4,
+        "pdf_page": 6,
+        "title": "Garden in a teacup",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/04.png",
+        "sha256": "be402081e8870c94201390c5e99fcd7175df6f79ba1cd27cfbfb38322cb3d15f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 5,
+        "pdf_page": 7,
+        "title": "The fern staircase",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/05.png",
+        "sha256": "4e901bc4e478feb1b3a8d56c9b9906f4aa6f376ec491853fa5d6ed64207aadbd",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 6,
+        "pdf_page": 8,
+        "title": "Clockwork rose still life",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/06.png",
+        "sha256": "3b295487a11b55072e56c335a95741cff72a76f03d5619bc2c32a9f34dc74fe6",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 7,
+        "pdf_page": 9,
+        "title": "The bonsai atelier",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/07.png",
+        "sha256": "5dfcd64024fec6cde95e00c2b6e58549a8195efd080ab9ecd1a2852b17a8e574",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 8,
+        "pdf_page": 10,
+        "title": "The dragonfly landing",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/08.png",
+        "sha256": "a045aea034e07c1e7781e06e720c684c45ca8429ca80a7ea34a31d1971aef090",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 9,
+        "pdf_page": 11,
+        "title": "A botanical library",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/09.png",
+        "sha256": "a15882e6b06c9d471ae7a4b6833becb29d9c74a410378a27b4d928d84afe74a8",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 10,
+        "pdf_page": 12,
+        "title": "The terrarium city",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/10.png",
+        "sha256": "3115747b5b38a6dfdc531d0a22e262444076d21b5393e389cbb53a73292c97a8",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 11,
+        "pdf_page": 13,
+        "title": "Sunflower engine",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/11.png",
+        "sha256": "6442ccc8267925caa21c34df3703d82faa477ede19e716319f00d7f7e6fb563a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 12,
+        "pdf_page": 14,
+        "title": "The garden fountain",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/12.png",
+        "sha256": "0b5402b3bf01f38f6d935dc1c1e376c5aa5d258363585539529096b8cf124a4d",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 13,
+        "pdf_page": 15,
+        "title": "Mushroom architecture",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/13.png",
+        "sha256": "1a7fd7dc4ec3442a9d1cba60a0023a967ced653a685b294644f49814df4580f9",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 14,
+        "pdf_page": 16,
+        "title": "Leaf-and-gear mandala",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/14.png",
+        "sha256": "c4f098f89eb1e992b50299a7c9448361df0f2fb4ea5d0c03516fd494ec00248f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 15,
+        "pdf_page": 17,
+        "title": "The seed cabinet",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/15.png",
+        "sha256": "b06db43d0303ef14f0964e5be1cd7c780857694f5832ca8a70a01bc0b164ea0f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 16,
+        "pdf_page": 18,
+        "title": "A floating garden",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/16.png",
+        "sha256": "9bedbea1084331c219b4f8dd05f975f1114114acd3086c5eb1b06a2f50f0989f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 17,
+        "pdf_page": 19,
+        "title": "The mechanical hummingbird",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/17.png",
+        "sha256": "c8c1e5daea2888d72d8833696d68b67c53940dff867e74ee0ef018abbcab6419",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 18,
+        "pdf_page": 20,
+        "title": "Greenhouse in the rain",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/18.png",
+        "sha256": "1683bc8d3eab335059224d37fc77a2eff01b0d2969280622d0e186fa6b15d5a5",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 19,
+        "pdf_page": 21,
+        "title": "The topiary maze",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/19.png",
+        "sha256": "104fa4a388db1a59274d71bd725f4103facdf8aebe60b0dbc1faf8627d57bb05",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 20,
+        "pdf_page": 22,
+        "title": "Botanical mask",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/20.png",
+        "sha256": "73eeebfb928f0869c8dde95ed96f04a6151699847a0aa56586c79a350937b190",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 21,
+        "pdf_page": 23,
+        "title": "The lily-pond bridge",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/21.png",
+        "sha256": "8c97fc26e8304eff65e5a5e63b5aa1bb7c10c65ac75bfd6a10f88ef87ef993cb",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 22,
+        "pdf_page": 24,
+        "title": "The fern collector",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/22.png",
+        "sha256": "2f08659bbd7bf65c8f52ded933a273a626ff7aa4ef6e2e46df926936613ffea5",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 23,
+        "pdf_page": 25,
+        "title": "Flower clock",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/23.png",
+        "sha256": "40d27f8df752f612b5846825f0188f7dd87d6737dd723d5cd809c606647512d8",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 24,
+        "pdf_page": 26,
+        "title": "The ivy airship",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/24.png",
+        "sha256": "53777fd6d99b0d078eec6a4a755a4d9479b13d09d61ce7b8d75bde55af70ecfb",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 25,
+        "pdf_page": 27,
+        "title": "The succulent shelf",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/25.png",
+        "sha256": "71f6cda4752cc37db365527912c1fd53e58480d9fefc73431142486b3cdf4f04",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 26,
+        "pdf_page": 28,
+        "title": "The gardener's coat",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/26.png",
+        "sha256": "03aa64b4399af96f7e4d7edd41a421109efe6930e7ce6426e708b24d1afdadf2",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 27,
+        "pdf_page": 29,
+        "title": "The glasshouse roof",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/27.png",
+        "sha256": "290a02cff9e131af525108d4eb799377a975fb291fad423f490d4509c7b8ed48",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 28,
+        "pdf_page": 30,
+        "title": "The waterwheel garden",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/28.png",
+        "sha256": "b0f7be8d7efde7413115baf6917637651a3190c8ff19e26840676564ff6074a8",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 29,
+        "pdf_page": 31,
+        "title": "A bouquet assembled",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/29.png",
+        "sha256": "d74418f2fe2f023b5f47bd13bf00c71896aa7e19358703af68d463daace971de",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 30,
+        "pdf_page": 32,
+        "title": "The night-blooming garden",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/30.png",
+        "sha256": "1d623ffcf3e6be26da5eed24a253a832f9a0200ef2bc9ba014c8c0c19d2a1b42",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 31,
+        "pdf_page": 33,
+        "title": "Clockwork beetle study",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/31.png",
+        "sha256": "79cb7894173f5901b0e7b556e0ad6a8a8f8913e2ea4feae52216adedc49cacc9",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 32,
+        "pdf_page": 34,
+        "title": "The hanging garden",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/32.png",
+        "sha256": "af410b92f510614dbe14297d84797d909fd82e014b7c094ed1d3f4a3afaddc5b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 33,
+        "pdf_page": 35,
+        "title": "The willow boat",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/33.png",
+        "sha256": "c47681ad1aab8736cebb8910b83a1a1df4d5c92f3e8f21f54774cbd85ae07be6",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 34,
+        "pdf_page": 36,
+        "title": "Orchid-and-crystal still life",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/34.png",
+        "sha256": "746c026b12c2ddf6d65c507d95badb95fea7dd8f3faf9dea7b9ed19eb6edae61",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 35,
+        "pdf_page": 37,
+        "title": "The pollinator station",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/35.png",
+        "sha256": "e26e22e9a2179ecd581a86598158970c29fa009f14f2c1acc0e7a4a9cdad3a6e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 36,
+        "pdf_page": 38,
+        "title": "The petal observatory dome",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/36.png",
+        "sha256": "36f737ffe5aee4010d99cc0b3c0ed197e781e27b11e67c9c0025c6de748cb45f",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 37,
+        "pdf_page": 39,
+        "title": "Garden tea salon",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/37.png",
+        "sha256": "ba2c75a0298d016671e799d88185206b6a9efad4a5b0dbe26a77e999e9e7d590",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 38,
+        "pdf_page": 40,
+        "title": "The living pocket watch",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/38.png",
+        "sha256": "de88801866483ee78412dacf5a864d4708885f43461c861ad94ce58463660437",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 39,
+        "pdf_page": 41,
+        "title": "The arbor concert",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/39.png",
+        "sha256": "5e433ce96e5961827541493091ef14cadb8db914f3f1dc5250b29cf6e6d9ca6e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 40,
+        "pdf_page": 42,
+        "title": "The garden beyond",
+        "image": "assets/coloring-v2/rob-clockwork-gardens/40.png",
+        "sha256": "65e2164e8cfcc5fb70dd9470681009c88d8f027c850aabbbfd8fdaa3e94742e4",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      }
+    ],
+    "sha256": "74d1ff44e3afef4ed327432af3ff12e997e6aa5f3bfaee3cd3d7b17e01a2db32"
+  },
+  {
+    "file": "output/pdf/coloring-v2/adult/rob-after-hours-coloring.pdf",
+    "title": "ROB After Hours: Neon and Smoke",
+    "audience": "18plus",
+    "coloring_pages": 40,
+    "total_pages": 44,
+    "pages": [
+      {
+        "coloring_page": 1,
+        "pdf_page": 3,
+        "title": "Rooftop cannabis lounge",
+        "image": "assets/coloring-v2/rob-after-hours/01.png",
+        "sha256": "d96d8adec7dbbae7a14248f78864cf964796b74c07f2efe76796bce465033445",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 2,
+        "pdf_page": 4,
+        "title": "The neon jazz bar",
+        "image": "assets/coloring-v2/rob-after-hours/02.png",
+        "sha256": "11563d7848933cd905b2ccfc6e00976c6388f778ac39a7032183845dea081295",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 3,
+        "pdf_page": 5,
+        "title": "Cannabis still life",
+        "image": "assets/coloring-v2/rob-after-hours/03.png",
+        "sha256": "1a3202b13928a0738c2fa4a549695ecf8fcc002990bfdd43886857803d62895b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 4,
+        "pdf_page": 6,
+        "title": "Rainy alley portrait",
+        "image": "assets/coloring-v2/rob-after-hours/04.png",
+        "sha256": "0670174ca1f5ceb7f5d0510649fe9fb4bdb81f77944522f53311403838671378",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 5,
+        "pdf_page": 7,
+        "title": "The cocktail ritual",
+        "image": "assets/coloring-v2/rob-after-hours/05.png",
+        "sha256": "b44d1a7b555525660f0eccf811fdbce6bc3b27aadfb8f3a24e991e3d7a1d9445",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 6,
+        "pdf_page": 8,
+        "title": "After-hours balcony",
+        "image": "assets/coloring-v2/rob-after-hours/06.png",
+        "sha256": "90eca0a13d037b5529ebb46c9dc2b08b13527d815017eb1e2dba8190746cae95",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 7,
+        "pdf_page": 9,
+        "title": "Vinyl and velvet",
+        "image": "assets/coloring-v2/rob-after-hours/07.png",
+        "sha256": "cf03846b16d2032b2da1dcce04cc3c110fa84e7e9fa8dd402612ef7365f2c475",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 8,
+        "pdf_page": 10,
+        "title": "The cannabis conservatory",
+        "image": "assets/coloring-v2/rob-after-hours/08.png",
+        "sha256": "8822f5a364c6792d62eb17f297ca73c831da538fc5a6722ae4e38b48cf6dfa78",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 9,
+        "pdf_page": 11,
+        "title": "A midnight toast",
+        "image": "assets/coloring-v2/rob-after-hours/09.png",
+        "sha256": "738849d1d963b83870091c34775b50e291b505815411ffbe6d31368606983090",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 10,
+        "pdf_page": 12,
+        "title": "Smoke mandala",
+        "image": "assets/coloring-v2/rob-after-hours/10.png",
+        "sha256": "1c97c591c8a61c65eac4e65afe38d3a69e1a00a235c876fa8ef6f354b6064c5a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 11,
+        "pdf_page": 13,
+        "title": "The billiards club",
+        "image": "assets/coloring-v2/rob-after-hours/11.png",
+        "sha256": "7c7bb410969a304d3ef885a9a50f8261b252ab9c6340bbb2133cdf85290df54a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 12,
+        "pdf_page": 14,
+        "title": "The speakeasy door",
+        "image": "assets/coloring-v2/rob-after-hours/12.png",
+        "sha256": "843ec52cec54c8de89f07d93a73ef170b3bd4d5cc69a92c8a0a615ab2078b962",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 13,
+        "pdf_page": 15,
+        "title": "Cannabis portrait in profile",
+        "image": "assets/coloring-v2/rob-after-hours/13.png",
+        "sha256": "92d2c26a42c31553c9e99696a82d153b98f3af0fbffa8dedcd89e9ce73a36b93",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 14,
+        "pdf_page": 16,
+        "title": "The night train lounge",
+        "image": "assets/coloring-v2/rob-after-hours/14.png",
+        "sha256": "e68b5f543106f2b7b7190931b5459027e98c4cdedf2af13305f3bab3f45583e7",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 15,
+        "pdf_page": 17,
+        "title": "A bar of botanicals",
+        "image": "assets/coloring-v2/rob-after-hours/15.png",
+        "sha256": "c39bb4cc858886f8b3b4d14ff45ec5960bba1d62fd491297f99239e534d0dd11",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 16,
+        "pdf_page": 18,
+        "title": "The neon umbrella",
+        "image": "assets/coloring-v2/rob-after-hours/16.png",
+        "sha256": "34c5e6607e47c98284d8ea8b8d8cf394739a25d3c6326c2c8efed0c6da6bc337",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 17,
+        "pdf_page": 19,
+        "title": "The cigar-room clock",
+        "image": "assets/coloring-v2/rob-after-hours/17.png",
+        "sha256": "97d4af423920243c352b58484c1701caa14e3fcc18190587687c69e54eabcd6c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 18,
+        "pdf_page": 20,
+        "title": "Cannabis garden terrace",
+        "image": "assets/coloring-v2/rob-after-hours/18.png",
+        "sha256": "7a547827cfb6aeb5b2a67129350bac1303375b905a6a0cb697759f7c10b5b113",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 19,
+        "pdf_page": 21,
+        "title": "The cabaret orchestra",
+        "image": "assets/coloring-v2/rob-after-hours/19.png",
+        "sha256": "a61ff51c8407683cf06004cd5124de5c5962dd9d86953e161648949eafabd4de",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 20,
+        "pdf_page": 22,
+        "title": "The cocktail tower",
+        "image": "assets/coloring-v2/rob-after-hours/20.png",
+        "sha256": "cac305db2aaefda6c55911f5b753c6742d522c31e5eca99b19c174773d45466b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 21,
+        "pdf_page": 23,
+        "title": "A quiet adult evening",
+        "image": "assets/coloring-v2/rob-after-hours/21.png",
+        "sha256": "5e3295f4f3510edbe2361101a75159141f6e39a272cf2a26f8719a8a2cfd5867",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 22,
+        "pdf_page": 24,
+        "title": "The motorcycle stop",
+        "image": "assets/coloring-v2/rob-after-hours/22.png",
+        "sha256": "2c38e9241fffb7d398391367c262ab16f91ae17375ac9151bea7240e4978046c",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 23,
+        "pdf_page": 25,
+        "title": "The rooftop pool lounge",
+        "image": "assets/coloring-v2/rob-after-hours/23.png",
+        "sha256": "e9087251a2e5dac54d8cd85204ebbf98cec0fcf294a8cc9ea36381d71006ceb7",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 24,
+        "pdf_page": 26,
+        "title": "Cannabis leaf clockwork",
+        "image": "assets/coloring-v2/rob-after-hours/24.png",
+        "sha256": "7e584ac535954b8920f3b653fccab6c7c499fbc5e32d5dde6158161af82a8388",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 25,
+        "pdf_page": 27,
+        "title": "The last dance",
+        "image": "assets/coloring-v2/rob-after-hours/25.png",
+        "sha256": "6ae3f0ba0522b6475ef3ceeac163657b81e09e2f23bc74eeb24a03a2ab5972d9",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 26,
+        "pdf_page": 28,
+        "title": "The whiskey cabinet",
+        "image": "assets/coloring-v2/rob-after-hours/26.png",
+        "sha256": "0de3864a35856c1ddfbebc1929690fd612ef93cecdf9d849d99aa11423f380ad",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 27,
+        "pdf_page": 29,
+        "title": "Smoke over the canal",
+        "image": "assets/coloring-v2/rob-after-hours/27.png",
+        "sha256": "8d673f583055d3913482f2740992e55a450e94c374313c68752908cdaa52839b",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 28,
+        "pdf_page": 30,
+        "title": "The art-deco masquerade",
+        "image": "assets/coloring-v2/rob-after-hours/28.png",
+        "sha256": "42161acdfddf42c6e9346e728290e464b4262ed25fa3d6ca0c575b2256ef54a6",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 29,
+        "pdf_page": 31,
+        "title": "The record-shop lounge",
+        "image": "assets/coloring-v2/rob-after-hours/29.png",
+        "sha256": "8aa6df0baf9e263ff443a254a56087635cc0270efb4de47c10e62f09a15cd52a",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 30,
+        "pdf_page": 32,
+        "title": "A toast beneath the stars",
+        "image": "assets/coloring-v2/rob-after-hours/30.png",
+        "sha256": "ed982d608f6a136c1b57b03c04d5b6a221c643c31e3722140f6218354d57b4dd",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 31,
+        "pdf_page": 33,
+        "title": "The bartender's portrait",
+        "image": "assets/coloring-v2/rob-after-hours/31.png",
+        "sha256": "e0d9d183572e0313f762b3804880e502b4e4ce8a66463d593fff645339b4fa79",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 32,
+        "pdf_page": 34,
+        "title": "Cannabis and moonflowers",
+        "image": "assets/coloring-v2/rob-after-hours/32.png",
+        "sha256": "c043a205f83273f307c1baaba2e3a49d5537eceb811fa395c955b478534634b1",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 33,
+        "pdf_page": 35,
+        "title": "The smoky chess game",
+        "image": "assets/coloring-v2/rob-after-hours/33.png",
+        "sha256": "226f5fa34dbc193321583f327eaf53218d37fdb4f7fcdc34b2525080a18ca493",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 34,
+        "pdf_page": 36,
+        "title": "Midnight diner",
+        "image": "assets/coloring-v2/rob-after-hours/34.png",
+        "sha256": "ee9a76cd3292098519631e7b4bd8341726e1f89acae9fe295ae3fb898b9283dc",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 35,
+        "pdf_page": 37,
+        "title": "The balcony serenade",
+        "image": "assets/coloring-v2/rob-after-hours/35.png",
+        "sha256": "714639dd10944157eddf81465f1564dcbc7e3bc4960f425e3b1c21f6713ac9a6",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 36,
+        "pdf_page": 38,
+        "title": "The cannabis lounge window",
+        "image": "assets/coloring-v2/rob-after-hours/36.png",
+        "sha256": "9b8a2b0fb3209bd2e98bdfae2a7d9b147c6054898538aeb24e54199fa4db9a11",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 37,
+        "pdf_page": 39,
+        "title": "Decanter and gears",
+        "image": "assets/coloring-v2/rob-after-hours/37.png",
+        "sha256": "93745213aa56332707c509d5ec4fbdb34e49f5f41974e941be7c7e655e74cbd2",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 38,
+        "pdf_page": 40,
+        "title": "The neon greenhouse party",
+        "image": "assets/coloring-v2/rob-after-hours/38.png",
+        "sha256": "bf1a9d2889fcb217875e9ea8f0e466ccedf2330479ed060bb5d50bbab3d7a5ca",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 39,
+        "pdf_page": 41,
+        "title": "Closing time",
+        "image": "assets/coloring-v2/rob-after-hours/39.png",
+        "sha256": "982f05b467e6eccb7bff15a2b5b675be4b50f471415e2a38d1889748256c207e",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      },
+      {
+        "coloring_page": 40,
+        "pdf_page": 42,
+        "title": "Dawn over the city",
+        "image": "assets/coloring-v2/rob-after-hours/40.png",
+        "sha256": "8c3ad328ba4e9a5eaac87efb39c0c2a0ec11d4652d21dc4730e2c50df0e511a6",
+        "placement": {
+          "x": 78.66666666666666,
+          "y": 62.0,
+          "width": 454.6666666666667,
+          "height": 682.0,
+          "source_width": 1024,
+          "source_height": 1536,
+          "effective_dpi": 162.15835777126097
+        }
+      }
+    ],
+    "sha256": "88096f68feb025cabd9e0681719afe8db895f4ae9e1ecdc63b31608382b3e35d"
+  }
+]

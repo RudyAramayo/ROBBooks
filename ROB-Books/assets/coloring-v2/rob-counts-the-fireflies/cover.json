@@ -1,0 +1,15 @@
+{
+  "book": "rob-counts-the-fireflies",
+  "audience": "children",
+  "scene": "ROB gently opens a rounded wooden garden gate for Puppy; giant leaves and a crescent moon; no fireflies yet.",
+  "prompt": "Edit this original children's book cover artwork. Preserve ROB, the puppy, garden gate, painterly animation style, landscape aspect ratio, and all existing details. Add exactly FIVE clearly visible friendly fireflies, with distinct tiny heads, open translucent wings and bright golden glowing abdomens, hovering at different heights in the space between ROB and the gate and above the foreground leaves. Each insect should be recognizable at cover-thumbnail size, about 1/15 of the image width, and visibly separate from the others. Their warm glow subtly lights nearby leaves. Keep faces unobstructed. Keep the artwork full color and text-free. This is cover art for 'ROB Counts the Fireflies', for preschool children.",
+  "source_image": "/Users/kierie/.codex/generated_images/01a09750-2aa5-7393-a59f-bd3e6a1905bd/exec-579eb640-15a0-4bac-bd76-4f2b7ab9966d.png",
+  "revision": "Added five visible fireflies to original cover artwork",
+  "original_generation": {
+    "book": "rob-counts-the-fireflies",
+    "audience": "children",
+    "scene": "ROB gently opens a rounded wooden garden gate for Puppy; giant leaves and a crescent moon; no fireflies yet.",
+    "prompt": "Use case: illustration-story. Create ONE original full-color illustration for a coloring-book COVER, landscape 4:3 composition, no text, letters, titles, badges, logos or border. Clear elegant black contour drawing filled with harmonious colors, polished published-book illustration. ROB has a rectangular riveted head, two big round lens eyes, boxy body, articulated claw hands, caterpillar tracks instead of human legs, no antenna. Bright charming children's storybook style, warm cream, teal, gold and soft coral, playful expressive interaction, large shapes, Puppy a floppy-eared small dog. Keep ROB and central objects fully visible and composed together inside the central 85% of the wide image. Scene: ROB gently opens a rounded wooden garden gate for Puppy; giant leaves and a crescent moon; no fireflies yet.",
+    "source_image": "/Users/kierie/.codex/generated_images/01a09750-2aa5-7393-a59f-bd3e6a1905bd/exec-9510a098-ea8d-451d-aac6-c54ccbb9bea8.png"
+  }
+}

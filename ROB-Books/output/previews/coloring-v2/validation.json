@@ -1,0 +1,92 @@
+[
+  {
+    "file": "output/pdf/coloring-v2/children/good-morning-rob-coloring.pdf",
+    "total_pages": 34,
+    "unique_illustrations": 30,
+    "minimum_effective_dpi": 162.2,
+    "mean_ink_coverage": 0.155,
+    "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
+    "sha256": "57f9a2f25eecf83677527171907dcb5287fe0bb6a15c073f847f79e95b876d1d"
+  },
+  {
+    "file": "output/pdf/coloring-v2/children/rob-counts-the-fireflies-coloring.pdf",
+    "total_pages": 34,
+    "unique_illustrations": 30,
+    "minimum_effective_dpi": 162.2,
+    "mean_ink_coverage": 0.152,
+    "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
+    "sha256": "b21c478f6d775ed6c00e17fe8edd3c2992cb50fb4e822e19cc98c3533373b1a7"
+  },
+  {
+    "file": "output/pdf/coloring-v2/children/robs-rainbow-lights-coloring.pdf",
+    "total_pages": 34,
+    "unique_illustrations": 30,
+    "minimum_effective_dpi": 162.2,
+    "mean_ink_coverage": 0.157,
+    "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
+    "sha256": "d3f9c0d2822e4355062ff9183a30cc286e05c3e7d28a75125a50c0308b6613a6"
+  },
+  {
+    "file": "output/pdf/coloring-v2/children/rob-hears-a-little-sound-coloring.pdf",
+    "total_pages": 34,
+    "unique_illustrations": 30,
+    "minimum_effective_dpi": 162.2,
+    "mean_ink_coverage": 0.158,
+    "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
+    "sha256": "3ff896ae549ae48033675dd0bbed38c0bf06003c01f77bb4576b265c7830f92a"
+  },
+  {
+    "file": "output/pdf/coloring-v2/children/rob-shares-the-shiny-star-coloring.pdf",
+    "total_pages": 34,
+    "unique_illustrations": 30,
+    "minimum_effective_dpi": 162.2,
+    "mean_ink_coverage": 0.148,
+    "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
+    "sha256": "ca72eecd252a854b7b938843bc42f1c5a6b1b90fc1c79a6e419319a5612fa937"
+  },
+  {
+    "file": "output/pdf/coloring-v2/adult/rob-halloween-coloring.pdf",
+    "total_pages": 44,
+    "unique_illustrations": 40,
+    "minimum_effective_dpi": 162.2,
+    "mean_ink_coverage": 0.274,
+    "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
+    "sha256": "d59b176e1594e0573266ff3091f0082ae76c93d8b7da0fec43bb5e928e235878"
+  },
+  {
+    "file": "output/pdf/coloring-v2/adult/rob-thanksgiving-coloring.pdf",
+    "total_pages": 44,
+    "unique_illustrations": 40,
+    "minimum_effective_dpi": 162.2,
+    "mean_ink_coverage": 0.252,
+    "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
+    "sha256": "5faa95982e96f9f1dffdd5bd4bd430752001e064524e3e201e10154da7a37b00"
+  },
+  {
+    "file": "output/pdf/coloring-v2/adult/rob-christmas-coloring.pdf",
+    "total_pages": 44,
+    "unique_illustrations": 40,
+    "minimum_effective_dpi": 162.2,
+    "mean_ink_coverage": 0.263,
+    "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
+    "sha256": "9d49663d4ab670ef24da5a310ca0200df9dcc92bfe3ed958636f4f267ad6169c"
+  },
+  {
+    "file": "output/pdf/coloring-v2/adult/rob-clockwork-gardens-coloring.pdf",
+    "total_pages": 44,
+    "unique_illustrations": 40,
+    "minimum_effective_dpi": 162.2,
+    "mean_ink_coverage": 0.257,
+    "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
+    "sha256": "74d1ff44e3afef4ed327432af3ff12e997e6aa5f3bfaee3cd3d7b17e01a2db32"
+  },
+  {
+    "file": "output/pdf/coloring-v2/adult/rob-after-hours-coloring.pdf",
+    "total_pages": 44,
+    "unique_illustrations": 40,
+    "minimum_effective_dpi": 162.2,
+    "mean_ink_coverage": 0.252,
+    "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
+    "sha256": "88096f68feb025cabd9e0681719afe8db895f4ae9e1ecdc63b31608382b3e35d"
+  }
+]

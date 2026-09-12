@@ -191,3 +191,16 @@ Run `python3 tools/mac_serial_frame_lab.py --help` for all options. Do not repur
 The books use an original weathered, optimistic retro-space workshop language: charcoal metal, warm cream, amber and cyan indicators, technical linework, and familiar system fonts. The project does not copy protected franchise logos, characters, typography, layouts, props, or story elements and is not affiliated with or endorsed by any film studio, franchise owner, component vendor, or platform company.
 
 Before distribution, verify photo ownership and releases, component-image and documentation permissions, trademark wording, printer requirements, and all safety statements. Keep the generated illustrations labeled as storytelling rather than engineering evidence.
+
+## Illustrated coloring books
+
+The [illustrated coloring collection](source/coloring-v2/README.md) contains five
+children's adventures with 30 coloring illustrations each and five adult books
+with 40 each. Every interior uses a separately generated scene; each book has a
+matching color front and back cover. Seasonal adult titles cover Halloween,
+Thanksgiving, and Christmas. The separate **18+ After Hours** edition includes
+cannabis smoking, tobacco, alcohol, and non-explicit adult robot relationships.
+
+PDFs are under [output/pdf/coloring-v2](output/pdf/coloring-v2/). The guide lists
+page ranges, print settings, scene briefs, image provenance, and rebuild commands.
+This collection replaces the earlier procedural coloring draft.
