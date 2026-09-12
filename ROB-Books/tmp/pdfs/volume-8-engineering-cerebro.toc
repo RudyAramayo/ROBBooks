@@ -1,35 +1,55 @@
 \contentsline {chapter}{\numberline {1}Read Cerebro as a living robot system}{1}{chapter.1}%
-\contentsline {chapter}{\numberline {2}Map the mixed-language architecture}{2}{chapter.2}%
-\contentsline {chapter}{\numberline {3}Reproduce the build before changing behavior}{3}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Enter through AppDelegate, then find ownership}{4}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Dissect ROBSerialBox: the hardware boundary}{5}{chapter.5}%
-\contentsline {section}{\numberline {5.1}File descriptors are state machines}{5}{section.5.1}%
-\contentsline {chapter}{\numberline {6}Discover the Base Arduino by firmware response}{6}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Parse lines before interpreting meaning}{6}{section.6.1}%
-\contentsline {chapter}{\numberline {7}Separate devices by identity and protocol}{7}{chapter.7}%
-\contentsline {chapter}{\numberline {8}Translate controller intent without extending stale motion}{8}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Control Maestro neck servos and Tic torso rotation}{9}{chapter.9}%
-\contentsline {chapter}{\numberline {10}Bridge Objective-C and Swift deliberately}{10}{chapter.10}%
-\contentsline {chapter}{\numberline {11}Capture RGB with AVFoundation}{11}{chapter.11}%
-\contentsline {chapter}{\numberline {12}Acquire aligned RGB-D from Luxonis}{12}{chapter.12}%
-\contentsline {section}{\numberline {12.1}Understand alignment}{12}{section.12.1}%
-\contentsline {chapter}{\numberline {13}Build a bounded perception pipeline}{13}{chapter.13}%
-\contentsline {chapter}{\numberline {14}Render perception without leaking memory}{14}{chapter.14}%
-\contentsline {chapter}{\numberline {15}Turn observations into SceneSnapshot}{15}{chapter.15}%
-\contentsline {chapter}{\numberline {16}Run MLX privately on Apple silicon}{16}{chapter.16}%
-\contentsline {section}{\numberline {16.1}MLX VLM—sometimes abbreviated incorrectly as VLX}{16}{section.16.1}%
-\contentsline {chapter}{\numberline {17}Add bounded semantic memory}{17}{chapter.17}%
-\contentsline {chapter}{\numberline {18}Constrain local model output}{18}{chapter.18}%
-\contentsline {chapter}{\numberline {19}Integrate Gemini Live without coupling safety}{19}{chapter.19}%
-\contentsline {chapter}{\numberline {20}Treat model tools as proposals}{20}{chapter.20}%
-\contentsline {chapter}{\numberline {21}Stream camera video to Vision Pro separately}{21}{chapter.21}%
-\contentsline {chapter}{\numberline {22}Excavate the Kinect and OpenNI past}{22}{chapter.22}%
-\contentsline {chapter}{\numberline {23}Compare Kinect-era and Luxonis-era design}{23}{chapter.23}%
-\contentsline {chapter}{\numberline {24}Build a reliable light-saber battle trainer}{24}{chapter.24}%
-\contentsline {chapter}{\numberline {25}Engineer the comedy show as a state machine}{25}{chapter.25}%
-\contentsline {chapter}{\numberline {26}Test at contracts, not only windows}{26}{chapter.26}%
-\contentsline {chapter}{\numberline {27}Profile memory, latency, and thermals}{27}{chapter.27}%
-\contentsline {chapter}{\numberline {28}Refactor without erasing history}{28}{chapter.28}%
-\contentsline {chapter}{\numberline {29}File-by-file reading route}{29}{chapter.29}%
-\contentsline {chapter}{\numberline {30}Production review checklist}{30}{chapter.30}%
-\contentsline {chapter}{\numberline {31}Closing principle}{31}{chapter.31}%
+\contentsline {chapter}{\numberline {2}Recover Cerebro's pre-v5 lineage}{2}{chapter.2}%
+\contentsline {section}{\numberline {2.1}v1: the serial nervous system}{2}{section.2.1}%
+\contentsline {section}{\numberline {2.2}v2: voice, multiple bodies, and experimental senses}{2}{section.2.2}%
+\contentsline {section}{\numberline {2.3}v3: arbitration becomes a requirement}{3}{section.2.3}%
+\contentsline {section}{\numberline {2.4}v4 and v5: migration is not invention}{3}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Preserve evidence while modernizing}{3}{section.2.5}%
+\contentsline {chapter}{\numberline {3}Map the mixed-language architecture}{4}{chapter.3}%
+\contentsline {chapter}{\numberline {4}Reproduce the build before changing behavior}{5}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Enter through AppDelegate, then find ownership}{6}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Dissect ROBSerialBox: the hardware boundary}{7}{chapter.6}%
+\contentsline {section}{\numberline {6.1}File descriptors are state machines}{7}{section.6.1}%
+\contentsline {chapter}{\numberline {7}Discover the Base Arduino by firmware response}{8}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Parse lines before interpreting meaning}{8}{section.7.1}%
+\contentsline {chapter}{\numberline {8}Separate devices by identity and protocol}{9}{chapter.8}%
+\contentsline {chapter}{\numberline {9}Translate controller intent without extending stale motion}{10}{chapter.9}%
+\contentsline {chapter}{\numberline {10}Control Maestro neck servos and Tic torso rotation}{11}{chapter.10}%
+\contentsline {chapter}{\numberline {11}Bridge Objective-C and Swift deliberately}{12}{chapter.11}%
+\contentsline {chapter}{\numberline {12}Capture RGB with AVFoundation}{13}{chapter.12}%
+\contentsline {chapter}{\numberline {13}Acquire aligned RGB-D from Luxonis}{14}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Separate host inference from OAK inference}{14}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Understand alignment}{15}{section.13.2}%
+\contentsline {chapter}{\numberline {14}Build a bounded perception pipeline}{16}{chapter.14}%
+\contentsline {chapter}{\numberline {15}Render perception without leaking memory}{17}{chapter.15}%
+\contentsline {chapter}{\numberline {16}Turn observations into SceneSnapshot}{18}{chapter.16}%
+\contentsline {chapter}{\numberline {17}Run MLX privately on Apple silicon}{19}{chapter.17}%
+\contentsline {section}{\numberline {17.1}MLX VLM—sometimes abbreviated incorrectly as VLX}{19}{section.17.1}%
+\contentsline {chapter}{\numberline {18}Read the MLX execution path line by line}{20}{chapter.18}%
+\contentsline {chapter}{\numberline {19}Teach ROB to recognize a new object without teaching it to trust itself}{21}{chapter.19}%
+\contentsline {section}{\numberline {19.1}A safe future learning architecture}{22}{section.19.1}%
+\contentsline {chapter}{\numberline {20}Record training evidence without letting autonomy label itself}{23}{chapter.20}%
+\contentsline {chapter}{\numberline {21}Recognize a consented face without converting identity into authority}{24}{chapter.21}%
+\contentsline {section}{\numberline {21.1}Use the selected AdaFace encoder consistently}{24}{section.21.1}%
+\contentsline {chapter}{\numberline {22}Add bounded semantic memory}{25}{chapter.22}%
+\contentsline {chapter}{\numberline {23}Constrain local model output}{26}{chapter.23}%
+\contentsline {chapter}{\numberline {24}Integrate Gemini Live without coupling safety}{27}{chapter.24}%
+\contentsline {chapter}{\numberline {25}Add private Messages without importing the robot-control surface}{28}{chapter.25}%
+\contentsline {chapter}{\numberline {26}Treat model tools as proposals}{29}{chapter.26}%
+\contentsline {chapter}{\numberline {27}Keep destination autonomy and learned traversability behind operator authority}{30}{chapter.27}%
+\contentsline {chapter}{\numberline {28}Stream camera video to Vision Pro separately}{31}{chapter.28}%
+\contentsline {chapter}{\numberline {29}H.264 without hand-waving: pictures, access units, and NAL units}{32}{chapter.29}%
+\contentsline {section}{\numberline {29.1}Annex B and AVCC are two wrappers around NAL units}{32}{section.29.1}%
+\contentsline {section}{\numberline {29.2}Read the encoder from input pixel to encoded bytes}{33}{section.29.2}%
+\contentsline {section}{\numberline {29.3}ROB's transport is custom reliable QUIC, not RTP}{33}{section.29.3}%
+\contentsline {section}{\numberline {29.4}Why a missing access unit triggers IDR recovery}{34}{section.29.4}%
+\contentsline {chapter}{\numberline {30}Excavate the Kinect and OpenNI past}{35}{chapter.30}%
+\contentsline {chapter}{\numberline {31}Compare Kinect-era and Luxonis-era design}{36}{chapter.31}%
+\contentsline {chapter}{\numberline {32}Build a reliable light-saber battle trainer}{37}{chapter.32}%
+\contentsline {chapter}{\numberline {33}Engineer the comedy show as a state machine}{38}{chapter.33}%
+\contentsline {chapter}{\numberline {34}Test at contracts, not only windows}{39}{chapter.34}%
+\contentsline {chapter}{\numberline {35}Profile memory, latency, and thermals}{40}{chapter.35}%
+\contentsline {chapter}{\numberline {36}Refactor without erasing history}{41}{chapter.36}%
+\contentsline {chapter}{\numberline {37}File-by-file reading route}{42}{chapter.37}%
+\contentsline {chapter}{\numberline {38}Production review checklist}{43}{chapter.38}%
+\contentsline {chapter}{\numberline {39}Closing principle}{44}{chapter.39}%

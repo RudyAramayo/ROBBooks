@@ -57,7 +57,12 @@ def load_catalog(path: Path = CATALOG) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-def epub_metadata_and_image_errors(path: Path, expected_vendor_id: str, expected_accessibility_summary: str) -> list[str]:
+def epub_metadata_and_image_errors(
+    path: Path,
+    expected_vendor_id: str,
+    expected_accessibility_summary: str,
+    expected_authors: list[str],
+) -> list[str]:
     errors: list[str] = []
     with zipfile.ZipFile(path) as archive:
         opf_names = [name for name in archive.namelist() if name.lower().endswith(".opf")]
@@ -71,6 +76,9 @@ def epub_metadata_and_image_errors(path: Path, expected_vendor_id: str, expected
         identifiers = [element.text or "" for element in root.findall(".//dc:identifier", namespaces)]
         if f"urn:uuid:{expected_vendor_id}" not in identifiers:
             errors.append("EPUB identifier does not match the catalog vendor_id")
+        creators = [" ".join((element.text or "").split()) for element in root.findall(".//dc:creator", namespaces)]
+        if creators != expected_authors:
+            errors.append(f"EPUB creators are {creators!r}, expected {expected_authors!r}")
         features = {
             element.text or ""
             for element in root.findall(".//opf:meta[@property='schema:accessibilityFeature']", namespaces)
@@ -133,6 +141,8 @@ def validate(catalog: dict, release: bool) -> int:
     errors: list[str] = []
     warnings: list[str] = []
     books = catalog.get("books", [])
+    series = catalog.get("series", {})
+    default_authors = series.get("authors", [series.get("author", "Rodolfo Aramayo")])
     expected_title_count = int(catalog.get("series", {}).get("expected_title_count", 10))
     if len(books) != expected_title_count:
         errors.append(f"catalog should contain {expected_title_count} books, found {len(books)}")
@@ -227,7 +237,13 @@ def validate(catalog: dict, release: bool) -> int:
             (errors if release else warnings).append(message)
         else:
             try:
-                for problem in epub_metadata_and_image_errors(epub, vendor_id, str(book.get("accessibility_summary", ""))):
+                expected_authors = [str(author) for author in book.get("authors", default_authors)]
+                for problem in epub_metadata_and_image_errors(
+                    epub,
+                    vendor_id,
+                    str(book.get("accessibility_summary", "")),
+                    expected_authors,
+                ):
                     errors.append(f"{label}: {problem}")
             except (subprocess.CalledProcessError, ValueError, zipfile.BadZipFile, ET.ParseError) as error:
                 errors.append(f"{label}: could not inspect EPUB: {error}")

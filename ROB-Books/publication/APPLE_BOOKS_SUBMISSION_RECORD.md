@@ -19,7 +19,7 @@ This record distinguishes file readiness from actions confirmed by Apple. It mus
 
 | Field | Prepared value |
 |---|---|
-| Author | Rodolfo Aramayo |
+| Authors | Rodolfo Aramayo; Kierie Aramayo is co-author of *ROB and the Lost Yellow Ball* and all ten Little Helper titles |
 | Publisher / copyright owner | OrbitusRobotics LLC |
 | Copyright | 2026; book text/art all rights reserved; repository source licenses remain separate |
 | Language | en-US |
@@ -71,6 +71,17 @@ These ten new editions were submitted at $2.99 each for ages 2–5. The two Hall
 | ROB's Quiet Christmas Eve | `aed789a8-f37f-5da2-9845-4e790c545b64` | $2.99 | Portal-validated and uploaded | Waiting for Review · [6811128916](https://books.apple.com/us/book/id6811128916) |
 
 The cover and all four interior illustrations for every new title were visually inspected at source resolution on 2026-09-10. Covers are 2,550 × 3,300 sRGB JPEG files. Every story image is sRGB, includes editorially written alternative text in the manuscript, and stays below Apple's four-million-pixel interior-image guidance.
+
+## September 11 edition-update delivery
+
+Replacement EPUBs and covers are prepared for the ten Little Helper titles and *ROB and the Lost Yellow Ball*, with Rodolfo Aramayo and Kierie Aramayo encoded as separate creator records and displayed together on the title page and cover. A replacement EPUB and cover are also prepared for *AI, Robotics, and Codex* with its unique branching repository-tree artwork.
+
+Apple's upload workflow returned **You're almost done! / Your updates have been submitted** for these two existing Vendor IDs:
+
+- *AI, Robotics, and Codex* (`10084086394`): replacement EPUB and unique cover submitted.
+- *ROB and the Lost Yellow Ball* (`10084085996`): replacement EPUB, revised cover/interior, and Kierie Aramayo as an additional Author contributor submitted.
+
+The *Good Morning, ROB!* replacement EPUB and cover passed the portal's file upload and validation stages, and Kierie Aramayo was entered as an additional Author contributor. The final iTunes Connect handoff then returned **Your book couldn't be uploaded** on two attempts. After reopening the publisher flow, the session returned **To publish to Apple Books, your Apple ID must be associated with a content provider** instead of loading the OrbitusRobotics LLC seller record. The update was therefore not recorded as submitted. The other nine Little Helper replacement editions were not sent. Their validated files remain ready for delivery after the authenticated content-provider session is restored.
 
 ## ROB's Little Helper Library portal evidence recorded on 2026-09-11
 

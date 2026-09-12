@@ -1,27 +1,27 @@
 # Fdb version 4
-["xdvipdfmx"] 1786513211.11171 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision" 1786513211.7516 0
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.xdv" 1786513211.03621 660188 738979199c8b1f2cd20077dc5aa603e9 "xelatex"
+["xdvipdfmx"] 1789170290.13426 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision" 1789170290.83394 0
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.xdv" 1789170290.0479 769380 f4cb650a85754b046f4a611ccb836f67 "xelatex"
   (generated)
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.pdf"
   (rewritten before read)
-["xelatex"] 1786513209.01936 "volume-7-engineering-robcontrollervision.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.xdv" "volume-7-engineering-robcontrollervision" 1786513211.74992 0
+["xelatex"] 1789170287.64992 "volume-7-engineering-robcontrollervision.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.xdv" "volume-7-engineering-robcontrollervision" 1789170290.83193 0
   "../assets/generated/rob-system-cutaway-lesson.png" 1786509542.97753 2819208 a76ae1ac78c8b9b4b22b17122aaf0f9d ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/05f796e05701d711cc87a227fdc3042c.verbatim" 1786509878.73221 88 05f796e05701d711cc87a227fdc3042c ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/07863ce618c98eddcb6ebe0d43309a35.verbatim" 1786509878.7331 249 07863ce618c98eddcb6ebe0d43309a35 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/1b22a8418d98ff5200d384f6d955bf3f.verbatim" 1786509878.73127 307 1b22a8418d98ff5200d384f6d955bf3f ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/21440a2959ae9b0f7dfb705bfac0a173.md.tex" 1786513138.30388 61482 bfe4518546a68c1efc4ad5667cbbc04b ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/28897375eb9f1e70ebaeaab37201a586.verbatim" 1786509878.7314 513 28897375eb9f1e70ebaeaab37201a586 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/327fc9210acb78827dfdba812794d8f4.verbatim" 1786509878.73352 61 327fc9210acb78827dfdba812794d8f4 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/4a926fd75e560be3b27f1c39b3bdc218.verbatim" 1786509878.73317 118 4a926fd75e560be3b27f1c39b3bdc218 ""
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/60ea971e613bdac04a8152f404b8cd24.md.tex" 1788059223.39062 73041 f88a9e0c0cfff10893706247c4a977a4 ""
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/614d145333772290c61abab7b7dddecc.verbatim" 1788059223.37378 110 614d145333772290c61abab7b7dddecc ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/6d8a891e0cb04da1dd435237c4279b5c.verbatim" 1786509878.73234 197 6d8a891e0cb04da1dd435237c4279b5c ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/7f769449b193716cad5d4cdcebae69ef.verbatim" 1786509878.73099 20 7f769449b193716cad5d4cdcebae69ef ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/82daa9252cf02050d6b8ec9733168348.verbatim" 1786509878.73183 335 82daa9252cf02050d6b8ec9733168348 ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/909804e9fed985036c6c23fdb92d85c7.verbatim" 1786509878.73171 122 909804e9fed985036c6c23fdb92d85c7 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/a3fea1fec3880823e941c1b2ad239d6a.verbatim" 1786509878.73391 88 a3fea1fec3880823e941c1b2ad239d6a ""
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/ae6f2a153cc22cd0cc576af067dcbc87.verbatim" 1786509878.73155 239 ae6f2a153cc22cd0cc576af067dcbc87 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.aux" 1786513211.03459 12409 cde99804669dcef24504c7f7de630cfb "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.out" 1786513211.03575 8508 2bb3f037fd5918abee378cd30c9e82ee "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.toc" 1786513211.036 3287 cc7a53742a8c257a2199c5ccb0f062af "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/f491e00334f03353dd2d700f693b8332.verbatim" 1788059223.3694 619 f491e00334f03353dd2d700f693b8332 ""
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.aux" 1789170290.04609 13120 aa5e2de3d20e7f36feadd760d0d35e6b "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.out" 1789170290.04738 9616 bb2fc1d6b93facf69d812cf564605061 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.toc" 1789170290.04768 3647 130d6500472f42e1d72776dd4618b6e6 "xelatex"
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/fontname/texfonts.map" 1772380719 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1772380719 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1772380719 1536 06717a2b50de47d4087ac0e6cd759455 ""
@@ -233,9 +233,9 @@
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty" 1772380719 4675 e4b8c405820368c2dfb03526e16d725a ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/web2c/texmf.cnf" 1772380719 43633 14bbc273cebd985e64ab1a698333eaf9 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-var/web2c/xetex/xelatex.fmt" 1772380719 5948959 3df9f026b6ab65867975c94eefb74cd0 ""
-  "robbook.sty" 1786513183.41505 18343 efe854e77ba918206dcffd01effb0188 ""
-  "volume-7-engineering-robcontrollervision.md" 1786512960.84679 38441 8cc103cf9177f01e4925868f17ef31ef ""
-  "volume-7-engineering-robcontrollervision.tex" 1786513183.41546 2941 64600aa5f828fdcc0eaf6a4c90a9a702 ""
+  "robbook.sty" 1789168588.85492 27763 5f1f595c79eae692e7e2f6028f2a9448 ""
+  "volume-7-engineering-robcontrollervision.md" 1787473106.73559 47736 b1024cfcce96ba9db364d62ac6c4cbd8 ""
+  "volume-7-engineering-robcontrollervision.tex" 1788061917.60906 3108 bcc2fd22f50cb501ea0de0d7a6a8a329 ""
   (generated)
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.aux"
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.log"

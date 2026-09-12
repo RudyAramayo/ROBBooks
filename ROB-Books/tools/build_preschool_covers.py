@@ -37,7 +37,7 @@ def wrapped_title(title: str) -> str:
     return "\n".join(textwrap.wrap(title.upper(), width=20, break_long_words=False))
 
 
-def build_cover(book: dict[str, object], series_title: str) -> Path:
+def build_cover(book: dict[str, object], series_title: str, authors: list[str]) -> Path:
     art_path = PROJECT / str(book["cover_art"])
     output_path = PROJECT / str(book["cover"])
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -78,12 +78,11 @@ def build_cover(book: dict[str, object], series_title: str) -> Path:
     subtitle_y = min(title_box[3] + 48, 1090)
     draw.text((170, subtitle_y), str(book["subtitle"]), font=font(BODY_FONT, 72), fill="#f8fafc")
     draw.text((170, 3000), "AGES 2–5  •  READ ALOUD TOGETHER", font=font(BODY_FONT, 64), fill=accent)
-    draw.text(
-        (170, 3110),
-        "Rodolfo Aramayo  /  OrbitusRobotics LLC",
-        font=font(BODY_FONT, 52),
-        fill="#f8fafc",
-    )
+    credit = f"{' & '.join(authors)}  /  OrbitusRobotics LLC"
+    credit_size = 52
+    while draw.textlength(credit, font=font(BODY_FONT, credit_size)) > 2210 and credit_size > 38:
+        credit_size -= 1
+    draw.text((170, 3110), credit, font=font(BODY_FONT, credit_size), fill="#f8fafc")
 
     cover.convert("RGB").save(output_path, "JPEG", quality=94, subsampling=0, dpi=(300, 300), optimize=True)
     return output_path
@@ -91,8 +90,9 @@ def build_cover(book: dict[str, object], series_title: str) -> Path:
 
 def main() -> int:
     catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
+    authors = [str(author) for author in catalog["series"]["authors"]]
     for book in catalog["books"]:
-        path = build_cover(book, str(catalog["series"]["title"]))
+        path = build_cover(book, str(catalog["series"]["title"]), authors)
         print(f"built {path.relative_to(PROJECT)}")
     return 0
 

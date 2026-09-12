@@ -189,7 +189,11 @@ def make_bleed_pdf(source_path: Path, output_path: Path) -> int:
     writer.add_metadata(
         {
             "/Title": f"{source_path.stem} - IngramSpark print interior",
-            "/Author": "Rodolfo Aramayo",
+            "/Author": (
+                "Rodolfo Aramayo and Kierie Aramayo"
+                if source_path.stem == "rob-and-the-lost-yellow-ball"
+                else "Rodolfo Aramayo"
+            ),
             "/Producer": "ROB Books IngramSpark interior builder",
         }
     )

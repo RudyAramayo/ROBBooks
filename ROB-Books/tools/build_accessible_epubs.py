@@ -128,6 +128,27 @@ def accessibility_metadata_errors(epub: Path, expected_summary: str) -> list[str
     return []
 
 
+def author_metadata_errors(epub: Path, expected_authors: list[str]) -> list[str]:
+    """Require ordered creator metadata and visible title-page bylines."""
+    with zipfile.ZipFile(epub) as archive:
+        package = ET.fromstring(archive.read("EPUB/content.opf"))
+        creators = [
+            " ".join((element.text or "").split())
+            for element in package.findall(".//{http://purl.org/dc/elements/1.1/}creator")
+        ]
+        if creators != expected_authors:
+            return [f"creator metadata is {creators!r}, expected {expected_authors!r}"]
+        title_page = ET.fromstring(archive.read("EPUB/text/title_page.xhtml"))
+        namespace = {"x": "http://www.w3.org/1999/xhtml"}
+        bylines = [
+            " ".join("".join(element.itertext()).split())
+            for element in title_page.findall(".//x:p[@class='author']", namespace)
+        ]
+        if bylines != expected_authors:
+            return [f"title-page bylines are {bylines!r}, expected {expected_authors!r}"]
+    return []
+
+
 def epub_text(epub: Path) -> str:
     with zipfile.ZipFile(epub) as archive:
         return "\n".join(
@@ -347,45 +368,51 @@ def build(book: dict[str, object], source: Path, from_format: str) -> Path:
     title = str(book["title"])
     subtitle = str(book["subtitle"])
     cover = PROJECT / str(book["cover"])
+    authors = [str(author) for author in book.get("_authors", ["Rodolfo Aramayo"])]
+    if not authors:
+        raise RuntimeError(f"{book['slug']}: at least one author is required")
     css_args = [f"--css={CSS}"]
     if SUPPORTED[str(book["slug"])][0] == "picture":
         css_args.append(f"--css={PICTURE_CSS}")
-    args = [
-        shutil.which("pandoc") or "pandoc",
-        str(source),
-        f"--from={from_format}",
-        "--to=epub3",
-        "--standalone",
-        "--toc",
-        "--toc-depth=3",
-        "--split-level=2",
-        *css_args,
-        f"--epub-cover-image={cover}",
-        "--resource-path=source:source/preschool:assets/photos:assets/generated:assets/slides",
-        "--metadata",
-        f"title={title}",
-        "--metadata",
-        f"subtitle={subtitle}",
-        "--metadata",
-        "creator=Rodolfo Aramayo",
-        "--metadata",
-        "publisher=OrbitusRobotics LLC",
-        "--metadata",
-        "language=en-US",
-        "--metadata",
-        f"date={str(book.get('original_publication_date', '2026'))[:4]}",
-        "--metadata",
-        f"identifier={stable_id}",
-        "--metadata",
-        "rights=Copyright © 2026 OrbitusRobotics LLC. All rights reserved.",
-        "-o",
-        str(destination),
-    ]
-    subprocess.run(args, check=True, cwd=PROJECT)
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", encoding="utf-8") as metadata_file:
+        json.dump({"author": authors}, metadata_file)
+        metadata_file.flush()
+        args = [
+            shutil.which("pandoc") or "pandoc",
+            str(source),
+            f"--from={from_format}",
+            "--to=epub3",
+            "--standalone",
+            "--toc",
+            "--toc-depth=3",
+            "--split-level=2",
+            *css_args,
+            f"--epub-cover-image={cover}",
+            "--resource-path=source:source/preschool:assets/photos:assets/generated:assets/slides",
+            f"--metadata-file={metadata_file.name}",
+            "--metadata",
+            f"title={title}",
+            "--metadata",
+            f"subtitle={subtitle}",
+            "--metadata",
+            "publisher=OrbitusRobotics LLC",
+            "--metadata",
+            "language=en-US",
+            "--metadata",
+            f"date={str(book.get('original_publication_date', '2026'))[:4]}",
+            "--metadata",
+            f"identifier={stable_id}",
+            "--metadata",
+            "rights=Copyright © 2026 OrbitusRobotics LLC. All rights reserved.",
+            "-o",
+            str(destination),
+        ]
+        subprocess.run(args, check=True, cwd=PROJECT)
     normalize_epub(destination, str(book["accessibility_summary"]))
     command(shutil.which("epubcheck") or "epubcheck", str(destination))
     errors = accessible_xhtml(destination)
     errors.extend(accessibility_metadata_errors(destination, str(book["accessibility_summary"])))
+    errors.extend(author_metadata_errors(destination, authors))
     errors.extend(embedded_image_errors(destination))
     if SUPPORTED[str(book["slug"])][0] == "picture":
         errors.extend(picture_book_image_errors(destination))
@@ -401,7 +428,14 @@ def main() -> int:
     parser.add_argument("slugs", nargs="*", help="advanced-edition slugs; defaults to all currently supported editions")
     args = parser.parse_args()
     catalogs = [json.loads(path.read_text(encoding="utf-8")) for path in CATALOGS]
-    by_slug = {book["slug"]: book for catalog in catalogs for book in catalog["books"]}
+    by_slug: dict[str, dict[str, object]] = {}
+    for catalog in catalogs:
+        series = catalog["series"]
+        default_authors = series.get("authors", [series.get("author", "Rodolfo Aramayo")])
+        for book in catalog["books"]:
+            enriched = dict(book)
+            enriched["_authors"] = book.get("authors", default_authors)
+            by_slug[str(book["slug"])] = enriched
     selected = args.slugs or list(SUPPORTED)
     unknown = [slug for slug in selected if slug not in SUPPORTED]
     if unknown:

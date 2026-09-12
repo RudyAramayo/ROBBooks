@@ -96,7 +96,6 @@ def draw_footer(pdf: canvas.Canvas, title: str, page_number: int) -> None:
     number = str(page_number)
     pdf.drawString(PAGE_W - MARGIN - stringWidth(number, "Helvetica", 8.5), 24, number)
     pdf.setTitle(title)
-    pdf.setAuthor("Rodolfo Aramayo")
     pdf.setCreator("OrbitusRobotics LLC")
 
 
@@ -140,7 +139,7 @@ def draw_contained_image(pdf: canvas.Canvas, path: Path, x: float, y: float, wid
     pdf.drawImage(image, draw_x, draw_y, draw_w, draw_h, preserveAspectRatio=True, mask="auto")
 
 
-def build_book(book: dict) -> Path:
+def build_book(book: dict, authors: list[str]) -> Path:
     source = PROJECT / book["source"]
     title, sections = parse_source(source)
     note = sections[0]
@@ -150,6 +149,8 @@ def build_book(book: dict) -> Path:
     output.parent.mkdir(parents=True, exist_ok=True)
 
     pdf = canvas.Canvas(str(output), pagesize=letter, pageCompression=1)
+    author_credit = " and ".join(authors)
+    pdf.setAuthor(author_credit)
 
     cover = PROJECT / book["cover"]
     pdf.drawImage(ImageReader(cover), 0, 0, PAGE_W, PAGE_H, preserveAspectRatio=False, mask="auto")
@@ -166,7 +167,7 @@ def build_book(book: dict) -> Path:
     pdf.roundRect(120, 210, PAGE_W - 240, 120, 28, fill=1, stroke=0)
     pdf.setFillColor(INK)
     pdf.setFont("Helvetica-Bold", 17)
-    pdf.drawCentredString(PAGE_W / 2, 278, "Written by Rodolfo Aramayo")
+    pdf.drawCentredString(PAGE_W / 2, 278, f"Written by {author_credit}")
     pdf.setFont("Helvetica", 12)
     pdf.drawCentredString(PAGE_W / 2, 246, "Ages 2-5  |  Read aloud together")
     pdf.setFont("Helvetica", 9)
@@ -234,7 +235,8 @@ def build_book(book: dict) -> Path:
 
 def main() -> int:
     catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
-    outputs = [build_book(book) for book in catalog["books"]]
+    authors = [str(author) for author in catalog["series"]["authors"]]
+    outputs = [build_book(book, authors) for book in catalog["books"]]
     print(f"Built {len(outputs)} image-rich preschool PDFs in {OUTPUT.relative_to(PROJECT)}.")
     return 0
 

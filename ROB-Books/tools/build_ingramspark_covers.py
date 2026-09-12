@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import io
 import json
 import subprocess
@@ -426,7 +427,11 @@ def build_cover(book: dict, spec: dict, work_dir: Path) -> Path:
     writer.add_metadata(
         {
             "/Title": f"{book['title']} - IngramSpark print cover",
-            "/Author": "Rodolfo Aramayo",
+            "/Author": (
+                "Rodolfo Aramayo and Kierie Aramayo"
+                if book["slug"] == "rob-and-the-lost-yellow-ball"
+                else "Rodolfo Aramayo"
+            ),
             "/Producer": "ROB Books IngramSpark cover builder",
         }
     )
@@ -438,6 +443,13 @@ def build_cover(book: dict, spec: dict, work_dir: Path) -> Path:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("books", nargs="*", help="Book stems; default is all ten")
+    args = parser.parse_args()
+    selected = args.books or list(BOOKS)
+    unknown = sorted(set(selected) - set(BOOKS))
+    if unknown:
+        parser.error(f"unknown book stem(s): {', '.join(unknown)}")
     register_fonts()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     TMP_DIR.mkdir(parents=True, exist_ok=True)
@@ -447,7 +459,8 @@ def main() -> None:
     built: list[Path] = []
     with tempfile.TemporaryDirectory(prefix="ingram-covers-", dir=TMP_DIR) as temp:
         work_dir = Path(temp)
-        for slug, spec in BOOKS.items():
+        for slug in selected:
+            spec = BOOKS[slug]
             built.append(build_cover(books[slug], spec, work_dir))
 
     for path in built:

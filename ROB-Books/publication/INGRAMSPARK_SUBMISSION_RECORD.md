@@ -4,7 +4,7 @@
 
 On September 5, 2026, Rodolfo Aramayo approved complimentary IngramSpark print ISBNs and final title submission for all ten titles. Each title was created as a **Print Book Only** record with the intended **Print, distribute, and sell book** workflow. All ten page-count-specific cover templates were obtained from IngramSpark, and all ten interiors and complete wrap covers were built and locally validated.
 
-All ten titles have now been fully submitted and reached IngramSpark's **Congratulations** page after both metadata and content-file validation reported no errors. The title dashboard shows every record in **Processing** or **In Processing** status. The eProof approval queue was checked after submission and was still empty. IngramSpark says their digital proofs should arrive in 3-5 days. No digital proof has been approved, no physical proof or production run has been ordered, and distribution has not been enabled.
+All ten titles have now been fully submitted and reached IngramSpark's **Congratulations** page after both metadata and content-file validation reported no errors. On September 11, the title dashboard showed seven digital proofs as **Awaiting Your Approval** and three titles still **In Processing**. No digital proof has been approved, no physical proof or production run has been ordered, and distribution has not been enabled.
 
 The complimentary ISBN notice states that each ISBN is nontransferable, is owned by IngramSpark, uses the `Indy Pub` imprint, and requires participation in the wholesale program with retail pricing in at least one market. This is a print-format decision only. It does not replace or conflict with the existing Apple Books ebook identifiers, and no print ISBN has been reused for an ebook.
 
@@ -12,18 +12,26 @@ The complimentary ISBN notice states that each ISBN is nontransferable, is owned
 
 | # | Title | IngramSpark title ID | Complimentary print ISBN | Portal status |
 |---:|---|---|---|---|
-| 1 | *ROB and the Lost Yellow Ball* | `CSS9655730` | `979-8-2408-3421-9` | Processing; awaiting digital proof |
-| 2 | *Meet ROB* | `CSS9655778` | `979-8-1827-4639-7` | Processing; awaiting digital proof |
-| 3 | *Circuits & Signals* | `CSS9655786` | `979-8-1827-4640-3` | Processing; awaiting digital proof |
-| 4 | *Motion Workshop* | `CSS9655791` | `979-8-1827-4641-0` | Processing; awaiting digital proof |
-| 5 | *Mission Control* | `CSS9655796` | `979-8-1827-4642-7` | In Processing; awaiting digital proof |
-| 6 | *AI, Robotics, and Codex* | `CSS9655797` | `979-8-1827-4643-4` | Processing; awaiting digital proof |
-| 7 | *Dual-Arm Robotics* | `CSS9655798` | `979-8-1827-4644-1` | In Processing; awaiting digital proof |
-| 8 | *Engineering ROBControllerVision* | `CSS9655800` | `979-8-1827-4645-8` | In Processing; awaiting digital proof |
-| 9 | *Engineering Cerebro* | `CSS9655802` | `979-8-1827-4646-5` | Processing; awaiting digital proof |
-| 10 | *Complete Builder's Field Manual* | `CSS9655803` | `979-8-1827-4647-2` | Processing; awaiting digital proof |
+| 1 | *ROB and the Lost Yellow Ball* | `CSS9655730` | `979-8-2408-3421-9` | Awaiting Your Approval; revision files staged, not submitted |
+| 2 | *Meet ROB* | `CSS9655778` | `979-8-1827-4639-7` | Awaiting Your Approval |
+| 3 | *Circuits & Signals* | `CSS9655786` | `979-8-1827-4640-3` | Awaiting Your Approval |
+| 4 | *Motion Workshop* | `CSS9655791` | `979-8-1827-4641-0` | Awaiting Your Approval |
+| 5 | *Mission Control* | `CSS9655796` | `979-8-1827-4642-7` | In Processing |
+| 6 | *AI, Robotics, and Codex* | `CSS9655797` | `979-8-1827-4643-4` | Awaiting Your Approval; revision files staged, not submitted |
+| 7 | *Dual-Arm Robotics* | `CSS9655798` | `979-8-1827-4644-1` | In Processing |
+| 8 | *Engineering ROBControllerVision* | `CSS9655800` | `979-8-1827-4645-8` | In Processing |
+| 9 | *Engineering Cerebro* | `CSS9655802` | `979-8-1827-4646-5` | Awaiting Your Approval |
+| 10 | *Complete Builder's Field Manual* | `CSS9655803` | `979-8-1827-4647-2` | Awaiting Your Approval |
 
-The status above was verified on the title dashboard immediately after the final submission. All ten records show a September 5, 2026 submit date and a September 25, 2026 publication date.
+The current status was verified on the title dashboard on September 11, 2026. All ten records show a September 5, 2026 submit date and a September 25, 2026 publication date.
+
+## September 11 revision delivery state
+
+Revised, locally validated replacement files are prepared for *ROB and the Lost Yellow Ball* and *AI, Robotics, and Codex*. The story revision adds Kierie Aramayo as co-author and replaces the page-4 parts diagram; the Volume 5 revision replaces the front-cover illustration with a unique branching repository-tree scene.
+
+Both interiors and both covers were selected in their existing-title upload forms. Each upload displayed a 100% progress bar, but the portal never populated the **Uploaded** timestamp and the **Continue** action did not advance. Refreshing the story upload page expired the IngramSpark session and returned the browser to login. Kierie Aramayo's contributor form was also staged but had not been saved before that session expired. Consequently, neither file revision nor the IngramSpark co-author metadata is recorded as submitted. The files must be selected again after a fresh login and advanced only after the portal displays completed upload timestamps.
+
+The preschool series has no IngramSpark title records in this ten-title print inventory, so adding it there would be a separate new-title/ISBN submission rather than a metadata update.
 
 ## Metadata entered
 
@@ -49,12 +57,12 @@ The production files are under `output/pdf/ingramspark/interiors/`. They use the
 
 | Title | Print pages | File size | Minimum effective raster resolution |
 |---|---:|---:|---:|
-| *ROB and the Lost Yellow Ball* | 24 | 6.1 MB | 300 ppi |
+| *ROB and the Lost Yellow Ball* | 24 | 6.4 MB | 209 ppi |
 | *Meet ROB* | 38 | 15.4 MB | 246 ppi |
 | *Circuits & Signals* | 36 | 11.8 MB | 222 ppi |
 | *Motion Workshop* | 36 | 21.9 MB | 226 ppi |
 | *Mission Control* | 40 | 17.4 MB | 226 ppi |
-| *AI, Robotics, and Codex* | 44 | 1.5 MB | 300 ppi |
+| *AI, Robotics, and Codex* | 44 | 1.7 MB | 300 ppi |
 | *Dual-Arm Robotics* | 34 | 1.5 MB | 300 ppi |
 | *Engineering ROBControllerVision* | 38 | 1.9 MB | 300 ppi |
 | *Engineering Cerebro* | 50 | 2.1 MB | 210 ppi |

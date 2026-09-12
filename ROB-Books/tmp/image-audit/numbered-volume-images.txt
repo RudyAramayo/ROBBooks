@@ -54,7 +54,7 @@ volume-4 rob-software-control-room.png
 volume-4 rob-v3-page-55.jpg
 volume-4 rob-v3-page-72.jpg
 volume-4 rob-v3-page-74.jpg
-volume-5 2026-rob-lightsabers-front.jpg
+volume-5 rob-ai-repository-tree.png
 volume-6 rob-dual-arm-feedback-lesson.png
 volume-7 rob-system-cutaway-lesson.png
 volume-8 cerebro-perception-control-lesson.png

@@ -164,6 +164,7 @@
 }
 \lstset{style=robcode}
 
+\newcommand{\ROBCoverCredit}{Rodolfo Aramayo / OrbitusRobotics LLC}
 \newcommand{\ROBTitle}[5]{%
   \begin{titlepage}
   \thispagestyle{empty}
@@ -175,7 +176,7 @@
     \draw[ROBAccent,line width=3pt] ([xshift=0.52in,yshift=-0.48in]current page.north west) -- ([xshift=-0.52in,yshift=-0.48in]current page.north east);
     \draw[ROBAccent,line width=1.4pt] ([xshift=0.52in,yshift=1.27in]current page.south west) -- ([xshift=-0.52in,yshift=1.27in]current page.south east);
     \node[anchor=north west,text width=7.25in,align=left] at ([xshift=0.56in,yshift=-0.67in]current page.north west) {\robcondensed\fontsize{12}{14}\selectfont\color{ROBAccent}\MakeUppercase{#1}\\[8pt]{\robdisplay\bfseries\fontsize{33}{34}\selectfont\color{white}\RaggedRight\hyphenpenalty=10000\exhyphenpenalty=10000\spaceskip=0.32em plus 0.08em minus 0.03em #2\par}\vspace{7pt}\robcondensed\fontsize{16}{19}\selectfont\color{ROBCream}#3};
-    \node[anchor=south west,text width=7.1in,align=left] at ([xshift=0.56in,yshift=0.52in]current page.south west) {\robcondensed\fontsize{10.5}{12}\selectfont\color{ROBAccent}\MakeUppercase{#4}\\[4pt]\robcondensed\fontsize{9}{11}\selectfont\color{ROBCream}Rodolfo Aramayo / OrbitusRobotics LLC\quad -\quad First Maker Faire Edition};
+    \node[anchor=south west,text width=7.1in,align=left] at ([xshift=0.56in,yshift=0.52in]current page.south west) {\robcondensed\fontsize{10.5}{12}\selectfont\color{ROBAccent}\MakeUppercase{#4}\\[4pt]\robcondensed\fontsize{9}{11}\selectfont\color{ROBCream}\ROBCoverCredit\quad -\quad First Maker Faire Edition};
   \end{tikzpicture}
   \null
   \end{titlepage}

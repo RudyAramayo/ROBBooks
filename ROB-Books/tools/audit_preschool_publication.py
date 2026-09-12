@@ -10,6 +10,7 @@ import subprocess
 import sys
 import zipfile
 from pathlib import Path
+from xml.etree import ElementTree as ET
 
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -34,6 +35,9 @@ def main() -> int:
     books = catalog.get("books", [])
     expected = int(catalog.get("series", {}).get("expected_title_count", 10))
     errors: list[str] = []
+    expected_authors = [str(author) for author in catalog.get("series", {}).get("authors", [])]
+    if expected_authors != ["Rodolfo Aramayo", "Kierie Aramayo"]:
+        errors.append(f"catalog co-author list is incorrect: {expected_authors!r}")
 
     if len(books) != expected:
         errors.append(f"catalog contains {len(books)} books; expected {expected}")
@@ -92,6 +96,13 @@ def main() -> int:
                     if bad_member:
                         errors.append(f"{slug}: corrupt EPUB member {bad_member}")
                     names = set(archive.namelist())
+                    package = ET.fromstring(archive.read("EPUB/content.opf"))
+                    creators = [
+                        " ".join((element.text or "").split())
+                        for element in package.findall(".//{http://purl.org/dc/elements/1.1/}creator")
+                    ]
+                    if creators != expected_authors:
+                        errors.append(f"{slug}: EPUB creators are {creators!r}, expected {expected_authors!r}")
                     story_sources: set[str] = set()
                     for name in names:
                         if not name.endswith(".xhtml") or name.endswith("cover.xhtml"):

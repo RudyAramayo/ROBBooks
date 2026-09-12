@@ -399,18 +399,18 @@ INPUT ./volume-7-engineering-robcontrollervision.md
 INPUT volume-7-engineering-robcontrollervision.md
 OUTPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.luabridge.lua
 INPUT texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.luabridge.lua
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/21440a2959ae9b0f7dfb705bfac0a173.md.tex
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/21440a2959ae9b0f7dfb705bfac0a173.md.tex
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/21440a2959ae9b0f7dfb705bfac0a173.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/60ea971e613bdac04a8152f404b8cd24.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/60ea971e613bdac04a8152f404b8cd24.md.tex
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/60ea971e613bdac04a8152f404b8cd24.md.tex
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/7f769449b193716cad5d4cdcebae69ef.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/7f769449b193716cad5d4cdcebae69ef.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/7f769449b193716cad5d4cdcebae69ef.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/1b22a8418d98ff5200d384f6d955bf3f.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/1b22a8418d98ff5200d384f6d955bf3f.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/1b22a8418d98ff5200d384f6d955bf3f.verbatim
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/28897375eb9f1e70ebaeaab37201a586.verbatim
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/28897375eb9f1e70ebaeaab37201a586.verbatim
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/28897375eb9f1e70ebaeaab37201a586.verbatim
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/f491e00334f03353dd2d700f693b8332.verbatim
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/f491e00334f03353dd2d700f693b8332.verbatim
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/f491e00334f03353dd2d700f693b8332.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/ae6f2a153cc22cd0cc576af067dcbc87.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/ae6f2a153cc22cd0cc576af067dcbc87.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/ae6f2a153cc22cd0cc576af067dcbc87.verbatim
@@ -447,9 +447,9 @@ INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/am
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/cm/cmr6.tfm
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/a3fea1fec3880823e941c1b2ad239d6a.verbatim
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/a3fea1fec3880823e941c1b2ad239d6a.verbatim
-INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/a3fea1fec3880823e941c1b2ad239d6a.verbatim
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/614d145333772290c61abab7b7dddecc.verbatim
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/614d145333772290c61abab7b7dddecc.verbatim
+INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-robcontrollervision/614d145333772290c61abab7b7dddecc.verbatim
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.aux
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.out
 INPUT /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-robcontrollervision.out

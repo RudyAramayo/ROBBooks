@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:40
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 SEP 2026 16:44
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1591,8 +1591,8 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-File: ../assets/photos/2026-rob-lightsabers-front.jpg Graphic file (type bmp)
-<../assets/photos/2026-rob-lightsabers-front.jpg>
+File: ../assets/generated/rob-ai-repository-tree.png Graphic file (type bmp)
+<../assets/generated/rob-ai-repository-tree.png>
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `AvenirNextCondensed' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
@@ -1669,46 +1669,52 @@ Package luabridge Info: Executing a helper Lua script from file
 (|texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-robotics-wi
 th-codex.luabridge.lua)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/38baf9158d91d22fc0b7f6936bf5cce6.md.tex
+with-codex/e5d52eaf9c61da724ff8bc9362b99e19.md.tex
 Chapter 1.
 [1
 
 ]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 48.
+nput line 52.
 LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 6.806pt on input line 48.
+(Font)              scaled to size 6.806pt on input line 52.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/9b1b0c8be9856fc9d5bb1df5e95db737.verbatim)
+Underfull \hbox (badness 1701) in paragraph at lines 76--80
+[]\TU/AvenirNext(0)/b/n/10.95 v3, 2018-2022: \TU/AvenirNext(0)/m/n/10.95 contro
+ller arbitration, autonomy permission, servos, multilingual speech, Re-
+ []
+
+[2]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/a5d0a1954ecb9d79b987eff4cfcb16fa.verbatim) [2]
+with-codex/a5d0a1954ecb9d79b987eff4cfcb16fa.verbatim) [3]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/e7fe232962210ca71aaed5f69d043e59.verbatim) [3]
+with-codex/e7fe232962210ca71aaed5f69d043e59.verbatim) [4]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/42a2a132cf6418a4e7bb84f37f1ea31d.verbatim) [4]
+with-codex/42a2a132cf6418a4e7bb84f37f1ea31d.verbatim) [5]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/71b6b7fb4eb612591270eab27165ee63.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/b341702cab0dd8b01bd0831034672cb0.verbatim)
+with-codex/b341702cab0dd8b01bd0831034672cb0.verbatim) [6]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/1bc57dc08495a260464e1107fe71f2ef.verbatim) [5]
+with-codex/1bc57dc08495a260464e1107fe71f2ef.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/f5fc205995a3df5526dea0104870f6ae.verbatim)
+with-codex/f5fc205995a3df5526dea0104870f6ae.verbatim) [7]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/1d261981f5c1c1516a0afc993d216b08.verbatim) [6]
+with-codex/1d261981f5c1c1516a0afc993d216b08.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/b9443bf954d716505c6ade97b3d643b8.verbatim)
+with-codex/b9443bf954d716505c6ade97b3d643b8.verbatim) [8]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/5d06a65321a82a24a3c526eb6f4efe61.verbatim) [7]
+with-codex/5d06a65321a82a24a3c526eb6f4efe61.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/be72149530d4e0ed010eebca8eb35a2b.verbatim)
+with-codex/be72149530d4e0ed010eebca8eb35a2b.verbatim) [9]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/ec817424852c9db7be104cf4c25dedb8.verbatim)
+with-codex/ec817424852c9db7be104cf4c25dedb8.verbatim [10])
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/ca46e1dc9d5664b42718819cc94cfc9c.verbatim) [8]
+with-codex/ca46e1dc9d5664b42718819cc94cfc9c.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/be1136643826c800700c93f9e23a8d7b.verbatim) [9]
+with-codex/be1136643826c800700c93f9e23a8d7b.verbatim) [11]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/85be9f82cdadacb8bfc5c22e3f8cf7e0.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
@@ -1718,25 +1724,31 @@ with-codex/43d6ea8b015234df236091984a74d028.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/4ef5bda13c9400dfccd2381a8a9610f0.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/b51c399ded5a0db02464edc32e09f8a0.verbatim)
+with-codex/b51c399ded5a0db02464edc32e09f8a0.verbatim [12])
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/e5f390792eaa2cc878b8ce1a474dfb48.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/be168b781a3cd7fe386ffa408a1b854d.verbatim) [10] [11] [12]
+with-codex/df35e3f179bfb84aa06c2ce5e3edc515.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
+with-codex/2cec1e09c7a0c7d4b2724b2c0f2e57d2.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
+with-codex/1b20222d41659432ab0778964a7ceeac.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
+with-codex/be168b781a3cd7fe386ffa408a1b854d.verbatim) [13] [14] [15]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/21aa13b6966d270d5e728a626dc378dc.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/4661268c6b664f245c2fe4229e72a844.verbatim) [13]
+with-codex/4661268c6b664f245c2fe4229e72a844.verbatim) [16]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/c4280b5df4b58707714d20fc0b3108cc.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/31222354dab7b4bc11d01c20045b1249.verbatim) [14]
+with-codex/31222354dab7b4bc11d01c20045b1249.verbatim) [17]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/a2cdfcb2dd36a8fd0e6310bd47a4fd80.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/b62021c1680c09f91dc73d9989f667c2.verbatim [15])
+with-codex/b62021c1680c09f91dc73d9989f667c2.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/5cbd371aa2e73597c8a9259e0dc7be8c.verbatim)
+with-codex/5cbd371aa2e73597c8a9259e0dc7be8c.verbatim [18])
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/116511f19a1eb2bdca5704af3f21757a.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
@@ -1744,42 +1756,42 @@ with-codex/8b531506f0edcb3bbc53378149e090e4.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/aafde5a090f51575e5eb532437f8fb38.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/acd51289eff5aa520259ba3005ef1944.verbatim) [16]
+with-codex/acd51289eff5aa520259ba3005ef1944.verbatim) [19]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/ab590c1b801ac43b1901a00c3ff61f36.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/05c2f09143b14bc47be21f6182ad9f85.verbatim [17])
+with-codex/05c2f09143b14bc47be21f6182ad9f85.verbatim) [20]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/d6a2de363bf451dc4c937a78fcf9948e.verbatim) [18]
+with-codex/d6a2de363bf451dc4c937a78fcf9948e.verbatim) [21]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/cde5e8c30040712873ea2c2f8bdf2051.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/4859bb2dc945ed48f2b7f2190f495f04.verbatim) [19]
+with-codex/4859bb2dc945ed48f2b7f2190f495f04.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/1c9f064fb0a247bdccaf71e7d2c5293c.verbatim) [20] [21] [22]
+with-codex/1c9f064fb0a247bdccaf71e7d2c5293c.verbatim) [22] [23] [24] [25]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/181df8f7843da464184be164cacf0150.verbatim) [23]
+with-codex/181df8f7843da464184be164cacf0150.verbatim) [26]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/596b3bc8d63f14187000f731af2486bf.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/7792b5519e579079b825477f53ea1833.verbatim [24])
+with-codex/7792b5519e579079b825477f53ea1833.verbatim) [27]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/a680a24ba3d74fe3fd807b57b78ad574.verbatim) [25]
+with-codex/a680a24ba3d74fe3fd807b57b78ad574.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/87e2dc07e45a90ce16277163b0972900.verbatim)
+with-codex/87e2dc07e45a90ce16277163b0972900.verbatim [28])
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/76f036af2968af19a3c27a366d826754.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/ed85ca82cd7aa9fffb548f0895653e00.verbatim) [26]
+with-codex/ed85ca82cd7aa9fffb548f0895653e00.verbatim) [29]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
 with-codex/163969e6263351aa5f20a4a33cfdb47a.verbatim)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/5a0ac7e988d608b93865a85c1b70a8c9.verbatim) [27] [28]
+with-codex/5a0ac7e988d608b93865a85c1b70a8c9.verbatim) [30] [31]
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-5-ai-robotics-
-with-codex/b194a9162caec045518a7f47f9174ac7.verbatim) [29] [30]
+with-codex/b194a9162caec045518a7f47f9174ac7.verbatim) [32] [33]
 LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 7.47002pt on input line 1301.
-) [31]
+(Font)              scaled to size 7.47002pt on input line 1472.
+ [34]) [35]
 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 
@@ -1791,16 +1803,16 @@ L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `volume-5-ai-robotics-with-codex.out' has not
  changed.
-(rerunfilecheck)             Checksum: 5AC5225108E74691F2915574FD8AC133;26035.
+(rerunfilecheck)             Checksum: E9CB8FA694494E9D73F9FFC49A3F3E4C;27439.
  ) 
 Here is how much of TeX's memory you used:
- 38277 strings out of 468168
- 877024 string characters out of 5423555
- 1692144 words of memory out of 5000000
- 66159 multiletter control sequences out of 15000+600000
- 635824 words of font info for 143 fonts, out of 8000000 for 9000
+ 38300 strings out of 468168
+ 879196 string characters out of 5423555
+ 1767697 words of memory out of 5000000
+ 66174 multiletter control sequences out of 15000+600000
+ 635816 words of font info for 142 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 101i,13n,131p,1028b,2838s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,13n,131p,1028b,2897s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-5-ai-ro
-botics-with-codex.xdv (39 pages, 1361892 bytes).
+botics-with-codex.xdv (43 pages, 1544232 bytes).

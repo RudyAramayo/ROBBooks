@@ -1,6 +1,6 @@
 # Building R.O.B. — EPUB accessibility and visual preflight record
 
-**Review date:** 2026-08-29
+**Review date:** 2026-08-29 · **Affected-edition recheck:** 2026-09-11
 
 **AUTOMATED AND BROWSER VISUAL PREFLIGHT: COMPLETE**
 
@@ -36,6 +36,12 @@ Each title was unpacked and rendered with Chrome 148.0.7778.97 in two modes: a 3
 | Engineering Cerebro | `ch029.xhtml`; Swift example and numbered explanation |
 
 Result: text, tables, images, captions, callouts, and code remained visible; content reflowed without overlap, hidden horizontal content, broken image scaling, or unreadable light/dark contrast. Long identifiers wrap at the narrow large-text viewport, which preserves all characters and avoids a keyboard-inaccessible horizontal region.
+
+## September 11 affected-edition recheck
+
+- *ROB and the Lost Yellow Ball* was rebuilt with separate Rodolfo Aramayo and Kierie Aramayo creator records and visible co-author bylines. Its replacement parts diagram was rendered and inspected at full-page and detail scale; the five colored labels and arrows clearly identify ROB's eyes, camera, hands, computer/body, and treads without clipping or overlap.
+- *AI, Robotics, and Codex* was rebuilt with `rob-ai-repository-tree.png` as its cover art. The cover and EPUB cover page were inspected at full resolution and are visually distinct from *Circuits & Signals* (Volume 2) and from every other numbered-volume illustration.
+- Both revised EPUBs passed EPUBCheck 5.3.0 with zero errors and zero warnings, the structural/accessibility metadata audit, image-reference checks, and exact creator/byline validation. `reviewed-epubs.sha256` was renewed for the resulting bytes.
 
 ## Work still required
 

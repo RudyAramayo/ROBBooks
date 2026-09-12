@@ -1,6 +1,6 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:40
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 SEP 2026 16:45
 entering extended mode
- restricted \write18 enabled.
+ \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **complete-builders-field-manual.tex
@@ -65,7 +65,7 @@ spec.sty
 arse/xparse.sty
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/l3kernel/expl
 3.sty
-Package: expl3 2026-01-19 L3 programming layer (loader) 
+Package: expl3 2026-01-19 L3 programming layer (loader)
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/l3backend/l3b
 ackend-xetex.def
@@ -774,7 +774,7 @@ Library (tcolorbox): 'tcbprocessing.code.tex' version '6.9.0'
 )
 \c@tcblisting=\count351
 ))
-Package tcolorbox Info: Library `listingsutf8' is compatible with pdftex only. 
+Package tcolorbox Info: Library `listingsutf8' is compatible with pdftex only.
 Library `listings` is loaded instead. on input line 29.
 )
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/tcolorbox/tcb
@@ -1187,16 +1187,16 @@ MM)
 pagemodern.sty
 Package: lastpagemodern 2025-08-14 v2.1h Refers to last page's name (HMM; JPG)
 \c@lastpagecount=\count387
-) 
+)
 ))
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'AvenirNext(0)' created for font 'Avenir
 (fontspec)             Next' with options [Ligatures=TeX].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Avenir
 (fontspec)             Next/OT:script=latn;language=dflt;mapping=tex-text;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"Avenir
@@ -1221,35 +1221,35 @@ xt;"
 ext;"
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo/B scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo/I scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo/BI scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'Menlo(0)' created for font 'Menlo' with
 (fontspec)             options
 (fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=Word
 Space,Scale=0.83].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->s*[0.83]"Menlo/AAT"
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
@@ -1260,13 +1260,13 @@ Space,Scale=0.83].
 (fontspec)             <->s*[0.83]"Menlo/BI/AAT"
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'Futura(0)' created for font 'Futura' with
 (fontspec)             options [].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->"Futura/OT:language=dflt;"
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
@@ -1277,13 +1277,13 @@ Package fontspec Info:
 (fontspec)             <->"Futura/BI/OT:language=dflt;"
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'AvenirNextCondensed(0)' created for font
 (fontspec)             'Avenir Next Condensed' with options [].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Avenir Next
 (fontspec)             Condensed/OT:script=latn;language=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"Avenir Next
@@ -1305,30 +1305,126 @@ Package fontspec Info:
 
 Package hyperref Info: Option `colorlinks' set `true' on input line 67.
 )
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/markdown/mark
+down.sty
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/markdown/ma
+rkdown.tex
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/lt3luabridg
+e/lt3luabridge.tex
+\g_luabridge_method_int=\count388
+
+Package luabridge Info: Using shell escape as the bridging method
+
+)
+\markdownInputFileStream=\read4
+\markdownOutputFileStream=\write4
+)
+\markdownOptionFrozenCacheCounter=\count389
+\g_tmpa_iow=\write5
+\openout5 = `complete-builders-field-manual.luabridge.lua'.
+
+
+Package luabridge Info: Writing a helper Lua script to file
+(luabridge)             complete-builders-field-manual.luabridge.lua
+
+
+Package luabridge Info: Executing a helper Lua script from file
+(luabridge)             complete-builders-field-manual.luabridge.lua
+
+
+(|TEXMF_OUTPUT_DIRECTORY=${TEXMF_OUTPUT_DIRECTORY:-.}
+texlua $TEXMF_OUTPUT_DIRECTORY/complete-builders-field-manual.luabridge.lua)
+Package: markdown 2026-01-02 v3.13.0-0-gdd212d58 markdown renderer
+)
+
+Package markdown Info: Loading version latest of LaTeX Markdown theme
+(markdown)             witiko/markdown/defaults
+
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/markdown/mark
+downthemewitiko_markdown_defaults.sty
+
+Package markdown Info: Loading version latest of plain TeX Markdown theme
+(markdown)             witiko/markdown/defaults
+
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/generic/markdown/ma
+rkdownthemewitiko_markdown_defaults.tex)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/amss
+ymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/amsf
+onts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/csvsimple/csv
+simple.sty
+Package: csvsimple 2024/09/27 v2.7.0 LaTeX CSV file processing
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/csvsimple/csv
+simple-legacy.sty
+Package: csvsimple-legacy 2024/09/27 version 2.7.0 LaTeX2e CSV file processing
+
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/tools/shelles
+c.sty
+Package: shellesc 2023/07/08 v1.0d unified shell escape interface for LaTeX
+Package shellesc Info: Unrestricted shell escape enabled on input line 75.
+)
+\csv@file=\read5
+\c@csvinputline=\count390
+\c@csvrow=\count391
+\c@csvcol=\count392
+\csv@out=\write6
+)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/fancyvrb/fanc
+yvrb.sty
+Package: fancyvrb 2025/07/28 4.6 verbatim text (tvz,hv)
+\FV@CodeLineNo=\count393
+\FV@InFile=\read6
+\FV@TabBox=\box135
+\c@FancyVerbLine=\count394
+\FV@StepNumber=\count395
+\FV@OutFile=\write7
+)
+\markdownLaTeXCitationsCounter=\count396
+\markdownLaTeXRowCounter=\count397
+\markdownLaTeXRowTotal=\count398
+\markdownLaTeXColumnCounter=\count399
+\markdownLaTeXColumnTotal=\count400
+\markdownLaTeXTable=\toks50
+\markdownLaTeXTableAlignment=\toks51
+\markdownLaTeXTableEnd=\toks52
+)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.
 aux)
 \openout1 = `complete-builders-field-manual.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 7.
-LaTeX Font Info:    ... okay on input line 7.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1337,7 +1433,7 @@ LaTeX Font Info:    ... okay on input line 7.
 * paper: letterpaper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
+* modes: twoside
 * h-part:(L,W,R)=(52.03448pt, 517.45348pt, 44.80704pt)
 * v-part:(T,H,B)=(49.86647pt, 694.51474pt, 50.58878pt)
 * \paperwidth=614.295pt
@@ -1365,90 +1461,93 @@ LaTeX Font Info:    ... okay on input line 7.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
 
-\symlegacymaths=\mathgroup4
+\symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 7.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 7.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 7.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 7.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 7.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 7.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 7.
-LaTeX Font Info:    Redeclaring math accent \check on input line 7.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 7.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 7.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 7.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 7.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 7.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 7.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 7.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 7.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 7.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 7.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 7.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 7.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 7.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 7.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 7.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 7.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 47.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 47.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 47.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 47.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 47.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 47.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 47.
+LaTeX Font Info:    Redeclaring math accent \check on input line 47.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 47.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 47.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 47.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 47.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 7.
+(Font)              `operators' in the math version `normal' on input line 47.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/AvenirNext(0)/m/n on input line 7.
+(Font)                  OT1/cmr/m/n --> TU/AvenirNext(0)/m/n on input line 47.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 7.
+(Font)              `operators' in the math version `bold' on input line 47.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/AvenirNext(0)/m/n on input line 7.
+(Font)                  OT1/cmr/bx/n --> TU/AvenirNext(0)/m/n on input line 47.
+
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/AvenirNext(0)/m/n --> TU/AvenirNext(0)/m/n on input 
-line 7.
+(Font)                  TU/AvenirNext(0)/m/n --> TU/AvenirNext(0)/m/n on input
+line 47.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/AvenirNext(0)/m/it on input line 7.
-
-LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/AvenirNext(0)/b/n on input line 7.
-LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/AvenirNext(0)/m/n on input line 7.
-LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/Menlo(0)/m/n on input line 7.
-LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/AvenirNext(0)/m/n --> TU/AvenirNext(0)/b/n on input 
-line 7.
-LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/AvenirNext(0)/b/it on input line 7
+(Font)                  OT1/cmr/m/it --> TU/AvenirNext(0)/m/it on input line 47
 .
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/AvenirNext(0)/b/n on input line 47.
+
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/AvenirNext(0)/m/n on input line 47.
+
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/Menlo(0)/m/n on input line 47.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/AvenirNext(0)/m/n --> TU/AvenirNext(0)/b/n on input
+line 47.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/AvenirNext(0)/b/it on input line 4
+7.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/AvenirNext(0)/b/n on input line 7.
-
+(Font)                  OT1/cmss/bx/n --> TU/AvenirNext(0)/b/n on input line 47
+.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/Menlo(0)/b/n on input line 7.
-\c@lstlisting=\count388
-Package hyperref Info: Link coloring ON on input line 7.
+(Font)                  OT1/cmtt/m/n --> TU/Menlo(0)/b/n on input line 47.
+\c@lstlisting=\count401
+Package hyperref Info: Link coloring ON on input line 47.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.
 out)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.
 out)
-\@outlinefile=\write4
-\openout4 = `complete-builders-field-manual.out'.
+\@outlinefile=\write8
+\openout8 = `complete-builders-field-manual.out'.
 
 Package microtype Info: Patching varwidth to enable character protrusion.
 \MT@vwid@leftmargin=\dimen347
 \MT@vwid@rightmargin=\dimen348
-LaTeX Info: Redefining \microtypecontext on input line 7.
-Package microtype Info: Applying patch `item' on input line 7.
-Package microtype Info: Applying patch `toc' on input line 7.
-Package microtype Info: Applying patch `eqnum' on input line 7.
+LaTeX Info: Redefining \microtypecontext on input line 47.
+Package microtype Info: Applying patch `item' on input line 47.
+Package microtype Info: Applying patch `toc' on input line 47.
+Package microtype Info: Applying patch `eqnum' on input line 47.
 
 
-Package microtype Warning: Unable to apply patch `footnote' on input line 7.
+Package microtype Warning: Unable to apply patch `footnote' on input line 47.
 
-Package microtype Info: Applying patch `verbatim' on input line 7.
-LaTeX Info: Redefining \microtypesetup on input line 7.
+Package microtype Info: Applying patch `verbatim' on input line 47.
+LaTeX Info: Redefining \microtypesetup on input line 47.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: No adjustment of tracking.
@@ -1478,10 +1577,18 @@ File: ../assets/generated/rob-used-future-frontispiece.png Graphic file (type b
 mp)
 <../assets/generated/rob-used-future-frontispiece.png>
  [2]
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsa
+.fd)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+msa.cfg)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/amsfonts/umsb
+.fd)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
+msb.cfg)
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
 cmr.cfg)
 LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 8.30002pt on input line 36.
+(Font)              scaled to size 8.30002pt on input line 76.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `Menlo' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
@@ -1492,132 +1599,154 @@ Package microtype Info: Loading generic protrusion settings for font family
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.
 toc [5
 
-] [6] [7])
-\tf@toc=\write5
-\openout5 = `complete-builders-field-manual.toc'.
+] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15])
+\tf@toc=\write9
+\openout9 = `complete-builders-field-manual.toc'.
 
- [8] [1
+ [16] [1
 
 
 
 ]
 File: ../assets/photos/2025-rob-face-portrait.jpg Graphic file (type bmp)
 <../assets/photos/2025-rob-face-portrait.jpg>
- [2
+
+Underfull \hbox (badness 3579) in paragraph at lines 92--92
+[]\TU/Futura(0)/b/n/29 The robot as a long-running
+ []
+
+[2
 
 ]
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
+Underfull \hbox (badness 10000) in paragraph at lines 130--130
 []|\TU/AvenirNext(0)/m/n/10 Open electronics, camera/head revisions,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
+Underfull \hbox (badness 10000) in paragraph at lines 130--130
 \TU/AvenirNext(0)/m/n/10 wooden base templates, tread geometry,
  []
 
 
-Underfull \hbox (badness 2671) in paragraph at lines 71--71
+Underfull \hbox (badness 2671) in paragraph at lines 130--130
 []|\TU/AvenirNext(0)/m/n/10 Operational experience likely drove require-
  []
 
 
-Underfull \hbox (badness 3068) in paragraph at lines 71--71
+Underfull \hbox (badness 3068) in paragraph at lines 130--130
 \TU/AvenirNext(0)/m/n/10 ments, but the archive does not link each
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
+Underfull \hbox (badness 10000) in paragraph at lines 130--130
 []|\TU/AvenirNext(0)/m/n/10 Sprocket-area machining, chain clearance,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 71--71
+Underfull \hbox (badness 10000) in paragraph at lines 130--130
 []|\TU/AvenirNext(0)/m/n/10 Shoulder and neck gearing, arm re-
  []
 
 
-Underfull \hbox (badness 3623) in paragraph at lines 71--71
+Underfull \hbox (badness 3623) in paragraph at lines 130--130
 \TU/AvenirNext(0)/m/n/10 moval/reassembly, cable labels, emergency-
  []
 
+[3
+
+
+]
 File: ../assets/photos/2019-rob-front-corner.jpg Graphic file (type bmp)
 <../assets/photos/2019-rob-front-corner.jpg>
 File: ../assets/photos/2025-rob-side-full-body.jpg Graphic file (type bmp)
 <../assets/photos/2025-rob-side-full-body.jpg>
-[3
+ [4]
+Underfull \hbox (badness 1337) in paragraph at lines 180--180
+\TU/AvenirNext(0)/m/n/10 three H.264 feeds, and mixed-immersive panorama exist;
 
+ []
 
-] [4] [5]
+[5] [6]
+File: ../assets/photos/2019-rob-side-profile.jpg Graphic file (type bmp)
+<../assets/photos/2019-rob-side-profile.jpg>
+ [7
+
+]
 File: ../assets/photos/2024-open-tracked-base.jpg Graphic file (type bmp)
 <../assets/photos/2024-open-tracked-base.jpg>
- [6
+
+Underfull \hbox (badness 10000) in paragraph at lines 197--197
+[]\TU/Futura(0)/b/n/29 System boundaries and
+ []
+
+[8
 
 ]
 Chapter 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--145
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
 []|\TU/AvenirNext(0)/m/n/10 Capture fresh intent, apply its client-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 145--145
+Underfull \hbox (badness 10000) in paragraph at lines 230--230
 \TU/AvenirNext(0)/m/n/10 specific lease or watchdog, present
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 145--145
+Underfull \hbox (badness 2285) in paragraph at lines 230--230
 \TU/AvenirNext(0)/m/n/10 and order messages, reject replay and
  []
 
 
-Underfull \hbox (badness 1275) in paragraph at lines 145--145
+Underfull \hbox (badness 1275) in paragraph at lines 230--230
 []|\TU/AvenirNext(0)/m/n/10 Target: accept only complete bounded
  []
 
-[7
+[9
 
 
-] [8] [9
+] [10] [11
 
 ]
 File: ../assets/photos/2024-nearly-assembled-base.jpg Graphic file (type bmp)
 <../assets/photos/2024-nearly-assembled-base.jpg>
- [10
+ [12
 
 ]
 Chapter 3.
 File: ../assets/photos/2022-drive-assembly-rear.jpg Graphic file (type bmp)
 <../assets/photos/2022-drive-assembly-rear.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 182--182
+Underfull \hbox (badness 10000) in paragraph at lines 271--271
 [][]
  []
 
 File: ../assets/photos/2024-sprocket-machined-opening.jpg Graphic file (type bm
 p)
 <../assets/photos/2024-sprocket-machined-opening.jpg>
+[13
+
+
+]
 File: ../assets/photos/2022-chain-sprocket-interior.jpg Graphic file (type bmp)
 
 <../assets/photos/2022-chain-sprocket-interior.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 190--190
+Underfull \hbox (badness 10000) in paragraph at lines 279--279
 [][]
  []
 
 File: ../assets/photos/2024-chain-drive-closeup.jpg Graphic file (type bmp)
 <../assets/photos/2024-chain-drive-closeup.jpg>
-[11
-
-
-]
 File: ../assets/slides/rob-v3-page-23.jpg Graphic file (type bmp)
 <../assets/slides/rob-v3-page-23.jpg>
- [12] [13]
+[14] [15] [16]
 File: ../assets/photos/2025-rob-side-full-body.jpg Graphic file (type bmp)
 <../assets/photos/2025-rob-side-full-body.jpg>
- [14
+ [17
 
 ]
 Chapter 4.
@@ -1626,17 +1755,17 @@ File: ../assets/photos/2025-rear-electronics-bay.jpg Graphic file (type bmp)
 File: ../assets/photos/2025-labeled-cables.jpg Graphic file (type bmp)
 <../assets/photos/2025-labeled-cables.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 248--248
+Underfull \hbox (badness 10000) in paragraph at lines 364--364
 [][]
  []
 
 
-Underfull \hbox (badness 2547) in paragraph at lines 248--248
+Underfull \hbox (badness 2547) in paragraph at lines 364--364
 []\TU/AvenirNext(0)/m/it/7 Temporary labels aid teardown, but permanent routing
  must account for
  []
 
-[15
+[18
 
 
 ]
@@ -1645,24 +1774,25 @@ File: ../assets/photos/2022-oakd-depth-camera.jpg Graphic file (type bmp)
 File: ../assets/photos/2025-neck-gear-train.jpg Graphic file (type bmp)
 <../assets/photos/2025-neck-gear-train.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 254--254
+Underfull \hbox (badness 10000) in paragraph at lines 372--372
 [][]
  []
 
+[19]
 File: ../assets/photos/2025-detached-articulated-arm.jpg Graphic file (type bmp
 )
 <../assets/photos/2025-detached-articulated-arm.jpg>
 
-Underfull \hbox (badness 2564) in paragraph at lines 260--260
+Underfull \hbox (badness 2564) in paragraph at lines 378--378
 [][] []\TU/AvenirNext(0)/m/it/7 A detached arm reveals its
  []
 
 File: ../assets/photos/2022-arm-controller-board.jpg Graphic file (type bmp)
 <../assets/photos/2022-arm-controller-board.jpg>
-[16] [17]
+[20]
 File: ../assets/photos/2022-drilling-metal-rail.jpg Graphic file (type bmp)
 <../assets/photos/2022-drilling-metal-rail.jpg>
- [18
+ [21
 
 ]
 Chapter 5.
@@ -1670,34 +1800,34 @@ File: ../assets/photos/2024-caliper-tread-measurement.jpg Graphic file (type bm
 p)
 <../assets/photos/2024-caliper-tread-measurement.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 289--289
+Underfull \hbox (badness 10000) in paragraph at lines 409--409
 [][]
  []
 
 File: ../assets/photos/2022-bracket-fit-check.jpg Graphic file (type bmp)
 <../assets/photos/2022-bracket-fit-check.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 289--289
+Underfull \hbox (badness 10000) in paragraph at lines 409--409
 [][]
  []
 
-[19
+[22
 
 
-] [20] [21
+] [23] [24
 
 ]
 File: ../assets/photos/2024-batteries-and-power-leads.jpg Graphic file (type bm
 p)
 <../assets/photos/2024-batteries-and-power-leads.jpg>
- [22
+ [25
 
 ]
 Chapter 6.
 File: ../assets/slides/rob-v3-page-41.jpg Graphic file (type bmp)
 <../assets/slides/rob-v3-page-41.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 329--329
+Underfull \hbox (badness 10000) in paragraph at lines 455--455
 [][]
  []
 
@@ -1705,89 +1835,212 @@ File: ../assets/photos/2024-batteries-and-power-leads.jpg Graphic file (type bm
 p)
 <../assets/photos/2024-batteries-and-power-leads.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 329--329
+Underfull \hbox (badness 10000) in paragraph at lines 455--455
 [][]
  []
 
+[26
+
+
+]
 File: ../assets/photos/2024-power-cable-pass-through.jpg Graphic file (type bmp
 )
 <../assets/photos/2024-power-cable-pass-through.jpg>
 File: ../assets/photos/2024-voltage-gauge.jpg Graphic file (type bmp)
 <../assets/photos/2024-voltage-gauge.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 348--348
+Underfull \hbox (badness 10000) in paragraph at lines 474--474
 [][]
  []
 
-[23
+
+Underfull \hbox (badness 10000) in paragraph at lines 488--488
+[]|\TU/AvenirNext(0)/m/n/10 tread/flipper controllers
+ []
 
 
-]
-File: ../assets/photos/2025-emergency-stop-bench-layout.jpg Graphic file (type 
+Underfull \hbox (badness 10000) in paragraph at lines 488--488
+\TU/AvenirNext(0)/m/n/10 before 24 V revision,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 488--488
+\TU/AvenirNext(0)/m/n/10 linear-actuator controller,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 488--488
+\TU/AvenirNext(0)/m/n/10 Arduino/base hub, on-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 488--488
+[]|\TU/AvenirNext(0)/m/n/10 HengDrive motors after
+ []
+
+
+Underfull \hbox (badness 1052) in paragraph at lines 488--488
+\TU/AvenirNext(0)/m/n/10 boost, rotary power path,
+ []
+
+
+Underfull \hbox (badness 1845) in paragraph at lines 488--488
+\TU/AvenirNext(0)/m/n/10 torso bus, stepper candi-
+ []
+
+
+Underfull \hbox (badness 2626) in paragraph at lines 488--488
+\TU/AvenirNext(0)/m/n/10 date, Maestro/peripherals
+ []
+
+
+Underfull \hbox (badness 5345) in paragraph at lines 488--488
+[]|\TU/AvenirNext(0)/m/n/10 backpack router, camera
+ []
+
+
+Underfull \hbox (badness 1242) in paragraph at lines 488--488
+\TU/AvenirNext(0)/m/n/10 charging, AMBER Ubuntu
+ []
+
+
+Underfull \hbox (badness 3229) in paragraph at lines 488--488
+[]|\TU/AvenirNext(0)/m/n/10 fanless pure-sine inverter,
+ []
+
+
+Underfull \hbox (badness 7504) in paragraph at lines 488--488
+\TU/AvenirNext(0)/m/n/10 recalled 150 W continu-
+ []
+
+
+Underfull \hbox (badness 1389) in paragraph at lines 488--488
+\TU/AvenirNext(0)/m/n/10 ous / 300 W peak, used
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 488--488
+\TU/AvenirNext(0)/m/n/10 for AC-powered com-
+ []
+
+
+Underfull \hbox (badness 2158) in paragraph at lines 488--488
+[]|\TU/AvenirNext(0)/m/n/10 Model, grounding/isolation, receptacle protection,
+inrush,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 488--488
+[]|\TU/AvenirNext(0)/m/n/10 two AMBER B1 arms
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 488--488
+\TU/AvenirNext(0)/m/n/10 through rear cutoff
+ []
+
+[27] [28]
+File: ../assets/photos/2025-emergency-stop-bench-layout.jpg Graphic file (type
 bmp)
 <../assets/photos/2025-emergency-stop-bench-layout.jpg>
- [24] [25]
+ [29]
 File: ../assets/photos/2024-dense-internal-routing.jpg Graphic file (type bmp)
 <../assets/photos/2024-dense-internal-routing.jpg>
- [26
+ [30
 
 ]
 Chapter 7.
 
-Underfull \hbox (badness 10000) in paragraph at lines 383--383
+Underfull \hbox (badness 10000) in paragraph at lines 529--529
 []|[] \TU/AvenirNext(0)/m/n/10 current
  []
 
+[31
 
-Underfull \hbox (badness 10000) in paragraph at lines 411--411
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 559--559
 []|\TU/AvenirNext(0)/m/n/10 SoftwareSerial
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 411--411
+Underfull \hbox (badness 10000) in paragraph at lines 559--559
 \TU/AvenirNext(0)/m/n/10 D22/D23, 19,200
  []
 
 
-Underfull \hbox (badness 2932) in paragraph at lines 411--411
+Underfull \hbox (badness 2932) in paragraph at lines 559--559
 []|\TU/AvenirNext(0)/m/n/10 Compact serial forward/reverse; nominal speed -3200
  to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 411--411
+Underfull \hbox (badness 10000) in paragraph at lines 559--559
 []|\TU/AvenirNext(0)/m/n/10 I2C via Wire;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 411--411
+Underfull \hbox (badness 10000) in paragraph at lines 559--559
 []|\TU/AvenirNext(0)/m/n/10 Proposed
  []
 
-[27
-
-
-]
 LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 9.96002pt on input line 421.
- [28] [29] [30] [31
+(Font)              scaled to size 9.96002pt on input line 569.
+[32] [33]
+Underfull \hbox (badness 10000) in paragraph at lines 647--647
+[]|\TU/AvenirNext(0)/m/n/10 PROPOSED
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 647--647
+[]|\TU/AvenirNext(0)/m/n/10 All external interrupts; verify voltage, pull-up, e
+dge,
+ []
+
+
+Underfull \hbox (badness 3049) in paragraph at lines 647--647
+[]|\TU/AvenirNext(0)/m/n/10 D20 SDA / D21
+ []
+
+
+Underfull \hbox (badness 1412) in paragraph at lines 647--647
+[]|\TU/AvenirNext(0)/m/n/10 Short, local, twisted/ground-referenced routing onl
+y; do not
+ []
+
+[34] [35] [36
 
 ]
-File: ../assets/photos/2022-fanless-computer-and-serial.jpg Graphic file (type 
+File: ../assets/photos/2022-fanless-computer-and-serial.jpg Graphic file (type
 bmp)
 <../assets/photos/2022-fanless-computer-and-serial.jpg>
- [32
+ [37
 
 ]
 Chapter 8.
 
-Underfull \hbox (badness 1735) in paragraph at lines 511--511
-[]|\TU/AvenirNext(0)/m/n/10 Camera providers, frame-set ownership, bounded deli
-very, RGB-D
+Underfull \hbox (badness 10000) in paragraph at lines 692--692
+[]|\TU/AvenirNext(0)/m/n/10 Separate face/belly/panorama providers, frame-set o
+wnership,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 518--518
+Underfull \hbox (badness 10000) in paragraph at lines 692--692
+[]|\TU/AvenirNext(0)/m/n/10 Fail-closed one-to-one bridge, responder, bounded a
+ttach-
+ []
+
+
+Underfull \hbox (badness 5787) in paragraph at lines 692--692
+\TU/AvenirNext(0)/m/n/10 ments/current information, optional encrypted transcri
+pt memory,
+ []
+
+[38
+
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 711--711
 []\TU/AvenirNext(0)/b/n/10 Why it is here: \TU/AvenirNext(0)/m/n/10 Read \TU/Me
 nlo(0)/m/n/10 initialize_connection\TU/AvenirNext(0)/m/n/10 , \TU/Menlo(0)/m/n/
 10 usbSerialPortPaths\TU/AvenirNext(0)/m/n/10 , \TU/Menlo(0)/m/n/10 connectToDe
@@ -1795,232 +2048,1155 @@ tectedBase\TU/AvenirNext(0)/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 518--518
+Underfull \hbox (badness 10000) in paragraph at lines 711--711
 \TU/Menlo(0)/m/n/10 probeBaseFirmwareAtPath\TU/AvenirNext(0)/m/n/10 , \TU/Menlo
 (0)/m/n/10 consumeBaseSerialBytes\TU/AvenirNext(0)/m/n/10 , the Vision neck/tor
 so methods, and
  []
 
-[33
-
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 541--541
+[39]
+Underfull \hbox (badness 10000) in paragraph at lines 734--734
 []\TU/AvenirNext(0)/b/n/10 Why it is here: \TU/AvenirNext(0)/m/n/10 Compare the
  latest-value snapshot store with \TU/Menlo(0)/m/n/10 ROBMLXRuntime.swift\TU/Av
 enirNext(0)/m/n/10 ,
  []
 
-[34] [35]
+[40] [41]
 File: ../assets/photos/2024-open-tracked-base.jpg Graphic file (type bmp)
 <../assets/photos/2024-open-tracked-base.jpg>
- [36
+ [42
 
 ]
 Chapter 9.
 
-Underfull \hbox (badness 3439) in paragraph at lines 554--554
-[]\TU/AvenirNext(0)/b/n/10 Why it is here: \TU/AvenirNext(0)/m/n/10 The client 
+Underfull \hbox (badness 3439) in paragraph at lines 749--749
+[]\TU/AvenirNext(0)/b/n/10 Why it is here: \TU/AvenirNext(0)/m/n/10 The client
 control contract is the anchor. Compare it with Cerebro’s matching
  []
 
+[43
 
-Underfull \hbox (badness 10000) in paragraph at lines 575--575
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 782--782
 []|\TU/AvenirNext(0)/m/n/10 Send established con-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 575--575
+Underfull \hbox (badness 10000) in paragraph at lines 782--782
 \TU/AvenirNext(0)/m/n/10 trol/action/autonomy messages and
  []
 
 
-Underfull \hbox (badness 5331) in paragraph at lines 575--575
+Underfull \hbox (badness 5331) in paragraph at lines 782--782
 []|\TU/AvenirNext(0)/m/n/10 Send bounded typed scan and map
  []
 
-[37
-
-
-] [38]
+[44] [45]
 File: ../assets/photos/2022-oakd-depth-camera.jpg Graphic file (type bmp)
 <../assets/photos/2022-oakd-depth-camera.jpg>
- [39
+ [46
 
 ]
 Chapter 10.
-[40
+[47
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 660--660
+Underfull \hbox (badness 10000) in paragraph at lines 869--869
 []|\TU/AvenirNext(0)/m/n/10 pinned identity,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 660--660
+Underfull \hbox (badness 10000) in paragraph at lines 869--869
 []|\TU/AvenirNext(0)/m/n/10 magic, version,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 660--660
+Underfull \hbox (badness 10000) in paragraph at lines 869--869
 \TU/AvenirNext(0)/m/n/10 kind, length, se-
  []
 
 
-Underfull \hbox (badness 1072) in paragraph at lines 660--660
+Underfull \hbox (badness 1072) in paragraph at lines 869--869
 []|\TU/AvenirNext(0)/m/n/10 IDs, codec, timing,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 660--660
+Underfull \hbox (badness 10000) in paragraph at lines 869--869
 []|\TU/AvenirNext(0)/m/n/10 NAL lengths and
  []
 
-[41] [42] [43]
+[48] [49] [50]
 File: ../assets/photos/2022-oakd-depth-camera.jpg Graphic file (type bmp)
 <../assets/photos/2022-oakd-depth-camera.jpg>
- [44
+
+Underfull \hbox (badness 5592) in paragraph at lines 914--914
+[]\TU/Futura(0)/b/n/29 Cameras, depth, lidar, and
+ []
+
+[51
 
 ]
 Chapter 11.
-[45
+[52
 
 
-]
+] [53]
 File: ../assets/slides/rob-v3-page-55.jpg Graphic file (type bmp)
 <../assets/slides/rob-v3-page-55.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 758--758
+Underfull \hbox (badness 10000) in paragraph at lines 973--973
 [][]
  []
 
 File: ../assets/photos/2024-open-tracked-base.jpg Graphic file (type bmp)
 <../assets/photos/2024-open-tracked-base.jpg>
-[46] [47]
+[54]
 File: ../assets/photos/2025-detached-articulated-arm.jpg Graphic file (type bmp
 )
 <../assets/photos/2025-detached-articulated-arm.jpg>
 
-Underfull \hbox (badness 1248) in paragraph at lines 762--762
-[]\TU/Futura(0)/b/n/29 Arms, animation, speech, auton- 
+Underfull \hbox (badness 10000) in paragraph at lines 979--979
+[]\TU/Futura(0)/b/n/29 Arms, animation, speech,
  []
 
-[48
+[55
 
 ]
 Chapter 12.
-[49
+LaTeX Font Info:    Font shape `TU/Menlo(0)/m/it' will be
+(Font)              scaled to size 5.81001pt on input line 988.
+[56
 
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 797--797
+] [57]
+Underfull \hbox (badness 10000) in paragraph at lines 1044--1044
 []\TU/AvenirNext(0)/b/n/10 Why it is here: \TU/AvenirNext(0)/m/n/10 Read the st
 rict show protocol and fixture tests first, then compare
  []
 
-[50]
+[58]
 File: ../assets/photos/2025-detached-articulated-arm.jpg Graphic file (type bmp
 )
 <../assets/photos/2025-detached-articulated-arm.jpg>
 File: ../assets/photos/2022-oakd-depth-camera.jpg Graphic file (type bmp)
 <../assets/photos/2022-oakd-depth-camera.jpg>
- [51] [52
+ [59] [60] [61
 
 ]
 File: ../assets/photos/2022-tracked-base-front.jpg Graphic file (type bmp)
 <../assets/photos/2022-tracked-base-front.jpg>
- [53
+ [62
 
 ]
 Chapter 13.
 
-Underfull \hbox (badness 2134) in paragraph at lines 850--850
+Underfull \hbox (badness 2134) in paragraph at lines 1099--1099
 []|\TU/AvenirNext(0)/m/n/10 Protocol, range, state, deadline, replay, and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 850--850
+Underfull \hbox (badness 10000) in paragraph at lines 1099--1099
 []|\TU/AvenirNext(0)/m/n/10 Repeatable operating envelope and ther-
  []
 
-[54
+[63
 
 
-] [55]
+] [64]
 File: ../assets/photos/2025-rob-side-full-body.jpg Graphic file (type bmp)
 <../assets/photos/2025-rob-side-full-body.jpg>
- [56
+ [65
 
 ]
 Chapter 14.
-[57
+[66
 
 
-] [58]
+] [67]
 File: ../assets/photos/2025-rear-electronics-bay.jpg Graphic file (type bmp)
 <../assets/photos/2025-rear-electronics-bay.jpg>
- [59
+ [68
 
 ]
 Chapter 15.
-[60
+[69
 
 
-] (./adult-learning-and-commissioning.tex [61]
+] [70] [71
+
+] [72] [73
+
+]
+
+Package markdown Info: Including markdown document
+(markdown)             "volume-5-ai-robotics-with-codex.md"
+
+\openout5 = `complete-builders-field-manual.luabridge.lua'.
+
+
+Package luabridge Info: Writing a helper Lua script to file
+(luabridge)             complete-builders-field-manual.luabridge.lua
+
+
+Package luabridge Info: Executing a helper Lua script from file
+(luabridge)             complete-builders-field-manual.luabridge.lua
+
+
+(|texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field
+-manual.luabridge.lua)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/ab8dff4bc73999329989058b62820981.md.tex
+Chapter 16.
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 52.
+LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
+(Font)              scaled to size 6.806pt on input line 52.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/9b1b0c8be9856fc9d5bb1df5e95db737.verbatim [74
+
+])
+Underfull \hbox (badness 1337) in paragraph at lines 66--66
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — HISTORICAL ARCHIVE: \TU/Menlo(0)/m/n/
+10 CEREBRO_ARCHIVE_HISTORY.md \TU/AvenirNext(0)/m/n/10 records the preserved
+ []
+
+[75]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/a5d0a1954ecb9d79b987eff4cfcb16fa.verbatim) [76]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/e7fe232962210ca71aaed5f69d043e59.verbatim) [77]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/42a2a132cf6418a4e7bb84f37f1ea31d.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/71b6b7fb4eb612591270eab27165ee63.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/b341702cab0dd8b01bd0831034672cb0.verbatim) [78]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/1bc57dc08495a260464e1107fe71f2ef.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/f5fc205995a3df5526dea0104870f6ae.verbatim) [79]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/1d261981f5c1c1516a0afc993d216b08.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/b9443bf954d716505c6ade97b3d643b8.verbatim) [80]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/5d06a65321a82a24a3c526eb6f4efe61.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/be72149530d4e0ed010eebca8eb35a2b.verbatim) [81]
+Underfull \hbox (badness 2503) in paragraph at lines 398--399
+[]\TU/AvenirNext(0)/m/n/10 a disabled-by-default, allowlisted one-to-one Messag
+es AI bridge with bounded images, local current-
+ []
+
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/ec817424852c9db7be104cf4c25dedb8.verbatim) [82]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/ca46e1dc9d5664b42718819cc94cfc9c.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/be1136643826c800700c93f9e23a8d7b.verbatim) [83]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/85be9f82cdadacb8bfc5c22e3f8cf7e0.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/4d14d31ded2aa8e39a2bfa9e2a4f5dec.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/43d6ea8b015234df236091984a74d028.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/4ef5bda13c9400dfccd2381a8a9610f0.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/b51c399ded5a0db02464edc32e09f8a0.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/e5f390792eaa2cc878b8ce1a474dfb48.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/df35e3f179bfb84aa06c2ce5e3edc515.verbatim [84])
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/2cec1e09c7a0c7d4b2724b2c0f2e57d2.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/1b20222d41659432ab0778964a7ceeac.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/be168b781a3cd7fe386ffa408a1b854d.verbatim) [85] [86]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/21aa13b6966d270d5e728a626dc378dc.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/4661268c6b664f245c2fe4229e72a844.verbatim) [87]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/c4280b5df4b58707714d20fc0b3108cc.verbatim) [88]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/31222354dab7b4bc11d01c20045b1249.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/a2cdfcb2dd36a8fd0e6310bd47a4fd80.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/b62021c1680c09f91dc73d9989f667c2.verbatim [89])
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/5cbd371aa2e73597c8a9259e0dc7be8c.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/116511f19a1eb2bdca5704af3f21757a.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/8b531506f0edcb3bbc53378149e090e4.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/aafde5a090f51575e5eb532437f8fb38.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/acd51289eff5aa520259ba3005ef1944.verbatim) [90]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/ab590c1b801ac43b1901a00c3ff61f36.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/05c2f09143b14bc47be21f6182ad9f85.verbatim) [91]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/d6a2de363bf451dc4c937a78fcf9948e.verbatim) [92]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/cde5e8c30040712873ea2c2f8bdf2051.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/4859bb2dc945ed48f2b7f2190f495f04.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/1c9f064fb0a247bdccaf71e7d2c5293c.verbatim) [93] [94] [95]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/181df8f7843da464184be164cacf0150.verbatim [96])
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/596b3bc8d63f14187000f731af2486bf.verbatim) [97]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/7792b5519e579079b825477f53ea1833.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/a680a24ba3d74fe3fd807b57b78ad574.verbatim) [98]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/87e2dc07e45a90ce16277163b0972900.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/76f036af2968af19a3c27a366d826754.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/ed85ca82cd7aa9fffb548f0895653e00.verbatim) [99]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/163969e6263351aa5f20a4a33cfdb47a.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/5a0ac7e988d608b93865a85c1b70a8c9.verbatim) [100]
+Underfull \hbox (badness 10000) in paragraph at lines 1333--1333
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Op
+eratorSpeechPanel.swift\TU/AvenirNext(0)/m/n/10 , \TU/Menlo(0)/m/n/10 ControlPa
+nel.swift\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+[101]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/b194a9162caec045518a7f47f9174ac7.verbatim) [102] [103]
+LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
+(Font)              scaled to size 6.64001pt on input line 1472.
+) [104]
+[105
+
+]
+
+Package markdown Info: Including markdown document
+(markdown)             "volume-6-amber-dual-arm-robotics.md"
+
+\openout5 = `complete-builders-field-manual.luabridge.lua'.
+
+
+Package luabridge Info: Writing a helper Lua script to file
+(luabridge)             complete-builders-field-manual.luabridge.lua
+
+
+Package luabridge Info: Executing a helper Lua script from file
+(luabridge)             complete-builders-field-manual.luabridge.lua
+
+
+(|texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field
+-manual.luabridge.lua)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/f8a83f67f5588ccd87dd2005445b89cd.md.tex
+Chapter 17.
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Am
+berHomeFolder/amber/L-10/launch.json \TU/AvenirNext(0)/m/n/10 and
+ []
+
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/99923fb453be3526787049c00682445f.verbatim) [106
+
+]
+Chapter 18.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/d3276e0785b71a8743233e0a4a787b62.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/ec704a8c25a946b2c6071a454dd55670.verbatim) [107
+
+]
+Chapter 19.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/ab5acdd5964bcc4fe3ef17df0a8977f2.verbatim) [108
+
+] [109]
+Chapter 20.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/f292067fa251e8098021e09b26da0e02.verbatim) [110
+
+]
+Chapter 21.
+
+Underfull \hbox (badness 10000) in paragraph at lines 80--80
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 in
+itCan.sh \TU/AvenirNext(0)/m/n/10 in \TU/Menlo(0)/m/n/10 amber_core/init \TU/Av
+enirNext(0)/m/n/10 and its adjacent
+ []
+
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/ff751083778f07712f5f42b8c45c1513.verbatim) [111
+
+]
+Chapter 22.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/0a1273650725afcecb94dcb6e320b5c5.verbatim) [112
+
+]
+LaTeX Font Info:    Font shape `TU/Menlo(0)/b/n' will be
+(Font)              scaled to size 8.30002pt on input line 121.
+ [113]
+Chapter 23.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/b8663b218a8318e4c0e3b06689634eba.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/281d75d1ffe0f61959869d966fdba0e5.verbatim) [114
+
+]
+Chapter 24.
+[115
+
+] [116]
+Chapter 25.
+[117
+
+]
+Chapter 26.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/12d2bed23fb4984305ff7f14507a5e4f.verbatim)
+(/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/listings/lstl
+ang1.sty
+File: lstlang1.sty 2025/11/14 1.11b listings language file
+)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/e7b49ba5ac898ca04612fed2199c9908.verbatim
+LaTeX Font Info:    Font shape `TU/Menlo(0)/b/n' will be
+(Font)              scaled to size 6.806pt on input line 5.
+) [118
+
+]
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/8b813e05a9e3ce21aa72c61d991cb48c.verbatim) [119]
+Chapter 27.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/3dd02d59d8d7bc5b3d4a5356a02d4b84.verbatim) [120
+
+]
+Chapter 28.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/3c1bb78283862656504d191a282f66e7.verbatim) [121
+
+] [122]
+Chapter 29.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/8128f382f1de2717c4e0cf14f819b2f5.verbatim) [123
+
+]
+Chapter 30.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/b41906f63cc360d28a0594874ea854bf.verbatim) [124
+
+]
+Chapter 31.
+[125
+
+] [126]
+Chapter 32.
+[127
+
+]
+Chapter 33.
+[128
+
+]
+Chapter 34.
+[129
+
+]
+Chapter 35.
+[130
+
+]
+Chapter 36.
+) [131
+
+] [132
+
+]
+
+Package markdown Info: Including markdown document
+(markdown)             "volume-7-engineering-robcontrollervision.md"
+
+\openout5 = `complete-builders-field-manual.luabridge.lua'.
+
+
+Package luabridge Info: Writing a helper Lua script to file
+(luabridge)             complete-builders-field-manual.luabridge.lua
+
+
+Package luabridge Info: Executing a helper Lua script from file
+(luabridge)             complete-builders-field-manual.luabridge.lua
+
+
+(|texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field
+-manual.luabridge.lua)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/e6bf12a3bafc1f1b56b1f1acee5a5638.md.tex
+Chapter 37.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/7f769449b193716cad5d4cdcebae69ef.verbatim)
+Underfull \hbox (badness 3098) in paragraph at lines 8--8
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 RO
+BControllerVision/README.md\TU/AvenirNext(0)/m/n/10 , \TU/Menlo(0)/m/n/10 docs/
+architecture.md\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+[133
+
+]
+Chapter 38.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/1b22a8418d98ff5200d384f6d955bf3f.verbatim) [134
+
+]
+Chapter 39.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/f491e00334f03353dd2d700f693b8332.verbatim) [135
+
+]
+Chapter 40.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/ae6f2a153cc22cd0cc576af067dcbc87.verbatim) [136
+
+]
+Chapter 41.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/909804e9fed985036c6c23fdb92d85c7.verbatim) [137
+
+]
+Chapter 42.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/82daa9252cf02050d6b8ec9733168348.verbatim) [138
+
+]
+Chapter 43.
+[139
+
+]
+Chapter 44.
+[140
+
+]
+Chapter 45.
+[141
+
+]
+Chapter 46.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/05f796e05701d711cc87a227fdc3042c.verbatim) [142
+
+]
+Chapter 47.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/6d8a891e0cb04da1dd435237c4279b5c.verbatim) [143
+
+]
+Chapter 48.
+[144
+
+]
+Chapter 49.
+[145
+
+]
+Chapter 50.
+[146
+
+]
+Chapter 51.
+[147
+
+]
+Chapter 52.
+[148
+
+]
+Chapter 53.
+[149
+
+]
+Chapter 54.
+[150
+
+]
+Chapter 55.
+[151
+
+]
+Chapter 56.
+[152
+
+]
+Chapter 57.
+[153
+
+]
+Chapter 58.
+[154
+
+]
+Chapter 59.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/07863ce618c98eddcb6ebe0d43309a35.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/4a926fd75e560be3b27f1c39b3bdc218.verbatim) [155
+
+]
+Chapter 60.
+[156
+
+]
+Chapter 61.
+[157
+
+]
+Chapter 62.
+[158
+
+]
+Chapter 63.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/327fc9210acb78827dfdba812794d8f4.verbatim) [159
+
+]
+Chapter 64.
+[160
+
+]
+Chapter 65.
+[161
+
+]
+Chapter 66.
+[162
+
+]
+Chapter 67.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/614d145333772290c61abab7b7dddecc.verbatim) [163
+
+]
+Chapter 68.
+) [164
+
+] [165
+
+]
+
+Package markdown Info: Including markdown document
+(markdown)             "volume-8-engineering-cerebro.md"
+
+\openout5 = `complete-builders-field-manual.luabridge.lua'.
+
+
+Package luabridge Info: Writing a helper Lua script to file
+(luabridge)             complete-builders-field-manual.luabridge.lua
+
+
+Package luabridge Info: Executing a helper Lua script from file
+(luabridge)             complete-builders-field-manual.luabridge.lua
+
+
+(|texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field
+-manual.luabridge.lua)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/5bc716a591dc6f5913c9df8b22b55f8b.md.tex
+Chapter 69.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/9fd0e41554294ec56b231a6826111832.verbatim)
+Underfull \hbox (badness 10000) in paragraph at lines 8--8
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 RE
+ADME.md\TU/AvenirNext(0)/m/n/10 , \TU/Menlo(0)/m/n/10 Cerebro.xcodeproj/project
+.pbxproj\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 1122) in paragraph at lines 8--8
+\TU/Menlo(0)/m/n/10 Cerebro/AppDelegate.m\TU/AvenirNext(0)/m/n/10 , and \TU/Men
+lo(0)/m/n/10 Cerebro/ROBMainViewController.mm \TU/AvenirNext(0)/m/n/10 establis
+h the application boundary
+ []
+
+[166
+
+]
+Chapter 70.
+[167
+
+] [168]
+Chapter 71.
+[169
+
+]
+Chapter 72.
+
+Underfull \hbox (badness 3229) in paragraph at lines 130--130
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Pa
+ckage.resolved \TU/AvenirNext(0)/m/n/10 inside the Xcode workspace, plus
+ []
+
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/aad5a77dca6dbea3ff874e385bbaad9a.verbatim) [170
+
+]
+Chapter 73.
+[171
+
+]
+Chapter 74.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/149ccede00aab17d105c7984449163f1.verbatim) [172
+
+]
+Chapter 75.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/acfafe86ee40f44f1d691aaf02ef9922.verbatim) [173
+
+]
+Chapter 76.
+[174
+
+]
+Chapter 77.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/c999fc48ac9fd4473cb5693430299a1f.verbatim) [175
+
+]
+Chapter 78.
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--190
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 RO
+BSerialBox.m \TU/AvenirNext(0)/m/n/10 methods \TU/Menlo(0)/m/n/10 applyVisionNe
+ckPan:tilt:\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/ca591f4c594505042628ca5a2307484c.verbatim) [176
+
+]
+Chapter 79.
+
+Underfull \hbox (badness 10000) in paragraph at lines 199--199
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Ce
+rebro/Cerebro-Bridging-Header.h\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+[177
+
+]
+Chapter 80.
+
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Ce
+rebro/CameraManager.swift \TU/AvenirNext(0)/m/n/10 types \TU/Menlo(0)/m/n/10 Ca
+meraSource\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 1496) in paragraph at lines 215--215
+[]\TU/AvenirNext(0)/m/n/10 The AVFoundation path discovers a camera, chooses a
+format, configures \TU/Menlo(0)/m/n/10 AVCaptureSession\TU/AvenirNext(0)/m/n/10
+ , and receives
+ []
+
+[178
+
+]
+Chapter 81.
+
+Underfull \hbox (badness 10000) in paragraph at lines 222--222
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 do
+cs/depth-camera.md\TU/AvenirNext(0)/m/n/10 , \TU/Menlo(0)/m/n/10 Cerebro/Webcam
+_color.py\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 2435) in paragraph at lines 227--227
+[]\TU/AvenirNext(0)/m/n/10 The Insta360 Pro II is a third, independent role. \T
+U/Menlo(0)/m/n/10 ROBInsta360CameraService \TU/AvenirNext(0)/m/n/10 establishes
+ the camera con-
+ []
+
+
+Underfull \hbox (badness 7981) in paragraph at lines 227--227
+\TU/AvenirNext(0)/m/n/10 trol session, maintains heartbeat, supervises RTMP/ffm
+peg preview, and reports bounded retry state.
+ []
+
+[179
+
+] [180]
+Chapter 82.
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--247
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Ca
+meraViewController.swift\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/4a9d3bb22c85c3d3aa3ab1ebba53e5be.verbatim) [181
+
+]
+Chapter 83.
+[182
+
+]
+Chapter 84.
+[183
+
+]
+Chapter 85.
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--269
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Ce
+rebro/ROBMLXRuntime.swift\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--269
+\TU/Menlo(0)/m/n/10 ROBMLXImprovisationProvider.swift\TU/AvenirNext(0)/m/n/10 ,
+ \TU/Menlo(0)/m/n/10 ROBMLXStageObservation.swift\TU/AvenirNext(0)/m/n/10 , \TU
+/Menlo(0)/m/n/10 docs/mlx-local-ai.md\TU/AvenirNext(0)/m/n/10 , and
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
+[]\TU/Menlo(0)/m/n/10 ROBMLXEngine \TU/AvenirNext(0)/m/n/10 is an actor. This s
+erializes model-container state, loading, diagnostics, VLM admis-
+ []
+
+
+Underfull \hbox (badness 5316) in paragraph at lines 270--270
+\TU/AvenirNext(0)/m/n/10 sion, embeddings, and semantic memory without blocking
+ the main actor. The initial local LLM is
+ []
+
+
+Underfull \hbox (badness 5077) in paragraph at lines 270--270
+\TU/Menlo(0)/m/n/10 mlx-community/Llama-3.2-1B-Instruct-4bit\TU/AvenirNext(0)/m
+/n/10 ; vision uses \TU/Menlo(0)/m/n/10 mlx-community/Qwen2-VL-2B-Instruct-4bit
+\TU/AvenirNext(0)/m/n/10 ; retrieval
+ []
+
+[184
+
+]
+Chapter 86.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/37fb83924f5c624f27acefc5dce5905a.verbatim)
+Underfull \hbox (badness 2277) in paragraph at lines 285--286
+[]\TU/Menlo(0)/m/n/10 loadLLM \TU/AvenirNext(0)/m/n/10 returns the already load
+ed container when the model ID matches, otherwise it records load-
+ []
+
+[185
+
+]
+Chapter 87.
+
+Underfull \hbox (badness 10000) in paragraph at lines 297--297
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 RO
+BDatasetManager \TU/AvenirNext(0)/m/n/10 in \TU/Menlo(0)/m/n/10 ROBSceneSnapsho
+t.swift\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 8075) in paragraph at lines 297--297
+\TU/Menlo(0)/m/n/10 TrainProjectModel.py\TU/AvenirNext(0)/m/n/10 , the model-ma
+nifest loader and \TU/Menlo(0)/m/n/10 YoloSpatialDetectionNetwork \TU/AvenirNex
+t(0)/m/n/10 branch in
+ []
+
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/488dadd45aba5bb2ea36961e9343feb7.verbatim) [186
+
+] [187]
+Chapter 88.
+[188
+
+]
+Chapter 89.
+[189
+
+]
+Chapter 90.
+[190
+
+]
+Chapter 91.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/0dd41ca32e96b4eff655b714e202e2da.verbatim) [191
+
+]
+Chapter 92.
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Ce
+rebro/ROBAI.swift\TU/AvenirNext(0)/m/n/10 , \TU/Menlo(0)/m/n/10 GeminiRoboticsP
+rotocol.swift\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
+\TU/Menlo(0)/m/n/10 ROBGeminiDiagnosticsWindowController.swift\TU/AvenirNext(0)
+/m/n/10 , \TU/Menlo(0)/m/n/10 docs/gemini-robotics-live.md\TU/AvenirNext(0)/m/n
+/10 , and
+ []
+
+[192
+
+]
+Chapter 93.
+[193
+
+]
+Chapter 94.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/8900aaf09ec0b695a56b97173cca51af.verbatim) [194
+
+]
+Chapter 95.
+
+Underfull \hbox (badness 1424) in paragraph at lines 401--401
+[]\TU/Menlo(0)/m/n/10 ROBTraversabilityRuntime \TU/AvenirNext(0)/m/n/10 learns
+belly-camera ground context only from manually traversed and odometry-
+ []
+
+[195
+
+]
+Chapter 96.
+
+Underfull \hbox (badness 10000) in paragraph at lines 406--406
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 RO
+BVideoServer.swift\TU/AvenirNext(0)/m/n/10 , \TU/Menlo(0)/m/n/10 ROBVideoProtoc
+ol.swift\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+[196
+
+]
+Chapter 97.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/c71263fbec83c5a57390e78314961c50.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/2852f1eea6b13029b7bcf17c8a5077e7.verbatim)
+Underfull \hbox (badness 10000) in paragraph at lines 431--431
+[]\TU/AvenirNext(0)/m/n/10 The prefix is not part of the NAL unit. The first by
+te after each prefix is the NAL header.
+ []
+
+[197
+
+]
+Underfull \hbox (badness 6300) in paragraph at lines 439--440
+[]\TU/AvenirNext(0)/m/n/10 Create a VideoToolbox H.264 compression session whos
+e destination pixels are NV12 video-range
+ []
+
+
+Underfull \hbox (badness 1097) in paragraph at lines 440--441
+[]\TU/AvenirNext(0)/m/n/10 Request real-time operation, disable frame reorderin
+g, prefer Constrained Baseline, set expected frame
+ []
+
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/145d95b4bf12a5ccec482ab76d745979.verbatim) [198] [199]
+Chapter 98.
+[200
+
+]
+Chapter 99.
+[201
+
+]
+Chapter 100.
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--490
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 RO
+BSaberChoreography.swift\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--490
+\TU/Menlo(0)/m/n/10 StageShows/ProgressiveSaberTraining.robshow.json\TU/AvenirN
+ext(0)/m/n/10 , \TU/Menlo(0)/m/n/10 GalacticSaberBattle.robshow.json\TU/AvenirN
+ext(0)/m/n/10 ,
+ []
+
+[202
+
+]
+Chapter 101.
+[203
+
+]
+Chapter 102.
+
+Underfull \hbox (badness 5064) in paragraph at lines 521--521
+[]\TU/AvenirNext(0)/m/n/10 Then perform a staged hardware test: no-power simula
+tion, powered actuators mechanically isolated,
+ []
+
+[204
+
+]
+Chapter 103.
+[205
+
+]
+Chapter 104.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_complete-builders-fie
+ld-manual/8299ced50d688155a8a316e2ee3711ae.verbatim)
+Underfull \hbox (badness 10000) in paragraph at lines 550--550
+[]\TU/AvenirNext(0)/m/n/10 For camera work, preserve \TU/Menlo(0)/m/n/10 Camera
+ManagerProtocol \TU/AvenirNext(0)/m/n/10 and \TU/Menlo(0)/m/n/10 CameraFrameSet
+\TU/AvenirNext(0)/m/n/10 . For model work, preserve
+ []
+
+[206
+
+]
+Chapter 105.
+[207
+
+]
+Chapter 106.
+[208
+
+]
+Chapter 107.
+) (./adult-learning-and-commissioning.tex [209
+
+]
 Appendix A.
-[62
+[210
 
 ]
 Appendix B.
-[63
+[211
 
 ]
 Appendix C.
-) [64
+) [212
 
 ]
 Appendix D.
-[65
+[213
 
 ]
 Appendix E.
-[66
+[214
 
 ]
 Appendix F.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1025--1025
+Underfull \hbox (badness 10000) in paragraph at lines 1306--1306
 []|\TU/AvenirNext(0)/m/n/10 PROTECTION / CON-
  []
 
-[67
+[215
 
 ]
 Appendix G.
-[68
+[216
 
 ]
 Appendix H.
 
-Underfull \hbox (badness 1132) in paragraph at lines 1075--1075
-[]|\TU/AvenirNext(0)/m/n/10 Captured Ubuntu runtime evidence for the two AMBER 
+Underfull \hbox (badness 1939) in paragraph at lines 1357--1357
+[]|\TU/AvenirNext(0)/m/n/10 Historical Mac-software evidence: the pre-Git seria
+l-command
+ []
+
+
+Underfull \hbox (badness 1132) in paragraph at lines 1357--1357
+[]|\TU/AvenirNext(0)/m/n/10 Captured Ubuntu runtime evidence for the two AMBER
 cores;
  []
 
 
-Underfull \hbox (badness 3039) in paragraph at lines 1098--1098
+Underfull \hbox (badness 1824) in paragraph at lines 1386--1386
+[]|\TU/AvenirNext(0)/m/n/10 Current transport, video, depth, autonomy, recordin
+g/training,
+ []
+
+
+Underfull \hbox (badness 3039) in paragraph at lines 1386--1386
 []|\TU/AvenirNext(0)/m/n/10 H.264 validation, SPS/PPS format construction, AVCC
  sample
  []
 
-[69
 
-] [70]
+Underfull \hbox (badness 3872) in paragraph at lines 1386--1386
+[]|\TU/AvenirNext(0)/m/n/10 Slamware acquisition, compact RLS1 scans, authentic
+ated lo-
+ []
+
+[217
+
+] [218]
 Appendix I.
-[71
+[219
 
-] 
+]
+Appendix J.
+[220
+
+]
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-builders-field-manual.
@@ -2029,18 +3205,18 @@ aux)
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-Package rerunfilecheck Info: File `complete-builders-field-manual.out' has not 
+Package rerunfilecheck Info: File `complete-builders-field-manual.out' has not
 changed.
-(rerunfilecheck)             Checksum: 47B003156CFA99FA292804B4CEAFE48C;21220.
- ) 
+(rerunfilecheck)             Checksum: 88DB4CD290987EB7DB0749B44D641E61;87343.
+ )
 Here is how much of TeX's memory you used:
- 35556 strings out of 468168
- 774979 string characters out of 5423555
- 1306568 words of memory out of 5000000
- 63636 multiletter control sequences out of 15000+600000
- 629199 words of font info for 126 fonts, out of 8000000 for 9000
+ 40390 strings out of 468168
+ 952522 string characters out of 5423555
+ 1854309 words of memory out of 5000000
+ 68072 multiletter control sequences out of 15000+600000
+ 633616 words of font info for 153 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 101i,13n,131p,1027b,947s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,13n,131p,1158b,2842s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/complete-build
-ers-field-manual.xdv (79 pages, 1752544 bytes).
+ers-field-manual.xdv (236 pages, 6173520 bytes).

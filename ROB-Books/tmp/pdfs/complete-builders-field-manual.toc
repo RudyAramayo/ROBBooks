@@ -1,107 +1,377 @@
 \contentsline {part}{I\hspace {1em}Intent and architecture}{1}{part.1}%
 \contentsline {chapter}{\numberline {1}Design history and current scope}{3}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Evidence-based chronology}{3}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Design principles that recur}{4}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Current subsystem status at a glance}{5}{section.1.3}%
-\contentsline {chapter}{\numberline {2}Whole-robot architecture}{7}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Physical and information paths}{7}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Desired component ownership map}{7}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Sense-plan-act without surrendering authority}{8}{section.2.3}%
-\contentsline {part}{II\hspace {1em}Mechanical build}{9}{part.2}%
-\contentsline {chapter}{\numberline {3}Build the mobile base}{11}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Start from interfaces}{11}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Tread tension and support}{11}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Flipper revision and third-wheel concept}{12}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Provisional assembly sequence to verify}{13}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Build above the base}{15}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Body-to-torso connection}{15}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Body rotation and cable continuity}{15}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Head and neck}{16}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Arms}{16}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Fabrication and finish}{19}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Measurement plan}{19}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Process traveler}{19}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Design for assembly and service}{20}{section.5.3}%
-\contentsline {part}{III\hspace {1em}Power, electronics, and firmware}{21}{part.3}%
-\contentsline {chapter}{\numberline {6}Store, convert, protect, and disconnect energy}{23}{chapter.6}%
-\contentsline {section}{\numberline {6.1}What the archive says}{23}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Required single-line diagram}{23}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Motor electrical evidence}{24}{section.6.3}%
-\contentsline {section}{\numberline {6.4}Emergency stop and safe energy state}{24}{section.6.4}%
-\contentsline {chapter}{\numberline {7}Base electronics and firmware}{27}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Three historical roles, one present role}{27}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Confirmed pin and communication map}{27}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Serial frame}{28}{section.7.3}%
-\contentsline {section}{\numberline {7.4}Actuator compact serial}{28}{section.7.4}%
-\contentsline {section}{\numberline {7.5}IR and IMU status}{28}{section.7.5}%
-\contentsline {section}{\numberline {7.6}Safety and correctness audit}{29}{section.7.6}%
-\contentsline {section}{\numberline {7.7}Replacement-firmware architecture}{29}{section.7.7}%
-\contentsline {part}{IV\hspace {1em}Software and perception}{31}{part.4}%
-\contentsline {chapter}{\numberline {8}Central coordination on the Mac mini}{33}{chapter.8}%
-\contentsline {section}{\numberline {8.1}Principal components}{33}{section.8.1}%
-\contentsline {section}{\numberline {8.2}Base heartbeat ownership}{33}{section.8.2}%
-\contentsline {section}{\numberline {8.3}ROBSerialBox as an integration history}{34}{section.8.3}%
-\contentsline {section}{\numberline {8.4}External helpers and dependencies}{34}{section.8.4}%
-\contentsline {section}{\numberline {8.5}Legacy boundary}{34}{section.8.5}%
-\contentsline {section}{\numberline {8.6}Typed scene state and local intelligence}{35}{section.8.6}%
-\contentsline {chapter}{\numberline {9}Control from iPhone, Watch, and Vision Pro}{37}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Controller roles}{37}{section.9.1}%
-\contentsline {section}{\numberline {9.2}ROBControl v2}{37}{section.9.2}%
-\contentsline {section}{\numberline {9.3}Separate video service}{37}{section.9.3}%
-\contentsline {section}{\numberline {9.4}Safety timing layers}{38}{section.9.4}%
-\contentsline {section}{\numberline {9.5}Privacy review}{38}{section.9.5}%
-\contentsline {chapter}{\numberline {10}Encode, transport, decode, and present live video}{40}{chapter.10}%
-\contentsline {section}{\numberline {10.1}The end-to-end frame pipeline}{40}{section.10.1}%
-\contentsline {section}{\numberline {10.2}Scale into the encoder's pixel format}{40}{section.10.2}%
-\contentsline {section}{\numberline {10.3}Configure low-latency H.264}{40}{section.10.3}%
-\contentsline {section}{\numberline {10.4}Understand AVCC, SPS, PPS, and access units}{41}{section.10.4}%
-\contentsline {section}{\numberline {10.5}Wrap media in two bounded layers}{41}{section.10.5}%
-\contentsline {section}{\numberline {10.6}Apply backpressure before latency accumulates}{41}{section.10.6}%
-\contentsline {section}{\numberline {10.7}Decode framing before decoding H.264}{42}{section.10.7}%
-\contentsline {section}{\numberline {10.8}Present and recover without blocking control}{42}{section.10.8}%
-\contentsline {section}{\numberline {10.9}Advanced verification matrix}{42}{section.10.9}%
-\contentsline {chapter}{\numberline {11}Perception and mapping}{45}{chapter.11}%
-\contentsline {section}{\numberline {11.1}RGB-D camera}{45}{section.11.1}%
-\contentsline {section}{\numberline {11.2}Perception snapshots and bounded rendering}{45}{section.11.2}%
-\contentsline {section}{\numberline {11.3}Kinect, OpenNI, NiTE, and PCL archaeology}{45}{section.11.3}%
-\contentsline {section}{\numberline {11.4}RPLidar}{46}{section.11.4}%
-\contentsline {section}{\numberline {11.5}IR and IMU}{46}{section.11.5}%
-\contentsline {section}{\numberline {11.6}Coordinate-frame discipline}{46}{section.11.6}%
-\contentsline {chapter}{\numberline {12}Behavior above raw motor commands}{49}{chapter.12}%
-\contentsline {section}{\numberline {12.1}Servo and arm control}{49}{section.12.1}%
-\contentsline {section}{\numberline {12.2}Keyframe animation}{49}{section.12.2}%
-\contentsline {section}{\numberline {12.3}Speech}{49}{section.12.3}%
-\contentsline {section}{\numberline {12.4}Controller-activated autonomy}{50}{section.12.4}%
-\contentsline {section}{\numberline {12.5}Gemini integration}{50}{section.12.5}%
-\contentsline {section}{\numberline {12.6}Local MLX, comedy, and battle training}{50}{section.12.6}%
-\contentsline {section}{\numberline {12.7}Robot-action implementation status}{51}{section.12.7}%
-\contentsline {part}{V\hspace {1em}Integration, operation, and maintenance}{52}{part.5}%
-\contentsline {chapter}{\numberline {13}Test strategy and safety case}{54}{chapter.13}%
-\contentsline {section}{\numberline {13.1}Requirements traceability}{54}{section.13.1}%
-\contentsline {section}{\numberline {13.2}Progressive test ladder}{54}{section.13.2}%
-\contentsline {section}{\numberline {13.3}Failure injection}{54}{section.13.3}%
-\contentsline {section}{\numberline {13.4}Measure stop behavior}{55}{section.13.4}%
-\contentsline {chapter}{\numberline {14}Present ROB safely in public}{57}{chapter.14}%
-\contentsline {section}{\numberline {14.1}Roles}{57}{section.14.1}%
-\contentsline {section}{\numberline {14.2}Pre-show checklist}{57}{section.14.2}%
-\contentsline {section}{\numberline {14.3}Show-state model}{57}{section.14.3}%
-\contentsline {section}{\numberline {14.4}Audience and privacy}{58}{section.14.4}%
-\contentsline {chapter}{\numberline {15}Keep the robot understandable}{60}{chapter.15}%
-\contentsline {section}{\numberline {15.1}Before and after every operating day}{60}{section.15.1}%
-\contentsline {section}{\numberline {15.2}Scheduled maintenance record}{60}{section.15.2}%
-\contentsline {section}{\numberline {15.3}Configuration control}{60}{section.15.3}%
-\contentsline {section}{\numberline {15.4}Troubleshooting by layer}{60}{section.15.4}%
-\contentsline {chapter}{\numberline {A}Teach the architecture without hiding the hazards}{62}{appendix.A}%
-\contentsline {section}{\numberline {A.1}A spiral curriculum for ROB}{62}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Facilitation pattern}{62}{section.A.2}%
-\contentsline {chapter}{\numberline {B}Commission the control path as one safety-related system}{63}{appendix.B}%
-\contentsline {section}{\numberline {B.1}Connection and enrollment matrix}{63}{section.B.1}%
-\contentsline {section}{\numberline {B.2}Measure the whole stop chain}{63}{section.B.2}%
-\contentsline {chapter}{\numberline {C}Capture the builder's oral history}{64}{appendix.C}%
-\contentsline {section}{\numberline {C.1}Interview prompts}{64}{section.C.1}%
-\contentsline {chapter}{\numberline {D}Builder input ledger}{65}{appendix.D}%
-\contentsline {chapter}{\numberline {E}Bill of materials worksheet}{66}{appendix.E}%
-\contentsline {chapter}{\numberline {F}Wiring and connector worksheet}{67}{appendix.F}%
-\contentsline {chapter}{\numberline {G}Serial protocol reference}{68}{appendix.G}%
-\contentsline {chapter}{\numberline {H}Repository source map}{69}{appendix.H}%
-\contentsline {chapter}{\numberline {I}Photo and artwork credits}{71}{appendix.I}%
+\contentsline {section}{\numberline {1.1}The one hard constraint}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Evidence-based chronology}{4}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Cerebro's recovered software roots}{4}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Design principles that recur}{5}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Current subsystem status at a glance}{6}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Whole-robot architecture}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Physical and information paths}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Desired component ownership map}{9}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Sense-plan-act without surrendering authority}{10}{section.2.3}%
+\contentsline {part}{II\hspace {1em}Mechanical build}{11}{part.2}%
+\contentsline {chapter}{\numberline {3}Build the mobile base}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Start from interfaces}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Tread tension and support}{14}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Flipper revision and third-wheel concept}{14}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Drivetrain experiment ledger}{15}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Provisional assembly sequence to verify}{16}{section.3.5}%
+\contentsline {chapter}{\numberline {4}Build above the base}{18}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Body-to-torso connection}{18}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Body rotation and cable continuity}{18}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Head and neck}{19}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Arms}{20}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Fabrication and finish}{22}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Measurement plan}{22}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Process traveler}{22}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Design for assembly and service}{23}{section.5.3}%
+\contentsline {part}{III\hspace {1em}Power, electronics, and firmware}{24}{part.3}%
+\contentsline {chapter}{\numberline {6}Store, convert, protect, and disconnect energy}{26}{chapter.6}%
+\contentsline {section}{\numberline {6.1}What the archive says}{26}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Required single-line diagram}{27}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Loads named in the builder record}{28}{section.6.3}%
+\contentsline {section}{\numberline {6.4}Motor electrical evidence}{28}{section.6.4}%
+\contentsline {section}{\numberline {6.5}Emergency stop and safe energy state}{29}{section.6.5}%
+\contentsline {chapter}{\numberline {7}Base electronics and firmware}{31}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Three historical roles, one present role}{31}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Confirmed pin and communication map}{31}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Serial frame}{32}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Actuator compact serial}{33}{section.7.4}%
+\contentsline {section}{\numberline {7.5}IR and IMU status}{33}{section.7.5}%
+\contentsline {section}{\numberline {7.6}Safety and correctness audit}{33}{section.7.6}%
+\contentsline {section}{\numberline {7.7}Replacement-firmware architecture}{34}{section.7.7}%
+\contentsline {section}{\numberline {7.8}Interrupt-first rewire proposal}{34}{section.7.8}%
+\contentsline {section}{\numberline {7.9}Successor controller study}{35}{section.7.9}%
+\contentsline {part}{IV\hspace {1em}Software and perception}{36}{part.4}%
+\contentsline {chapter}{\numberline {8}Central coordination on the Mac mini}{38}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Principal components}{38}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Present belly compute, USB, and Ethernet record}{38}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Base heartbeat ownership}{39}{section.8.3}%
+\contentsline {section}{\numberline {8.4}ROBSerialBox as an integration history}{39}{section.8.4}%
+\contentsline {section}{\numberline {8.5}External helpers and dependencies}{40}{section.8.5}%
+\contentsline {section}{\numberline {8.6}Legacy boundary}{40}{section.8.6}%
+\contentsline {section}{\numberline {8.7}Typed scene state and local intelligence}{40}{section.8.7}%
+\contentsline {chapter}{\numberline {9}Control from iPhone, Watch, and Vision Pro}{43}{chapter.9}%
+\contentsline {section}{\numberline {9.1}Controller roles}{43}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Explicit drive ownership}{43}{section.9.2}%
+\contentsline {section}{\numberline {9.3}Independent Vision arm authority}{43}{section.9.3}%
+\contentsline {section}{\numberline {9.4}ROBControl v2}{44}{section.9.4}%
+\contentsline {section}{\numberline {9.5}Separate video service}{44}{section.9.5}%
+\contentsline {section}{\numberline {9.6}Safety timing layers}{44}{section.9.6}%
+\contentsline {section}{\numberline {9.7}Privacy review}{45}{section.9.7}%
+\contentsline {chapter}{\numberline {10}Encode, transport, decode, and present live video}{47}{chapter.10}%
+\contentsline {section}{\numberline {10.1}The end-to-end frame pipeline}{47}{section.10.1}%
+\contentsline {section}{\numberline {10.2}Scale into the encoder's pixel format}{47}{section.10.2}%
+\contentsline {section}{\numberline {10.3}Configure low-latency H.264}{47}{section.10.3}%
+\contentsline {section}{\numberline {10.4}Understand AVCC, SPS, PPS, and access units}{48}{section.10.4}%
+\contentsline {section}{\numberline {10.5}Wrap media in two bounded layers}{48}{section.10.5}%
+\contentsline {section}{\numberline {10.6}Apply backpressure before latency accumulates}{49}{section.10.6}%
+\contentsline {section}{\numberline {10.7}Decode framing before decoding H.264}{49}{section.10.7}%
+\contentsline {section}{\numberline {10.8}Present and recover without blocking control}{49}{section.10.8}%
+\contentsline {section}{\numberline {10.9}Advanced verification matrix}{50}{section.10.9}%
+\contentsline {chapter}{\numberline {11}Perception and mapping}{52}{chapter.11}%
+\contentsline {section}{\numberline {11.1}RGB-D camera}{52}{section.11.1}%
+\contentsline {section}{\numberline {11.2}Perception snapshots and bounded rendering}{52}{section.11.2}%
+\contentsline {section}{\numberline {11.3}Kinect, OpenNI, NiTE, and PCL archaeology}{52}{section.11.3}%
+\contentsline {section}{\numberline {11.4}RPLidar}{53}{section.11.4}%
+\contentsline {section}{\numberline {11.5}IR and IMU}{53}{section.11.5}%
+\contentsline {section}{\numberline {11.6}Coordinate-frame discipline}{53}{section.11.6}%
+\contentsline {chapter}{\numberline {12}Behavior above raw motor commands}{56}{chapter.12}%
+\contentsline {section}{\numberline {12.1}Servo and arm control}{56}{section.12.1}%
+\contentsline {section}{\numberline {12.2}Keyframe animation}{57}{section.12.2}%
+\contentsline {section}{\numberline {12.3}Speech}{57}{section.12.3}%
+\contentsline {section}{\numberline {12.4}Consent-based face identity}{57}{section.12.4}%
+\contentsline {section}{\numberline {12.5}Private Messages bridge}{57}{section.12.5}%
+\contentsline {section}{\numberline {12.6}Explicit recording and dataset provenance}{58}{section.12.6}%
+\contentsline {section}{\numberline {12.7}Controller-activated autonomy}{58}{section.12.7}%
+\contentsline {section}{\numberline {12.8}Gemini integration}{58}{section.12.8}%
+\contentsline {section}{\numberline {12.9}Local MLX, comedy, and battle training}{59}{section.12.9}%
+\contentsline {section}{\numberline {12.10}Robot-action implementation status}{59}{section.12.10}%
+\contentsline {part}{V\hspace {1em}Integration, operation, and maintenance}{61}{part.5}%
+\contentsline {chapter}{\numberline {13}Test strategy and safety case}{63}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Requirements traceability}{63}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Progressive test ladder}{63}{section.13.2}%
+\contentsline {section}{\numberline {13.3}Failure injection}{63}{section.13.3}%
+\contentsline {section}{\numberline {13.4}Measure stop behavior}{64}{section.13.4}%
+\contentsline {chapter}{\numberline {14}Present ROB safely in public}{66}{chapter.14}%
+\contentsline {section}{\numberline {14.1}Roles}{66}{section.14.1}%
+\contentsline {section}{\numberline {14.2}Pre-show checklist}{66}{section.14.2}%
+\contentsline {section}{\numberline {14.3}Show-state model}{66}{section.14.3}%
+\contentsline {section}{\numberline {14.4}Audience and privacy}{67}{section.14.4}%
+\contentsline {chapter}{\numberline {15}Keep the robot understandable}{69}{chapter.15}%
+\contentsline {section}{\numberline {15.1}Before and after every operating day}{69}{section.15.1}%
+\contentsline {section}{\numberline {15.2}Scheduled maintenance record}{69}{section.15.2}%
+\contentsline {section}{\numberline {15.3}Configuration control}{69}{section.15.3}%
+\contentsline {section}{\numberline {15.4}Troubleshooting by layer}{69}{section.15.4}%
+\contentsline {part}{VI\hspace {1em}Advanced engineering compendium}{71}{part.6}%
+\contentsline {part}{VII\hspace {1em}AI-assisted robotics engineering}{73}{part.7}%
+\contentsline {chapter}{\numberline {16}Building R.O.B.}{74}{chapter.16}%
+\contentsline {section}{\numberline {16.1}AI, Robotics, and the Codex-Accelerated Evolution of ROBController and Cerebro}{74}{section.16.1}%
+\contentsline {section}{\numberline {16.2}Preface: one builder, many keyboards}{74}{section.16.2}%
+\contentsline {section}{\numberline {16.3}1. The robot is a distributed system}{74}{section.16.3}%
+\contentsline {section}{\numberline {16.4}2. Handmade foundations: Cerebro 2017–2025 and controller 2022–2023}{75}{section.16.4}%
+\contentsline {subsection}{\numberline {16.4.1}What Codex should learn from this era}{76}{subsection.16.4.1}%
+\contentsline {section}{\numberline {16.5}3. Era two: the v5 migration and solo workshop, August–September 2025}{76}{section.16.5}%
+\contentsline {subsection}{\numberline {16.5.1}Turning workshop knowledge into specifications}{77}{subsection.16.5.1}%
+\contentsline {section}{\numberline {16.6}4. The acceleration hinge: August 1, 2026}{77}{section.16.6}%
+\contentsline {subsection}{\numberline {16.6.1}Why this resembles AI-assisted engineering}{77}{subsection.16.6.1}%
+\contentsline {section}{\numberline {16.7}5. Rebuilding the secure control plane with Codex}{78}{section.16.7}%
+\contentsline {subsection}{\numberline {16.7.1}5.1 Start with a contract}{78}{subsection.16.7.1}%
+\contentsline {subsection}{\numberline {16.7.2}5.2 Implement the shared wire format first}{78}{subsection.16.7.2}%
+\contentsline {subsection}{\numberline {16.7.3}5.3 Add transport without weakening authentication}{78}{subsection.16.7.3}%
+\contentsline {section}{\numberline {16.8}6. Operator authority, Watch control, and autonomy}{79}{section.16.8}%
+\contentsline {section}{\numberline {16.9}7. Vision, depth, and video as bounded pipelines}{79}{section.16.9}%
+\contentsline {section}{\numberline {16.10}8. AI inside Cerebro: proposals, tools, and speech}{80}{section.16.10}%
+\contentsline {subsection}{\numberline {16.10.1}A safe OpenAI integration task for Codex}{81}{subsection.16.10.1}%
+\contentsline {section}{\numberline {16.11}9. Local improvisation and stage shows}{81}{section.16.11}%
+\contentsline {section}{\numberline {16.12}Interlude: the August 14–23 integration sprint}{81}{section.16.12}%
+\contentsline {section}{\numberline {16.13}10. Dependencies are part of robot safety}{82}{section.16.13}%
+\contentsline {section}{\numberline {16.14}11. A repeatable Codex workflow for these repositories}{83}{section.16.14}%
+\contentsline {subsection}{\numberline {16.14.1}Step 1: protect the worktree}{83}{subsection.16.14.1}%
+\contentsline {subsection}{\numberline {16.14.2}Step 2: state outcome and invariants}{83}{subsection.16.14.2}%
+\contentsline {subsection}{\numberline {16.14.3}Step 3: ask for read-only diagnosis}{83}{subsection.16.14.3}%
+\contentsline {subsection}{\numberline {16.14.4}Step 4: divide at stable boundaries}{83}{subsection.16.14.4}%
+\contentsline {subsection}{\numberline {16.14.5}Step 5: make Codex edit and verify}{83}{subsection.16.14.5}%
+\contentsline {subsection}{\numberline {16.14.6}Step 6: inspect the diff yourself}{83}{subsection.16.14.6}%
+\contentsline {subsection}{\numberline {16.14.7}Step 7: validate in layers}{83}{subsection.16.14.7}%
+\contentsline {subsection}{\numberline {16.14.8}Step 8: commit the reasoning}{84}{subsection.16.14.8}%
+\contentsline {section}{\numberline {16.15}12. Prompt recipes for the actual change families}{84}{section.16.15}%
+\contentsline {subsection}{\numberline {16.15.1}Cross-repository protocol change}{84}{subsection.16.15.1}%
+\contentsline {subsection}{\numberline {16.15.2}Concurrency bug}{84}{subsection.16.15.2}%
+\contentsline {subsection}{\numberline {16.15.3}Camera crash}{84}{subsection.16.15.3}%
+\contentsline {subsection}{\numberline {16.15.4}New AI tool}{84}{subsection.16.15.4}%
+\contentsline {subsection}{\numberline {16.15.5}Arm feature}{84}{subsection.16.15.5}%
+\contentsline {subsection}{\numberline {16.15.6}Face-identity feature}{84}{subsection.16.15.6}%
+\contentsline {subsection}{\numberline {16.15.7}Private Messages feature}{85}{subsection.16.15.7}%
+\contentsline {subsection}{\numberline {16.15.8}Training-data recorder}{85}{subsection.16.15.8}%
+\contentsline {subsection}{\numberline {16.15.9}Documentation from code}{85}{subsection.16.15.9}%
+\contentsline {section}{\numberline {16.16}13. Reviewing AI-generated robot code}{85}{section.16.16}%
+\contentsline {subsection}{\numberline {16.16.1}Safety}{85}{subsection.16.16.1}%
+\contentsline {subsection}{\numberline {16.16.2}Security}{85}{subsection.16.16.2}%
+\contentsline {subsection}{\numberline {16.16.3}Concurrency}{86}{subsection.16.16.3}%
+\contentsline {subsection}{\numberline {16.16.4}Compatibility}{86}{subsection.16.16.4}%
+\contentsline {subsection}{\numberline {16.16.5}Evidence}{86}{subsection.16.16.5}%
+\contentsline {section}{\numberline {16.17}14. What remains intentionally unfinished}{86}{section.16.17}%
+\contentsline {section}{\numberline {16.18}15. The developer after code generation}{87}{section.16.18}%
+\contentsline {subsection}{\numberline {16.18.1}From implementation task to outcome contract}{87}{subsection.16.18.1}%
+\contentsline {subsection}{\numberline {16.18.2}The new literacy}{87}{subsection.16.18.2}%
+\contentsline {section}{\numberline {16.19}16. How an AI development system actually works}{88}{section.16.19}%
+\contentsline {subsection}{\numberline {16.19.1}Model}{88}{subsection.16.19.1}%
+\contentsline {subsection}{\numberline {16.19.2}Context}{88}{subsection.16.19.2}%
+\contentsline {subsection}{\numberline {16.19.3}Instructions and precedence}{88}{subsection.16.19.3}%
+\contentsline {subsection}{\numberline {16.19.4}Tools}{88}{subsection.16.19.4}%
+\contentsline {subsection}{\numberline {16.19.5}Execution environment}{88}{subsection.16.19.5}%
+\contentsline {subsection}{\numberline {16.19.6}Feedback loop}{89}{subsection.16.19.6}%
+\contentsline {section}{\numberline {16.20}17. Communicating for reliable results}{89}{section.16.20}%
+\contentsline {subsection}{\numberline {16.20.1}Goal: define observable behavior}{89}{subsection.16.20.1}%
+\contentsline {subsection}{\numberline {16.20.2}Context: provide decision-changing facts}{89}{subsection.16.20.2}%
+\contentsline {subsection}{\numberline {16.20.3}Output: say what done looks like}{89}{subsection.16.20.3}%
+\contentsline {subsection}{\numberline {16.20.4}Boundaries: protect what matters}{89}{subsection.16.20.4}%
+\contentsline {subsection}{\numberline {16.20.5}Acceptance evidence}{90}{subsection.16.20.5}%
+\contentsline {subsection}{\numberline {16.20.6}Steering without restarting}{90}{subsection.16.20.6}%
+\contentsline {section}{\numberline {16.21}18. Context engineering for large repositories}{90}{section.16.21}%
+\contentsline {subsection}{\numberline {16.21.1}Give the repository a map}{90}{subsection.16.21.1}%
+\contentsline {subsection}{\numberline {16.21.2}Preserve executable knowledge}{91}{subsection.16.21.2}%
+\contentsline {subsection}{\numberline {16.21.3}Separate durable truth from session history}{91}{subsection.16.21.3}%
+\contentsline {subsection}{\numberline {16.21.4}Ask for evidence-backed exploration}{91}{subsection.16.21.4}%
+\contentsline {subsection}{\numberline {16.21.5}Manage context decay}{91}{subsection.16.21.5}%
+\contentsline {section}{\numberline {16.22}19. Verification is the product}{92}{section.16.22}%
+\contentsline {subsection}{\numberline {16.22.1}The evidence ladder}{92}{subsection.16.22.1}%
+\contentsline {subsection}{\numberline {16.22.2}Ask the agent to falsify its own patch}{92}{subsection.16.22.2}%
+\contentsline {subsection}{\numberline {16.22.3}Evaluate repeated AI workflows}{92}{subsection.16.22.3}%
+\contentsline {subsection}{\numberline {16.22.4}Stop conditions are part of verification}{93}{subsection.16.22.4}%
+\contentsline {section}{\numberline {16.23}20. Designing AI-native software systems}{93}{section.16.23}%
+\contentsline {subsection}{\numberline {16.23.1}Separate proposal from execution}{93}{subsection.16.23.1}%
+\contentsline {subsection}{\numberline {16.23.2}Give tools narrow schemas}{93}{subsection.16.23.2}%
+\contentsline {subsection}{\numberline {16.23.3}Treat retrieval as evidence selection}{94}{subsection.16.23.3}%
+\contentsline {subsection}{\numberline {16.23.4}Design for uncertainty}{94}{subsection.16.23.4}%
+\contentsline {subsection}{\numberline {16.23.5}Observe the whole loop}{94}{subsection.16.23.5}%
+\contentsline {section}{\numberline {16.24}21. A thirty-day AI developer practice}{94}{section.16.24}%
+\contentsline {subsection}{\numberline {16.24.1}Week 1: learn to specify}{94}{subsection.16.24.1}%
+\contentsline {subsection}{\numberline {16.24.2}Week 2: build evidence loops}{94}{subsection.16.24.2}%
+\contentsline {subsection}{\numberline {16.24.3}Week 3: direct cross-system changes}{95}{subsection.16.24.3}%
+\contentsline {subsection}{\numberline {16.24.4}Week 4: design an AI-native capability}{95}{subsection.16.24.4}%
+\contentsline {subsection}{\numberline {16.24.5}Graduation test}{95}{subsection.16.24.5}%
+\contentsline {section}{\numberline {16.25}22. The AI change contract worksheet}{95}{section.16.25}%
+\contentsline {subsection}{\numberline {16.25.1}Outcome}{95}{subsection.16.25.1}%
+\contentsline {subsection}{\numberline {16.25.2}Sources and system map}{96}{subsection.16.25.2}%
+\contentsline {subsection}{\numberline {16.25.3}Invariants and authority}{96}{subsection.16.25.3}%
+\contentsline {subsection}{\numberline {16.25.4}Failure behavior}{96}{subsection.16.25.4}%
+\contentsline {subsection}{\numberline {16.25.5}Acceptance evidence}{96}{subsection.16.25.5}%
+\contentsline {subsection}{\numberline {16.25.6}Ready-to-use prompt}{96}{subsection.16.25.6}%
+\contentsline {subsection}{\numberline {16.25.7}Human sign-off}{97}{subsection.16.25.7}%
+\contentsline {section}{\numberline {16.26}23. Local intelligence on Apple silicon: Swift, MLX, and Llama}{97}{section.16.26}%
+\contentsline {subsection}{\numberline {16.26.1}23.1 The actual Cerebro model stack}{97}{subsection.16.26.1}%
+\contentsline {subsection}{\numberline {16.26.2}23.2 Tokens, context, temperature, and hallucination}{98}{subsection.16.26.2}%
+\contentsline {subsection}{\numberline {16.26.3}23.3 Llama through MLX versus llama.cpp}{98}{subsection.16.26.3}%
+\contentsline {subsection}{\numberline {16.26.4}Lab: trace one local sentence}{98}{subsection.16.26.4}%
+\contentsline {section}{\numberline {16.27}24. Giving a language model eyes with MLXVLM}{99}{section.16.27}%
+\contentsline {subsection}{\numberline {16.27.1}24.1 Sampling protects the camera and controls}{99}{subsection.16.27.1}%
+\contentsline {subsection}{\numberline {16.27.2}24.2 Confidence is a gate, not decoration}{99}{subsection.16.27.2}%
+\contentsline {subsection}{\numberline {16.27.3}Lab: make the vision result fail safely}{100}{subsection.16.27.3}%
+\contentsline {subsection}{\numberline {16.27.4}24.3 Learning is a release pipeline, not a reflex}{100}{subsection.16.27.4}%
+\contentsline {section}{\numberline {16.28}25. Implementing model-safe show logic}{100}{section.16.28}%
+\contentsline {subsection}{\numberline {16.28.1}25.1 How to add a safe model cue}{101}{subsection.16.28.1}%
+\contentsline {subsection}{\numberline {16.28.2}25.2 A show is a state machine}{101}{subsection.16.28.2}%
+\contentsline {subsection}{\numberline {16.28.3}Rehearsal checklist}{101}{subsection.16.28.3}%
+\contentsline {section}{\numberline {16.29}26. Vision Pro as ROB's voice and spatial control desk}{101}{section.16.29}%
+\contentsline {subsection}{\numberline {16.29.1}26.1 Demonstrating the new controls}{102}{subsection.16.29.1}%
+\contentsline {subsection}{\numberline {16.29.2}26.2 The rest of the spatial control path}{102}{subsection.16.29.2}%
+\contentsline {subsection}{\numberline {16.29.3}Build exercise: add a third text mode without adding authority}{103}{subsection.16.29.3}%
+\contentsline {section}{\numberline {16.30}Epilogue: authorship after acceleration}{103}{section.16.30}%
+\contentsline {section}{\numberline {16.31}Sources and further reading}{103}{section.16.31}%
+\contentsline {subsection}{\numberline {16.31.1}Repository sources}{103}{subsection.16.31.1}%
+\contentsline {subsection}{\numberline {16.31.2}Official OpenAI documentation}{104}{subsection.16.31.2}%
+\contentsline {part}{VIII\hspace {1em}AMBER B1, Ubuntu, CAN, and LCM}{105}{part.8}%
+\contentsline {chapter}{\numberline {17}The arm system we actually have}{106}{chapter.17}%
+\contentsline {section}{\numberline {17.1}An evidence ledger}{106}{section.17.1}%
+\contentsline {chapter}{\numberline {18}Read the repository without copying a whole computer}{107}{chapter.18}%
+\contentsline {section}{\numberline {18.1}Snapshot record}{107}{section.18.1}%
+\contentsline {chapter}{\numberline {19}URDF is a geometric sentence}{108}{chapter.19}%
+\contentsline {section}{\numberline {19.1}The single B1 chain}{108}{section.19.1}%
+\contentsline {section}{\numberline {19.2}The dual model has a warning in its own source}{108}{section.19.2}%
+\contentsline {chapter}{\numberline {20}Measure two arms into ROB's coordinate system}{110}{chapter.20}%
+\contentsline {section}{\numberline {20.1}Mount-transform worksheet}{110}{section.20.1}%
+\contentsline {chapter}{\numberline {21}CAN: stable identity before traffic}{111}{chapter.21}%
+\contentsline {section}{\numberline {21.1}Prefer a deterministic host binding}{111}{section.21.1}%
+\contentsline {section}{\numberline {21.2}CAN fault questions}{111}{section.21.2}%
+\contentsline {chapter}{\numberline {22}CAN from copper to Linux}{112}{chapter.22}%
+\contentsline {section}{\numberline {22.1}What one CAN frame teaches}{112}{section.22.1}%
+\contentsline {section}{\numberline {22.2}Read the deterministic initializer line by line}{113}{section.22.2}%
+\contentsline {chapter}{\numberline {23}Configure one core per side}{114}{chapter.23}%
+\contentsline {chapter}{\numberline {24}The observed UDP protocol}{115}{chapter.24}%
+\contentsline {section}{\numberline {24.1}Command catalogue}{115}{section.24.1}%
+\contentsline {section}{\numberline {24.2}Gripper sequence}{115}{section.24.2}%
+\contentsline {section}{\numberline {24.3}Protocol hardening needed}{116}{section.24.3}%
+\contentsline {chapter}{\numberline {25}LCM and ROS 2 interfaces}{117}{chapter.25}%
+\contentsline {chapter}{\numberline {26}LCM workshop: schema, generated code, and the Python bridge}{118}{chapter.26}%
+\contentsline {section}{\numberline {26.1}Follow one status sample end to end}{118}{section.26.1}%
+\contentsline {chapter}{\numberline {27}Understand the Ubuntu services}{120}{chapter.27}%
+\contentsline {chapter}{\numberline {28}The hardened Cerebro-to-AMBER gateway}{121}{chapter.28}%
+\contentsline {section}{\numberline {28.1}A safe code-reading lab}{121}{section.28.1}%
+\contentsline {chapter}{\numberline {29}Build a clean Ubuntu runtime}{123}{chapter.29}%
+\contentsline {section}{\numberline {29.1}Reproduction procedure}{123}{section.29.1}%
+\contentsline {section}{\numberline {29.2}Service order}{123}{section.29.2}%
+\contentsline {chapter}{\numberline {30}A status-only Python lesson}{124}{chapter.30}%
+\contentsline {chapter}{\numberline {31}Commission from no motion to bounded motion}{125}{chapter.31}%
+\contentsline {section}{\numberline {31.1}Gate 0: paper review}{125}{section.31.1}%
+\contentsline {section}{\numberline {31.2}Gate 1: power isolated}{125}{section.31.2}%
+\contentsline {section}{\numberline {31.3}Gate 2: status only}{125}{section.31.3}%
+\contentsline {section}{\numberline {31.4}Gate 3: supported, torque-limited joint identification}{125}{section.31.4}%
+\contentsline {section}{\numberline {31.5}Gate 4: model agreement}{125}{section.31.5}%
+\contentsline {section}{\numberline {31.6}Gate 5: independent single-arm envelopes}{125}{section.31.6}%
+\contentsline {section}{\numberline {31.7}Gate 6: dual-arm coordination}{126}{section.31.7}%
+\contentsline {chapter}{\numberline {32}Diagnose by layer}{127}{chapter.32}%
+\contentsline {chapter}{\numberline {33}Connect the arms to Cerebro responsibly}{128}{chapter.33}%
+\contentsline {chapter}{\numberline {34}What remains unknown}{129}{chapter.34}%
+\contentsline {chapter}{\numberline {35}Reproduction acceptance sheet}{130}{chapter.35}%
+\contentsline {chapter}{\numberline {36}Teach it as a systems lesson}{131}{chapter.36}%
+\contentsline {part}{IX\hspace {1em}Vision Pro control and media client}{132}{part.9}%
+\contentsline {chapter}{\numberline {37}Read this book with the repository open}{133}{chapter.37}%
+\contentsline {chapter}{\numberline {38}Start with the build graph}{134}{chapter.38}%
+\contentsline {section}{\numberline {38.1}Reproduce the build}{134}{section.38.1}%
+\contentsline {chapter}{\numberline {39}Compose the application at one obvious boundary}{135}{chapter.39}%
+\contentsline {chapter}{\numberline {40}Use Observation without turning everything into UI state}{136}{chapter.40}%
+\contentsline {chapter}{\numberline {41}Make lifecycle cancellation explicit}{137}{chapter.41}%
+\contentsline {chapter}{\numberline {42}Put the state machine in an actor}{138}{chapter.42}%
+\contentsline {chapter}{\numberline {43}Define a domain protocol before a wire format}{139}{chapter.43}%
+\contentsline {chapter}{\numberline {44}Treat dead-man logic as a pure decision function}{140}{chapter.44}%
+\contentsline {chapter}{\numberline {45}Translate controller hardware into one sample}{141}{chapter.45}%
+\contentsline {section}{\numberline {45.1}Combine two controllers carefully}{141}{section.45.1}%
+\contentsline {chapter}{\numberline {46}Convert tank drive without losing information}{142}{chapter.46}%
+\contentsline {chapter}{\numberline {47}Track head orientation relative to consent}{143}{chapter.47}%
+\contentsline {chapter}{\numberline {48}Understand controller pose as telemetry, not authority}{144}{chapter.48}%
+\contentsline {chapter}{\numberline {49}Jog two AMBER arms without pretending controller pose is inverse kinematics}{145}{chapter.49}%
+\contentsline {chapter}{\numberline {50}Design press-and-hold spatial controls}{146}{chapter.50}%
+\contentsline {chapter}{\numberline {51}Make controller ownership visible and transferable}{147}{chapter.51}%
+\contentsline {chapter}{\numberline {52}Pair identity, not merely an address}{148}{chapter.52}%
+\contentsline {chapter}{\numberline {53}Separate control and video failure domains}{149}{chapter.53}%
+\contentsline {chapter}{\numberline {54}Negotiate video before allocating a decoder}{150}{chapter.54}%
+\contentsline {chapter}{\numberline {55}Frame ordered QUIC video defensively}{151}{chapter.55}%
+\contentsline {chapter}{\numberline {56}Carry codec configuration and access units explicitly}{152}{chapter.56}%
+\contentsline {chapter}{\numberline {57}Decode without blocking control or the main actor}{153}{chapter.57}%
+\contentsline {chapter}{\numberline {58}Present three AVFoundation feeds inside SwiftUI}{154}{chapter.58}%
+\contentsline {section}{\numberline {58.1}Put the panorama inside a mixed-immersive sphere}{154}{section.58.1}%
+\contentsline {chapter}{\numberline {59}Understand audio: capture locally, transmit text}{155}{chapter.59}%
+\contentsline {section}{\numberline {59.1}Command versus puppet speech}{155}{section.59.1}%
+\contentsline {section}{\numberline {59.2}If true audio streaming is added later}{155}{section.59.2}%
+\contentsline {chapter}{\numberline {60}Declare privacy and device capabilities}{156}{chapter.60}%
+\contentsline {chapter}{\numberline {61}Design failures as ordinary states}{157}{chapter.61}%
+\contentsline {chapter}{\numberline {62}Test the package in layers}{158}{chapter.62}%
+\contentsline {chapter}{\numberline {63}Debug without drowning Xcode}{159}{chapter.63}%
+\contentsline {chapter}{\numberline {64}Add a feature without breaking authority}{160}{chapter.64}%
+\contentsline {chapter}{\numberline {65}Swift techniques worth carrying elsewhere}{161}{chapter.65}%
+\contentsline {chapter}{\numberline {66}Production review checklist}{162}{chapter.66}%
+\contentsline {chapter}{\numberline {67}File-by-file reading order}{163}{chapter.67}%
+\contentsline {chapter}{\numberline {68}Closing principle}{164}{chapter.68}%
+\contentsline {part}{X\hspace {1em}Cerebro perception, models, and H.264}{165}{part.10}%
+\contentsline {chapter}{\numberline {69}Read Cerebro as a living robot system}{166}{chapter.69}%
+\contentsline {chapter}{\numberline {70}Recover Cerebro's pre-v5 lineage}{167}{chapter.70}%
+\contentsline {section}{\numberline {70.1}v1: the serial nervous system}{167}{section.70.1}%
+\contentsline {section}{\numberline {70.2}v2: voice, multiple bodies, and experimental senses}{167}{section.70.2}%
+\contentsline {section}{\numberline {70.3}v3: arbitration becomes a requirement}{168}{section.70.3}%
+\contentsline {section}{\numberline {70.4}v4 and v5: migration is not invention}{168}{section.70.4}%
+\contentsline {section}{\numberline {70.5}Preserve evidence while modernizing}{168}{section.70.5}%
+\contentsline {chapter}{\numberline {71}Map the mixed-language architecture}{169}{chapter.71}%
+\contentsline {chapter}{\numberline {72}Reproduce the build before changing behavior}{170}{chapter.72}%
+\contentsline {chapter}{\numberline {73}Enter through AppDelegate, then find ownership}{171}{chapter.73}%
+\contentsline {chapter}{\numberline {74}Dissect ROBSerialBox: the hardware boundary}{172}{chapter.74}%
+\contentsline {section}{\numberline {74.1}File descriptors are state machines}{172}{section.74.1}%
+\contentsline {chapter}{\numberline {75}Discover the Base Arduino by firmware response}{173}{chapter.75}%
+\contentsline {section}{\numberline {75.1}Parse lines before interpreting meaning}{173}{section.75.1}%
+\contentsline {chapter}{\numberline {76}Separate devices by identity and protocol}{174}{chapter.76}%
+\contentsline {chapter}{\numberline {77}Translate controller intent without extending stale motion}{175}{chapter.77}%
+\contentsline {chapter}{\numberline {78}Control Maestro neck servos and Tic torso rotation}{176}{chapter.78}%
+\contentsline {chapter}{\numberline {79}Bridge Objective-C and Swift deliberately}{177}{chapter.79}%
+\contentsline {chapter}{\numberline {80}Capture RGB with AVFoundation}{178}{chapter.80}%
+\contentsline {chapter}{\numberline {81}Acquire aligned RGB-D from Luxonis}{179}{chapter.81}%
+\contentsline {section}{\numberline {81.1}Separate host inference from OAK inference}{179}{section.81.1}%
+\contentsline {section}{\numberline {81.2}Understand alignment}{180}{section.81.2}%
+\contentsline {chapter}{\numberline {82}Build a bounded perception pipeline}{181}{chapter.82}%
+\contentsline {chapter}{\numberline {83}Render perception without leaking memory}{182}{chapter.83}%
+\contentsline {chapter}{\numberline {84}Turn observations into SceneSnapshot}{183}{chapter.84}%
+\contentsline {chapter}{\numberline {85}Run MLX privately on Apple silicon}{184}{chapter.85}%
+\contentsline {section}{\numberline {85.1}MLX VLM—sometimes abbreviated incorrectly as VLX}{184}{section.85.1}%
+\contentsline {chapter}{\numberline {86}Read the MLX execution path line by line}{185}{chapter.86}%
+\contentsline {chapter}{\numberline {87}Teach ROB to recognize a new object without teaching it to trust itself}{186}{chapter.87}%
+\contentsline {section}{\numberline {87.1}A safe future learning architecture}{187}{section.87.1}%
+\contentsline {chapter}{\numberline {88}Record training evidence without letting autonomy label itself}{188}{chapter.88}%
+\contentsline {chapter}{\numberline {89}Recognize a consented face without converting identity into authority}{189}{chapter.89}%
+\contentsline {section}{\numberline {89.1}Use the selected AdaFace encoder consistently}{189}{section.89.1}%
+\contentsline {chapter}{\numberline {90}Add bounded semantic memory}{190}{chapter.90}%
+\contentsline {chapter}{\numberline {91}Constrain local model output}{191}{chapter.91}%
+\contentsline {chapter}{\numberline {92}Integrate Gemini Live without coupling safety}{192}{chapter.92}%
+\contentsline {chapter}{\numberline {93}Add private Messages without importing the robot-control surface}{193}{chapter.93}%
+\contentsline {chapter}{\numberline {94}Treat model tools as proposals}{194}{chapter.94}%
+\contentsline {chapter}{\numberline {95}Keep destination autonomy and learned traversability behind operator authority}{195}{chapter.95}%
+\contentsline {chapter}{\numberline {96}Stream camera video to Vision Pro separately}{196}{chapter.96}%
+\contentsline {chapter}{\numberline {97}H.264 without hand-waving: pictures, access units, and NAL units}{197}{chapter.97}%
+\contentsline {section}{\numberline {97.1}Annex B and AVCC are two wrappers around NAL units}{197}{section.97.1}%
+\contentsline {section}{\numberline {97.2}Read the encoder from input pixel to encoded bytes}{198}{section.97.2}%
+\contentsline {section}{\numberline {97.3}ROB's transport is custom reliable QUIC, not RTP}{198}{section.97.3}%
+\contentsline {section}{\numberline {97.4}Why a missing access unit triggers IDR recovery}{199}{section.97.4}%
+\contentsline {chapter}{\numberline {98}Excavate the Kinect and OpenNI past}{200}{chapter.98}%
+\contentsline {chapter}{\numberline {99}Compare Kinect-era and Luxonis-era design}{201}{chapter.99}%
+\contentsline {chapter}{\numberline {100}Build a reliable light-saber battle trainer}{202}{chapter.100}%
+\contentsline {chapter}{\numberline {101}Engineer the comedy show as a state machine}{203}{chapter.101}%
+\contentsline {chapter}{\numberline {102}Test at contracts, not only windows}{204}{chapter.102}%
+\contentsline {chapter}{\numberline {103}Profile memory, latency, and thermals}{205}{chapter.103}%
+\contentsline {chapter}{\numberline {104}Refactor without erasing history}{206}{chapter.104}%
+\contentsline {chapter}{\numberline {105}File-by-file reading route}{207}{chapter.105}%
+\contentsline {chapter}{\numberline {106}Production review checklist}{208}{chapter.106}%
+\contentsline {chapter}{\numberline {107}Closing principle}{209}{chapter.107}%
+\contentsline {chapter}{\numberline {A}Teach the architecture without hiding the hazards}{210}{appendix.A}%
+\contentsline {section}{\numberline {A.1}A spiral curriculum for ROB}{210}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Facilitation pattern}{210}{section.A.2}%
+\contentsline {chapter}{\numberline {B}Commission the control path as one safety-related system}{211}{appendix.B}%
+\contentsline {section}{\numberline {B.1}Connection and enrollment matrix}{211}{section.B.1}%
+\contentsline {section}{\numberline {B.2}Measure the whole stop chain}{211}{section.B.2}%
+\contentsline {chapter}{\numberline {C}Capture the builder's oral history}{212}{appendix.C}%
+\contentsline {section}{\numberline {C.1}Interview prompts}{212}{section.C.1}%
+\contentsline {chapter}{\numberline {D}Future measured-edition ledger}{213}{appendix.D}%
+\contentsline {chapter}{\numberline {E}Bill of materials worksheet}{214}{appendix.E}%
+\contentsline {chapter}{\numberline {F}Wiring and connector worksheet}{215}{appendix.F}%
+\contentsline {chapter}{\numberline {G}Serial protocol reference}{216}{appendix.G}%
+\contentsline {chapter}{\numberline {H}Repository source map}{217}{appendix.H}%
+\contentsline {chapter}{\numberline {I}Primary technical references}{219}{appendix.I}%
+\contentsline {chapter}{\numberline {J}Photo and artwork credits}{220}{appendix.J}%

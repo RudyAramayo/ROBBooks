@@ -8,7 +8,7 @@ AMBER B1, URDF, CAN, UDP, LCM, and Ubuntu
 
 
 AN EVIDENCE-BASED INTEGRATION AND COMMISSIONING GUIDE
-Rodolfo Aramayo / Orbitus Robotics -   First Maker Faire Edition
+Rodolfo Aramayo / OrbitusRobotics LLC -   First Maker Faire Edition
 A model is not a safety certificate
 Understand every frame before commanding motion.
 
@@ -23,13 +23,16 @@ ments every CAN transaction or rebuild those executables from source.
 
 
 
-Copyright © 2026 Rodolfo Aramayo / Orbitus Robotics. Photographs are from the private ROB build archive unless
-otherwise noted. The generated frontispiece is original artwork derived from a ROB reference photograph. This
-independent educational project is not affiliated with or endorsed by any film studio or franchise owner. Product
-and company names remain the property of their respective owners.
+Copyright © 2026 OrbitusRobotics LLC. All rights reserved. Rodolfo Aramayo is the author and photographer.
+Photographs are from the private ROB build archive unless otherwise noted. Generated covers, frontispieces, story
+scenes, and conceptual teaching plates are original project illustrations derived from or inspired by ROB reference
+photographs. They are illustrations, not documentary photographs, technical drawings, or evidence of the as-built
+configuration. Source-code licenses remain separate and repository-specific. This independent educational project
+is not affiliated with or endorsed by any film studio or franchise owner. Product and company names remain the
+property of their respective owners.
 
-First evidence-based draft: 2 August 2026. Build details marked Builder input needed are deliberate placeholders
-for the builder to complete.
+First evidence-based draft: 2 August 2026. This historical engineering edition distinguishes documented facts,
+builder recollection, experiments, plans, and facts not established by the available evidence.
 DUAL-ARM ROBOTICS                                                                             VOLUME 6 - ADVANCED MAKERS
 
 
@@ -53,6 +56,8 @@ The Building R.O.B. library
   VOLUME 6                Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu - advanced makers
   VOLUME 7                Engineering ROBControllerVision: Swift, Spatial Input, Video, and Speech - Swift devel-
                           opers
+  VOLUME 8                Engineering Cerebro: Perception, Models, H.264, and Robot Coordination - software en-
+                          gineers
   MANUAL                  Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
 
 
@@ -78,18 +83,18 @@ The Building R.O.B. library
    virtual environment, or machine-specific identifiers. Volume 6 documents the inspected protocol,
    URDF models, reproducible setup, verification gates, and unresolved configuration differences.
 
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 28
+DUAL-ARM ROBOTICS                                                                      VOLUME 6 - ADVANCED MAKERS
+
+
+
    HOW TO FIND THE FILES
 
    Open the public repositories on GitHub and follow each printed repository-relative path: https:
    //github.com/RudyAramayo/ROBBooks, https://github.com/RudyAramayo/ROBArduino, https:
-
-
-
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 21
-DUAL-ARM ROBOTICS                                                                       VOLUME 6 - ADVANCED MAKERS
-
-
-
    //github.com/RudyAramayo/Cerebro, https://github.com/RudyAramayo/ROBController, https://gi
    thub.com/RudyAramayo/ROBControllerVision, https://github.com/RudyAramayo/Amber-HomeFolder,
    and https://github.com/RudyAramayo/ROBTrainingGames. The website is published separately
@@ -101,7 +106,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              4 / 21
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             4 / 28
 Contents
 1 The arm system we actually have                                                                                  1
    1.1 An evidence ledger . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .     1
@@ -120,51 +125,61 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
    5.1 Prefer a deterministic host binding . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      7
    5.2 CAN fault questions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    7
 
-6 Configure one core per side                                                                                      8
+6 CAN from copper to Linux                                                                                         8
+   6.1 What one CAN frame teaches . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         8
+   6.2 Read the deterministic initializer line by line . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    9
 
-7 The observed UDP protocol                                                                                        9
-   7.1 Command catalogue . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        9
-   7.2 Gripper sequence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
-   7.3 Protocol hardening needed . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+7 Configure one core per side                                                                                      10
 
-8 LCM and ROS 2 interfaces                                                                                         11
+8 The observed UDP protocol                                                                                        11
+   8.1 Command catalogue . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+   8.2 Gripper sequence . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+   8.3 Protocol hardening needed . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
 
-9 Build a clean Ubuntu runtime                                                                                     12
-   9.1 Reproduction procedure . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
-   9.2 Service order . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+9 LCM and ROS 2 interfaces                                                                                         13
 
-10 A status-only Python lesson                                                                                     14
+10 LCM workshop: schema, generated code, and the Python bridge                                                     14
+   10.1 Follow one status sample end to end . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
 
-11 Commission from no motion to bounded motion                                                                     15
-   11.1 Gate 0: paper review . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
-   11.2 Gate 1: power isolated . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
-   11.3 Gate 2: status only . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+11 Understand the Ubuntu services                                                                                  16
 
+12 The hardened Cerebro-to-AMBER gateway                                                                           17
+   12.1 A safe code-reading lab . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
 
                                                          5
-DUAL-ARM ROBOTICS                                                                           VOLUME 6 - ADVANCED MAKERS
+DUAL-ARM ROBOTICS                                                                                VOLUME 6 - ADVANCED MAKERS
 
 
 
-     11.4 Gate 3: supported, torque-limited joint identification . . . . . . . . . . . . . . . . . . . . . . . 15
-     11.5 Gate 4: model agreement . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
-     11.6 Gate 5: independent single-arm envelopes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
-     11.7 Gate 6: dual-arm coordination . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+13 Build a clean Ubuntu runtime                                                                                        19
+     13.1 Reproduction procedure . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+     13.2 Service order . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
 
-12 Diagnose by layer                                                                                              17
+14 A status-only Python lesson                                                                                         21
 
-13 Connect the arms to Cerebro responsibly                                                                        18
+15 Commission from no motion to bounded motion                                                                         22
+     15.1 Gate 0: paper review . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+     15.2 Gate 1: power isolated . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+     15.3 Gate 2: status only . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+     15.4 Gate 3: supported, torque-limited joint identification . . . . . . . . . . . . . . . . . . . . . . . 22
+     15.5 Gate 4: model agreement . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+     15.6 Gate 5: independent single-arm envelopes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+     15.7 Gate 6: dual-arm coordination . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
 
-14 What remains unknown                                                                                           19
+16 Diagnose by layer                                                                                                   24
 
-15 Reproduction acceptance sheet                                                                                  20
+17 Connect the arms to Cerebro responsibly                                                                             25
 
-16 Teach it as a systems lesson                                                                                   21
+18 What remains unknown                                                                                                26
+
+19 Reproduction acceptance sheet                                                                                       27
+
+20 Teach it as a systems lesson                                                                                        28
 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  6 / 21
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                       6 / 28
      CHAPTER 1
 
 
@@ -229,7 +244,7 @@ bitrate interpretation, and the firmware actually running today still require co
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                        2 / 21
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                        2 / 28
      CHAPTER 2
 
 
@@ -358,7 +373,7 @@ layer above the vendor client.
 
 
 
-    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             5 / 21
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             5 / 28
     CHAPTER 4
 
 
@@ -451,6 +466,94 @@ layer above the vendor client.
     CHAPTER 6
 
 
+    CAN from copper to Linux
+    CAN is a shared differential bus, not a USB cable with different plugs. A USB–CAN adapter contains at
+    least three conceptual layers: a USB/serial interface the host can address, a CAN controller that forms and
+    checks frames, and a transceiver that drives the electrical pair. ROB’s captured host uses an SLCAN-style
+    serial adapter, so slcand translates that serial protocol into a Linux SocketCAN network interface.
+1    Ubuntu host               USB--CAN adapter                    physical arm bus
+2    -----------         ----------------------------       -------------------------
+3    USB host   <------> USB/serial <-> CAN controller <-> CAN transceiver
+4                                                          | CANH ==================+
+5                                                          | CANL ==================+ arm nodes
+6                                                          | GND     ------------------+ reference
+7                                                        [120 ohm]                 [120 ohm]
+8                                                       physical end               physical end
+
+
+
+    Repeat this as two independent buses: the reviewed host names the left side can10 and the right side
+    can11. Connector pin numbers are deliberately absent because the installed adapter’s connector, isola-
+    tion, termination switch, and pinout have not been verified. Never guess CANH, CANL, or GND from wire
+    color.
+    The two signal wires carry one differential value. In a recessive state neither node forces a dominant
+    differential. In a dominant state the transceiver separates CANH and CANL. Receivers compare the pair,
+    which helps reject noise coupled similarly into both conductors. The reference ground keeps transceiver
+    common-mode voltage inside its allowed range; it is not a third copy of the data.
+    High-speed CAN normally uses 120-ohm termination at the two physical ends of a linear trunk. With all
+    power removed and after the hardware procedure approves resistance measurement, two 120-ohm end
+    resistors appear in parallel as roughly 60 ohms across CANH and CANL. A very different reading can
+    indicate missing termination, extra termination, an attached circuit, or a fault; it is a clue, not a complete
+    diagnosis. Keep stubs short and do not build a star simply because several connectors are convenient.
+
+
+    What one CAN frame teaches
+    A classical CAN data frame contains arbitration, control, data, error-detection, acknowledgement, and
+    framing fields. The identifier both labels the message and participates in arbitration. A lower numerical
+    identifier can win arbitration because dominant bits overwrite recessive bits without corrupting the winner.
+    That is deterministic access to a busy bus, not authentication or permission.
+    The controller computes a CRC, receivers acknowledge a valid frame, and nodes maintain trans-
+    mit/receive error counters. A sufficiently faulty node can progress through error-active, error-passive,
+    and bus-off states. Those mechanisms detect communication faults; they do not tell an AMBER joint
+    whether a requested angle is mechanically safe. Application policy still needs side identity, mode, limits,
+    freshness, units, trajectory validation, and an independent stop.
+    Do not confuse these names:
+
+    • USB — host transport: connects Ubuntu to the adapter.
+    • SLCAN — adapter serial protocol: a text/binary convention consumed by slcand; the exact adapter
+      dialect must match.
+
+                                                                      8
+DUAL-ARM ROBOTICS                                                                      VOLUME 6 - ADVANCED MAKERS
+
+
+
+• SocketCAN — Linux software interface: exposes can10 and can11 through the networking API.
+• CANH/CANL — electrical physical layer: the twisted differential pair at the arm harness.
+• CAN identifier/data — link-layer frame: the actuator-protocol details remain proprietary or unverified
+  in this snapshot.
+• AMBER UDP/LCM — higher-level host interfaces: commands and feedback handled by the vendor
+  core and ROB gateway.
+
+
+Read the deterministic initializer line by line
+The reviewed rob_amber_init_can.py is intentionally non-motion code. Its key decisions are worth learn-
+ing:
+
+• EXPECTED_INTERFACES = {"can10", "can11"}: refuses extra or missing logical sides.
+• Open the mapping with O_NOFOLLOW: rejects a substituted symbolic link.
+• Require root ownership and no group/world write bit: prevents an ordinary account from silently
+  swapping arm identities.
+• Walk /sys/class/tty/.../serial: binds by USB serial rather than discovery order.
+• Require exactly one device per reviewed serial: fails closed on absence or duplicates.
+• Reject a pre-existing interface: avoids attaching a second process to stale state.
+• Run slcand -o -c -s8 device interface: creates the observed SLCAN interface; the adapter-specific
+  meaning of -s8 must be verified.
+• Run ip link set ... up: enables the SocketCAN interface only after identity succeeds.
+• Set txqueuelen 1000: records the host queue choice; it does not authorize a thousand motion com-
+  mands.
+
+The process suppresses child output and applies timeouts, so an operator should diagnose through its
+own clear success/error lines plus service logs. It never opens a CAN socket or sends a CAN, UDP, LCM,
+mode, trajectory, or motion request. Keep that narrow contract.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             9 / 28
+    CHAPTER 7
+
+
     Configure one core per side
              SOURCE TRAIL — ANALYZING NOW: return to the two launch.json files. The executables
           beside them are captured binaries, not readable source; the book documents their configured
@@ -485,8 +588,8 @@ layer above the vendor client.
 
 
 
-                                                           8
-CHAPTER 7
+                                                          10
+CHAPTER 8
 
 
 The observed UDP protocol
@@ -531,7 +634,7 @@ positions and a six-element Cartesian pose. “Position returned” does not pro
 rectly zeroed after a controller boot.
 
 
-                                                     9
+                                                     11
 DUAL-ARM ROBOTICS                                                                    VOLUME 6 - ADVANCED MAKERS
 
 
@@ -565,8 +668,8 @@ and 26002. Select ports from reviewed configuration, not from whichever example 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          10 / 21
-CHAPTER 8
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          12 / 28
+CHAPTER 9
 
 
 LCM and ROS 2 interfaces
@@ -592,6 +695,11 @@ The archived examples use multicast at 239.255.76.67:7667 with TTL 10 and add a 
 cast can reach more listeners than expected. Put it on a controlled robotics network, choose the intended
 interface explicitly, and firewall unrelated hosts. Generate language bindings from the checked-in .lcm
 files so the schema hash remains consistent; do not hand-maintain parallel definitions.
+The hardened gateway service uses LCM_DEFAULT_URL=udpm://239.255.76.67:7667?ttl=0, which is more
+restrictive than the historical TTL-10 examples. A TTL of zero confines multicast packets to the local host.
+Preserve that distinction in diagrams: the local gateway subscribes to core status without granting a cam-
+pus or home network permission to receive or inject arm traffic. Verify the actual LCM provider and inter-
+face with packet capture on an isolated bench before relying on the boundary.
 The launch files also enable ROS 2 and historical install scripts include Humble, MoveIt, controllers, xacro,
 and joint-state tools. The snapshot does not show a complete reviewed ROS 2 launch package for ROB.
 Treat ROS 2 capability as enabled configuration, not proof that names, quality-of-service policy, controller
@@ -600,8 +708,188 @@ ownership, and safety behavior are production-ready.
 
 
 
-                                                    11
-    CHAPTER 9
+                                                    13
+    CHAPTER 10
+
+
+    LCM workshop: schema,
+    generated code, and the
+    Python bridge
+    LCM separates a human-readable schema from generated language bindings. Start with the .lcm file,
+    not the generated Python. For example, an arm-status schema declares four fixed seven-element arrays:
+    joint position, velocity, current, and status. The generated armStatus_t.py knows the binary layout and
+    embeds a type fingerprint. If one participant edits generated code by hand while another regenerates
+    from the schema, the system can drift in a way that looks like network failure.
+    A reproducible generation exercise, performed away from powered arms, is:
+1    mkdir -p build/lcm-python
+2    lcm-gen -p --ppath build/lcm-python amber/sin_wave/rawLcm/armStatus_t.lcm
+3    python3 -m compileall build/lcm-python
+
+
+
+    The exact source filename must come from the checked-in tree. Archive the generator version, input
+    hash, generated output hash, and import-path test. A schema change is a protocol release: update every
+    producer and consumer together, add compatibility or reject the old hash explicitly, and retain a rollback
+    artifact.
+    The gateway’s LCMStatusBridge is short enough to understand line by line:
+1    self._lcm = lcm.LCM()
+2    self._lcm.subscribe(arm.status_channel, self._handler(name))
+3    ...
+4    message = self._arm_status_type.decode(data)
+5    state.positions = list(message.jointPosition)
+6    state.monotonic_ns = time.monotonic_ns()
+7    state.sequence += 1
+8    ...
+9    self._lcm.handle_timeout(100)
+
+
+
+    1. lcm.LCM() reads the reviewed provider URL from the service environment.
+    2. subscribe(...) connects one side-specific channel, such as Left_ArmStatus, to a closure that remem-
+       bers the side.
+    3. decode(data) validates the generated LCM type fingerprint and reconstructs typed arrays. It does not
+       validate physical plausibility.
+    4. Copying arrays detaches gateway state from the generated message object.
+    5. time.monotonic_ns() records local receipt time so wall-clock changes cannot make stale feedback look
+       fresh.
+    6. sequence += 1 creates a gateway-local observation counter; it is not an actuator sequence from the
+       CAN bus.
+    7. handle_timeout(100) lets the thread check its stop event at least every 100 ms instead of blocking
+       forever.
+
+                                                                    14
+    DUAL-ARM ROBOTICS                                                                    VOLUME 6 - ADVANCED MAKERS
+
+
+
+    A lock protects the shared ArmState while the LCM thread writes and the asyncio telemetry task reads.
+    snapshot() returns copies, not the mutable lists. That is the small but crucial bridge between a callback-
+    oriented native library and an asynchronous TCP server.
+
+
+    Follow one status sample end to end
+1     joint electronics -> CANH/CANL -> AMBER core -> Left_ArmStatus LCM
+2       -> generated armStatus_t.decode -> locked ArmState copy
+3       -> gateway telemetry JSON -> authenticated Cerebro client -> operator display
+
+
+
+    At each arrow write what can be proven. The gateway knows when the LCM message arrived, not when
+    the joint sensor sampled. It knows the configured channel side, not that the adapters were physically
+    installed on the correct arms. It can reject stale gateway state, not prove encoder zero or calibration.
+    Good telemetry carries those uncertainties instead of turning arrival into truth.
+
+
+
+
+    ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                          15 / 28
+    CHAPTER 11
+
+
+    Understand the Ubuntu
+    services
+    The checked-in rob-amber-gateway.service is a systemd unit for the hardened Python bridge. Read it in
+    four blocks.
+
+    • After=network-online.target rc-local.service: start ordering waits for networking and the root-
+      owned CAN initializer.
+    • Requisite=rc-local.service: a failed required initializer prevents the gateway from pretending it is
+      usable.
+    • User=amber, Group=amber: network translation runs without root privileges.
+    • WorkingDirectory=/home/amber/rob_gateway: relative paths have one declared base.
+    • LCM_DEFAULT_URL=...ttl=0: status multicast remains local to the host.
+    • --listen-host 127.0.0.1: the gateway accepts Cerebro only through a local or forwarded boundary
+      in this configuration.
+    • Restart=on-failure, RestartSec=2: crashes retry after a delay; a restart does not grant motion authority.
+    • NoNewPrivileges=true: the process cannot gain new privilege through execution.
+    • PrivateTmp=true: temporary files are isolated from other services.
+    • ProtectSystem=strict: the normal filesystem is read-only to this unit.
+    • ProtectHome=read-only: home content is not writable.
+    • ReadOnlyPaths=/home/amber/sin_wave: LCM schemas and generated types are treated as runtime in-
+      puts.
+
+    Use read-only service commands first:
+1    systemctl cat rob-amber-gateway.service
+2    systemctl status --no-pager rob-amber-gateway.service
+3    journalctl -u rob-amber-gateway.service --since today --no-pager
+4    systemctl show rob-amber-gateway.service -p User -p Group -p MainPID -p ActiveState
+
+
+
+    status tells whether the process is running, not whether CAN identities, arm calibration, feedback fresh-
+    ness, and physical stop are correct. Sanitize logs before sharing them: authentication tokens must never
+    be printed, and operational poses may still be sensitive.
+
+
+
+
+                                                                 16
+    CHAPTER 12
+
+
+    The hardened
+    Cerebro-to-AMBER gateway
+    The new Python gateway narrows the older collection of scripts into one explicit boundary:
+1    Cerebro
+2      -> authenticated, ordered newline-delimited TCP
+3      -> one exclusive ClientSession
+4      -> bounded per-arm asyncio command queue
+5      -> packed local UDP request to port 26001 or 26002
+6      -> vendor AMBER core
+7
+8    AMBER core -> side-specific LCM status -> LCMStatusBridge -> 20 Hz telemetry -> Cerebro
+
+
+
+    The gateway begins each client with a random challenge, expects protocol name rob-amber-gateway/1
+    and a token checked with constant-time hmac.compare_digest, and permits only one authenticated con-
+    troller session. A token is still a credential: load it from protected configuration, rotate it, never place it in
+    a screenshot, and prefer an authenticated protected tunnel when the connection leaves loopback.
+    Motion-like operations require increasing unsigned 32-bit command IDs and a fresh heartbeat. Heartbeat
+    authority expires after 2.5 seconds. Per-arm queues are capped at 32 entries, UDP exchanges are serial-
+    ized by side, and replies must match command number and counter. A priority_hold purges queued
+    work before it is inserted. Leased trajectories accept only a bounded 700–1500 ms lease and are held
+    when that lease expires. These are strong software controls, not a replacement for a hardware stop or
+    vendor drive limits.
+    The packed ctypes.LittleEndianStructure definitions explain the vendor UDP boundary. For a joint com-
+    mand, the code writes a 16-bit command number, 16-bit structure length, 32-bit counter, eight 32-bit
+    floats, and one duration float. The public gateway accepts seven joints and deliberately sets the eighth
+    float to zero because gripper control is a separate operation. ctypes.sizeof(...) becomes the declared
+    length, and a response is rejected when it is short or its counter differs.
+    The concurrency lesson is as important as the bytes. Blocking UDP work runs through asyncio.to_thread,
+    but each arm owns an asyncio.Lock. Shutdown waits for worker completion rather than cancelling a wrap-
+    per while its underlying thread may still complete a real UDP request. Session generations and motion-
+    authority generations make late work stale after controller replacement or heartbeat expiry.
+
+
+    A safe code-reading lab
+    With arm power isolated, trace one mode_query request on paper:
+
+    1. TCP parser rejects oversized or malformed JSON.
+    2. message allowlist accepts mode_query.
+    3. command ID and arm side are validated.
+    4. the request enters only that side’s bounded queue.
+    5. its worker acquires the side operation lock.
+
+                                                                 17
+DUAL-ARM ROBOTICS                                                                  VOLUME 6 - ADVANCED MAKERS
+
+
+
+6. the UDP codec sends command 110 to the configured side port.
+7. response command/counter/size are checked.
+8. the gateway returns a correlated acknowledgement.
+9. independent LCM telemetry continues to report measured state.
+
+Now inject paper faults: repeated command ID, wrong side, queue full, stale heartbeat, short UDP reply,
+mismatched counter, LCM older than 250 ms, and disconnect during a blocking exchange. The correct
+answer is often rejection or loss of authority, not a retry that could duplicate motion.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                        18 / 28
+    CHAPTER 13
 
 
     Build a clean Ubuntu runtime
@@ -647,7 +935,7 @@ ownership, and safety behavior are production-ready.
 
     Service order
 
-                                                       12
+                                                       19
 DUAL-ARM ROBOTICS                                                                       VOLUME 6 - ADVANCED MAKERS
 
 
@@ -661,8 +949,8 @@ cores, then isolate energy according to the hardware procedure.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             13 / 21
-    CHAPTER 10
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                             20 / 28
+    CHAPTER 14
 
 
     A status-only Python lesson
@@ -696,8 +984,8 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-                                                                 14
-CHAPTER 11
+                                                                 21
+CHAPTER 15
 
 
 Commission from no motion to
@@ -740,7 +1028,7 @@ ture, gripper, and cable volume.
 
 
 
-                                                    15
+                                                    22
 DUAL-ARM ROBOTICS                                                                 VOLUME 6 - ADVANCED MAKERS
 
 
@@ -753,8 +1041,8 @@ rored commands, crossing workspaces, communication loss on one side, cancellatio
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                       16 / 21
-CHAPTER 12
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                       23 / 28
+CHAPTER 16
 
 
 Diagnose by layer
@@ -782,8 +1070,8 @@ observation. Never collect private keys or passwords into a diagnostic archive.
 
 
 
-                                                    17
-CHAPTER 13
+                                                    24
+CHAPTER 17
 
 
 Connect the arms to Cerebro
@@ -814,8 +1102,8 @@ connection indicator must never mean “safe to enter the workspace.”
 
 
 
-                                                    18
-CHAPTER 14
+                                                    25
+CHAPTER 18
 
 
 What remains unknown
@@ -839,8 +1127,8 @@ Unknown does not mean failure. It means the next experiment has a clear question
 
 
 
-                                                    19
-CHAPTER 15
+                                                    26
+CHAPTER 19
 
 
 Reproduction acceptance sheet
@@ -867,8 +1155,8 @@ Before labeling a replacement Ubuntu box ready, require signatures for:
 
 
 
-                                                   20
-CHAPTER 16
+                                                   27
+CHAPTER 20
 
 
 Teach it as a systems lesson
@@ -887,5 +1175,5 @@ detail a name, a source, a test, and a responsible human owner.
 
 
 
-                                                   21
+                                                   28
 

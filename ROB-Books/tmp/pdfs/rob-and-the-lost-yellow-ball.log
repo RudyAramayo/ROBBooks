@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:40
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 SEP 2026 16:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1478,11 +1478,6 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `Futura' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Underfull \hbox (badness 2418) in paragraph at lines 49--49
-[]\TU/Futura(0)/b/n/33 ROB AND THE LOST YELLOW 
- []
-
 [1
 
 
@@ -1495,7 +1490,10 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 
 ] [3
 
-] [4
+]
+File: ../assets/generated/rob-little-helper-cover.png Graphic file (type bmp)
+<../assets/generated/rob-little-helper-cover.png>
+ [4
 
 ]
 File: ../assets/generated/rob-little-helper-cover.png Graphic file (type bmp)
@@ -1567,13 +1565,13 @@ anged.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 34895 strings out of 468168
- 753712 string characters out of 5423555
- 1255463 words of memory out of 5000000
- 63026 multiletter control sequences out of 15000+600000
- 629055 words of font info for 108 fonts, out of 8000000 for 9000
+ 34926 strings out of 468168
+ 754324 string characters out of 5423555
+ 1263302 words of memory out of 5000000
+ 63056 multiletter control sequences out of 15000+600000
+ 629063 words of font info for 109 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  101i,7n,131p,1025b,772s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/rob-and-the-lo
-st-yellow-ball.xdv (23 pages, 159372 bytes).
+st-yellow-ball.xdv (23 pages, 161676 bytes).

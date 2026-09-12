@@ -1,6 +1,6 @@
 # Building R.O.B. — PDF visual review record
 
-**Review date:** 2026-08-29
+**Review date:** 2026-08-29 · **Affected-edition recheck:** 2026-09-11
 **STATUS: COMPLETE**
 
 **Scope:** All 573 physical pages in the ten print-layout PDFs.
@@ -13,16 +13,16 @@ This is a screen-rendering and editorial layout review. It is not a human access
 
 | PDF | Pages | SHA-256 |
 |---|---:|---|
-| complete-builders-field-manual.pdf | 236 | 39a08b31a1e86a9441c4ff4da0b5e30830b6caa91d172c930f3a2fcd9b73b898 |
-| rob-and-the-lost-yellow-ball.pdf | 23 | 8b4c6562440ee10736c539d4f40c8592b526e585085f57430e734bafca2ae652 |
-| volume-1-meet-rob.pdf | 37 | 55d747297bc69ca9c053f7212682f10363a675be911ac2bc5451759b38376633 |
-| volume-2-circuits-and-signals.pdf | 36 | 5138b906505f3af3f4f2a124fc5d68e2170b80e6a90c50ffa529f11c3f4fef53 |
-| volume-3-motion-workshop.pdf | 36 | 9b512937eaffe757a249d5e00d4303e2eee375aa795125651f270c69144efd82 |
-| volume-4-mission-control.pdf | 40 | c478c14df6701ef5b322b102e8d27f794d7a5a698a60acf98d1fa06fd6ef69be |
-| volume-5-ai-robotics-with-codex.pdf | 43 | 15eb3344f4b3be89106f6fafd912db9670adf7eb1985c1401792848779306ba0 |
-| volume-6-amber-dual-arm-robotics.pdf | 34 | 161aac3d1d57cc2e3b55e33efd4edb65c9fd4d4b0d64600bdc2940733343bbde |
-| volume-7-engineering-robcontrollervision.pdf | 38 | 8ee7d23a8736a448057bbf02d67bc52568ccff6a90ab09989a1d9706a62f9bee |
-| volume-8-engineering-cerebro.pdf | 50 | d10ee490243fabc70b1d9a65a508baad115d7a74a4acf0859457297f1a1660b4 |
+| complete-builders-field-manual.pdf | 236 | de859147702efd3fe5187dfe7eacdcf6b8f02c6d66c562963f2f9b1cb69f41d7 |
+| rob-and-the-lost-yellow-ball.pdf | 23 | 1efda06d73215658974dac00def5aa7080ebb70fedef5a9714e7e72711a94964 |
+| volume-1-meet-rob.pdf | 37 | 910a52096ee6875d9182dcb5d6b990998d01c522b2307fea844d0911081daecf |
+| volume-2-circuits-and-signals.pdf | 36 | 6617c1db532b746846514b42a9b83ca940f70c6df7a2026a6fabff91e94ff553 |
+| volume-3-motion-workshop.pdf | 36 | b8fcf2fa8dea489649c406c2aaab0de5519a2a6a39873a18673d2cee0b0e02d0 |
+| volume-4-mission-control.pdf | 40 | edc6dbf4ec6ca7dcdb66e828cc1d983efaf7bda06476a42f88feae2f18042c1a |
+| volume-5-ai-robotics-with-codex.pdf | 43 | 1a84c6e782f8e8fa353a04b051699ae123741ec5ba8aa0fa116101cc37e52c4f |
+| volume-6-amber-dual-arm-robotics.pdf | 34 | 0029774501e52ee7e262fbdb8fd48fc61d41a357701676d8c5ff4bcf4835f77c |
+| volume-7-engineering-robcontrollervision.pdf | 38 | 81fc11ad8838feff1f5b49d96c09d702227122d00992758164e57d1e7c75a960 |
+| volume-8-engineering-cerebro.pdf | 50 | ded08d37f6932ee49ecf13025c99bb4310b5dadbc447edcf6703ced829a0ee2c |
 
 All ten are unencrypted US Letter PDFs with extractable text. Their physical page total is 573.
 
@@ -56,6 +56,10 @@ The ten PDFs were rebuilt after the final author answers established the College
 - page 13 of Volume 1.
 
 Every changed page was rendered at 144 dpi and inspected in four labeled focused review sheets. The revised cover bylines and front-matter copyright paragraphs remain legible and contained; the College Station/circa-2016 language fits the Volume 1 field note and manual history pages; the future-edition ledger and photo-credit revisions fit without collision or overflow. No clipping, broken wrapping, unintended blank page, missing image, navigation break, or page-count change was found. The set remains 573 US Letter pages.
+
+## Co-author, diagram, and Volume 5 cover recheck
+
+The affected PDFs were rebuilt on September 11, 2026. *ROB and the Lost Yellow Ball* pages 1 and 4 were rendered at detail resolution: its co-author line remains readable, and the replacement parts diagram uses the illustrated ROB character with five clear labels and arrow targets. *AI, Robotics, and Codex* page 1 now uses the unique branching repository-tree illustration; side-by-side review confirmed it no longer resembles the Volume 2 circuits cover or reuse any numbered-volume image. Page counts, Letter geometry, encryption state, and the 573-page set total remain unchanged. No clipping, collision, missing image, or unreadable text was found.
 
 ## Recheck
 

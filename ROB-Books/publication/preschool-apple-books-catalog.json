@@ -2,7 +2,11 @@
   "schema_version": 1,
   "series": {
     "title": "ROB's Little Helper Library",
-    "author": "Rodolfo Aramayo",
+    "author": "Rodolfo Aramayo and Kierie Aramayo",
+    "authors": [
+      "Rodolfo Aramayo",
+      "Kierie Aramayo"
+    ],
     "publisher": "OrbitusRobotics LLC",
     "language": "en-US",
     "expected_title_count": 10,

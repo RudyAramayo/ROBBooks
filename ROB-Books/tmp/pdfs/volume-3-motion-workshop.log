@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:39
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 SEP 2026 16:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -65,7 +65,7 @@ spec.sty
 arse/xparse.sty
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/l3kernel/expl
 3.sty
-Package: expl3 2026-01-19 L3 programming layer (loader) 
+Package: expl3 2026-01-19 L3 programming layer (loader)
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/l3backend/l3b
 ackend-xetex.def
@@ -774,7 +774,7 @@ Library (tcolorbox): 'tcbprocessing.code.tex' version '6.9.0'
 )
 \c@tcblisting=\count351
 ))
-Package tcolorbox Info: Library `listingsutf8' is compatible with pdftex only. 
+Package tcolorbox Info: Library `listingsutf8' is compatible with pdftex only.
 Library `listings` is loaded instead. on input line 29.
 )
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/tcolorbox/tcb
@@ -1187,16 +1187,16 @@ MM)
 pagemodern.sty
 Package: lastpagemodern 2025-08-14 v2.1h Refers to last page's name (HMM; JPG)
 \c@lastpagecount=\count387
-) 
+)
 ))
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'AvenirNext(0)' created for font 'Avenir
 (fontspec)             Next' with options [Ligatures=TeX].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Avenir
 (fontspec)             Next/OT:script=latn;language=dflt;mapping=tex-text;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"Avenir
@@ -1221,35 +1221,35 @@ xt;"
 ext;"
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo/B scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo/I scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo/BI scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'Menlo(0)' created for font 'Menlo' with
 (fontspec)             options
 (fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=Word
 Space,Scale=0.83].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->s*[0.83]"Menlo/AAT"
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
@@ -1260,13 +1260,13 @@ Space,Scale=0.83].
 (fontspec)             <->s*[0.83]"Menlo/BI/AAT"
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'Futura(0)' created for font 'Futura' with
 (fontspec)             options [].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->"Futura/OT:language=dflt;"
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
@@ -1277,13 +1277,13 @@ Package fontspec Info:
 (fontspec)             <->"Futura/BI/OT:language=dflt;"
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'AvenirNextCondensed(0)' created for font
 (fontspec)             'Avenir Next Condensed' with options [].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Avenir Next
 (fontspec)             Condensed/OT:script=latn;language=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"Avenir Next
@@ -1336,7 +1336,7 @@ LaTeX Font Info:    ... okay on input line 6.
 * paper: letterpaper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
+* modes: twoside
 * h-part:(L,W,R)=(52.03448pt, 517.45348pt, 44.80704pt)
 * v-part:(T,H,B)=(49.86647pt, 694.51474pt, 50.58878pt)
 * \paperwidth=614.295pt
@@ -1364,7 +1364,7 @@ LaTeX Font Info:    ... okay on input line 6.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
 
@@ -1403,7 +1403,7 @@ LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> TU/AvenirNext(0)/m/n on input line 6.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/AvenirNext(0)/m/n --> TU/AvenirNext(0)/m/n on input 
+(Font)                  TU/AvenirNext(0)/m/n --> TU/AvenirNext(0)/m/n on input
 line 6.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> TU/AvenirNext(0)/m/it on input line 6.
@@ -1415,7 +1415,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
 (Font)                  OT1/cmtt/m/n --> TU/Menlo(0)/m/n on input line 6.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/AvenirNext(0)/m/n --> TU/AvenirNext(0)/b/n on input 
+(Font)                  TU/AvenirNext(0)/m/n --> TU/AvenirNext(0)/b/n on input
 line 6.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> TU/AvenirNext(0)/b/it on input line 6
@@ -1534,101 +1534,106 @@ File: ../assets/slides/rob-v3-page-23.jpg Graphic file (type bmp)
 ]
 File: ../assets/photos/2024-open-tracked-base.jpg Graphic file (type bmp)
 <../assets/photos/2024-open-tracked-base.jpg>
- [6]
+ [6] [7]
 File: ../assets/photos/2024-hengdrive-motor-label.jpg Graphic file (type bmp)
 <../assets/photos/2024-hengdrive-motor-label.jpg>
- [7
+ [8
 
 ]
 Chapter 3.
 File: ../assets/photos/2024-sprocket-machined-opening.jpg Graphic file (type bm
 p)
 <../assets/photos/2024-sprocket-machined-opening.jpg>
-File: ../assets/photos/2025-intermeshing-shoulder-gears.jpg Graphic file (type 
+File: ../assets/photos/2025-intermeshing-shoulder-gears.jpg Graphic file (type
 bmp)
 <../assets/photos/2025-intermeshing-shoulder-gears.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 100--100
+Underfull \hbox (badness 10000) in paragraph at lines 108--108
 [][] []\TU/AvenirNext(0)/m/it/8 Intermeshing shoulder
  []
 
-[8
+[9
 
 
 ]
 File: ../assets/photos/2022-drive-assembly-rear.jpg Graphic file (type bmp)
 <../assets/photos/2022-drive-assembly-rear.jpg>
- [9]
+ [10] [11]
 File: ../assets/photos/2022-chain-sprocket-interior.jpg Graphic file (type bmp)
 
 <../assets/photos/2022-chain-sprocket-interior.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 125--125
+Underfull \hbox (badness 10000) in paragraph at lines 143--143
 [][]
  []
 
 File: ../assets/photos/2024-chain-drive-closeup.jpg Graphic file (type bmp)
 <../assets/photos/2024-chain-drive-closeup.jpg>
-[10
+[12
 
 ]
 File: ../assets/photos/2024-base-actuator-between-treads.jpg Graphic file (type
  bmp)
 <../assets/photos/2024-base-actuator-between-treads.jpg>
- [11
+ [13
 
 ]
 Chapter 4.
 File: ../assets/photos/2024-central-linear-actuator.jpg Graphic file (type bmp)
 
 <../assets/photos/2024-central-linear-actuator.jpg>
-File: ../assets/photos/2022-medium-duty-bracket-package.jpg Graphic file (type 
+File: ../assets/photos/2022-medium-duty-bracket-package.jpg Graphic file (type
 bmp)
 <../assets/photos/2022-medium-duty-bracket-package.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 138--138
+Underfull \hbox (badness 10000) in paragraph at lines 156--156
 [][]
  []
 
-[12
+[14
 
 
 ]
 File: ../assets/slides/rob-v3-page-54.jpg Graphic file (type bmp)
 <../assets/slides/rob-v3-page-54.jpg>
- [13]
-File: ../assets/photos/2022-medium-duty-bracket-package.jpg Graphic file (type 
+ [15]
+File: ../assets/photos/2022-medium-duty-bracket-package.jpg Graphic file (type
 bmp)
 <../assets/photos/2022-medium-duty-bracket-package.jpg>
- [14
+
+Underfull \hbox (badness 3919) in paragraph at lines 178--178
+[]\TU/Futura(0)/b/n/29 Prototype materials answer
+ []
+
+[16
 
 ]
 Chapter 5.
 
-Underfull \hbox (badness 1365) in paragraph at lines 162--163
+Underfull \hbox (badness 1365) in paragraph at lines 182--183
 \TU/AvenirNext(0)/m/n/10.95 The presentation describes inexpensive quarter-inch
  plywood scraps in early tread-layout models,
  []
 
 
-Underfull \hbox (badness 1478) in paragraph at lines 175--175
+Underfull \hbox (badness 1478) in paragraph at lines 195--195
 []|\TU/AvenirNext(0)/m/n/10.95 High strength and wear resistance for
  []
 
 
-Underfull \hbox (badness 1661) in paragraph at lines 175--175
+Underfull \hbox (badness 1661) in paragraph at lines 195--195
 []|\TU/AvenirNext(0)/m/n/10.95 Mass, rust protection, weldability, ma-
  []
 
 File: ../assets/photos/2022-drilling-metal-rail.jpg Graphic file (type bmp)
 <../assets/photos/2022-drilling-metal-rail.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--181
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 [][]
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 181--181
+Underfull \hbox (badness 2503) in paragraph at lines 201--201
 []\TU/AvenirNext(0)/m/it/8 The drill operation shows work supported on a red fi
 xture. A
  []
@@ -1637,20 +1642,20 @@ File: ../assets/photos/2022-mounted-clamp-and-bracket.jpg Graphic file (type bm
 p)
 <../assets/photos/2022-mounted-clamp-and-bracket.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--181
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
 [][]
  []
 
-[15
+[17
 
 
 ]
 File: ../assets/photos/2022-bracket-assembly-front.jpg Graphic file (type bmp)
 <../assets/photos/2022-bracket-assembly-front.jpg>
- [16]
+ [18]
 File: ../assets/generated/rob-motion-mechanics-lab.png Graphic file (type bmp)
 <../assets/generated/rob-motion-mechanics-lab.png>
- [17
+ [19
 
 ]
 Chapter 6.
@@ -1658,27 +1663,22 @@ File: ../assets/photos/2024-caliper-tread-measurement.jpg Graphic file (type bm
 p)
 <../assets/photos/2024-caliper-tread-measurement.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 213--213
+Underfull \hbox (badness 10000) in paragraph at lines 235--235
 [][]
  []
 
 File: ../assets/photos/2024-open-tracked-base.jpg Graphic file (type bmp)
 <../assets/photos/2024-open-tracked-base.jpg>
-[18
+[20
 
 
 ]
 File: ../assets/photos/2022-drilling-metal-rail.jpg Graphic file (type bmp)
 <../assets/photos/2022-drilling-metal-rail.jpg>
- [19]
+ [21]
 File: ../assets/generated/rob-motion-mechanics-lab.png Graphic file (type bmp)
 <../assets/generated/rob-motion-mechanics-lab.png>
-
-Underfull \hbox (badness 1442) in paragraph at lines 223--223
-[]\TU/Futura(0)/b/n/29 Assembly order is part of the de- 
- []
-
-[20
+ [22
 
 ]
 Chapter 7.
@@ -1687,44 +1687,44 @@ File: ../assets/photos/2025-rear-electronics-bay.jpg Graphic file (type bmp)
 File: ../assets/generated/rob-motion-mechanics-lab.png Graphic file (type bmp)
 <../assets/generated/rob-motion-mechanics-lab.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--246
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
 [][]
  []
 
-[21
+[23
 
 
 ]
 File: ../assets/generated/rob-motion-mechanics-lab.png Graphic file (type bmp)
 <../assets/generated/rob-motion-mechanics-lab.png>
- [22]
+ [24]
 File: ../assets/photos/2022-tracked-base-front.jpg Graphic file (type bmp)
 <../assets/photos/2022-tracked-base-front.jpg>
- [23
+ [25
 
 ]
 Chapter 8.
 
-Underfull \hbox (badness 10000) in paragraph at lines 273--273
+Underfull \hbox (badness 10000) in paragraph at lines 297--297
 []|\TU/AvenirNext(0)/m/n/10.95 Full drive hardware on rated stands,
  []
 
 
-Underfull \hbox (badness 1303) in paragraph at lines 273--273
+Underfull \hbox (badness 1303) in paragraph at lines 297--297
 []|\TU/AvenirNext(0)/m/n/10.95 Tracking, stopping distance, thermal and
  []
 
-(./volume-3-deep-dive.tex [24
+(./volume-3-deep-dive.tex [26
 
 
 ]
 File: ../assets/generated/rob-motion-mechanics-lab.png Graphic file (type bmp)
 <../assets/generated/rob-motion-mechanics-lab.png>
- [25
+ [27
 
 ]
 Chapter 9.
-[26
+[28
 
 
 ]
@@ -1734,12 +1734,12 @@ Underfull \hbox (badness 4242) in paragraph at lines 38--38
 []|\TU/AvenirNext(0)/m/n/10.95 deadlines or acceptance criteria are
  []
 
-) [27
+) [29
 
 
-] [28
+] [30
 
-] 
+]
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motion-workshop.aux)
  ***********
@@ -1749,15 +1749,15 @@ L3 programming layer <2026-01-19>
 Package rerunfilecheck Info: File `volume-3-motion-workshop.out' has not change
 d.
 (rerunfilecheck)             Checksum: 3FD4BA99FEB5CB6022FCCE4F44A60DEB;2168.
- ) 
+ )
 Here is how much of TeX's memory you used:
- 35067 strings out of 468168
- 763648 string characters out of 5423555
- 1281566 words of memory out of 5000000
+ 35065 strings out of 468168
+ 763469 string characters out of 5423555
+ 1289333 words of memory out of 5000000
  63157 multiletter control sequences out of 15000+600000
- 632078 words of font info for 126 fonts, out of 8000000 for 9000
+ 632062 words of font info for 124 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 101i,12n,131p,1021b,1037s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,13n,131p,1021b,1039s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-3-motio
-n-workshop.xdv (34 pages, 560484 bytes).
+n-workshop.xdv (36 pages, 620720 bytes).

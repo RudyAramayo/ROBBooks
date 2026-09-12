@@ -1,7 +1,7 @@
 A STORY ABOUT R.O.B.
 
 
-ROBAND THE LOST YELLOW
+ROB AND THE LOST YELLOW
 BALL
 A little robot stops, looks, thinks, and helps
 
@@ -9,7 +9,7 @@ A little robot stops, looks, thinks, and helps
 
 
 AGES 5--6 • READ ALOUD TOGETHER
-Rodolfo Aramayo / Orbitus Robotics -   First Maker Faire Edition
+Rodolfo Aramayo & Kierie Aramayo / OrbitusRobotics LLC -   First Maker Faire Edition
            A note for grown-ups
 This is an imaginary story inspired by the real ROB. The pictures
 are gentle illustrations, not build plans.
@@ -25,23 +25,30 @@ a real robot.
 ROB has bright blue eyes,
    two gentle hands,
   and rumbling treads.
-What parts help ROB?
+              What parts help ROB?
 
-   EYES SEE
-
-
-
-
-                                 BODY THINKS
+  BLUE EYES
+     SEE
+                                                           CAMERA
+                                                           NOTICES
 
 
 
 
-TREADS ROLL
+GENTLE HANDS
+    HELP
+                                                           COMPUTER
+                                                            THINKS
 
 
 
- Point to ROB’s eyes. Point to ROB’s treads.
+
+STRONG TREADS
+    ROLL
+
+
+
+                Point to each part. What job does it do?
      One sunny morning,
     ROB saw a yellow ball.
 ``Beep-boop! A round surprise!''

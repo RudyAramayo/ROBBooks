@@ -344,6 +344,8 @@ INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype
 INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 INPUT ../assets/generated/rob-little-helper-cover.png
 INPUT ../assets/generated/rob-little-helper-cover.png
+INPUT ../assets/generated/rob-little-helper-cover.png
+INPUT ../assets/generated/rob-little-helper-cover.png
 INPUT ../assets/generated/rob-little-helper-puddle.png
 INPUT ../assets/generated/rob-little-helper-puddle.png
 INPUT ../assets/generated/rob-little-helper-bridge.png

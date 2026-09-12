@@ -39,11 +39,11 @@
 2025-rear-electronics-bay.jpg
 2025-rob-face-portrait.jpg
 2025-rob-side-full-body.jpg
-2026-rob-lightsabers-front.jpg
 2026-rob-lightsabers-overhead.jpg
 2026-rob-lightsabers-portrait.jpg
 2026-rob-lightsabers-side.jpg
 cerebro-perception-control-lesson.png
+rob-ai-repository-tree.png
 rob-circuits-signals-lab.png
 rob-dual-arm-feedback-lesson.png
 rob-motion-mechanics-lab.png

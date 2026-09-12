@@ -8,7 +8,7 @@ A robot is a team of systems
 
 
 A PICTURE-BOOK FIELD GUIDE FOR CURIOUS MAKERS AGES 8-12
-Rodolfo Aramayo / Orbitus Robotics -   First Maker Faire Edition
+Rodolfo Aramayo / OrbitusRobotics LLC -   First Maker Faire Edition
 Welcome, junior systems engineer
 Before we touch a wire, we learn to see the whole robot.
 
@@ -27,13 +27,16 @@ plan.
 
 
 
-Copyright © 2026 Rodolfo Aramayo / Orbitus Robotics. Photographs are from the private ROB build archive unless
-otherwise noted. The generated frontispiece is original artwork derived from a ROB reference photograph. This
-independent educational project is not affiliated with or endorsed by any film studio or franchise owner. Product
-and company names remain the property of their respective owners.
+Copyright © 2026 OrbitusRobotics LLC. All rights reserved. Rodolfo Aramayo is the author and photographer.
+Photographs are from the private ROB build archive unless otherwise noted. Generated covers, frontispieces, story
+scenes, and conceptual teaching plates are original project illustrations derived from or inspired by ROB reference
+photographs. They are illustrations, not documentary photographs, technical drawings, or evidence of the as-built
+configuration. Source-code licenses remain separate and repository-specific. This independent educational project
+is not affiliated with or endorsed by any film studio or franchise owner. Product and company names remain the
+property of their respective owners.
 
-First evidence-based draft: 2 August 2026. Build details marked Builder input needed are deliberate placeholders
-for the builder to complete.
+First evidence-based draft: 2 August 2026. This historical engineering edition distinguishes documented facts,
+builder recollection, experiments, plans, and facts not established by the available evidence.
 MEET ROB                                                                                            VOLUME 1 - AGES 8-12
 
 
@@ -48,6 +51,8 @@ The Building R.O.B. library
   VOLUME 6                Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu - advanced makers
   VOLUME 7                Engineering ROBControllerVision: Swift, Spatial Input, Video, and Speech - Swift devel-
                           opers
+  VOLUME 8                Engineering Cerebro: Perception, Models, H.264, and Robot Coordination - software en-
+                          gineers
   MANUAL                  Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
 
 
@@ -83,14 +88,17 @@ The Building R.O.B. library
    and https://github.com/RudyAramayo/ROBTrainingGames. The website is published separately
    at https://github.com/OrbitusRoboticsWebSite/ORobotics. See https://github.com/RudyA
    ramayo/ROBBooks/blob/main/ROB-Books/OPEN-SOURCE-CODE-MAP.md for clickable repository and file
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 31
+MEET ROB                                                                                      VOLUME 1 - AGES 8-12
+
+
+
+
    links, license cautions, and renamed-file search instructions. A named archival item without a verified
    public repository is labeled as evidence, not given an invented URL.
-
-
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 30
-MEET ROB                                                                               VOLUME 1 - AGES 8-12
-
-
 
    THE THREE-ZONE RULE
 
@@ -102,25 +110,25 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                       4 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              4 / 31
 Contents
 1 A robot is more than a machine          2
 
 2 The skeleton and the shell              6
 
-3 Energy makes motion possible            10
+3 Energy makes motion possible            11
 
-4 How ROB notices things                  13
+4 How ROB notices things                  14
 
-5 Commands travel in layers               16
+5 Commands travel in layers               17
 
-6 ROB’s build timeline                    20
+6 ROB’s build timeline                    21
 
-7 Your first engineering log              25
+7 Your first engineering log              26
 
-8 Think like a systems detective          27
+8 Think like a systems detective          28
 
-9 Uncertainty is useful information       29
+9 Uncertainty is useful information       30
 
 
 
@@ -131,8 +139,9 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION               6 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION               6 / 31
 MISSION 1
+
 
 What makes a machine a robot?
 MISSION 1
@@ -184,7 +193,7 @@ cooperate.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 31
 MEET ROB                                                                                           VOLUME 1 - AGES 8-12
 
 
@@ -216,8 +225,9 @@ without software only produces pixels. A clever program without an emergency sto
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   4 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   4 / 31
 MISSION 2
+
 
 Structure carries every idea
 MISSION 2
@@ -227,6 +237,20 @@ The skeleton and the shell
 The chassis is the robot’s load-carrying frame. ROB’s archive shows wooden prototype panels, metal
 brackets, shafts, bearings, fasteners, tread frames, and later mechanical revisions. Prototypes are useful
 because they let a builder test size and motion before paying for final parts.
+ROB began with one hard mechanical promise: the purchased SuperDroid Robots LT2 tread system had
+to fit. Instead of immediately cutting expensive material, the builder copied the tread envelope in card-
+board. Cardboard made it cheap to move a wall, change a hole, test a battery-sized box, and ask whether
+the flipper could sweep without striking the body. The useful shapes could then become templates for
+maple plywood. A playful three-wheel idea, inspired by the famous movie robot Johnny 5, explored
+whether a sideways wheel could reduce tread scrub during a turn.
+
+   CARDBOARD IS A QUESTION-MAKING TOOL
+
+   A prototype does not need to be strong enough for the final robot. It needs to answer the question
+   written on it. Mark every model with its question, scale, date, and result: Does the LT2 fit? Can the
+   battery be removed? Does the flipper clear? Can a hand reach the connector? A failed cardboard
+   shape can save a sheet of plywood, a machined plate, and a week of work.
+
 The tracked base must do several jobs at once:
 
 • hold the robot’s weight without bending too much;
@@ -243,6 +267,12 @@ shows that structure must provide a safe path for things that bend and       cab
 move.                                                                        and service access.
 
 
+
+                                                                         6
+MEET ROB                                                                                    VOLUME 1 - AGES 8-12
+
+
+
    COMPUTER SCIENCE CONNECTION
    A measurement is data. A useful measurement has a value, a unit, and an idea of uncertainty. Writ-
    ing “48” is incomplete. Writing “48.0 mm, measured with a caliper” can guide another maker.
@@ -253,17 +283,27 @@ move.                                                                        and
    Span the same gap and add coins one at a time. Record how many coins each design holds. Shape
    can add stiffness without adding material.
 
+   MAKE A FULL-SIZE INTERFACE MOCKUP
+
+   Choose a small robot wheel or print a paper circle at full size. Tape it to a cardboard side panel,
+   then add paper envelopes for the motor, battery, and cable bend. Move the parts before cutting any
+   real material. Photograph the final mockup beside a ruler and write three things it proved and three
+   things it could not prove.
+
+   ROB IS A NAME, NOT A DIMENSION SET
+
+   ROB is a friendly name taken from the word “robot”; it is not an acronym. Rodolfo Aramayo began
+   ROB after leaving systems-software research work at Verizon Labs and built the early body by hand in
+   College Station, Texas. He dates the new treaded prototype to approximately 2016, before the later
+   metal revisions. The present height, width, length, ready-to-run mass, and center of mass have not
+   been measured for publication. Never scale a photograph to copy the machine: a future reproduc-
+   tion begins with its own measured drawing, stability study, and adult engineering review.
 
 
 
-                                                                         6
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            7 / 31
 MEET ROB                                                                                             VOLUME 1 - AGES 8-12
-
-
-
-    BUILDER INPUT NEEDED
-    Add ROB’s verified overall height, width, length, ready-to-run mass, primary chassis materials, and
-    the story behind the name R.O.B. These values are not established by the presentation or repositories.
 
 
 
@@ -274,7 +314,7 @@ move.                                                                        and
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     7 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     8 / 31
 MEET ROB                                                                                                                 VOLUME 1 - AGES 8-12
 
 
@@ -305,11 +345,12 @@ The last arrow is the secret: learning returns you to a better question.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                         8 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                         9 / 31
 MISSION 3
 
-Power and information are differ-
-ent
+
+Power and information are
+different
 MISSION 3
 
 
@@ -321,6 +362,11 @@ ROB’s presentation describes four 20 Ah LiFePO4 batteries arranged across the 
 capacity of 80 Ah. A 2024 photograph shows two large batteries with red power leads inside the chas-
 sis. The archive does not prove the final series/parallel arrangement, protection devices, or present-day
 capacity, so this book does not invent them.
+The builder’s newest record describes the negative leads meeting at a return bus and the positive leads
+passing through the front power switch before reaching a 12 V distribution bus. Other converters create
+24 V and 48 V domains for different jobs. That story is a map for an adult to verify, not a circuit for a
+young reader to copy. Amp-hours describe charge capacity; they do not tell us the voltage, safe current,
+or runtime by themselves.
 
   SAFETY CHECK
 
@@ -334,10 +380,7 @@ capacity, so this book does not invent them.
    Conceptual illustration: amber paths represent energy and cyan paths represent information. It is a thinking
    map, not ROB’s as-built wiring diagram.
 
-
-
-
-                                                       10
+                                                       11
 MEET ROB                                                                                        VOLUME 1 - AGES 8-12
 
 
@@ -354,11 +397,12 @@ capacity, so this book does not invent them.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              11 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                              12 / 31
 MISSION 4
 
-Sensors turn the world into num-
-bers
+
+Sensors turn the world into
+numbers
 MISSION 4
 
 
@@ -389,7 +433,7 @@ A sensor is a translator. It converts something physical into data a computer ca
 
 
 
-                                                       13
+                                                       14
 MEET ROB                                                                                      VOLUME 1 - AGES 8-12
 
 
@@ -410,8 +454,9 @@ A sensor is a translator. It converts something physical into data a computer ca
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            14 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            15 / 31
 MISSION 5
+
 
 The brain is a conversation
 MISSION 5
@@ -465,7 +510,7 @@ Each layer has a smaller job:
 
 
 
-                                                                   16
+                                                                   17
 MEET ROB                                                                                   VOLUME 1 - AGES 8-12
 
 
@@ -478,7 +523,7 @@ Each layer has a smaller job:
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                         17 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                         18 / 31
 MEET ROB                                                                                                                                                       VOLUME 1 - AGES 8-12
 
 
@@ -517,8 +562,9 @@ physical stopping behavior still has to be measured.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                                                18 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                                                                19 / 31
 MISSION 6
+
 
 A robot grows through versions
 MISSION 6
@@ -550,7 +596,7 @@ robot already combines camera eyes, arms, a body, and a mobile base.        The 
 
 
 
-                                                                       20
+                                                                       21
 MEET ROB                                                                                                                      VOLUME 1 - AGES 8-12
 
 
@@ -562,7 +608,7 @@ how many mechanical and electrical paths compete for space.               loose 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                            21 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                            22 / 31
 MEET ROB                                                                                               VOLUME 1 - AGES 8-12
 
 
@@ -582,7 +628,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     22 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                     23 / 31
 MEET ROB                                                                                            VOLUME 1 - AGES 8-12
 
 
@@ -594,7 +640,7 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  23 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  24 / 31
 MEET ROB                                                                                                                  VOLUME 1 - AGES 8-12
 
 
@@ -618,7 +664,7 @@ through many revisions.                                                    willi
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        24 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        25 / 31
 MISSION 7
 
 
@@ -662,8 +708,9 @@ in this one-page design brief.
 
 
 
-                                                    25
+                                                    26
 DEEP LAB
+
 
 See the loop, not just the parts
 MISSION 8
@@ -716,7 +763,7 @@ happen if readings stop arriving? A prediction turns “I think it works” into
 
 
 
-                                                    27
+                                                    28
 MEET ROB                                                                                            VOLUME 1 - AGES 8-12
 
 
@@ -733,7 +780,7 @@ happen if readings stop arriving? A prediction turns “I think it works” into
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  28 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  29 / 31
 MISSION 9
 
 
@@ -766,13 +813,13 @@ unit, method, revision, and uncertainty instead of hiding variation.
 
 
 
-                                                   29
+                                                   30
 MEET ROB                                                                                                                    VOLUME 1 - AGES 8-12
 
 
 
 Field words
-ACTUATOR A device that causes motion.                                   OUTPUT       Information or action produced by a sys-
+ACTUATOR A device that causes motion.                                   OUTPUT Information or action produced by a sys-
                                                                         tem.
 CHASSIS The load-carrying frame.
 COMMAND A message asking a system to do some- PROTOTYPE A version built to answer questions.
@@ -796,5 +843,5 @@ Source trail: Presentation/ROB_v3.pdf; ORobotics private gallery originals and g
 Head sketches; current Cerebro, ROBController, and ROBControllerVision source. Arduino archive inspected 2026-08-10.
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                          30 / 30
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                          31 / 31
 

@@ -19,7 +19,7 @@ REPORT_DIR = PROJECT / "tmp" / "asset-audit"
 
 EXPECTED_COUNTS = {
     "photos": 46,
-    "generated": 15,
+    "generated": 16,
     "slides": 8,
     "posters/book-covers": 6,
     "posters": 1,

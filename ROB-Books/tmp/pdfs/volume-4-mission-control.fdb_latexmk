@@ -1,14 +1,14 @@
 # Fdb version 4
-["xdvipdfmx"] 1786513202.1698 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control" 1786513203.39464 0
+["xdvipdfmx"] 1789170271.45558 "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.xdv" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.pdf" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control" 1789170272.81915 0
   "/Users/raramayo/dev/ROB-Books/tmp/pdfs/volume-4-mission-control.xdv" 0 -1 0 ""
   "/Users/rob/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev/R.O.B./Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.xdv" 0 -1 0 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.xdv" 1786513202.10197 637204 feb8f18f97d2e388b7ea7b777438867b "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.xdv" 1789170271.36393 818704 7cf6fefeeb1793886b9ec98333408ba0 "xelatex"
   (generated)
   "/Users/raramayo/dev/ROB-Books/tmp/pdfs/volume-4-mission-control.pdf"
   "/Users/rob/Library/Mobile Documents/com~apple~CloudDocs/Documents/Dev/R.O.B./Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.pdf"
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.pdf"
   (rewritten before read)
-["xelatex"] 1786513200.41763 "volume-4-mission-control.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.xdv" "volume-4-mission-control" 1786513203.39295 0
+["xelatex"] 1789170269.17274 "volume-4-mission-control.tex" "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.xdv" "volume-4-mission-control" 1789170272.8175 0
   "../assets/generated/rob-safe-autonomy-lab.png" 1786423707.35973 2825576 007b9889671e8f9520580cdafccc5bfb ""
   "../assets/generated/rob-software-control-room.png" 1785741996 2414252 f19bf3d1b5945d2a52c4123fe6388878 ""
   "../assets/photos/2022-fanless-computer-and-serial.jpg" 1785743336 2199912 fb44919f34458fa71c71932725895a25 ""
@@ -17,9 +17,9 @@
   "../assets/slides/rob-v3-page-55.jpg" 1785743358 1112312 525d3f23047556e12d90a17887d18f58 ""
   "../assets/slides/rob-v3-page-72.jpg" 1785743360 1081502 c9d66d573720c53b9588f57a11a3e1af ""
   "../assets/slides/rob-v3-page-74.jpg" 1785743362 1130651 34522e1c149596378f838a8c554514c3 ""
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.aux" 1786513202.10027 4224 8a3f5009d45a1796205bb0a206d6f524 "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.out" 1786513202.10137 2204 8dccd6be105a1e08b63723840c584c17 "xelatex"
-  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.toc" 1786513202.10163 897 863bddeef6c73cb5302fb0f217583e87 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.aux" 1789170271.36206 4491 65202be92f4ac240af98632523b5fa67 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.out" 1789170271.36315 2204 8dccd6be105a1e08b63723840c584c17 "xelatex"
+  "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.toc" 1789170271.36349 898 b0add9360d379d700091dc89d7bdc9d3 "xelatex"
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/map/fontname/texfonts.map" 1772380719 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1772380719 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1772380719 1004 54797486969f23fa377b128694d548df ""
@@ -211,9 +211,9 @@
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/xurl/xurl.sty" 1772380719 4675 e4b8c405820368c2dfb03526e16d725a ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/web2c/texmf.cnf" 1772380719 43633 14bbc273cebd985e64ab1a698333eaf9 ""
   "/opt/homebrew/Cellar/texlive/20260301/share/texmf-var/web2c/xetex/xelatex.fmt" 1772380719 5948959 3df9f026b6ab65867975c94eefb74cd0 ""
-  "robbook.sty" 1786513183.41505 18343 efe854e77ba918206dcffd01effb0188 ""
-  "volume-4-deep-dive.tex" 1786423904.46577 4562 5d27fc3faca31d5db5138613617ce5f1 ""
-  "volume-4-mission-control.tex" 1786510121.67642 27397 2f700f6280081e9f6b11fd6047d7ad92 ""
+  "robbook.sty" 1789168588.85492 27763 5f1f595c79eae692e7e2f6028f2a9448 ""
+  "volume-4-deep-dive.tex" 1787472636.40941 5498 3ee6bd23b083391738ec16f747978805 ""
+  "volume-4-mission-control.tex" 1788062925.84418 37392 6f4ca1f0d2b534286608d258498c5478 ""
   (generated)
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.aux"
   "/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-4-mission-control.log"

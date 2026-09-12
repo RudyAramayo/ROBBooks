@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:40
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 SEP 2026 16:44
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -65,7 +65,7 @@ spec.sty
 arse/xparse.sty
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/l3kernel/expl
 3.sty
-Package: expl3 2026-01-19 L3 programming layer (loader) 
+Package: expl3 2026-01-19 L3 programming layer (loader)
 
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/l3backend/l3b
 ackend-xetex.def
@@ -774,7 +774,7 @@ Library (tcolorbox): 'tcbprocessing.code.tex' version '6.9.0'
 )
 \c@tcblisting=\count351
 ))
-Package tcolorbox Info: Library `listingsutf8' is compatible with pdftex only. 
+Package tcolorbox Info: Library `listingsutf8' is compatible with pdftex only.
 Library `listings` is loaded instead. on input line 29.
 )
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/tcolorbox/tcb
@@ -1187,16 +1187,16 @@ MM)
 pagemodern.sty
 Package: lastpagemodern 2025-08-14 v2.1h Refers to last page's name (HMM; JPG)
 \c@lastpagecount=\count387
-) 
+)
 ))
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'AvenirNext(0)' created for font 'Avenir
 (fontspec)             Next' with options [Ligatures=TeX].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Avenir
 (fontspec)             Next/OT:script=latn;language=dflt;mapping=tex-text;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"Avenir
@@ -1221,35 +1221,35 @@ xt;"
 ext;"
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo/B scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo/I scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Menlo/BI scale = 0.83.
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'Menlo(0)' created for font 'Menlo' with
 (fontspec)             options
 (fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=Word
 Space,Scale=0.83].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->s*[0.83]"Menlo/AAT"
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
@@ -1260,13 +1260,13 @@ Space,Scale=0.83].
 (fontspec)             <->s*[0.83]"Menlo/BI/AAT"
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'Futura(0)' created for font 'Futura' with
 (fontspec)             options [].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
 (fontspec)             <->"Futura/OT:language=dflt;"
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
@@ -1277,13 +1277,13 @@ Package fontspec Info:
 (fontspec)             <->"Futura/BI/OT:language=dflt;"
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Font family 'AvenirNextCondensed(0)' created for font
 (fontspec)             'Avenir Next Condensed' with options [].
-(fontspec)              
+(fontspec)
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
-(fontspec)              
+(fontspec)
 (fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Avenir Next
 (fontspec)             Condensed/OT:script=latn;language=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: <->"Avenir Next
@@ -1465,7 +1465,7 @@ LaTeX Font Info:    ... okay on input line 31.
 * paper: letterpaper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside 
+* modes: twoside
 * h-part:(L,W,R)=(52.03448pt, 517.45348pt, 44.80704pt)
 * v-part:(T,H,B)=(49.86647pt, 694.51474pt, 50.58878pt)
 * \paperwidth=614.295pt
@@ -1493,7 +1493,7 @@ LaTeX Font Info:    ... okay on input line 31.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-Package fontspec Info: 
+Package fontspec Info:
 (fontspec)             Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
 
@@ -1533,7 +1533,7 @@ LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/cmr/bx/n --> TU/AvenirNext(0)/m/n on input line 31.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/AvenirNext(0)/m/n --> TU/AvenirNext(0)/m/n on input 
+(Font)                  TU/AvenirNext(0)/m/n --> TU/AvenirNext(0)/m/n on input
 line 31.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/cmr/m/it --> TU/AvenirNext(0)/m/it on input line 31
@@ -1547,7 +1547,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
 (Font)                  OT1/cmtt/m/n --> TU/Menlo(0)/m/n on input line 31.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/AvenirNext(0)/m/n --> TU/AvenirNext(0)/b/n on input 
+(Font)                  TU/AvenirNext(0)/m/n --> TU/AvenirNext(0)/b/n on input
 line 31.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> TU/AvenirNext(0)/b/it on input line 3
@@ -1636,7 +1636,7 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 (/opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/tex/latex/microtype/mt-
 cmr.cfg
-File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (RS)
 ) [2]
 File: ../assets/generated/cerebro-perception-control-lesson.png Graphic file (t
@@ -1672,7 +1672,7 @@ Package luabridge Info: Executing a helper Lua script from file
 (|texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-ce
 rebro.luabridge.lua)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
-cerebro/a1ec5d3fb66993d41edbc4f90dc07e65.md.tex
+cerebro/d76681d47ffb9c5fd83a8b171c4c5d2d.md.tex
 Chapter 1.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 5.
@@ -1702,48 +1702,52 @@ h the application boundary
 Chapter 2.
 [2
 
-]
+] [3]
 Chapter 3.
+[4
 
-Underfull \hbox (badness 3229) in paragraph at lines 29--29
+]
+Chapter 4.
+
+Underfull \hbox (badness 3229) in paragraph at lines 130--130
 []\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Pa
 ckage.resolved \TU/AvenirNext(0)/m/n/10 inside the Xcode workspace, plus
  []
 
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
-cerebro/aad5a77dca6dbea3ff874e385bbaad9a.verbatim) [3
-
-]
-Chapter 4.
-[4
+cerebro/aad5a77dca6dbea3ff874e385bbaad9a.verbatim) [5
 
 ]
 Chapter 5.
-
-(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
-cerebro/149ccede00aab17d105c7984449163f1.verbatim) [5
+[6
 
 ]
 Chapter 6.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
-cerebro/acfafe86ee40f44f1d691aaf02ef9922.verbatim) [6
+cerebro/149ccede00aab17d105c7984449163f1.verbatim) [7
 
 ]
 Chapter 7.
-[7
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
+cerebro/acfafe86ee40f44f1d691aaf02ef9922.verbatim) [8
 
 ]
 Chapter 8.
-
-(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
-cerebro/c999fc48ac9fd4473cb5693430299a1f.verbatim) [8
+[9
 
 ]
 Chapter 9.
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--88
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
+cerebro/c999fc48ac9fd4473cb5693430299a1f.verbatim) [10
+
+]
+Chapter 10.
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--190
 []\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 RO
 BSerialBox.m \TU/AvenirNext(0)/m/n/10 methods \TU/Menlo(0)/m/n/10 applyVisionNe
 ckPan:tilt:\TU/AvenirNext(0)/m/n/10 ,
@@ -1751,224 +1755,315 @@ ckPan:tilt:\TU/AvenirNext(0)/m/n/10 ,
 
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
-cerebro/ca591f4c594505042628ca5a2307484c.verbatim) [9
-
-]
-Chapter 10.
-
-Underfull \hbox (badness 10000) in paragraph at lines 97--97
-[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Ce
-rebro/Cerebro-Bridging-Header.h\TU/AvenirNext(0)/m/n/10 ,
- []
-
-[10
+cerebro/ca591f4c594505042628ca5a2307484c.verbatim) [11
 
 ]
 Chapter 11.
 
-Underfull \hbox (badness 10000) in paragraph at lines 112--112
+Underfull \hbox (badness 10000) in paragraph at lines 199--199
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Ce
+rebro/Cerebro-Bridging-Header.h\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+[12
+
+]
+Chapter 12.
+
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Ce
 rebro/CameraManager.swift \TU/AvenirNext(0)/m/n/10 types \TU/Menlo(0)/m/n/10 Ca
 meraSource\TU/AvenirNext(0)/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 1496) in paragraph at lines 113--113
-[]\TU/AvenirNext(0)/m/n/10 The AVFoundation path discovers a camera, chooses a 
+Underfull \hbox (badness 1496) in paragraph at lines 215--215
+[]\TU/AvenirNext(0)/m/n/10 The AVFoundation path discovers a camera, chooses a
 format, configures \TU/Menlo(0)/m/n/10 AVCaptureSession\TU/AvenirNext(0)/m/n/10
  , and receives
  []
 
-[11
+[13
 
 ]
-Chapter 12.
+Chapter 13.
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--120
+Underfull \hbox (badness 10000) in paragraph at lines 222--222
 []\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 do
 cs/depth-camera.md\TU/AvenirNext(0)/m/n/10 , \TU/Menlo(0)/m/n/10 Cerebro/Webcam
 _color.py\TU/AvenirNext(0)/m/n/10 ,
  []
 
-[12
 
-]
-Chapter 13.
+Underfull \hbox (badness 2435) in paragraph at lines 227--227
+[]\TU/AvenirNext(0)/m/n/10 The Insta360 Pro II is a third, independent role. \T
+U/Menlo(0)/m/n/10 ROBInsta360CameraService \TU/AvenirNext(0)/m/n/10 establishes
+ the camera con-
+ []
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+
+Underfull \hbox (badness 7981) in paragraph at lines 227--227
+\TU/AvenirNext(0)/m/n/10 trol session, maintains heartbeat, supervises RTMP/ffm
+peg preview, and reports bounded retry state.
+ []
+
+[14
+
+] [15]
+Chapter 14.
+
+Underfull \hbox (badness 10000) in paragraph at lines 247--247
 []\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Ca
 meraViewController.swift\TU/AvenirNext(0)/m/n/10 ,
  []
 
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
-cerebro/4a9d3bb22c85c3d3aa3ab1ebba53e5be.verbatim) [13
-
-]
-Chapter 14.
-[14
+cerebro/4a9d3bb22c85c3d3aa3ab1ebba53e5be.verbatim) [16
 
 ]
 Chapter 15.
-[15
+[17
 
 ]
 Chapter 16.
+[18
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--155
+]
+Chapter 17.
+
+Underfull \hbox (badness 10000) in paragraph at lines 269--269
 []\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Ce
 rebro/ROBMLXRuntime.swift\TU/AvenirNext(0)/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 155--155
+Underfull \hbox (badness 10000) in paragraph at lines 269--269
 \TU/Menlo(0)/m/n/10 ROBMLXImprovisationProvider.swift\TU/AvenirNext(0)/m/n/10 ,
  \TU/Menlo(0)/m/n/10 ROBMLXStageObservation.swift\TU/AvenirNext(0)/m/n/10 , \TU
 /Menlo(0)/m/n/10 docs/mlx-local-ai.md\TU/AvenirNext(0)/m/n/10 , and
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--156
+Underfull \hbox (badness 10000) in paragraph at lines 270--270
 []\TU/Menlo(0)/m/n/10 ROBMLXEngine \TU/AvenirNext(0)/m/n/10 is an actor. This s
 erializes model-container state, loading, diagnostics, VLM admis-
  []
 
 
-Underfull \hbox (badness 5316) in paragraph at lines 156--156
+Underfull \hbox (badness 5316) in paragraph at lines 270--270
 \TU/AvenirNext(0)/m/n/10 sion, embeddings, and semantic memory without blocking
  the main actor. The initial local LLM is
  []
 
 
-Underfull \hbox (badness 5077) in paragraph at lines 156--156
+Underfull \hbox (badness 5077) in paragraph at lines 270--270
 \TU/Menlo(0)/m/n/10 mlx-community/Llama-3.2-1B-Instruct-4bit\TU/AvenirNext(0)/m
 /n/10 ; vision uses \TU/Menlo(0)/m/n/10 mlx-community/Qwen2-VL-2B-Instruct-4bit
 \TU/AvenirNext(0)/m/n/10 ; retrieval
  []
 
-[16
-
-]
-Chapter 17.
-[17
+[19
 
 ]
 Chapter 18.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
-cerebro/0dd41ca32e96b4eff655b714e202e2da.verbatim) [18
+cerebro/37fb83924f5c624f27acefc5dce5905a.verbatim)
+Underfull \hbox (badness 2277) in paragraph at lines 285--286
+[]\TU/Menlo(0)/m/n/10 loadLLM \TU/AvenirNext(0)/m/n/10 returns the already load
+ed container when the model ID matches, otherwise it records load-
+ []
+
+[20
 
 ]
 Chapter 19.
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--178
+Underfull \hbox (badness 10000) in paragraph at lines 297--297
+[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 RO
+BDatasetManager \TU/AvenirNext(0)/m/n/10 in \TU/Menlo(0)/m/n/10 ROBSceneSnapsho
+t.swift\TU/AvenirNext(0)/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 8075) in paragraph at lines 297--297
+\TU/Menlo(0)/m/n/10 TrainProjectModel.py\TU/AvenirNext(0)/m/n/10 , the model-ma
+nifest loader and \TU/Menlo(0)/m/n/10 YoloSpatialDetectionNetwork \TU/AvenirNex
+t(0)/m/n/10 branch in
+ []
+
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
+cerebro/488dadd45aba5bb2ea36961e9343feb7.verbatim)
+LaTeX Font Info:    Font shape `TU/Menlo(0)/b/n' will be
+(Font)              scaled to size 8.30002pt on input line 303.
+ [21
+
+] [22]
+Chapter 20.
+[23
+
+]
+Chapter 21.
+[24
+
+]
+Chapter 22.
+[25
+
+]
+Chapter 23.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
+cerebro/0dd41ca32e96b4eff655b714e202e2da.verbatim) [26
+
+]
+Chapter 24.
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
 []\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 Ce
 rebro/ROBAI.swift\TU/AvenirNext(0)/m/n/10 , \TU/Menlo(0)/m/n/10 GeminiRoboticsP
 rotocol.swift\TU/AvenirNext(0)/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 178--178
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
 \TU/Menlo(0)/m/n/10 ROBGeminiDiagnosticsWindowController.swift\TU/AvenirNext(0)
 /m/n/10 , \TU/Menlo(0)/m/n/10 docs/gemini-robotics-live.md\TU/AvenirNext(0)/m/n
 /10 , and
  []
 
-[19
+[27
 
 ]
-Chapter 20.
+Chapter 25.
+[28
+
+]
+Chapter 26.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
-cerebro/8900aaf09ec0b695a56b97173cca51af.verbatim) [20
+cerebro/8900aaf09ec0b695a56b97173cca51af.verbatim) [29
 
 ]
-Chapter 21.
+Chapter 27.
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
+Underfull \hbox (badness 1424) in paragraph at lines 401--401
+[]\TU/Menlo(0)/m/n/10 ROBTraversabilityRuntime \TU/AvenirNext(0)/m/n/10 learns
+belly-camera ground context only from manually traversed and odometry-
+ []
+
+[30
+
+]
+Chapter 28.
+
+Underfull \hbox (badness 10000) in paragraph at lines 406--406
 []\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 RO
 BVideoServer.swift\TU/AvenirNext(0)/m/n/10 , \TU/Menlo(0)/m/n/10 ROBVideoProtoc
 ol.swift\TU/AvenirNext(0)/m/n/10 ,
  []
 
-[21
+[31
 
 ]
-Chapter 22.
+Chapter 29.
 
-Underfull \hbox (badness 4036) in paragraph at lines 203--203
-[]\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/AvenirNext(0)/m/n/
-10 the \TU/Menlo(0)/m/n/10 ROBNiTEManager \TU/AvenirNext(0)/m/n/10 and \TU/Menl
-o(0)/m/n/10 TaskControllers \TU/AvenirNext(0)/m/n/10 directories:
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
+cerebro/c71263fbec83c5a57390e78314961c50.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
+cerebro/2852f1eea6b13029b7bcf17c8a5077e7.verbatim)
+Underfull \hbox (badness 10000) in paragraph at lines 431--431
+[]\TU/AvenirNext(0)/m/n/10 The prefix is not part of the NAL unit. The first by
+te after each prefix is the NAL header.
  []
 
-[22
+[32
 
 ]
-Chapter 23.
-[23
+Underfull \hbox (badness 6300) in paragraph at lines 439--440
+[]\TU/AvenirNext(0)/m/n/10 Create a VideoToolbox H.264 compression session whos
+e destination pixels are NV12 video-range
+ []
+
+
+Underfull \hbox (badness 1097) in paragraph at lines 440--441
+[]\TU/AvenirNext(0)/m/n/10 Request real-time operation, disable frame reorderin
+g, prefer Constrained Baseline, set expected frame
+ []
+
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
+cerebro/145d95b4bf12a5ccec482ab76d745979.verbatim) [33] [34]
+Chapter 30.
+[35
 
 ]
-Chapter 24.
+Chapter 31.
+[36
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--224
+]
+Chapter 32.
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--490
 []\TU/AvenirNext(0)/b/n/10 SOURCE TRAIL — ANALYZING NOW: \TU/Menlo(0)/m/n/10 RO
 BSaberChoreography.swift\TU/AvenirNext(0)/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 224--224
+Underfull \hbox (badness 10000) in paragraph at lines 490--490
 \TU/Menlo(0)/m/n/10 StageShows/ProgressiveSaberTraining.robshow.json\TU/AvenirN
 ext(0)/m/n/10 , \TU/Menlo(0)/m/n/10 GalacticSaberBattle.robshow.json\TU/AvenirN
 ext(0)/m/n/10 ,
  []
 
-[24
+[37
 
 ]
-Chapter 25.
-[25
+Chapter 33.
+[38
 
 ]
-Chapter 26.
+Chapter 34.
 
-Underfull \hbox (badness 5064) in paragraph at lines 255--255
+Underfull \hbox (badness 5064) in paragraph at lines 521--521
 []\TU/AvenirNext(0)/m/n/10 Then perform a staged hardware test: no-power simula
 tion, powered actuators mechanically isolated,
  []
 
-[26
+[39
 
 ]
-Chapter 27.
-[27
+Chapter 35.
+[40
 
 ]
-Chapter 28.
+Chapter 36.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-8-engineering-
 cerebro/8299ced50d688155a8a316e2ee3711ae.verbatim)
-Underfull \hbox (badness 10000) in paragraph at lines 279--279
+Underfull \hbox (badness 10000) in paragraph at lines 550--550
 []\TU/AvenirNext(0)/m/n/10 For camera work, preserve \TU/Menlo(0)/m/n/10 Camera
 ManagerProtocol \TU/AvenirNext(0)/m/n/10 and \TU/Menlo(0)/m/n/10 CameraFrameSet
 \TU/AvenirNext(0)/m/n/10 . For model work, preserve
  []
 
-[28
+[41
 
 ]
-Chapter 29.
-[29
+Chapter 37.
+[42
 
 ]
-Chapter 30.
-[30
+Chapter 38.
+[43
 
 ]
-Chapter 31.
-) [31
+Chapter 39.
+) [44
 
-] 
+]
 enddocument/afterlastpage (AED): lastpage setting LastPage.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engineering-cerebro.au
@@ -1979,16 +2074,16 @@ L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `volume-8-engineering-cerebro.out' has not ch
 anged.
-(rerunfilecheck)             Checksum: 940C5B7FA4040B88A885289F159F0420;8550.
- ) 
+(rerunfilecheck)             Checksum: D43976D12384FCE329DA2236C471F551;14898.
+ )
 Here is how much of TeX's memory you used:
- 37980 strings out of 468168
- 848216 string characters out of 5423555
- 1407433 words of memory out of 5000000
- 65994 multiletter control sequences out of 15000+600000
- 630653 words of font info for 120 fonts, out of 8000000 for 9000
+ 38042 strings out of 468168
+ 852336 string characters out of 5423555
+ 1459219 words of memory out of 5000000
+ 66040 multiletter control sequences out of 15000+600000
+ 630661 words of font info for 121 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 101i,12n,131p,1025b,1362s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,13n,131p,1025b,1458s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-8-engin
-eering-cerebro.xdv (37 pages, 631180 bytes).
+eering-cerebro.xdv (50 pages, 1090960 bytes).

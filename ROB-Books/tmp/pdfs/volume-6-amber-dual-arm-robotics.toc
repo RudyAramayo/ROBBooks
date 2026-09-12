@@ -10,26 +10,34 @@
 \contentsline {chapter}{\numberline {5}CAN: stable identity before traffic}{7}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Prefer a deterministic host binding}{7}{section.5.1}%
 \contentsline {section}{\numberline {5.2}CAN fault questions}{7}{section.5.2}%
-\contentsline {chapter}{\numberline {6}Configure one core per side}{8}{chapter.6}%
-\contentsline {chapter}{\numberline {7}The observed UDP protocol}{9}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Command catalogue}{9}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Gripper sequence}{10}{section.7.2}%
-\contentsline {section}{\numberline {7.3}Protocol hardening needed}{10}{section.7.3}%
-\contentsline {chapter}{\numberline {8}LCM and ROS 2 interfaces}{11}{chapter.8}%
-\contentsline {chapter}{\numberline {9}Build a clean Ubuntu runtime}{12}{chapter.9}%
-\contentsline {section}{\numberline {9.1}Reproduction procedure}{12}{section.9.1}%
-\contentsline {section}{\numberline {9.2}Service order}{13}{section.9.2}%
-\contentsline {chapter}{\numberline {10}A status-only Python lesson}{14}{chapter.10}%
-\contentsline {chapter}{\numberline {11}Commission from no motion to bounded motion}{15}{chapter.11}%
-\contentsline {section}{\numberline {11.1}Gate 0: paper review}{15}{section.11.1}%
-\contentsline {section}{\numberline {11.2}Gate 1: power isolated}{15}{section.11.2}%
-\contentsline {section}{\numberline {11.3}Gate 2: status only}{15}{section.11.3}%
-\contentsline {section}{\numberline {11.4}Gate 3: supported, torque-limited joint identification}{15}{section.11.4}%
-\contentsline {section}{\numberline {11.5}Gate 4: model agreement}{15}{section.11.5}%
-\contentsline {section}{\numberline {11.6}Gate 5: independent single-arm envelopes}{15}{section.11.6}%
-\contentsline {section}{\numberline {11.7}Gate 6: dual-arm coordination}{16}{section.11.7}%
-\contentsline {chapter}{\numberline {12}Diagnose by layer}{17}{chapter.12}%
-\contentsline {chapter}{\numberline {13}Connect the arms to Cerebro responsibly}{18}{chapter.13}%
-\contentsline {chapter}{\numberline {14}What remains unknown}{19}{chapter.14}%
-\contentsline {chapter}{\numberline {15}Reproduction acceptance sheet}{20}{chapter.15}%
-\contentsline {chapter}{\numberline {16}Teach it as a systems lesson}{21}{chapter.16}%
+\contentsline {chapter}{\numberline {6}CAN from copper to Linux}{8}{chapter.6}%
+\contentsline {section}{\numberline {6.1}What one CAN frame teaches}{8}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Read the deterministic initializer line by line}{9}{section.6.2}%
+\contentsline {chapter}{\numberline {7}Configure one core per side}{10}{chapter.7}%
+\contentsline {chapter}{\numberline {8}The observed UDP protocol}{11}{chapter.8}%
+\contentsline {section}{\numberline {8.1}Command catalogue}{11}{section.8.1}%
+\contentsline {section}{\numberline {8.2}Gripper sequence}{12}{section.8.2}%
+\contentsline {section}{\numberline {8.3}Protocol hardening needed}{12}{section.8.3}%
+\contentsline {chapter}{\numberline {9}LCM and ROS 2 interfaces}{13}{chapter.9}%
+\contentsline {chapter}{\numberline {10}LCM workshop: schema, generated code, and the Python bridge}{14}{chapter.10}%
+\contentsline {section}{\numberline {10.1}Follow one status sample end to end}{15}{section.10.1}%
+\contentsline {chapter}{\numberline {11}Understand the Ubuntu services}{16}{chapter.11}%
+\contentsline {chapter}{\numberline {12}The hardened Cerebro-to-AMBER gateway}{17}{chapter.12}%
+\contentsline {section}{\numberline {12.1}A safe code-reading lab}{17}{section.12.1}%
+\contentsline {chapter}{\numberline {13}Build a clean Ubuntu runtime}{19}{chapter.13}%
+\contentsline {section}{\numberline {13.1}Reproduction procedure}{19}{section.13.1}%
+\contentsline {section}{\numberline {13.2}Service order}{20}{section.13.2}%
+\contentsline {chapter}{\numberline {14}A status-only Python lesson}{21}{chapter.14}%
+\contentsline {chapter}{\numberline {15}Commission from no motion to bounded motion}{22}{chapter.15}%
+\contentsline {section}{\numberline {15.1}Gate 0: paper review}{22}{section.15.1}%
+\contentsline {section}{\numberline {15.2}Gate 1: power isolated}{22}{section.15.2}%
+\contentsline {section}{\numberline {15.3}Gate 2: status only}{22}{section.15.3}%
+\contentsline {section}{\numberline {15.4}Gate 3: supported, torque-limited joint identification}{22}{section.15.4}%
+\contentsline {section}{\numberline {15.5}Gate 4: model agreement}{22}{section.15.5}%
+\contentsline {section}{\numberline {15.6}Gate 5: independent single-arm envelopes}{22}{section.15.6}%
+\contentsline {section}{\numberline {15.7}Gate 6: dual-arm coordination}{23}{section.15.7}%
+\contentsline {chapter}{\numberline {16}Diagnose by layer}{24}{chapter.16}%
+\contentsline {chapter}{\numberline {17}Connect the arms to Cerebro responsibly}{25}{chapter.17}%
+\contentsline {chapter}{\numberline {18}What remains unknown}{26}{chapter.18}%
+\contentsline {chapter}{\numberline {19}Reproduction acceptance sheet}{27}{chapter.19}%
+\contentsline {chapter}{\numberline {20}Teach it as a systems lesson}{28}{chapter.20}%

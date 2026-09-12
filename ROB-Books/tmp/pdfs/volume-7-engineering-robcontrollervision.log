@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 AUG 2026 22:40
+This is XeTeX, Version 3.141592653-2.6-0.999998 (TeX Live 2026/Homebrew) (preloaded format=xelatex 2026.3.4)  11 SEP 2026 16:44
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1603,11 +1603,6 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `Futura' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Underfull \hbox (badness 10000) in paragraph at lines 32--32
-[]\TU/Futura(0)/b/n/33 ENGINEERING ROBCon- 
- []
-
 [1
 
 
@@ -1676,7 +1671,7 @@ Package luabridge Info: Executing a helper Lua script from file
 (|texlua /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engineering-ro
 bcontrollervision.luabridge.lua)
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-
-robcontrollervision/21440a2959ae9b0f7dfb705bfac0a173.md.tex
+robcontrollervision/60ea971e613bdac04a8152f404b8cd24.md.tex
 Chapter 1.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 5.
@@ -1703,7 +1698,7 @@ robcontrollervision/1b22a8418d98ff5200d384f6d955bf3f.verbatim) [2
 Chapter 3.
 
 (/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-
-robcontrollervision/28897375eb9f1e70ebaeaab37201a586.verbatim) [3
+robcontrollervision/f491e00334f03353dd2d700f693b8332.verbatim) [3
 
 ]
 Chapter 4.
@@ -1785,11 +1780,7 @@ Chapter 20.
 
 ]
 Chapter 21.
-
-(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-
-robcontrollervision/07863ce618c98eddcb6ebe0d43309a35.verbatim)
-(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-
-robcontrollervision/4a926fd75e560be3b27f1c39b3bdc218.verbatim) [21
+[21
 
 ]
 Chapter 22.
@@ -1797,7 +1788,11 @@ Chapter 22.
 
 ]
 Chapter 23.
-[23
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-
+robcontrollervision/07863ce618c98eddcb6ebe0d43309a35.verbatim)
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-
+robcontrollervision/4a926fd75e560be3b27f1c39b3bdc218.verbatim) [23
 
 ]
 Chapter 24.
@@ -1805,9 +1800,7 @@ Chapter 24.
 
 ]
 Chapter 25.
-
-(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-
-robcontrollervision/327fc9210acb78827dfdba812794d8f4.verbatim) [25
+[25
 
 ]
 Chapter 26.
@@ -1815,7 +1808,9 @@ Chapter 26.
 
 ]
 Chapter 27.
-[27
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-
+robcontrollervision/327fc9210acb78827dfdba812794d8f4.verbatim) [27
 
 ]
 Chapter 28.
@@ -1823,15 +1818,23 @@ Chapter 28.
 
 ]
 Chapter 29.
-LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
-(Font)              scaled to size 6.64001pt on input line 388.
-
-(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-
-robcontrollervision/a3fea1fec3880823e941c1b2ad239d6a.verbatim) [29
+[29
 
 ]
 Chapter 30.
-) [30
+[30
+
+]
+Chapter 31.
+LaTeX Font Info:    Font shape `TU/Menlo(0)/m/n' will be
+(Font)              scaled to size 6.64001pt on input line 425.
+
+(/Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/_markdown_volume-7-engineering-
+robcontrollervision/614d145333772290c61abab7b7dddecc.verbatim) [31
+
+]
+Chapter 32.
+) [32
 
 ] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
@@ -1844,16 +1847,16 @@ L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `volume-7-engineering-robcontrollervision.out
 ' has not changed.
-(rerunfilecheck)             Checksum: 2BB3F037FD5918ABEE378CD30C9E82EE;8508.
+(rerunfilecheck)             Checksum: BB2FC1D6B93FACF69D812CF564605061;9616.
  ) 
 Here is how much of TeX's memory you used:
- 38018 strings out of 468168
- 851111 string characters out of 5423555
- 1499550 words of memory out of 5000000
- 66017 multiletter control sequences out of 15000+600000
- 633769 words of font info for 134 fonts, out of 8000000 for 9000
+ 38017 strings out of 468168
+ 850986 string characters out of 5423555
+ 1531079 words of memory out of 5000000
+ 66018 multiletter control sequences out of 15000+600000
+ 633753 words of font info for 132 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 101i,12n,131p,1037b,1375s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,12n,131p,1037b,1384s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /Users/rob/dev/Presentation/ROB-Books/tmp/pdfs/volume-7-engin
-eering-robcontrollervision.xdv (36 pages, 660188 bytes).
+eering-robcontrollervision.xdv (38 pages, 769380 bytes).

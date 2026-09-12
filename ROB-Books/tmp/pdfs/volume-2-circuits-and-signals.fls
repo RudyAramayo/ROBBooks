@@ -362,6 +362,7 @@ INPUT ../assets/photos/2024-batteries-and-power-leads.jpg
 INPUT ../assets/photos/2024-batteries-and-power-leads.jpg
 INPUT ../assets/photos/2024-power-cable-pass-through.jpg
 INPUT ../assets/photos/2024-power-cable-pass-through.jpg
+INPUT /opt/homebrew/Cellar/texlive/20260301/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT ../assets/photos/2024-voltage-gauge.jpg
 INPUT ../assets/photos/2024-voltage-gauge.jpg
 INPUT ../assets/photos/2022-arm-controller-board.jpg

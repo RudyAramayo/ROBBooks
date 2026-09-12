@@ -1,6 +1,6 @@
 # ROB's Little Helper Library — EPUB review record
 
-**Prepared:** 2026-09-10
+**Prepared:** 2026-09-10 · **Revalidated:** 2026-09-11
 
 **Catalog:** `publication/preschool-apple-books-catalog.json`
 
@@ -12,6 +12,7 @@ R.O.B. catalog.
 
 ## Completed review
 
+- Rodolfo Aramayo and Kierie Aramayo are encoded as separate, ordered creators in every package and shown as co-authors on every title page and external cover.
 - All ten manuscripts and their four story illustrations were visually reviewed.
 - All ten external store covers were reviewed together at contact-sheet scale and individually at source resolution.
 - All ten nine-page PDF reading editions were rendered to PNG and visually reviewed; every story page visibly includes its intended illustration.
@@ -20,6 +21,11 @@ R.O.B. catalog.
 - DAISY Ace 1.4.6 reports zero automated violations for every edition when run against the exact EPUB paths in the preschool catalog.
 - The final stylesheet was opened in Apple Books on macOS. The first scene of `Good Morning, ROB!` was verified to keep its heading, illustration, and complete scene text on the same reader page; the same stylesheet and structure are used by all ten editions.
 - The SHA-256 manifest binds these results to the exact EPUB bytes. A changed EPUB requires regeneration of the manifest and a fresh review.
+
+The co-author revision was rebuilt on 2026-09-11. All ten revised EPUBs again
+passed EPUBCheck 5.3.0 with zero errors and zero warnings, the structural audit
+confirmed both creator records and visible bylines, and the ten revised covers
+and PDF title pages were visually checked for legible, contained credit lines.
 
 ## Open account/device review
 

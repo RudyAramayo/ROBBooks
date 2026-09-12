@@ -8,7 +8,7 @@ Treads, gears, actuators, and the art of making
 
 
 A MECHANICS AND FABRICATION GUIDE FOR MAKERS AGES 10-15
-Rodolfo Aramayo / Orbitus Robotics -   First Maker Faire Edition
+Rodolfo Aramayo / OrbitusRobotics LLC -   First Maker Faire Edition
 Motion begins on paper
 A safe tour from force and torque to prototypes, measurements, brackets, chains, and tests.
 
@@ -22,13 +22,16 @@ zone work for trained adults.
 
 
 
-Copyright © 2026 Rodolfo Aramayo / Orbitus Robotics. Photographs are from the private ROB build archive unless
-otherwise noted. The generated frontispiece is original artwork derived from a ROB reference photograph. This
-independent educational project is not affiliated with or endorsed by any film studio or franchise owner. Product
-and company names remain the property of their respective owners.
+Copyright © 2026 OrbitusRobotics LLC. All rights reserved. Rodolfo Aramayo is the author and photographer.
+Photographs are from the private ROB build archive unless otherwise noted. Generated covers, frontispieces, story
+scenes, and conceptual teaching plates are original project illustrations derived from or inspired by ROB reference
+photographs. They are illustrations, not documentary photographs, technical drawings, or evidence of the as-built
+configuration. Source-code licenses remain separate and repository-specific. This independent educational project
+is not affiliated with or endorsed by any film studio or franchise owner. Product and company names remain the
+property of their respective owners.
 
-First evidence-based draft: 2 August 2026. Build details marked Builder input needed are deliberate placeholders
-for the builder to complete.
+First evidence-based draft: 2 August 2026. This historical engineering edition distinguishes documented facts,
+builder recollection, experiments, plans, and facts not established by the available evidence.
 MOTION WORKSHOP                                                                                    VOLUME 3 - AGES 10-15
 
 
@@ -43,6 +46,8 @@ The Building R.O.B. library
   VOLUME 6                Dual-Arm Robotics: AMBER B1, URDF, CAN, and Ubuntu - advanced makers
   VOLUME 7                Engineering ROBControllerVision: Swift, Spatial Input, Video, and Speech - Swift devel-
                           opers
+  VOLUME 8                Engineering Cerebro: Perception, Models, H.264, and Robot Coordination - software en-
+                          gineers
   MANUAL                  Building R.O.B.: The Complete Maker’s Field Manual - advanced builders
 
 
@@ -78,15 +83,15 @@ The Building R.O.B. library
    at https://github.com/OrbitusRoboticsWebSite/ORobotics. See https://github.com/RudyA
    ramayo/ROBBooks/blob/main/ROB-Books/OPEN-SOURCE-CODE-MAP.md for clickable repository and file
    links, license cautions, and renamed-file search instructions. A named archival item without a verified
-   public repository is labeled as evidence, not given an invented URL.
 
 
-
-
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    3 / 30
 MOTION WORKSHOP                                                                                 VOLUME 3 - AGES 10-15
 
 
+
+
+   public repository is labeled as evidence, not given an invented URL.
 
     MACHINE-TOOL RULE
 
@@ -98,27 +103,27 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                 4 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                 4 / 30
 Contents
 1 What must the base survive?                   2
 
 2 Differential drive and ground friction        5
 
-3 Motors, gearing, and sprockets                8
+3 Motors, gearing, and sprockets                9
 
-4 Change one kind of motion into another        12
+4 Change one kind of motion into another        14
 
-5 Wood, aluminum, HDPE, and fasteners           15
+5 Wood, aluminum, HDPE, and fasteners           17
 
-6 From measurement to machined part             18
+6 From measurement to machined part             20
 
-7 Make it buildable and repairable              21
+7 Make it buildable and repairable              23
 
-8 A ladder of evidence                          24
+8 A ladder of evidence                          26
 
-9 Draw the forces before choosing a motor       26
+9 Draw the forces before choosing a motor       28
 
-10 Measure performance as a curve               27
+10 Measure performance as a curve               29
 
 
 
@@ -129,8 +134,9 @@ ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                    
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                6 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                6 / 30
 MISSION 1
+
 
 Start with loads, not shapes
 MISSION 1
@@ -175,9 +181,12 @@ The same payload creates more moment when the arm extends farther.
 
 
 
-    BUILDER INPUT NEEDED
-    Add verified ready-to-run mass, center-of-mass measurements in key poses, arm payload and reach,
-    flipper loads, maximum slope, transport loads, and the design load cases used for each mount.
+   EIGHT YEARS OF USE IS NOT A LOAD CASE
+
+   ROB has been revised and operated over roughly eight years, but the archive contains no verified
+   ready-to-run mass, pose-dependent center of mass, arm payload, flipper load, slope limit, or trans-
+   port load case. Those values cannot be inferred from survival or photographs. The force diagrams
+   in this volume teach how a future measured redesign should reason; they do not rate ROB or a copy.
 
 
 
@@ -188,8 +197,9 @@ The same payload creates more moment when the arm extends farther.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                 3 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                 3 / 30
 MISSION 2
+
 
 Two treads create a path
 MISSION 2
@@ -206,6 +216,17 @@ friction
 ROB steers by commanding the left and right treads differently. This is differential drive. It is mechanically
 simple because there is no steering linkage, but turning a long tread on high-friction ground can demand
 a great deal of torque. Parts of the tread must slide sideways as the robot rotates.
+The purchased SuperDroid Robots LT2 tread system was ROB’s one non-negotiable starting interface.
+The builder first mocked its envelope in cardboard, then planned maple-plywood parts around it and a
+flipper/third-wheel variation inspired by Johnny 5. That is systems engineering in a wonderfully practical
+form: freeze the one part you cannot change, represent it cheaply, and iterate everything that touches it.
+The original LT2 is designed as a skid-steer tracked platform. SuperDroid’s own support material warns
+through its payload discussion that added weight and high-traction treads make the sideways skid re-
+quired for turning more difficult. ROB added arms, cameras, computers, an inverter, batteries, and struc-
+ture far above the base. On concrete, the builder now often turns with small forward/back arcs like a car
+instead of demanding a stationary pivot. This is not merely a software inconvenience; it is the floor, tread
+contact patch, normal force, center of mass, gear ratio, motor current limit, and structure negotiating at
+once.
 That explains an idea in the 2021-2022 presentation: a small wheel, mounted perpendicular to the treads
 and deployed by a linear actuator, could lift part of the robot so it pivots with less scrub. The slides call
 this the ThirdWheel concept. The archive does not establish the final geometry or whether the concept
@@ -214,15 +235,14 @@ was completed.
 
 
 
-   Historical presentation page 23: the upside-down prototype is annotated with front/back orientation and a
-   proposed third-wheel load path. This is a concept record, not a dimensioned fabrication drawing.
-
-
-
-
                                                       5
-MOTION WORKSHOP                                                                                VOLUME 3 - AGES 10-15
+MOTION WORKSHOP                                                                                  VOLUME 3 - AGES 10-15
 
+
+
+
+     Historical presentation page 23: the upside-down prototype is annotated with front/back orientation and a
+     proposed third-wheel load path. This is a concept record, not a dimensioned fabrication drawing.
 
 
    COMPUTER SCIENCE CONNECTION
@@ -245,14 +265,21 @@ was completed.
 
 
 
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  6 / 30
+MOTION WORKSHOP                                                                                VOLUME 3 - AGES 10-15
+
+
+
+
      The open 2024 base makes the space between the two tread modules visible. Packaging, mass distribution,
      cable clearance, and service access all affect how the robot turns.
 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                6 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                7 / 30
 MISSION 3
+
 
 Trade speed for torque
 MISSION 3
@@ -260,10 +287,16 @@ Trade speed for torque
 
 Motors, gearing, and
 sprockets
-The motor label visible in ROB’s build photographs identifies a HengDrive B5685G family. The archive
-also contains vendor material carrying restrictive or confidential notices. This public edition neither re-
-produces nor paraphrases those sheets. Obtain written permission or a current public datasheet, then
-confirm the installed winding, controller, gearbox, and measured output before publishing specifications.
+The motor label visible in ROB’s build photographs identifies a HengDrive B5685G family. The builder
+recalls an early 12 V, roughly 80 rpm and 30 W arrangement, but the public evidence does not establish
+the installed winding, gearbox, controller interface, or present rating on each axis. Preserve those values
+as recollection until label photographs, non-destructive measurements, bounded tests, and an authorized
+public manufacturer record resolve the configuration.
+The builder tried 16-, 32-, 40-, and 45-tooth sprockets while searching for a useful balance. A tooth count
+has no meaning by itself: the log must say whether it was the driver or driven sprocket and name its mate.
+Larger speed at the tread can reduce available output torque, while a reduction chosen for strong flipper
+lift can be painfully slow. ROB needed both: enough travel speed for a public robot and enough flipper
+torque to raise part of the heavy droid so the tracks could undulate over stairs.
 
 
 Gear ratio
@@ -285,6 +318,13 @@ chain sit above a machined opening. The photograph is excellent for       gears 
 checking clearance, but it cannot supply scale by itself.                 center distance.
 
 
+
+
+                                                                      9
+MOTION WORKSHOP                                                                              VOLUME 3 - AGES 10-15
+
+
+
    GEAR CARD LAB
 
    Draw a 12-tooth driver and a 36-tooth driven gear. Predict output turns for three input turns. Reverse
@@ -292,16 +332,38 @@ checking clearance, but it cannot supply scale by itself.                 center
 
 
 
+What the 24 V boost changed
+The builder later installed a large 12-to-24 V boost converter and recalls moving the motor supply to-
+ward a 24 V bus. ROB immediately felt faster and stronger. The careful lesson is not “double voltage
+always doubles torque.” For a given motor, back-EMF and voltage strongly affect available speed, while
+torque follows current; the controller, converter, winding, gearing, battery sag, temperature, and load
+limit the result. The exact installed motor/controller option, commanded voltage, measured bus voltage,
+and converter margin are not established, so this observation remains history rather than an electrical
+specification.
 
-                                                                      8
+   BUILD A GEAR-RATIO TEST MATRIX
+
+   Make rows for 16, 32, 40, and 45 teeth. Add columns for driver teeth, driven teeth, calculated ratio,
+   unloaded tread speed, current during a gentle turn, flipper lift success, motor temperature, and notes
+   about surface. Leave a cell blank when it was not measured. The best ratio is the one that satisfies
+   the declared mission with margin, not the one with the most dramatic single number.
+
+   THE UNDERPOWERED-MOTOR LESSON
+
+   The visible label identifies a HengDrive B5685G-family motor, while the author recalls an early
+   roughly 30 W, 12 V choice that was too slow and underpowered for the growing robot. Sprocket
+   changes recovered torque but did not deliver the intended speed; a later 12-to-24 V boost stage
+   made ROB stronger and faster while it remained slow and high-torque. In hindsight the author would
+   begin a redesign around at least roughly 120 W per drive motor and about four times the speed, but
+   that is a design goal, not a drop-in specification. Exact winding, gearbox, controller logic, installed
+   sprockets, current, temperature, and lift margin remain unmeasured. Private manufacturer drawings
+   are excluded from the public edition.
+
+
+
+
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                            10 / 30
 MOTION WORKSHOP                                                                                  VOLUME 3 - AGES 10-15
-
-
-
-    BUILDER INPUT NEEDED
-    Confirm the manufacturer, exact motor winding, controller, and gearbox installed on each tread and
-    the flipper. Supply authorized public documentation plus measured output-shaft and tread speed
-    before print.
 
 
 
@@ -312,7 +374,7 @@ checking clearance, but it cannot supply scale by itself.                 center
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  9 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                11 / 30
 MOTION WORKSHOP                                                                                                         VOLUME 3 - AGES 10-15
 
 
@@ -346,8 +408,9 @@ between the treads.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        10 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                        12 / 30
 MISSION 4
+
 
 Flippers and linear motion
 MISSION 4
@@ -387,7 +450,7 @@ lash, mounting style, current limit, and end-of-travel behavior.
   no flipper limit input, and no implemented wheel encoder feedback. Software command is therefore
 
 
-                                                                        12
+                                                                        14
 MOTION WORKSHOP                                                                                     VOLUME 3 - AGES 10-15
 
 
@@ -412,19 +475,22 @@ lash, mounting style, current limit, and end-of-travel behavior.
      Historical presentation page 54 labels a simple actuator moving the torso. Treat the layout as a design note
      until the builder confirms the installed mechanism.
 
-    BUILDER INPUT NEEDED
-    Identify every installed actuator and controller: model, voltage, stroke, force, speed, duty cycle, cur-
-    rent limit, mounting hardware, limit switches, feedback, and whether it serves torso tilt, the third
-    wheel, or another revision.
+   ACTUATOR ERAS, NOT A PARTS SCHEDULE
+
+   Photographs show multiple central, torso, third-wheel/flipper, hobby-servo, stepper, and AMBER-
+   arm eras. They do not provide a dated model/voltage/stroke/force/duty-cycle inventory or prove
+   which actuator remains installed. The historical record preserves the evolving roles; a reproduction
+   requires a fresh label survey, limit/feedback inspection, load analysis, and safe-state test.
 
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   13 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                   15 / 30
 MISSION 5
 
-Prototype materials answer ques-
-tions
+
+Prototype materials answer
+questions
 MISSION 5
 
 
@@ -462,7 +528,7 @@ lubricant, and PPE recorded.
 
 
 
-                                                                        15
+                                                                        17
 MOTION WORKSHOP                                                                                 VOLUME 3 - AGES 10-15
 
 
@@ -473,10 +539,13 @@ lubricant, and PPE recorded.
    ruler. Compare marks. A tolerance is the acceptable variation, not a promise of perfect measurement.
    Discuss which features really need tight tolerance.
 
-    BUILDER INPUT NEEDED
-    Add final CAD or dimensioned templates, material grades and thicknesses, fastener sizes and grades,
-    bearing and shaft specifications, fits, tolerances, surface treatment, and which wooden parts remain
-    in the current robot.
+   WHY THERE IS NO DOWNLOADABLE ROB CAD
+
+   ROB was shaped by hand from cardboard, scrap wood, maple-plywood templates, fitted brackets,
+   and later metal revisions. The final CAD, controlled templates, material/fastener schedule, fits, toler-
+   ances, and complete list of surviving wood parts do not exist. Reconstructing them from a measured
+   scan is an explicit next project. Readers should reproduce the prototype-and-evidence method, not
+   copy unmeasured geometry.
 
 
 
@@ -487,8 +556,9 @@ lubricant, and PPE recorded.
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                               16 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                               18 / 30
 MISSION 6
+
 
 Plan the cut before making chips
 MISSION 6
@@ -524,22 +594,25 @@ needs a documented datum.                                                      t
 
 
 
-                                                                          18
+                                                                          20
 MOTION WORKSHOP                                                                                    VOLUME 3 - AGES 10-15
 
 
 
     MILLING AND WELDING ARE NOT CHILD ACTIVITIES
 
-   Machine selection, feeds and speeds, tool choice, workholding, chip control, coolant, guarding,
-   ventilation, welding process, electrical protection, hot-work control, and post-weld inspection must
-   be written by qualified adults for the actual shop. This volume intentionally leaves them as author-
-   reviewed placeholders.
+   Machine selection, feeds and speeds, tool choice, workholding, chip control, coolant, guarding, ven-
+   tilation, welding process, electrical protection, hot-work control, and post-weld inspection must be
+   written by qualified adults for the actual shop. This volume does not supply those shop-specific pro-
+   cedures.
 
-    BUILDER INPUT NEEDED
-    Builder: provide the real milling, drilling, bending, welding, coating, deburring, and assembly se-
-    quence; machine and cutter details; workholding; feeds and speeds; PPE; inspection results; re-
-    jected attempts; and shop/vendor roles.
+   FABRICATION MEMORY IS NOT A SHOP TRAVELER
+
+   Rodolfo Aramayo identifies himself as the sole builder. The photo sequence records drilling, fitting,
+   bracket and rail work, machining revisions, coating, wiring, and assembly, but it does not preserve
+   machine parameters, workholding, welding procedures, PPE decisions, or inspection results. This
+   volume therefore teaches how to plan and document fabrication without presenting an invented
+   operation sequence.
 
 
 
@@ -551,11 +624,12 @@ needs a documented datum.                                                      t
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  19 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                  21 / 30
 MISSION 7
 
-Assembly order is part of the de-
-sign
+
+Assembly order is part of the
+design
  MISSION 7
 
 
@@ -590,7 +664,7 @@ This is a planning scaffold, not ROB’s confirmed build order:
 
 
 
-                                                                              21
+                                                                              23
 MOTION WORKSHOP                                                                                      VOLUME 3 - AGES 10-15
 
 
@@ -610,8 +684,9 @@ This is a planning scaffold, not ROB’s confirmed build order:
 
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    22 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                    24 / 30
 MISSION 8
+
 
 Test from gentle to demanding
 MISSION 8
@@ -621,24 +696,24 @@ A ladder of evidence
 A full-speed floor test should never be the first proof that a drivetrain works. A safer ladder moves from
 models toward the physical robot:
 
-               TEST                                            PASS EVIDENCE
+             TEST                                            PASS EVIDENCE
  LEVEL
-               Drawing, calculations, and hazard review.       Signed review notes and unresolved ques-
- 0                                                             tions.
-               Software fixture with no hardware.              Exact frames, range rejection, timeout be-
- 1                                                             havior.
-               Logic outputs into indicators or a simulator.   Correct pin states and ordering.
+             Drawing, calculations, and hazard review.       Signed review notes and unresolved ques-
+ 0                                                           tions.
+             Software fixture with no hardware.              Exact frames, range rejection, timeout be-
+ 1                                                           havior.
+             Logic outputs into indicators or a simulator.   Correct pin states and ordering.
  2
-               One disconnected controller or small surro-     Polarity, limits, current, and stop response.
- 3             gate load.
-               Full drive hardware on rated stands,            Direction, brake/coast behavior, heartbeat
- 4             guarded.                                        stop.
-               Unloaded slow floor test inside an exclusion    Tracking, stopping distance, thermal and
- 5             zone.                                           current log.
-               Incremental surface and load tests.             Repeatable results for each declared operat-
- 6                                                             ing condition.
-               Maker Faire rehearsal.                          Operator checklist, barriers, spotter, E-stop
- 7                                                             drill, recovery plan.
+             One disconnected controller or small surro-     Polarity, limits, current, and stop response.
+ 3           gate load.
+             Full drive hardware on rated stands,            Direction, brake/coast behavior, heartbeat
+ 4           guarded.                                        stop.
+             Unloaded slow floor test inside an exclusion    Tracking, stopping distance, thermal and
+ 5           zone.                                           current log.
+             Incremental surface and load tests.             Repeatable results for each declared operat-
+ 6                                                           ing condition.
+             Maker Faire rehearsal.                          Operator checklist, barriers, spotter, E-stop
+ 7                                                           drill, recovery plan.
 
   ADVANCED CHANNEL
   Measure more than success. Record maximum current, voltage sag, motor and controller tempera-
@@ -646,16 +721,20 @@ models toward the physical robot:
   movement, and unexpected contact. A video plus synchronized data log can reveal events the oper-
   ator missed.
 
-     BUILDER INPUT NEEDED
-     Add ROB’s actual test reports: tread-lift setup, sign checks, measured speed and stopping distance,
-     current and temperature limits, hard-floor and grass results, slope limits, flipper and actuator load
-     tests, fastener inspection interval, and known failed parts.
+     NO QUANTIFIED PERFORMANCE OR SAFETY RATING
+
+  The author reports a slow, high-torque robot, difficult skid turns, outdoor/grass lessons, gearing
+  changes, voltage conversion, and ambitious stair/flipper experiments. The archive contains no com-
+  plete measured speed, stopping-distance, current, temperature, slope, lift, fastener, or failed-part re-
+  port. Eight years of operation does not establish a safe limit. The seven-rung test ladder is a method
+  for future evidence, not a claim that ROB passed it.
 
 
 
 
-                                                      24
+                                                    26
 DEEP LAB
+
 
 Forces leave clues
 MISSION 9
@@ -698,7 +777,7 @@ debris change the required torque and heat.
 
 
 
-                                                     26
+                                                     28
 MISSION 10
 
 
@@ -746,7 +825,7 @@ memory.
 
 
 
-                                                    27
+                                                    29
 MOTION WORKSHOP                                                                                                           VOLUME 3 - AGES 10-15
 
 
@@ -777,5 +856,5 @@ distinguish implemented behavior from planned mechanics. Restricted motor-docume
 paraphrased.
 
 
-ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                         28 / 28
+ORBITUS ROBOTICS - FIRST MAKER FAIRE EDITION                                                                                         30 / 30
 

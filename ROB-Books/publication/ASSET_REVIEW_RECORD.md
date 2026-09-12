@@ -79,11 +79,12 @@ All eight 3200 × 1800 sRGB renders were visually inspected and OCR-screened. Th
 
 ## Generated book illustrations
 
-All 15 sRGB source rasters were reviewed for visible defects, accidental logos, watermarks, readable pseudo-credentials, misleading as-built detail, and recognizable franchise characters or settings. None was found. These files are original project illustrations made with image-generation tooling. The shared imprint now identifies generated covers, frontispieces, story scenes, and teaching plates as illustrations rather than documentary or engineering evidence.
+All 16 sRGB source rasters were reviewed for visible defects, accidental logos, watermarks, readable pseudo-credentials, misleading as-built detail, and recognizable franchise characters or settings. None was found. These files are original project illustrations made with image-generation tooling. The shared imprint now identifies generated covers, frontispieces, story scenes, and teaching plates as illustrations rather than documentary or engineering evidence.
 
 | Reviewed asset | Visual/editorial result |
 |---|---|
 | `assets/generated/cerebro-perception-control-lesson.png` | PASS — original conceptual/story illustration; no documentary, as-built, certification, logo, watermark, or franchise claim. |
+| `assets/generated/rob-ai-repository-tree.png` | PASS — original Volume 5 cover illustration with a branching software-history motif; no logo, watermark, private identifier, franchise reference, or cross-volume reuse. |
 | `assets/generated/rob-circuits-signals-lab.png` | PASS — original conceptual/story illustration; no documentary, as-built, certification, logo, watermark, or franchise claim. |
 | `assets/generated/rob-dual-arm-feedback-lesson.png` | PASS — original conceptual/story illustration; no documentary, as-built, certification, logo, watermark, or franchise claim. |
 | `assets/generated/rob-little-helper-bridge.png` | PASS — original conceptual/story illustration; no documentary, as-built, certification, logo, watermark, or franchise claim. |
@@ -116,7 +117,7 @@ These assets were checked at source resolution. The six cover JPEGs are derivati
 
 ## Automated evidence and repeat procedure
 
-- `publication/reviewed-assets.sha256` records the exact 77 reviewed files.
+- `publication/reviewed-assets.sha256` records the exact 78 reviewed files.
 - `python3 tools/audit_publication_assets.py --ocr` verifies the closed allowlist, checksums, category counts, pixel thresholds, sRGB color space, prepared-photo metadata, ledger coverage, and OCR privacy patterns.
 - `python3 tools/audit_publication_assets.py --release --ocr` additionally fails while the author-rights marker above remains pending.
 - Generated reports are written to `tmp/asset-audit/` and remain build evidence rather than publication content.
