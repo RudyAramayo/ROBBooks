@@ -67,9 +67,9 @@
     "total_pages": 44,
     "unique_illustrations": 40,
     "minimum_effective_dpi": 162.2,
-    "mean_ink_coverage": 0.263,
+    "mean_ink_coverage": 0.262,
     "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
-    "sha256": "90b41c32558b1cf803b95cc320f5856ac1a4d69e4eec97f85367838a5a180bb8"
+    "sha256": "8544e374a9cb9a728e29337bc186f8f46bff99a053571c0cf39393470553cc0c"
   },
   {
     "file": "output/pdf/coloring-v2/adult/rob-clockwork-gardens-coloring.pdf",

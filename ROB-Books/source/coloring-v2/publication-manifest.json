@@ -4001,7 +4001,7 @@
         "pdf_page": 18,
         "title": "A mitten garland",
         "image": "assets/coloring-v2/rob-christmas/16.png",
-        "sha256": "1616658659520e0a1e213afe73d136cbaf619cb93d15dbe5fde9dd43c0298dc2",
+        "sha256": "b66df39bc64d652c2962b9779b9ad6bb1a6e90bf3c6b8503639f64c39e7d507c",
         "placement": {
           "x": 78.66666666666666,
           "y": 62.0,
@@ -4397,7 +4397,7 @@
         }
       }
     ],
-    "sha256": "90b41c32558b1cf803b95cc320f5856ac1a4d69e4eec97f85367838a5a180bb8"
+    "sha256": "8544e374a9cb9a728e29337bc186f8f46bff99a053571c0cf39393470553cc0c"
   },
   {
     "file": "output/pdf/coloring-v2/adult/rob-clockwork-gardens-coloring.pdf",
