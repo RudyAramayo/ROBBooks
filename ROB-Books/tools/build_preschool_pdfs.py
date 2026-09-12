@@ -151,10 +151,11 @@ def build_book(book: dict, authors: list[str]) -> Path:
     pdf = canvas.Canvas(str(output), pagesize=letter, pageCompression=1)
     author_credit = " and ".join(authors)
     pdf.setAuthor(author_credit)
+    pdf.setTitle(title)
+    pdf.setCreator("OrbitusRobotics LLC")
 
     cover = PROJECT / book["cover"]
     pdf.drawImage(ImageReader(cover), 0, 0, PAGE_W, PAGE_H, preserveAspectRatio=False, mask="auto")
-    draw_footer(pdf, title, 1)
     pdf.showPage()
 
     draw_page_background(pdf, TEAL)

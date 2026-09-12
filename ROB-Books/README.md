@@ -46,7 +46,9 @@ python3 tools/prepare_apple_books_assets.py \
 
 The generated EPUBs and 2,550 × 3,300-pixel sRGB store covers live beneath
 `output/apple-books/`. Image-rich PDF reading editions live in
-`output/pdf/preschool/`. Automated checks complement—but do not replace—the
+`output/pdf/preschool/`. Covers contain the full illustration in a dedicated
+frame, with titles and credits outside the artwork so ROB stays visible.
+Automated checks complement—but do not replace—the
 Apple Books device, sample, rights, and pricing review recorded in the
 publication folder.
 

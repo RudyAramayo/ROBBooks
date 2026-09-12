@@ -7,7 +7,7 @@ import json
 import textwrap
 from pathlib import Path
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -44,45 +44,44 @@ def build_cover(book: dict[str, object], series_title: str, authors: list[str]) 
 
     with Image.open(art_path) as source:
         art = source.convert("RGB")
-    scale = max(COVER_SIZE[0] / art.width, COVER_SIZE[1] / art.height)
-    resized = art.resize((round(art.width * scale), round(art.height * scale)), Image.Resampling.LANCZOS)
-    left = (resized.width - COVER_SIZE[0]) // 2
-    top = (resized.height - COVER_SIZE[1]) // 2
-    cover = resized.crop((left, top, left + COVER_SIZE[0], top + COVER_SIZE[1])).convert("RGBA")
-
-    overlay = Image.new("RGBA", COVER_SIZE, (0, 0, 0, 0))
-    overlay_draw = ImageDraw.Draw(overlay)
-    overlay_draw.rectangle((0, 0, COVER_SIZE[0], 1260), fill=(8, 20, 32, 222))
-    overlay_draw.rectangle((0, 2910, COVER_SIZE[0], COVER_SIZE[1]), fill=(8, 20, 32, 232))
+    # Reserve separate title, illustration, and credit areas. Contain the
+    # complete scene so neither a crop nor a text panel can hide ROB.
+    cover = Image.new("RGB", COVER_SIZE, "#fff8e8")
+    art_top, art_bottom = 650, 3020
+    resized = ImageOps.contain(art, (2250, art_bottom - art_top), Image.Resampling.LANCZOS)
+    left = (COVER_SIZE[0] - resized.width) // 2
+    top = art_top + (art_bottom - art_top - resized.height) // 2
     accent = cover_accent(str(book["slug"]))
-    overlay_draw.rectangle((150, 150, 2400, 166), fill=accent)
-    overlay_draw.rectangle((150, 2895, 2400, 2911), fill=accent)
-    cover = Image.alpha_composite(cover, overlay)
-
     draw = ImageDraw.Draw(cover)
+    draw.rounded_rectangle(
+        (left - 20, top - 20, left + resized.width + 20, top + resized.height + 20),
+        radius=20, fill=accent,
+    )
+    cover.paste(resized, (left, top))
     draw.text(
-        (170, 215),
+        (1275, 85),
         f"{series_title.upper()}  •  BOOK {book['series_number']}",
-        font=font(BODY_FONT, 66),
-        fill=accent,
+        font=font(BODY_FONT, 62), anchor="mt",
+        fill="#176967",
     )
     title = wrapped_title(str(book["title"]))
     draw.multiline_text(
-        (165, 350),
+        (1275, 200),
         title,
-        font=font(TITLE_FONT, 174),
-        fill="#ffffff",
-        spacing=12,
+        font=font(TITLE_FONT, 144), anchor="ma", align="center",
+        fill="#183b48",
+        spacing=10,
     )
-    title_box = draw.multiline_textbbox((165, 350), title, font=font(TITLE_FONT, 174), spacing=12)
-    subtitle_y = min(title_box[3] + 48, 1090)
-    draw.text((170, subtitle_y), str(book["subtitle"]), font=font(BODY_FONT, 72), fill="#f8fafc")
-    draw.text((170, 3000), "AGES 2–5  •  READ ALOUD TOGETHER", font=font(BODY_FONT, 64), fill=accent)
+    title_box = draw.multiline_textbbox((1275, 200), title, font=font(TITLE_FONT, 144), spacing=10, anchor="ma", align="center")
+    if title_box[0] < 150 or title_box[2] > 2400 or title_box[3] > 490:
+        raise ValueError(f"Title does not fit the reserved header: {book['title']}")
+    draw.text((1275, 535), str(book["subtitle"]), font=font(BODY_FONT, 64), anchor="mt", fill="#176967")
+    draw.text((1275, 3090), "AGES 2–5  •  READ ALOUD TOGETHER", font=font(BODY_FONT, 58), anchor="mt", fill="#176967")
     credit = f"{' & '.join(authors)}  /  OrbitusRobotics LLC"
     credit_size = 52
     while draw.textlength(credit, font=font(BODY_FONT, credit_size)) > 2210 and credit_size > 38:
         credit_size -= 1
-    draw.text((170, 3110), credit, font=font(BODY_FONT, credit_size), fill="#f8fafc")
+    draw.text((1275, 3190), credit, font=font(BODY_FONT, credit_size), anchor="mt", fill="#183b48")
 
     cover.convert("RGB").save(output_path, "JPEG", quality=94, subsampling=0, dpi=(300, 300), optimize=True)
     return output_path
