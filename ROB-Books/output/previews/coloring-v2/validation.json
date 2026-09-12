@@ -6,7 +6,7 @@
     "minimum_effective_dpi": 162.2,
     "mean_ink_coverage": 0.155,
     "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
-    "sha256": "57f9a2f25eecf83677527171907dcb5287fe0bb6a15c073f847f79e95b876d1d"
+    "sha256": "6b81bc84fcdebcd5669a86611cd0e8c003de13920fac95b6625739c3fa85e9e5"
   },
   {
     "file": "output/pdf/coloring-v2/children/rob-counts-the-fireflies-coloring.pdf",
@@ -15,7 +15,7 @@
     "minimum_effective_dpi": 162.2,
     "mean_ink_coverage": 0.152,
     "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
-    "sha256": "b21c478f6d775ed6c00e17fe8edd3c2992cb50fb4e822e19cc98c3533373b1a7"
+    "sha256": "c2ff96f74923a4cf638678f052e11632286f4b7c52e34bdc5d1cb1f16baf0dd0"
   },
   {
     "file": "output/pdf/coloring-v2/children/robs-rainbow-lights-coloring.pdf",
@@ -24,7 +24,7 @@
     "minimum_effective_dpi": 162.2,
     "mean_ink_coverage": 0.157,
     "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
-    "sha256": "d3f9c0d2822e4355062ff9183a30cc286e05c3e7d28a75125a50c0308b6613a6"
+    "sha256": "ce56193bd1697d30f50890ff7c3e97791deb60a674960a3a3effc6783677a799"
   },
   {
     "file": "output/pdf/coloring-v2/children/rob-hears-a-little-sound-coloring.pdf",
@@ -33,7 +33,7 @@
     "minimum_effective_dpi": 162.2,
     "mean_ink_coverage": 0.158,
     "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
-    "sha256": "3ff896ae549ae48033675dd0bbed38c0bf06003c01f77bb4576b265c7830f92a"
+    "sha256": "34dcae95bf06a5b6d1e152fd8334d49a657eaa8b2a9b1e4f81b0c657bbbfe5d1"
   },
   {
     "file": "output/pdf/coloring-v2/children/rob-shares-the-shiny-star-coloring.pdf",
@@ -42,7 +42,7 @@
     "minimum_effective_dpi": 162.2,
     "mean_ink_coverage": 0.148,
     "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
-    "sha256": "ca72eecd252a854b7b938843bc42f1c5a6b1b90fc1c79a6e419319a5612fa937"
+    "sha256": "bd84b675afa52bf4faedb3f5dd7b8b99c15db106daa635deae159220c2ca4330"
   },
   {
     "file": "output/pdf/coloring-v2/adult/rob-halloween-coloring.pdf",
@@ -51,7 +51,7 @@
     "minimum_effective_dpi": 162.2,
     "mean_ink_coverage": 0.274,
     "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
-    "sha256": "d59b176e1594e0573266ff3091f0082ae76c93d8b7da0fec43bb5e928e235878"
+    "sha256": "b96c009da9447b6095d626dddaa65ba9003433d7edbcbcb929de03d5469169d6"
   },
   {
     "file": "output/pdf/coloring-v2/adult/rob-thanksgiving-coloring.pdf",
@@ -60,7 +60,7 @@
     "minimum_effective_dpi": 162.2,
     "mean_ink_coverage": 0.252,
     "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
-    "sha256": "5faa95982e96f9f1dffdd5bd4bd430752001e064524e3e201e10154da7a37b00"
+    "sha256": "68bddec76549e43afc60016935966776618120361598cbb463c31e6c146842c0"
   },
   {
     "file": "output/pdf/coloring-v2/adult/rob-christmas-coloring.pdf",
@@ -69,7 +69,7 @@
     "minimum_effective_dpi": 162.2,
     "mean_ink_coverage": 0.263,
     "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
-    "sha256": "9d49663d4ab670ef24da5a310ca0200df9dcc92bfe3ed958636f4f267ad6169c"
+    "sha256": "90b41c32558b1cf803b95cc320f5856ac1a4d69e4eec97f85367838a5a180bb8"
   },
   {
     "file": "output/pdf/coloring-v2/adult/rob-clockwork-gardens-coloring.pdf",
@@ -78,7 +78,7 @@
     "minimum_effective_dpi": 162.2,
     "mean_ink_coverage": 0.257,
     "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
-    "sha256": "74d1ff44e3afef4ed327432af3ff12e997e6aa5f3bfaee3cd3d7b17e01a2db32"
+    "sha256": "3bac785464ba68cbd95d6674578cada019e4e0d6589151b2f434d2408649c41c"
   },
   {
     "file": "output/pdf/coloring-v2/adult/rob-after-hours-coloring.pdf",
@@ -87,6 +87,6 @@
     "minimum_effective_dpi": 162.2,
     "mean_ink_coverage": 0.252,
     "checks": "page count, unique source art, text, margins, resolution, monochrome, rendering",
-    "sha256": "88096f68feb025cabd9e0681719afe8db895f4ae9e1ecdc63b31608382b3e35d"
+    "sha256": "86a86a2cc8a9e59b70ddf2eb4e725c514297b53e925ae76c24ba113fb874ac14"
   }
 ]

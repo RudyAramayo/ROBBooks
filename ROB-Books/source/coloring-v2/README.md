@@ -110,5 +110,4 @@ python3 tools/verify_illustrated_coloring_books.py --proof
 python3 tools/verify_illustrated_coloring_books.py --art-sheets
 ```
 
-Copyright 2026 OrbitusRobotics LLC. Stories and characters by Rodolfo Aramayo and
-Kierie Aramayo. Original AI-assisted illustrations for this edition.
+Copyright 2026 OrbitusRobotics LLC. Authors: Rodolfo and Kierie Aramayo.

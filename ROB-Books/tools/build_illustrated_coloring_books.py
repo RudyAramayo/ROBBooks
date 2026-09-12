@@ -100,7 +100,7 @@ def cover(c,b,back=False,proof=False):
             coverart=ART/slug/'01.png'
         image(c,coverart,53,157,506,404)
         text(c,tagline,306,116,'BodyBold',13,ink,'center')
-        text(c,'Rodolfo Aramayo and Kierie Aramayo',306,82,'Body',11,ink,'center')
+        text(c,'Rodolfo and Kierie Aramayo',306,82,'Body',11,ink,'center')
         text(c,'OrbitusRobotics LLC',306,55,'Body',9,ink,'center')
     else:
         heading='A different adventure on every page.' if child else 'Take your time. Make it your own.'
@@ -147,8 +147,7 @@ def intro(c,b):
     else:
         invitation='Look for circles, stars, leaves, and friendly faces as you color.' if child else 'Explore the repeating details, experiment with a palette, and make each scene your own.'
         wrapped(c,invitation,82,219,448,11,17)
-    text(c,'Stories and characters: Rodolfo Aramayo and Kierie Aramayo',306,123,'Body',9,align='center')
-    text(c,'Original AI-assisted illustrations for this edition, 2026.',306,102,'Body',9,align='center')
+    text(c,'Authors: Rodolfo and Kierie Aramayo',306,123,'Body',9,align='center')
     text(c,'OrbitusRobotics LLC',306,80,'BodyBold',10,align='center')
     c.showPage()
 
@@ -176,7 +175,7 @@ def build_book(b,proof=False):
     dest=outdir/f'{slug}-coloring.pdf'
     c=canvas.Canvas(str(dest),pagesize=(W,H),pageCompression=1,invariant=1)
     c.setTitle(META[slug][0]+' - Illustrated Coloring Book')
-    c.setAuthor('Rodolfo Aramayo and Kierie Aramayo')
+    c.setAuthor('Rodolfo and Kierie Aramayo')
     c.setCreator('OrbitusRobotics LLC / illustrated coloring edition')
     c.setSubject(f'{expected} distinct coloring illustrations; '+b['audience'])
     cover(c,b,proof=proof);intro(c,b)
